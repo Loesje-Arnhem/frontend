@@ -110,7 +110,7 @@ ul {
 .title {
   transition: box-shadow 0.1s ease-out;
   &.link-active {
-    box-shadow: 0 2px 0 0 var(--color-primary);
+    box-shadow: 0 2px 0 0 var(--color-black);
   }
 }
 
@@ -127,13 +127,13 @@ a {
   border-bottom: 1px dashed var(--color-gray);
 
   &.nuxt-link-exact-active .title {
-    box-shadow: 0 2px 0 0 var(--color-primary);
+    box-shadow: 0 2px 0 0 var(--color-black);
   }
 
   &:hover {
     text-decoration: none;
     & .title {
-      box-shadow: 0 3px 0 0 var(--color-primary);
+      box-shadow: 0 3px 0 0 var(--color-black);
     }
   }
   @media (--navigation-position-left) {

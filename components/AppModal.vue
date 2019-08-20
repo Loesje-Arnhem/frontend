@@ -124,7 +124,7 @@ export default {
 }
 
 header {
-  background: var(--color-primary);
+  background: var(--color-black);
   color: var(--color-white);
   display: flex;
   align-items: self-start;

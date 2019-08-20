@@ -24,11 +24,11 @@ button {
 a {
   color: inherit;
   text-decoration: none;
-  box-shadow: 0 2px 0 0 var(--color-primary);
+  box-shadow: 0 2px 0 0 var(--color-black);
   transition: box-shadow 0.2s ease-out;
 
   &:hover {
-    box-shadow: 0 3px 0 0 var(--color-primary);
+    box-shadow: 0 3px 0 0 var(--color-black);
   }
 }
 
@@ -57,7 +57,7 @@ a {
   max-width: 20em;
   color: var(--text-color);
   &:hover {
-    background: var(--color-primary);
+    background: var(--color-black);
     color: var(--color-white);
   }
 
@@ -76,11 +76,11 @@ a {
   }
 
   &.btn-primary {
-    background: var(--color-primary);
+    background: var(--color-black);
     color: var(--color-white);
 
     &:hover {
-      background: var(--color-primary-dark);
+      background: var(--color-black-dark);
     }
   }
 

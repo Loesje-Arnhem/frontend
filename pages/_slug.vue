@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <h1>{{ title }}</h1>
     <!-- eslint-disable-next-line -->
     <div class="text" v-html="text"/>
@@ -39,3 +39,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="postcss">
+.page {
+  @mixin center;
+}
+</style>
