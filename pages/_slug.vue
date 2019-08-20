@@ -3,13 +3,18 @@
     <h1>{{ title }}</h1>
     <!-- eslint-disable-next-line -->
     <div class="text" v-html="text"/>
+    <auto-complete />
   </div>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
+import AutoComplete from '@/components/Posters/components/Search/AutoComplete.vue'
 
 export default {
+  components: {
+    AutoComplete
+  },
   data() {
     return {
       title: '',
@@ -19,11 +24,14 @@ export default {
   },
 
   async asyncData({ params }) {
-    const response = await axios.get(`wp/v2/pages/`, {
-      params: {
-        slug: params.slug
+    const response = await axios.get(
+      `http://loesje.local/wp-json/wp/v2/pages?slug=App`,
+      {
+        params: {
+          slug: params.slug
+        }
       }
-    })
+    )
     const post = response.data[0]
 
     return {

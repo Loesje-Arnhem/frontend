@@ -1,0 +1,186 @@
+<template>
+  <div class="filter">
+    <div class="buttons">
+      <button
+        type="button"
+        :class="{'is-active': showSources}"
+        @click="toggleList('sources')"
+      >
+        <span class="sr-only">Bekijk alle</span>
+        <span>Bronnen</span>
+        <Icon
+          icon="chevron-down"
+          class="icon"
+        />
+      </button>
+      <button
+        type="button"
+        :class="{'is-active': showSubjects}"
+        @click="toggleList('subjects')"
+      >
+        <span class="sr-only">Bekijk alle</span>
+        <span>Onderwerpen</span>
+        <Icon
+          icon="chevron-down"
+          class="icon"
+        />
+      </button>
+      <input
+        type="date"
+        placeholder="Datum van"
+      >
+      <input
+        type="date"
+        placeholder="Datum tot"
+      >
+    </div>
+    <Transition
+      name="slide"
+      mode="out-in"
+    >
+      <div
+        v-if="showSources"
+        key="sources"
+        ref="sources"
+        class="tags"
+        tabindex="-1"
+      >
+        <Tags :list="sources" />
+      </div>
+
+      <div
+        v-if="showSubjects"
+        key="subjects"
+        ref="subjects"
+        class="tags"
+        tabindex="-1"
+      >
+        <Tags :list="subjects" />
+      </div>
+    </Transition>
+  </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex';
+import Tags from '@/components/Search/Tags.vue';
+import Icon from '@/components/Shared/Icon.vue';
+
+export default {
+  components: {
+    Tags,
+    Icon,
+  },
+  data() {
+    return {
+      showSubjects: false,
+      showSources: false,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      subjects: 'tags/subjects',
+      sources: 'tags/sources',
+    }),
+  },
+  methods: {
+    toggleList(type) {
+      if (type === 'subjects') {
+        this.showSubjects = !this.showSubjects;
+        this.showSources = false;
+      } else {
+        this.showSources = !this.showSources;
+        this.showSubjects = false;
+      }
+
+      // if (this.showSources) {
+      //   this.$nextTick(() => {
+      //     this.$refs.sources.focus();
+      //   });
+      // }
+
+      // if (this.showSubjects) {
+      //   this.$nextTick(() => {
+      //     this.$refs.subjects.focus();
+      //   });
+      // }
+    },
+  },
+};
+</script>
+
+<style scoped>
+.filter {
+  position: relative;
+}
+
+.buttons {
+  display: flex;
+  margin-bottom: 1em;
+  border-left: 1px solid var(--color-black);
+  flex-wrap: wrap;
+}
+
+input,
+button {
+  flex: 0 0 auto;
+  width: 50%;
+  padding: 0.5em 1em;
+  border: 1px solid var(--color-black);
+  border-left: 0;
+
+  @media (--viewport-md) {
+    width: 25%;
+  }
+}
+
+button {
+  display: flex;
+  align-items: center;
+  background: var(--color-white);
+
+  span {
+    flex: 1 0 auto;
+    text-align: left;
+  }
+
+  &:hover,
+  &.is-active {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+
+  &.is-active .icon {
+    transform: rotate(-180deg);
+  }
+}
+
+.icon {
+  @mixin icon 1em;
+  flex: 0 0 auto;
+  transform-origin: center;
+  transition: transform 0.2s ease-out;
+  margin-left: 0.5em;
+}
+
+.tags {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  padding: 1em 0 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.2s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translateY(0.5em);
+  opacity: 0;
+}
+</style>
