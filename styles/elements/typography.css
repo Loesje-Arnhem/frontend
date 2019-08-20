@@ -1,0 +1,64 @@
+html {
+  font-size: var(--font-size-base);
+}
+
+body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-color);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-family-base);
+  font-display: optional;
+}
+
+p {
+  hanging-punctuation: first;
+  margin: 0 0 1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.1;
+  font-weight: var(--font-weight-bold);
+}
+
+h1 {
+  margin: 0 0 0.5em;
+  font-size: 2.25rem;
+}
+
+h2 {
+  margin: 0 0 0.5em;
+  font-size: 1.5rem;
+}
+
+h3 {
+  margin: 0.5em 0 0;
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+h5 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+address {
+  font-style: normal;
+}
