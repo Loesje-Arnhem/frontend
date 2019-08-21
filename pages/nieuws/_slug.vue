@@ -9,6 +9,7 @@
 
 <script>
 import AppPage from '@/components/AppPage.vue'
+import axios from '~/plugins/axios'
 import LatestPosts from '@/components/LatestPosts.vue'
 import PostDate from '@/components/PostDate.vue'
 
@@ -18,9 +19,6 @@ export default {
     PostDate,
     LatestPosts
   },
-  meta: {
-    step: 0
-  },
   data() {
     return {
       title: '',
@@ -29,8 +27,8 @@ export default {
     }
   },
 
-  async asyncData({ params, $axios }) {
-    const response = await $axios.$get(`wp/v2/posts/`, {
+  async asyncData({ params }) {
+    const response = await axios.get(`wp/v2/posts/`, {
       params: {
         slug: params.slug
       }

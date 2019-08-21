@@ -2,7 +2,7 @@
   <li @mousedown="mouseDown" @mouseup="mouseUp">
     <h2>
       <!-- eslint-disable-next-line -->
-      <router-link :to="`nieuws/${post.slug}`" v-html="post.title.rendered" />
+      <router-link :to="`/nieuws/${post.slug}`" v-html="post.title.rendered" />
     </h2>
     <post-date :date="post.date" />
     <!-- eslint-disable-next-line -->
@@ -47,7 +47,7 @@ export default {
       this.down = +new Date()
     },
     goToPost() {
-      this.$router.push(`nieuws/${this.post.slug}`)
+      this.$router.push(`/nieuws/${this.post.slug}`)
     }
   }
 }
