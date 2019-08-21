@@ -5,7 +5,8 @@ const baseUrl = 'http://loesje.local/wp-json/'
 export default {
   mode: 'universal',
   env: {
-    baseUrl
+    baseUrl,
+    API_URL: baseUrl
   },
   /*
    ** Headers of the page
@@ -24,7 +25,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
 
       {
-        href: 'https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap',
+        href:
+          'https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap',
         rel: 'stylesheet'
       }
     ]
@@ -53,7 +55,6 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/pwa',
-    '@nuxtjs/sitemap',
     'nuxt-svg-loader',
     '@nuxtjs/axios'
   ],
@@ -97,24 +98,6 @@ export default {
           }
         }
       }
-    }
-  },
-  generate: {
-    async routes() {
-      const response = await axios.get(`${baseUrl}wp/v2/posts/?per_page=100`)
-      const posts = response.data.map(post => post.slug)
-      const urls = ['biography', ...posts]
-
-      return urls
-    }
-  },
-  sitemap: {
-    hostname: 'https://loesje.local/',
-    async routes() {
-      const response = await axios.get(`${baseUrl}wp/v2/posts/?per_page=100`)
-      return response.data.map(
-        post => `https://loesje.local/${post.slug}`
-      )
     }
   }
 }

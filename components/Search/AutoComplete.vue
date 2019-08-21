@@ -39,8 +39,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   props: {
     hasSearched: {
@@ -73,7 +71,7 @@ export default {
         this.close()
         return
       }
-      const response = await axios.get(
+      const response = await this.$axios.$get(
         'http://loesje.local/wp-json/wp/v2/poster?',
         {
           params: {

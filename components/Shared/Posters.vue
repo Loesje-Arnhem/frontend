@@ -1,35 +1,29 @@
 <template>
-  <ul>
-    <li
-      v-for="(poster) in posters"
-      :key="poster.id"
-    >
-      <RouterLink :to="{name: 'Poster',params: { slug: poster.slug }}">
-        <Poster :poster="poster" />
-      </RouterLink>
+  <ul class="list">
+    <li v-for="poster in posters" :key="poster.id" class="list-item">
+      <Poster :poster="poster" class="link" />
     </li>
   </ul>
 </template>
 
 <script>
-import Poster from '@/components/Shared/Poster.vue';
+import Poster from '@/components/Shared/Poster.vue'
 
 export default {
   components: {
-    Poster,
+    Poster
   },
   props: {
     posters: {
       type: Array,
-      default: () => [],
-    },
-  },
-};
+      default: () => []
+    }
+  }
+}
 </script>
 
-
 <style scoped>
-ul {
+.list {
   @mixin list-reset;
   margin: 0 0 1em;
   display: grid;
@@ -37,7 +31,7 @@ ul {
   grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
 }
 
-a {
+.link {
   transition: all 0.15s ease-in-out;
   display: block;
 
