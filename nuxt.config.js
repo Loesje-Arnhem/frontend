@@ -1,12 +1,9 @@
-import axios from 'axios'
 import pkg from './package'
-const baseUrl = 'http://loesje.local/wp-json/'
 
 export default {
   mode: 'universal',
   env: {
-    baseUrl,
-    API_URL: baseUrl
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
   },
   /*
    ** Headers of the page
@@ -58,12 +55,6 @@ export default {
     'nuxt-svg-loader',
     '@nuxtjs/axios'
   ],
-  /*
-   ** Axios module configuration
-   */
-  axios: {
-    baseURL: baseUrl
-  },
 
   /*
    ** Build configuration

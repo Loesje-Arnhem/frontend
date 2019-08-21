@@ -15,9 +15,7 @@
         @keyup.up="onArrowUp"
       />
 
-      <button type="submit" class="btn-submit">
-        Zoeken
-      </button>
+      <button type="submit" class="btn-submit">Zoeken</button>
     </div>
 
     <div v-show="isOpen" class="autocomplete">
@@ -30,7 +28,7 @@
             @click="goToPoster(result)"
           >
             <!-- eslint-disable-next-line -->
-            <span v-html="result.title"/>
+            <span v-html="result.title" />
           </button>
         </li>
       </ul>
@@ -71,14 +69,11 @@ export default {
         this.close()
         return
       }
-      const response = await this.$axios.$get(
-        'http://loesje.local/wp-json/wp/v2/poster?',
-        {
-          params: {
-            search: this.search
-          }
+      const response = await this.$axios.$get('wp/v2/poster', {
+        params: {
+          search: this.search
         }
-      )
+      })
       this.results = response.data.map(item => {
         const title = item.title.rendered
         return {

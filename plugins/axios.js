@@ -2,7 +2,8 @@ import axios from 'axios'
 import EventBusUtil from '@/utils/eventBusUtil'
 
 const instance = axios.create({
-  baseURL: 'http://loesje.local/wp-json/'
+  // baseURL: process.env.baseUrl
+  baseURL: 'https://www.loesje.nl/wp-json/'
 })
 
 instance.interceptors.response.use(
