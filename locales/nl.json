@@ -1,4 +1,6 @@
 {
+    "followOn": "Bekijk %{title} op %{network}",
+
   "albums": "Albums",
   "biography": "Biography",
   "contact": "Contact",

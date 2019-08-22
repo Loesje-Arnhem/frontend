@@ -1,9 +1,9 @@
 <template>
-  <main>
+  <div>
     <!-- eslint-disable-next-line -->
     <h1 id="content" tabindex="-1" v-html="title"/>
     <slot />
-  </main>
+  </div>
 </template>
 
 <script>

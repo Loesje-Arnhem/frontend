@@ -44,5 +44,6 @@ export default {
 <style scoped lang="postcss">
 .page {
   @mixin center;
+  @mixin block;
 }
 </style>
