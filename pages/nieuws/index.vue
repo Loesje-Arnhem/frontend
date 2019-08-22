@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <h1>{{ title }}</h1>
-    <LatestPosts />
+    <latest-posts />
   </div>
 </template>
 

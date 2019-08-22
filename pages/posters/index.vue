@@ -1,8 +1,6 @@
 <template>
   <div class="page">
     <h1>{{ title }}</h1>
-    <latest-posts />
-
     <auto-complete />
     <Posters :posters="posters" />
   </div>
@@ -12,17 +10,15 @@
 import axios from '~/plugins/axios'
 import AutoComplete from '@/components/Search/AutoComplete.vue'
 import Posters from '@/components/Shared/Posters.vue'
-import LatestPosts from '@/components/LatestPosts.vue'
 
 export default {
   components: {
     AutoComplete,
-    Posters,
-    LatestPosts
+    Posters
   },
   data() {
     return {
-      title: 'Home'
+      title: 'Posters'
     }
   },
   async asyncData({ params }) {

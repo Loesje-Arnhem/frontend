@@ -4,5 +4,5 @@
   --line-height-base: 1.5;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
-  --font-family-headings: 'Franklin';
+  --font-family-headings: 'Franklin', serif;
 }

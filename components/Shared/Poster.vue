@@ -1,7 +1,7 @@
 <template>
-  <a :href="poster.link">
+  <router-link :to="`/posters/${poster.slug}`">
     <img class="poster" :src="poster.fimg_url" :alt="poster.title.rendered" />
-  </a>
+  </router-link>
 </template>
 
 <script>
