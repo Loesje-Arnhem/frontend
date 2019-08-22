@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Franklin';
+  src: url('./../../assets/fonts/franklin-gothic.woff');
+}
+
 html {
   font-size: var(--font-size-base);
 }
