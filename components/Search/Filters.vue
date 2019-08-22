@@ -3,41 +3,26 @@
     <div class="buttons">
       <button
         type="button"
-        :class="{'is-active': showSources}"
+        :class="{ 'is-active': showSources }"
         @click="toggleList('sources')"
       >
         <span class="sr-only">Bekijk alle</span>
         <span>Bronnen</span>
-        <Icon
-          icon="chevron-down"
-          class="icon"
-        />
+        <Icon icon="chevron-down" class="icon" />
       </button>
       <button
         type="button"
-        :class="{'is-active': showSubjects}"
+        :class="{ 'is-active': showSubjects }"
         @click="toggleList('subjects')"
       >
         <span class="sr-only">Bekijk alle</span>
         <span>Onderwerpen</span>
-        <Icon
-          icon="chevron-down"
-          class="icon"
-        />
+        <Icon icon="chevron-down" class="icon" />
       </button>
-      <input
-        type="date"
-        placeholder="Datum van"
-      >
-      <input
-        type="date"
-        placeholder="Datum tot"
-      >
+      <input type="date" placeholder="Datum van" />
+      <input type="date" placeholder="Datum tot" />
     </div>
-    <Transition
-      name="slide"
-      mode="out-in"
-    >
+    <Transition name="slide" mode="out-in">
       <div
         v-if="showSources"
         key="sources"
@@ -62,35 +47,35 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import Tags from '@/components/Search/Tags.vue';
-import Icon from '@/components/Shared/Icon.vue';
+import { mapGetters } from 'vuex'
+import Tags from '@/components/Search/Tags.vue'
+import Icon from '@/components/Shared/Icon.vue'
 
 export default {
   components: {
     Tags,
-    Icon,
+    Icon
   },
   data() {
     return {
       showSubjects: false,
-      showSources: false,
-    };
+      showSources: false
+    }
   },
   computed: {
     ...mapGetters({
       subjects: 'tags/subjects',
-      sources: 'tags/sources',
-    }),
+      sources: 'tags/sources'
+    })
   },
   methods: {
     toggleList(type) {
       if (type === 'subjects') {
-        this.showSubjects = !this.showSubjects;
-        this.showSources = false;
+        this.showSubjects = !this.showSubjects
+        this.showSources = false
       } else {
-        this.showSources = !this.showSources;
-        this.showSubjects = false;
+        this.showSources = !this.showSources
+        this.showSubjects = false
       }
 
       // if (this.showSources) {
@@ -104,9 +89,9 @@ export default {
       //     this.$refs.subjects.focus();
       //   });
       // }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -12,7 +12,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import LatestPosts from '@/components/LatestPosts.vue'
+import LatestPosts from '@/components/Blocks/LatestPosts.vue'
 import PostDate from '@/components/PostDate.vue'
 
 export default {

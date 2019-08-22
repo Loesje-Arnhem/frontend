@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import LatestPosts from '@/components/LatestPosts.vue'
+import LatestPosts from '@/components/Blocks/LatestPosts.vue'
 
 export default {
   components: {

@@ -15,7 +15,10 @@
         @keyup.up="onArrowUp"
       />
 
-      <button type="submit" class="btn-submit">Zoeken</button>
+      <button type="submit" class="btn-submit">
+        <icon-search aria-hidden="true" width="32" height="32" />
+        <span class="sr-only">~Zoeken</span>
+      </button>
     </div>
 
     <div v-show="isOpen" class="autocomplete">
@@ -37,7 +40,12 @@
 </template>
 
 <script>
+import IconSearch from '@/assets/icons/search.svg'
+
 export default {
+  components: {
+    IconSearch
+  },
   props: {
     hasSearched: {
       type: Boolean,
@@ -136,7 +144,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 form {
   margin-bottom: 1em;
   position: relative;
@@ -146,7 +154,7 @@ form {
   background: var(--color-white);
   display: flex;
   align-items: center;
-  border: 2px solid var(--gray-dark);
+  border: 2px solid var(--color-gray-dark);
   padding: 0 1.5em 0 0.75em;
 
   &:focus-within {
@@ -180,7 +188,7 @@ input {
   left: 0;
   right: 0;
   top: 100%;
-  border-color: var(--gray);
+  border-color: var(--color-black);
   border-style: solid;
   border-width: 0 1px 1px;
 }

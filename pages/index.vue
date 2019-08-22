@@ -1,26 +1,26 @@
 <template>
   <div>
-    <div class="page">
-      <h1>{{ title }}</h1>
-    </div>
+    <DailyPoster />
+    <h1 class="sr-only">{{ title }}</h1>
     <latest-posts />
-
-    <auto-complete />
     <Posters :posters="posters" />
+    <groups />
   </div>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
-import AutoComplete from '@/components/Search/AutoComplete.vue'
-import Posters from '@/components/Shared/Posters.vue'
-import LatestPosts from '@/components/LatestPosts.vue'
+import Posters from '@/components/Blocks/Posters.vue'
+import LatestPosts from '@/components/Blocks/LatestPosts.vue'
+import Groups from '@/components/Blocks/Groups.vue'
+import DailyPoster from '@/components/DailyPoster.vue'
 
 export default {
   components: {
-    AutoComplete,
     Posters,
-    LatestPosts
+    LatestPosts,
+    Groups,
+    DailyPoster
   },
   data() {
     return {
