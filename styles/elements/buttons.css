@@ -78,7 +78,7 @@ a {
     color: var(--color-white);
 
     &:hover {
-      background: var(--color-black-dark);
+      background: var(--color-gray-darker);
     }
   }
 

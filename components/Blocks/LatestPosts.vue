@@ -49,6 +49,7 @@ export default {
   @mixin block;
   padding-left: var(--gutter);
   padding-right: var(--gutter);
+  position: relative;
 }
 
 .wrapper {
