@@ -45,7 +45,9 @@ export default {
 
 <style lang="postcss" scoped>
 .news-list {
-  margin-bottom: 5em;
+  @mixin block;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
 }
 
 ul {

@@ -1,3 +1,12 @@
 @import './settings/_base.css';
 @import './elements/_base.css';
 @import './layout/_base.css';
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}

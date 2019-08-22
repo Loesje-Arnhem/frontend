@@ -1,173 +1,128 @@
 <template>
   <nav aria-labelledby="menu-title">
-    <h2 id="menu-title" class="sr-only" tabindex="-1">
-      {{ $t('mainNavigation') }}
-    </h2>
-    <ul ref="menu">
-      <li>
-        <nuxt-link id="menu" to="/">
-          <span class="title">
-            {{ $t('home') }}
-          </span>
-        </nuxt-link>
+    <h2 id="menu-title" class="sr-only">{{ $t('mainNavigation') }}</h2>
+    <ul ref="menu" class="list">
+      <li id="menu-item-30772">
+        <nuxt-link to="/">Home</nuxt-link>
       </li>
-      <li>
-        <nuxt-link to="/tour">
-          <span class="title">{{ $t('tour') }}</span>
-          <app-badge :amount="list.length" />
-        </nuxt-link>
+      <li id="menu-item-30771">
+        <nuxt-link to="/posters/">Posters</nuxt-link>
       </li>
-      <li>
-        <nuxt-link to="/albums">
-          <span class="title">{{ $t('albums') }}</span>
-        </nuxt-link>
+      <li id="menu-item-25255">
+        <nuxt-link to="/informatie/">Over mij</nuxt-link>
+        <ul id="menu-item-30757">
+          <li>
+            <nuxt-link to="/informatie/wat-wil-loesje/"
+              >Wie is Loesje</nuxt-link
+            >
+          </li>
+          <li id="menu-item-30758">
+            <nuxt-link to="/informatie/internationaal/"
+              >Loesje in de wijde wereld</nuxt-link
+            >
+          </li>
+          <li id="menu-item-30759">
+            <nuxt-link to="/informatie/nieuws/">Nieuws</nuxt-link>
+          </li>
+          <li id="menu-item-30760">
+            <nuxt-link to="/informatie/copyright/">Copyright</nuxt-link>
+          </li>
+          <li id="menu-item-30761">
+            <nuxt-link to="/informatie/contact-2/">Contact</nuxt-link>
+          </li>
+        </ul>
       </li>
-      <li>
-        <nuxt-link to="/videos">
-          <span class="title">{{ $t('videos') }}</span>
-        </nuxt-link>
+      <li id="menu-item-25260">
+        <nuxt-link to="/doe-mee/">Doe mee</nuxt-link>
+        <ul id="menu-item-30763">
+          <li>
+            <nuxt-link to="/doe-mee/online-meeschrijven/"
+              >Schrijf online mee</nuxt-link
+            >
+          </li>
+          <li id="menu-item-30766">
+            <nuxt-link to="/doe-mee/lokale-groepen/"
+              >Schrijf mee in je buurt</nuxt-link
+            >
+          </li>
+          <li id="menu-item-30765">
+            <nuxt-link to="/doe-mee/word-lid/">Word lid</nuxt-link>
+          </li>
+          <li id="menu-item-30767">
+            <nuxt-link to="/doe-mee/word-donateur/">Word donateur</nuxt-link>
+          </li>
+          <li id="menu-item-30764">
+            <nuxt-link to="/doe-mee/agenda-2/">Agenda</nuxt-link>
+          </li>
+          <li id="menu-item-30768">
+            <nuxt-link to="/doe-mee/blijf-op-hoogte/"
+              >Blijf op de hoogte</nuxt-link
+            >
+          </li>
+          <li id="menu-item-30769">
+            <nuxt-link to="/doe-mee/vacatures/">Vacatures</nuxt-link>
+          </li>
+        </ul>
       </li>
-      <li>
-        <nuxt-link to="/biography">
-          <span class="title">{{ $t('biography') }}</span>
-        </nuxt-link>
+      <li id="menu-item-30770">
+        <nuxt-link to="/workshops/">Workshop</nuxt-link>
+      </li>
+      <li id="menu-item-47191">
+        <nuxt-link to="/winkeltje/">Winkeltje</nuxt-link>
+        <ul id="menu-item-47832">
+          <li>
+            <nuxt-link to="/winkeltje/categorie/kleding/">Kleding</nuxt-link>
+          </li>
+          <li id="menu-item-47848">
+            <nuxt-link to="/winkeltje/categorie/kalenders/"
+              >Kalenders en agenda&#8217;s</nuxt-link
+            >
+          </li>
+          <li id="menu-item-47834">
+            <nuxt-link to="/winkeltje/categorie/boeken/">Boeken</nuxt-link>
+          </li>
+          <li id="menu-item-47833">
+            <nuxt-link to="/winkeltje/categorie/diversen/">Diversen</nuxt-link>
+          </li>
+          <li id="menu-item-47835">
+            <nuxt-link to="/winkeltje/categorie/kaarten/">Kaarten</nuxt-link>
+          </li>
+          <li id="menu-item-47836">
+            <nuxt-link to="/winkeltje/categorie/aanbieding/"
+              >Aanbieding</nuxt-link
+            >
+          </li>
+        </ul>
       </li>
     </ul>
-    <div
-      class="arrow"
-      :style="{ '-webkit-transform': arrowPosition, transform: arrowPosition }"
-    />
   </nav>
 </template>
 
-<script>
-import { mapState, mapActions } from 'vuex'
-import AppBadge from '@/components/AppBadge.vue'
-
-export default {
-  components: {
-    AppBadge
-  },
-  data() {
-    return {
-      arrowPosition: 0
-    }
-  },
-  computed: {
-    ...mapState('tour', ['list']),
-    step() {
-      return this.$store.state.step
-    }
-  },
-  watch: {
-    $route() {
-      this.$nextTick(() => {
-        this.setArrowPosition()
-      })
-    }
-  },
-  mounted() {
-    this.setArrowPosition()
-    setTimeout(() => {
-      this.mounted = true
-    }, 0)
-
-    this.setTours()
-  },
-  methods: {
-    setArrowPosition() {
-      const { menu } = this.$refs
-      const activeLink = menu.querySelector('.nuxt-link-exact-active')
-      if (activeLink) {
-        const { parentElement } = activeLink
-        this.arrowPosition = `translateY(${parentElement.offsetTop}px)`
-        this.arrowWidth = `${activeLink.offsetWidth}px`
-      }
-    },
-    ...mapActions({
-      setTours: 'tour/set'
-    })
-  }
-}
-</script>
-
 <style lang="postcss" scoped>
 nav {
-  position: relative;
-}
+  @mixin color-negative;
 
-ul {
-  @mixin list-reset;
-
+  font-family: var(--font-family-headings);
+  text-transform: uppercase;
+  font-size: 1.4em;
   margin-bottom: 1em;
-  border-top: 1px dashed var(--color-gray);
-
-  @media (--navigation-position-left) {
-    border-top: 0;
-  }
 }
 
-.title {
-  transition: box-shadow 0.1s ease-out;
-  &.link-active {
-    box-shadow: 0 2px 0 0 var(--color-black);
+.list {
+  @mixin list-reset;
+  @mixin center;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+
+  & ul {
+    display: none;
   }
 }
 
 a {
   @mixin link-reset;
-
-  align-items: center;
-  display: flex;
-  position: relative;
-  text-decoration: none;
-  font-size: 1.2em;
-  line-height: 1.1;
-  padding: 0.45em 0;
-  border-bottom: 1px dashed var(--color-gray);
-
-  &.nuxt-link-exact-active .title {
-    box-shadow: 0 2px 0 0 var(--color-black);
-  }
-
-  &:hover {
-    text-decoration: none;
-    & .title {
-      box-shadow: 0 3px 0 0 var(--color-black);
-    }
-  }
-  @media (--navigation-position-left) {
-    border-bottom: 0;
-    padding: 0.25em 0;
-  }
-}
-
-.arrow {
-  @media (--navigation-position-left) {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: -2em;
-    transition: transform 0.2s ease-out;
-
-    &::after {
-      position: absolute;
-      display: block;
-      content: '';
-      border-top: 0.75em solid transparent;
-      border-bottom: 0.75em solid transparent;
-      border-left: 1em solid var(--color-secondary);
-    }
-
-    &::before {
-      position: absolute;
-      display: block;
-      content: '';
-      margin-top: -3px;
-      border-top: calc(0.75em + 3px) solid transparent;
-      border-bottom: calc(0.75em + 3px) solid transparent;
-      border-left: calc(1em + 6px) solid #fff;
-    }
-  }
+  display: block;
+  padding: 0.25em 0;
 }
 </style>

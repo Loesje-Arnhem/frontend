@@ -1,6 +1,8 @@
 <template>
-  <div class="page">
-    <h1>{{ title }}</h1>
+  <div>
+    <div class="page">
+      <h1>{{ title }}</h1>
+    </div>
     <latest-posts />
   </div>
 </template>

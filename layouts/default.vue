@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <main>
+    <main id="content" tabindex="-1">
       <nuxt />
     </main>
     <app-footer />

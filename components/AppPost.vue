@@ -63,7 +63,7 @@ li {
 
   &:hover .read-more,
   &:focus-within .read-more {
-    box-shadow: 0 3px 0 0 var(--color-primary);
+    box-shadow: 0 3px 0 0 var(--color-black);
     & svg {
       margin-left: 0.25em;
     }

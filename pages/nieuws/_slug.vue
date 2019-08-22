@@ -1,21 +1,22 @@
 <template>
-  <app-page class="post" :title="title">
-    <post-date :date="date" />
-    <!-- eslint-disable-next-line -->
-    <div class="text" v-html="text" />
+  <div>
+    <div class="page">
+      <h1>{{ title }}</h1>
+      <post-date :date="date" />
+      <!-- eslint-disable-next-line -->
+      <div class="text" v-html="text" />
+    </div>
     <latest-posts />
-  </app-page>
+  </div>
 </template>
 
 <script>
-import AppPage from '@/components/AppPage.vue'
 import axios from '~/plugins/axios'
 import LatestPosts from '@/components/LatestPosts.vue'
 import PostDate from '@/components/PostDate.vue'
 
 export default {
   components: {
-    AppPage,
     PostDate,
     LatestPosts
   },
@@ -50,8 +51,9 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.text {
-  max-width: 60ch;
+.page {
+  @mixin block;
+  @mixin center var(--container-width-md);
 }
 
 time {
