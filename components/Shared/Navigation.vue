@@ -1,109 +1,102 @@
 <template>
   <nav>
-    <RouterLink
-      v-if="!isSearch"
-      :to="{name: 'Search'}"
-      class="btn-search"
-    >
-      <Icon
-        icon="chevron-left"
-        class="icon"
-      />Terug naar het overzicht
-    </RouterLink>
+    <nuxt-link v-if="!isSearch" to="/posters/" class="btn-search">
+      <icon-chevron-left width="12" height="12" aria-hidden="true" />
+      Terug
+    </nuxt-link>
     <Transition name="slide">
-      <RouterLink
+      <nuxt-link
         v-if="totalFavorites && !isFavorites"
-        :to="{name: 'Favorites'}"
+        :to="{ name: 'Favorites' }"
         class="btn-favorites"
       >
         {{ favoritesText }}
-        <Icon
-          icon="chevron-right"
-          class="icon"
-        />
-      </RouterLink>
+        <icon-chevron-right width="12" height="12" aria-hidden="true" />
+      </nuxt-link>
     </Transition>
   </nav>
 </template>
 
 <script>
-import Icon from '@/components/Shared/Icon.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
+import IconChevronRight from '@/assets/icons/chevron-right.svg'
+import IconChevronLeft from '@/assets/icons/chevron-left.svg'
 
 export default {
   components: {
-    Icon,
+    IconChevronLeft,
+    IconChevronRight
   },
   computed: {
     ...mapGetters({
-      totalFavorites: 'favorites/total',
+      totalFavorites: 'favorites/total'
     }),
 
     favoritesText() {
       return `Bekijk je ${this.counter(
-        this.totalFavorites,
-      )} favoriete poster${this.plural(this.totalFavorites)}`;
+        this.totalFavorites
+      )} favoriete poster${this.plural(this.totalFavorites)}`
     },
     isSearch() {
-      return this.$route.name === 'Search';
+      return this.$route.name === 'Search'
     },
     isFavorites() {
-      return this.$route.name === 'Favorites';
-    },
+      return this.$route.name === 'Favorites'
+    }
   },
   methods: {
     counter(count) {
       switch (count) {
         case 1:
-          return '';
+          return ''
         case 2:
-          return 'twee';
+          return 'twee'
         case 3:
-          return 'drie';
+          return 'drie'
         case 4:
-          return 'vier';
+          return 'vier'
         case 5:
-          return 'vijf';
+          return 'vijf'
         case 6:
-          return 'zes';
+          return 'zes'
         case 7:
-          return 'zeven';
+          return 'zeven'
         case 8:
-          return 'acht';
+          return 'acht'
         case 9:
-          return 'negen';
+          return 'negen'
         case 10:
-          return 'tien';
+          return 'tien'
         case 11:
-          return 'elf';
+          return 'elf'
         case 12:
-          return 'twaalf';
+          return 'twaalf'
         case 13:
-          return 'dertien';
+          return 'dertien'
         case 14:
-          return 'veertien';
+          return 'veertien'
         case 15:
-          return 'vijftien';
+          return 'vijftien'
         case 16:
-          return 'zestien';
+          return 'zestien'
         case 17:
-          return 'zeventien';
+          return 'zeventien'
         case 18:
-          return 'achttien';
+          return 'achttien'
         case 19:
-          return 'negentien';
+          return 'negentien'
         case 20:
-          return 'twintig';
+          return 'twintig'
         default:
-          return count;
+          return count
       }
     },
     plural(count) {
-      if (count === 1) return '';
-      return 's';
-    },
-  },
-};
+      if (count === 1) return ''
+      return 's'
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -1,11 +1,11 @@
 import axios from '~/plugins/axios'
 
-const moduleState = {
+export const state = () => ({
   tags: [],
   selectedTags: []
-}
+})
 
-const getters = {
+export const getters = {
   sources: state => state.tags.filter(tag => tag.type === 'source'),
   subjects: state => state.tags.filter(tag => tag.type === 'subject'),
   selectedTags: state => state.selectedTags,
@@ -15,7 +15,7 @@ const getters = {
     state.selectedTags.filter(tag => tag.type === 'subject')
 }
 
-const mutations = {
+export const mutations = {
   /* eslint-disable no-param-reassign */
   populateTags: (state, payload) => {
     state.tags = payload.tags
@@ -35,7 +35,7 @@ const mutations = {
   }
 }
 
-const actions = {
+export const actions = {
   populateTags: ({ commit }) => {
     const getSources = axios.get('wp/v2/source', {
       params: {
@@ -56,7 +56,7 @@ const actions = {
         return newTag
       })
 
-    axios.all([getSources, getSubjects]).then(
+    Promise.all([getSources, getSubjects]).then(
       axios.spread((responseSources, responseSubjects) => {
         const sources = addTypeOnTags(responseSources.data, 'source')
         const subjects = addTypeOnTags(responseSubjects.data, 'subject')
@@ -76,12 +76,4 @@ const actions = {
   toggle: ({ commit }, payload) => {
     commit('toggle', payload)
   }
-}
-
-export default {
-  state: moduleState,
-  getters,
-  mutations,
-  actions,
-  namespaced: true
 }

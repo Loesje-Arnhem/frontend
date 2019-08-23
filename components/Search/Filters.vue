@@ -8,7 +8,7 @@
       >
         <span class="sr-only">Bekijk alle</span>
         <span>Bronnen</span>
-        <Icon icon="chevron-down" class="icon" />
+        <icon-chevron-down width="12" height="12" aria-hidden="true" />
       </button>
       <button
         type="button"
@@ -47,14 +47,23 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import Tags from '@/components/Search/Tags.vue'
-import Icon from '@/components/Shared/Icon.vue'
+import IconChevronDown from '@/assets/icons/chevron-down.svg'
 
 export default {
   components: {
     Tags,
-    Icon
+    IconChevronDown
+  },
+  props: {
+    sources: {
+      type: Array,
+      default: () => []
+    },
+    subjects: {
+      type: Array,
+      default: () => []
+    }
   },
   data() {
     return {
@@ -62,12 +71,7 @@ export default {
       showSources: false
     }
   },
-  computed: {
-    ...mapGetters({
-      subjects: 'tags/subjects',
-      sources: 'tags/sources'
-    })
-  },
+
   methods: {
     toggleList(type) {
       if (type === 'subjects') {
