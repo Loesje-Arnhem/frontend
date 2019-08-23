@@ -1,21 +1,25 @@
 <template>
   <div class="home">
-    <Navigation/>
-    <AutoComplete @onSearch="searchPosters"/>
-    <Filters/>
-    <Tags v-if="selectedTags.length" :list="selectedTags"/>
-    <List :search="search" :subjects="selectedSubjectsIds" :sources="selectedSourcesIds"/>
+    <Navigation />
+    <AutoComplete @onSearch="searchPosters" />
+    <Filters />
+    <Tags v-if="selectedTags.length" :list="selectedTags" />
+    <List
+      :search="search"
+      :subjects="selectedSubjectsIds"
+      :sources="selectedSourcesIds"
+    />
   </div>
 </template>
 
 <script>
-import AutoComplete from '@/components/Search/AutoComplete.vue';
-import Navigation from '@/components/Shared/Navigation.vue';
+import { mapGetters } from 'vuex'
+import AutoComplete from '@/components/Search/AutoComplete.vue'
+import Navigation from '@/components/Shared/Navigation.vue'
 
-import Filters from '@/components/Search/Filters.vue';
-import Tags from '@/components/Search/Tags.vue';
-import List from '@/components/Shared/List.vue';
-import { mapGetters } from 'vuex';
+import Filters from '@/components/Search/Filters.vue'
+import Tags from '@/components/Search/Tags.vue'
+import List from '@/components/Shared/List.vue'
 
 export default {
   components: {
@@ -23,30 +27,30 @@ export default {
     AutoComplete,
     Filters,
     List,
-    Tags,
+    Tags
   },
   data() {
     return {
-      search: null,
-    };
+      search: null
+    }
   },
   computed: {
     ...mapGetters({
       selectedSubjects: 'tags/selectedSubjects',
       selectedSources: 'tags/selectedSources',
-      selectedTags: 'tags/selectedTags',
+      selectedTags: 'tags/selectedTags'
     }),
     selectedSourcesIds() {
-      return this.selectedSources.map(item => item.id);
+      return this.selectedSources.map(item => item.id)
     },
     selectedSubjectsIds() {
-      return this.selectedSubjects.map(item => item.id);
-    },
+      return this.selectedSubjects.map(item => item.id)
+    }
   },
   methods: {
     searchPosters(value) {
-      this.search = value;
-    },
-  },
-};
+      this.search = value
+    }
+  }
+}
 </script>

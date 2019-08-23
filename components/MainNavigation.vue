@@ -8,8 +8,31 @@
       <li>
         <nuxt-link to="/posters/">Posters</nuxt-link>
       </li>
-      <li :class="{ open: isOpen }" class="has-popup">
-        <nuxt-link to="/informatie/">Over mij</nuxt-link>
+      <li
+        :class="{ open: isOpen }"
+        class="has-popup"
+        @mouseover="mouseover"
+        @mouseout="mouseout"
+      >
+        <nuxt-link
+          to="/informatie/"
+          :aria-expanded="isOpen"
+          aria-haspopup="true"
+          >Over mij</nuxt-link
+        >
+        <button
+          class="btn-show-submenu"
+          :aria-expanded="isOpen"
+          @click="toggleMenu"
+        >
+          <icon-chevron-down
+            aria-hidden="true"
+            width="20"
+            height="20"
+            class="icon-chevron-down"
+          />
+          <span class="sr-only">Toon submenu voor Over mij</span>
+        </button>
         <ul class="submenu">
           <li>
             <nuxt-link to="/informatie/wat-wil-loesje/"
@@ -31,19 +54,6 @@
             <nuxt-link to="/informatie/contact-2/">Contact</nuxt-link>
           </li>
         </ul>
-        <button
-          class="btn-show-submenu"
-          :aria-expanded="isOpen"
-          @click="toggleMenu"
-        >
-          <icon-chevron-down
-            aria-hidden="true"
-            width="20"
-            height="20"
-            class="icon-chevron-down"
-          />
-          <span class="sr-only">Toon submenu voor Over mij</span>
-        </button>
       </li>
       <li>
         <nuxt-link to="/doe-mee/">Doe mee</nuxt-link>

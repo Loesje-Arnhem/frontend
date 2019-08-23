@@ -1,11 +1,22 @@
 <template>
   <router-link :to="`/posters/${poster.slug}`">
-    <img class="poster" :src="poster.fimg_url" :alt="poster.title.rendered" />
+    <app-image
+      class="poster"
+      width="200"
+      height="500"
+      :src="poster.fimg_url"
+      :srcset="`${poster.fimg_url} 1x, ${poster.fimg_url} 2x`"
+      :alt="poster.title.rendered"
+    />
   </router-link>
 </template>
 
 <script>
+import AppImage from '@/components/Shared/AppImage.vue'
 export default {
+  components: {
+    AppImage
+  },
   props: {
     poster: {
       type: Object,

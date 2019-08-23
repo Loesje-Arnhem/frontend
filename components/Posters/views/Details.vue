@@ -18,12 +18,8 @@
               @click="toggleFavorites(poster)"
             >
               <Icon icon="heart-o" class="icon-favorites" />
-              <template v-if="isInFavorites"
-                >Verwijder uit je favorieten</template
-              >
-              <template v-else
-                >Voeg toe aan je favorieten</template
-              >
+              <template v-if="isInFavorites">Verwijder uit je favorieten</template>
+              <template v-else>Voeg toe aan je favorieten</template>
             </button>
             <dl>
               <template v-if="posterSubjects.length">
@@ -31,13 +27,7 @@
                 <dd>
                   <ul class="tags">
                     <li v-for="item in posterSubjects" :key="item.id">
-                      <button
-                        type="button"
-                        class="btn-tag"
-                        @click="addTag(item)"
-                      >
-                        {{ item.name }}
-                      </button>
+                      <button type="button" class="btn-tag" @click="addTag(item)">{{ item.name }}</button>
                     </li>
                   </ul>
                 </dd>
@@ -48,13 +38,7 @@
                 <dd>
                   <ul class="tags">
                     <li v-for="item in posterSources" :key="item.id">
-                      <button
-                        type="button"
-                        class="btn-tag"
-                        @click="addTag(item)"
-                      >
-                        {{ item.name }}
-                      </button>
+                      <button type="button" class="btn-tag" @click="addTag(item)">{{ item.name }}</button>
                     </li>
                   </ul>
                 </dd>

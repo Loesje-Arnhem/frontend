@@ -1,13 +1,10 @@
 <template>
   <ul>
-    <li
-v-for="item in list"
-        :key="item.id"
->
+    <li v-for="item in list" :key="item.id">
       <button
         type="button"
         class="tag"
-        :class="{'is-active': isSelected(item)}"
+        :class="{ 'is-active': isSelected(item) }"
         @click="selectTag(item)"
       >
         {{ item.name }}
@@ -17,32 +14,32 @@ v-for="item in list"
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   props: {
     list: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   computed: {
     ...mapGetters({
-      selectedTags: 'tags/selectedTags',
-    }),
+      selectedTags: 'tags/selectedTags'
+    })
   },
   methods: {
     ...mapActions({
-      toggle: 'tags/toggle',
+      toggle: 'tags/toggle'
     }),
     isSelected(tag) {
-      return this.selectedTags.includes(tag);
+      return this.selectedTags.includes(tag)
     },
     selectTag(tag) {
-      this.toggle(tag);
-    },
-  },
-};
+      this.toggle(tag)
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -6,18 +6,17 @@
 </template>
 
 <script>
-import Posters from '@/components/Shared/Posters.vue';
-import Navigation from '@/components/Shared/Navigation.vue';
-
-import { mapState } from 'vuex';
+import { mapState } from 'vuex'
+import Posters from '@/components/Shared/Posters.vue'
+import Navigation from '@/components/Shared/Navigation.vue'
 
 export default {
   components: {
     Posters,
-    Navigation,
+    Navigation
   },
   computed: {
-    ...mapState('favorites', ['list']),
-  },
-};
+    ...mapState('favorites', ['list'])
+  }
+}
 </script>

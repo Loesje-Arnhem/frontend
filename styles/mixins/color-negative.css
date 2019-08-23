@@ -6,4 +6,8 @@
     background: var(--color-white);
     color: var(--color-black);
   }
+
+  & *:focus {
+    outline: 1px dashed var(--color-white);
+  }
 }

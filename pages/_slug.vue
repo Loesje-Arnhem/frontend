@@ -43,7 +43,7 @@ export default {
 
 <style scoped lang="postcss">
 .page {
-  @mixin center;
+  @mixin center var(--container-width-md);
   @mixin block;
 }
 </style>

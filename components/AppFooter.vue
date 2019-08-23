@@ -13,7 +13,7 @@
         <social-media-links title="Volg Loesje" :social-media="socialMedia" />
 
         <div class="mood-wrapper">
-          <img src="/images/casette-player.png" alt class="mood" />
+          <app-image src="/images/casette-player.png" alt class="mood" />
         </div>
       </div>
     </div>
@@ -25,13 +25,15 @@ import SocialMediaLinks from '@/components/SocialMediaLinks.vue'
 import AppStores from '@/components/Footer/AppStores.vue'
 import CompanyAddress from '@/components/Footer/CompanyAddress.vue'
 import QuickLinks from '@/components/Footer/QuickLinks.vue'
+import AppImage from '@/components/Shared/AppImage.vue'
 
 export default {
   components: {
     QuickLinks,
     SocialMediaLinks,
     AppStores,
-    CompanyAddress
+    CompanyAddress,
+    AppImage
   },
   data() {
     return {

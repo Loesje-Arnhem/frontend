@@ -2,7 +2,7 @@
   <div class="groups">
     <div class="wrapper">
       <div class="image-wrapper">
-        <img src="/images/nederland.png" alt="" class="mood" />
+        <app-image src="/images/nederland.png" alt class="mood" />
       </div>
       <div class="text">
         <h1>Hier ben ik actief</h1>
@@ -17,6 +17,16 @@
     </div>
   </div>
 </template>
+
+<script>
+import AppImage from '@/components/Shared/AppImage.vue'
+
+export default {
+  components: {
+    AppImage
+  }
+}
+</script>
 
 <style lang="postcss" scoped>
 .groups {

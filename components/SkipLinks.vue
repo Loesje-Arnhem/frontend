@@ -6,7 +6,7 @@
 </template>
 
 <style lang="postcss" scoped>
-a {
+.btn {
   @mixin link-reset;
   background: var(--color-secondary);
 
