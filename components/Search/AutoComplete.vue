@@ -1,6 +1,7 @@
 <template>
   <form method="get" @keyup.esc="close" @submit.prevent="onSubmit">
-    <label for="search" class="sr-only">Zoek op tekst, onderwerp of bron</label>
+    <legend class="sr-only">Zoeken naar posters</legend>
+    <label for="search" class="sr-only">Zoek op tekst</label>
     <div class="input-wrapper">
       <input
         id="search"
@@ -17,7 +18,7 @@
 
       <button type="submit" class="btn-submit">
         <icon-search aria-hidden="true" width="32" height="32" />
-        <span class="sr-only">~Zoeken</span>
+        <span class="sr-only">Zoeken</span>
       </button>
     </div>
 
@@ -41,6 +42,7 @@
 
 <script>
 import IconSearch from '@/assets/icons/search.svg'
+import axios from '~/plugins/axios'
 
 export default {
   components: {
@@ -77,7 +79,7 @@ export default {
         this.close()
         return
       }
-      const response = await this.$axios.$get('wp/v2/poster', {
+      const response = await axios.get('wp/v2/poster', {
         params: {
           search: this.search
         }
@@ -97,7 +99,7 @@ export default {
       this.isOpen = this.results.length > 0
     },
     goToPoster(result) {
-      this.$router.push({ name: 'Poster', params: { slug: result.slug } })
+      this.$router.push(`/posters/${result.slug}`)
     },
     setResult(result) {
       this.search = result
@@ -126,10 +128,6 @@ export default {
         this.$emit('onSearch', this.search)
         this.close()
       }
-    },
-    clearSearch(event) {
-      this.close()
-      if (event.key !== 'Escape') this.$emit('onSearch', this.search)
     },
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
