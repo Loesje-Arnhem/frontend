@@ -54,6 +54,7 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^1.18.2",
     "vue-cli-plugin-i18n": "^0.6.0",
+    "vue-infinite-loading": "^2.4.4",
     "vue-jest": "^3.0.4"
   }
 }

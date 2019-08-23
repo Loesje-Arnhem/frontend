@@ -5,9 +5,12 @@
     <filters :sources="sources" :subjects="subjects" />
 
     <auto-complete />
-    <Tags v-if="selectedTags.length" :list="selectedTags" />
-
-    <Posters :posters="posters" />
+    <tags v-if="selectedTags.length" :list="selectedTags" />
+    <List
+      :search="search"
+      :subjects="selectedSubjectsIds"
+      :sources="selectedSourcesIds"
+    />
   </div>
 </template>
 
@@ -17,15 +20,17 @@ import axios from '~/plugins/axios'
 
 import Filters from '@/components/Search/Filters.vue'
 import AutoComplete from '@/components/Search/AutoComplete.vue'
-import Posters from '@/components/Shared/Posters.vue'
 import Navigation from '@/components/Shared/Navigation.vue'
+import Tags from '@/components/Search/Tags.vue'
+import List from '@/components/Shared/List.vue'
 
 export default {
   components: {
     AutoComplete,
-    Posters,
     Navigation,
-    Filters
+    Filters,
+    Tags,
+    List
   },
   data() {
     return {
@@ -47,11 +52,9 @@ export default {
   },
 
   async asyncData({ params }) {
-    const response = await axios.get(`wp/v2/poster`)
     const sourcesApi = await axios.get('wp/v2/source')
     const subjectsApi = await axios.get('wp/v2/subject')
     return {
-      posters: response.data,
       sources: sourcesApi.data,
       subjects: subjectsApi.data
     }

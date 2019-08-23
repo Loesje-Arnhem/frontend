@@ -181,7 +181,7 @@ input {
 
 .autocomplete {
   position: absolute;
-  background: var(--color-white);
+  background: rgba(255, 255, 255, 0.9);
   z-index: 9;
   left: 0;
   right: 0;

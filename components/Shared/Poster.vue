@@ -4,8 +4,7 @@
       class="poster"
       width="200"
       height="500"
-      :src="poster.fimg_url"
-      :srcset="`${poster.fimg_url} 1x, ${poster.fimg_url} 2x`"
+      src="https://www.loesje.nl/wp-content/uploads/2019/07/190723-alles-heter-300x424.jpg"
       :alt="poster.title.rendered"
     />
   </router-link>

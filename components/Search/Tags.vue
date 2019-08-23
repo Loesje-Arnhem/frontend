@@ -21,6 +21,10 @@ export default {
     list: {
       type: Array,
       default: () => []
+    },
+    type: {
+      type: String,
+      required: true
     }
   },
   computed: {

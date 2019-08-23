@@ -1,8 +1,12 @@
 <template>
   <div>
-    <Posters :posters="posters"/>
-    <InfiniteLoading ref="infiniteLoading" :identifier="infiniteId" @infinite="getPosters">
-      <span slot="no-more"/>
+    <Posters :posters="posters" />
+    <InfiniteLoading
+      ref="infiniteLoading"
+      :identifier="infiniteId"
+      @infinite="getPosters"
+    >
+      <span slot="no-more" />
       <span slot="no-results" class="no-results">
         <span v-if="!posters.length">There are no assets found</span>
       </span>
@@ -11,88 +15,88 @@
 </template>
 
 <script>
-import Posters from '@/components/Shared/Posters.vue';
-import InfiniteLoading from 'vue-infinite-loading';
-import axios from 'axios';
+import InfiniteLoading from 'vue-infinite-loading'
+import axios from '~/plugins/axios'
+import Posters from '@/components/Shared/Posters.vue'
 
 export default {
   components: {
     Posters,
-    InfiniteLoading,
+    InfiniteLoading
   },
   props: {
     search: {
       type: String,
-      default: null,
+      default: null
     },
     subjects: {
       type: Array,
-      default: () => {},
+      default: () => {}
     },
     sources: {
       type: Array,
-      default: () => {},
+      default: () => {}
     },
     exclude: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   data() {
     return {
       posters: [],
       infiniteId: +new Date(),
       pageSize: 20,
-      page: 1,
-    };
+      page: 1
+    }
   },
   watch: {
     search() {
-      this.resetSearch();
+      this.resetSearch()
     },
     subjects() {
-      this.resetSearch();
+      this.resetSearch()
     },
     sources() {
-      this.resetSearch();
-    },
+      this.resetSearch()
+    }
   },
   methods: {
     async getPosters($state) {
       try {
-        const response = await axios.get('poster', {
+        const response = await axios.get('wp/v2/poster', {
           params: {
             search: this.search,
             per_page: this.pageSize,
             page: this.page,
             subject: this.subjects,
             source: this.sources,
-            exclude: this.exclude,
-          },
-        });
+            exclude: this.exclude
+          }
+        })
 
-        this.page = this.page + 1;
-        this.posters = this.posters.concat(response.data);
+        this.page = this.page + 1
+        this.posters = this.posters.concat(response.data)
 
         if (this.page >= response.headers['x-wp-totalpages']) {
-          $state.complete();
+          $state.complete()
         } else {
-          $state.loaded();
+          $state.loaded()
         }
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
     },
     resetSearch() {
-      this.posters = [];
-      this.page = 1;
+      this.posters = []
+      this.page = 1
       this.$nextTick(() => {
-        this.infiniteId += 1;
-      });
-    },
+        this.infiniteId += 1
+      })
+    }
   },
   beforeRouteUpdate() {
-    this.infiniteId += 1;
-  },
-};
+    this.infiniteId += 1
+  }
+}
 </script>
