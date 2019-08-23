@@ -18,12 +18,8 @@
               @click="toggleFavorites(poster)"
             >
               <Icon icon="heart-o" class="icon-favorites" />
-              <template v-if="isInFavorites"
-                >Verwijder uit je favorieten</template
-              >
-              <template v-else
-                >Voeg toe aan je favorieten</template
-              >
+
+              Voeg toe aan je favorieten
             </button>
             <dl>
               <template v-if="posterSubjects.length">

@@ -7,6 +7,7 @@
       src="https://www.loesje.nl/wp-content/uploads/2019/07/190723-alles-heter-300x424.jpg"
       :alt="poster.title.rendered"
     />
+    {{ poster.title.rendered }}
   </router-link>
 </template>
 

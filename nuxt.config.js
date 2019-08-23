@@ -44,7 +44,13 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/i18n.js', '~/plugins/vue-youtube', '~/plugins/axios'],
+  plugins: [
+    '~/plugins/i18n.js',
+    '~/plugins/vue-youtube',
+    '~/plugins/axios',
+    '~/plugins/vuelidate',
+    { src: '~/plugins/vuex-persist', ssr: false }
+  ],
 
   /*
    ** Nuxt.js modules

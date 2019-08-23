@@ -5,7 +5,7 @@
     <div class="input-wrapper">
       <input
         id="search"
-        v-model="search"
+        v-model.trim="$v.search.$model"
         type="search"
         name="search"
         placeholder="Zoek op tekst, onderwerp of bron"
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { required, minLength } from 'vuelidate/lib/validators'
 import IconSearch from '@/assets/icons/search.svg'
 import axios from '~/plugins/axios'
 
@@ -54,7 +55,12 @@ export default {
       default: false
     }
   },
-
+  validations: {
+    search: {
+      required,
+      minLength: minLength(2)
+    }
+  },
   data() {
     return {
       isOpen: false,
@@ -75,7 +81,7 @@ export default {
   methods: {
     async onChange() {
       // only autocomplete at min 3 character
-      if (this.search.length < 3) {
+      if (!this.$v.search.minLength) {
         this.close()
         return
       }

@@ -8,7 +8,12 @@
       >
         <span class="sr-only">Bekijk alle</span>
         <span>Bronnen</span>
-        <icon-chevron-down width="12" height="12" aria-hidden="true" />
+        <icon-chevron-down
+          class="icon"
+          width="12"
+          height="12"
+          aria-hidden="true"
+        />
       </button>
       <button
         type="button"
@@ -17,7 +22,12 @@
       >
         <span class="sr-only">Bekijk alle</span>
         <span>Onderwerpen</span>
-        <Icon icon="chevron-down" class="icon" />
+        <icon-chevron-down
+          class="icon"
+          width="12"
+          height="12"
+          aria-hidden="true"
+        />
       </button>
       <input type="date" placeholder="Datum van" />
       <input type="date" placeholder="Datum tot" />

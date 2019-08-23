@@ -7,7 +7,7 @@
     <Transition name="slide">
       <nuxt-link
         v-if="totalFavorites && !isFavorites"
-        :to="{ name: 'Favorites' }"
+        to="favorieten"
         class="btn-favorites"
       >
         {{ favoritesText }}

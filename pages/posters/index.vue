@@ -4,7 +4,7 @@
     <navigation />
     <filters :sources="sources" :subjects="subjects" />
 
-    <auto-complete />
+    <auto-complete @onSearch="searchPosters" />
     <tags v-if="selectedTags.length" :list="selectedTags" />
     <List
       :search="search"
@@ -34,7 +34,8 @@ export default {
   },
   data() {
     return {
-      title: 'Posters'
+      title: 'Posters',
+      search: ''
     }
   },
   computed: {
@@ -62,6 +63,7 @@ export default {
 
   methods: {
     searchPosters(value) {
+      window.console.log(value)
       this.search = value
     }
   },
