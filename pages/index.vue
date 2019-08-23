@@ -1,7 +1,8 @@
 <template>
   <div>
-    <DailyPoster />
     <h1 class="sr-only">{{ title }}</h1>
+    <daily-poster />
+    <form-workshop />
     <latest-posts />
     <Posters :posters="posters" />
     <groups />
@@ -9,18 +10,20 @@
 </template>
 
 <script>
+import DailyPoster from '@/components/DailyPoster.vue'
 import axios from '~/plugins/axios'
 import Posters from '@/components/Blocks/Posters.vue'
 import LatestPosts from '@/components/Blocks/LatestPosts.vue'
 import Groups from '@/components/Blocks/Groups.vue'
-import DailyPoster from '@/components/DailyPoster.vue'
+import FormWorkshop from '@/components/Blocks/FormWorkshop.vue'
 
 export default {
   components: {
     Posters,
     LatestPosts,
     Groups,
-    DailyPoster
+    DailyPoster,
+    FormWorkshop
   },
   data() {
     return {

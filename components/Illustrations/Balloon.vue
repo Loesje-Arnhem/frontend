@@ -1,18 +1,29 @@
 <template>
-  <div class="balloon" :class="{ animate: animate }">
-    <img ref="image" src="/images/air-balloon.png" alt class="balloon-image" />
+  <div ref="balloon" class="balloon" :class="{ animate: animate }">
+    <app-image
+      width="159"
+      height="243"
+      src="/images/air-balloon.png"
+      alt
+      class="balloon-image"
+    />
   </div>
 </template>
 
 <script>
+import AppImage from '@/components/Shared/AppImage.vue'
+
 export default {
+  components: {
+    AppImage
+  },
   data() {
     return {
       animate: false
     }
   },
   mounted() {
-    const { image } = this.$refs
+    const { balloon } = this.$refs
     if (
       'IntersectionObserver' in window &&
       'IntersectionObserverEntry' in window
@@ -27,7 +38,7 @@ export default {
           rootMargin: '200px 0px'
         }
       )
-      imageObserver.observe(image)
+      imageObserver.observe(balloon)
     } else {
       this.toggleAnimation(true)
     }

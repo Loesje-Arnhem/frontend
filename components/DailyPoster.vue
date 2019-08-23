@@ -3,11 +3,11 @@
     <div class="image-wrapper">
       <img
         src="https://www.loesje.nl/wp-content/uploads/2019/02/2019-08-22.jpg"
-        alt=""
+        alt="Title tag"
         class="image"
       />
     </div>
-    <img src="/images/electriciteitskastje.png" alt="" class="background" />
+    <img src="/images/electriciteitskastje.png" alt class="background" />
   </div>
 </template>
 

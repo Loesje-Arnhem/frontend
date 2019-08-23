@@ -9,7 +9,7 @@
       </div>
     </div>
     <social-media-links
-      :title="`Deel ${poster.title.rendered} `"
+      :title="`Deel ${poster.title.rendered}`"
       :social-media="socialMedia"
     />
   </div>
@@ -19,7 +19,7 @@
 import axios from '~/plugins/axios'
 import PostDate from '@/components/PostDate.vue'
 import Poster from '@/components/Shared/Poster.vue'
-import SocialMediaLinks from '@/components/SocialMediaLinks.vue'
+import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
 
 export default {
   components: {

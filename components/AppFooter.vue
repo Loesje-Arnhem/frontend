@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import SocialMediaLinks from '@/components/SocialMediaLinks.vue'
+import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
 import AppStores from '@/components/Footer/AppStores.vue'
 import CompanyAddress from '@/components/Footer/CompanyAddress.vue'
 import QuickLinks from '@/components/Footer/QuickLinks.vue'
