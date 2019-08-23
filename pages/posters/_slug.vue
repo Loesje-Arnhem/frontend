@@ -1,19 +1,46 @@
 <template>
-  <div>
-    <h1>{{ poster.title.rendered }}</h1>
-    <img class="poster" :src="poster.fimg_url" :alt="poster.title.rendered" />
+  <div class="wrapper">
+    <h1 class="sr-only">{{ poster.title.rendered }}</h1>
+
+    <Poster :poster="poster" class="poster" />
+    <div class="content">
+      <div class="meta-data">
+        <post-date :date="poster.date" />
+      </div>
+    </div>
+    <social-media-links
+      :title="`Deel ${poster.title.rendered} `"
+      :social-media="socialMedia"
+    />
   </div>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
+import PostDate from '@/components/PostDate.vue'
+import Poster from '@/components/Shared/Poster.vue'
+import SocialMediaLinks from '@/components/SocialMediaLinks.vue'
 
 export default {
+  components: {
+    PostDate,
+    Poster,
+    SocialMediaLinks
+  },
   data() {
     return {
       title: '',
       text: '',
       date: ''
+    }
+  },
+  computed: {
+    socialMedia() {
+      return {
+        twitter: `https://twitter.com/share?text=${this.poster.title.rendered}&url=${this.poster.link}`,
+        facebook: `https://www.facebook.com/sharer.php?u=${this.poster.link}&p=${this.poster.title.rendered}`,
+        pinterest: `https://pinterest.com/pin/create/button/?url=${this.poster.link}&media=${this.poster.fimg_url}&description=${this.poster.title.rendered}`
+      }
     }
   },
 
@@ -23,12 +50,15 @@ export default {
         slug: params.slug
       }
     })
-    const post = response.data[0]
+    const poster = response.data[0]
 
     return {
-      title: post.title.rendered,
-      poster: post
+      title: poster.title.rendered,
+      poster
     }
+  },
+  methods: {
+    addTag(item) {}
   },
   head() {
     return {

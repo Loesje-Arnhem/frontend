@@ -68,7 +68,7 @@
       <div class="follow-us">
         <h2>Volg me op</h2>
 
-        <social-media-links title="Loesje" :social-media="socialMedia" />
+        <social-media-links title="Volg Loesje" :social-media="socialMedia" />
 
         <div class="mood-wrapper">
           <img src="/images/casette-player.png" alt class="mood" />
