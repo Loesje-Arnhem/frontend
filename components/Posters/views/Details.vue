@@ -4,44 +4,33 @@
 
     <template v-if="poster">
       <div class="wrapper">
-        <h1 class="sr-only">
-          {{ poster.title.rendered }}
-        </h1>
+        <h1 class="sr-only">{{ poster.title.rendered }}</h1>
 
-        <Poster
-          :poster="poster"
-          class="poster"
-        />
+        <Poster :poster="poster" class="poster" />
         <div class="content">
           <div class="meta-data">
             {{ poster.date | formatDate }}
-            <br>
+            <br />
             <button
               type="button"
               class="btn-favorites"
-              :class="{'is-active' : isInFavorites}"
+              :class="{ 'is-active': isInFavorites }"
               @click="toggleFavorites(poster)"
             >
-              <Icon
-                icon="heart-o"
-                class="icon-favorites"
-              />
-              <template v-if="isInFavorites">
-                Verwijder uit je favorieten
-              </template>
-              <template v-else>
-                Voeg toe aan je favorieten
-              </template>
+              <Icon icon="heart-o" class="icon-favorites" />
+              <template v-if="isInFavorites"
+                >Verwijder uit je favorieten</template
+              >
+              <template v-else
+                >Voeg toe aan je favorieten</template
+              >
             </button>
             <dl>
               <template v-if="posterSubjects.length">
                 <dt>Onderwerpen:</dt>
                 <dd>
                   <ul class="tags">
-                    <li
-                      v-for="item in posterSubjects"
-                      :key="item.id"
-                    >
+                    <li v-for="item in posterSubjects" :key="item.id">
                       <button
                         type="button"
                         class="btn-tag"
@@ -58,10 +47,7 @@
                 <dt>Bronnen:</dt>
                 <dd>
                   <ul class="tags">
-                    <li
-                      v-for="item in posterSources"
-                      :key="item.id"
-                    >
+                    <li v-for="item in posterSources" :key="item.id">
                       <button
                         type="button"
                         class="btn-tag"
@@ -79,23 +65,20 @@
         <SocialMedia :poster="poster" />
       </div>
 
-      <List
-        :subjects="poster.subject"
-        :exclude="poster.id"
-      />
+      <List :subjects="poster.subject" :exclude="poster.id" />
     </template>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import axios from 'axios';
+import { mapGetters, mapActions } from 'vuex'
+import axios from 'axios'
 
-import Poster from '@/components/Shared/Poster.vue';
-import List from '@/components/Shared/List.vue';
-import Icon from '@/components/Shared/Icon.vue';
-import Navigation from '@/components/Shared/Navigation.vue';
-import SocialMedia from '@/components/Details/SocialMedia.vue';
+import Poster from '@/components/Shared/Poster.vue'
+import List from '@/components/Shared/List.vue'
+import Icon from '@/components/Shared/Icon.vue'
+import Navigation from '@/components/Shared/Navigation.vue'
+import SocialMedia from '@/components/Details/SocialMedia.vue'
 
 export default {
   components: {
@@ -103,90 +86,90 @@ export default {
     List,
     Icon,
     Navigation,
-    SocialMedia,
+    SocialMedia
   },
   filters: {
     formatDate(value) {
-      const posterDate = new Date(value);
+      const posterDate = new Date(value)
       return posterDate.toLocaleDateString('nl-NL', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric',
-      });
-    },
+        day: 'numeric'
+      })
+    }
   },
   data() {
     return {
       poster: null,
-      slug: this.$route.params.slug,
-    };
+      slug: this.$route.params.slug
+    }
   },
   computed: {
     ...mapGetters({
       sources: 'tags/sources',
-      subjects: 'tags/subjects',
+      subjects: 'tags/subjects'
     }),
     isInFavorites() {
-      return this.$store.getters['favorites/isInFavorites'](this.slug);
+      return this.$store.getters['favorites/isInFavorites'](this.slug)
     },
     posterSources() {
-      return this.findTags(this.poster.source, this.sources);
+      return this.findTags(this.poster.source, this.sources)
     },
     posterSubjects() {
-      return this.findTags(this.poster.subject, this.subjects);
-    },
+      return this.findTags(this.poster.subject, this.subjects)
+    }
   },
   mounted() {
-    this.getPoster();
+    this.getPoster()
   },
   methods: {
     ...mapActions({
       toggleFavorites: 'favorites/toggle',
-      addTagToStore: 'tags/addTag',
+      addTagToStore: 'tags/addTag'
     }),
 
     addTag(item) {
-      this.addTagToStore(item);
-      this.$router.push({ name: 'Search' });
+      this.addTagToStore(item)
+      this.$router.push({ name: 'Search' })
     },
     getPosterFromFavorites() {
-      return false;
+      return false
     },
     findTags(tagsFromPoster, tagsFromApp) {
-      const array = [];
-      tagsFromPoster.forEach((itemFromPoster) => {
+      const array = []
+      tagsFromPoster.forEach(itemFromPoster => {
         const foundedItem = tagsFromApp.find(
-          itemFromApp => itemFromApp.id === itemFromPoster,
-        );
-        array.push(foundedItem);
-      });
-      return array;
+          itemFromApp => itemFromApp.id === itemFromPoster
+        )
+        array.push(foundedItem)
+      })
+      return array
     },
     getPoster() {
       if (this.isInFavorites) {
-        this.poster = this.isInFavorites;
+        this.poster = this.isInFavorites
       } else {
-        this.getPosterFromApi();
+        this.getPosterFromApi()
       }
     },
     async getPosterFromApi() {
       try {
         const response = await axios.get('poster', {
           params: {
-            slug: this.slug,
-          },
-        });
-        [this.poster] = response.data;
+            slug: this.slug
+          }
+        })
+        ;[this.poster] = response.data
       } catch (error) {
-        window.console.error(error);
+        window.console.error(error)
       }
-    },
+    }
   },
   beforeRouteUpdate(to, from, next) {
-    next();
-    this.getPoster();
-  },
-};
+    next()
+    this.getPoster()
+  }
+}
 </script>
 
 <style scoped>

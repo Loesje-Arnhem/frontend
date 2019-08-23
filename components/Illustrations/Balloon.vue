@@ -1,22 +1,59 @@
 <template>
-  <div class="balloon">
-    <img src="/images/air-balloon.png" alt="" class="balloon-image" />
+  <div class="balloon" :class="{ animate: animate }">
+    <img ref="image" src="/images/air-balloon.png" alt class="balloon-image" />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      animate: false
+    }
+  },
+  mounted() {
+    const { image } = this.$refs
+    if (
+      'IntersectionObserver' in window &&
+      'IntersectionObserverEntry' in window
+    ) {
+      const imageObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            this.toggleAnimation(entry.isIntersecting)
+          })
+        },
+        {
+          rootMargin: '200px 0px'
+        }
+      )
+      imageObserver.observe(image)
+    } else {
+      this.toggleAnimation(true)
+    }
+  },
+  methods: {
+    toggleAnimation(animate) {
+      this.animate = animate
+    }
+  }
+}
+</script>
 
 <style lang="postcss" scoped>
 .balloon {
   position: absolute;
   bottom: 4rem;
   right: 4rem;
-}
-
-.balloon {
-  animation: balloonX 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
+  &.animate {
+    animation: balloonX 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
+  }
 }
 
 .balloon-image {
-  animation: balloonY 20s infinite cubic-bezier(0.3, 0.27, 0.07, 1.64);
+  @nest .balloon.animate & {
+    animation: balloonY 20s infinite cubic-bezier(0.3, 0.27, 0.07, 1.64);
+  }
 }
 
 @keyframes balloonY {

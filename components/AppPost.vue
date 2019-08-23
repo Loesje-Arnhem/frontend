@@ -1,5 +1,5 @@
 <template>
-  <li @mousedown="mouseDown" @mouseup="mouseUp">
+  <li class="list-item" @mousedown="mouseDown" @mouseup="mouseUp">
     <h2>
       <!-- eslint-disable-next-line -->
       <router-link :to="`/nieuws/${post.slug}`" v-html="post.title.rendered" />
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-li {
+.list-item {
   display: flex;
   flex-direction: column;
   padding-bottom: 1em;
