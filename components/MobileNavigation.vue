@@ -1,27 +1,25 @@
 <template>
   <div class="wrapper">
-    <notch-wrapper>
-      <div class="buttons">
-        <button
-          class="btn"
-          :aria-expanded="menuIsExpanded"
-          @click="toggleMenu(!menuIsExpanded)"
-        >
-          <icon-bars aria-hidden="true" width="24" height="24" />
-          {{ $t('menu') }}
+    <div class="buttons">
+      <button
+        class="btn"
+        :aria-expanded="menuIsExpanded"
+        @click="toggleMenu(!menuIsExpanded)"
+      >
+        <icon-bars aria-hidden="true" width="24" height="24" />
+        {{ $t('menu') }}
+      </button>
+      <template v-if="songs.length">
+        <button v-if="isPlaying" @click="pauseAudio">
+          <icon-pause width="24" height="24" aria-hidden="true" />
+          <span class="sr-only">{{ $t('pause') }}</span>
         </button>
-        <template v-if="songs.length">
-          <button v-if="isPlaying" @click="pauseAudio">
-            <icon-pause width="24" height="24" aria-hidden="true" />
-            <span class="sr-only">{{ $t('pause') }}</span>
-          </button>
-          <button v-else @click="playAudio()">
-            <icon-play width="24" height="24" aria-hidden="true" />
-            <span class="sr-only">{{ $t('play') }}</span>
-          </button>
-        </template>
-      </div>
-    </notch-wrapper>
+        <button v-else @click="playAudio()">
+          <icon-play width="24" height="24" aria-hidden="true" />
+          <span class="sr-only">{{ $t('play') }}</span>
+        </button>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -31,14 +29,12 @@ import EventBusUtil from '@/utils/eventBusUtil'
 import IconPlay from '@/assets/icons/play.svg'
 import IconPause from '@/assets/icons/pause.svg'
 import IconBars from '@/assets/icons/bars.svg'
-import NotchWrapper from '@/components/NotchWrapper.vue'
 
 export default {
   components: {
     IconPlay,
     IconPause,
-    IconBars,
-    NotchWrapper
+    IconBars
   },
   data() {
     return {

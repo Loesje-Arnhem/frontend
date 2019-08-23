@@ -1,27 +1,23 @@
 <template>
   <div class="alert" :class="{ active: message.length }">
-    <notch-wrapper>
-      <div class="content">
-        <span class="text" aria-live="polite" role="region">{{ message }}</span>
+    <div class="content">
+      <span class="text" aria-live="polite" role="region">{{ message }}</span>
 
-        <button v-if="message" type="button" class="dismiss" @click="dismiss">
-          <icon-close aria-hidden="true" width="24" height="24" />
-          <span class="sr-only">{{ $t('close') }}</span>
-        </button>
-      </div>
-    </notch-wrapper>
+      <button v-if="message" type="button" class="dismiss" @click="dismiss">
+        <icon-close aria-hidden="true" width="24" height="24" />
+        <span class="sr-only">{{ $t('close') }}</span>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 import EventBusUtil from '@/utils/eventBusUtil'
 import IconClose from '@/assets/icons/close.svg'
-import NotchWrapper from '@/components/NotchWrapper.vue'
 
 export default {
   components: {
-    IconClose,
-    NotchWrapper
+    IconClose
   },
   data() {
     return {
@@ -46,6 +42,7 @@ export default {
 
 <style lang="postcss" scoped>
 .alert {
+  @mixin notch;
   &.active {
     position: fixed;
     bottom: 0;
