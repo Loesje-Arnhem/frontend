@@ -4,9 +4,8 @@
       <h1 id="news-list-title">{{ $t('latestPosts') }}</h1>
 
       <ul class="list">
-        <app-post v-for="post in list" :key="post.slug" :post="post" />
+        <app-post v-for="post in getFirstPosts" :key="post.slug" :post="post" />
       </ul>
-
       <a href="#" class="btn">Meer nieuwsartikelen</a>
     </div>
 
@@ -16,7 +15,7 @@
 
 <script>
 //  import axios from 'axios'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import AppPost from '@/components/AppPost.vue'
 import Balloon from '@/components/Illustrations/Balloon.vue'
 
@@ -27,11 +26,11 @@ export default {
   },
 
   computed: {
-    ...mapState('posts', ['list'])
+    ...mapGetters('posts', ['getFirstPosts'])
   },
 
   mounted() {
-    if (!this.list.length) this.setPosts(this.currentPage)
+    if (!this.getFirstPosts.length) this.setPosts(this.currentPage)
   },
   methods: {
     ...mapActions({

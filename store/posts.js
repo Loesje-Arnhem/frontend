@@ -8,8 +8,8 @@ export const state = () => ({
 })
 
 export const getters = {
-  getPostBySlug: state => slug =>
-    state.list.find(recipe => recipe.slug === slug),
+  getPostBySlug: state => slug => state.list.find(post => post.slug === slug),
+  getFirstPosts: state => state.list.slice(0, 3),
 
   hasAllPostsLoaded: state =>
     state.totalPages && state.currentPage > state.totalPages

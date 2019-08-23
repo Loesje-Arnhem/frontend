@@ -106,7 +106,6 @@ export default {
 <style lang="postcss" scoped>
 .footer {
   @mixin block;
-  @mixin notch;
   @mixin color-negative;
 }
 
