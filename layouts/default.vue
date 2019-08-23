@@ -22,10 +22,3 @@ export default {
   }
 }
 </script>
-
-<style lang="postcss" scoped>
-header,
-footer {
-  display: none;
-}
-</style>

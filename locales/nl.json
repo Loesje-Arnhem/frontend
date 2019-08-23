@@ -22,5 +22,14 @@
   "view": "view",
   "on": "on",
   "menu": "Menu",
-  "gallery": "Gallery"
+  "gallery": "Gallery",
+  "address": {
+    "title": "Loesjes winkeltje",
+    "companyName": "Loesje",
+    "street": "Hommelstraat 65",
+    "city": "Arnhem",
+    "zipcode": "6828 AJ",
+    "email": "winkeltje@loesje.nl",
+    "kvk": "KVKnummer: 40122845"
+  }
 }

@@ -1,68 +1,10 @@
 <template>
   <footer class="footer">
     <div class="wrapper">
-      <div class="quicklinks">
-        <h2>Handige links</h2>
-        <ul>
-          <li>
-            <a href="/workshops/">
-              <icon-chevron-right
-                width="12"
-                height="12"
-                aria-hidden="true"
-              />Workshops
-            </a>
-          </li>
-          <li>
-            <a href="/doe-mee/lokale-groepen/">
-              <icon-chevron-right
-                width="12"
-                height="12"
-                aria-hidden="true"
-              />Lokale groepen
-            </a>
-          </li>
-          <li>
-            <a href="/doe-mee/lokale-groepen/">
-              <icon-chevron-right
-                width="12"
-                height="12"
-                aria-hidden="true"
-              />Loesje internationaal
-            </a>
-          </li>
-          <li>
-            <a href="/doe-mee/lokale-groepen/">
-              <icon-chevron-right
-                width="12"
-                height="12"
-                aria-hidden="true"
-              />Word lid
-            </a>
-          </li>
-          <li>
-            <a href="/doe-mee/lokale-groepen/">
-              <icon-chevron-right
-                width="12"
-                height="12"
-                aria-hidden="true"
-              />Word donateur
-            </a>
-          </li>
-        </ul>
-      </div>
+      <quick-links />
 
-      <div class="contact">
-        <h2>Loesjes winkeltje</h2>
-        <div class="address-data">
-          <div class="contact-title">Adres:</div>
-          Hommelstraat 65 <br />6828 AJ Arnhem
-          <br />
-          <a href="mailto:winkeltje@loesje.nl">winkeltje@loesje.nl</a>
-          <br />KvK-nummer 40122845
-          <br />
-        </div>
-      </div>
+      <company-address />
+
       <app-stores />
 
       <div class="follow-us">
@@ -79,15 +21,17 @@
 </template>
 
 <script>
-import IconChevronRight from '@/assets/icons/chevron-right.svg'
 import SocialMediaLinks from '@/components/SocialMediaLinks.vue'
-import AppStores from '@/components/AppStores.vue'
+import AppStores from '@/components/Footer/AppStores.vue'
+import CompanyAddress from '@/components/Footer/CompanyAddress.vue'
+import QuickLinks from '@/components/Footer/QuickLinks.vue'
 
 export default {
   components: {
-    IconChevronRight,
+    QuickLinks,
     SocialMediaLinks,
-    AppStores
+    AppStores,
+    CompanyAddress
   },
   data() {
     return {
@@ -114,11 +58,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
   grid-gap: var(--gutter);
-  grid-gap: 1rem;
-
-  & ul {
-    @mixin list-reset;
-  }
 }
 
 .mood-wrapper {

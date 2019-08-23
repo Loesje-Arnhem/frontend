@@ -2,92 +2,105 @@
   <nav aria-labelledby="menu-title">
     <h2 id="menu-title" class="sr-only">{{ $t('mainNavigation') }}</h2>
     <ul ref="menu" class="list">
-      <li id="menu-item-30772">
+      <li>
         <nuxt-link to="/">Home</nuxt-link>
       </li>
-      <li id="menu-item-30771">
+      <li>
         <nuxt-link to="/posters/">Posters</nuxt-link>
       </li>
-      <li id="menu-item-25255">
+      <li :class="{ open: isOpen }" class="has-popup">
         <nuxt-link to="/informatie/">Over mij</nuxt-link>
-        <ul id="menu-item-30757">
+        <ul class="submenu">
           <li>
             <nuxt-link to="/informatie/wat-wil-loesje/"
               >Wie is Loesje</nuxt-link
             >
           </li>
-          <li id="menu-item-30758">
+          <li>
             <nuxt-link to="/informatie/internationaal/"
               >Loesje in de wijde wereld</nuxt-link
             >
           </li>
-          <li id="menu-item-30759">
+          <li>
             <nuxt-link to="/informatie/nieuws/">Nieuws</nuxt-link>
           </li>
-          <li id="menu-item-30760">
+          <li>
             <nuxt-link to="/informatie/copyright/">Copyright</nuxt-link>
           </li>
-          <li id="menu-item-30761">
+          <li>
             <nuxt-link to="/informatie/contact-2/">Contact</nuxt-link>
           </li>
         </ul>
+        <button
+          class="btn-show-submenu"
+          :aria-expanded="isOpen"
+          @click="toggleMenu"
+        >
+          <icon-chevron-down
+            aria-hidden="true"
+            width="20"
+            height="20"
+            class="icon-chevron-down"
+          />
+          <span class="sr-only">Toon submenu voor Over mij</span>
+        </button>
       </li>
-      <li id="menu-item-25260">
+      <li>
         <nuxt-link to="/doe-mee/">Doe mee</nuxt-link>
-        <ul id="menu-item-30763">
+        <ul>
           <li>
             <nuxt-link to="/doe-mee/online-meeschrijven/"
               >Schrijf online mee</nuxt-link
             >
           </li>
-          <li id="menu-item-30766">
+          <li>
             <nuxt-link to="/doe-mee/lokale-groepen/"
               >Schrijf mee in je buurt</nuxt-link
             >
           </li>
-          <li id="menu-item-30765">
+          <li>
             <nuxt-link to="/doe-mee/word-lid/">Word lid</nuxt-link>
           </li>
-          <li id="menu-item-30767">
+          <li>
             <nuxt-link to="/doe-mee/word-donateur/">Word donateur</nuxt-link>
           </li>
-          <li id="menu-item-30764">
+          <li>
             <nuxt-link to="/doe-mee/agenda-2/">Agenda</nuxt-link>
           </li>
-          <li id="menu-item-30768">
+          <li>
             <nuxt-link to="/doe-mee/blijf-op-hoogte/"
               >Blijf op de hoogte</nuxt-link
             >
           </li>
-          <li id="menu-item-30769">
+          <li>
             <nuxt-link to="/doe-mee/vacatures/">Vacatures</nuxt-link>
           </li>
         </ul>
       </li>
-      <li id="menu-item-30770">
+      <li>
         <nuxt-link to="/workshops/">Workshop</nuxt-link>
       </li>
-      <li id="menu-item-47191">
+      <li>
         <nuxt-link to="/winkeltje/">Winkeltje</nuxt-link>
-        <ul id="menu-item-47832">
+        <ul>
           <li>
             <nuxt-link to="/winkeltje/categorie/kleding/">Kleding</nuxt-link>
           </li>
-          <li id="menu-item-47848">
+          <li>
             <nuxt-link to="/winkeltje/categorie/kalenders/"
               >Kalenders en agenda&#8217;s</nuxt-link
             >
           </li>
-          <li id="menu-item-47834">
+          <li>
             <nuxt-link to="/winkeltje/categorie/boeken/">Boeken</nuxt-link>
           </li>
-          <li id="menu-item-47833">
+          <li>
             <nuxt-link to="/winkeltje/categorie/diversen/">Diversen</nuxt-link>
           </li>
-          <li id="menu-item-47835">
+          <li>
             <nuxt-link to="/winkeltje/categorie/kaarten/">Kaarten</nuxt-link>
           </li>
-          <li id="menu-item-47836">
+          <li>
             <nuxt-link to="/winkeltje/categorie/aanbieding/"
               >Aanbieding</nuxt-link
             >
@@ -97,6 +110,36 @@
     </ul>
   </nav>
 </template>
+
+<script>
+import IconChevronDown from '~/assets/icons/chevron-down.svg'
+
+export default {
+  components: {
+    IconChevronDown
+  },
+  data() {
+    return {
+      isOpen: false,
+      timer: null
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.isOpen = !this.isOpen
+    },
+    mouseover() {
+      this.isOpen = true
+      clearTimeout(this.timer)
+    },
+    mouseout() {
+      this.timer = setTimeout(() => {
+        this.isOpen = false
+      }, 250)
+    }
+  }
+}
+</script>
 
 <style lang="postcss" scoped>
 nav {
@@ -121,9 +164,39 @@ nav {
   }
 }
 
+.menu-item {
+  display: flex;
+}
+
+.menu-link {
+  &[aria-haspopup='true'] {
+    padding-right: 0.25em;
+  }
+}
+
 a {
   @mixin link-reset;
   display: block;
   padding: 0.25em 0;
+}
+
+.btn-show-submenu {
+  transform: translate(-0.25em, 0.25em);
+}
+
+.submenu {
+  margin-left: 1em;
+
+  display: none;
+  background: var(--color-bg-page);
+  position: absolute;
+  top: 100%;
+  margin-left: 0;
+  padding: 0 0.5em;
+  white-space: nowrap;
+
+  @nest .open & {
+    display: block;
+  }
 }
 </style>
