@@ -1,0 +1,4 @@
+@define-mixin heading {
+  font-family: var(--font-family-headings);
+  text-transform: uppercase;
+}
