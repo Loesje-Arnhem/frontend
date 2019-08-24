@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 class="sr-only">{{ title }}</h1>
+    <BlockInstagram />
     <daily-poster />
     <form-workshop />
     <latest-posts />
@@ -16,6 +17,7 @@ import Posters from '@/components/Blocks/Posters.vue'
 import LatestPosts from '@/components/Blocks/LatestPosts.vue'
 import Groups from '@/components/Blocks/Groups.vue'
 import FormWorkshop from '@/components/Blocks/FormWorkshop.vue'
+import BlockInstagram from '@/components/Blocks/BlockInstagram.vue'
 
 export default {
   components: {
@@ -23,7 +25,8 @@ export default {
     LatestPosts,
     Groups,
     DailyPoster,
-    FormWorkshop
+    FormWorkshop,
+    BlockInstagram
   },
   data() {
     return {

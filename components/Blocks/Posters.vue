@@ -9,7 +9,7 @@
       </ul>
 
       <div class="btn-wrapper">
-        <a href="#" class="btn">Bekijk alle posters</a>
+        <app-button to="/posters" title="Bekijk alle posters" />
       </div>
     </div>
   </section>
@@ -17,10 +17,12 @@
 
 <script>
 import Poster from '@/components/Shared/Poster.vue'
+import AppButton from '@/components/Shared/AppButton.vue'
 
 export default {
   components: {
-    Poster
+    Poster,
+    AppButton
   },
   props: {
     posters: {
