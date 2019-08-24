@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import FormField from '~/components/Forms/Formfield.vue'
+import FormField from '~/components/Forms/FormField.vue'
 export default {
   components: {
     FormField

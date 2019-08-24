@@ -84,7 +84,7 @@ export default {
           $state.loaded()
         }
       } catch (error) {
-        console.error(error)
+        window.console.error(error)
       }
     },
     resetSearch() {

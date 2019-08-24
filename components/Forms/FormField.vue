@@ -17,13 +17,8 @@ export default {
       type: String,
       required: true
     },
-    value: {
-      type: String,
-      required: true
-    },
     errorMessage: {
       type: String,
-      required: false,
       default: ''
     }
   }
