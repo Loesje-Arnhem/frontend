@@ -13,9 +13,9 @@
         aria-hidden="true"
         class="icon-store"
       />
-      <span class="sr-only">
-        De loesje App voor iOs is verkrijgbaar in de AppStore
-      </span>
+      <span class="sr-only"
+        >De loesje App voor iOs is verkrijgbaar in de AppStore</span
+      >
     </a>
     <a
       href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
@@ -29,9 +29,9 @@
         aria-hidden="true"
         class="icon-store"
       />
-      <span class="sr-only">
-        De loesje App voor Android is verkrijgbaar in de Play Store
-      </span>
+      <span class="sr-only"
+        >De loesje App voor Android is verkrijgbaar in de Play Store</span
+      >
     </a>
   </div>
 </template>
@@ -57,6 +57,7 @@ export default {
   fill: inherit;
   width: 100%;
   height: auto;
-  margin-bottom: 0.5em;
+  max-width: 10em;
+  margin-bottom: 0.25em;
 }
 </style>

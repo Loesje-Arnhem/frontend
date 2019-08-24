@@ -1,8 +1,8 @@
 :root {
   --container-width-xs: 18rem;
-  --container-width-sm: 30rem;
-  --container-width-md: 36rem;
-  --container-width-lg: 52rem;
-  --container-width-xlg: 64rem;
+  --container-width-sm: 32rem;
+  --container-width-md: 48rem;
+  --container-width-lg: 64rem;
+  --container-width-xlg: 72rem;
   --gutter: 1rem;
 }

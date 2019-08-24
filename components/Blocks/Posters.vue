@@ -57,4 +57,8 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.list-item {
+  max-width: 10em;
+}
 </style>
