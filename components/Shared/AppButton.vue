@@ -1,7 +1,10 @@
 <template>
-  <button v-if="submit" type="submit" class="btn">
+  <button v-if="type === 'submit'" type="submit" class="btn">
     <span class="title">{{ title }}</span>
   </button>
+  <a v-else-if="type === 'link'" :href="to" class="btn">
+    <span class="title">{{ title }}</span>
+  </a>
   <nuxt-link v-else class="btn" :to="to">
     <span class="title">{{ title }}</span>
   </nuxt-link>
@@ -18,9 +21,9 @@ export default {
       type: String,
       default: ''
     },
-    submit: {
-      type: Boolean,
-      default: false
+    type: {
+      type: String,
+      default: ''
     }
   }
 }

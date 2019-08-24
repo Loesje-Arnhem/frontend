@@ -1,9 +1,8 @@
 <template>
   <div>
     <h1 class="sr-only">{{ title }}</h1>
-    <BlockInstagram />
-    <daily-poster />
     <form-workshop />
+    <BlockInstagram />
     <latest-posts />
     <Posters :posters="posters" />
     <groups />
@@ -11,7 +10,6 @@
 </template>
 
 <script>
-import DailyPoster from '@/components/DailyPoster.vue'
 import axios from '~/plugins/axios'
 import Posters from '@/components/Blocks/Posters.vue'
 import LatestPosts from '@/components/Blocks/LatestPosts.vue'
@@ -24,7 +22,6 @@ export default {
     Posters,
     LatestPosts,
     Groups,
-    DailyPoster,
     FormWorkshop,
     BlockInstagram
   },

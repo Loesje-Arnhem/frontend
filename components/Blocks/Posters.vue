@@ -36,7 +36,7 @@ export default {
 <style scoped>
 .posters {
   padding: 3em 0;
-  background: url('/images/wall.jpg');
+  background: url('/images/backgrounds/wall.jpg');
 }
 
 .wrapper {

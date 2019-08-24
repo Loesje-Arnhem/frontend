@@ -6,7 +6,7 @@
       <ul class="list">
         <app-post v-for="post in getFirstPosts" :key="post.slug" :post="post" />
       </ul>
-      <a href="#" class="btn">Meer nieuwsartikelen</a>
+      <app-button to="/nieuws" title="Meer nieuwsartikelen" />
     </div>
 
     <balloon />
@@ -17,12 +17,14 @@
 //  import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex'
 import AppPost from '@/components/AppPost.vue'
+import AppButton from '@/components/Shared/AppButton.vue'
 import Balloon from '@/components/Illustrations/Balloon.vue'
 
 export default {
   components: {
     AppPost,
-    Balloon
+    Balloon,
+    AppButton
   },
 
   computed: {

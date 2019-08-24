@@ -1,16 +1,16 @@
 <template>
-  <ul>
-    <li v-for="item in list" :key="item.id">
+  <transition-group name="list" tag="ul">
+    <li v-for="item in list" :key="item.id" class="list-item">
       <button
         type="button"
         class="tag"
         :class="{ 'is-active': isSelected(item) }"
         @click="selectTag(item)"
       >
-        {{ item.name }}
+        <span class="title"> {{ item.name }}</span>
       </button>
     </li>
-  </ul>
+  </transition-group>
 </template>
 
 <script>
@@ -63,16 +63,36 @@ li {
   border: 2px solid var(--color-black);
   border-radius: 1em;
   background: var(--color-white);
+  transition: box-shadow 0.1s ease-out;
 
-  &.is-active,
-  &:hover {
+  &.is-active {
     background: var(--color-black);
     color: var(--color-white);
   }
 
   &:focus {
-    box-shadow: 0 0 0 2px var(--color-black);
+    box-shadow: 0 0 0 1px var(--color-black);
     outline: none;
   }
+}
+
+.title {
+  transition: box-shadow 0.2s ease-out;
+  @nest .tag:hover & {
+    box-shadow: 0 2px 0 0 currentColor;
+  }
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.2s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(1em);
+}
+.list-leave-active {
+  position: absolute;
 }
 </style>

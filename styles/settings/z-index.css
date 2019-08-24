@@ -1,5 +1,5 @@
 :root {
-  --error-handler: 9;
-  --mobile-navigation: 2;
-  --main-navigation: 1;
+  --z-index-error-handler: 9;
+  --z-index-main-navigation: 9;
+  --z-index-mobile-navigation: 2;
 }

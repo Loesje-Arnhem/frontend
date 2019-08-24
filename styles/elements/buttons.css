@@ -45,6 +45,8 @@ a {
 
 .btn {
   @mixin heading;
+  background: var(--color-black);
+  color: var(--color-white);
   text-align: center;
   border-radius: 0.25em;
   display: inline-block;
@@ -71,23 +73,4 @@ a {
     }
   }
 
-  &.btn-primary {
-    background: var(--color-black);
-    color: var(--color-white);
-
-    &:hover {
-      background: var(--color-gray-darker);
-    }
-  }
-
-  &.btn-ghost {
-    background: transparent;
-    color: var(--color-white);
-    border: 2px solid var(--color-white);
-
-    &:hover {
-      background: var(--color-white);
-      color: var(--text-color);
-    }
-  }
 }

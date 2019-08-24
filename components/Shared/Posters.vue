@@ -1,9 +1,9 @@
 <template>
-  <ul class="list">
+  <transition-group name="list" tag="ul" class="list">
     <li v-for="poster in posters" :key="poster.id" class="list-item">
-      <Poster :poster="poster" class="link" />
+      <Poster :poster="poster" />
     </li>
-  </ul>
+  </transition-group>
 </template>
 
 <script>
@@ -31,13 +31,14 @@ export default {
   grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
 }
 
-.link {
-  transition: all 0.15s ease-in-out;
-  display: block;
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.2s;
+}
 
-  &:focus,
-  &:hover {
-    transform: scale(1.05);
-  }
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(1em);
 }
 </style>

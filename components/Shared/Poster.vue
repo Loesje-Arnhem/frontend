@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/posters/${poster.slug}`">
+  <router-link :to="`/posters/${poster.slug}`" class="link">
     <app-image
       class="poster"
       width="200"
@@ -36,5 +36,15 @@ export default {
   border-radius: 50% 4% 20% 1%/5% 50% 2% 45%;
   border-bottom-width: 0.25em;
   border-left-width: 0.25em;
+}
+
+.link {
+  transition: all 0.15s ease-in-out;
+  display: block;
+
+  &:focus,
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 </style>
