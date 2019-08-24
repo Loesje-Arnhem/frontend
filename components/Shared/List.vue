@@ -7,6 +7,7 @@
       @infinite="getPosters"
     >
       <span slot="no-more" />
+      <app-loader slot="spinner" />
       <span slot="no-results" class="no-results">
         <span v-if="!posters.length">There are no assets found</span>
       </span>
@@ -18,11 +19,13 @@
 import InfiniteLoading from 'vue-infinite-loading'
 import axios from '~/plugins/axios'
 import Posters from '@/components/Shared/Posters.vue'
+import AppLoader from '@/components/Shared/AppLoader.vue'
 
 export default {
   components: {
     Posters,
-    InfiniteLoading
+    InfiniteLoading,
+    AppLoader
   },
   props: {
     search: {
@@ -63,28 +66,24 @@ export default {
   },
   methods: {
     async getPosters($state) {
-      try {
-        const response = await axios.get('wp/v2/poster', {
-          params: {
-            search: this.search,
-            per_page: this.pageSize,
-            page: this.page,
-            subject: this.subjects,
-            source: this.sources,
-            exclude: this.exclude
-          }
-        })
-
-        this.page = this.page + 1
-        this.posters = this.posters.concat(response.data)
-
-        if (this.page >= response.headers['x-wp-totalpages']) {
-          $state.complete()
-        } else {
-          $state.loaded()
+      const response = await axios.get('wp/v2/poster', {
+        params: {
+          search: this.search,
+          per_page: this.pageSize,
+          page: this.page,
+          subject: this.subjects,
+          source: this.sources,
+          exclude: this.exclude
         }
-      } catch (error) {
-        window.console.error(error)
+      })
+
+      this.page = this.page + 1
+      this.posters = this.posters.concat(response.data)
+
+      if (this.page >= response.headers['x-wp-totalpages']) {
+        $state.complete()
+      } else {
+        $state.loaded()
       }
     },
     resetSearch() {

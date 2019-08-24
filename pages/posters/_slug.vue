@@ -17,15 +17,15 @@
         :class="{ 'is-active': isInFavorites }"
         @click="toggleFavorites(poster)"
       >
-        <icon-heart aria-hidden="true" width="32" height="32" />
-
-        Voeg toe aan je favorieten
+        <icon-heart aria-hidden="true" width="32" height="32" />Voeg toe aan je
+        favorieten
       </button>
       <social-media-links
         :title="`Deel ${poster.title.rendered}`"
         :social-media="socialMedia"
       />
     </div>
+    <List :subjects="poster.subject" :exclude="poster.id" />
   </div>
 </template>
 
@@ -38,6 +38,7 @@ import Poster from '@/components/Shared/Poster.vue'
 import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
 import IconHeart from '@/assets/icons/heart-o.svg'
 import Navigation from '@/components/Shared/Navigation.vue'
+import List from '@/components/Shared/List.vue'
 
 export default {
   components: {
@@ -45,7 +46,8 @@ export default {
     Poster,
     SocialMediaLinks,
     IconHeart,
-    Navigation
+    Navigation,
+    List
   },
   data() {
     return {
