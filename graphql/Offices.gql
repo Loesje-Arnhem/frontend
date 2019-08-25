@@ -1,0 +1,22 @@
+query GET_OFFICES {
+  generalSettings {
+    title
+    kvk
+    phonenumber
+    addresses {
+      city
+      street
+      zipcode
+      position {
+        lat
+        lng
+      }
+    }
+    socialMedia {
+      facebook
+      instagram
+      linkedin
+      twitter
+    }
+  }
+}

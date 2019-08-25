@@ -1,0 +1,10 @@
+query GET_TESTIMONIALS {
+  testimonials(first: 3) {
+    edges {
+      node {
+        title
+        quote
+      }
+    }
+  }
+}

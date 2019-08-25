@@ -1,0 +1,15 @@
+query GET_PRODUCT($slug: String) {
+  product: productBy(slug: $slug) {
+    id
+    name
+    slug
+    description
+    price
+    salePrice
+    image {
+      id
+      medium: sourceUrl(size: MEDIUM)
+      mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+    }
+  }
+}

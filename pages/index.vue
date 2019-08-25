@@ -35,7 +35,12 @@ export default {
   },
   async asyncData({ params }) {
     try {
-      const response = await axios.get(`wp/v2/poster`)
+      const response = await axios.get(`wp/v2/poster`, {
+        params: {
+          _embed: '1',
+          per_page: 5
+        }
+      })
       return {
         posters: response.data
       }

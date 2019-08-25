@@ -1,5 +1,10 @@
 <template>
   <div class="wrapper">
+    {{
+      poster._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail
+        .source_url
+    }}
+
     <navigation />
 
     <h1 class="sr-only">{{ poster.title.rendered }}</h1>
@@ -25,6 +30,7 @@
         :social-media="socialMedia"
       />
     </div>
+
     <List :subjects="poster.subject" :exclude="poster.id" />
   </div>
 </template>
@@ -72,7 +78,8 @@ export default {
   async asyncData({ params }) {
     const response = await axios.get(`wp/v2/poster/`, {
       params: {
-        slug: params.slug
+        slug: params.slug,
+        _embed: '1'
       }
     })
     const poster = response.data[0]

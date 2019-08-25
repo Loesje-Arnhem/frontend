@@ -1,0 +1,20 @@
+query GET_PRODUCT_CATEGORIES {
+  productCategories {
+    edges {
+      node {
+        id
+        name
+        slug
+        children {
+          edges {
+            node {
+              id
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+}

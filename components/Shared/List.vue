@@ -73,7 +73,8 @@ export default {
           page: this.page,
           subject: this.subjects,
           source: this.sources,
-          exclude: this.exclude
+          exclude: this.exclude,
+          _embed: '1'
         }
       })
 

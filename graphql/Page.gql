@@ -1,0 +1,18 @@
+query GET_PAGE_BY_URI($uri: String) {
+  page: pageBy(uri: $uri) {
+    title
+    uri
+    content
+    template
+    featuredImage {
+      altText
+      heroLarge: sourceUrl(size: HERO_LARGE)
+      heroMedium: sourceUrl(size: HERO_MEDIUM)
+      heroSmall: sourceUrl(size: HERO_SMALL)
+    }
+    methods {
+      title
+      text
+    }
+  }
+}

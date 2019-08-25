@@ -1,0 +1,26 @@
+query GET_POSTS($first: Int, $after: String, $notIn: [ID]) {
+  posts(first: $first, after: $after, where: {
+    notIn:$notIn
+  }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+      hasPreviousPage
+      startCursor
+    }
+    edges {
+      node {
+        title
+        featuredImage {
+          altText
+          thumbnail: sourceUrl(size: THUMBNAIL)
+          medium: sourceUrl(size: MEDIUM)
+        }
+        postId
+        title
+        date
+        slug
+      }
+    }
+  }
+}

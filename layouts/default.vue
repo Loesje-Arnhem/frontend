@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <daily-poster />
+    <header-top />
 
     <app-header class="header" />
     <main id="content" class="main" tabindex="-1">
@@ -15,14 +15,14 @@
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import ErrorHandler from '@/components/ErrorHandler.vue'
-import DailyPoster from '@/components/DailyPoster.vue'
+import HeaderTop from '@/components/HeaderTop.vue'
 
 export default {
   components: {
     AppHeader,
     AppFooter,
     ErrorHandler,
-    DailyPoster
+    HeaderTop
   }
 }
 </script>

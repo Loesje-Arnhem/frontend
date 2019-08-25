@@ -4,10 +4,9 @@
       class="poster"
       width="200"
       height="500"
-      src="https://www.loesje.nl/wp-content/uploads/2019/07/190723-alles-heter-300x424.jpg"
+      :src="image"
       :alt="poster.title.rendered"
     />
-    {{ poster.title.rendered }}
   </router-link>
 </template>
 
@@ -22,6 +21,15 @@ export default {
       type: Object,
       default: () => {}
     }
+  },
+  computed: {
+    image() {
+      if (this.poster._embedded['wp:featuredmedia'][0].media_details) {
+        return this.poster._embedded['wp:featuredmedia'][0].media_details.sizes
+          .medium.source_url
+      }
+      return 'https://api.loesje.michielkoning.nl/wp-content/uploads/2019/06/190626-zomer-212x300.jpg'
+    }
   }
 }
 </script>
@@ -29,10 +37,10 @@ export default {
 <style lang="postcss" scoped>
 .poster {
   border-radius: 0.2em;
-  border: 0.2em solid var(--color-black);
   display: block;
   width: 100%;
   height: auto;
+  border: 0.2em solid var(--color-black);
   border-radius: 50% 4% 20% 1%/5% 50% 2% 45%;
   border-bottom-width: 0.25em;
   border-left-width: 0.25em;

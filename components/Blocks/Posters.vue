@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .posters {
   padding: 3em 0;
   background: url('/images/backgrounds/wall.jpg');
@@ -61,6 +61,6 @@ export default {
 }
 
 .list-item {
-  max-width: 10em;
+  padding: 0.5em;
 }
 </style>

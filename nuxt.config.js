@@ -1,4 +1,5 @@
 import pkg from './package'
+const baseUrl = 'https://api.loesje.michielkoning.nl/'
 
 export default {
   mode: 'universal',
@@ -70,7 +71,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/pwa',
     'nuxt-svg-loader',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/apollo'
   ],
 
   /*
@@ -105,6 +107,14 @@ export default {
             'media-query-ranges': true
           }
         }
+      }
+    }
+  },
+  apollo: {
+    clientConfigs: {
+      default: {
+        // required
+        httpEndpoint: `${baseUrl}graphql`
       }
     }
   }

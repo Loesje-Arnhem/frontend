@@ -152,7 +152,8 @@ export default {
       try {
         const response = await axios.get('poster', {
           params: {
-            slug: this.slug
+            slug: this.slug,
+            _embed: '1'
           }
         })
         ;[this.poster] = response.data

@@ -1,0 +1,18 @@
+query GET_PRODUCTS {
+  products {
+    edges {
+      node {
+        id
+        name
+        slug
+        price
+        salePrice
+        image {
+          id
+          medium: sourceUrl(size: MEDIUM)
+          mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+        }
+      }
+    }
+  }
+}
