@@ -49,10 +49,10 @@ export default {
     font-size: 1.25em;
     left: 0;
     right: 0;
-    z-index: var(--error-handler);
+    z-index: var(--z-index-error-handler);
     padding: 0.5em 0.25em;
-    background: var(--color-secondary);
-    border-top: 2px solid var(--color-white);
+    background: var(--color-white);
+    border-top: 2px solid var(--color-black);
   }
 }
 

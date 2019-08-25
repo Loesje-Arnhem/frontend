@@ -213,9 +213,9 @@ nav {
   @mixin list-reset;
   margin-bottom: 0;
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  padding-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.2em;
 
   & ul {
     display: none;
@@ -243,7 +243,7 @@ a {
 
   &:focus > .title,
   &:hover > .title {
-    box-shadow: 0 2px 0 0 currentColor;
+    box-shadow: 0 0.1em 0 0 currentColor;
   }
 }
 
@@ -273,7 +273,7 @@ a {
 }
 
 .arrow {
-  height: 4px;
+  height: 0.2em;
   background: currentColor;
   display: block;
 

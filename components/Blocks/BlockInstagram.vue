@@ -18,20 +18,20 @@
           </a>
         </li>
       </ul>
-    </div>
-    <app-image
-      src="/images/backgrounds/instagram.png"
-      alt=""
-      class="background"
-    />
-    <div class="button-wrapper">
-      <app-button
-        type="link"
-        title="Volg Loesje op Instagram"
-        rel="noopener"
-        to="https://instagram.com/loesjevdposters"
-        target="_blank"
+      <app-image
+        src="/images/backgrounds/instagram.png"
+        alt=""
+        class="background"
       />
+      <div class="button-wrapper">
+        <app-button
+          type="link"
+          title="Volg Loesje op Instagram"
+          rel="noopener"
+          to="https://instagram.com/loesjevdposters"
+          target="_blank"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +53,10 @@ export default {
   @mixin block;
   @mixin clearfix;
   min-height: 80vw;
+}
+
+.wrapper {
+  @mixin center;
   position: relative;
 }
 
@@ -69,7 +73,7 @@ export default {
 
 .list {
   @mixin list-reset;
-  padding: 6vw 0 0 6vw;
+  padding: 6% 0 0 6%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -94,7 +98,7 @@ export default {
 }
 
 .link {
-  width: 15vw;
+  width: 15%;
   display: block;
 }
 
@@ -103,10 +107,10 @@ export default {
 }
 
 .link-2 {
-  transform: rotate(7deg) translate(-2vw, 2.5vw);
+  transform: rotate(7deg) translate(-2%, 2.5%);
 }
 
 .link-3 {
-  transform: rotate(-7deg) translate(-3vw, 3.5vw);
+  transform: rotate(-7deg) translate(-3%, 3.5%);
 }
 </style>

@@ -25,20 +25,10 @@ export default {
 <style scoped>
 .list {
   @mixin list-reset;
+  background: url('/images/backgrounds/wall.jpg');
   margin: 0 0 1em;
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
-}
-
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.2s;
-}
-
-.list-enter,
-.list-leave-to {
-  opacity: 0;
-  transform: translateY(1em);
 }
 </style>

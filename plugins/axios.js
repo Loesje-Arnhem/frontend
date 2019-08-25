@@ -3,7 +3,7 @@ import EventBusUtil from '@/utils/eventBusUtil'
 
 const instance = axios.create({
   // baseURL: process.env.baseUrl
-  baseURL: 'https://www.loesje.nl/wp-json/'
+  baseURL: 'https://api.loesje.michielkoning.nl/wp-json/'
 })
 
 instance.interceptors.response.use(
