@@ -2,25 +2,25 @@
   <div class="page">
     <header-top />
 
-    <app-header class="header" />
+    <the-header class="header" />
     <main id="content" class="main" tabindex="-1">
       <nuxt />
     </main>
-    <app-footer />
+    <the-footer />
     <error-handler />
   </div>
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader.vue'
-import AppFooter from '@/components/AppFooter.vue'
+import TheHeader from '@/components/Layout/TheHeader.vue'
+import TheFooter from '@/components/Layout/TheFooter.vue'
 import ErrorHandler from '@/components/ErrorHandler.vue'
 import HeaderTop from '@/components/HeaderTop.vue'
 
 export default {
   components: {
-    AppHeader,
-    AppFooter,
+    TheHeader,
+    TheFooter,
     ErrorHandler,
     HeaderTop
   }

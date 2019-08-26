@@ -1,0 +1,41 @@
+query GET_POSTER($slug: String) {
+  poster: posterBy(slug: $slug) {
+    id
+    title
+    date
+    featuredImage {
+      id
+      large: sourceUrl(size: LARGE)
+    }
+    sources {
+      edges {
+        node {
+          id
+          name
+        }
+      }
+    }
+    subjects {
+      edges {
+        node {
+          id
+          name
+        }
+      }
+    }
+    seo {
+      focuskw
+      metaDesc
+      metaKeywords
+      metaRobotsNofollow
+      metaRobotsNoindex
+      opengraphDescription
+      opengraphImage
+      opengraphTitle
+      title
+      twitterDescription
+      twitterImage
+      twitterTitle
+    }
+  }
+}

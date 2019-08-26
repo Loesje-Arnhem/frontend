@@ -2,19 +2,21 @@ query GET_PRODUCT_CATEGORIES {
   productCategories {
     edges {
       node {
-        id
-        name
-        slug
+        ...CategoryFields
         children {
           edges {
             node {
-              id
-              name
-              slug
+              ...CategoryFields
             }
           }
         }
       }
     }
   }
+}
+
+fragment CategoryFields on ProductCategory {
+  id
+  name
+  slug
 }
