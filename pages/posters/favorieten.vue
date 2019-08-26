@@ -2,18 +2,18 @@
   <div class="page">
     <h1>Favorieten</h1>
     <Navigation />
-    <Posters :posters="list" />
+    <poster-list :posters="list" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import Posters from '@/components/Shared/Posters.vue'
+import PosterList from '@/components/Poster/PosterList.vue'
 import Navigation from '@/components/Shared/Navigation.vue'
 
 export default {
   components: {
-    Posters,
+    PosterList,
     Navigation
   },
   computed: {

@@ -1,104 +1,43 @@
 <template>
   <div class="wrapper">
-    {{
-      poster._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail
-        .source_url
-    }}
-
     <navigation />
 
-    <h1 class="sr-only">{{ poster.title.rendered }}</h1>
+    <poster-details :poster="poster" />
 
-    <div class="grid">
-      <Poster :poster="poster" class="poster" />
-      <div class="content">
-        <div class="meta-data">
-          <post-date :date="poster.date" />
-        </div>
-      </div>
-      <button
-        type="button"
-        class="btn-favorites"
-        :class="{ 'is-active': isInFavorites }"
-        @click="toggleFavorites(poster)"
-      >
-        <icon-heart aria-hidden="true" width="32" height="32" />Voeg toe aan je
-        favorieten
-      </button>
-      <social-media-links
-        :title="`Deel ${poster.title.rendered}`"
-        :social-media="socialMedia"
-      />
-    </div>
-
-    <List :subjects="poster.subject" :exclude="poster.id" />
+    <List :exclude="poster.posterId" />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import PosterQuery from '~/graphql/Poster.gql'
 
-import axios from '~/plugins/axios'
-import PostDate from '@/components/PostDate.vue'
-import Poster from '@/components/Shared/Poster.vue'
-import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
-import IconHeart from '@/assets/icons/heart-o.svg'
+import PosterDetails from '@/components/Poster/PosterDetails.vue'
 import Navigation from '@/components/Shared/Navigation.vue'
 import List from '@/components/Shared/List.vue'
 
 export default {
   components: {
-    PostDate,
-    Poster,
-    SocialMediaLinks,
-    IconHeart,
+    PosterDetails,
     Navigation,
     List
   },
-  data() {
-    return {
-      title: '',
-      text: '',
-      date: ''
-    }
-  },
-  computed: {
-    socialMedia() {
-      return {
-        twitter: `https://twitter.com/share?text=${this.poster.title.rendered}&url=${this.poster.link}`,
-        facebook: `https://www.facebook.com/sharer.php?u=${this.poster.link}&p=${this.poster.title.rendered}`,
-        pinterest: `https://pinterest.com/pin/create/button/?url=${this.poster.link}&media=${this.poster.fimg_url}&description=${this.poster.title.rendered}`
+
+  async asyncData({ app, params }) {
+    const poster = await app.apolloProvider.defaultClient.query({
+      query: PosterQuery,
+      variables: {
+        slug: params.slug
       }
-    },
-    isInFavorites() {
-      return this.$store.getters['favorites/isInFavorites'](this.slug)
+    })
+
+    return {
+      poster: poster.data.poster
     }
   },
 
-  async asyncData({ params }) {
-    const response = await axios.get(`wp/v2/poster/`, {
-      params: {
-        slug: params.slug,
-        _embed: '1'
-      }
-    })
-    const poster = response.data[0]
-
-    return {
-      title: poster.title.rendered,
-      poster
-    }
-  },
-  methods: {
-    addTag(item) {},
-    ...mapActions({
-      toggleFavorites: 'favorites/toggle',
-      addTagToStore: 'tags/addTag'
-    })
-  },
   head() {
     return {
-      title: this.title
+      title: this.poster.title
     }
   }
 }

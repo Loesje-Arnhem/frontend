@@ -4,7 +4,7 @@
       <h1 id="posters-title" class="title">Posters</h1>
       <ul class="list">
         <li v-for="poster in posters" :key="poster.id" class="list-item">
-          <Poster :poster="poster" class="link" />
+          <poster-tile :poster="poster" class="link" />
         </li>
       </ul>
 
@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import Poster from '@/components/Shared/Poster.vue'
+import PosterTile from '@/components/Poster/PosterTile.vue'
 import AppButton from '@/components/Shared/AppButton.vue'
 
 export default {
   components: {
-    Poster,
+    PosterTile,
     AppButton
   },
   props: {

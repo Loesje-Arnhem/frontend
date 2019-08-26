@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Posters :posters="posters" />
+    <poster-list :posters="posters" />
     <InfiniteLoading
       ref="infiniteLoading"
       :identifier="infiniteId"
@@ -18,12 +18,12 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading'
 import axios from '~/plugins/axios'
-import Posters from '@/components/Shared/Posters.vue'
+import PosterList from '@/components/Poster/PosterList.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
 
 export default {
   components: {
-    Posters,
+    PosterList,
     InfiniteLoading,
     AppLoader
   },

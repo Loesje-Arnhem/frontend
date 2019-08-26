@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <header-top />
+    <header-top class="header" />
 
     <the-header class="header" />
     <main id="content" class="main" tabindex="-1">
@@ -43,5 +43,13 @@ export default {
 
 .main {
   flex: 1 1 auto;
+}
+</style>
+
+<style>
+img,
+header,
+footer {
+  display: none;
 }
 </style>

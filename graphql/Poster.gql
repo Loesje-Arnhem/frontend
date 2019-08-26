@@ -1,6 +1,7 @@
 query GET_POSTER($slug: String) {
   poster: posterBy(slug: $slug) {
     id
+    posterId
     title
     date
     featuredImage {
@@ -22,20 +23,6 @@ query GET_POSTER($slug: String) {
           name
         }
       }
-    }
-    seo {
-      focuskw
-      metaDesc
-      metaKeywords
-      metaRobotsNofollow
-      metaRobotsNoindex
-      opengraphDescription
-      opengraphImage
-      opengraphTitle
-      title
-      twitterDescription
-      twitterImage
-      twitterTitle
     }
   }
 }

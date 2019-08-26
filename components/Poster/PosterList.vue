@@ -1,17 +1,17 @@
 <template>
   <transition-group name="list" tag="ul" class="list">
     <li v-for="poster in posters" :key="poster.id" class="list-item">
-      <Poster :poster="poster" />
+      <poster-tile :poster="poster" class="link" />
     </li>
   </transition-group>
 </template>
 
 <script>
-import Poster from '@/components/Shared/Poster.vue'
+import PosterTile from '@/components/Poster/PosterTile.vue'
 
 export default {
   components: {
-    Poster
+    PosterTile
   },
   props: {
     posters: {

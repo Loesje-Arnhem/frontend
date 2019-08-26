@@ -35,7 +35,6 @@ export default {
     },
     errorMessage: {
       type: String,
-      required: false,
       default: ''
     }
   }

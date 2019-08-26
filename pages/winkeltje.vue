@@ -12,7 +12,6 @@
 
 <script>
 import CategoryList from '@/components/Shop/CategoryList.vue'
-import ProductsQuery from '~/graphql/Products.gql'
 
 import ProductCategoriesQuery from '~/graphql/ProductCategories.gql'
 export default {
@@ -25,18 +24,11 @@ export default {
     }
   },
   async asyncData({ app, params }) {
-    const products = await app.apolloProvider.defaultClient.query({
-      query: ProductsQuery,
-      variables: {
-        categoryName: 'aanbieding'
-      }
-    })
     const categories = await app.apolloProvider.defaultClient.query({
       query: ProductCategoriesQuery
     })
 
     return {
-      products: products.data.products,
       productCategories: categories.data.productCategories
     }
   },
