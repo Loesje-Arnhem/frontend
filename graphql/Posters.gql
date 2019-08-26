@@ -1,0 +1,15 @@
+query GET_POSTERS {
+  posters {
+    edges {
+      node {
+        id
+        slug
+        title
+        featuredImage {
+          id
+          thumbnail: sourceUrl(size: THUMBNAIL)
+        }
+      }
+    }
+  }
+}

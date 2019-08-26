@@ -1,30 +1,22 @@
 <template>
   <div class="product">
-    <app-image :src="product.image.mediumLarge" />
-    <div class="content">
-      <h1>{{ product.name }}</h1>
-      <div class="prices">
-        {{ product.regularPrice }} - {{ product.salesPrice }} -
-        {{ product.price }}
-      </div>
-      <!-- eslint-disable-next-line -->
-      <div v-html="product.shortDescription"></div>
-      <app-button title="In winkelmand" :type="submit" />
-    </div>
-    <!-- eslint-disable-next-line -->
-    <div v-html="product.description"></div>
+    <product-details :product="product" />
+    <product-list
+      v-if="product.related.edges"
+      :products="product.related.edges"
+    />
   </div>
 </template>
 
 <script>
 import ProductQuery from '~/graphql/Product.gql'
-import AppImage from '@/components/Shared/AppImage.vue'
-import AppButton from '@/components/Shared/AppButton.vue'
+import ProductDetails from '@/components/Shop/ProductDetails.vue'
+import ProductList from '@/components/Shop/ProductList.vue'
 
 export default {
   components: {
-    AppImage,
-    AppButton
+    ProductDetails,
+    ProductList
   },
 
   data() {
@@ -52,12 +44,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="postcss">
-.product {
-  margin: 0 0 1em;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
-}
-</style>

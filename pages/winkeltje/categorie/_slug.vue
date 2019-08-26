@@ -1,44 +1,13 @@
 <template>
-  <div class="store">
-    <div class="wrapper">
-      <ul class="list">
-        <li
-          v-for="productCategory in productCategories.edges"
-          :key="productCategory.node.id"
-          class="list-item"
-        >
-          <nuxt-link :to="productCategory.node.slug">
-            {{ productCategory.node.name }}
-          </nuxt-link>
-        </li>
-      </ul>
-      <ul class="list">
-        <li
-          v-for="product in products.edges"
-          :key="product.node.id"
-          class="list-item"
-        >
-          {{ product.node.name }}
-          {{ product.node.price }}
-          {{ product.node.salePrice }}
-          <app-image
-            v-if="product.node.image"
-            :src="product.node.image.medium"
-            alt=""
-          />
-        </li>
-      </ul>
-    </div>
-  </div>
+  <product-list v-if="products.edges" :products="products.edges" />
 </template>
 
 <script>
-import ProductCategoriesQuery from '~/graphql/ProductCategories.gql'
 import ProductsQuery from '~/graphql/Products.gql'
-import AppImage from '@/components/Shared/AppImage.vue'
+import ProductList from '@/components/Shop/ProductList.vue'
 export default {
   components: {
-    AppImage
+    ProductList
   },
 
   data() {
@@ -50,16 +19,12 @@ export default {
     const products = await app.apolloProvider.defaultClient.query({
       query: ProductsQuery,
       variables: {
-        categoryName: 'aanbieding'
+        categoryName: params.slug
       }
-    })
-    const categories = await app.apolloProvider.defaultClient.query({
-      query: ProductCategoriesQuery
     })
 
     return {
-      products: products.data.products,
-      productCategories: categories.data.productCategories
+      products: products.data.products
     }
   },
 
@@ -72,14 +37,6 @@ export default {
 </script>
 
 <style scoped lang="postcss">
-.store {
-  @mixin block;
-}
-
-.wrapper {
-  @mixin center;
-}
-
 .list {
   @mixin list-reset;
   margin: 0 0 1em;

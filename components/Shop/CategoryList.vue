@@ -7,9 +7,9 @@
         :key="productCategory.node.id"
         class="list-item"
       >
-        <nuxt-link :to="productCategory.node.slug" class="link">{{
-          productCategory.node.name
-        }}</nuxt-link>
+        <nuxt-link :to="productCategory.node.slug" class="link">
+          {{ productCategory.node.name }}
+        </nuxt-link>
       </li>
     </ul>
   </nav>
@@ -41,6 +41,6 @@ export default {
 }
 
 .link {
-  @mixin list-reset;
+  @mixin link-reset;
 }
 </style>
