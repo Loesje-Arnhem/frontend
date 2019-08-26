@@ -1,32 +1,13 @@
 <template>
-  <div class="category">
-    <ul class="list">
-      <li
-        v-for="product in products.edges"
-        :key="product.node.id"
-        class="list-item"
-      >
-        <nuxt-link :to="product.node.slug">
-          {{ product.node.name }}
-        </nuxt-link>
-        {{ product.node.price }}
-        {{ product.node.salePrice }}
-        <app-image
-          v-if="product.node.image"
-          :src="product.node.image.medium"
-          alt=""
-        />
-      </li>
-    </ul>
-  </div>
+  <product-list v-if="products.edges" :products="products.edges" />
 </template>
 
 <script>
 import ProductsQuery from '~/graphql/Products.gql'
-import AppImage from '@/components/Shared/AppImage.vue'
+import ProductList from '@/components/Shop/ProductList.vue'
 export default {
   components: {
-    AppImage
+    ProductList
   },
 
   data() {

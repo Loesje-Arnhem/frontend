@@ -1,29 +1,24 @@
 <template>
   <div class="store">
     <div class="wrapper">
-      <nav aria-labelledby="categories-title">
-        <h2 id="categories-title" class="sr-only">Categorien</h2>
-        <ul class="categories">
-          <li
-            v-for="productCategory in productCategories.edges"
-            :key="productCategory.node.id"
-            class="list-item"
-          >
-            <nuxt-link :to="productCategory.node.slug" class="link">
-              {{ productCategory.node.name }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </nav>
+      <category-list
+        v-if="productCategories.edges"
+        :product-categories="productCategories.edges"
+      />
       <nuxt-child />
     </div>
   </div>
 </template>
 
 <script>
-import ProductCategoriesQuery from '~/graphql/ProductCategories.gql'
+import CategoryList from '@/components/Shop/CategoryList.vue'
 import ProductsQuery from '~/graphql/Products.gql'
+
+import ProductCategoriesQuery from '~/graphql/ProductCategories.gql'
 export default {
+  components: {
+    CategoryList
+  },
   data() {
     return {
       title: 'Winkeltje'
