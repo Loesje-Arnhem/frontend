@@ -14,14 +14,13 @@
 <style lang="postcss" scoped>
 .poster-daily {
   position: relative;
-  margin-bottom: -0.5em;
   max-width: 18em;
   width: 100%;
 }
 
 .image-wrapper {
   position: absolute;
-  top: 15%;
+  top: 20%;
   left: 22%;
   width: 65%;
 

@@ -1,69 +1,59 @@
 <template>
   <div>
-    <div class="page">
-      <h1>{{ title }}</h1>
-      <post-date :date="date" />
+    <article class="post">
+      <h1>{{ post.title }}</h1>
+      <post-date :date="post.date" class="date" />
       <!-- eslint-disable-next-line -->
-      <div class="text" v-html="text" />
-    </div>
+      <div class="text" v-html="post.content" />
+    </article>
     <latest-posts />
   </div>
 </template>
 
 <script>
-import axios from '~/plugins/axios'
 import LatestPosts from '@/components/Blocks/LatestPosts.vue'
 import PostDate from '@/components/PostDate.vue'
+import PostQuery from '~/graphql/Post.gql'
 
 export default {
   components: {
     PostDate,
     LatestPosts
   },
-  data() {
-    return {
-      title: '',
-      text: '',
-      date: ''
-    }
-  },
 
-  async asyncData({ params }) {
-    const response = await axios.get(`wp/v2/posts/`, {
-      params: {
-        slug: params.slug
+  async asyncData({ app, params }) {
+    const post = await app.apolloProvider.defaultClient.query({
+      query: PostQuery,
+      variables: {
+        uri: params.slug
       }
     })
-    const post = response.data[0]
 
     return {
-      title: post.title.rendered,
-      text: post.content.rendered,
-      date: post.date
+      post: post.data.post
     }
   },
   head() {
     return {
-      title: this.title
+      title: this.post.title
     }
   }
 }
 </script>
 
 <style lang="postcss" scoped>
-.page {
-  @mixin block;
-  @mixin center var(--container-width-md);
-}
-
-time {
+.date {
   font-size: 0.9em;
   color: var(--color-gray);
-  margin-bottom: 1em;
   display: block;
+  order: -1;
 }
 
->>> h1 {
-  margin-bottom: 0.25rem;
+.post {
+  @mixin block;
+  @mixin center var(--container-width-md);
+
+  display: flex;
+  flex-direction: column;
 }
 </style>

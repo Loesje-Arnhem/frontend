@@ -27,7 +27,6 @@ export default {
 <style lang="postcss" scoped>
 .intro {
   @mixin center;
-  padding-top: 2em;
 }
 
 .wrapper {
@@ -41,6 +40,7 @@ export default {
 }
 
 .daily-poster {
+  padding-top: 2em;
   flex: 0 0 15em;
   order: -1;
 }

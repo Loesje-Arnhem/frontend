@@ -3,18 +3,28 @@
     <app-image :src="product.image.mediumLarge" />
     <div class="content">
       <h1>{{ product.name }}</h1>
+      <div class="prices">
+        {{ product.regularPrice }} - {{ product.salesPrice }} -
+        {{ product.price }}
+      </div>
       <!-- eslint-disable-next-line -->
-      <div v-html="product.description"></div>
+      <div v-html="product.shortDescription"></div>
+      <app-button title="In winkelmand" :type="submit" />
     </div>
+    <!-- eslint-disable-next-line -->
+    <div v-html="product.description"></div>
   </div>
 </template>
 
 <script>
 import ProductQuery from '~/graphql/Product.gql'
 import AppImage from '@/components/Shared/AppImage.vue'
+import AppButton from '@/components/Shared/AppButton.vue'
+
 export default {
   components: {
-    AppImage
+    AppImage,
+    AppButton
   },
 
   data() {
