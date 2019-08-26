@@ -27,13 +27,17 @@
             </dd>
           </template>
 
-          <template v-if="poster.sources.length">
+          <template v-if="poster.sources.edges.length">
             <dt>Bronnen:</dt>
             <dd>
               <ul class="tags">
-                <li v-for="item in poster.sources" :key="item.id">
-                  <button type="button" class="btn-tag" @click="addTag(item)">
-                    {{ item.name }}
+                <li v-for="item in poster.sources.edges" :key="item.node.id">
+                  <button
+                    type="button"
+                    class="btn-tag"
+                    @click="addTag(item.node)"
+                  >
+                    {{ item.node.name }}
                   </button>
                 </li>
               </ul>

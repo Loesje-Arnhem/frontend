@@ -1,10 +1,20 @@
-query GET_POSTERS {
-  posters {
+query GET_POSTERS($first: Int, $after: String, $search: String, $notIn: [ID]) {
+  posters(
+    first: $first
+    after: $after
+    where: { search: $search, notIn: $notIn }
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+      hasPreviousPage
+      startCursor
+    }
     edges {
       node {
         id
-        slug
         title
+        slug
         featuredImage {
           id
           thumbnail: sourceUrl(size: THUMBNAIL)
