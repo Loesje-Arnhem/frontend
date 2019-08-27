@@ -1,11 +1,11 @@
 <template>
-  <router-link :to="`/posters/${poster.slug}`" class="link">
+  <router-link :to="`/posters/${poster.node.slug}`" class="link">
     <app-image
       class="poster"
       width="200"
       height="500"
       :src="image"
-      :alt="poster.title.rendered"
+      :alt="poster.node.title"
     />
   </router-link>
 </template>

@@ -5,14 +5,12 @@
     <AppStoresBlock />
     <BlockInstagram />
     <latest-posts />
-    <Posters :posters="posters" />
     <groups />
   </div>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
-import Posters from '@/components/Blocks/Posters.vue'
 import LatestPosts from '@/components/Blocks/LatestPosts.vue'
 import Groups from '@/components/Blocks/Groups.vue'
 import FormWorkshop from '@/components/Blocks/FormWorkshop.vue'
@@ -21,7 +19,6 @@ import AppStoresBlock from '@/components/Blocks/AppStoresBlock.vue'
 
 export default {
   components: {
-    Posters,
     LatestPosts,
     Groups,
     FormWorkshop,

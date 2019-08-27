@@ -13,12 +13,9 @@ query GET_POSTERS($first: Int, $after: String, $search: String, $notIn: [ID]) {
     edges {
       node {
         id
+        posterId
         title
         slug
-        featuredImage {
-          id
-          thumbnail: sourceUrl(size: THUMBNAIL)
-        }
       }
     }
   }
