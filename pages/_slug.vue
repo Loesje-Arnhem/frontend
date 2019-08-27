@@ -1,41 +1,30 @@
 <template>
   <div class="page">
-    <h1>{{ title }}</h1>
+    <h1>{{ page.title }}</h1>
     <!-- eslint-disable-next-line -->
-    <div class="text" v-html="text" />
+    <div class="text" v-html="page.content" />
   </div>
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import PageQuery from '~/graphql/Page.gql'
 
 export default {
-  data() {
-    return {
-      title: '',
-      text: '',
-      date: '',
-      posters: []
-    }
-  },
-  async asyncData({ params }) {
-    const response = await axios.get(`wp/v2/pages`, {
-      params: {
-        slug: params.slug
+  async asyncData({ app, params }) {
+    const page = await app.apolloProvider.defaultClient.query({
+      query: PageQuery,
+      variables: {
+        uri: params.slug
       }
     })
-    const post = response.data[0]
 
     return {
-      title: post.title.rendered,
-      text: post.content.rendered,
-      date: post.date
+      page: page.data.page
     }
   },
-
   head() {
     return {
-      title: this.title
+      title: this.page.title
     }
   }
 }

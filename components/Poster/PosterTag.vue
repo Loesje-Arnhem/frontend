@@ -2,10 +2,10 @@
   <button
     type="button"
     class="tag"
-    :class="{ 'is-active': isSelected(item) }"
-    @click="selectTag(item)"
+    :class="{ 'is-active': isSelected(tag) }"
+    @click="selectTag(tag)"
   >
-    <span class="title">{{ item.name }}</span>
+    <span class="title">{{ tag.name }}</span>
   </button>
 </template>
 

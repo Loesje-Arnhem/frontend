@@ -1,6 +1,7 @@
 query GET_PRODUCT($slug: String) {
   product: productBy(slug: $slug) {
     id
+    productId
     name
     slug
     shortDescription

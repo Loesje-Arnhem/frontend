@@ -1,0 +1,11 @@
+mutation ADD_TO_CART($input: AddToCartInput!) {
+  addToCart(input: $input) {
+    cartItem {
+      quantity
+      subtotal
+      subtotalTax
+      tax
+      total
+    }
+  }
+}

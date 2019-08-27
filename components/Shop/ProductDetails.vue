@@ -6,10 +6,11 @@
       <div class="prices">
         {{ product.regularPrice }} - {{ product.salesPrice }} -
         {{ product.price }}
+        {{ product.productId }}
       </div>
       <!-- eslint-disable-next-line -->
       <div v-html="product.shortDescription"></div>
-      <form action>
+      <form action @submit.prevent="addToCart">
         <app-button title="In winkelmand" type="submit" />
       </form>
     </div>
@@ -21,6 +22,7 @@
 <script>
 import AppImage from '@/components/Shared/AppImage.vue'
 import AppButton from '@/components/Shared/AppButton.vue'
+import AddToCartQuery from '~/graphql/AddToCart.gql'
 
 export default {
   components: {
@@ -31,6 +33,20 @@ export default {
     product: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    async addToCart() {
+      const response = await this.$apollo.mutate({
+        mutation: AddToCartQuery,
+        variables: {
+          input: {
+            productId: this.product.productId,
+            clientMutationId: 'AddToCart'
+          }
+        }
+      })
+      window.console.log(response.data.addToCart)
     }
   }
 }

@@ -24,10 +24,6 @@ export default {
   },
   computed: {
     image() {
-      if (this.poster._embedded['wp:featuredmedia'][0].media_details) {
-        return this.poster._embedded['wp:featuredmedia'][0].media_details.sizes
-          .medium.source_url
-      }
       return 'https://api.loesje.michielkoning.nl/wp-content/uploads/2019/06/190626-zomer-212x300.jpg'
     }
   }

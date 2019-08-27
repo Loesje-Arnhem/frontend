@@ -2,9 +2,12 @@
   <section class="news-list" aria-labelledby="news-list-title">
     <div class="wrapper">
       <h1 id="news-list-title">{{ $t('latestPosts') }}</h1>
-
-      <ul class="list">
-        <app-post v-for="post in getFirstPosts" :key="post.slug" :post="post" />
+      <ul v-if="posts.edges.length" class="list">
+        <app-post
+          v-for="post in posts.edges"
+          :key="post.postId"
+          :post="post.node"
+        />
       </ul>
       <app-button to="/nieuws" title="Meer nieuwsartikelen" />
     </div>
@@ -14,11 +17,10 @@
 </template>
 
 <script>
-//  import axios from 'axios'
-import { mapActions, mapGetters } from 'vuex'
 import AppPost from '@/components/AppPost.vue'
 import AppButton from '@/components/Shared/AppButton.vue'
 import Balloon from '@/components/Illustrations/Balloon.vue'
+import PostsQuery from '~/graphql/Posts.gql'
 
 export default {
   components: {
@@ -27,17 +29,14 @@ export default {
     AppButton
   },
 
-  computed: {
-    ...mapGetters('posts', ['getFirstPosts'])
-  },
-
-  mounted() {
-    if (!this.getFirstPosts.length) this.setPosts(this.currentPage)
-  },
-  methods: {
-    ...mapActions({
-      setPosts: 'posts/setPosts'
-    })
+  apollo: {
+    // Pages
+    posts: {
+      query: PostsQuery,
+      variables: {
+        first: 5
+      }
+    }
   }
 }
 </script>

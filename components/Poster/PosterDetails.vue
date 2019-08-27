@@ -2,63 +2,50 @@
   <div class="poster-details">
     <article class="content">
       <h1 class="sr-only">{{ poster.title }}</h1>
-      {{ poster }}
       <app-image
         v-if="poster.featuredImage"
         :src="poster.featuredImage.large"
       />
-      <div class="meta-data">
-        <post-date :date="poster.date" />
-        <dl>
-          <template v-if="poster.subjects.edges.length">
-            <dt>Onderwerpen:</dt>
-            <dd>
-              <ul class="tags">
-                <li v-for="item in poster.subjects.edges" :key="item.node.id">
-                  <button
-                    type="button"
-                    class="btn-tag"
-                    @click="addTag(item.node)"
-                  >
-                    {{ item.node.name }}
-                  </button>
-                </li>
-              </ul>
-            </dd>
-          </template>
-
-          <template v-if="poster.sources.edges.length">
-            <dt>Bronnen:</dt>
-            <dd>
-              <ul class="tags">
-                <li v-for="item in poster.sources.edges" :key="item.node.id">
-                  <button
-                    type="button"
-                    class="btn-tag"
-                    @click="addTag(item.node)"
-                  >
-                    {{ item.node.name }}
-                  </button>
-                </li>
-              </ul>
-            </dd>
-          </template>
-        </dl>
-      </div>
     </article>
-    <button
-      type="button"
-      class="btn-favorites"
-      :class="{ 'is-active': isInFavorites }"
-      @click="toggleFavorites(poster)"
-    >
-      <icon-heart aria-hidden="true" width="32" height="32" />Voeg toe aan je
-      favorieten
-    </button>
-    <social-media-links
-      :title="`Deel ${poster.title}`"
-      :social-media="socialMedia"
-    />
+    <div class="meta-data">
+      <post-date :date="poster.date" />
+      <dl>
+        <template v-if="poster.subjects.edges.length">
+          <dt>Onderwerpen:</dt>
+          <dd>
+            <ul class="tags">
+              <li v-for="item in poster.subjects.edges" :key="item.node.id">
+                <poster-tag :tag="item.node" />
+              </li>
+            </ul>
+          </dd>
+        </template>
+
+        <template v-if="poster.sources.edges.length">
+          <dt>Bronnen:</dt>
+          <dd>
+            <ul class="tags">
+              <li v-for="item in poster.sources.edges" :key="item.node.id">
+                <poster-tag :tag="item.node" />
+              </li>
+            </ul>
+          </dd>
+        </template>
+      </dl>
+      <button
+        type="button"
+        class="btn-favorites"
+        :class="{ 'is-active': isInFavorites }"
+        @click="toggleFavorites(poster)"
+      >
+        <icon-heart aria-hidden="true" width="32" height="32" />Voeg toe aan je
+        favorieten
+      </button>
+      <social-media-links
+        :title="`Deel ${poster.title}`"
+        :social-media="socialMedia"
+      />
+    </div>
   </div>
 </template>
 
@@ -66,6 +53,7 @@
 import { mapActions } from 'vuex'
 import PostDate from '@/components/PostDate.vue'
 import AppImage from '@/components/Shared/AppImage.vue'
+import PosterTag from '@/components/Poster/PosterTag.vue'
 import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
 import IconHeart from '@/assets/icons/heart-o.svg'
 
@@ -74,7 +62,8 @@ export default {
     PostDate,
     AppImage,
     SocialMediaLinks,
-    IconHeart
+    IconHeart,
+    PosterTag
   },
 
   props: {
@@ -93,58 +82,26 @@ export default {
       }
     },
     isInFavorites() {
-      return this.$store.getters['favorites/isInFavorites'](this.slug)
+      return this.$store.getters['favorites/isInFavorites'](
+        this.poster.posterId
+      )
     }
   },
 
   methods: {
-    addTag(item) {},
     ...mapActions({
-      toggleFavorites: 'favorites/toggle',
-      addTagToStore: 'tags/addTag'
+      toggleFavorites: 'favorites/toggle'
     })
   }
 }
 </script>
 
 <style lang="postcss" scoped>
-.poster {
-  grid-row: span 2;
+.poster-details {
+  display: grid;
+  grid-grap: 1em;
+  grid-template-columns: 1fr 1fr;
 }
-
-.meta-data,
-.social-bar {
-  background: $gray-lighter;
-}
-
-.meta-data {
-  padding: 1em 1em 0.25em;
-}
-
-dt {
-  border-top: 1px solid var(--color-white);
-  padding: 0.5em 0 0;
-  font-weight: $font-weight-bold;
-}
-
-dd {
-  margin: 0;
-}
-
-.tags {
-  @mixin list-reset;
-  margin-bottom: 0.5em;
-
-  li {
-    display: inline;
-
-    &:not(:last-child)::after {
-      content: ',';
-      margin-right: 0.5ch;
-    }
-  }
-}
-
 .btn-favorites {
   display: flex;
   padding: 0.25em 0.75em;
@@ -169,9 +126,5 @@ dd {
   flex: 0 0 auto;
   margin-top: -0.1em;
   margin-right: 0.5em;
-}
-
-.btn-tag {
-  text-decoration: underline;
 }
 </style>

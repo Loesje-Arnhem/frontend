@@ -2,11 +2,11 @@
   <li class="list-item" @mousedown="mouseDown" @mouseup="mouseUp">
     <h2>
       <!-- eslint-disable-next-line -->
-      <router-link :to="`/nieuws/${post.slug}`" v-html="post.title.rendered" />
+      <router-link :to="`/nieuws/${post.slug}`" v-html="post.title" />
     </h2>
     <post-date :date="post.date" />
     <!-- eslint-disable-next-line -->
-    <div class="text" v-html="post.excerpt.rendered" />
+    <div class="text" v-html="post.excerpt" />
     <div class="link-wrapper">
       <span class="read-more">
         {{ $t('readMore') }}
