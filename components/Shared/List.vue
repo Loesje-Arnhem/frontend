@@ -6,10 +6,10 @@
         :key="poster.node.posterId"
         class="list-item"
       >
-        <poster-tile v-if="poster.node" :poster="poster" class="link" />
+        <poster-tile v-if="poster.node" :poster="poster.node" class="link" />
       </li>
     </transition-group>
-    <!-- <InfiniteLoading
+    <InfiniteLoading
       ref="infiniteLoading"
       :identifier="infiniteId"
       @infinite="getPosters"
@@ -17,29 +17,28 @@
       <span slot="no-more" />
       <app-loader slot="spinner" />
       <span slot="no-results" class="no-results">
-        <span v-if="!posters.length">There are no assets found</span>
+        <span v-if="!posters.edges.length">There are no assets found</span>
       </span>
-    </InfiniteLoading>-->
+    </InfiniteLoading>
   </div>
 </template>
 
 <script>
-// import InfiniteLoading from 'vue-infinite-loading'
-import axios from '~/plugins/axios'
+import InfiniteLoading from 'vue-infinite-loading'
 import PosterTile from '@/components/Poster/PosterTile.vue'
-// import AppLoader from '@/components/Shared/AppLoader.vue'
+import AppLoader from '@/components/Shared/AppLoader.vue'
 import PostersQuery from '~/graphql/Posters.gql'
 
 export default {
   components: {
-    PosterTile
-    // InfiniteLoading,
-    // AppLoader
+    PosterTile,
+    InfiniteLoading,
+    AppLoader
   },
   props: {
     search: {
       type: String,
-      default: null
+      default: 'voetbal'
     },
     subjects: {
       type: Array,
@@ -56,7 +55,9 @@ export default {
   },
   data() {
     return {
-      posters: [],
+      posters: {
+        edges: []
+      },
       infiniteId: +new Date(),
       pageSize: 20,
       page: 1
@@ -67,48 +68,58 @@ export default {
       this.resetSearch()
     },
     subjects() {
-      this.resetSearch()
+      // this.resetSearch()
+      // window.console.log('subjects')
     },
     sources() {
-      this.resetSearch()
+      // this.resetSearch()
+      // window.console.log('sources')
     }
   },
   apollo: {
     // Pages
     posters: {
       query: PostersQuery,
-      variables: {
-        first: 20,
-        search: 'wilders',
-        notIn: []
+      variables() {
+        return {
+          first: 20,
+          search: this.search,
+          notIn: []
+        }
       }
     }
   },
   methods: {
-    async getPosters($state) {
-      const response = await axios.get('wp/v2/poster', {
-        params: {
-          search: this.search,
-          per_page: this.pageSize,
-          page: this.page,
-          subject: this.subjects,
-          source: this.sources,
-          exclude: this.exclude,
-          _embed: '1'
+    getPosters($state) {
+      this.$apollo.queries.posters.fetchMore({
+        // New variables
+        variables: {
+          after: this.posters.pageInfo.endCursor
+        },
+        // Transform the previous result with new data
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          const newPosters = fetchMoreResult.posters
+
+          if (fetchMoreResult.posters.pageInfo.hasNextPage) {
+            $state.loaded()
+          } else {
+            $state.complete()
+          }
+
+          return {
+            posters: {
+              __typename: previousResult.posters.__typename,
+              pageInfo: newPosters.pageInfo,
+              // Merging the tag list
+              edges: [...previousResult.posters.edges, ...newPosters.edges]
+            }
+          }
         }
       })
-
-      this.page = this.page + 1
-      this.posters = this.posters.concat(response.data)
-
-      if (this.page >= response.headers['x-wp-totalpages']) {
-        $state.complete()
-      } else {
-        $state.loaded()
-      }
     },
+
     resetSearch() {
-      this.posters = []
+      this.posters.edges = []
       this.page = 1
       this.$nextTick(() => {
         this.infiniteId += 1

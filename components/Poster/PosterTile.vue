@@ -1,12 +1,6 @@
 <template>
-  <router-link :to="`/posters/${poster.node.slug}`" class="link">
-    <app-image
-      class="poster"
-      width="200"
-      height="500"
-      :src="image"
-      :alt="poster.node.title"
-    />
+  <router-link :to="`/posters/${poster.slug}`" class="link">
+    <app-image class="poster" width="200" height="500" :alt="poster.title" />
   </router-link>
 </template>
 
@@ -24,6 +18,9 @@ export default {
   },
   computed: {
     image() {
+      if (this.poster.featuredImage) {
+        return this.poster.featuredImage.medium
+      }
       return 'https://api.loesje.michielkoning.nl/wp-content/uploads/2019/06/190626-zomer-212x300.jpg'
     }
   }

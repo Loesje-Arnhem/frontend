@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="sr-only">{{ title }}</h1>
-    <form-workshop />
+    <posters :posters="posters" />
     <AppStoresBlock />
     <BlockInstagram />
     <latest-posts />
@@ -10,39 +10,37 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
 import LatestPosts from '@/components/Blocks/LatestPosts.vue'
 import Groups from '@/components/Blocks/Groups.vue'
-import FormWorkshop from '@/components/Blocks/FormWorkshop.vue'
 import BlockInstagram from '@/components/Blocks/BlockInstagram.vue'
 import AppStoresBlock from '@/components/Blocks/AppStoresBlock.vue'
+import Posters from '@/components/Blocks/Posters.vue'
+import PostersQuery from '~/graphql/Posters.gql'
 
 export default {
   components: {
     LatestPosts,
     Groups,
-    FormWorkshop,
     BlockInstagram,
-    AppStoresBlock
+    AppStoresBlock,
+    Posters
   },
   data() {
     return {
-      title: 'Home'
+      title: 'Home',
+      posters: {
+        edges: []
+      }
     }
   },
-  async asyncData({ params }) {
-    try {
-      const response = await axios.get(`wp/v2/poster`, {
-        params: {
-          _embed: '1',
-          per_page: 5
-        }
-      })
-      return {
-        posters: response.data
+
+  apollo: {
+    posters: {
+      query: PostersQuery,
+      variables: {
+        first: 5,
+        search: 'voetbal'
       }
-    } catch (error) {
-      // console.error(error)
     }
   },
 

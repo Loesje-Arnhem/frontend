@@ -1,10 +1,18 @@
 <template>
-  <section class="posters" aria-labelledby="posters-title">
+  <section
+    v-if="posters.edges.length"
+    class="posters"
+    aria-labelledby="posters-title"
+  >
     <div class="wrapper">
       <h1 id="posters-title" class="title">Posters</h1>
       <ul class="list">
-        <li v-for="poster in posters" :key="poster.id" class="list-item">
-          <poster-tile :poster="poster" class="link" />
+        <li
+          v-for="poster in posters.edges"
+          :key="poster.node.id"
+          class="list-item"
+        >
+          <poster-tile :poster="poster.node" class="link" />
         </li>
       </ul>
 
@@ -26,8 +34,8 @@ export default {
   },
   props: {
     posters: {
-      type: Array,
-      default: () => []
+      type: Object,
+      default: () => {}
     }
   }
 }
@@ -62,5 +70,6 @@ export default {
 
 .list-item {
   padding: 0.5em;
+  flex: 0 0 10em;
 }
 </style>

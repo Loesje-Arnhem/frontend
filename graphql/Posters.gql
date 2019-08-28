@@ -16,6 +16,10 @@ query GET_POSTERS($first: Int, $after: String, $search: String, $notIn: [ID]) {
         posterId
         title
         slug
+        # featuredImage {
+        #   id
+        #   medium: sourceUrl(size: MEDIUM)
+        # }
       }
     }
   }

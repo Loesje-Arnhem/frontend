@@ -6,8 +6,8 @@
         :product-categories="productCategories.edges"
       />
       <div>
-        {{ cart }}
         <nuxt-child />
+        {{ cart }}
       </div>
     </div>
   </div>

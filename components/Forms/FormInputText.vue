@@ -51,7 +51,7 @@ export default {
 input {
   --rough-stroke: black;
   --rough-stroke-width: 2px;
-  --rough-roughness: 1.5;
+  --rough-roughness: 1;
   border: var(--rough-stroke-width) solid var(--rough-stroke);
 }
 
