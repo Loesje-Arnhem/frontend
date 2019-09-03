@@ -3,11 +3,11 @@
     <div class="image-wrapper">
       <img
         src="https://www.loesje.nl/wp-content/uploads/2019/02/2019-08-22.jpg"
-        alt="Title tag"
+        alt="Klussen Slaat mijn broertje eindelijk de spijker op zijn kop"
         class="image"
       />
     </div>
-    <img src="/images/electriciteitskastje.png" alt class="background" />
+    <img src="/images/electriciteitskastje.png" alt="" class="background" />
   </div>
 </template>
 
@@ -16,6 +16,7 @@
   position: relative;
   max-width: 18em;
   width: 100%;
+  margin: 0 auto;
 }
 
 .image-wrapper {

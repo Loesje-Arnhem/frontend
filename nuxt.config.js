@@ -62,7 +62,8 @@ export default {
     '@nuxtjs/pwa',
     'nuxt-svg-loader',
     '@nuxtjs/axios',
-    '@nuxtjs/apollo'
+    '@nuxtjs/apollo',
+    '@nuxtjs/auth'
   ],
 
   /*

@@ -7,7 +7,6 @@
       />
       <div>
         <nuxt-child />
-        {{ cart }}
       </div>
     </div>
   </div>
@@ -15,9 +14,8 @@
 
 <script>
 import CategoryList from '@/components/Shop/CategoryList.vue'
-
 import ProductCategoriesQuery from '~/graphql/ProductCategories.gql'
-import CartQuery from '~/graphql/Cart.gql'
+
 export default {
   components: {
     CategoryList
@@ -31,13 +29,9 @@ export default {
     const categories = await app.apolloProvider.defaultClient.query({
       query: ProductCategoriesQuery
     })
-    const cart = await app.apolloProvider.defaultClient.query({
-      query: CartQuery
-    })
 
     return {
-      productCategories: categories.data.productCategories,
-      cart: cart.data.cart
+      productCategories: categories.data.productCategories
     }
   },
 

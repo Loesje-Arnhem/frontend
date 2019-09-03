@@ -1,0 +1,6 @@
+query GET_VIEWER {
+  viewer {
+    id
+    name
+  }
+}

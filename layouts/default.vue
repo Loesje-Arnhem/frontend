@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <header-top />
+    <header-top class="header-top" />
 
     <the-header class="header" />
     <main id="content" class="main" tabindex="-1">
@@ -26,6 +26,19 @@ export default {
   }
 }
 </script>
+
+<style>
+/* .description,
+h1,
+.products,
+.categories,
+.header-top,
+.header,
+header,
+footer {
+  display: none;
+} */
+</style>
 
 <style lang="postcss" scoped>
 .page {

@@ -27,12 +27,15 @@ export default {
 <style lang="postcss" scoped>
 .intro {
   @mixin center;
+  padding-top: 2em;
 }
 
 .wrapper {
   max-width: var(--container-width-md);
-  display: flex;
-  align-items: center;
+  @media (--viewport-sm) {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .text {
@@ -40,7 +43,6 @@ export default {
 }
 
 .daily-poster {
-  padding-top: 2em;
   flex: 0 0 15em;
   order: -1;
 }

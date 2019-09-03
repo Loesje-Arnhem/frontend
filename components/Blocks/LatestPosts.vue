@@ -1,19 +1,25 @@
 <template>
-  <section class="news-list" aria-labelledby="news-list-title">
-    <div class="wrapper">
-      <h1 id="news-list-title">{{ $t('latestPosts') }}</h1>
-      <ul v-if="posts.edges.length" class="list">
-        <app-post
-          v-for="post in posts.edges"
-          :key="post.postId"
-          :post="post.node"
-        />
-      </ul>
-      <app-button to="/nieuws" title="Meer nieuwsartikelen" />
-    </div>
+  <div>
+    <section
+      v-if="posts.edges && posts.edges.length"
+      class="news-list"
+      aria-labelledby="news-list-title"
+    >
+      <div class="wrapper">
+        <h1 id="news-list-title">{{ $t('latestPosts') }}</h1>
+        <ul class="list">
+          <app-post
+            v-for="post in posts.edges"
+            :key="post.postId"
+            :post="post.node"
+          />
+        </ul>
+        <app-button to="/nieuws" title="Meer nieuwsartikelen" />
+      </div>
 
-    <balloon />
-  </section>
+      <balloon />
+    </section>
+  </div>
 </template>
 
 <script>
@@ -27,6 +33,12 @@ export default {
     AppPost,
     Balloon,
     AppButton
+  },
+
+  data() {
+    return {
+      posts: null
+    }
   },
 
   apollo: {

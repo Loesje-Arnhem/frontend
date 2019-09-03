@@ -1,5 +1,5 @@
 <template>
-  <div v-if="products.length" class="category">
+  <div v-if="products.length" class="products">
     <ul class="list">
       <product-tile
         v-for="product in products"

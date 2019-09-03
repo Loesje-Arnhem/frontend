@@ -1,6 +1,6 @@
 <template>
   <section
-    v-if="posters.edges.length"
+    v-if="posters.edges && posters.edges.length"
     class="posters"
     aria-labelledby="posters-title"
   >

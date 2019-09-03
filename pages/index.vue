@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1 class="sr-only">{{ title }}</h1>
+    <latest-posts />
     <posters :posters="posters" />
     <AppStoresBlock />
     <BlockInstagram />
-    <latest-posts />
     <groups />
   </div>
 </template>
@@ -24,14 +24,6 @@ export default {
     BlockInstagram,
     AppStoresBlock,
     Posters
-  },
-  data() {
-    return {
-      title: 'Home',
-      posters: {
-        edges: []
-      }
-    }
   },
 
   apollo: {

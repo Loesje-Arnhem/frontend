@@ -1,7 +1,11 @@
 <template>
-  <nav v-if="productCategories.length" aria-labelledby="categories-title">
+  <nav
+    v-if="productCategories.length"
+    aria-labelledby="categories-title"
+    class="categories"
+  >
     <h2 id="categories-title" class="sr-only">Categorien</h2>
-    <ul class="categories">
+    <ul class="category-list">
       <li
         v-for="productCategory in productCategories"
         :key="productCategory.node.id"
@@ -27,7 +31,7 @@ export default {
 </script>
 
 <style scoped lang="postcss">
-.categories {
+.category-list {
   @mixin list-reset;
   padding: 1em;
   border: 0.3em solid var(--color-black);
