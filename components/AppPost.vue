@@ -1,6 +1,6 @@
 <template>
   <li class="list-item" @mousedown="mouseDown" @mouseup="mouseUp">
-    <h2>
+    <h2 class="title">
       <!-- eslint-disable-next-line -->
       <router-link :to="`/nieuws/${post.slug}`" v-html="post.title" />
     </h2>
@@ -55,11 +55,11 @@ export default {
 
 <style lang="postcss" scoped>
 .list-item {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 1em;
-  border-bottom: 2px dashed var(--color-white);
   cursor: pointer;
+
+  &:not(:last-child) {
+    margin: 0 0 3em;
+  }
 
   &:hover .read-more,
   &:focus-within .read-more {
@@ -70,12 +70,15 @@ export default {
   }
 }
 
+.title {
+  margin-bottom: 0;
+}
+
 a {
   @mixin link-reset;
 }
 
 time {
-  order: -1;
   font-size: 0.9em;
   color: var(--color-gray-dark);
 }

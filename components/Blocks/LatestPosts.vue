@@ -1,7 +1,7 @@
 <template>
   <div>
     <section
-      v-if="posts.edges && posts.edges.length"
+      v-if="hasPosts"
       class="news-list"
       aria-labelledby="news-list-title"
     >
@@ -15,9 +15,8 @@
           />
         </ul>
         <app-button to="/nieuws" title="Meer nieuwsartikelen" />
+        <balloon />
       </div>
-
-      <balloon />
     </section>
   </div>
 </template>
@@ -41,12 +40,18 @@ export default {
     }
   },
 
+  computed: {
+    hasPosts() {
+      return this.posts && this.posts.edges && this.posts.edges.length
+    }
+  },
+
   apollo: {
     // Pages
     posts: {
       query: PostsQuery,
       variables: {
-        first: 5
+        first: 3
       }
     }
   }
@@ -58,15 +63,16 @@ export default {
   @mixin block;
   padding-left: var(--gutter);
   padding-right: var(--gutter);
-  position: relative;
 }
 
 .wrapper {
-  @mixin center;
+  @mixin center var(--container-width-lg);
+  position: relative;
 }
 
 .list {
   @mixin list-reset;
-  max-width: var(--container-width-md);
+  margin-bottom: 2em;
+  max-width: 42rem;
 }
 </style>

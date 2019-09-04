@@ -6,47 +6,32 @@
         :aria-expanded="menuIsExpanded"
         @click="toggleMenu(!menuIsExpanded)"
       >
-        <icon-bars aria-hidden="true" width="24" height="24" />
+        <icon-bars aria-hidden="true" width="24" height="24" class="bars" />
         {{ $t('menu') }}
       </button>
-      <template v-if="songs.length">
-        <button v-if="isPlaying" @click="pauseAudio">
-          <icon-pause width="24" height="24" aria-hidden="true" />
-          <span class="sr-only">{{ $t('pause') }}</span>
-        </button>
-        <button v-else @click="playAudio()">
-          <icon-play width="24" height="24" aria-hidden="true" />
-          <span class="sr-only">{{ $t('play') }}</span>
-        </button>
-      </template>
+      <nuxt-link class="logo-wrapper" to="/">
+        <icon-logo class="logo" height="50" width="87" aria-hidden="true" />
+        <span class="sr-only">Loesje</span>
+      </nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
-import EventBusUtil from '@/utils/eventBusUtil'
-import IconPlay from '@/assets/icons/play.svg'
-import IconPause from '@/assets/icons/pause.svg'
 import IconBars from '@/assets/icons/bars.svg'
+import IconLogo from '@/assets/icons/logo.svg'
 
 export default {
   components: {
-    IconPlay,
-    IconPause,
-    IconBars
+    IconBars,
+    IconLogo
   },
   data() {
     return {
       menuIsExpanded: false
     }
   },
-  computed: {
-    ...mapState('albums', ['isPlaying']),
-    ...mapGetters({
-      songs: 'albums/playableSongs'
-    })
-  },
+
   watch: {
     $route() {
       this.toggleMenu(false)
@@ -57,12 +42,6 @@ export default {
     toggleMenu(status) {
       this.menuIsExpanded = status
       this.$emit('toggleMenu', status)
-    },
-    pauseAudio() {
-      EventBusUtil.$emit('audio-play-song', false)
-    },
-    playAudio() {
-      EventBusUtil.$emit('audio-play-song', true)
     }
   }
 }
@@ -70,16 +49,13 @@ export default {
 
 <style lang="postcss" scoped>
 .wrapper {
-  position: fixed;
-  padding: 0.75em var(--gutter);
+  position: sticky;
+  padding: 0.5em var(--gutter);
   top: 0;
-  left: 0;
-  right: 0;
-  background: var(--color-secondary);
-  z-index: var(--mobile-navigation);
-  border-bottom: 2px solid var(--color-white);
-
-  @media (--navigation-position-left) {
+  background: var(--color-black);
+  z-index: var(--z-index-mobile-navigation);
+  border-bottom: 1px solid var(--color-white);
+  @media (--show-full-navigation) {
     display: none;
   }
 }
@@ -87,16 +63,28 @@ export default {
 .buttons {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.btn {
-  padding: 0.5em 0.75em 0.5em 0.5em;
-  font-size: 0.8em;
+.logo-wrapper {
   display: flex;
   align-items: center;
 }
 
-svg {
+.btn {
+  padding: 0.5em 0.75em 0.5em 0.5em;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--color-white);
+  width: auto;
+}
+
+.bars {
   margin-right: 0.25em;
+  fill: var(--color-white);
+}
+
+.logo {
+  fill: var(--color-white);
 }
 </style>

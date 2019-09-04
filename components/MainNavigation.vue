@@ -202,7 +202,6 @@ nav {
   font-family: var(--font-family-headings);
   text-transform: uppercase;
   font-size: 1.4em;
-  margin-bottom: 1em;
 }
 
 .wrapper {
@@ -213,9 +212,11 @@ nav {
   @mixin list-reset;
   margin-bottom: 0;
   position: relative;
-  display: flex;
-  justify-content: space-between;
   padding-top: 0.2em;
+  @media (--show-full-navigation) {
+    display: flex;
+    justify-content: space-between;
+  }
 
   & ul {
     display: none;

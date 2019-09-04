@@ -44,17 +44,27 @@ export default {
 
 .wrapper {
   max-width: var(--container-width-md);
+  display: flex;
+  flex-direction: column;
+  @media (--viewport-md) {
+    display: block;
+  }
 }
 
 .image-wrapper {
-  shape-outside: url(/images/nederland.png);
-  shape-image-threshold: 0.1;
-  shape-margin: 2em;
   margin-bottom: 2em;
-  float: right;
+  @media (--viewport-md) {
+    shape-outside: url(/images/nederland.png);
+    shape-image-threshold: 0.1;
+    shape-margin: 2em;
+    float: right;
+  }
 }
 
 .text {
-  padding-top: 6em;
+  order: -1;
+  @media (--viewport-md) {
+    padding-top: 6em;
+  }
 }
 </style>
