@@ -31,7 +31,7 @@ export default {
       required: true
     },
     value: {
-      type: String,
+      type: [String, Number],
       required: true
     },
     maxlength: {
@@ -46,21 +46,3 @@ export default {
   }
 }
 </script>
-
-<style lang="postcss" scoped>
-input {
-  --rough-stroke: black;
-  --rough-stroke-width: 2px;
-  --rough-roughness: 1;
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
-}
-
-.is-loaded input {
-  @supports (border-image-source: paint(rough-boxes)) {
-    border-image-source: paint(rough-boxes);
-    border-image-slice: 0 fill;
-    border-image-outset: 10px;
-    background: none;
-  }
-}
-</style>

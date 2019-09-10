@@ -29,6 +29,10 @@ input[type='tel'],
 input[type='url'],
 input[type='password'],
 select {
+  --rough-stroke: black;
+  --rough-stroke-width: 2px;
+  --rough-roughness: 1;
+
   appearance: none;
   background: var(--color-white);
   border: 2px solid var(--color-black);
@@ -39,6 +43,7 @@ select {
   font-size: 1rem;
   font-family: inherit;
   transition: border-color 0.15s ease-out;
+  border: var(--rough-stroke-width) solid var(--rough-stroke);
 
   &:disabled {
     background-color: var(--gray-lightest);
@@ -52,6 +57,15 @@ select {
   &:focus {
     outline: none;
     border-color: var(--color-black);
+  }
+
+  @nest .is-loaded & {
+    @supports (border-image-source: paint(rough-boxes)) {
+      border-image-source: paint(rough-boxes);
+      border-image-slice: 0 fill;
+      border-image-outset: 10px;
+      background: none;
+    }
   }
 }
 

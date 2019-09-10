@@ -14,6 +14,18 @@ query GET_PRODUCT($slug: String) {
       medium: sourceUrl(size: MEDIUM)
       mediumLarge: sourceUrl(size: MEDIUM_LARGE)
     }
+    attributes {
+      edges {
+        node {
+          id
+          attributeId
+          name
+          options
+          variation
+          visible
+        }
+      }
+    }
     related {
       edges {
         node {

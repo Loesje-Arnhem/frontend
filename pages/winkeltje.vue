@@ -55,17 +55,4 @@ export default {
   grid-template-columns: 1fr 3fr;
   align-items: start;
 }
-
-.categories {
-  @mixin list-reset;
-  padding: 1em;
-  border: 0.3em solid var(--color-black);
-  border-radius: 50% 4% 20% 1%/5% 50% 2% 45%;
-  border-bottom-width: 0.5em;
-  border-left-width: 0.5em;
-}
-
-.list-item {
-  margin-bottom: 0.25em;
-}
 </style>

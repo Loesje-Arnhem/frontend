@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="sr-only">{{ title }}</h1>
+    <h1 class="sr-only">Home</h1>
     <latest-posts />
     <posters :posters="posters" />
     <AppStoresBlock />
