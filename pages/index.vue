@@ -30,8 +30,7 @@ export default {
     posters: {
       query: PostersQuery,
       variables: {
-        first: 5,
-        search: 'voetbal'
+        first: 5
       }
     }
   },

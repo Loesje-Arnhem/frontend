@@ -79,14 +79,14 @@ export default {
   apollo: {
     // Pages
     posters: {
-      query: PostersQuery,
-      variables() {
-        return {
-          first: 20,
-          search: this.search,
-          notIn: []
-        }
-      }
+      query: PostersQuery
+      // variables() {
+      //   return {
+      //     first: 20,
+      //     search: this.search,
+      //     notIn: []
+      //   }
+      // }
     }
   },
   methods: {

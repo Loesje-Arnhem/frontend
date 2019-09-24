@@ -9,6 +9,7 @@ query GET_POSTER($slug: String) {
     featuredImage {
       id
       large: sourceUrl(size: LARGE)
+      medium: sourceUrl(size: MEDIUM)
     }
     sources {
       edges {

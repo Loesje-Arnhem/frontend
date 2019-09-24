@@ -1,6 +1,12 @@
 <template>
   <router-link :to="`/posters/${poster.slug}`" class="link">
-    <app-image class="poster" width="200" height="500" :alt="poster.title" />
+    <app-image
+      class="poster"
+      width="200"
+      height="500"
+      :alt="poster.title"
+      :src="image"
+    />
   </router-link>
 </template>
 
