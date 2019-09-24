@@ -40,8 +40,8 @@
         <app-image
           src="/images/illustrations/arcarde-button.png"
           alt
-          width="500"
-          height="800"
+          width="100"
+          height="100"
         />
       </button>
     </div>
@@ -108,11 +108,10 @@ export default {
 
 .btn-action {
   position: absolute;
-  background: #000;
-  height: 1em;
-  width: 1em;
+  height: 2em;
+  width: 2em;
   right: 50%;
-  margin-right: 5em;
+  margin-right: 3em;
   bottom: 12em;
   @media (--viewport-md) {
     bottom: auto;

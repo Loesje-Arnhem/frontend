@@ -50,7 +50,6 @@ export default {
 
 <style lang="postcss" scoped>
 .instagram {
-  @mixin block;
   @mixin clearfix;
   min-height: 80vw;
 }
@@ -73,7 +72,7 @@ export default {
 
 .list {
   @mixin list-reset;
-  padding: 6% 0 0 6%;
+  padding: 7em 0 0 2em;
   display: flex;
   flex-wrap: wrap;
 }
@@ -98,7 +97,7 @@ export default {
 }
 
 .link {
-  width: 15%;
+  width: 50%;
   display: block;
 }
 
@@ -107,10 +106,10 @@ export default {
 }
 
 .link-2 {
-  transform: rotate(7deg) translate(-2%, 2.5%);
+  transform: rotate(7deg) translate(-1em, 3em);
 }
 
 .link-3 {
-  transform: rotate(-7deg) translate(-3%, 3.5%);
+  transform: rotate(-7deg) translate(-2em, 4em);
 }
 </style>

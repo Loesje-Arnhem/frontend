@@ -35,17 +35,24 @@ export default {
 
 <style lang="postcss" scoped>
 .poster {
-  border-radius: 0.2em;
   display: block;
   width: 100%;
   height: auto;
-  border: 0.2em solid var(--color-black);
-  border-radius: 50% 4% 20% 1%/5% 50% 2% 45%;
-  border-bottom-width: 0.25em;
-  border-left-width: 0.25em;
+
+  --rough-stroke-width: 3px;
+  --rough-roughness: 1.5;
+  border: var(--rough-stroke-width) solid var(--rough-stroke);
+  @nest .is-loaded & {
+    @supports (border-image-source: paint(rough-boxes)) {
+      border-image-source: paint(rough-boxes);
+      border-image-slice: 0 fill;
+      border-image-outset: 1em;
+    }
+  }
 }
 
 .link {
+  @mixin link-reset;
   transition: all 0.15s ease-in-out;
   display: block;
 

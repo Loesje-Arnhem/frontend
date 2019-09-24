@@ -29,7 +29,6 @@ input[type='tel'],
 input[type='url'],
 input[type='password'],
 select {
-  --rough-stroke: black;
   --rough-stroke-width: 2px;
   --rough-roughness: 1;
 

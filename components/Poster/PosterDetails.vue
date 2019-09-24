@@ -5,16 +5,21 @@
       <app-image
         v-if="poster.featuredImage"
         :src="poster.featuredImage.large"
+        class="image"
       />
     </article>
     <div class="meta-data">
       <post-date :date="poster.date" />
-      <dl>
+      <dl class="tags">
         <template v-if="poster.subjects.edges.length">
           <dt>Onderwerpen:</dt>
           <dd>
-            <ul class="tags">
-              <li v-for="item in poster.subjects.edges" :key="item.node.id">
+            <ul class="tags-list">
+              <li
+                v-for="item in poster.subjects.edges"
+                :key="item.node.id"
+                class="tag"
+              >
                 <poster-tag :tag="item.node" />
               </li>
             </ul>
@@ -24,8 +29,12 @@
         <template v-if="poster.sources.edges.length">
           <dt>Bronnen:</dt>
           <dd>
-            <ul class="tags">
-              <li v-for="item in poster.sources.edges" :key="item.node.id">
+            <ul class="tags-list">
+              <li
+                v-for="item in poster.sources.edges"
+                :key="item.node.id"
+                class="tag"
+              >
                 <poster-tag :tag="item.node" />
               </li>
             </ul>
@@ -97,11 +106,26 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.image {
+  --rough-stroke-width: 3px;
+  --rough-roughness: 1.5;
+  border: var(--rough-stroke-width) solid var(--rough-stroke);
+  @nest .is-loaded & {
+    @supports (border-image-source: paint(rough-boxes)) {
+      border-image-source: paint(rough-boxes);
+      border-image-slice: 0 fill;
+      border-image-outset: 1em;
+    }
+  }
+}
+
 .poster-details {
   display: grid;
-  grid-grap: 1em;
+  grid-gap: 1em;
   grid-template-columns: 1fr 1fr;
+  margin-bottom: 2em;
 }
+
 .btn-favorites {
   display: flex;
   padding: 0.25em 0.75em;
@@ -120,6 +144,25 @@ export default {
     box-shadow: 0 0 0 2px var(--color-black);
     outline: none;
   }
+}
+
+dt {
+  font-weight: var(--font-weight-bold);
+}
+
+dd {
+  margin-left: 0;
+}
+
+.tag {
+  margin: 0 0.125em 0.125em;
+}
+
+.tags-list {
+  @mixin list-reset;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.125em;
 }
 
 .icon-favorites {
