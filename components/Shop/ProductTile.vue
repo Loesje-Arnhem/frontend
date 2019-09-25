@@ -1,6 +1,7 @@
 <template>
   <li class="product-tile">
     <div class="image-wrapper">
+      test
       <app-image v-if="product.image" :src="product.image.medium" alt />
     </div>
     <h3 class="title">
