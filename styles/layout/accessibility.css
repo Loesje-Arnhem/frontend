@@ -1,5 +1,8 @@
 .sr-only {
   @mixin sr-only;
+
+  /* temp */
+  display: none;
 }
 
 *:focus {
