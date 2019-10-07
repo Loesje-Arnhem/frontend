@@ -94,7 +94,7 @@ export default {
   display: block;
   pointer-events: none;
   position: absolute;
-  bottom: 0.75em;
+  bottom: 0.5em;
 
   &.active {
     transition: all 0.2s ease-out;

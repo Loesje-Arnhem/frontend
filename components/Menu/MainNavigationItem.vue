@@ -29,7 +29,7 @@
       <li
         v-for="subItem in item.childItems.edges"
         :key="subItem.node.label"
-        class="menu-item"
+        class="submenu-item"
       >
         <menu-item :item="subItem.node" class="submenu-link" />
       </li>
@@ -115,6 +115,7 @@ export default {
   position: relative;
   @media (--show-full-navigation) {
     display: flex;
+    padding: 0.75em 0;
   }
 }
 
@@ -131,8 +132,8 @@ export default {
   display: flex;
   position: relative;
 
-  @media (--show-full-navigation) {
-    padding: 0.75em 0;
+  &:hover {
+    box-shadow: 0 2px 0 0 currentColor;
   }
 
   &[aria-haspopup='true'] {
