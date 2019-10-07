@@ -7,9 +7,6 @@
 
 <style lang="postcss" scoped>
 .btn {
-  @mixin link-reset;
-  background: var(--color-secondary);
-
   &:not(:focus) {
     @mixin sr-only;
   }
@@ -17,7 +14,7 @@
   &:focus,
   &:active {
     position: fixed;
-    z-index: 100;
+    z-index: var(--z-index-skip-links);
     top: 1rem;
     left: 1rem;
   }
