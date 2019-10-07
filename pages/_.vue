@@ -14,7 +14,7 @@ export default {
     const page = await app.apolloProvider.defaultClient.query({
       query: PageQuery,
       variables: {
-        uri: params.slug
+        uri: params.pathMatch
       }
     })
 
