@@ -19,7 +19,7 @@
           name="password"
         />
       </form-fieldset>
-      <app-button type="submit" title="Inloggen" />
+      <app-button type="submit">Inloggen</app-button>
     </div>
   </form>
 </template>

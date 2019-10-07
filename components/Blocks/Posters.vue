@@ -17,7 +17,7 @@
       </ul>
 
       <div class="btn-wrapper">
-        <app-button to="/posters" title="Bekijk alle posters" />
+        <app-button to="/posters">Bekijk alle posters</app-button>
       </div>
     </div>
   </section>

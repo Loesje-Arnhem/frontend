@@ -31,7 +31,7 @@
         </div>
       </div>
     </form-fieldset>
-    <app-button title="In winkelmandje" type="submit" />
+    <app-button type="submit">In winkelmandje</app-button>
   </form>
 </template>
 

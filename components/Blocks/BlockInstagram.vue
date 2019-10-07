@@ -20,12 +20,11 @@
       <app-image src="/images/backgrounds/instagram.png" class="background" />
       <div class="button-wrapper">
         <app-button
-          type="link"
-          title="Volg Loesje op Instagram"
           rel="noopener"
-          to="https://instagram.com/loesjevdposters"
+          href="https://instagram.com/loesjevdposters"
           target="_blank"
-        />
+          >Volg Loesje op Instagram
+        </app-button>
       </div>
     </div>
   </div>

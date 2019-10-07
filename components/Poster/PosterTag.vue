@@ -1,11 +1,12 @@
 <template>
   <app-button
-    type="button"
     css-class="btn-outline"
     :class="{ 'is-active': isSelected(tag) }"
-    :title="tag.name"
+    :is-primary="false"
     @onclick="selectTag(tag)"
-  />
+  >
+    {{ tag.name }}
+  </app-button>
 </template>
 
 <script>
