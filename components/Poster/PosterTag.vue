@@ -1,18 +1,21 @@
 <template>
-  <button
+  <app-button
     type="button"
-    class="tag"
+    css-class="btn-outline"
     :class="{ 'is-active': isSelected(tag) }"
-    @click="selectTag(tag)"
-  >
-    <span class="title">{{ tag.name }}</span>
-  </button>
+    :title="tag.name"
+    @onclick="selectTag(tag)"
+  />
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import AppButton from '@/components/Shared/AppButton.vue'
 
 export default {
+  components: {
+    AppButton
+  },
   props: {
     tag: {
       type: Object,
@@ -37,30 +40,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.tag {
-  padding: 0.25em 0.75em;
-  border: 2px solid var(--color-black);
-  border-radius: 1em;
-  background: var(--color-white);
-  transition: box-shadow 0.1s ease-out;
-
-  &.is-active {
-    background: var(--color-black);
-    color: var(--color-white);
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 1px var(--color-black);
-    outline: none;
-  }
-}
-
-.title {
-  transition: box-shadow 0.2s ease-out;
-  @nest .tag:hover & {
-    box-shadow: 0 2px 0 0 currentColor;
-  }
-}
-</style>

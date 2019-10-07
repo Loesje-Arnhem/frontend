@@ -42,19 +42,21 @@
           </dd>
         </template>
       </dl>
-      <button
+      <app-button
         type="button"
-        class="btn-favorites"
+        css-class="btn-outline"
         :class="{ 'is-active': isInFavorites }"
-        @click="toggleFavorites(poster)"
-      >
-        <icon-heart aria-hidden="true" width="32" height="32" />Voeg toe aan je
-        favorieten
-      </button>
-      <social-media-links
-        :title="`Deel ${poster.title}`"
-        :social-media="socialMedia"
+        title="Voeg toe aan je
+        favorieten"
+        @onclick="toggleFavorites(poster)"
       />
+      <div class="social-media">
+        <h3>Deel de poster op</h3>
+        <social-media-links
+          :title="`Deel ${poster.title}`"
+          :social-media="socialMedia"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -65,15 +67,17 @@ import PostDate from '@/components/PostDate.vue'
 import AppImage from '@/components/Shared/AppImage.vue'
 import PosterTag from '@/components/Poster/PosterTag.vue'
 import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
-import IconHeart from '@/assets/icons/heart-o.svg'
+// import IconHeart from '@/assets/icons/heart-o.svg'
+import AppButton from '@/components/Shared/AppButton.vue'
 
 export default {
   components: {
     PostDate,
     AppImage,
     SocialMediaLinks,
-    IconHeart,
-    PosterTag
+    // IconHeart,
+    PosterTag,
+    AppButton
   },
 
   props: {

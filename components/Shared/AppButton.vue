@@ -1,11 +1,19 @@
 <template>
-  <button v-if="type === 'submit'" type="submit" class="btn">
+  <button v-if="type === 'submit'" type="submit" :class="cssClass">
     <span class="title">{{ title }}</span>
   </button>
-  <a v-else-if="type === 'link'" :href="to" class="btn">
+  <button
+    v-else-if="type === 'button'"
+    type="button"
+    :class="cssClass"
+    @click="$emit('onclick')"
+  >
+    <span class="title">{{ title }}</span>
+  </button>
+  <a v-else-if="type === 'link'" :href="to" :class="cssClass">
     <span class="title">{{ title }}</span>
   </a>
-  <nuxt-link v-else class="btn" :to="to">
+  <nuxt-link v-else :class="cssClass" :to="to">
     <span class="title">{{ title }}</span>
   </nuxt-link>
 </template>
@@ -13,6 +21,10 @@
 <script>
 export default {
   props: {
+    cssClass: {
+      type: String,
+      default: 'btn'
+    },
     title: {
       type: String,
       required: true
@@ -34,6 +46,9 @@ export default {
   transition: box-shadow 0.2s ease-out;
   @nest .btn:hover & {
     box-shadow: 0 3px 0 0 currentColor;
+  }
+  @nest .btn-outline:hover & {
+    box-shadow: 0 2px 0 0 currentColor;
   }
 }
 </style>

@@ -73,3 +73,21 @@ a {
     }
   }
 }
+
+.btn-outline {
+  padding: 0.25em 0.75em;
+  border: 2px solid var(--color-black);
+  border-radius: 1em;
+  background: var(--color-white);
+  transition: box-shadow 0.1s ease-out;
+
+  &.is-active {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 1px var(--color-black);
+    outline: none;
+  }
+}
