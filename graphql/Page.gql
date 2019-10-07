@@ -3,6 +3,13 @@ query GET_PAGE_BY_URI($uri: String) {
     pageId
     title
     content
+    childPages {
+      edges {
+        node {
+          id
+        }
+      }
+    }
     parent {
       __typename
       ... on Page {

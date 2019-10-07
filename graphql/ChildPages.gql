@@ -6,8 +6,9 @@ query GET_CHILDPAGES_BY_URI($parent: String, $notIn: [ID]) {
     edges {
       node {
         pageId
-        title
         id
+        title
+        uri
         excerpt
       }
     }

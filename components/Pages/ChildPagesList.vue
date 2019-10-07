@@ -4,7 +4,6 @@
       v-for="childPage in pages.edges"
       :key="childPage.node.id"
       :page="childPage"
-      :parent="parent"
       class="list-item"
     />
   </ul>
@@ -18,10 +17,6 @@ export default {
     ChildPage
   },
   props: {
-    parent: {
-      type: String,
-      required: true
-    },
     pages: {
       type: Object,
       default: () => {}

@@ -19,10 +19,6 @@ export default {
     ReadMoreLink
   },
   props: {
-    parent: {
-      type: String,
-      required: true
-    },
     page: {
       type: Object,
       required: true
@@ -30,7 +26,7 @@ export default {
   },
   computed: {
     url() {
-      return `/${this.parent}/${this.page.node.slug}/`
+      return `/${this.page.node.uri}/`
     }
   }
 }
