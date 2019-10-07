@@ -1,0 +1,15 @@
+query GET_CHILDPAGES_BY_URI($parent: String, $notIn: [ID]) {
+  pages: pages(where:{
+  	parent: $parent,
+    notIn: $notIn
+  }) {
+    edges {
+      node {
+        pageId
+        title
+        id
+        excerpt
+      }
+    }
+  }
+}

@@ -1,38 +1,36 @@
 <template>
-  <clickable-list-item class="list-item" :url="url">
+  <clickable-list-item :url="url">
     <h2 class="title">
-      <!-- eslint-disable-next-line -->
-      <router-link :to="url" v-html="post.title" />
+      <nuxt-link :to="url">{{ page.node.title }}</nuxt-link>
     </h2>
-    <post-date :date="post.date" />
     <!-- eslint-disable-next-line -->
-    <div class="text" v-html="post.excerpt" />
-    <div class="link-wrapper">
-      <read-more-link class="read-more" />
-    </div>
+    <div v-html="page.node.excerpt" />
+    <ReadMoreLink />
   </clickable-list-item>
 </template>
 
 <script>
-import PostDate from '@/components/PostDate.vue'
 import ReadMoreLink from '@/components/Shared/ReadMoreLink.vue'
 import ClickableListItem from '@/components/shared/ClickableListItem.vue'
 
 export default {
   components: {
-    PostDate,
     ClickableListItem,
     ReadMoreLink
   },
   props: {
-    post: {
+    parent: {
+      type: String,
+      required: true
+    },
+    page: {
       type: Object,
       required: true
     }
   },
   computed: {
     url() {
-      return `/over-mij/nieuws/${this.post.slug}`
+      return `/${this.parent}/${this.page.node.slug}/`
     }
   }
 }
@@ -40,10 +38,6 @@ export default {
 
 <style lang="postcss" scoped>
 .list-item {
-  &:not(:last-child) {
-    margin: 0 0 3em;
-  }
-
   &:hover .read-more,
   &:focus-within .read-more {
     box-shadow: 0 3px 0 0 var(--color-black);
@@ -59,14 +53,5 @@ export default {
 
 a {
   @mixin link-reset;
-}
-
-time {
-  font-size: 0.9em;
-  color: var(--color-gray-dark);
-}
-
-.link-wrapper {
-  margin-top: auto;
 }
 </style>

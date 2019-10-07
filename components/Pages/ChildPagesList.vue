@@ -1,0 +1,51 @@
+<template>
+  <ul v-if="pages.edges.length" class="list">
+    <child-page
+      v-for="childPage in pages.edges"
+      :key="childPage.node.id"
+      :page="childPage"
+      :parent="parent"
+      class="list-item"
+    />
+  </ul>
+</template>
+
+<script>
+import ChildPage from '@/components/Pages/ChildPage.vue'
+
+export default {
+  components: {
+    ChildPage
+  },
+  props: {
+    parent: {
+      type: String,
+      required: true
+    },
+    pages: {
+      type: Object,
+      default: () => {}
+    }
+  }
+}
+</script>
+
+<style scoped lang="postcss">
+.list {
+  @mixin list-reset;
+  @mixin center var(--container-width-lg);
+
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.list-item {
+  margin-bottom: 2em;
+  grid-column: span 2;
+
+  &:nth-child(2n) {
+    grid-column: 2 / span 2;
+  }
+}
+</style>

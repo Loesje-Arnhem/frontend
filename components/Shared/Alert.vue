@@ -1,47 +1,47 @@
 <template>
   <div v-if="show && text" :class="type" class="alert">
-    <Icon :icon="icon" class="icon-alert"/>
+    <icon :icon="icon" class="icon-alert" />
     {{ text }}
   </div>
 </template>
 
 <script>
-import Icon from '@/components/Shared/Icon.vue';
+import Icon from '@/components/Shared/Icon.vue'
 
 export default {
   components: {
-    Icon,
+    Icon
   },
   props: {
     text: {
       type: String,
       required: true,
-      default: '',
+      default: ''
     },
     type: {
       type: String,
-      default: 'warning',
-    },
+      default: 'warning'
+    }
   },
   data() {
     return {
-      show: true,
-    };
+      show: true
+    }
   },
   computed: {
     icon() {
       if (this.type === 'success') {
-        return 'check';
+        return 'check'
       }
-      return 'warning';
-    },
+      return 'warning'
+    }
   },
   methods: {
     close() {
-      this.show = false;
-    },
-  },
-};
+      this.show = false
+    }
+  }
+}
 </script>
 
 <style scoped>

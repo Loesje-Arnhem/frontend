@@ -1,6 +1,13 @@
 query GET_PAGE_BY_URI($uri: String) {
   page: pageBy(uri: $uri) {
+    pageId
     title
     content
+    parent {
+      __typename
+      ... on Page {
+        pageId
+      }
+    }
   }
 }
