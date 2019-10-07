@@ -14,7 +14,7 @@
             :post="post.node"
           />
         </ul>
-        <app-button to="/nieuws">Meer nieuwsartikelen</app-button>
+        <app-button to="/over-mij/nieuws">Meer nieuwsartikelen</app-button>
         <balloon />
       </div>
     </section>

@@ -1,5 +1,5 @@
 <template>
-  <li class="product-tile">
+  <clickable-list-item class="product-tile" :url="product.slug">
     <div class="image-wrapper">
       <app-image v-if="product.image" :src="product.image.medium" />
     </div>
@@ -8,14 +8,17 @@
     </h3>
     <!-- {{ product.price }}
     {{ product.salePrice }} -->
-  </li>
+  </clickable-list-item>
 </template>
 
 <script>
 import AppImage from '@/components/Shared/AppImage.vue'
+import ClickableListItem from '@/components/shared/ClickableListItem.vue'
+
 export default {
   components: {
-    AppImage
+    AppImage,
+    ClickableListItem
   },
   props: {
     product: {

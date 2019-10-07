@@ -1,8 +1,8 @@
 <template>
-  <li class="list-item" @mousedown="mouseDown" @mouseup="mouseUp">
+  <clickable-list-item class="list-item" :url="url">
     <h2 class="title">
       <!-- eslint-disable-next-line -->
-      <router-link :to="`/nieuws/${post.slug}`" v-html="post.title" />
+      <router-link :to="url" v-html="post.title" />
     </h2>
     <post-date :date="post.date" />
     <!-- eslint-disable-next-line -->
@@ -13,17 +13,19 @@
         <icon-chevron-right aria-hidden="true" width="16" height="16" />
       </span>
     </div>
-  </li>
+  </clickable-list-item>
 </template>
 
 <script>
 import PostDate from '@/components/PostDate.vue'
 import IconChevronRight from '@/assets/icons/chevron-right.svg'
+import ClickableListItem from '@/components/shared/ClickableListItem.vue'
 
 export default {
   components: {
     PostDate,
-    IconChevronRight
+    IconChevronRight,
+    ClickableListItem
   },
   props: {
     post: {
@@ -31,23 +33,9 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      down: null
-    }
-  },
-  methods: {
-    mouseUp() {
-      const up = +new Date()
-      if (up - this.down < 200) {
-        this.goToPost()
-      }
-    },
-    mouseDown() {
-      this.down = +new Date()
-    },
-    goToPost() {
-      this.$router.push(`/nieuws/${this.post.slug}`)
+  computed: {
+    url() {
+      return `/over-mij/nieuws/${this.post.slug}`
     }
   }
 }
@@ -55,8 +43,6 @@ export default {
 
 <style lang="postcss" scoped>
 .list-item {
-  cursor: pointer;
-
   &:not(:last-child) {
     margin: 0 0 3em;
   }
