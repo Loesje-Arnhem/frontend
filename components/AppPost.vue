@@ -16,7 +16,7 @@
 <script>
 import PostDate from '@/components/PostDate.vue'
 import ReadMoreLink from '@/components/Shared/ReadMoreLink.vue'
-import ClickableListItem from '@/components/shared/ClickableListItem.vue'
+import ClickableListItem from '@/components/Shared/ClickableListItem.vue'
 
 export default {
   components: {
