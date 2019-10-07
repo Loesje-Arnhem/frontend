@@ -13,7 +13,7 @@
         <social-media-links title="Volg Loesje" :social-media="socialMedia" />
 
         <div class="mood-wrapper">
-          <app-image src="/images/casette-player.png" alt class="mood" />
+          <app-image src="/images/casette-player.png" class="mood" />
         </div>
       </div>
     </div>

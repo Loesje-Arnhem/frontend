@@ -11,18 +11,13 @@
           >
             <app-image
               :src="`/images/instagram/${n}.jpg`"
-              alt
               class="mood"
               :class="`image image-${n}`"
             />
           </a>
         </li>
       </ul>
-      <app-image
-        src="/images/backgrounds/instagram.png"
-        alt=""
-        class="background"
-      />
+      <app-image src="/images/backgrounds/instagram.png" class="background" />
       <div class="button-wrapper">
         <app-button
           type="link"

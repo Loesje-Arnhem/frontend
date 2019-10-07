@@ -3,7 +3,7 @@
     <div class="center">
       <div class="wrapper">
         <div class="image-wrapper">
-          <app-image src="/images/nederland.png" alt class="mood" />
+          <app-image src="/images/nederland.png" class="mood" />
         </div>
         <div class="text">
           <h1>Hier ben ik actief</h1>

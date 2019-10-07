@@ -4,7 +4,6 @@
       <div class="image-wrapper">
         <app-image
           src="/images/illustrations/arcarde.png"
-          alt
           class="mood"
           width="500"
           height="800"
@@ -39,7 +38,6 @@
       <button class="btn-action" @click="action">
         <app-image
           src="/images/illustrations/arcarde-button.png"
-          alt
           width="100"
           height="100"
         />

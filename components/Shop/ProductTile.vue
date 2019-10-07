@@ -1,8 +1,7 @@
 <template>
   <li class="product-tile">
     <div class="image-wrapper">
-      test
-      <app-image v-if="product.image" :src="product.image.medium" alt />
+      <app-image v-if="product.image" :src="product.image.medium" />
     </div>
     <h3 class="title">
       <nuxt-link :to="product.slug">{{ product.name }}</nuxt-link>

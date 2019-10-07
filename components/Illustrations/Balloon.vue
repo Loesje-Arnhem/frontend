@@ -4,7 +4,6 @@
       width="159"
       height="243"
       src="/images/air-balloon.png"
-      alt
       class="balloon-image"
     />
   </div>
