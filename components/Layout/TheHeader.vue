@@ -22,7 +22,7 @@
 
 <script>
 import SkipLinks from '@/components/SkipLinks.vue'
-import MainNavigation from '@/components/MainNavigation.vue'
+import MainNavigation from '@/components/Menu/MainNavigation.vue'
 import MobileNavigation from '@/components/MobileNavigation.vue'
 
 const bodyScrollLock = require('body-scroll-lock')
