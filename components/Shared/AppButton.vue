@@ -74,6 +74,7 @@ export default {
   max-width: 20em;
   background: var(--color-black);
   color: var(--color-white);
+  position: relative;
 
   &:disabled {
     background: transparent;

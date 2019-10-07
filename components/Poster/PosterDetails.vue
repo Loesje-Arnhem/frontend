@@ -43,13 +43,19 @@
         </template>
       </dl>
       <app-button
-        type="button"
-        css-class="btn-outline"
+        :is-primary="false"
         :class="{ 'is-active': isInFavorites }"
-        title="Voeg toe aan je
-        favorieten"
         @onclick="toggleFavorites(poster)"
-      />
+      >
+        <icon-heart
+          class="icon-heart"
+          aria-hidden="true"
+          width="20"
+          height="20"
+        />
+        Voeg toe aan je favorieten
+      </app-button>
+
       <div class="social-media">
         <h3>Deel de poster op</h3>
         <social-media-links
@@ -67,7 +73,7 @@ import PostDate from '@/components/PostDate.vue'
 import AppImage from '@/components/Shared/AppImage.vue'
 import PosterTag from '@/components/Poster/PosterTag.vue'
 import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
-// import IconHeart from '@/assets/icons/heart-o.svg'
+import IconHeart from '@/assets/icons/heart-o.svg'
 import AppButton from '@/components/Shared/AppButton.vue'
 
 export default {
@@ -75,7 +81,7 @@ export default {
     PostDate,
     AppImage,
     SocialMediaLinks,
-    // IconHeart,
+    IconHeart,
     PosterTag,
     AppButton
   },
@@ -132,12 +138,10 @@ export default {
 }
 
 .btn-favorites {
-  display: flex;
   padding: 0.25em 0.75em;
   border: 2px solid var(--color-black);
   border-radius: 1em;
   background: var(--color-white);
-  align-items: center;
 
   &.is-active,
   &:hover {
@@ -170,9 +174,8 @@ dd {
   margin: 0 -0.125em;
 }
 
-.icon-favorites {
-  flex: 0 0 auto;
-  margin-top: -0.1em;
-  margin-right: 0.5em;
+.icon-heart {
+  margin-right: 0.25em;
+  transform: translateY(0.1em);
 }
 </style>
