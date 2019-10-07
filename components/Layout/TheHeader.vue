@@ -110,7 +110,7 @@ header {
   bottom: 0;
   overflow: hidden;
   z-index: var(--z-index-main-navigation);
-  padding: 4em env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  padding: 5em env(safe-area-inset-right) 0 env(safe-area-inset-left);
   background: var(--color-black);
 
   @media (--show-full-navigation) {

@@ -78,19 +78,7 @@ export default {
 <style lang="postcss" scoped>
 .submenu {
   @mixin list-reset;
-  margin-left: 1em;
-
-  &::before {
-    position: absolute;
-    content: '';
-    height: 0;
-    width: 0;
-    left: 1em;
-    top: -0.5em;
-    border-left: 0.5em solid transparent;
-    border-right: 0.5em solid transparent;
-    border-bottom: 0.5em solid var(--color-white);
-  }
+  margin: 0 0 0.5em 1em;
 
   @media (--show-full-navigation) {
     color: var(--color-black);
@@ -100,10 +88,22 @@ export default {
     display: none;
     position: absolute;
     top: 100%;
-    margin-left: 0;
+    margin: 0;
     left: -0.5em;
     padding: 0.25em 0.5em;
     white-space: nowrap;
+
+    &::before {
+      position: absolute;
+      content: '';
+      height: 0;
+      width: 0;
+      left: 1em;
+      top: -0.5em;
+      border-left: 0.5em solid transparent;
+      border-right: 0.5em solid transparent;
+      border-bottom: 0.5em solid var(--color-white);
+    }
 
     @nest .open & {
       display: block;
@@ -117,12 +117,27 @@ export default {
     display: flex;
     padding: 0.75em 0;
   }
+
+  &:last-child .submenu {
+    right: 0;
+    left: auto;
+
+    &::before {
+      left: auto;
+      right: 1em;
+    }
+  }
 }
 
 .submenu-link,
 .menu-link {
   @mixin link-reset;
   line-height: 1.1;
+  padding: 0.25em 0;
+
+  @media (--show-full-navigation) {
+    padding: 0;
+  }
 }
 
 .menu-link {
@@ -142,8 +157,6 @@ export default {
 }
 
 .submenu-link {
-  border-bottom: 2px solid transparent;
-
   &:hover,
   &.nuxt-link-exact-active {
     box-shadow: 0 2px 0 0 currentColor;

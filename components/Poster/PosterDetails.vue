@@ -4,6 +4,7 @@
       <h1 class="sr-only">{{ poster.title }}</h1>
       <app-image
         v-if="poster.featuredImage"
+        :alt="poster.title"
         :src="poster.featuredImage.large"
         class="image"
       />
