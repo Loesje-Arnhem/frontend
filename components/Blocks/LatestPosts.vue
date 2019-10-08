@@ -6,15 +6,11 @@
       aria-labelledby="news-list-title"
     >
       <div class="wrapper">
-        <h1 id="news-list-title">{{ $t('latestPosts') }}</h1>
-        <ul class="list">
-          <app-post
-            v-for="post in posts.edges"
-            :key="post.postId"
-            :post="post.node"
-          />
-        </ul>
-        <app-button to="/over-mij/nieuws">Meer nieuwsartikelen</app-button>
+        <h1 id="news-list-title">Nieuws</h1>
+        <posts-list :posts="posts" />
+        <app-button v-if="showButton" to="/over-mij/nieuws"
+          >Meer nieuwsartikelen</app-button
+        >
         <balloon />
       </div>
     </section>
@@ -22,37 +18,31 @@
 </template>
 
 <script>
-import AppPost from '@/components/AppPost.vue'
 import AppButton from '@/components/Shared/AppButton.vue'
 import Balloon from '@/components/Illustrations/Balloon.vue'
-import PostsQuery from '~/graphql/Posts.gql'
+import PostsList from '@/components/Posts/PostsList.vue'
 
 export default {
   components: {
-    AppPost,
     Balloon,
-    AppButton
+    AppButton,
+    PostsList
   },
 
-  data() {
-    return {
-      posts: null
+  props: {
+    posts: {
+      type: Object,
+      required: true
+    },
+    showButton: {
+      type: Boolean,
+      default: false
     }
   },
 
   computed: {
     hasPosts() {
       return this.posts && this.posts.edges && this.posts.edges.length
-    }
-  },
-
-  apollo: {
-    // Pages
-    posts: {
-      query: PostsQuery,
-      variables: {
-        first: 3
-      }
     }
   }
 }

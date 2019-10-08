@@ -1,9 +1,18 @@
 <template>
   <div class="skip-links">
-    <a href="#content" class="btn">Naar hoofdinhoud</a>
-    <a href="#menu" class="btn">Naar hoofdnavigatiemenu</a>
+    <app-button href="#content" class="btn">Naar hoofdinhoud</app-button>
+    <app-button href="#menu" class="btn">Naar hoofdnavigatiemenu</app-button>
   </div>
 </template>
+
+<script>
+import AppButton from '@/components/Shared/AppButton.vue'
+export default {
+  components: {
+    AppButton
+  }
+}
+</script>
 
 <style lang="postcss" scoped>
 .btn {

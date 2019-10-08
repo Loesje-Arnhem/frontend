@@ -6,7 +6,7 @@
       <!-- eslint-disable-next-line -->
       <div class="text" v-html="post.content" />
     </article>
-    <latest-posts />
+    <latest-posts :posts="posts" :show-button="true" />
   </div>
 </template>
 
@@ -14,6 +14,7 @@
 import LatestPosts from '@/components/Blocks/LatestPosts.vue'
 import PostDate from '@/components/PostDate.vue'
 import PostQuery from '~/graphql/Post.gql'
+import PostsQuery from '~/graphql/Posts.gql'
 
 export default {
   components: {
@@ -29,8 +30,17 @@ export default {
       }
     })
 
+    const posts = await app.apolloProvider.defaultClient.query({
+      query: PostsQuery,
+      variables: {
+        first: 5,
+        notIn: post.data.post.postId
+      }
+    })
+
     return {
-      post: post.data.post
+      post: post.data.post,
+      posts: posts.data.posts
     }
   },
   head() {

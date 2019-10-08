@@ -1,7 +1,7 @@
 <template>
   <li
     class="menu-item"
-    :class="{ open: isOpen, 'has-popup': item.childItems.edges.length > 0 }"
+    :class="{ 'has-popup': item.childItems.edges.length > 0 }"
     @mouseover="mouseover"
     @mouseout="mouseout"
   >
@@ -25,15 +25,19 @@
       />
       <span class="sr-only">Toon submenu voor {{ item.label }}</span>
     </button>
-    <ul v-if="item.childItems.edges.length" ref="submenu" class="submenu">
-      <li
-        v-for="subItem in item.childItems.edges"
-        :key="subItem.node.label"
-        class="submenu-item"
-      >
-        <menu-item :item="subItem.node" class="submenu-link" />
-      </li>
-    </ul>
+    <template v-if="item.childItems.edges.length">
+      <transition name="slide-in">
+        <ul v-show="isOpen" class="submenu">
+          <li
+            v-for="subItem in item.childItems.edges"
+            :key="subItem.node.label"
+            class="submenu-item"
+          >
+            <menu-item :item="subItem.node" class="submenu-link" />
+          </li>
+        </ul>
+      </transition>
+    </template>
   </li>
 </template>
 
@@ -85,7 +89,6 @@ export default {
     background: var(--color-white);
     border: 1px solid var(--color-black);
     border-top: 0;
-    display: none;
     position: absolute;
     top: 100%;
     margin: 0;
@@ -172,5 +175,16 @@ export default {
   @media (--show-full-navigation) {
     display: block;
   }
+}
+
+.slide-in-enter-active,
+.slide-in-leave-active {
+  transition: all 0.2s;
+}
+
+.slide-in-enter,
+.slide-in-leave-to {
+  opacity: 0;
+  transform: translateY(-0.5em);
 }
 </style>
