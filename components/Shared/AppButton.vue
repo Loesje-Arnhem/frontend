@@ -69,7 +69,6 @@ export default {
   text-decoration: none;
   width: 100%;
   padding: 0.75em 0.5em;
-  transition: background-color 0.1s ease-in-out;
   border: 2px solid var(--color-white);
   max-width: 20em;
   background: var(--color-black);

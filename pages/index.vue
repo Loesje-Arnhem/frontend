@@ -26,12 +26,15 @@ export default {
     Posters
   },
 
-  apollo: {
-    posters: {
+  async asyncData({ app, params }) {
+    const posters = await app.apolloProvider.defaultClient.query({
       query: PostersQuery,
       variables: {
         first: 5
       }
+    })
+    return {
+      posters: posters.data.posters
     }
   },
 

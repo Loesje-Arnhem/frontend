@@ -1,5 +1,5 @@
 <template>
-  <li @mousedown="mouseDown" @mouseup="mouseUp">
+  <li class="list-item" @mousedown="mouseDown" @mouseup="mouseUp">
     <slot />
   </li>
 </template>
@@ -37,5 +37,16 @@ export default {
 <style lang="postcss" scoped>
 .list-item {
   cursor: pointer;
+  &:hover .read-more,
+  &:focus-within .read-more {
+    box-shadow: 0 3px 0 0 var(--color-black);
+    & >>> .icon {
+      margin-left: 0.25em;
+    }
+  }
+}
+
+a {
+  @mixin link-reset;
 }
 </style>

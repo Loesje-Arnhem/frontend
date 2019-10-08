@@ -33,21 +33,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.list-item {
-  &:hover .read-more,
-  &:focus-within .read-more {
-    box-shadow: 0 3px 0 0 var(--color-black);
-    & >>> .icon {
-      margin-left: 0.25em;
-    }
-  }
-}
-
 .title {
   margin-bottom: 0;
-}
-
-a {
-  @mixin link-reset;
 }
 </style>
