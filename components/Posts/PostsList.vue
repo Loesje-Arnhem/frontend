@@ -4,6 +4,7 @@
       v-for="post in posts.edges"
       :key="post.node.postId"
       :post="post"
+      class="list-item"
     />
   </ul>
 </template>
@@ -35,6 +36,11 @@ export default {
 .list {
   @mixin list-reset;
   margin-bottom: 2em;
-  max-width: 42rem;
+}
+
+.list-item {
+  &:not(:last-child) {
+    margin: 0 0 3em;
+  }
 }
 </style>

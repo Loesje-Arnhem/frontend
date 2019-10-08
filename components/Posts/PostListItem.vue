@@ -39,12 +39,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.list-item {
-  &:not(:last-child) {
-    margin: 0 0 3em;
-  }
-}
-
 .title {
   margin-bottom: 0;
 }

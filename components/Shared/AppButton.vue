@@ -5,7 +5,7 @@
     :to="to"
     :href="href"
     :class="cssClass"
-    @click="$emit('onclick')"
+    @click="$emit('click')"
   >
     <span class="title"><slot /></span>
   </component>
