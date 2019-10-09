@@ -21,13 +21,13 @@ export default {
     mouseUp() {
       const up = +new Date()
       if (up - this.down < 200) {
-        this.goToPost()
+        this.goToItem()
       }
     },
     mouseDown() {
       this.down = +new Date()
     },
-    goToPost() {
+    goToItem() {
       this.$router.push(this.url)
     }
   }
