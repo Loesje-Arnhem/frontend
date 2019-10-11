@@ -16,15 +16,15 @@ export default {
   props: {
     title: {
       type: String,
-      default: ''
+      default: null
     },
     to: {
       type: String,
-      default: ''
+      default: null
     },
     href: {
       type: String,
-      default: ''
+      default: null
     },
     type: {
       type: String,
@@ -49,10 +49,10 @@ export default {
       return 'button'
     },
     generatedType() {
-      if (this.type === 'submit' || this.type === 'button') {
+      if (this.tag === 'button') {
         return this.type
       }
-      return ''
+      return null
     }
   }
 }
