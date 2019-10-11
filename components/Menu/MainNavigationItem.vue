@@ -1,6 +1,5 @@
 <template>
   <li
-    class="menu-item"
     :class="{ 'has-popup': item.childItems.edges.length > 0 }"
     @mouseover="mouseover"
     @mouseout="mouseout"
@@ -26,7 +25,7 @@
       <span class="sr-only">Toon submenu voor {{ item.label }}</span>
     </button>
     <template v-if="item.childItems.edges.length">
-      <transition name="slide-in">
+      <animation-slide-in>
         <ul v-show="isOpen" class="submenu">
           <li
             v-for="subItem in item.childItems.edges"
@@ -36,7 +35,7 @@
             <menu-item :item="subItem.node" class="submenu-link" />
           </li>
         </ul>
-      </transition>
+      </animation-slide-in>
     </template>
   </li>
 </template>
@@ -44,11 +43,13 @@
 <script>
 import MenuItem from '@/components/Menu/MenuItem.vue'
 import IconChevronDown from '@/assets/icons/chevron-down.svg'
+import AnimationSlideIn from '~/components/Animations/SlideIn.vue'
 
 export default {
   components: {
     MenuItem,
-    IconChevronDown
+    IconChevronDown,
+    AnimationSlideIn
   },
   props: {
     item: {
@@ -175,16 +176,5 @@ export default {
   @media (--show-full-navigation) {
     display: block;
   }
-}
-
-.slide-in-enter-active,
-.slide-in-leave-active {
-  transition: all 0.2s;
-}
-
-.slide-in-enter,
-.slide-in-leave-to {
-  opacity: 0;
-  transform: translateY(-0.5em);
 }
 </style>

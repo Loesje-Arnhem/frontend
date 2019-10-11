@@ -65,7 +65,11 @@ export default {
     '@nuxtjs/apollo',
     '@nuxtjs/auth'
   ],
-
+  loaders: {
+    cssModules: {
+      localIdentName: '[local]_[hash:base64:5]'
+    }
+  },
   /*
    ** Build configuration
    */

@@ -1,7 +1,7 @@
 <template>
-  <div class="intro">
-    <div class="wrapper">
-      <div class="text">
+  <div :class="$style.intro">
+    <div :class="$style.wrapper">
+      <div :class="$style.text">
         <h1>Blijf plakken</h1>
         <p>
           Loesje-posters vind je overal. Op straat, bij de buren, op een kaartje
@@ -9,7 +9,7 @@
           of geven je inspiratie om de wereld een stukje mooier te maken.
         </p>
       </div>
-      <daily-poster class="daily-poster" />
+      <daily-poster :class="$style['daily-poster']" />
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .intro {
   @mixin center;
   padding-top: 2em;
