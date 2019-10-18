@@ -31,5 +31,32 @@
     "zipcode": "6828 AJ",
     "email": "winkeltje@loesje.nl",
     "kvk": "KVKnummer: 40122845"
+  },
+  "form": {
+    "fields": {
+      "name": "Name",
+      "email": "Email address",
+      "message": "Message"
+    },
+    "buttons": {
+      "send": "Send"
+    },
+    "forms": {
+      "contact": {
+        "success": "The form has been submitted. We will contact you as soon as possible.",
+        "title": "Contactform"
+      }
+    },
+    "errors": {
+      "general": {
+        "invalid": "Not all fields are filled correctly",
+        "required": "Please enter your {field}."
+      },
+      "fields": {
+        "email": {
+          "invalidEmail": "Please enter a valid email address"
+        }
+      }
+    }
   }
 }
