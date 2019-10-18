@@ -1,18 +1,21 @@
 <template>
   <li
-    :class="{ 'has-popup': item.childItems.edges.length > 0 }"
+    :class="[
+      $style['menu-item'],
+      { [$style['has-popup']]: item.childItems.edges.length > 0 }
+    ]"
     @mouseover="mouseover"
     @mouseout="mouseout"
   >
     <menu-item
       :item="item"
-      class="menu-link"
+      :class="$style['menu-link']"
       :aria-haspopup="item.childItems.edges.length > 0"
       :aria-expanded="isOpen"
     />
     <button
       v-if="item.childItems.edges.length"
-      class="btn-show-submenu"
+      :class="$style['btn-show-submenu']"
       :aria-expanded="isOpen"
       @click="toggleMenu"
     >
@@ -20,19 +23,19 @@
         aria-hidden="true"
         width="16"
         height="16"
-        class="icon"
+        :class="$style.icon"
       />
       <span class="sr-only">Toon submenu voor {{ item.label }}</span>
     </button>
     <template v-if="item.childItems.edges.length">
       <animation-slide-in>
-        <ul v-show="isOpen" class="submenu">
+        <ul v-show="isOpen" :class="$style.submenu">
           <li
             v-for="subItem in item.childItems.edges"
             :key="subItem.node.label"
-            class="submenu-item"
+            :class="$style['submenu-item']"
           >
-            <menu-item :item="subItem.node" class="submenu-link" />
+            <menu-item :item="subItem.node" :class="$style['submenu-link']" />
           </li>
         </ul>
       </animation-slide-in>
@@ -80,7 +83,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .submenu {
   @mixin list-reset;
   margin: 0 0 0.5em 1em;
