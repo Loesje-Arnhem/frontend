@@ -20,7 +20,6 @@
       </div>
     </div>
     <posters :posters="posters" />
-    <child-pages-list v-if="pages" :pages="pages" />
   </div>
 </template>
 
@@ -49,7 +48,8 @@ export default {
       },
       poster: {
         edges: []
-      }
+      },
+      page: null
     }
   },
   methods: {

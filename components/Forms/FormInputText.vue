@@ -9,6 +9,7 @@
       :id="id"
       v-bind="$attrs"
       :value="value"
+      type="text"
       :maxlength="maxlength"
       @input="$emit('input', $event.target.value)"
     />
@@ -21,6 +22,7 @@ export default {
   components: {
     FormField
   },
+  inheritAttrs: false,
   props: {
     title: {
       type: String,
@@ -29,6 +31,10 @@ export default {
     id: {
       type: String,
       required: true
+    },
+    type: {
+      type: String,
+      default: 'text'
     },
     value: {
       type: [String, Number],
@@ -40,8 +46,7 @@ export default {
     },
     errorMessage: {
       type: String,
-      required: false,
-      default: ''
+      default: null
     }
   }
 }

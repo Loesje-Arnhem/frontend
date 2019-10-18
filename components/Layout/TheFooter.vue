@@ -1,19 +1,19 @@
 <template>
-  <footer class="footer">
-    <div class="wrapper">
+  <footer :class="$style.footer">
+    <div :class="$style.wrapper">
       <quick-links />
 
       <company-address />
 
       <app-stores />
 
-      <div class="follow-us">
+      <div :class="$style['follow-us']">
         <h2>Volg me op</h2>
 
         <social-media-links title="Volg Loesje" :social-media="socialMedia" />
 
-        <div class="mood-wrapper">
-          <app-image src="/images/casette-player.png" class="mood" />
+        <div :class="$style['mood-wrapper']">
+          <app-image src="/images/casette-player.png" :class="$style.mood" />
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .footer {
   @mixin block;
   @mixin color-negative;

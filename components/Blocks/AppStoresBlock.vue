@@ -1,15 +1,15 @@
 <template>
-  <section class="app-stores" aria-labelledby="app-stores-title">
-    <div class="wrapper">
-      <div class="image-wrapper">
+  <section :class="$style['app-stores']" aria-labelledby="app-stores-title">
+    <div :class="$style.wrapper">
+      <div :class="$style['image-wrapper']">
         <app-image
           src="/images/illustrations/arcarde.png"
-          class="mood"
+          :class="$style.mood"
           width="500"
           height="800"
         />
       </div>
-      <div class="text">
+      <div :class="$style.text">
         <h1 id="app-stores-title">Loesje in de App Stores</h1>
         <p>
           De posters van Loesje ken je vooral van op prullenbakken in de stad of
@@ -35,7 +35,7 @@
           >.
         </p>
       </div>
-      <button class="btn-action" @click="action">
+      <button :class="$style['btn-action']" @click="action">
         <app-image
           src="/images/illustrations/arcarde-button.png"
           width="100"
@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .app-stores {
   @mixin block;
   @mixin clearfix;

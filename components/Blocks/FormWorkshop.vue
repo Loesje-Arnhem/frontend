@@ -5,30 +5,36 @@
         <form-input-text
           id="email"
           v-model="email"
-          title="test"
-          type="text"
+          title="E-mailadres"
+          type="email"
           name="email"
         />
+        <form-input-text id="name" v-model="name" title="Naam" name="name" />
         <form-input-text
-          id="name"
-          v-model="name"
-          title="test"
-          type="text"
-          name="name"
+          id="phoneNumber"
+          v-model="phone"
+          title="Telefoonnummer"
+          type="tel"
+          name="phoneNumber"
         />
         <form-input-text
-          id="email"
-          v-model="email"
-          title="test"
-          type="text"
-          name="email"
+          id="companyName"
+          v-model="companyName"
+          title="Bedrijfsnaam"
+          name="companyName"
         />
         <form-input-text
-          id="name"
-          v-model="name"
-          title="test"
-          type="text"
-          name="name"
+          id="totalAttendees"
+          v-model="totalAttendees"
+          title="Aantal mensen"
+          name="totalAttendees"
+        />
+        <form-input-text
+          id="date"
+          v-model="date"
+          title="Streefdatum"
+          type="date"
+          name="date"
         />
       </form-fieldset>
     </div>
@@ -47,7 +53,11 @@ export default {
   data() {
     return {
       email: '',
-      name: ''
+      name: '',
+      phoneNumber: '',
+      companyName: '',
+      totalAttendees: '',
+      date: ''
     }
   }
 }
@@ -56,9 +66,30 @@ export default {
 <style lang="postcss" scoped>
 .form {
   @mixin block;
+  & >>> .fields {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .wrapper {
   @mixin center;
+}
+
+.wrapper {
+  @mixin center;
+}
+
+.firstName,
+.lastName,
+.zipcode,
+.street,
+.city {
+  grid-column: span 2;
+}
+
+.email,
+.country,
+.companyName {
+  grid-column: span 4;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <ul v-if="hasPosts" class="list">
+  <ul v-if="hasPosts" :class="$style.list">
     <post-list-item
       v-for="post in posts.edges"
       :key="post.node.postId"
       :post="post"
-      class="list-item"
+      :class="$style['list-item']"
     />
   </ul>
 </template>
@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .list {
   @mixin list-reset;
   margin-bottom: 2em;

@@ -1,10 +1,10 @@
 <template>
-  <div ref="balloon" class="balloon" :class="{ animate: animate }">
+  <div ref="balloon" :class="[$style.balloon, { [$style.animate]: animate }]">
     <app-image
       width="159"
       height="243"
       src="/images/air-balloon.png"
-      class="balloon-image"
+      :class="$style['balloon-image']"
     />
   </div>
 </template>
@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .balloon {
   @media (--viewport-lg) {
     position: absolute;

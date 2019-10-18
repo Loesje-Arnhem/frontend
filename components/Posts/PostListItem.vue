@@ -1,13 +1,13 @@
 <template>
   <clickable-list-item class="list-item" :url="url">
-    <h2 class="title">
+    <h2 :class="$style.title">
       <!-- eslint-disable-next-line -->
       <router-link :to="url" v-html="post.node.title" />
     </h2>
-    <post-date :date="post.node.date" />
+    <post-date :date="post.node.date" :class="$style.date" />
     <!-- eslint-disable-next-line -->
     <div class="text" v-html="post.node.excerpt" />
-    <div class="link-wrapper">
+    <div :class="$style['link-wrapper']">
       <read-more-link class="read-more" />
     </div>
   </clickable-list-item>
@@ -38,12 +38,12 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .title {
   margin-bottom: 0;
 }
 
-time {
+.date {
   font-size: 0.9em;
   color: var(--color-gray-dark);
 }
