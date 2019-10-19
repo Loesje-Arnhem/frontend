@@ -4,7 +4,7 @@
     action
     method="post"
     :name="name"
-    @submit.prevent="$emit('submit')"
+    @submit="$emit('submit')"
   >
     <slot />
     <app-button type="submit">{{ buttonTitle }}</app-button>

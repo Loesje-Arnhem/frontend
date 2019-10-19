@@ -9,7 +9,7 @@
       class="form"
       name="workshop"
       button-title="Verzenden"
-      @submit="submitForm"
+      @submit.prevent="submitForm"
     >
       <form-fieldset title="Contact">
         <form-input-text
@@ -157,23 +157,5 @@ export default {
 
 .wrapper {
   @mixin center;
-}
-
-.wrapper {
-  @mixin center;
-}
-
-.firstName,
-.lastName,
-.zipcode,
-.street,
-.city {
-  grid-column: span 2;
-}
-
-.email,
-.country,
-.companyName {
-  grid-column: span 4;
 }
 </style>
