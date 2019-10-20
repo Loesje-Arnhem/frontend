@@ -1,9 +1,9 @@
 <template>
-  <ul class="list">
+  <ul :class="$style.list">
     <li v-if="socialMedia.facebook">
       <a
         :href="socialMedia.facebook"
-        class="link"
+        :class="$style.link"
         rel="noopener"
         target="_blank"
       >
@@ -16,7 +16,7 @@
     <li v-if="socialMedia.twitter">
       <a
         :href="socialMedia.twitter"
-        class="link"
+        :class="$style.link"
         rel="noopener"
         target="_blank"
       >
@@ -29,7 +29,7 @@
     <li v-if="socialMedia.linkedin">
       <a
         :href="socialMedia.linkedin"
-        class="link"
+        :class="$style.link"
         rel="noopener"
         target="_blank"
       >
@@ -42,7 +42,7 @@
     <li v-if="socialMedia.pinterest">
       <a
         :href="socialMedia.pinterest"
-        class="link"
+        :class="$style.link"
         rel="noopener"
         target="_blank"
       >
@@ -55,7 +55,7 @@
     <li v-if="socialMedia.instagram">
       <a
         :href="socialMedia.instagram"
-        class="link"
+        :class="$style.link"
         rel="noopener"
         target="_blank"
       >
@@ -96,7 +96,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .list {
   @mixin list-reset;
   display: grid;

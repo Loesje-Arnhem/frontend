@@ -1,6 +1,6 @@
 <template>
   <clickable-list-item :url="url">
-    <h2 class="title">
+    <h2 :class="$style.title">
       <nuxt-link :to="url">{{ page.node.title }}</nuxt-link>
     </h2>
     <!-- eslint-disable-next-line -->
@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .title {
   margin-bottom: 0;
 }

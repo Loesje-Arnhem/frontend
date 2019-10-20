@@ -9,7 +9,7 @@
       :id="id"
       v-bind="$attrs"
       :value="value"
-      type="text"
+      :type="type"
       :maxlength="maxlength"
       @input="$emit('input', $event.target.value)"
     />

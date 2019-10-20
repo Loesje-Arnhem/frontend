@@ -44,6 +44,7 @@
           id="totalAttendees"
           v-model="form.totalAttendees"
           title="Aantal mensen"
+          type="number"
           name="totalAttendees"
         />
         <form-input-text

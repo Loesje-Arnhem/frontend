@@ -1,12 +1,12 @@
 <template>
-  <section class="child-pages" aria-labelledby="child-pages-title">
+  <section :class="$style['child-pages']" aria-labelledby="child-pages-title">
     <h2 id="child-pages-title" class="sr-only">Overige pagina's</h2>
-    <ul v-if="pages.edges.length" class="list">
+    <ul v-if="pages.edges.length" :class="$style.list">
       <child-page
         v-for="childPage in pages.edges"
         :key="childPage.node.id"
         :page="childPage"
-        class="list-item"
+        :class="$style['list-item']"
       />
     </ul>
   </section>
@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style scoped lang="postcss">
+<style lang="postcss" module>
 .child-pages {
   @mixin block;
   @mixin notch;
