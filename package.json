@@ -20,7 +20,7 @@
     "@nuxtjs/apollo": "^4.0.0-rc17",
     "@nuxtjs/auth": "^4.8.4",
     "@nuxtjs/axios": "^5.8.0",
-    "@nuxtjs/pwa": "^3.0.0-beta.16",
+    "@nuxtjs/pwa": "^3.0.0-beta.19",
     "body-scroll-lock": "^2.6.4",
     "cross-env": "^6.0.3",
     "css-paint-polyfill": "^1.0.3",
