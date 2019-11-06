@@ -29,7 +29,7 @@
     "vue-i18n": "^8.15.0",
     "vue-youtube": "^1.4.0",
     "vuelidate": "^0.7.4",
-    "vuex-persist": "^2.1.0"
+    "vuex-persist": "^2.1.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
