@@ -33,6 +33,7 @@ export default {
     FormField,
     IconChevronDown
   },
+  inheritAttrs: false,
   props: {
     title: {
       type: String,
