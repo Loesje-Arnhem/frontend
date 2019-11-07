@@ -1,5 +1,5 @@
 <template>
-  <clickable-list-item class="list-item" :url="url">
+  <clickable-list-item :url="url" class="list-item">
     <h2 :class="$style.title">
       <!-- eslint-disable-next-line -->
       <router-link :to="url" v-html="post.node.title" />

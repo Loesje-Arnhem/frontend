@@ -3,8 +3,8 @@
     <div :class="$style.wrapper">
       <div :class="$style['image-wrapper']">
         <app-image
-          src="/images/illustrations/arcarde.png"
           :class="$style.mood"
+          src="/images/illustrations/arcarde.png"
           width="500"
           height="800"
         />

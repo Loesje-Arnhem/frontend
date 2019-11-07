@@ -1,9 +1,9 @@
 <template>
   <app-button
-    css-class="btn-outline"
     :class="{ 'is-active': isSelected(tag) }"
     :is-primary="false"
     @onclick="selectTag(tag)"
+    css-class="btn-outline"
   >
     {{ tag.name }}
   </app-button>

@@ -6,26 +6,26 @@
 
     <app-form
       v-else
+      @submit.prevent="submitForm"
       class="form"
       name="workshop"
       button-title="Verzenden"
-      @submit.prevent="submitForm"
     >
       <form-fieldset title="Contact">
         <form-input-text
           id="email"
           v-model="form.email"
+          :error-message="errorMessageEmail"
           title="E-mailadres"
           type="email"
           name="email"
-          :error-message="errorMessageEmail"
         />
         <form-input-text
           id="name"
           v-model="form.name"
+          :error-message="errorMessageName"
           title="Naam"
           name="name"
-          :error-message="errorMessageName"
         />
         <form-input-text
           id="phoneNumber"

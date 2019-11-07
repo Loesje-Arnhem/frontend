@@ -18,12 +18,6 @@ export default {
     ProductDetails,
     ProductList
   },
-
-  data() {
-    return {
-      title: 'Winkeltje'
-    }
-  },
   async asyncData({ app, params }) {
     const product = await app.apolloProvider.defaultClient.query({
       query: ProductQuery,
@@ -34,6 +28,12 @@ export default {
 
     return {
       product: product.data.product
+    }
+  },
+
+  data() {
+    return {
+      title: 'Winkeltje'
     }
   },
 

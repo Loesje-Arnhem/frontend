@@ -1,6 +1,6 @@
 <template>
   <div class="field">
-    <label class="label" :for="id">{{ title }}</label>
+    <label :for="id" class="label">{{ title }}</label>
     <slot />
     <span aria-live="assertive">{{ errorMessage }}</span>
   </div>

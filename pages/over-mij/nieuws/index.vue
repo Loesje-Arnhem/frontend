@@ -7,8 +7,8 @@
           <post-list-item
             v-for="post in posts.edges"
             :key="post.node.postId"
-            class="list-item"
             :post="post"
+            class="list-item"
           />
         </transition-group>
         <app-loader v-if="$apollo.loading" />

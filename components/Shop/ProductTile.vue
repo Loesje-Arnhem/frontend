@@ -1,5 +1,5 @@
 <template>
-  <clickable-list-item class="product-tile" :url="product.slug">
+  <clickable-list-item :url="product.slug" class="product-tile">
     <div class="image-wrapper">
       <app-image v-if="product.image" :src="product.image.medium" />
     </div>

@@ -2,9 +2,9 @@
   <div class="filter">
     <div class="buttons">
       <button
-        type="button"
         :class="{ 'is-active': showSources }"
         @click="toggleList('sources')"
+        type="button"
       >
         <span class="sr-only">Bekijk alle</span>
         <span>Bronnen</span>
@@ -16,9 +16,9 @@
         />
       </button>
       <button
-        type="button"
         :class="{ 'is-active': showSubjects }"
         @click="toggleList('subjects')"
+        type="button"
       >
         <span class="sr-only">Bekijk alle</span>
         <span>Onderwerpen</span>
@@ -34,9 +34,9 @@
     </div>
     <Transition name="slide" mode="out-in">
       <div
-        v-if="showSources"
         key="sources"
         ref="sources"
+        v-if="showSources"
         class="tags"
         tabindex="-1"
       >
@@ -44,9 +44,9 @@
       </div>
 
       <div
-        v-if="showSubjects"
         key="subjects"
         ref="subjects"
+        v-if="showSubjects"
         class="tags"
         tabindex="-1"
       >

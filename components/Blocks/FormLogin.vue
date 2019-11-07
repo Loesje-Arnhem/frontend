@@ -1,5 +1,5 @@
 <template>
-  <form class="form" @submit.prevent="login">
+  <form @submit.prevent="login" class="form">
     <div class="wrapper">
       <form-fieldset title="Factuurgegevens">
         <form-input-text

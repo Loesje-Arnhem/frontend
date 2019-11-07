@@ -20,10 +20,10 @@
       @click="toggleMenu"
     >
       <icon-chevron-down
+        :class="$style.icon"
         aria-hidden="true"
         width="16"
         height="16"
-        :class="$style.icon"
       />
       <span class="sr-only">Toon submenu voor {{ item.label }}</span>
     </button>

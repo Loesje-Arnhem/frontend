@@ -157,6 +157,7 @@ class RoughRectangle extends RoughDrawable {
   }
 }
 
+// eslint-disable-next-line no-undef
 registerPaint(
   'rough-boxes',
   class {

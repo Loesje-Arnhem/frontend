@@ -12,10 +12,10 @@
             {{ poster.date | formatDate }}
             <br />
             <button
-              type="button"
-              class="btn-favorites"
               :class="{ 'is-active': isInFavorites }"
               @click="toggleFavorites(poster)"
+              type="button"
+              class="btn-favorites"
             >
               <Icon icon="heart-o" class="icon-favorites" />
 
@@ -28,9 +28,9 @@
                   <ul class="tags">
                     <li v-for="item in posterSubjects" :key="item.id">
                       <button
+                        @click="addTag(item)"
                         type="button"
                         class="btn-tag"
-                        @click="addTag(item)"
                       >
                         {{ item.name }}
                       </button>
@@ -45,9 +45,9 @@
                   <ul class="tags">
                     <li v-for="item in posterSources" :key="item.id">
                       <button
+                        @click="addTag(item)"
                         type="button"
                         class="btn-tag"
-                        @click="addTag(item)"
                       >
                         {{ item.name }}
                       </button>

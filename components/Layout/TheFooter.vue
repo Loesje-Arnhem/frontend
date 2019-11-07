@@ -10,10 +10,10 @@
       <div :class="$style['follow-us']">
         <h2>Volg me op</h2>
 
-        <social-media-links title="Volg Loesje" :social-media="socialMedia" />
+        <social-media-links :social-media="socialMedia" title="Volg Loesje" />
 
         <div :class="$style['mood-wrapper']">
-          <app-image src="/images/casette-player.png" :class="$style.mood" />
+          <app-image :class="$style.mood" src="/images/casette-player.png" />
         </div>
       </div>
     </div>

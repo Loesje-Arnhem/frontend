@@ -4,7 +4,7 @@
       {{ $t('mainNavigation') }}
     </h2>
 
-    <ul v-if="menu.edges.length" ref="menu" class="menu">
+    <ul ref="menu" v-if="menu.edges.length" class="menu">
       <main-navigation-item
         v-for="item in menu.edges[0].node.menuItems.edges"
         :key="item.node.label"
@@ -13,9 +13,9 @@
     </ul>
 
     <div
-      class="arrow"
       :class="{ active: mounted }"
       :style="{ transform: arrowPosition, width: arrowWidth }"
+      class="arrow"
     />
   </nav>
 </template>

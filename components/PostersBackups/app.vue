@@ -9,35 +9,35 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
   data() {
     return {
-      transitionName: 'slide-left',
-    };
+      transitionName: 'slide-left'
+    }
   },
   watch: {
     $route(to) {
       if (to.name === 'Poster') {
-        this.transitionName = 'slide-top';
+        this.transitionName = 'slide-top'
       } else if (to.name === 'Favorites') {
-        this.transitionName = 'slide-right';
+        this.transitionName = 'slide-right'
       } else {
-        this.transitionName = 'slide-left';
+        this.transitionName = 'slide-left'
       }
-    },
+    }
   },
   created() {
-    this.populateTags();
+    this.populateTags()
   },
 
   methods: {
     ...mapActions({
-      populateTags: 'tags/populateTags',
-    }),
-  },
-};
+      populateTags: 'tags/populateTags'
+    })
+  }
+}
 </script>
 
 <style scoped>

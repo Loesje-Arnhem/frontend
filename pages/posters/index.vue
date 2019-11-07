@@ -32,6 +32,16 @@ export default {
     Tags,
     List
   },
+
+  async asyncData({ params }) {
+    const sourcesApi = await axios.get('wp/v2/source')
+    const subjectsApi = await axios.get('wp/v2/subject')
+    return {
+      sources: sourcesApi.data,
+      subjects: subjectsApi.data
+    }
+  },
+
   data() {
     return {
       title: 'Posters',
@@ -49,15 +59,6 @@ export default {
     },
     selectedSubjectsIds() {
       return this.selectedSubjects.map(item => item.id)
-    }
-  },
-
-  async asyncData({ params }) {
-    const sourcesApi = await axios.get('wp/v2/source')
-    const subjectsApi = await axios.get('wp/v2/subject')
-    return {
-      sources: sourcesApi.data,
-      subjects: subjectsApi.data
     }
   },
 

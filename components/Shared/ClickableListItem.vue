@@ -1,5 +1,5 @@
 <template>
-  <li class="list-item" @mousedown="mouseDown" @mouseup="mouseUp">
+  <li @mousedown="mouseDown" @mouseup="mouseUp" class="list-item">
     <slot />
   </li>
 </template>
