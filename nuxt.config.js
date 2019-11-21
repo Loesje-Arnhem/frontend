@@ -39,14 +39,10 @@ export default {
    ** Global CSS
    */
   css: ['~/styles/base.css'],
-  router: {
-    middleware: ['i18n']
-  },
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/i18n.js',
     '~/plugins/vue-youtube',
     '~/plugins/axios',
     '~/plugins/vuelidate',
@@ -63,8 +59,22 @@ export default {
     'nuxt-svg-loader',
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    'nuxt-i18n'
   ],
+  i18n: {
+    defaultLocale: 'nl',
+    locales: [
+      {
+        name: 'Nederlands',
+        code: 'nl',
+        iso: 'nl-NL',
+        file: 'nl.json'
+      }
+    ],
+    lazy: true,
+    langDir: 'locales/'
+  },
   loaders: {
     cssModules: {
       localIdentName: '[local]_[hash:base64:5]'
