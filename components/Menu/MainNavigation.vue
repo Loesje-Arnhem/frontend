@@ -4,7 +4,7 @@
       {{ $t('mainNavigation') }}
     </h2>
 
-    <ul ref="menu" v-if="menu.edges.length" class="menu">
+    <ul v-if="menu.edges.length" ref="menu" class="menu">
       <main-navigation-item
         v-for="item in menu.edges[0].node.menuItems.edges"
         :key="item.node.label"

@@ -1,19 +1,19 @@
 <template>
-  <form @keyup.esc="close" @submit.prevent="onSubmit" method="get">
+  <form method="get" @keyup.esc="close" @submit.prevent="onSubmit">
     <legend class="sr-only">Zoeken naar posters</legend>
     <label for="search" class="sr-only">Zoek op tekst</label>
     <div class="input-wrapper">
       <input
         id="search"
         v-model.trim="$v.search.$model"
-        @input="onChange"
-        @keyup.down="onArrowDown"
-        @keyup.up="onArrowUp"
         type="search"
         name="search"
         placeholder="Zoek op tekst, onderwerp of bron"
         autofocus
         autocomplete="off"
+        @input="onChange"
+        @keyup.down="onArrowDown"
+        @keyup.up="onArrowUp"
       />
 
       <button type="submit" class="btn-submit">
@@ -27,9 +27,9 @@
         <li v-for="(result, index) in results" :key="index">
           <button
             :class="{ 'is-active': index === arrowCounter }"
-            @click="goToPoster(result)"
             type="button"
             class="btn-result"
+            @click="goToPoster(result)"
           >
             <!-- eslint-disable-next-line -->
             <span v-html="result.title" />

@@ -1,10 +1,10 @@
 <template>
   <form
     :name="name"
-    @submit="$emit('submit')"
     data-netlify="true"
     action
     method="post"
+    @submit="$emit('submit')"
   >
     <slot />
     <app-button type="submit">{{ buttonTitle }}</app-button>

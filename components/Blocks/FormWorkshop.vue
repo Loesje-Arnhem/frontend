@@ -6,10 +6,10 @@
 
     <app-form
       v-else
-      @submit.prevent="submitForm"
       class="form"
       name="workshop"
       button-title="Verzenden"
+      @submit.prevent="submitForm"
     >
       <form-fieldset title="Contact">
         <form-input-text

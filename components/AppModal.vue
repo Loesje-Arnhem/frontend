@@ -3,14 +3,14 @@
     <div
       ref="modal"
       :aria-label="title"
-      @click="closeByBackgroundClick"
       role="dialog"
       class="modal"
+      @click="closeByBackgroundClick"
     >
       <article ref="wrapper" tabindex="0" class="wrapper" role="document">
         <header>
           <h2 id="modal" class="title">{{ title }}</h2>
-          <button @click="close" type="button" class="close">
+          <button type="button" class="close" @click="close">
             <icon-close aria-hidden="true" width="32" height="32" />
             <span class="sr-only">{{ $t('close') }}</span>
           </button>

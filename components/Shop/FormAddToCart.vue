@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addToCart" class="form">
+  <form class="form" @submit.prevent="addToCart">
     <form-fieldset title="In winkelmandje">
       <form-input-text
         id="quantity"

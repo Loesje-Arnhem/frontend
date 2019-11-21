@@ -2,8 +2,8 @@
   <app-button
     :class="{ 'is-active': isSelected(tag) }"
     :is-primary="false"
-    @onclick="selectTag(tag)"
     css-class="btn-outline"
+    @onclick="selectTag(tag)"
   >
     {{ tag.name }}
   </app-button>
