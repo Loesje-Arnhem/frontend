@@ -28,7 +28,7 @@
     "nuxt-i18n": "^6.4.0",
     "vue-youtube": "^1.4.0",
     "vuelidate": "^0.7.4",
-    "vuex-persist": "^2.1.1"
+    "vuex-persist": "^2.2.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
