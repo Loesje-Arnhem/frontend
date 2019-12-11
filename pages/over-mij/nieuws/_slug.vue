@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import LatestPosts from '@/components/Blocks/LatestPosts.vue'
+import LatestPosts from '@/components/Posts/LatestPosts.vue'
 import PostDate from '@/components/PostDate.vue'
 import PostQuery from '~/graphql/Post.gql'
 import PostsQuery from '~/graphql/Posts.gql'

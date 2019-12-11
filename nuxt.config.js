@@ -62,18 +62,44 @@ export default {
     '@nuxtjs/auth',
     'nuxt-i18n'
   ],
+  manifest: {
+    name: 'Loesje',
+    background_color: '#000',
+    theme_color: '#000',
+    short_name: 'Loesje',
+  },
   i18n: {
     defaultLocale: 'nl',
+    lazy: true,
+    langDir: 'locales/',
     locales: [
       {
         name: 'Nederlands',
         code: 'nl',
         iso: 'nl-NL',
-        file: 'nl.json'
-      }
+        file: 'nl.json',
+      },
     ],
-    lazy: true,
-    langDir: 'locales/'
+    vueI18nLoader: true,
+    vueI18n: {
+      dateTimeFormats: {
+        nl: {
+          short: {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          },
+          long: {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric',
+          },
+        },
+      },
+    },
   },
   loaders: {
     cssModules: {

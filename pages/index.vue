@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1 class="sr-only">Home</h1>
-    <latest-posts :posts="posts" :show-button="true" />
-    <posters :posters="posters" />
+    <latest-posts />
+    <related-posters />
     <AppStoresBlock />
     <BlockInstagram />
     <groups />
@@ -10,13 +10,11 @@
 </template>
 
 <script>
-import LatestPosts from '@/components/Blocks/LatestPosts.vue'
+import LatestPosts from '@/components/Posts/LatestPosts.vue'
 import Groups from '@/components/Blocks/Groups.vue'
 import BlockInstagram from '@/components/Blocks/BlockInstagram.vue'
 import AppStoresBlock from '@/components/Blocks/AppStoresBlock.vue'
-import Posters from '@/components/Blocks/Posters.vue'
-import PostersQuery from '~/graphql/Posters.gql'
-import PostsQuery from '~/graphql/Posts.gql'
+import RelatedPosters from '@/components/Posters/RelatedPosters.vue'
 
 export default {
   components: {
@@ -24,27 +22,7 @@ export default {
     Groups,
     BlockInstagram,
     AppStoresBlock,
-    Posters
-  },
-
-  async asyncData({ app, params }) {
-    const posters = await app.apolloProvider.defaultClient.query({
-      query: PostersQuery,
-      variables: {
-        first: 5
-      }
-    })
-    const posts = await app.apolloProvider.defaultClient.query({
-      query: PostsQuery,
-      variables: {
-        first: 3
-      }
-    })
-
-    return {
-      posters: posters.data.posters,
-      posts: posts.data.posts
-    }
+    RelatedPosters
   },
 
   head() {
@@ -54,9 +32,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="postcss">
-.page {
-  @mixin center;
-}
-</style>

@@ -14,7 +14,7 @@
 import PageQuery from '~/graphql/Page.gql'
 import ChildPagesQuery from '~/graphql/ChildPages.gql'
 import ChildPagesList from '@/components/Pages/ChildPagesList.vue'
-import Posters from '@/components/Blocks/Posters.vue'
+import Posters from '@/components/Posters/RelatedPosters.vue'
 import PostersQuery from '~/graphql/Posters.gql'
 
 export default {

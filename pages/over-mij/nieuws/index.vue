@@ -30,7 +30,7 @@ import AppButton from '@/components/Shared/AppButton.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
 
 import PageQuery from '~/graphql/Page.gql'
-import Posters from '@/components/Blocks/Posters.vue'
+import Posters from '@/components/Posters/RelatedPosters.vue'
 import PostersQuery from '~/graphql/Posters.gql'
 
 export default {
