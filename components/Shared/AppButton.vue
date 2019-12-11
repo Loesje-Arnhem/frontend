@@ -4,7 +4,6 @@
     :is="tag"
     :type="generatedType"
     :to="to"
-    :href="href"
     :class="cssClass"
     @click="$emit('click')"
   >

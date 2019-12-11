@@ -18,7 +18,6 @@ export default {
   },
   data() {
     return {
-      title: 'Nieuws',
       page: {}
     }
   },

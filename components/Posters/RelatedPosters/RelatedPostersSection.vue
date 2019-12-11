@@ -1,9 +1,14 @@
 <template>
-  <section :class="$style.posters" aria-labelledby="posters-title">
+  <section
+    :class="$style['related-posters']"
+    aria-labelledby="related-posters-title"
+  >
     <center-wrapper :class="$style.wrapper" size="full">
       <app-loader v-if="isLoading" />
       <template v-if="hasData">
-        <h1 id="posters-title" :class="$style.title">{{ $t('title') }}</h1>
+        <h1 id="related-posters-title" :class="$style.title">
+          {{ $t('title') }}
+        </h1>
         <related-posters-list :posters="data.posters.edges" />
         <div :class="$style['btn-wrapper']">
           <app-button to="/posters">{{ $t('btnMore') }}</app-button>
@@ -45,7 +50,7 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.posters {
+.related-posters {
   padding: 3em 0;
   background: url('/images/backgrounds/wall.jpg');
 }

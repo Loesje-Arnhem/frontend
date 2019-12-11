@@ -1,38 +1,35 @@
 <template>
   <apollo-query
-    :query="require('~/graphql/Posts.gql')"
-    :variables="{ first: 12, notIn }"
+    :query="require('~/graphql/Posters.gql')"
+    :variables="{ first: 20 }"
   >
     <template slot-scope="{ result: { data }, isLoading, query }">
-      <posts-overview-section
+      <posters-overview-section
         :data="data"
         :has-more="hasMore"
-        :is-related="notIn > 0"
         :is-loading="isLoading > 0"
-        @loadMore="loadMore(query, data.posts.pageInfo.endCursor)"
+        @loadMore="loadMore(query, data.posters.pageInfo.endCursor)"
       />
     </template>
   </apollo-query>
 </template>
 
 <script>
-import PostsOverviewSection from '@/components/Posts/PostsOverview/PostsOverviewSection.vue'
+import PostersOverviewSection from '@/components/Posters/PostersOverview/PostersOverviewSection.vue'
 
 export default {
   components: {
-    PostsOverviewSection
+    PostersOverviewSection
   },
-
-  props: {
-    notIn: {
-      type: Number,
-      default: 0
-    }
-  },
-
   data() {
     return {
       hasMore: true
+    }
+  },
+
+  computed: {
+    showMoreButton() {
+      return this.hasPaging && this.hasMore
     }
   },
 
@@ -45,18 +42,18 @@ export default {
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
           window.console.log(query)
-          const newPosts = fetchMoreResult.posts
+          const newPosters = fetchMoreResult.posters
 
-          if (!fetchMoreResult.posts.pageInfo.hasNextPage) {
+          if (!fetchMoreResult.posters.pageInfo.hasNextPage) {
             this.hasMore = false
           }
 
           return {
-            posts: {
-              __typename: previousResult.posts.__typename,
-              pageInfo: newPosts.pageInfo,
+            posters: {
+              __typename: previousResult.posters.__typename,
+              pageInfo: newPosters.pageInfo,
               // Merging the tag list
-              edges: [...previousResult.posts.edges, ...newPosts.edges]
+              edges: [...previousResult.posters.edges, ...newPosters.edges]
             }
           }
         }

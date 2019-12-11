@@ -1,16 +1,18 @@
 <template>
-  <div class="page">
-    <h1>{{ title }}</h1>
-    <navigation />
-    <filters :sources="sources" :subjects="subjects" />
-
-    <auto-complete @onSearch="searchPosters" />
-    <tags v-if="selectedTags.length" :list="selectedTags" />
-    <List
-      :search="search"
-      :subjects="selectedSubjectsIds"
-      :sources="selectedSourcesIds"
-    />
+  <div>
+    <posters-overview-container />
+    <div class="page">
+      <h1>{{ title }}</h1>
+      <navigation />
+      <filters :sources="sources" :subjects="subjects" />
+      <auto-complete @onSearch="searchPosters" />
+      <tags v-if="selectedTags.length" :list="selectedTags" />
+      <List
+        :search="search"
+        :subjects="selectedSubjectsIds"
+        :sources="selectedSourcesIds"
+      />
+    </div>
   </div>
 </template>
 
@@ -18,6 +20,7 @@
 import { mapGetters } from 'vuex'
 import axios from '~/plugins/axios'
 
+import PostersOverviewContainer from '@/components/Posters/PostersOverview/PostersOverviewContainer.vue'
 import Filters from '@/components/Search/Filters.vue'
 import AutoComplete from '@/components/Search/AutoComplete.vue'
 import Navigation from '@/components/Shared/Navigation.vue'
@@ -26,6 +29,7 @@ import List from '@/components/Shared/List.vue'
 
 export default {
   components: {
+    PostersOverviewContainer,
     AutoComplete,
     Navigation,
     Filters,

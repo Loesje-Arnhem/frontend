@@ -4,13 +4,11 @@
       <div :class="$style.wrapper">
         <h1 id="latest-posts-title">{{ $t('title') }}</h1>
         <app-loader v-if="isLoading" />
-        <latest-posts-list
-          v-if="hasData"
-          :posts="data.posts.edges"
-          :class="$style.list"
-        />
+        <template v-if="hasData">
+          <latest-posts-list :posts="data.posts.edges" :class="$style.list" />
+          <balloon />
+        </template>
         <app-button to="/over-mij/nieuws/">{{ $t('btnMore') }}</app-button>
-        <balloon />
       </div>
     </center-wrapper>
   </section>
@@ -18,7 +16,7 @@
 
 <script>
 import AppButton from '@/components/Shared/AppButton.vue'
-import Balloon from '@/components/Illustrations/Balloon.vue'
+import Balloon from '@/components/Posts/LatestPosts/LatestPostBalloon.vue'
 import LatestPostsList from '@/components/Posts/LatestPosts/LatestPostsList.vue'
 import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
