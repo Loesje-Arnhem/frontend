@@ -4,7 +4,7 @@
     aria-labelledby="posts-overview-title"
   >
     <center-wrapper>
-      <h1 id="posts-overview-title">{{ $t('title') }}</h1>
+      <h1 id="posts-overview-title">{{ title }}</h1>
       <posts-overview-list v-if="data" :posts="data.posts.edges" />
       <app-loader v-if="isLoading" />
       <div v-if="showBtnMore" :class="$style['button-wrapper']">
@@ -41,11 +41,21 @@ export default {
     isLoading: {
       type: Boolean,
       default: false
+    },
+    isRelated: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     showBtnMore() {
       return !this.isLoading && this.hasMore
+    },
+    title() {
+      if (this.isRelated) {
+        return this.$t('relatedTitle')
+      }
+      return this.$t('title')
     }
   }
 }
@@ -66,6 +76,7 @@ export default {
 {
   "nl": {
     "title": "Nieuws",
+    "relatedTitle": "Overig nieuws",
     "btnMore": "Toon meer nieuwsartikelen"
   }
 }

@@ -7,6 +7,7 @@
       <posts-overview-section
         :has-more="hasMore"
         :data="data"
+        :is-related="notIn > 0"
         :is-loading="isLoading > 0"
         @loadMore="loadMore(query, data.posts.pageInfo.endCursor)"
       />
