@@ -46,7 +46,7 @@
 <script>
 import MenuItem from '@/components/Menu/MenuItem.vue'
 import IconChevronDown from '@/assets/icons/chevron-down.svg'
-import AnimationSlideIn from '~/components/Animations/SlideIn.vue'
+import AnimationSlideIn from '~/components/Animations/SlideInAnimation.vue'
 
 export default {
   components: {

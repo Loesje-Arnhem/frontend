@@ -1,6 +1,10 @@
 <template>
   <section :class="$style.posters" aria-labelledby="posters-overview-title">
     <center-wrapper :class="$style.wrapper">
+      <input v-model="search" type="search" />
+      <app-button @click="$emit('search', search)">
+        {{ $t('btnMore') }}
+      </app-button>
       <h1 id="posters-overview-title" :class="$style.title">
         {{ $t('title') }}
       </h1>
@@ -44,6 +48,11 @@ export default {
     isRelated: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      search: ''
     }
   },
   computed: {

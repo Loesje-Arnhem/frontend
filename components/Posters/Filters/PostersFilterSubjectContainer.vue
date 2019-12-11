@@ -1,0 +1,20 @@
+<template>
+  <apollo-query :query="require('~/graphql/Subjects.gql')">
+    <template slot-scope="{ result: { data }, isLoading }">
+      <app-loader v-if="isLoading" />
+      <poster-filter-tags v-if="data" :list="data.subjects.edges" />
+    </template>
+  </apollo-query>
+</template>
+
+<script>
+import AppLoader from '@/components/Shared/AppLoader.vue'
+import PosterFilterTags from '@/components/Posters/Filters/PosterFilterTags.vue'
+
+export default {
+  components: {
+    AppLoader,
+    PosterFilterTags
+  }
+}
+</script>

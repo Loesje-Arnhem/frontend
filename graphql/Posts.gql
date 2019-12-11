@@ -1,5 +1,5 @@
-query GET_POSTS($first: Int, $after: String, $notIn: [ID]) {
-  posts(first: $first, after: $after, where: { notIn: $notIn }) {
+query GET_POSTS($first: Int, $after: String, $where: RootQueryToPostConnectionWhereArgs) {
+  posts(first: $first, after: $after, where: $where) {
     pageInfo {
       hasNextPage
       endCursor

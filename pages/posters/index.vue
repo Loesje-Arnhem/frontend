@@ -1,7 +1,9 @@
 <template>
   <div>
+    <poster-filters />
+    <posters-auto-complete-container />
     <posters-overview-container />
-    <div class="page">
+    <!-- <div class="page">
       <h1>{{ title }}</h1>
       <navigation />
       <filters :sources="sources" :subjects="subjects" />
@@ -12,38 +14,31 @@
         :subjects="selectedSubjectsIds"
         :sources="selectedSourcesIds"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import axios from '~/plugins/axios'
-
 import PostersOverviewContainer from '@/components/Posters/PostersOverview/PostersOverviewContainer.vue'
-import Filters from '@/components/Search/Filters.vue'
-import AutoComplete from '@/components/Search/AutoComplete.vue'
-import Navigation from '@/components/Shared/Navigation.vue'
-import Tags from '@/components/Search/Tags.vue'
-import List from '@/components/Shared/List.vue'
+import PostersAutoCompleteContainer from '@/components/Posters/AutoComplete/AutoCompleteContainer.vue'
+import PosterFilters from '@/components/Posters/Filters/PosterFilters.vue'
+
+// import Filters from '@/components/Search/Filters.vue'
+// import AutoComplete from '@/components/Search/AutoComplete.vue'
+// import Navigation from '@/components/Shared/Navigation.vue'
+// import Tags from '@/components/Search/Tags.vue'
+// import List from '@/components/Shared/List.vue'
 
 export default {
   components: {
     PostersOverviewContainer,
-    AutoComplete,
-    Navigation,
-    Filters,
-    Tags,
-    List
-  },
-
-  async asyncData({ params }) {
-    const sourcesApi = await axios.get('wp/v2/source')
-    const subjectsApi = await axios.get('wp/v2/subject')
-    return {
-      sources: sourcesApi.data,
-      subjects: subjectsApi.data
-    }
+    PostersAutoCompleteContainer,
+    PosterFilters
+    // AutoComplete,
+    // Navigation,
+    // Filters,
+    // Tags,
+    // List
   },
 
   data() {
@@ -52,26 +47,7 @@ export default {
       search: ''
     }
   },
-  computed: {
-    ...mapGetters({
-      selectedSubjects: 'tags/selectedSubjects',
-      selectedSources: 'tags/selectedSources',
-      selectedTags: 'tags/selectedTags'
-    }),
-    selectedSourcesIds() {
-      return this.selectedSources.map(item => item.id)
-    },
-    selectedSubjectsIds() {
-      return this.selectedSubjects.map(item => item.id)
-    }
-  },
 
-  methods: {
-    searchPosters(value) {
-      window.console.log(value)
-      this.search = value
-    }
-  },
   head() {
     return {
       title: this.title

@@ -1,8 +1,19 @@
 <template>
-  <transition name="slide-in">
+  <transition name="slide-in" :mode="mode">
     <slot />
   </transition>
 </template>
+
+<script>
+export default {
+  props: {
+    mode: {
+      type: String,
+      default: null
+    }
+  }
+}
+</script>
 
 <style lang="postcss" scoped>
 .slide-in-enter-active,

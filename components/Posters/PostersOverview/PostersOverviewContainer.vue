@@ -8,6 +8,7 @@
         :data="data"
         :has-more="hasMore"
         :is-loading="isLoading > 0"
+        @search="search"
         @loadMore="loadMore(query, data.posters.pageInfo.endCursor)"
       />
     </template>
@@ -23,7 +24,8 @@ export default {
   },
   data() {
     return {
-      hasMore: true
+      hasMore: true,
+      searchTerm: 'voetbal'
     }
   },
 
@@ -34,6 +36,10 @@ export default {
   },
 
   methods: {
+    search(term) {
+      window.console.log(term)
+      this.searchTerm = term
+    },
     async loadMore(query, endCursor) {
       await query.fetchMore({
         variables: {

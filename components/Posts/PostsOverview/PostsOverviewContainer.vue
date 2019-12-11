@@ -1,7 +1,7 @@
 <template>
   <apollo-query
     :query="require('~/graphql/Posts.gql')"
-    :variables="{ first: 12, notIn }"
+    :variables="{ first: 12, where: { notIn } }"
   >
     <template slot-scope="{ result: { data }, isLoading, query }">
       <posts-overview-section
