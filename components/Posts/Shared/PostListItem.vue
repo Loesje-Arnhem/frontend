@@ -1,20 +1,20 @@
 <template>
-  <clickable-list-item :url="url" class="list-item">
+  <clickable-list-item :url="url" :class="$style['list-item']">
     <h2 :class="$style.title">
       <!-- eslint-disable-next-line -->
       <router-link :to="url" v-html="post.node.title" />
     </h2>
-    <post-date :date="post.node.date" :class="$style.date" />
+    <post-date :date="post.node.date" />
     <!-- eslint-disable-next-line -->
     <div class="text" v-html="post.node.excerpt" />
-    <div :class="$style['link-wrapper']">
+    <div :class="$style['link-wrapper']" aria-hidden="true">
       <read-more-link class="read-more" />
     </div>
   </clickable-list-item>
 </template>
 
 <script>
-import PostDate from '@/components/PostDate.vue'
+import PostDate from '@/components/Posts/Shared/PostDate.vue'
 import ReadMoreLink from '@/components/Shared/ReadMoreLink.vue'
 import ClickableListItem from '@/components/Shared/ClickableListItem.vue'
 
@@ -39,13 +39,13 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.title {
-  margin-bottom: 0;
+.list-item {
+  display: flex;
+  flex-direction: column;
 }
 
-.date {
-  font-size: 0.9em;
-  color: var(--color-gray-dark);
+.title {
+  margin-bottom: 0;
 }
 
 .link-wrapper {

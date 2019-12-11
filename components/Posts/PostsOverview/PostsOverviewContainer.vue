@@ -1,30 +1,37 @@
 <template>
   <apollo-query
-    :query="require('~/graphql/Posters.gql')"
-    :variables="{ first: 5 }"
+    :query="require('~/graphql/Posts.gql')"
+    :variables="{ first: 12, notIn }"
   >
-    <template slot-scope="{ result: { data }, isLoading }">
-      <related-posters-section :data="data" :is-loading="isLoading > 0" />
+    <template slot-scope="{ result: { data }, isLoading, query }">
+      <posts-overview-section
+        :has-more="hasMore"
+        :data="data"
+        :is-loading="isLoading > 0"
+        @loadMore="loadMore(query, data.posts.pageInfo.endCursor)"
+      />
     </template>
   </apollo-query>
 </template>
 
 <script>
-import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
+import PostsOverviewSection from '@/components/Posts/PostsOverview/PostsOverviewSection.vue'
 
 export default {
   components: {
-    RelatedPostersSection
+    PostsOverviewSection
   },
-  data() {
-    return {
-      hasMore: true
+
+  props: {
+    notIn: {
+      type: Number,
+      default: 0
     }
   },
 
-  computed: {
-    showMoreButton() {
-      return this.hasPaging && this.hasMore
+  data() {
+    return {
+      hasMore: true
     }
   },
 

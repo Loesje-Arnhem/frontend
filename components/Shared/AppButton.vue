@@ -15,17 +15,16 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      default: null
-    },
     to: {
       type: String,
       default: null
     },
-    href: {
+    buttonTag: {
       type: String,
-      default: null
+      default: 'button',
+      validator(value) {
+        return ['nuxt-link', 'a', 'button'].includes(value)
+      }
     },
     type: {
       type: String,
@@ -44,10 +43,7 @@ export default {
       if (this.to) {
         return 'nuxt-link'
       }
-      if (this.href) {
-        return 'a'
-      }
-      return 'button'
+      return this.buttonTag
     },
     generatedType() {
       if (this.tag === 'button') {

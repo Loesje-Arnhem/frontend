@@ -36,4 +36,8 @@ export default {
 .center-wrapper-lg {
   max-width: var(--container-width-lg);
 }
+
+.center-wrapper-md {
+  max-width: var(--container-width-md);
+}
 </style>

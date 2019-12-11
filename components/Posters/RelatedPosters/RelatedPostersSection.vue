@@ -1,15 +1,14 @@
 <template>
-  <section
-    v-if="posters.edges.length"
-    :class="$style.posters"
-    aria-labelledby="posters-title"
-  >
+  <section :class="$style.posters" aria-labelledby="posters-title">
     <center-wrapper :class="$style.wrapper" size="full">
-      <h1 id="posters-title" :class="$style.title">{{ $t('title') }}</h1>
-      <related-posters-list :posters="posters.edges" />
-      <div :class="$style['btn-wrapper']">
-        <app-button to="/posters">{{ $t('btnMore') }}</app-button>
-      </div>
+      <app-loader v-if="isLoading" />
+      <template v-if="hasData">
+        <h1 id="posters-title" :class="$style.title">{{ $t('title') }}</h1>
+        <related-posters-list :posters="data.posters.edges" />
+        <div :class="$style['btn-wrapper']">
+          <app-button to="/posters">{{ $t('btnMore') }}</app-button>
+        </div>
+      </template>
     </center-wrapper>
   </section>
 </template>
@@ -18,17 +17,28 @@
 import RelatedPostersList from '@/components/Posters/RelatedPosters/RelatedPostersList.vue'
 import AppButton from '@/components/Shared/AppButton.vue'
 import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
+import AppLoader from '@/components/Shared/AppLoader.vue'
 
 export default {
   components: {
     RelatedPostersList,
     AppButton,
-    CenterWrapper
+    CenterWrapper,
+    AppLoader
   },
   props: {
-    posters: {
+    data: {
       type: Object,
       default: () => {}
+    },
+    isLoading: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    hasData() {
+      return !this.isLoading && this.data
     }
   }
 }
@@ -45,7 +55,6 @@ export default {
 }
 
 .btn-wrapper {
-  @mixin center;
   text-align: right;
 }
 </style>

@@ -1,25 +1,19 @@
 <template>
-  <div>
-    <article class="post">
-      <h1>{{ post.title }}</h1>
-      <post-date :date="post.date" class="date" />
-      <!-- eslint-disable-next-line -->
-      <div class="text" v-html="post.content" />
-    </article>
-    <latest-posts :posts="posts" :show-button="true" />
+  <div v-if="post.title">
+    <post-details :post="post" />
+    <posts-overview-container :not-in="post.postId" />
   </div>
 </template>
 
 <script>
-import LatestPosts from '@/components/Posts/LatestPosts.vue'
-import PostDate from '@/components/PostDate.vue'
+import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
+import PostDetails from '@/components/Posts/PostDetails/PostDetails.vue'
 import PostQuery from '~/graphql/Post.gql'
-import PostsQuery from '~/graphql/Posts.gql'
 
 export default {
   components: {
-    PostDate,
-    LatestPosts
+    PostDetails,
+    PostsOverviewContainer
   },
 
   async asyncData({ app, params }) {
@@ -29,20 +23,17 @@ export default {
         uri: params.slug
       }
     })
-
-    const posts = await app.apolloProvider.defaultClient.query({
-      query: PostsQuery,
-      variables: {
-        first: 5,
-        notIn: post.data.post.postId
-      }
-    })
-
     return {
-      post: post.data.post,
-      posts: posts.data.posts
+      post: post.data.post
     }
   },
+
+  data() {
+    return {
+      post: {}
+    }
+  },
+
   head() {
     return {
       title: this.post.title
@@ -50,20 +41,3 @@ export default {
   }
 }
 </script>
-
-<style lang="postcss" scoped>
-.date {
-  font-size: 0.9em;
-  color: var(--color-gray);
-  display: block;
-  order: -1;
-}
-
-.post {
-  @mixin block;
-  @mixin center var(--container-width-md);
-
-  display: flex;
-  flex-direction: column;
-}
-</style>

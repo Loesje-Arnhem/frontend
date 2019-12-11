@@ -1,10 +1,5 @@
 query GET_PAGE_BY_URI($uri: String) {
   post: postBy(uri: $uri) {
-    featuredImage {
-      altText
-      thumbnail: sourceUrl(size: THUMBNAIL)
-      medium: sourceUrl(size: MEDIUM)
-    }
     postId
     content
     title

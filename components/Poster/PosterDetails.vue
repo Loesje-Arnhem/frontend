@@ -10,7 +10,7 @@
       />
     </article>
     <div class="meta-data">
-      <post-date :date="poster.date" />
+      <app-date :date="poster.date" />
       <dl class="tags">
         <template v-if="poster.subjects.edges.length">
           <dt>Onderwerpen:</dt>
@@ -69,7 +69,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import PostDate from '@/components/PostDate.vue'
+import AppDate from '@/components/Shared/AppDate.vue'
 import AppImage from '@/components/Shared/AppImage.vue'
 import PosterTag from '@/components/Poster/PosterTag.vue'
 import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
@@ -78,7 +78,7 @@ import AppButton from '@/components/Shared/AppButton.vue'
 
 export default {
   components: {
-    PostDate,
+    AppDate,
     AppImage,
     SocialMediaLinks,
     IconHeart,

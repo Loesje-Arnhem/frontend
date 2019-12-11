@@ -1,0 +1,18 @@
+<template>
+  <transition-group name="list" tag="ul" class="list">
+    <slot />
+  </transition-group>
+</template>
+
+<style lang="postcss" scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.2s;
+}
+
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(1em);
+}
+</style>
