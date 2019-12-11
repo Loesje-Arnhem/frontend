@@ -122,5 +122,8 @@ export default {
         httpEndpoint: `${baseUrl}graphql`
       }
     }
+  },
+  generate: {
+    fallback: true
   }
 }
