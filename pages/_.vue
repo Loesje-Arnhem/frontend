@@ -5,7 +5,7 @@
       <!-- eslint-disable-next-line -->
       <div class="text" v-html="page.content" />
     </div>
-    <posters :posters="posters" />
+    <related-posters-container />
     <child-pages-list v-if="pages" :pages="pages" />
   </div>
 </template>
@@ -14,13 +14,12 @@
 import PageQuery from '~/graphql/Page.gql'
 import ChildPagesQuery from '~/graphql/ChildPages.gql'
 import ChildPagesList from '@/components/Pages/ChildPagesList.vue'
-import Posters from '@/components/Posters/RelatedPosters.vue'
-import PostersQuery from '~/graphql/Posters.gql'
+import RelatedPostersContainer from '@/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
 
 export default {
   components: {
     ChildPagesList,
-    Posters
+    RelatedPostersContainer
   },
   async asyncData({ app, params }) {
     const page = await app.apolloProvider.defaultClient.query({
@@ -52,16 +51,9 @@ export default {
       })
     }
 
-    const posters = await app.apolloProvider.defaultClient.query({
-      query: PostersQuery,
-      variables: {
-        first: 5
-      }
-    })
     return {
       page: response,
-      pages: pages ? pages.data.pages : null,
-      posters: posters.data.posters
+      pages: pages ? pages.data.pages : null
     }
   },
   head() {

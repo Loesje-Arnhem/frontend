@@ -6,19 +6,18 @@
       <div class="text" v-html="page.content" />
     </div>
     <form-workshop />
-    <posters :posters="posters" />
+    <related-posters-container />
   </div>
 </template>
 
 <script>
 import PageQuery from '~/graphql/Page.gql'
-import Posters from '@/components/Posters/RelatedPosters.vue'
+import RelatedPostersContainer from '@/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
 import FormWorkshop from '@/components/Blocks/FormWorkshop.vue'
-import PostersQuery from '~/graphql/Posters.gql'
 
 export default {
   components: {
-    Posters,
+    RelatedPostersContainer,
     FormWorkshop
   },
   async asyncData({ app, params }) {
@@ -31,15 +30,8 @@ export default {
 
     const response = page.data.page
 
-    const posters = await app.apolloProvider.defaultClient.query({
-      query: PostersQuery,
-      variables: {
-        first: 5
-      }
-    })
     return {
-      page: response,
-      posters: posters.data.posters
+      page: response
     }
   },
   head() {

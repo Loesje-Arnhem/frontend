@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <posters :posters="posters" />
+    <related-posters-container />
   </div>
 </template>
 
@@ -30,15 +30,14 @@ import AppButton from '@/components/Shared/AppButton.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
 
 import PageQuery from '~/graphql/Page.gql'
-import Posters from '@/components/Posters/RelatedPosters.vue'
-import PostersQuery from '~/graphql/Posters.gql'
+import RelatedPostersContainer from '@/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
 
 export default {
   components: {
     PostListItem,
     AppButton,
     AppLoader,
-    Posters
+    RelatedPostersContainer
   },
   data() {
     return {
@@ -85,12 +84,6 @@ export default {
       query: PostsQuery,
       variables: {
         first: 12
-      }
-    },
-    posters: {
-      query: PostersQuery,
-      variables: {
-        first: 5
       }
     }
   },
