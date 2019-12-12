@@ -52,7 +52,7 @@
     "eslint-plugin-vue": "^6.0.1",
     "jest": "^24.9.0",
     "lighthouse-ci": "^1.10.0",
-    "nodemon": "^2.0.1",
+    "nodemon": "^2.0.2",
     "nuxt-svg-loader": "^1.0.1",
     "postcss-mixins": "^6.2.3",
     "postcss-preset-env": "^6.7.0",
