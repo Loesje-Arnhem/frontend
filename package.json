@@ -16,7 +16,7 @@
     "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.0-rc18",
+    "@nuxtjs/apollo": "^4.0.0-rc19",
     "@nuxtjs/auth": "^4.8.4",
     "@nuxtjs/axios": "^5.8.0",
     "@nuxtjs/pwa": "^3.0.0-beta.19",
