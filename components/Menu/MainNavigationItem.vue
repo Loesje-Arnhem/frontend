@@ -25,7 +25,7 @@
         width="16"
         height="16"
       />
-      <span class="sr-only">Toon submenu voor {{ item.label }}</span>
+      <span :class="$style['sr-only']">Toon submenu voor {{ item.label }}</span>
     </button>
     <template v-if="item.childItems.edges.length">
       <animation-slide-in>
@@ -161,6 +161,10 @@ export default {
   &[aria-haspopup='true'] {
     padding-right: 0.25em;
   }
+}
+
+.sr-only {
+  @mixin sr-only;
 }
 
 .submenu-link {
