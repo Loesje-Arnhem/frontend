@@ -1,6 +1,7 @@
 <template>
   <div>
     {{ selectedTags }}
+
     <poster-filters />
     <posters-auto-complete-container />
     <posters-overview-container />
@@ -27,7 +28,7 @@ import { selectedTagsQuery } from '@/plugins/apollo-config.js'
 // import Filters from '@/components/Search/Filters.vue'
 // import AutoComplete from '@/components/Search/AutoComplete.vue'
 // import Navigation from '@/components/Shared/Navigation.vue'
-// import Tags from '@/components/Search/Tags.vue'
+// import PosterFilterTags from '@/components/Posters/Filters/PosterFilterTags.vue'
 // import List from '@/components/Shared/List.vue'
 
 export default {
@@ -38,7 +39,7 @@ export default {
     // AutoComplete,
     // Navigation,
     // Filters,
-    // Tags,
+    // PosterFilterTags
     // List
   },
   apollo: {
