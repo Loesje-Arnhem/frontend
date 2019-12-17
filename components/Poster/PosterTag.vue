@@ -3,7 +3,7 @@
     :class="{ 'is-active': isSelected(tag) }"
     :is-primary="false"
     css-class="btn-outline"
-    @onclick="selectTag(tag)"
+    @click="selectTag(tag)"
   >
     {{ tag.name }}
   </app-button>
@@ -12,6 +12,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import AppButton from '@/components/Shared/AppButton.vue'
+import { addItemMutation } from '@/plugins/apollo-config.js'
 
 export default {
   components: {
@@ -36,7 +37,10 @@ export default {
       return this.selectedTags.includes(tag)
     },
     selectTag(tag) {
-      this.toggle(tag)
+      this.$apollo.mutate({
+        mutation: addItemMutation,
+        variables: { id: tag.id, tagId: tag.tagId, text: tag.name }
+      })
     }
   }
 }

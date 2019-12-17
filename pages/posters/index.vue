@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ selectedTags }}
     <poster-filters />
     <posters-auto-complete-container />
     <posters-overview-container />
@@ -8,7 +9,6 @@
       <navigation />
       <filters :sources="sources" :subjects="subjects" />
       <auto-complete @onSearch="searchPosters" />
-      <tags v-if="selectedTags.length" :list="selectedTags" />
       <List
         :search="search"
         :subjects="selectedSubjectsIds"
@@ -22,6 +22,7 @@
 import PostersOverviewContainer from '@/components/Posters/PostersOverview/PostersOverviewContainer.vue'
 import PostersAutoCompleteContainer from '@/components/Posters/AutoComplete/AutoCompleteContainer.vue'
 import PosterFilters from '@/components/Posters/Filters/PosterFilters.vue'
+import { selectedTagsQuery } from '@/plugins/apollo-config.js'
 
 // import Filters from '@/components/Search/Filters.vue'
 // import AutoComplete from '@/components/Search/AutoComplete.vue'
@@ -40,11 +41,16 @@ export default {
     // Tags,
     // List
   },
-
+  apollo: {
+    selectedTags: {
+      query: selectedTagsQuery
+    }
+  },
   data() {
     return {
       title: 'Posters',
-      search: ''
+      search: '',
+      selectedTags: []
     }
   },
 

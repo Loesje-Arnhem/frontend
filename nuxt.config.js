@@ -66,7 +66,7 @@ export default {
     name: 'Loesje',
     background_color: '#000',
     theme_color: '#000',
-    short_name: 'Loesje',
+    short_name: 'Loesje'
   },
   i18n: {
     defaultLocale: 'nl',
@@ -77,8 +77,8 @@ export default {
         name: 'Nederlands',
         code: 'nl',
         iso: 'nl-NL',
-        file: 'nl.json',
-      },
+        file: 'nl.json'
+      }
     ],
     vueI18nLoader: true,
     vueI18n: {
@@ -87,7 +87,7 @@ export default {
           short: {
             year: 'numeric',
             month: 'long',
-            day: 'numeric',
+            day: 'numeric'
           },
           long: {
             year: 'numeric',
@@ -95,11 +95,11 @@ export default {
             day: 'numeric',
             weekday: 'short',
             hour: 'numeric',
-            minute: 'numeric',
-          },
-        },
-      },
-    },
+            minute: 'numeric'
+          }
+        }
+      }
+    }
   },
   loaders: {
     cssModules: {
@@ -142,11 +142,9 @@ export default {
     }
   },
   apollo: {
+    includeNodeModules: true,
     clientConfigs: {
-      default: {
-        // required
-        httpEndpoint: `${baseUrl}graphql`
-      }
+      default: '@/plugins/apollo-config.js'
     }
   },
   generate: {

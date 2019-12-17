@@ -29,6 +29,7 @@
         <PostersFilterSubjectContainer />
       </div>
     </SlideInAnimation>
+    <poster-filter-tags v-if="data" :list="selectedTags" />
   </div>
 </template>
 
@@ -37,18 +38,21 @@ import PostersFilterSubjectContainer from '@/components/Posters/Filters/PostersF
 import PostersFilterSourcesContainer from '@/components/Posters/Filters/PostersFilterSourcesContainer.vue'
 import PostersFilterToggle from '@/components/Posters/Filters/PosterFilterToggle.vue'
 import SlideInAnimation from '@/components/Animations/SlideInAnimation.vue'
+import PosterFilterTags from '@/components/Posters/Filters/PosterFilterTags.vue'
 
 export default {
   components: {
     PostersFilterToggle,
     PostersFilterSubjectContainer,
     PostersFilterSourcesContainer,
-    SlideInAnimation
+    SlideInAnimation,
+    PosterFilterTags
   },
   data() {
     return {
       showSubjects: false,
-      showSources: false
+      showSources: false,
+      selectedTags: []
     }
   },
 
