@@ -8,10 +8,10 @@
   --color-gray-lighter: #e6e6e6;
   --color-gray-lightest: #f1f4f5;
 }
-
+/*
 @media (--dark-mode) {
   :root {
     --color-black: #fff;
     --color-white: #000;
   }
-}
+} */
