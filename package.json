@@ -24,7 +24,7 @@
     "cross-env": "^6.0.3",
     "css-paint-polyfill": "^1.0.3",
     "graphql-tag": "^2.10.1",
-    "nuxt": "^2.10.2",
+    "nuxt": "^2.11.0",
     "nuxt-i18n": "^6.4.1",
     "vue-youtube": "^1.4.0",
     "vuelidate": "^0.7.4",
