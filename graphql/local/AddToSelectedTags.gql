@@ -1,0 +1,7 @@
+mutation($id: ID!, $tagId: tagId, $text: String) {
+  addItem(id: $id, tagId: $tagId, text: $text) @client {
+    id
+    tagId
+    text
+  }
+}

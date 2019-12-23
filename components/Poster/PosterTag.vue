@@ -12,7 +12,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import AppButton from '@/components/Shared/AppButton.vue'
-import { addItemMutation } from '@/plugins/apollo-config.js'
+import addItemMutation from '~/graphql/local/AddToSelectedTags.gql'
 
 export default {
   components: {

@@ -1,24 +1,5 @@
 import gql from 'graphql-tag'
-
-export const selectedTagsQuery = gql`
-  {
-    selectedTags @client {
-      id
-      tagId
-      text
-    }
-  }
-`
-
-export const addItemMutation = gql`
-  mutation($id: ID!, $tagId: tagId, $text: String) {
-    addItem(id: $id, tagId: $tagId, text: $text) @client {
-      id
-      tagId
-      text
-    }
-  }
-`
+import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
 
 export const typeDefs = gql`
   extend type Item {
@@ -35,13 +16,6 @@ export const typeDefs = gql`
 
 const resolvers = {
   Mutation: {
-    updateHello: (root, { value }, { cache }) => {
-      const data = {
-        hello: value
-      }
-      cache.writeData({ data })
-      return null
-    },
     addItem: (_, { id, tagId, text }, { cache }) => {
       const data = cache.readQuery({ query: selectedTagsQuery })
       const newItem = {

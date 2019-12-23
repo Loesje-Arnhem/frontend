@@ -1,0 +1,7 @@
+query SELECTED_TAGS {
+  selectedTags @client {
+    id
+    tagId
+    text
+  }
+}

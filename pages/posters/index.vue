@@ -23,7 +23,7 @@
 import PostersOverviewContainer from '@/components/Posters/PostersOverview/PostersOverviewContainer.vue'
 import PostersAutoCompleteContainer from '@/components/Posters/AutoComplete/AutoCompleteContainer.vue'
 import PosterFilters from '@/components/Posters/Filters/PosterFilters.vue'
-import { selectedTagsQuery } from '@/plugins/apollo-config.js'
+import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
 
 // import Filters from '@/components/Search/Filters.vue'
 // import AutoComplete from '@/components/Search/AutoComplete.vue'
