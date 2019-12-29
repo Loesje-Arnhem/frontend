@@ -1,0 +1,14 @@
+query GET_AUTOCOMPLETE_POSTERS($where: RootQueryToPosterConnectionWhereArgs) {
+  posters(
+    where: $where,
+    first: 10
+  ) {
+    edges {
+      node {
+        id
+        title
+        slug
+      }
+    }
+  }
+}

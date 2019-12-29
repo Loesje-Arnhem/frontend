@@ -1,39 +1,39 @@
 <template>
-  <form method="get" @keyup.esc="close" @submit.prevent="onSubmit">
+  <form method="get" @keyup.esc="reset" @submit.prevent="onSubmit">
     <legend class="sr-only">Zoeken naar posters</legend>
     <label for="search" class="sr-only">Zoek op tekst</label>
     <div class="input-wrapper">
       <input
         id="search"
+        v-model="$v.search.$model"
         type="search"
         name="search"
-        v-bind="$attrs"
-        :value="value"
         placeholder="Zoek op tekst"
         autocomplete="off"
-        @input="$emit('input', $event.target.value)"
+        @input="onInput"
         @keyup.down="onArrowDown"
         @keyup.up="onArrowUp"
       />
-
       <button type="submit" class="btn-submit">
         <icon-search aria-hidden="true" width="32" height="32" />
         <span class="sr-only">Zoeken</span>
       </button>
     </div>
 
-    <div v-show="isOpen" class="autocomplete">
-      <ul v-if="results2.length > 0">
-        <li v-for="(result, index) in results2" :key="result.node.posterId">
-          <button
-            :class="{ 'is-active': index === arrowCounter }"
-            type="button"
+    <div v-if="isOpen" class="autocomplete">
+      <ul>
+        <li
+          v-for="(result, index) in resultsWithHighlightText"
+          :key="result.id"
+        >
+          <!-- eslint-disable -->
+          <router-link
+            :class="{ active: index === arrowCounter }"
             class="btn-result"
-            @click="goToPoster(result)"
-          >
-            <!-- eslint-disable-next-line -->
-            <span v-html="result.node.title" />
-          </button>
+            :to="result.url"
+            v-html="result.title"
+          />
+          <!-- eslint-enable -->
         </li>
       </ul>
     </div>
@@ -43,25 +43,11 @@
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
 import IconSearch from '@/assets/icons/search.svg'
-import axios from '~/plugins/axios'
+import PostersQuery from '~/graphql/Posters.gql'
 
 export default {
   components: {
     IconSearch
-  },
-  props: {
-    hasSearched: {
-      type: Boolean,
-      default: false
-    },
-    value: {
-      type: [String, Number],
-      required: true
-    },
-    results2: {
-      type: Array,
-      default: () => []
-    }
   },
   validations: {
     search: {
@@ -71,12 +57,46 @@ export default {
   },
   data() {
     return {
-      isOpen: false,
-      formError: '',
       search: '',
-      arrowCounter: -1,
-      results: [],
-      isValid: true
+      arrowCounter: -1
+    }
+  },
+  apollo: {
+    results: {
+      query: PostersQuery,
+      variables() {
+        return {
+          where: {
+            search: this.search
+          }
+        }
+      },
+      debounce: 200,
+      skip: true,
+      update: data => data.posters.edges
+    }
+  },
+  computed: {
+    resultsWithHighlightText() {
+      if (!this.results) {
+        return []
+      }
+      return this.results.map(item => {
+        const { title, slug, id } = item.node
+        return {
+          id,
+          url: `/posters/${slug}`,
+          value: title,
+          // make current searchterm bold with a regex
+          title: title.replace(
+            new RegExp(`(^|)(${this.search})(|$)`, 'ig'),
+            '$1<strong>$2</strong>$3'
+          )
+        }
+      })
+    },
+    isOpen() {
+      return !this.$v.search.$invalid && this.resultsWithHighlightText.length
     }
   },
 
@@ -87,37 +107,11 @@ export default {
     document.removeEventListener('click', this.handleClickOutside)
   },
   methods: {
-    async onChange() {
-      // only autocomplete at min 3 character
-      if (!this.$v.search.minLength) {
-        this.close()
-        return
-      }
-      const response = await axios.get('wp/v2/poster', {
-        params: {
-          search: this.search
-        }
-      })
-      this.results = response.data.map(item => {
-        const title = item.title.rendered
-        return {
-          slug: item.slug,
-          value: title,
-          // make current searchterm bold with a regex
-          title: title.replace(
-            new RegExp(`(^|)(${this.search})(|$)`, 'ig'),
-            '$1<strong>$2</strong>$3'
-          )
-        }
-      })
-      this.isOpen = this.results.length > 0
+    onInput() {
+      this.$apollo.queries.results.skip = this.$v.search.$invalid
     },
     goToPoster(result) {
-      this.$router.push(`/posters/${result.node.slug}`)
-    },
-    setResult(result) {
-      this.search = result
-      this.submit()
+      this.$router.push(result.url)
     },
     onArrowDown() {
       if (this.arrowCounter < this.results.length - 1) {
@@ -131,9 +125,9 @@ export default {
     },
     onSubmit() {
       if (this.arrowCounter > -1) {
-        this.goToPoster(this.results[this.arrowCounter])
+        this.goToPoster(this.resultsWithHighlightText[this.arrowCounter])
       } else {
-        this.setResult(this.search)
+        this.submit()
       }
     },
     submit() {
@@ -145,11 +139,12 @@ export default {
     },
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
-        this.close()
+        this.reset()
       }
     },
-    close() {
-      this.isOpen = false
+    reset() {
+      this.search = ''
+      this.$apollo.queries.results.skip = true
       this.arrowCounter = -1
     }
   }
@@ -210,13 +205,15 @@ ul {
 }
 
 .btn-result {
+  @mixin link-reset;
+
   width: 100%;
   text-align: left;
   display: block;
   font-size: 1em;
   padding: 0.5em 1em;
 
-  &.is-active,
+  &.active,
   &:hover {
     background: var(--color-black);
     color: var(--color-white);

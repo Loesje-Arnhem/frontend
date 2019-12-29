@@ -21,7 +21,7 @@
 import InfiniteLoading from 'vue-infinite-loading'
 import PostersOverviewList from '@/components/Posters/PostersOverview/PostersOverviewList.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
-import PostersQuery from '~/graphql/Posters.gql'
+import PostersQuery from '~/graphql/PostersAutocomplete.gql'
 
 export default {
   components: {
