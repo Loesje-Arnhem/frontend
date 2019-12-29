@@ -4,7 +4,7 @@
 
     <poster-filters />
     <posters-auto-complete-container />
-    <posters-overview-container />
+    <posters-overview-section />
     <!-- <div class="page">
       <h1>{{ title }}</h1>
       <navigation />
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import PostersOverviewContainer from '@/components/Posters/PostersOverview/PostersOverviewContainer.vue'
+import PostersOverviewSection from '@/components/Posters/PostersOverview/PostersOverviewSection.vue'
 import PostersAutoCompleteContainer from '@/components/Posters/AutoComplete/AutoCompleteContainer.vue'
 import PosterFilters from '@/components/Posters/Filters/PosterFilters.vue'
 import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
@@ -33,7 +33,7 @@ import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
 
 export default {
   components: {
-    PostersOverviewContainer,
+    PostersOverviewSection,
     PostersAutoCompleteContainer,
     PosterFilters
     // AutoComplete,

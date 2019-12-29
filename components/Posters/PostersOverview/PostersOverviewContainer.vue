@@ -4,23 +4,25 @@
     :variables="{ first: 20 }"
   >
     <template slot-scope="{ result: { data }, isLoading, query }">
-      <posters-overview-section
-        :data="data"
+      <posters-overview-list
+        :posters="data.posters.edges"
         :has-more="hasMore"
-        :is-loading="isLoading > 0"
         @search="search"
         @loadMore="loadMore(query, data.posters.pageInfo.endCursor)"
       />
+      <app-loader v-if="isLoading !== 0" />
     </template>
   </apollo-query>
 </template>
 
 <script>
-import PostersOverviewSection from '@/components/Posters/PostersOverview/PostersOverviewSection.vue'
+import PostersOverviewList from '@/components/Posters/PostersOverview/PostersOverviewList.vue'
+import AppLoader from '@/components/Shared/AppLoader.vue'
 
 export default {
   components: {
-    PostersOverviewSection
+    PostersOverviewList,
+    AppLoader
   },
   data() {
     return {
