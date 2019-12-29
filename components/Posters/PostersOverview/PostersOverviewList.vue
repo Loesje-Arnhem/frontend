@@ -8,33 +8,22 @@
         :class="$style['list-item']"
       />
     </list-animation>
-    <div v-if="hasMore" :class="$style['button-wrapper']">
-      <app-button @click="$emit('loadMore')">
-        {{ $t('btnMore') }}
-      </app-button>
-    </div>
   </div>
 </template>
 
 <script>
 import PostersOverviewListItem from '@/components/Posters/PostersOverview/PostersOverviewListItem.vue'
 import ListAnimation from '@/components/Animations/ListAnimation.vue'
-import AppButton from '@/components/Shared/AppButton.vue'
 
 export default {
   components: {
     PostersOverviewListItem,
-    ListAnimation,
-    AppButton
+    ListAnimation
   },
   props: {
     posters: {
       type: Array,
       required: true
-    },
-    hasMore: {
-      type: Boolean,
-      default: true
     }
   }
 }

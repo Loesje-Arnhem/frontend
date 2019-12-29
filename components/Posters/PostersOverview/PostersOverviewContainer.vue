@@ -1,61 +1,64 @@
 <template>
-  <apollo-query
-    :query="require('~/graphql/Posters.gql')"
-    :variables="{ first: 20 }"
-  >
-    <template slot-scope="{ result: { data }, isLoading, query }">
-      <posters-overview-list
-        :posters="data.posters.edges"
-        :has-more="hasMore"
-        @search="search"
-        @loadMore="loadMore(query, data.posters.pageInfo.endCursor)"
-      />
-      <app-loader v-if="isLoading !== 0" />
-    </template>
-  </apollo-query>
+  <div v-if="posters">
+    <posters-overview-list :posters="posters.edges" />
+    <InfiniteLoading
+      ref="infiniteLoading"
+      :identifier="infiniteId"
+      @infinite="loadMorePosters"
+    >
+      <span slot="no-more" />
+      <app-loader slot="spinner" />
+      <template slot="no-results">
+        <span v-if="!posters.edges.length" class="no-results">
+          {{ $t('noPostersFound') }}
+        </span>
+      </template>
+    </InfiniteLoading>
+  </div>
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading'
 import PostersOverviewList from '@/components/Posters/PostersOverview/PostersOverviewList.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
+import PostersQuery from '~/graphql/Posters.gql'
 
 export default {
   components: {
     PostersOverviewList,
-    AppLoader
+    AppLoader,
+    InfiniteLoading
   },
   data() {
     return {
-      hasMore: true,
-      searchTerm: 'voetbal'
+      infiniteId: +new Date(),
+      endCursor: null
     }
   },
-
-  computed: {
-    showMoreButton() {
-      return this.hasPaging && this.hasMore
+  apollo: {
+    posters: {
+      query: PostersQuery,
+      variables: {
+        first: 20
+      }
     }
   },
 
   methods: {
-    search(term) {
-      window.console.log(term)
-      this.searchTerm = term
-    },
-    async loadMore(query, endCursor) {
-      await query.fetchMore({
+    async loadMorePosters($state) {
+      await this.$apollo.queries.posters.fetchMore({
         variables: {
-          after: endCursor
+          after: this.endCursor
         },
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
-          window.console.log(query)
+          this.endCursor = fetchMoreResult.posters.pageInfo.endCursor
           const newPosters = fetchMoreResult.posters
-
-          if (!fetchMoreResult.posters.pageInfo.hasNextPage) {
-            this.hasMore = false
+          if (fetchMoreResult.posters.pageInfo.hasNextPage) {
+            $state.loaded()
+          } else {
+            $state.complete()
           }
-
           return {
             posters: {
               __typename: previousResult.posters.__typename,
@@ -70,3 +73,11 @@ export default {
   }
 }
 </script>
+
+<i18n>
+{
+  "nl": {
+    "noPostersFound": "Er zijn geen posters gevonden."
+  }
+}
+</i18n>
