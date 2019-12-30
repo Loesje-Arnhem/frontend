@@ -1,35 +1,46 @@
 import gql from 'graphql-tag'
 import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
+import searchTextQuery from '~/graphql/local/SearchText.gql'
 
-export const typeDefs = gql`
-  extend type Item {
+const typeDefs = gql`
+  type SelectedTag {
     id: ID!
-    tagId: Int
-    text: String
+  }
+  type SearchText {
+    searchText: String
   }
   extend type Mutation {
-    changeItem(id: ID!): Boolean
-    deleteItem(id: ID!): Boolean
-    addItem(text: String!): Item
+    udpateSearch(search: String): SearchText
+    addToSelectedTags(id: ID!): SelectedTag
+    removeFromSelectedTags(id: ID!): Boolean
   }
 `
 
 const resolvers = {
   Mutation: {
-    addItem: (_, { id, tagId, text }, { cache }) => {
+    udpateSearchText: (_, { searchText }, { cache }) => {
+      const newItem = {
+        __typename: 'SearchText',
+        searchText
+      }
+      const data = {
+        searchText: newItem
+      }
+      cache.writeQuery({ query: searchTextQuery, data })
+      return newItem
+    },
+    addToSelectedTags: (_, { id }, { cache }) => {
       const data = cache.readQuery({ query: selectedTagsQuery })
       const newItem = {
         __typename: 'Tag',
-        id,
-        tagId,
-        text
+        id
       }
       data.selectedTags.push(newItem)
       cache.writeQuery({ query: selectedTagsQuery, data })
       return newItem
     },
 
-    deleteItem: (_, { id }, { cache }) => {
+    removeFromSelectedTags: (_, { id }, { cache }) => {
       const data = cache.readQuery({ query: selectedTagsQuery })
       const currentItem = data.selectedTags.find(item => item.id === id)
       data.selectedTags.splice(data.selectedTags.indexOf(currentItem), 1)
@@ -37,14 +48,6 @@ const resolvers = {
       return true
     }
   }
-}
-
-const clientState = {
-  // Set initial local state.
-  defaults: {
-    selectedTags: []
-  },
-  resolvers
 }
 
 export default function(context) {
@@ -57,7 +60,17 @@ export default function(context) {
     tokenName: 'apollo-token',
     persisting: false,
     websocketsOnly: false,
-    // return the client state
-    clientState
+    resolvers,
+    typeDefs,
+    onCacheInit: cache => {
+      const data = {
+        selectedTags: [],
+        searchText: {
+          __typename: 'SearchText'
+        }
+      }
+
+      cache.writeData({ data })
+    }
   }
 }

@@ -1,7 +1,5 @@
-mutation($id: ID!, $tagId: tagId, $text: String) {
-  addItem(id: $id, tagId: $tagId, text: $text) @client {
+mutation($id: ID!) {
+  addToSelectedTags(id: $id) @client {
     id
-    tagId
-    text
   }
 }

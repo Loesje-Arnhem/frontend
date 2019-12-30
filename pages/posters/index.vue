@@ -1,6 +1,9 @@
 <template>
   <div>
     {{ selectedTags }}
+    {{ searchText }}
+    <input v-model="search" @input="change" />
+    {{ search }}
 
     <poster-filters />
     <posters-auto-complete-container />
@@ -24,6 +27,8 @@ import PostersOverviewSection from '@/components/Posters/PostersOverview/Posters
 import PostersAutoCompleteContainer from '@/components/Posters/AutoComplete/AutoCompleteContainer.vue'
 import PosterFilters from '@/components/Posters/Filters/PosterFilters.vue'
 import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
+import searchTextQuery from '~/graphql/local/SearchText.gql'
+import UpdateSearchTextMutation from '~/graphql/local/UpdateSearchText.gql'
 
 // import Filters from '@/components/Search/Filters.vue'
 // import AutoComplete from '@/components/Search/AutoComplete.vue'
@@ -45,13 +50,24 @@ export default {
   apollo: {
     selectedTags: {
       query: selectedTagsQuery
+    },
+    searchText: {
+      query: searchTextQuery
     }
   },
   data() {
     return {
       title: 'Posters',
-      search: '',
+      search: 'test',
       selectedTags: []
+    }
+  },
+  methods: {
+    change() {
+      this.$apollo.mutate({
+        mutation: UpdateSearchTextMutation,
+        variables: { searchText: this.search }
+      })
     }
   },
 
