@@ -1,19 +1,22 @@
 <template>
-  <div v-if="posters">
-    <posters-overview-list :posters="posters.edges" />
-    <InfiniteLoading
-      ref="infiniteLoading"
-      :identifier="infiniteId"
-      @infinite="loadMorePosters"
-    >
-      <span slot="no-more" />
-      <app-loader slot="spinner" />
-      <template slot="no-results">
-        <span v-if="!posters.edges.length" class="no-results">
-          {{ $t('noPostersFound') }}
-        </span>
-      </template>
-    </InfiniteLoading>
+  <div>
+    <div v-if="posters">
+      <posters-overview-list :posters="posters.edges" />
+      <InfiniteLoading
+        ref="infiniteLoading"
+        :identifier="infiniteId"
+        @infinite="loadMorePosters"
+      >
+        <span slot="no-more" />
+        <span slot="spinner" />
+        <template slot="no-results">
+          <span v-if="!posters.edges.length" class="no-results">
+            {{ $t('noPostersFound') }}
+          </span>
+        </template>
+      </InfiniteLoading>
+    </div>
+    <app-loader v-if="$apollo.queries.posters.loading" />
   </div>
 </template>
 
@@ -21,7 +24,7 @@
 import InfiniteLoading from 'vue-infinite-loading'
 import PostersOverviewList from '@/components/Posters/PostersOverview/PostersOverviewList.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
-import PostersQuery from '~/graphql/PostersAutocomplete.gql'
+import PostersQuery from '~/graphql/Posters.gql'
 
 export default {
   components: {
@@ -29,17 +32,27 @@ export default {
     AppLoader,
     InfiniteLoading
   },
+  props: {
+    notIn: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
-      infiniteId: +new Date(),
-      endCursor: null
+      infiniteId: +new Date()
     }
   },
   apollo: {
     posters: {
       query: PostersQuery,
-      variables: {
-        first: 20
+      variables() {
+        return {
+          first: 24,
+          where: {
+            notIn: this.notIn
+          }
+        }
       }
     }
   },
@@ -48,13 +61,12 @@ export default {
     async loadMorePosters($state) {
       await this.$apollo.queries.posters.fetchMore({
         variables: {
-          after: this.endCursor
+          after: this.posters.pageInfo.endCursor
         },
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
-          this.endCursor = fetchMoreResult.posters.pageInfo.endCursor
           const newPosters = fetchMoreResult.posters
-          if (fetchMoreResult.posters.pageInfo.hasNextPage) {
+          if (newPosters.pageInfo.hasNextPage) {
             $state.loaded()
           } else {
             $state.complete()

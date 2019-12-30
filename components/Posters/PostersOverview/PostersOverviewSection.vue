@@ -4,7 +4,7 @@
       <h1 id="posters-overview-title">
         {{ $t('title') }}
       </h1>
-      <posters-overview-container />
+      <posters-overview-container :not-in="notIn" />
     </center-wrapper>
   </section>
 </template>
@@ -17,6 +17,12 @@ export default {
   components: {
     CenterWrapper,
     PostersOverviewContainer
+  },
+  props: {
+    notIn: {
+      type: Number,
+      default: 0
+    }
   }
 }
 </script>

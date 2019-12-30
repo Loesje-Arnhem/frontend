@@ -43,7 +43,7 @@
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
 import IconSearch from '@/assets/icons/search.svg'
-import PostersQuery from '~/graphql/Posters.gql'
+import PostersQuery from '~/graphql/PostersAutocomplete.gql'
 
 export default {
   components: {
