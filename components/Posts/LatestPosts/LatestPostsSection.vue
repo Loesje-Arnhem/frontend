@@ -7,11 +7,11 @@
           <app-loader v-if="isLoading" />
           <template v-if="hasData">
             <latest-posts-list :posts="data.posts.edges" :class="$style.list" />
-            <balloon />
           </template>
           <app-button to="/over-mij/nieuws/">{{ $t('btnMore') }}</app-button>
         </div>
         <become-member />
+        <balloon />
       </div>
     </center-wrapper>
   </section>
