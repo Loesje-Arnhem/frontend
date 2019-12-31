@@ -78,8 +78,8 @@ export default {
       submitted: false,
 
       form: {
-        email: 'michil@test.com',
-        name: '12312',
+        email: '',
+        name: '',
         phoneNumber: '',
         companyName: '',
         totalAttendees: '',

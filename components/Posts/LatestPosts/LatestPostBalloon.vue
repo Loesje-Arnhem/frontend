@@ -4,7 +4,7 @@
       :class="$style['balloon-image']"
       width="159"
       height="243"
-      src="/images/air-balloon.png"
+      :src="require('./images/air-balloon.png')"
     />
   </div>
 </template>

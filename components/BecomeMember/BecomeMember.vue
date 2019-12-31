@@ -1,6 +1,6 @@
 <template>
-  <aside :class="$style['become-member']">
-    <h2 :class="$style.title">{{ $t('title') }}</h2>
+  <aside :class="$style['become-member']" aria-labelledby="become-member-title">
+    <h2 id="become-member-title" :class="$style.title">{{ $t('title') }}</h2>
     <div :class="$style.text">
       <ul :class="$style.list">
         <li v-for="usp in $t('usps')" :key="usp" :class="$style['list-item']">
@@ -8,7 +8,7 @@
             :class="$style['check']"
             width="27"
             height="27"
-            :src="require('~/components/BecomeMember/check.png')"
+            :src="require('./images/check.png')"
           />
           {{ usp }}
         </li>
@@ -19,7 +19,7 @@
       :class="$style['image']"
       width="167"
       height="144"
-      :src="require('~/components/BecomeMember/megaphone.png')"
+      :src="require('./images/megaphone.png')"
     />
   </aside>
 </template>
