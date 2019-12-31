@@ -5,13 +5,14 @@ import searchTextQuery from '~/graphql/local/SearchText.gql'
 const typeDefs = gql`
   type SelectedTag {
     id: ID!
+    tagId: Int!
   }
   type SearchText {
     searchText: String
   }
   extend type Mutation {
     udpateSearch(search: String): SearchText
-    addToSelectedTags(id: ID!): SelectedTag
+    addToSelectedTags(id: ID!, tagId: Int!): SelectedTag
     removeFromSelectedTags(id: ID!): Boolean
   }
 `
@@ -29,11 +30,12 @@ const resolvers = {
       cache.writeQuery({ query: searchTextQuery, data })
       return newItem
     },
-    addToSelectedTags: (_, { id }, { cache }) => {
+    addToSelectedTags: (_, { id, tagId }, { cache }) => {
       const data = cache.readQuery({ query: selectedTagsQuery })
       const newItem = {
         __typename: 'Tag',
-        id
+        id,
+        tagId
       }
       data.selectedTags.push(newItem)
       cache.writeQuery({ query: selectedTagsQuery, data })

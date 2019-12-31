@@ -25,6 +25,8 @@ import InfiniteLoading from 'vue-infinite-loading'
 import PostersOverviewList from '@/components/Posters/PostersOverview/PostersOverviewList.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
 import PostersQuery from '~/graphql/Posters.gql'
+import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
+import searchTextQuery from '~/graphql/local/SearchText.gql'
 
 export default {
   components: {
@@ -43,18 +45,50 @@ export default {
       infiniteId: +new Date()
     }
   },
+  computed: {
+    where() {
+      let search = ''
+      if (this.searchText) {
+        search = this.searchText.searchText
+      }
+      let taxQuery = null
+      if (this.selectedTagsIds.length) {
+        taxQuery = {
+          taxArray: [
+            {
+              terms: this.selectedTagsIds,
+              taxonomy: 'SUBJECT',
+              operator: 'IN'
+            }
+          ]
+        }
+      }
+      return {
+        search,
+        notIn: this.notIn,
+        taxQuery
+      }
+    },
+    selectedTagsIds() {
+      if (this.selectedTags) {
+        return this.selectedTags.map(tag => tag.tagId)
+      }
+      return []
+    }
+  },
+
   apollo: {
     posters: {
       query: PostersQuery,
       variables() {
         return {
           first: 24,
-          where: {
-            notIn: this.notIn
-          }
+          where: this.where
         }
       }
-    }
+    },
+    selectedTags: selectedTagsQuery,
+    searchText: searchTextQuery
   },
 
   methods: {

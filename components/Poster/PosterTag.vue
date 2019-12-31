@@ -47,7 +47,7 @@ export default {
       } else {
         this.$apollo.mutate({
           mutation: addItemMutation,
-          variables: { id: this.tag.id }
+          variables: { id: this.tag.id, tagId: this.tag.tagId }
         })
       }
     }

@@ -2,13 +2,16 @@
   <section :class="$style['latest-posts']" aria-labelledby="latest-posts-title">
     <center-wrapper size="lg">
       <div :class="$style.wrapper">
-        <h1 id="latest-posts-title">{{ $t('title') }}</h1>
-        <app-loader v-if="isLoading" />
-        <template v-if="hasData">
-          <latest-posts-list :posts="data.posts.edges" :class="$style.list" />
-          <balloon />
-        </template>
-        <app-button to="/over-mij/nieuws/">{{ $t('btnMore') }}</app-button>
+        <div class="latest-posts">
+          <h1 id="latest-posts-title">{{ $t('title') }}</h1>
+          <app-loader v-if="isLoading" />
+          <template v-if="hasData">
+            <latest-posts-list :posts="data.posts.edges" :class="$style.list" />
+            <balloon />
+          </template>
+          <app-button to="/over-mij/nieuws/">{{ $t('btnMore') }}</app-button>
+        </div>
+        <become-member />
       </div>
     </center-wrapper>
   </section>
@@ -20,6 +23,7 @@ import Balloon from '@/components/Posts/LatestPosts/LatestPostBalloon.vue'
 import LatestPostsList from '@/components/Posts/LatestPosts/LatestPostsList.vue'
 import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
+import BecomeMember from '@/components/BecomeMember/BecomeMember.vue'
 
 export default {
   components: {
@@ -27,7 +31,8 @@ export default {
     AppButton,
     LatestPostsList,
     CenterWrapper,
-    AppLoader
+    AppLoader,
+    BecomeMember
   },
 
   props: {
@@ -57,7 +62,10 @@ export default {
   position: relative;
 
   @media (--viewport-lg) {
-    padding-right: 20em;
+    display: grid;
+    align-items: start;
+    grid-gap: 2em;
+    grid-template-columns: 2fr 1fr;
   }
 }
 </style>
