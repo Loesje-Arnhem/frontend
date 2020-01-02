@@ -1,7 +1,7 @@
 <template>
   <div v-if="post.title">
     <post-details :post="post" />
-    <related-posters-container
+    <related-posters-section
       v-if="post"
       :related-posters="post.relatedPosters"
     />
@@ -13,13 +13,13 @@
 import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
 import PostDetails from '@/components/Posts/PostDetails/PostDetails.vue'
 import PostQuery from '~/graphql/Post.gql'
-import RelatedPostersContainer from '~/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
+import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 
 export default {
   components: {
     PostDetails,
     PostsOverviewContainer,
-    RelatedPostersContainer
+    RelatedPostersSection
   },
 
   async asyncData({ app, params }) {

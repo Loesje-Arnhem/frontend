@@ -6,7 +6,7 @@
       <div class="text" v-html="page.content" />
     </div>
     <form-workshop />
-    <related-posters-container
+    <related-posters-section
       v-if="page"
       :related-posters="page.relatedPosters"
     />
@@ -15,12 +15,12 @@
 
 <script>
 import PageQuery from '~/graphql/Page.gql'
-import RelatedPostersContainer from '@/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
+import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import FormWorkshop from '@/components/Blocks/FormWorkshop.vue'
 
 export default {
   components: {
-    RelatedPostersContainer,
+    RelatedPostersSection,
     FormWorkshop
   },
   async asyncData({ app, params }) {

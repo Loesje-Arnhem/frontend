@@ -1,23 +1,10 @@
-query GET_PRODUCTS {
-  products {
+#import "./Fragments/Product.gql"
+
+query GET_PRODUCTS($categoryName: String) {
+  products(where: { category: $categoryName}) {
     edges {
       node {
-        id
-        name
-        slug
-        image {
-          id
-          medium: sourceUrl(size: MEDIUM)
-          mediumLarge: sourceUrl(size: MEDIUM_LARGE)
-        }
-        ... on SimpleProduct {
-          price
-          salePrice
-        }
-        ... on VariableProduct {
-          price
-          salePrice
-        }
+        ...product
       }
     }
   }

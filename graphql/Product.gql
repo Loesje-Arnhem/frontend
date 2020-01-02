@@ -1,19 +1,8 @@
+#import "./Fragments/Product.gql"
+
 query GET_PRODUCT($slug: String) {
   product: productBy(slug: $slug) {
-    id
-    productId
-    name
-    slug
-    shortDescription
-    description
-    price
-    salePrice
-    regularPrice
-    image {
-      id
-      medium: sourceUrl(size: MEDIUM)
-      mediumLarge: sourceUrl(size: MEDIUM_LARGE)
-    }
+    ...product
     attributes {
       edges {
         node {
@@ -29,11 +18,7 @@ query GET_PRODUCT($slug: String) {
     related {
       edges {
         node {
-          id
-          name
-          slug
-          price
-          salePrice
+          ...product
         }
       }
     }

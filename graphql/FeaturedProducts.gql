@@ -1,25 +1,10 @@
-query GET_PRODUCTS {
+#import "./Fragments/Product.gql"
+
+query GET_RELATED_PRODUCTS {
   products(where: {featured: true, stockStatus: IN_STOCK}, first: 5) {
     edges {
       node {
-        id
-        name
-        slug
-        image {
-          id
-          medium: sourceUrl(size: MEDIUM)
-          mediumLarge: sourceUrl(size: MEDIUM_LARGE)
-        }
-        ... on SimpleProduct {
-          id
-          price
-          salePrice
-        }
-        ... on VariableProduct {
-          id
-          price
-          salePrice
-        }
+        ...product
       }
     }
   }
