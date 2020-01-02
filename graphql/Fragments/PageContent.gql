@@ -1,0 +1,13 @@
+#import "./RelatedPosters.gql"
+#import "./Seo.gql"
+
+fragment pageContent on Page {
+  title
+  content
+  relatedPosters: relatedPostersGroup {
+    ...relatedPostersGroup
+  }
+  seo {
+    ...seo
+  }
+}

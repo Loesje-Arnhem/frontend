@@ -1,7 +1,10 @@
 <template>
   <div v-if="page.title">
     <posts-overview-container />
-    <related-posters-container />
+    <related-posters-container
+      v-if="page"
+      :related-posters="page.relatedPosters"
+    />
   </div>
 </template>
 

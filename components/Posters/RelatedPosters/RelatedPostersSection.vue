@@ -7,11 +7,11 @@
       <app-loader v-if="isLoading" />
       <template v-if="hasData">
         <h1 id="related-posters-title" :class="$style.title">
-          {{ $t('title') }}
+          {{ title }}
         </h1>
         <related-posters-list :posters="data.posters.edges" />
         <div :class="$style['btn-wrapper']">
-          <app-button to="/posters">{{ $t('btnMore') }}</app-button>
+          <app-button to="/posters">{{ btnText }}</app-button>
         </div>
       </template>
     </center-wrapper>
@@ -39,11 +39,26 @@ export default {
     isLoading: {
       type: Boolean,
       default: false
+    },
+    relatedPosters: {
+      type: Object,
+      default: () => {}
     }
   },
   computed: {
     hasData() {
       return !this.isLoading && this.data
+    },
+    title() {
+      return this.relatedPosters.title || this.$t('title')
+    },
+    btnText() {
+      let text = this.$t('btnText')
+      if (this.relatedPosters.subjects.length === 1) {
+        const { name } = this.relatedPosters.subjects[0]
+        text += this.$t('aboutSubject', { subject: name })
+      }
+      return text
     }
   }
 }
@@ -68,7 +83,8 @@ export default {
 {
   "nl": {
     "title": "Posters",
-    "btnMore": "Bekijk alle posters"
+    "btnText": "Bekijk alle posters",
+    "aboutSubject": " over {subject}"
   }
 }
 </i18n>

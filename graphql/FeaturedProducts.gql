@@ -1,5 +1,5 @@
 query GET_PRODUCTS {
-  products {
+  products(where: {featured: true, stockStatus: IN_STOCK}, first: 5) {
     edges {
       node {
         id
@@ -11,10 +11,12 @@ query GET_PRODUCTS {
           mediumLarge: sourceUrl(size: MEDIUM_LARGE)
         }
         ... on SimpleProduct {
+          id
           price
           salePrice
         }
         ... on VariableProduct {
+          id
           price
           salePrice
         }

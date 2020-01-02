@@ -5,7 +5,10 @@
       <!-- eslint-disable-next-line -->
       <div class="text" v-html="page.content" />
     </div>
-    <related-posters-container />
+    <related-posters-container
+      v-if="page"
+      :related-posters="page.relatedPosters"
+    />
     <child-pages-list v-if="pages" :pages="pages" />
   </div>
 </template>

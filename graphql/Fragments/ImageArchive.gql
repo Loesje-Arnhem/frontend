@@ -1,0 +1,5 @@
+fragment imageArchive on MediaItem {
+  altText
+  archive: sourceUrl(size: ARCHIVE)
+  archive2x: sourceUrl(size: ARCHIVE_2X)
+}

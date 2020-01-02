@@ -1,0 +1,7 @@
+#import "./Fragments/PageContent.gql"
+
+query GET_FRONT_PAGE {
+  page: pageBy(pageId: 6434) {
+    ...pageContent
+  }
+}

@@ -6,7 +6,10 @@
       <div class="text" v-html="page.content" />
     </div>
     <form-workshop />
-    <related-posters-container />
+    <related-posters-container
+      v-if="page"
+      :related-posters="page.relatedPosters"
+    />
   </div>
 </template>
 
