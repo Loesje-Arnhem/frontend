@@ -1,12 +1,14 @@
 <template>
-  <list-animation v-if="posters.length" :class="$style.list">
-    <posters-overview-list-item
-      v-for="poster in posters"
-      :key="poster.node.id"
-      :poster="poster"
-      :class="$style['list-item']"
-    />
-  </list-animation>
+  <div>
+    <list-animation v-if="posters.length" :class="$style.list">
+      <posters-overview-list-item
+        v-for="poster in posters"
+        :key="poster.node.id"
+        :poster="poster"
+        :class="$style['list-item']"
+      />
+    </list-animation>
+  </div>
 </template>
 
 <script>
@@ -36,4 +38,16 @@ export default {
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
 }
+
+.button-wrapper {
+  text-align: center;
+}
 </style>
+
+<i18n>
+{
+  "nl": {
+    "btnMore": "Bekijk meer posters"
+  }
+}
+</i18n>

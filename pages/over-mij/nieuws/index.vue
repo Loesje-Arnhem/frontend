@@ -1,7 +1,10 @@
 <template>
   <div v-if="page.title">
     <posts-overview-container />
-    <related-posters-container />
+    <related-posters-section
+      v-if="page"
+      :related-posters="page.relatedPosters"
+    />
   </div>
 </template>
 
@@ -9,11 +12,11 @@
 import PageQuery from '~/graphql/Page.gql'
 
 import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
-import RelatedPostersContainer from '@/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
+import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 
 export default {
   components: {
-    RelatedPostersContainer,
+    RelatedPostersSection,
     PostsOverviewContainer
   },
   data() {

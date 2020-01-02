@@ -1,10 +1,11 @@
 <template>
-  <div class="wrapper">
-    <navigation />
+  <div>
+    <div class="wrapper">
+      <navigation />
 
-    <poster-details :poster="poster" />
-
-    <List :exclude="poster.posterId" />
+      <poster-details :poster="poster" />
+    </div>
+    <posters-overview-section :not-in="poster.posterId" />
   </div>
 </template>
 
@@ -13,13 +14,13 @@ import PosterQuery from '~/graphql/Poster.gql'
 
 import PosterDetails from '@/components/Poster/PosterDetails.vue'
 import Navigation from '@/components/Shared/Navigation.vue'
-import List from '@/components/Shared/List.vue'
+import PostersOverviewSection from '@/components/Posters/PostersOverview/PostersOverviewSection.vue'
 
 export default {
   components: {
     PosterDetails,
     Navigation,
-    List
+    PostersOverviewSection
   },
 
   async asyncData({ app, params }) {

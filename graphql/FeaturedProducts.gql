@@ -1,0 +1,11 @@
+#import "./Fragments/Product.gql"
+
+query GET_RELATED_PRODUCTS {
+  products(where: {featured: true, stockStatus: IN_STOCK}, first: 5) {
+    edges {
+      node {
+        ...product
+      }
+    }
+  }
+}

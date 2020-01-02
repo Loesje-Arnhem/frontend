@@ -1,0 +1,22 @@
+
+fragment relatedPostersGroup on Page_Relatedpostersgroup {
+  title
+  search
+  subjects {
+    ... on Subject {
+      subjectId
+      name
+    }
+  }
+  posters {
+    ... on Page_Relatedpostersgroup_posters {
+      poster {
+        ... on Page_Relatedpostersgroup_posters_Poster {
+          ... on Poster {
+            posterId
+          }
+        }
+      }
+    }
+  }
+}

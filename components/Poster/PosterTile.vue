@@ -35,20 +35,11 @@ export default {
 
 <style lang="postcss" scoped>
 .poster {
+  @mixin tile-border;
+
   display: block;
   width: 100%;
   height: auto;
-
-  --rough-stroke-width: 3px;
-  --rough-roughness: 1.5;
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
-  @nest .is-loaded & {
-    @supports (border-image-source: paint(rough-boxes)) {
-      border-image-source: paint(rough-boxes);
-      border-image-slice: 0 fill;
-      border-image-outset: 1em;
-    }
-  }
 }
 
 .link {

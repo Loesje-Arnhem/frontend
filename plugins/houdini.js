@@ -5,6 +5,6 @@ const loadRoughBoxedCSS = async () => {
   window.document.body.classList.add('is-loaded')
 }
 
-window.onNuxtReady(() => {
-  loadRoughBoxedCSS()
-})
+// window.onNuxtReady(() => {
+loadRoughBoxedCSS()
+// })

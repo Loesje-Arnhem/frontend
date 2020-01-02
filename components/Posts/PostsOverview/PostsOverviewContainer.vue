@@ -44,7 +44,6 @@ export default {
         },
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
-          window.console.log(query)
           const newPosts = fetchMoreResult.posts
 
           if (!fetchMoreResult.posts.pageInfo.hasNextPage) {

@@ -11,7 +11,10 @@
         :key="productCategory.node.id"
         class="list-item"
       >
-        <nuxt-link :to="productCategory.node.slug" class="link">
+        <nuxt-link
+          :to="`/winkeltje/categorie/${productCategory.node.slug}`"
+          class="link"
+        >
           {{ productCategory.node.name }}
         </nuxt-link>
       </li>

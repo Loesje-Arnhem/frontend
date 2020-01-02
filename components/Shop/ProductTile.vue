@@ -1,13 +1,14 @@
 <template>
-  <clickable-list-item :url="product.slug" class="product-tile">
+  <clickable-list-item :url="url" class="product-tile">
     <div class="image-wrapper">
       <app-image v-if="product.image" :src="product.image.medium" />
     </div>
     <h3 class="title">
-      <nuxt-link :to="product.slug">{{ product.name }}</nuxt-link>
+      <nuxt-link :to="url">{{ product.name }}</nuxt-link>
     </h3>
-    <!-- {{ product.price }}
-    {{ product.salePrice }} -->
+    <div v-if="product.price" class="price">
+      {{ product.price }}
+    </div>
   </clickable-list-item>
 </template>
 
@@ -25,27 +26,22 @@ export default {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    url() {
+      return `/winkeltje/${this.product.slug}`
+    }
   }
 }
 </script>
 
 <style scoped lang="postcss">
 .product-tile {
+  @mixin tile-border;
   padding: 0.5em;
-  --rough-stroke-width: 3px;
-  --rough-roughness: 1.5;
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
-  @nest .is-loaded & {
-    @supports (border-image-source: paint(rough-boxes)) {
-      border-image-source: paint(rough-boxes);
-      border-image-slice: 0 fill;
-      border-image-outset: 0.5em;
-    }
-  }
-}
-
-.image-wrapper {
-  height: 12em;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-template-rows: 12em auto 1.5em;
 }
 
 a {
@@ -60,5 +56,8 @@ img {
 
 h3 {
   margin-bottom: 0;
+}
+
+.price {
 }
 </style>

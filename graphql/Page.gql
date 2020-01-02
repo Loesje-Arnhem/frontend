@@ -1,7 +1,9 @@
+#import "./Fragments/PageContent.gql"
+
 query GET_PAGE_BY_URI($uri: String) {
   page: pageBy(uri: $uri) {
+    ...pageContent
     pageId
-    title
     content
     childPages {
       edges {

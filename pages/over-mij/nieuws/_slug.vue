@@ -1,6 +1,10 @@
 <template>
   <div v-if="post.title">
     <post-details :post="post" />
+    <related-posters-section
+      v-if="post"
+      :related-posters="post.relatedPosters"
+    />
     <posts-overview-container :not-in="post.postId" />
   </div>
 </template>
@@ -9,11 +13,13 @@
 import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
 import PostDetails from '@/components/Posts/PostDetails/PostDetails.vue'
 import PostQuery from '~/graphql/Post.gql'
+import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 
 export default {
   components: {
     PostDetails,
-    PostsOverviewContainer
+    PostsOverviewContainer,
+    RelatedPostersSection
   },
 
   async asyncData({ app, params }) {

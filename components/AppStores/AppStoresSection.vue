@@ -4,7 +4,7 @@
       <div :class="$style['image-wrapper']">
         <app-image
           :class="$style.mood"
-          src="/images/illustrations/arcarde.png"
+          :src="require('./images/arcarde.png')"
           width="500"
           height="800"
         />
@@ -37,7 +37,7 @@
       </div>
       <button :class="$style['btn-action']" @click="action">
         <app-image
-          src="/images/illustrations/arcarde-button.png"
+          :src="require('./images/arcarde-button.png')"
           width="100"
           height="100"
         />

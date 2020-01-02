@@ -1,8 +1,8 @@
-query GET_POSTERS($first: Int, $after: String, $search: String, $notIn: [ID]) {
+query GET_POSTERS($first: Int, $after: String, $where: RootQueryToPosterConnectionWhereArgs) {
   posters(
     first: $first
     after: $after
-    where: { search: $search, notIn: $notIn }
+    where: $where
   ) {
     pageInfo {
       hasNextPage

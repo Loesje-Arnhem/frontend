@@ -48,7 +48,8 @@ export default {
   data() {
     return {
       showSubjects: false,
-      showSources: false
+      showSources: false,
+      selectedTags: []
     }
   },
 

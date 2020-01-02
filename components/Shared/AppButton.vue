@@ -63,8 +63,7 @@ export default {
   border-radius: 0.25em;
   display: inline-block;
   text-decoration: none;
-  width: 100%;
-  padding: 0.75em 0.5em;
+  padding: 0.75em 2em;
   border: 2px solid var(--color-white);
   max-width: 20em;
   background: var(--color-black);

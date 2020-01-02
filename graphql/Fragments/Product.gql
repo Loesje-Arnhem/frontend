@@ -1,0 +1,20 @@
+fragment product on Product {
+  id
+  name
+  slug
+  image {
+    id
+    medium: sourceUrl(size: MEDIUM)
+    mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+  }
+  ... on SimpleProduct {
+    id
+    price
+    salePrice
+  }
+  ... on VariableProduct {
+    id
+    price
+    salePrice
+  }
+}
