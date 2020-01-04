@@ -22,29 +22,31 @@ export default {
       transform: null
     }
   },
+  computed: {
+    translate() {
+      const randomizeRange = this.randomizeRange() / 4
+      const translateX = randomizeRange
+      const translateY = randomizeRange
+      return `translate(${translateX}em, ${translateY}em)`
+    },
+    scale() {
+      const scale = (this.randomizeRange() * 5 + 100) / 100
+      return `scale(${scale})`
+    },
+    rotate() {
+      const rotate = this.randomizeRange()
+      return `rotate(${rotate}deg)`
+    }
+  },
   mounted() {
     if (!this.transform) this.generateStyle()
   },
   methods: {
     generateStyle() {
-      this.transform = `${this.randomizeRotate()} ${this.randomizeScale()} ${this.randomizeTranslate()}`
+      this.transform = `${this.rotate} ${this.scale} ${this.translate}`
     },
-    randomize() {
+    randomizeRange() {
       return Math.floor(Math.random() * 8 - 4)
-    },
-    randomizeTranslate() {
-      const randomize = this.randomize() / 4
-      const translateX = randomize
-      const translateY = randomize
-      return `translate(${translateX}em, ${translateY}em)`
-    },
-    randomizeScale() {
-      const scale = (this.randomize() * 5 + 100) / 100
-      return `scale(${scale})`
-    },
-    randomizeRotate() {
-      const rotate = this.randomize()
-      return `rotate(${rotate}deg)`
     }
   }
 }
