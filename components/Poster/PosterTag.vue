@@ -12,7 +12,7 @@
 <script>
 import AppButton from '@/components/Shared/AppButton.vue'
 import addItemMutation from '~/graphql/local/AddToSelectedTags.gql'
-import removeFromSelectedTagsMutation from '~/graphql/local/removeFromSelectedTags.gql'
+import removeFromSelectedTagsMutation from '~/graphql/local/RemoveFromSelectedTags.gql'
 import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
 
 export default {
