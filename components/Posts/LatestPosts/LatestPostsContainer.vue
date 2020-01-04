@@ -4,17 +4,18 @@
     :variables="{ first: 3 }"
   >
     <template slot-scope="{ result: { data }, isLoading }">
-      <latest-posts-section :data="data" :is-loading="isLoading > 0" />
+      <app-loader v-if="isLoading" />
+      <slot v-if="data" :posts="data.posts.edges"></slot>
     </template>
   </apollo-query>
 </template>
 
 <script>
-import LatestPostsSection from '@/components/Posts/LatestPosts/LatestPostsSection.vue'
+import AppLoader from '@/components/Shared/AppLoader.vue'
 
 export default {
   components: {
-    LatestPostsSection
+    AppLoader
   }
 }
 </script>

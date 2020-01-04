@@ -4,10 +4,13 @@
       <div :class="$style.wrapper">
         <div class="latest-posts">
           <h1 id="latest-posts-title">{{ $t('title') }}</h1>
-          <app-loader v-if="isLoading" />
-          <template v-if="hasData">
-            <latest-posts-list :posts="data.posts.edges" :class="$style.list" />
-          </template>
+          <latest-posts-container>
+            <latest-posts-list
+              v-if="data"
+              slot-scope="data"
+              :posts="data.posts"
+            />
+          </latest-posts-container>
           <app-button to="/over-mij/nieuws/">{{ $t('btnMore') }}</app-button>
         </div>
         <become-member />
@@ -18,37 +21,21 @@
 </template>
 
 <script>
+import LatestPostsContainer from '~/components/Posts/LatestPosts/LatestPostsContainer.vue'
 import AppButton from '@/components/Shared/AppButton.vue'
 import Balloon from '@/components/Posts/LatestPosts/LatestPostBalloon.vue'
-import LatestPostsList from '@/components/Posts/LatestPosts/LatestPostsList.vue'
 import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
-import AppLoader from '@/components/Shared/AppLoader.vue'
 import BecomeMember from '@/components/BecomeMember/BecomeMember.vue'
+import LatestPostsList from '@/components/Posts/LatestPosts/LatestPostsList.vue'
 
 export default {
   components: {
     Balloon,
     AppButton,
-    LatestPostsList,
+    LatestPostsContainer,
     CenterWrapper,
-    AppLoader,
-    BecomeMember
-  },
-
-  props: {
-    data: {
-      type: Object,
-      default: () => {}
-    },
-    isLoading: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    hasData() {
-      return !this.isLoading && this.data
-    }
+    BecomeMember,
+    LatestPostsList
   }
 }
 </script>
