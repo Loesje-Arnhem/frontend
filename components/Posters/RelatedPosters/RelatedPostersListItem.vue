@@ -1,5 +1,5 @@
 <template>
-  <li v-show="transform" :class="$style['list-item']" :style="{ transform }">
+  <li :class="$style['list-item']" :style="{ transform }">
     <poster-tile :poster="poster.node" />
   </li>
 </template>

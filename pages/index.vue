@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1 class="sr-only">Home</h1>
+    <latest-posts-container />
     <related-posters-section
       v-if="page"
       :related-posters="page.relatedPosters"
     />
-    <latest-posts-container />
     <app-stores-section />
     <featured-products-section />
     <BlockInstagram />
