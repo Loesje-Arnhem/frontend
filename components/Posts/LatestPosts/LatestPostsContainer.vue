@@ -5,7 +5,7 @@
   >
     <template slot-scope="{ result: { data }, isLoading }">
       <app-loader v-if="isLoading" />
-      <slot v-if="data" :posts="data.posts.edges"></slot>
+      <slot v-if="data" :posts="data.posts.edges" />
     </template>
   </apollo-query>
 </template>
