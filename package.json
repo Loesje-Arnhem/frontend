@@ -31,7 +31,7 @@
     "vuex-persist": "^2.2.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.0",
     "@nuxtjs/eslint-config": "^2.0.0",
     "@vue/test-utils": "^1.0.0-beta.30",
     "babel-core": "7.0.0-bridge.0",
