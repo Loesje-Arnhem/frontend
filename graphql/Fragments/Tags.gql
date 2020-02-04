@@ -1,0 +1,17 @@
+fragment source on Source {
+  id
+  tagId: databaseId
+  name
+  taxonomy {
+    name
+  }
+}
+
+fragment subject on Subject {
+  id
+  tagId: databaseId
+  name
+  taxonomy {
+    name
+  }
+}

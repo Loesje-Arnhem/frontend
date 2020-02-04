@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading'
 import PostersOverviewList from '@/components/Posters/PostersOverview/PostersOverviewList.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
@@ -44,21 +45,30 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      selectedTags: 'tags/selectedTags',
+      selectedSources: 'tags/selectedSources',
+      selectedSubjects: 'tags/selectedSubjects'
+    }),
+    taxQueryArray() {
+      const taxQuery = []
+      if (this.getTaxQueryByType('source')) {
+        taxQuery.push(this.getTaxQueryByType('source'))
+      }
+      if (this.getTaxQueryByType('subject')) {
+        taxQuery.push(this.getTaxQueryByType('subject'))
+      }
+      return taxQuery
+    },
     where() {
       let search = ''
       if (this.searchText) {
         search = this.searchText.searchText
       }
       let taxQuery = null
-      if (this.selectedTagsIds.length) {
+      if (this.taxQueryArray.length) {
         taxQuery = {
-          taxArray: [
-            {
-              terms: this.selectedTagsIds,
-              taxonomy: 'SUBJECT',
-              operator: 'IN'
-            }
-          ]
+          taxArray: this.taxQueryArray
         }
       }
       return {
@@ -66,12 +76,6 @@ export default {
         notIn: this.notIn,
         taxQuery
       }
-    },
-    selectedTagsIds() {
-      if (this.selectedTags) {
-        return this.selectedTags.map(tag => tag.tagId)
-      }
-      return []
     }
   },
 
@@ -88,6 +92,25 @@ export default {
   },
 
   methods: {
+    getTaxQueryByType(type) {
+      if (this.getSelectedTagIdsByType(type).length) {
+        return {
+          terms: this.getSelectedTagIdsByType(type),
+          taxonomy: type.toUpperCase(),
+          operator: 'IN'
+        }
+      }
+    },
+
+    getSelectedTagIdsByType(type) {
+      const selectedTags = this.selectedTags.filter(
+        tag => tag.taxonomy.name === type
+      )
+      if (selectedTags) {
+        return selectedTags.map(tag => tag.tagId)
+      }
+      return []
+    },
     async loadMorePosters($state) {
       await this.$apollo.queries.posters.fetchMore({
         variables: {

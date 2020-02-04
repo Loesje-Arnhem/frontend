@@ -1,3 +1,5 @@
+#import "./Fragments/Tags.gql"
+
 query GET_POSTER($slug: String) {
   poster: posterBy(slug: $slug) {
     id
@@ -14,16 +16,14 @@ query GET_POSTER($slug: String) {
     sources {
       edges {
         node {
-          id
-          name
+          ...source
         }
       }
     }
     subjects {
       edges {
         node {
-          id
-          name
+          ...subject
         }
       }
     }

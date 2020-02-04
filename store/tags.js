@@ -4,10 +4,12 @@ export const state = () => ({
 
 export const getters = {
   selectedTags: state => state.selectedTags,
+  selectedTagByTagId: state => tagId =>
+    state.selectedTags.find(tag => tag.tagId === tagId),
   selectedSources: state =>
-    state.selectedTags.filter(tag => tag.taxonomy === 'source'),
+    state.selectedTags.filter(tag => tag.taxonomy.name === 'source'),
   selectedSubjects: state =>
-    state.selectedTags.filter(tag => tag.taxonomy === 'subject')
+    state.selectedTags.filter(tag => tag.taxonomy.name === 'subject')
 }
 
 export const mutations = {

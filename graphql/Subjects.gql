@@ -1,10 +1,10 @@
+#import "./Fragments/Tags.gql"
+
 query GET_SOURCES {
   subjects(first: 100) {
     edges {
       node {
-        id
-        tagId: subjectId
-        name
+        ...subject
       }
     }
   }
