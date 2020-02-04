@@ -1,5 +1,0 @@
-mutation UPDATE_SEARCH_TEXT ($searchText: String!) {
-  udpateSearchText(searchText: $searchText) @client {
-    searchText
-  }
-}
