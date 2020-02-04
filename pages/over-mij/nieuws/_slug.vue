@@ -12,8 +12,8 @@
 <script>
 import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
 import PostDetails from '@/components/Posts/PostDetails/PostDetails.vue'
-import PostQuery from '~/graphql/Post.gql'
 import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
+import PostQuery from '~/graphql/Post.gql'
 
 export default {
   components: {

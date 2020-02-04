@@ -18,9 +18,11 @@ class RoughDrawable {
     this.maxRandomnessOffset = 1
     this._curveTightness = 0
   }
+
   getOffset(min, max) {
     return this.roughness * (Math.random() * (max - min) + min)
   }
+
   drawLine(ctx, x1, y1, x2, y2, existingPath) {
     const lengthSq = (x1 - x2) ** 2 + (x1 - x2) ** 2
     let offset = this.maxRandomnessOffset || 0
@@ -125,6 +127,7 @@ class RoughRectangle extends RoughDrawable {
     this.drawLine(ctx, left, bottom, left, top)
     ctx.restore()
   }
+
   _doFill(ctx, left, right, top, bottom) {
     const fillStyle = this.fillStyle || 'hachure'
     switch (fillStyle) {

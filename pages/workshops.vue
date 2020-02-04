@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import PageQuery from '~/graphql/Page.gql'
 import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import FormWorkshop from '@/components/Blocks/FormWorkshop.vue'
+import PageQuery from '~/graphql/Page.gql'
 
 export default {
   components: {

@@ -14,10 +14,10 @@
 </template>
 
 <script>
+import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import Groups from '~/components/Blocks/Groups.vue'
 import BlockInstagram from '~/components/Blocks/BlockInstagram.vue'
 import AppStoresSection from '~/components/AppStores/AppStoresSection.vue'
-import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import LatestPostsSection from '~/components/Posts/LatestPosts/LatestPostsSection.vue'
 import FeaturedProductsSection from '~/components/Shop/FeaturedProducts/FeaturedProductsSection.vue'
 import frontPageQuery from '~/graphql/FrontPage.gql'
