@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import ProductsQuery from '~/graphql/Products.gql'
 import ProductList from '@/components/Shop/ProductList.vue'
+import ProductsQuery from '~/graphql/Products.gql'
 export default {
   components: {
     ProductList

@@ -4,19 +4,14 @@
     :variables="{ first: 5, where: where }"
   >
     <template slot-scope="{ result: { data }, isLoading }">
-      <related-posters-list v-if="data" :posters="data.posters.edges" />
+      <slot v-if="data" :posters="data.posters.edges" />
       <app-loader v-if="isLoading" />
     </template>
   </apollo-query>
 </template>
 
 <script>
-import RelatedPostersList from '@/components/Posters/RelatedPosters/RelatedPostersList.vue'
-
 export default {
-  components: {
-    RelatedPostersList
-  },
   props: {
     relatedPosters: {
       type: Object,

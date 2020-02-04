@@ -25,8 +25,6 @@ import InfiniteLoading from 'vue-infinite-loading'
 import PostersOverviewList from '@/components/Posters/PostersOverview/PostersOverviewList.vue'
 import AppLoader from '@/components/Shared/AppLoader.vue'
 import PostersQuery from '~/graphql/Posters.gql'
-import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
-import searchTextQuery from '~/graphql/local/SearchText.gql'
 
 export default {
   components: {
@@ -86,9 +84,7 @@ export default {
           where: this.where
         }
       }
-    },
-    selectedTags: selectedTagsQuery,
-    searchText: searchTextQuery
+    }
   },
 
   methods: {

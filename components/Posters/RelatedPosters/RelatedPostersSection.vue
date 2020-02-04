@@ -9,7 +9,13 @@
       </h1>
     </center-wrapper>
     <center-wrapper size="full">
-      <related-posters-container :related-posters="relatedPosters" />
+      <related-posters-container :related-posters="relatedPosters">
+        <related-posters-list
+          v-if="data"
+          slot-scope="data"
+          :posters="data.posters"
+        />
+      </related-posters-container>
     </center-wrapper>
     <center-wrapper :class="$style['btn-wrapper']">
       <app-button to="/posters">{{ btnText }}</app-button>
@@ -21,12 +27,14 @@
 import RelatedPostersContainer from '@/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
 import AppButton from '@/components/Shared/AppButton.vue'
 import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
+import RelatedPostersList from '@/components/Posters/RelatedPosters/RelatedPostersList.vue'
 
 export default {
   components: {
     RelatedPostersContainer,
     AppButton,
-    CenterWrapper
+    CenterWrapper,
+    RelatedPostersList
   },
   props: {
     relatedPosters: {

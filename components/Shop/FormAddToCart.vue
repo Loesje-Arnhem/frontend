@@ -36,11 +36,11 @@
 </template>
 
 <script>
+import FormSelect from '@/components/Forms/FormSelect.vue'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
 import AddToCartQuery from '~/graphql/AddToCart.gql'
-import FormSelect from '@/components/Forms/FormSelect.vue'
 
 export default {
   components: {

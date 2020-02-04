@@ -9,10 +9,9 @@
 </template>
 
 <script>
-import PageQuery from '~/graphql/Page.gql'
-
 import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
 import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
+import PageQuery from '~/graphql/Page.gql'
 
 export default {
   components: {

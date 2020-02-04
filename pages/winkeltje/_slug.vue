@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import ProductQuery from '~/graphql/Product.gql'
 import ProductDetails from '@/components/Shop/ProductDetails.vue'
 import ProductList from '@/components/Shop/ProductList.vue'
+import ProductQuery from '~/graphql/Product.gql'
 
 export default {
   components: {

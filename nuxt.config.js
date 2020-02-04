@@ -1,5 +1,4 @@
 import pkg from './package'
-const baseUrl = 'https://api.loesje.michielkoning.nl/'
 
 export default {
   mode: 'universal',

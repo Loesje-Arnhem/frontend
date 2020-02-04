@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import PageQuery from '~/graphql/Page.gql'
-import ChildPagesQuery from '~/graphql/ChildPages.gql'
 import ChildPagesList from '@/components/Pages/ChildPagesList.vue'
 import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
+import PageQuery from '~/graphql/Page.gql'
+import ChildPagesQuery from '~/graphql/ChildPages.gql'
 
 export default {
   components: {

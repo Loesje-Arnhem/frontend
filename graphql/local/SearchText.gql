@@ -1,5 +1,0 @@
-query GET_SEARCH_TEXT {
-  searchText @client {
-    searchText
-  }
-}

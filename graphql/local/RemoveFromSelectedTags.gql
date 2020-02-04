@@ -1,5 +1,0 @@
-mutation($id: ID!) {
-  removeFromSelectedTags(id: $id) @client {
-    id
-  }
-}

@@ -11,10 +11,7 @@
 
 <script>
 import AppButton from '@/components/Shared/AppButton.vue'
-import addItemMutation from '~/graphql/local/AddToSelectedTags.gql'
-import removeFromSelectedTagsMutation from '~/graphql/local/RemoveFromSelectedTags.gql'
-import selectedTagsQuery from '~/graphql/local/SelectedTags.gql'
-
+import { mapGetters, mapActions } from 'vuex'
 export default {
   components: {
     AppButton
@@ -25,31 +22,20 @@ export default {
       required: true
     }
   },
-  apollo: {
-    selectedTags: {
-      query: selectedTagsQuery
-    }
-  },
   computed: {
+    ...mapGetters({
+      selectedTags: 'tags/selectedTags'
+    }),
     isSelected() {
-      return this.selectedTags.find(
-        selectedTag => selectedTag.id === this.tag.id
-      )
+      return this.selectedTags.includes(this.tag)
     }
   },
   methods: {
+    ...mapActions({
+      toggle: 'tags/toggle'
+    }),
     toggleTag() {
-      if (this.isSelected) {
-        this.$apollo.mutate({
-          mutation: removeFromSelectedTagsMutation,
-          variables: { id: this.tag.id }
-        })
-      } else {
-        this.$apollo.mutate({
-          mutation: addItemMutation,
-          variables: { id: this.tag.id, tagId: this.tag.tagId }
-        })
-      }
+      this.toggle(this.tag)
     }
   }
 }

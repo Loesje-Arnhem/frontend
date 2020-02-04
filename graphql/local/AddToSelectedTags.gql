@@ -1,6 +1,0 @@
-mutation($id: ID!, $tagId: Int!) {
-  addToSelectedTags(id: $id, tagId: $tagId) @client {
-    id
-    tagId
-  }
-}
