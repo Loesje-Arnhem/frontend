@@ -23,7 +23,7 @@
     "body-scroll-lock": "^2.6.4",
     "cross-env": "^7.0.0",
     "css-paint-polyfill": "^1.0.3",
-    "graphql-tag": "^2.10.2",
+    "graphql-tag": "^2.10.3",
     "nuxt": "^2.11.0",
     "nuxt-i18n": "^6.5.0",
     "vue-youtube": "^1.4.0",
