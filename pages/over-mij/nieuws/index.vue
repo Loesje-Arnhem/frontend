@@ -16,25 +16,25 @@ import PageQuery from '~/graphql/Page.gql'
 export default {
   components: {
     RelatedPostersSection,
-    PostsOverviewContainer
+    PostsOverviewContainer,
   },
   data() {
     return {
-      page: {}
+      page: {},
     }
   },
   apollo: {
     page: {
       query: PageQuery,
       variables: {
-        uri: 'over-mij/nieuws'
-      }
-    }
+        uri: 'over-mij/nieuws',
+      },
+    },
   },
   head() {
     return {
-      title: this.page.title
+      title: this.page.title,
     }
-  }
+  },
 }
 </script>

@@ -81,18 +81,18 @@ export default {
     IconTwitter,
     IconPinterest,
     IconLinkedin,
-    IconInstagram
+    IconInstagram,
   },
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     socialMedia: {
       type: Object,
-      default: () => {}
-    }
-  }
+      default: () => {},
+    },
+  },
 }
 </script>
 

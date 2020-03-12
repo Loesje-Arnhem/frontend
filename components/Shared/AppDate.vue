@@ -8,13 +8,13 @@ export default {
     datetime(value) {
       const date = new Date(value)
       return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
-    }
+    },
   },
   props: {
     date: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>

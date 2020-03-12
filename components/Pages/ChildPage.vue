@@ -6,7 +6,7 @@
     <div :class="$style.text">
       <!-- eslint-disable-next-line -->
     <div v-html="page.node.excerpt" />
-      <ReadMoreLink />
+      <read-more-link />
     </div>
   </clickable-list-item>
 </template>
@@ -18,19 +18,19 @@ import ClickableListItem from '@/components/Shared/ClickableListItem.vue'
 export default {
   components: {
     ClickableListItem,
-    ReadMoreLink
+    ReadMoreLink,
   },
   props: {
     page: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     url() {
       return `/${this.page.node.uri}/`
-    }
-  }
+    },
+  },
 }
 </script>
 

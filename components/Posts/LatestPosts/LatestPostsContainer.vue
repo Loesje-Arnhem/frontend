@@ -3,7 +3,7 @@
     :query="require('~/graphql/Posts.gql')"
     :variables="{ first: 3 }"
   >
-    <template slot-scope="{ result: { data }, isLoading }">
+    <template v-slot="{ result: { data }, isLoading }">
       <app-loader v-if="isLoading" />
       <slot v-if="data" :posts="data.posts.edges" />
     </template>
@@ -15,7 +15,7 @@ import AppLoader from '@/components/Shared/AppLoader.vue'
 
 export default {
   components: {
-    AppLoader
-  }
+    AppLoader,
+  },
 }
 </script>

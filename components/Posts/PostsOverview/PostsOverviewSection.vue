@@ -27,25 +27,25 @@ export default {
     AppButton,
     PostsOverviewList,
     CenterWrapper,
-    AppLoader
+    AppLoader,
   },
   props: {
     data: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     hasMore: {
       type: Boolean,
-      default: true
+      default: true,
     },
     isLoading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isRelated: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     showBtnMore() {
@@ -56,8 +56,8 @@ export default {
         return this.$t('relatedTitle')
       }
       return this.$t('title')
-    }
-  }
+    },
+  },
 }
 </script>
 

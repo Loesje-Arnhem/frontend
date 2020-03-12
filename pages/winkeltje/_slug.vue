@@ -16,31 +16,31 @@ import ProductQuery from '~/graphql/Product.gql'
 export default {
   components: {
     ProductDetails,
-    ProductList
+    ProductList,
   },
   async asyncData({ app, params }) {
     const product = await app.apolloProvider.defaultClient.query({
       query: ProductQuery,
       variables: {
-        slug: params.slug
-      }
+        slug: params.slug,
+      },
     })
 
     return {
-      product: product.data.product
+      product: product.data.product,
     }
   },
 
   data() {
     return {
-      title: 'Winkeltje'
+      title: 'Winkeltje',
     }
   },
 
   head() {
     return {
-      title: this.title
+      title: this.title,
     }
-  }
+  },
 }
 </script>

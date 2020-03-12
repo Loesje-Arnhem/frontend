@@ -25,16 +25,16 @@ import IconChevronLeft from '@/assets/icons/chevron-left.svg'
 export default {
   components: {
     IconChevronLeft,
-    IconChevronRight
+    IconChevronRight,
   },
   computed: {
     ...mapGetters({
-      totalFavorites: 'favorites/total'
+      totalFavorites: 'favorites/total',
     }),
 
     favoritesText() {
       return `Bekijk je ${this.counter(
-        this.totalFavorites
+        this.totalFavorites,
       )} favoriete poster${this.plural(this.totalFavorites)}`
     },
     isSearch() {
@@ -42,7 +42,7 @@ export default {
     },
     isFavorites() {
       return this.$route.name === 'Favorites'
-    }
+    },
   },
   methods: {
     counter(count) {
@@ -94,8 +94,8 @@ export default {
     plural(count) {
       if (count === 1) return ''
       return 's'
-    }
-  }
+    },
+  },
 }
 </script>
 

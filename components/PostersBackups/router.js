@@ -16,17 +16,17 @@ export default new VueRouter({
     {
       path: '/',
       name: 'Search',
-      component: Search
+      component: Search,
     },
     {
       path: '/favorieten',
       name: 'Favorites',
-      component: Favorites
+      component: Favorites,
     },
     {
       path: '/:slug',
       name: 'Poster',
-      component: Details
-    }
-  ]
+      component: Details,
+    },
+  ],
 })

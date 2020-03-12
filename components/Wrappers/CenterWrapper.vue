@@ -11,9 +11,9 @@ export default {
   props: {
     size: {
       type: String,
-      default: 'xlg'
-    }
-  }
+      default: 'xlg',
+    },
+  },
 }
 </script>
 

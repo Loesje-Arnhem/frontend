@@ -7,32 +7,32 @@ import ProductList from '@/components/Shop/ProductList.vue'
 import ProductsQuery from '~/graphql/Products.gql'
 export default {
   components: {
-    ProductList
+    ProductList,
   },
   async asyncData({ app, params }) {
     const products = await app.apolloProvider.defaultClient.query({
       query: ProductsQuery,
       variables: {
-        categoryName: params.slug
-      }
+        categoryName: params.slug,
+      },
     })
 
     return {
-      products: products.data.products
+      products: products.data.products,
     }
   },
 
   data() {
     return {
-      title: 'Winkeltje'
+      title: 'Winkeltje',
     }
   },
 
   head() {
     return {
-      title: this.title
+      title: this.title,
     }
-  }
+  },
 }
 </script>
 

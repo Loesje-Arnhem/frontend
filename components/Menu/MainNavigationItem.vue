@@ -2,7 +2,7 @@
   <li
     :class="[
       $style['menu-item'],
-      { [$style['has-popup']]: item.childItems.edges.length > 0 }
+      { [$style['has-popup']]: item.childItems.edges.length > 0 },
     ]"
     @mouseover="mouseover"
     @mouseout="mouseout"
@@ -52,18 +52,18 @@ export default {
   components: {
     MenuItem,
     IconChevronDown,
-    AnimationSlideIn
+    AnimationSlideIn,
   },
   props: {
     item: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       isOpen: false,
-      timer: null
+      timer: null,
     }
   },
   methods: {
@@ -78,8 +78,8 @@ export default {
       this.timer = setTimeout(() => {
         this.isOpen = false
       }, 250)
-    }
-  }
+    },
+  },
 }
 </script>
 

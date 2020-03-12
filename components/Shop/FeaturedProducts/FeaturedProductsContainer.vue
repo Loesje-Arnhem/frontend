@@ -1,6 +1,6 @@
 <template>
   <apollo-query :query="require('~/graphql/FeaturedProducts.gql')">
-    <template slot-scope="{ result: { data }, isLoading }">
+    <template v-slot="{ result: { data }, isLoading }">
       <product-list v-if="data" :products="data.products.edges" />
       <app-loader v-if="isLoading" />
     </template>
@@ -14,7 +14,7 @@ import ProductList from '@/components/Shop/ProductList.vue'
 export default {
   components: {
     AppLoader,
-    ProductList
-  }
+    ProductList,
+  },
 }
 </script>

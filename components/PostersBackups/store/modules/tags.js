@@ -2,7 +2,7 @@ import axios from '~/plugins/axios'
 
 const moduleState = {
   tags: [],
-  selectedTags: []
+  selectedTags: [],
 }
 
 const getters = {
@@ -12,7 +12,7 @@ const getters = {
   selectedSources: state =>
     state.selectedTags.filter(tag => tag.type === 'source'),
   selectedSubjects: state =>
-    state.selectedTags.filter(tag => tag.type === 'subject')
+    state.selectedTags.filter(tag => tag.type === 'subject'),
 }
 
 const mutations = {
@@ -32,21 +32,21 @@ const mutations = {
     } else {
       mutations.addTag(state, payload)
     }
-  }
+  },
 }
 
 const actions = {
   populateTags: ({ commit }) => {
     const getSources = axios.get('wp/v2/source', {
       params: {
-        per_page: 100
-      }
+        per_page: 100,
+      },
     })
 
     const getSubjects = axios.get('wp/v2/subject', {
       params: {
-        per_page: 100
-      }
+        per_page: 100,
+      },
     })
 
     const addTypeOnTags = (tags, type) =>
@@ -61,9 +61,9 @@ const actions = {
         const sources = addTypeOnTags(responseSources.data, 'source')
         const subjects = addTypeOnTags(responseSubjects.data, 'subject')
         commit('populateTags', {
-          tags: [...sources, ...subjects]
+          tags: [...sources, ...subjects],
         })
-      })
+      }),
     )
   },
 
@@ -75,7 +75,7 @@ const actions = {
   },
   toggle: ({ commit }, payload) => {
     commit('toggle', payload)
-  }
+  },
 }
 
 export default {
@@ -83,5 +83,5 @@ export default {
   getters,
   mutations,
   actions,
-  namespaced: true
+  namespaced: true,
 }

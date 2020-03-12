@@ -51,11 +51,11 @@ import AppImage from '@/components/Shared/AppImage.vue'
 
 export default {
   components: {
-    AppImage
+    AppImage,
   },
   data() {
     return {
-      themeColor: '#000'
+      themeColor: '#000',
     }
   },
   methods: {
@@ -63,10 +63,10 @@ export default {
       this.themeColor = this.themeColor === '#000' ? '#f0f' : '#000'
       document.documentElement.style.setProperty(
         '--color-black',
-        this.themeColor
+        this.themeColor,
       )
-    }
-  }
+    },
+  },
 }
 </script>
 

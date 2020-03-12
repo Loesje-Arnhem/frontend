@@ -13,14 +13,14 @@ import RelatedPostersListItem from '@/components/Posters/RelatedPosters/RelatedP
 
 export default {
   components: {
-    RelatedPostersListItem
+    RelatedPostersListItem,
   },
   props: {
     posters: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

@@ -20,34 +20,34 @@
 import FormField from '~/components/Forms/FormField.vue'
 export default {
   components: {
-    FormField
+    FormField,
   },
   inheritAttrs: false,
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     id: {
       type: String,
-      required: true
+      required: true,
     },
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
     value: {
       type: [String, Number],
-      required: true
+      required: true,
     },
     maxlength: {
       type: Number,
-      default: 50
+      default: 50,
     },
     errorMessage: {
       type: String,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>

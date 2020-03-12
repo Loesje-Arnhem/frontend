@@ -7,18 +7,18 @@ import AutoComplete from '@/components/Posters/AutoComplete/AutoComplete.vue'
 
 export default {
   components: {
-    AutoComplete
+    AutoComplete,
   },
   data() {
     return {
-      search: ''
+      search: '',
     }
   },
 
   methods: {
     searchForPosters(search) {
       window.console.log(search)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -31,28 +31,28 @@ import FormField from '~/components/Forms/FormField.vue'
 export default {
   components: {
     FormField,
-    IconChevronDown
+    IconChevronDown,
   },
   inheritAttrs: false,
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     id: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
       type: String,
-      required: true
+      required: true,
     },
     errorMessage: {
       type: String,
       required: false,
-      default: ''
-    }
-  }
+      default: '',
+    },
+  },
 }
 </script>
 

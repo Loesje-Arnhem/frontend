@@ -19,8 +19,8 @@ import DailyPoster from '@/components/DailyPoster.vue'
 
 export default {
   components: {
-    DailyPoster
-  }
+    DailyPoster,
+  },
 }
 </script>
 

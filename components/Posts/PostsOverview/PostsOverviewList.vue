@@ -16,15 +16,15 @@ import ListAnimation from '@/components/Animations/ListAnimation.vue'
 export default {
   components: {
     PostListItem,
-    ListAnimation
+    ListAnimation,
   },
 
   props: {
     posts: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 }
 </script>
 

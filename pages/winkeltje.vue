@@ -18,28 +18,28 @@ import ProductCategoriesQuery from '~/graphql/ProductCategories.gql'
 
 export default {
   components: {
-    CategoryList
+    CategoryList,
   },
   async asyncData({ app, params }) {
     const categories = await app.apolloProvider.defaultClient.query({
-      query: ProductCategoriesQuery
+      query: ProductCategoriesQuery,
     })
 
     return {
-      productCategories: categories.data.productCategories
+      productCategories: categories.data.productCategories,
     }
   },
   data() {
     return {
-      title: 'Winkeltje'
+      title: 'Winkeltje',
     }
   },
 
   head() {
     return {
-      title: this.title
+      title: this.title,
     }
-  }
+  },
 }
 </script>
 

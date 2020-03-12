@@ -8,7 +8,7 @@
 import FormLogin from '@/components/Blocks/FormLogin.vue'
 export default {
   components: {
-    FormLogin
-  }
+    FormLogin,
+  },
 }
 </script>

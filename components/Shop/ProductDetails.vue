@@ -26,14 +26,14 @@ import FormAddToCart from '@/components/Shop/FormAddToCart.vue'
 export default {
   components: {
     AppImage,
-    FormAddToCart
+    FormAddToCart,
   },
   props: {
     product: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

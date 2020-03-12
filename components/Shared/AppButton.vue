@@ -16,23 +16,23 @@ export default {
   props: {
     to: {
       type: String,
-      default: null
+      default: null,
     },
     buttonTag: {
       type: String,
       default: 'button',
       validator(value) {
         return ['nuxt-link', 'a', 'button'].includes(value)
-      }
+      },
     },
     type: {
       type: String,
-      default: 'button'
+      default: 'button',
     },
     isPrimary: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
     cssClass() {
@@ -49,8 +49,8 @@ export default {
         return this.type
       }
       return null
-    }
-  }
+    },
+  },
 }
 </script>
 

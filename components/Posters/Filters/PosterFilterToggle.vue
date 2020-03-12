@@ -21,14 +21,14 @@ import IconChevronDown from '@/assets/icons/chevron-down.svg'
 
 export default {
   components: {
-    IconChevronDown
+    IconChevronDown,
   },
   props: {
     isActive: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }
 </script>
 

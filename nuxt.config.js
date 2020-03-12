@@ -3,7 +3,7 @@ import pkg from './package'
 export default {
   mode: 'universal',
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
   },
   /*
    ** Headers of the page
@@ -14,9 +14,9 @@ export default {
       { charset: 'utf-8' },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1, viewport-fit=cover'
+        content: 'width=device-width, initial-scale=1, viewport-fit=cover',
       },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -24,9 +24,9 @@ export default {
       {
         href:
           'https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap',
-        rel: 'stylesheet'
-      }
-    ]
+        rel: 'stylesheet',
+      },
+    ],
   },
 
   /*
@@ -46,7 +46,7 @@ export default {
     '~/plugins/axios',
     '~/plugins/vuelidate',
     { src: '~/plugins/houdini', ssr: false },
-    { src: '~/plugins/vuex-persist', ssr: false }
+    { src: '~/plugins/vuex-persist', ssr: false },
   ],
 
   /*
@@ -59,13 +59,13 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/apollo',
     '@nuxtjs/auth',
-    'nuxt-i18n'
+    'nuxt-i18n',
   ],
   manifest: {
     name: 'Loesje',
     background_color: '#000',
     theme_color: '#000',
-    short_name: 'Loesje'
+    short_name: 'Loesje',
   },
   i18n: {
     defaultLocale: 'nl',
@@ -76,8 +76,8 @@ export default {
         name: 'Nederlands',
         code: 'nl',
         iso: 'nl-NL',
-        file: 'nl.json'
-      }
+        file: 'nl.json',
+      },
     ],
     vueI18nLoader: true,
     vueI18n: {
@@ -86,7 +86,7 @@ export default {
           short: {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
           },
           long: {
             year: 'numeric',
@@ -94,16 +94,16 @@ export default {
             day: 'numeric',
             weekday: 'short',
             hour: 'numeric',
-            minute: 'numeric'
-          }
-        }
-      }
-    }
+            minute: 'numeric',
+          },
+        },
+      },
+    },
   },
   loaders: {
     cssModules: {
-      localIdentName: '[local]_[hash:base64:5]'
-    }
+      localIdentName: '[local]_[hash:base64:5]',
+    },
   },
   /*
    ** Build configuration
@@ -119,14 +119,25 @@ export default {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
         })
       }
+    },
+    babel: {
+      plugins: ['@babel/plugin-proposal-optional-chaining'],
+    },
+    loaders: {
+      cssModules: {
+        modules: {
+          // this is where you can alter the generated class names:
+          localIdentName: '[local]-[hash:base64:4]',
+        },
+      },
     },
     postcss: {
       plugins: {
         'postcss-mixins': {
-          mixinsDir: './styles/mixins/'
+          mixinsDir: './styles/mixins/',
         },
         'postcss-preset-env': {
           importFrom: ['./styles/media-queries/media-queries.css'],
@@ -134,19 +145,19 @@ export default {
           features: {
             'nesting-rules': true,
             'custom-media-queries': true,
-            'media-query-ranges': true
-          }
-        }
-      }
-    }
+            'media-query-ranges': true,
+          },
+        },
+      },
+    },
   },
   apollo: {
     includeNodeModules: true,
     clientConfigs: {
-      default: '@/plugins/apollo-config.js'
-    }
+      default: '@/plugins/apollo-config.js',
+    },
   },
   generate: {
-    fallback: true
-  }
+    fallback: true,
+  },
 }

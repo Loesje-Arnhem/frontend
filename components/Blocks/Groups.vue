@@ -27,8 +27,8 @@ import AppButton from '@/components/Shared/AppButton.vue'
 export default {
   components: {
     AppImage,
-    AppButton
-  }
+    AppButton,
+  },
 }
 </script>
 

@@ -14,29 +14,29 @@ import AppButton from '@/components/Shared/AppButton.vue'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   components: {
-    AppButton
+    AppButton,
   },
   props: {
     tag: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     ...mapGetters({
-      selectedTags: 'tags/selectedTags'
+      selectedTags: 'tags/selectedTags',
     }),
     isSelected() {
       return this.selectedTags.includes(this.tag)
-    }
+    },
   },
   methods: {
     ...mapActions({
-      toggle: 'tags/toggle'
+      toggle: 'tags/toggle',
     }),
     toggleTag() {
       this.toggle(this.tag)
-    }
-  }
+    },
+  },
 }
 </script>

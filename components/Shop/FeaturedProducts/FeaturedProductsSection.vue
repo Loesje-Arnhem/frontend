@@ -20,8 +20,8 @@ export default {
   components: {
     AppButton,
     CenterWrapper,
-    FeaturedProductsContainer
-  }
+    FeaturedProductsContainer,
+  },
 }
 </script>
 

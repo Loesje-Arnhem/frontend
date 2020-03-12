@@ -17,16 +17,16 @@ import IconClose from '@/assets/icons/close.svg'
 
 export default {
   components: {
-    IconClose
+    IconClose,
   },
   data() {
     return {
-      message: ''
+      message: '',
     }
   },
   created() {
     EventBusUtil.$on('axios-interceptor-throws-error', error =>
-      this.handleError(error)
+      this.handleError(error),
     )
   },
   methods: {
@@ -35,8 +35,8 @@ export default {
     },
     dismiss() {
       this.message = ''
-    }
-  }
+    },
+  },
 }
 </script>
 

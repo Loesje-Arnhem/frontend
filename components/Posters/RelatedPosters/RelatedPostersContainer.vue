@@ -3,7 +3,7 @@
     :query="require('~/graphql/Posters.gql')"
     :variables="{ first: 5, where: where }"
   >
-    <template slot-scope="{ result: { data }, isLoading }">
+    <template v-slot="{ result: { data }, isLoading }">
       <slot v-if="data" :posters="data.posters.edges" />
       <app-loader v-if="isLoading" />
     </template>
@@ -15,8 +15,8 @@ export default {
   props: {
     relatedPosters: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   computed: {
     subjects() {
@@ -34,7 +34,7 @@ export default {
     where() {
       if (this.posterIds.length) {
         return {
-          in: this.posterIds
+          in: this.posterIds,
         }
       }
 
@@ -47,16 +47,16 @@ export default {
             {
               terms: this.subjects,
               taxonomy: 'SUBJECT',
-              operator: 'IN'
-            }
-          ]
+              operator: 'IN',
+            },
+          ],
         }
       }
       return {
         search,
-        taxQuery
+        taxQuery,
       }
-    }
-  }
+    },
+  },
 }
 </script>

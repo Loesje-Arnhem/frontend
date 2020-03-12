@@ -27,9 +27,9 @@ export default {
   props: {
     productCategories: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

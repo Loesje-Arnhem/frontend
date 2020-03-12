@@ -94,7 +94,7 @@ import FormInputText from '~/components/Forms/FormInputText.vue'
 export default {
   components: {
     FormFieldset,
-    FormInputText
+    FormInputText,
   },
   data() {
     return {
@@ -107,9 +107,9 @@ export default {
       houseNumberAddition: '',
       street: '',
       city: '',
-      email: ''
+      email: '',
     }
-  }
+  },
 }
 </script>
 

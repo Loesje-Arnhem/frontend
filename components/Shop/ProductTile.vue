@@ -19,19 +19,19 @@ import ClickableListItem from '@/components/Shared/ClickableListItem.vue'
 export default {
   components: {
     AppImage,
-    ClickableListItem
+    ClickableListItem,
   },
   props: {
     product: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     url() {
       return `/winkeltje/${this.product.slug}`
-    }
-  }
+    },
+  },
 }
 </script>
 

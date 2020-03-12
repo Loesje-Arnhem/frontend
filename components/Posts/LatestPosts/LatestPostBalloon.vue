@@ -14,11 +14,11 @@ import AppImage from '@/components/Shared/AppImage.vue'
 
 export default {
   components: {
-    AppImage
+    AppImage,
   },
   data() {
     return {
-      animate: false
+      animate: false,
     }
   },
   mounted() {
@@ -34,8 +34,8 @@ export default {
           })
         },
         {
-          rootMargin: '200px 0px'
-        }
+          rootMargin: '200px 0px',
+        },
       )
       imageObserver.observe(balloon)
     } else {
@@ -45,8 +45,8 @@ export default {
   methods: {
     toggleAnimation(animate) {
       this.animate = animate
-    }
-  }
+    },
+  },
 }
 </script>
 

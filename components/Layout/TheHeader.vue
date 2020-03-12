@@ -31,12 +31,12 @@ export default {
   components: {
     SkipLinks,
     MainNavigation,
-    MobileNavigation
+    MobileNavigation,
   },
 
   data() {
     return {
-      showMenu: false
+      showMenu: false,
     }
   },
 
@@ -55,8 +55,8 @@ export default {
     afterLeave() {
       const bg = this.$refs.bg
       bodyScrollLock.enableBodyScroll(bg)
-    }
-  }
+    },
+  },
 }
 </script>
 

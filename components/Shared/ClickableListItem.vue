@@ -9,12 +9,12 @@ export default {
   props: {
     url: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      down: null
+      down: null,
     }
   },
   methods: {
@@ -29,8 +29,8 @@ export default {
     },
     goToItem() {
       this.$router.push(this.url)
-    }
-  }
+    },
+  },
 }
 </script>
 

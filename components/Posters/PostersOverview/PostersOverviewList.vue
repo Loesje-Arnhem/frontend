@@ -18,14 +18,14 @@ import ListAnimation from '@/components/Animations/ListAnimation.vue'
 export default {
   components: {
     PostersOverviewListItem,
-    ListAnimation
+    ListAnimation,
   },
   props: {
     posters: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

@@ -14,14 +14,14 @@ import PostListItem from '@/components/Posts/Shared/PostListItem.vue'
 
 export default {
   components: {
-    PostListItem
+    PostListItem,
   },
   props: {
     posts: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

@@ -1,5 +1,5 @@
 const moduleState = {
-  list: []
+  list: [],
 }
 
 const getters = {
@@ -7,7 +7,7 @@ const getters = {
   isInFavorites: state => posterId => {
     window.console.log(posterId)
     return state.list.find(favorite => favorite.posterId === posterId)
-  }
+  },
 }
 
 const mutations = {
@@ -17,18 +17,18 @@ const mutations = {
       -1
     ) {
       state.list = state.list.filter(
-        favorite => favorite.posterId !== payload.posterId
+        favorite => favorite.posterId !== payload.posterId,
       )
     } else {
       state.list.push(payload)
     }
-  }
+  },
 }
 
 const actions = {
   toggle: ({ commit }, payload) => {
     commit('toggle', payload)
-  }
+  },
 }
 
 export default {
@@ -36,5 +36,5 @@ export default {
   getters,
   mutations,
   actions,
-  namespaced: true
+  namespaced: true,
 }

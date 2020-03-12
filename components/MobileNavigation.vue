@@ -24,26 +24,26 @@ import IconLogo from '@/assets/icons/logo.svg'
 export default {
   components: {
     IconBars,
-    IconLogo
+    IconLogo,
   },
   data() {
     return {
-      menuIsExpanded: false
+      menuIsExpanded: false,
     }
   },
 
   watch: {
     $route() {
       this.toggleMenu(false)
-    }
+    },
   },
 
   methods: {
     toggleMenu(status) {
       this.menuIsExpanded = status
       this.$emit('toggleMenu', status)
-    }
-  }
+    },
+  },
 }
 </script>
 

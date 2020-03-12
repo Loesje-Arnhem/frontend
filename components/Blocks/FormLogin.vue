@@ -34,12 +34,12 @@ export default {
   components: {
     AppButton,
     FormFieldset,
-    FormInputText
+    FormInputText,
   },
   data() {
     return {
       userName: '',
-      password: ''
+      password: '',
     }
   },
   methods: {
@@ -51,16 +51,16 @@ export default {
             login: {
               username: this.userName,
               password: this.password,
-              clientMutationId: 'login'
-            }
-          }
+              clientMutationId: 'login',
+            },
+          },
         })
         await this.$apolloHelpers.onLogin(res.data.login.authToken)
       } catch (e) {
         window.console.error(e)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -16,13 +16,13 @@ import IconChevronRight from '@/assets/icons/chevron-right.svg'
 
 export default {
   components: {
-    IconChevronRight
+    IconChevronRight,
   },
   props: {
     to: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   computed: {
     tag() {
@@ -30,8 +30,8 @@ export default {
         return 'nuxt-link'
       }
       return 'span'
-    }
-  }
+    },
+  },
 }
 </script>
 

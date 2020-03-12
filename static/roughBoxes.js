@@ -42,7 +42,7 @@ class RoughDrawable {
     }
     ctx.moveTo(
       x1 + this.getOffset(-offset, offset),
-      y1 + this.getOffset(-offset, offset)
+      y1 + this.getOffset(-offset, offset),
     )
     ctx.bezierCurveTo(
       midDispX +
@@ -62,7 +62,7 @@ class RoughDrawable {
         2 * (y2 - y1) * divergePoint +
         this.getOffset(-offset, offset),
       x2 + this.getOffset(-offset, offset),
-      y2 + this.getOffset(-offset, offset)
+      y2 + this.getOffset(-offset, offset),
     )
     if (!existingPath) {
       ctx.stroke()
@@ -72,7 +72,7 @@ class RoughDrawable {
     }
     ctx.moveTo(
       x1 + this.getOffset(-halfOffset, halfOffset),
-      y1 + this.getOffset(-halfOffset, halfOffset)
+      y1 + this.getOffset(-halfOffset, halfOffset),
     )
     ctx.bezierCurveTo(
       midDispX +
@@ -92,7 +92,7 @@ class RoughDrawable {
         2 * (y2 - y1) * divergePoint +
         this.getOffset(-halfOffset, halfOffset),
       x2 + this.getOffset(-halfOffset, halfOffset),
-      y2 + this.getOffset(-halfOffset, halfOffset)
+      y2 + this.getOffset(-halfOffset, halfOffset),
     )
     if (!existingPath) {
       ctx.stroke()
@@ -139,7 +139,7 @@ class RoughRectangle extends RoughDrawable {
           [left + this.getOffset(-o, o), top + this.getOffset(-o, o)],
           [right + this.getOffset(-o, o), top + this.getOffset(-o, o)],
           [right + this.getOffset(-o, o), bottom + this.getOffset(-o, o)],
-          [left + this.getOffset(-o, o), bottom + this.getOffset(-o, o)]
+          [left + this.getOffset(-o, o), bottom + this.getOffset(-o, o)],
         ]
         ctx.beginPath()
         ctx.moveTo(points[0][0], points[0][1])
@@ -169,7 +169,7 @@ registerPaint(
         '--rough-fill',
         '--rough-stroke-width',
         '--rough-stroke',
-        '--rough-roughness'
+        '--rough-roughness',
       ]
     }
 
@@ -179,7 +179,7 @@ registerPaint(
         padding,
         padding,
         geom.width - padding * 2,
-        geom.height - padding * 2
+        geom.height - padding * 2,
       )
       rect.roughness = properties.get('--rough-roughness').toString()
       rect.fillStyle = 'solid'
@@ -191,5 +191,5 @@ registerPaint(
         .replace('px', '')
       rect.draw(ctx)
     }
-  }
+  },
 )

@@ -22,14 +22,14 @@ import ChildPagesQuery from '~/graphql/ChildPages.gql'
 export default {
   components: {
     ChildPagesList,
-    RelatedPostersSection
+    RelatedPostersSection,
   },
   async asyncData({ app, params }) {
     const page = await app.apolloProvider.defaultClient.query({
       query: PageQuery,
       variables: {
-        uri: params.pathMatch
-      }
+        uri: params.pathMatch,
+      },
     })
 
     const response = page.data.page
@@ -40,8 +40,8 @@ export default {
         query: ChildPagesQuery,
         variables: {
           parent: response.parent.pageId,
-          notIn: response.pageId
-        }
+          notIn: response.pageId,
+        },
       })
     }
 
@@ -49,21 +49,21 @@ export default {
       pages = await app.apolloProvider.defaultClient.query({
         query: ChildPagesQuery,
         variables: {
-          parent: page.data.page.pageId
-        }
+          parent: page.data.page.pageId,
+        },
       })
     }
 
     return {
       page: response,
-      pages: pages ? pages.data.pages : null
+      pages: pages ? pages.data.pages : null,
     }
   },
   head() {
     return {
-      title: this.page.title
+      title: this.page.title,
     }
-  }
+  },
 }
 </script>
 

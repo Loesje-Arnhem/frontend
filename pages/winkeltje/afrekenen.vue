@@ -8,7 +8,7 @@
 import FormCheckout from '@/components/Blocks/FormCheckout.vue'
 export default {
   components: {
-    FormCheckout
-  }
+    FormCheckout,
+  },
 }
 </script>

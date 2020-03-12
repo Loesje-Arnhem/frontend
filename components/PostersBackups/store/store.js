@@ -6,7 +6,7 @@ import favorites from './modules/favorites'
 
 const vuexPersist = new VuexPersist({
   key: 'favorites',
-  modules: ['favorites']
+  modules: ['favorites'],
 })
 
 Vue.use(Vuex)
@@ -14,7 +14,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     tags,
-    favorites
+    favorites,
   },
-  plugins: [vuexPersist.plugin]
+  plugins: [vuexPersist.plugin],
 })

@@ -43,8 +43,8 @@ import IconAppleStore from '@/assets/icons/apple-store.svg'
 export default {
   components: {
     IconPlayStore,
-    IconAppleStore
-  }
+    IconAppleStore,
+  },
 }
 </script>
 

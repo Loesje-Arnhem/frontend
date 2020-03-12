@@ -83,14 +83,14 @@ export default {
     SocialMediaLinks,
     IconHeart,
     PosterTag,
-    AppButton
+    AppButton,
   },
 
   props: {
     poster: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
 
   computed: {
@@ -98,21 +98,21 @@ export default {
       return {
         twitter: `https://twitter.com/share?text=${this.poster.title}&url=${this.poster.link}`,
         facebook: `https://www.facebook.com/sharer.php?u=${this.poster.link}&p=${this.poster.title}`,
-        pinterest: `https://pinterest.com/pin/create/button/?url=${this.poster.link}&media=${this.poster.featuredImage.large}&description=${this.poster.title}`
+        pinterest: `https://pinterest.com/pin/create/button/?url=${this.poster.link}&media=${this.poster.featuredImage.large}&description=${this.poster.title}`,
       }
     },
     isInFavorites() {
       return this.$store.getters['favorites/isInFavorites'](
-        this.poster.posterId
+        this.poster.posterId,
       )
-    }
+    },
   },
 
   methods: {
     ...mapActions({
-      toggleFavorites: 'favorites/toggle'
-    })
-  }
+      toggleFavorites: 'favorites/toggle',
+    }),
+  },
 }
 </script>
 

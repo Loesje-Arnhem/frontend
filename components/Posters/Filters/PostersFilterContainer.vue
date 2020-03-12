@@ -1,6 +1,6 @@
 <template>
   <apollo-query :query="require('~/graphql/Sources.gql')">
-    <template slot-scope="{ result: { data } }">
+    <template v-slot="{ result: { data } }">
       <posters-filter-section :data="data" :is-loading="isLoading > 0" />
     </template>
   </apollo-query>
@@ -11,7 +11,7 @@ import PostersFilterSection from '@/components/Posters/Filters/PostersFilterSect
 
 export default {
   components: {
-    PostersFilterSection
-  }
+    PostersFilterSection,
+  },
 }
 </script>

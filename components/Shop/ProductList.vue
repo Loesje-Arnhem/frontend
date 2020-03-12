@@ -15,14 +15,14 @@
 import ProductTile from '@/components/Shop/ProductTile.vue'
 export default {
   components: {
-    ProductTile
+    ProductTile,
   },
   props: {
     products: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

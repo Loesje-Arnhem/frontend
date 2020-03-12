@@ -47,19 +47,19 @@ import axios from '~/plugins/axios'
 
 export default {
   components: {
-    IconSearch
+    IconSearch,
   },
   props: {
     hasSearched: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   validations: {
     search: {
       required,
-      minLength: minLength(2)
-    }
+      minLength: minLength(2),
+    },
   },
   data() {
     return {
@@ -68,7 +68,7 @@ export default {
       search: '',
       arrowCounter: -1,
       results: [],
-      isValid: true
+      isValid: true,
     }
   },
 
@@ -87,8 +87,8 @@ export default {
       }
       const response = await axios.get('wp/v2/poster', {
         params: {
-          search: this.search
-        }
+          search: this.search,
+        },
       })
       this.results = response.data.map(item => {
         const title = item.title.rendered
@@ -98,8 +98,8 @@ export default {
           // make current searchterm bold with a regex
           title: title.replace(
             new RegExp(`(^|)(${this.search})(|$)`, 'ig'),
-            '$1<strong>$2</strong>$3'
-          )
+            '$1<strong>$2</strong>$3',
+          ),
         }
       })
       this.isOpen = this.results.length > 0
@@ -143,8 +143,8 @@ export default {
     close() {
       this.isOpen = false
       this.arrowCounter = -1
-    }
-  }
+    },
+  },
 }
 </script>
 

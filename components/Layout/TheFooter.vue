@@ -33,7 +33,7 @@ export default {
     SocialMediaLinks,
     AppStores,
     CompanyAddress,
-    AppImage
+    AppImage,
   },
   data() {
     return {
@@ -42,10 +42,10 @@ export default {
         facebook: 'https://twitter.com/LoesjeNL',
         instagram: 'https://instagram.com/loesjevdposters',
         pinterest: 'https://www.pinterest.com/loesjenl/',
-        linkedin: 'https://www.linkedin.com/company/loesje/'
-      }
+        linkedin: 'https://www.linkedin.com/company/loesje/',
+      },
     }
-  }
+  },
 }
 </script>
 

@@ -1,5 +1,5 @@
 export const state = () => ({
-  selectedTags: []
+  selectedTags: [],
 })
 
 export const getters = {
@@ -7,7 +7,7 @@ export const getters = {
   selectedSources: state =>
     state.selectedTags.filter(tag => tag.taxonomy === 'source'),
   selectedSubjects: state =>
-    state.selectedTags.filter(tag => tag.taxonomy === 'subject')
+    state.selectedTags.filter(tag => tag.taxonomy === 'subject'),
 }
 
 export const mutations = {
@@ -23,7 +23,7 @@ export const mutations = {
     } else {
       mutations.addTag(state, payload)
     }
-  }
+  },
 }
 
 export const actions = {
@@ -35,5 +35,5 @@ export const actions = {
   },
   toggle: ({ commit }, payload) => {
     commit('toggle', payload)
-  }
+  },
 }

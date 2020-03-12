@@ -15,14 +15,14 @@ import PosterTag from '~/components/Poster/PosterTag.vue'
 
 export default {
   components: {
-    PosterTag
+    PosterTag,
   },
   props: {
     list: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 }
 </script>
 

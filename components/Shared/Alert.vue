@@ -10,22 +10,22 @@ import Icon from '@/components/Shared/Icon.vue'
 
 export default {
   components: {
-    Icon
+    Icon,
   },
   props: {
     text: {
       type: String,
       required: true,
-      default: ''
+      default: '',
     },
     type: {
       type: String,
-      default: 'warning'
-    }
+      default: 'warning',
+    },
   },
   data() {
     return {
-      show: true
+      show: true,
     }
   },
   computed: {
@@ -34,13 +34,13 @@ export default {
         return 'check'
       }
       return 'warning'
-    }
+    },
   },
   methods: {
     close() {
       this.show = false
-    }
-  }
+    },
+  },
 }
 </script>
 

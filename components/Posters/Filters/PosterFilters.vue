@@ -20,15 +20,15 @@
       <input type="date" class="filter-item" placeholder="Datum tot" />
     </div>
 
-    <SlideInAnimation mode="out-in">
+    <slide-in-animation mode="out-in">
       <div v-if="showSources" key="sources" class="tags" tabindex="-1">
-        <PostersFilterSourcesContainer />
+        <posters-filter-sources-container />
       </div>
 
       <div v-if="showSubjects" key="subjects" class="tags" tabindex="-1">
-        <PostersFilterSubjectContainer />
+        <posters-filter-subject-container />
       </div>
-    </SlideInAnimation>
+    </slide-in-animation>
   </div>
 </template>
 
@@ -43,13 +43,13 @@ export default {
     PostersFilterToggle,
     PostersFilterSubjectContainer,
     PostersFilterSourcesContainer,
-    SlideInAnimation
+    SlideInAnimation,
   },
   data() {
     return {
       showSubjects: false,
       showSources: false,
-      selectedTags: []
+      selectedTags: [],
     }
   },
 
@@ -62,8 +62,8 @@ export default {
         this.showSources = !this.showSources
         this.showSubjects = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
