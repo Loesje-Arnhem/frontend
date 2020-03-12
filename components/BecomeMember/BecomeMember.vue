@@ -44,6 +44,7 @@ export default {
 
 .title {
   @mixin color-negative;
+
   padding: 0.5rem 1rem;
   margin-bottom: 0;
 }
@@ -54,6 +55,7 @@ export default {
 
 .list {
   @mixin list-reset;
+
   margin-bottom: 1em;
 }
 

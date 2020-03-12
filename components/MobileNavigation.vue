@@ -55,6 +55,7 @@ export default {
   background: var(--color-black);
   z-index: var(--z-index-mobile-navigation);
   border-bottom: 1px solid var(--color-white);
+
   @media (--show-full-navigation) {
     display: none;
   }

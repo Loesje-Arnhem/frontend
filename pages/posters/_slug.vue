@@ -80,6 +80,7 @@ dd {
 
 .tags {
   @mixin list-reset;
+
   margin-bottom: 0.5em;
 
   li {

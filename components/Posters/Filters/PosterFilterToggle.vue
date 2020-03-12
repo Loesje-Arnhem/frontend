@@ -60,6 +60,7 @@ export default {
 
 .icon {
   @mixin icon 1em;
+
   flex: 0 0 auto;
   transform-origin: center;
   transition: transform 0.2s ease-out;

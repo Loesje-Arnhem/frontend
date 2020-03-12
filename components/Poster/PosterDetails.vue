@@ -120,7 +120,9 @@ export default {
 .image {
   --rough-stroke-width: 3px;
   --rough-roughness: 1.5;
+
   border: var(--rough-stroke-width) solid var(--rough-stroke);
+
   @nest .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
       border-image-source: paint(rough-boxes);
@@ -169,6 +171,7 @@ dd {
 
 .tags-list {
   @mixin list-reset;
+
   display: flex;
   flex-wrap: wrap;
   margin: 0 -0.125em;

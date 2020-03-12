@@ -57,6 +57,7 @@ export default {
 
 .wrapper {
   @mixin center;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
   grid-gap: var(--gutter);

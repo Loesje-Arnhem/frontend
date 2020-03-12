@@ -31,6 +31,7 @@ export default {
 <style lang="postcss" module>
 .list {
   @mixin list-reset;
+
   margin-bottom: 2em;
   display: grid;
   grid-gap: 2em;

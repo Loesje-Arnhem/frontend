@@ -50,6 +50,7 @@ export default {
 
 .wrapper {
   @mixin center;
+
   display: grid;
   grid-gap: 1em;
   grid-template-columns: 1fr 3fr;

@@ -86,6 +86,7 @@ export default {
 <style lang="postcss" module>
 .submenu {
   @mixin list-reset;
+
   margin: 0 0 0.5em 1em;
 
   @media (--show-full-navigation) {
@@ -120,6 +121,7 @@ export default {
 
 .menu-item {
   position: relative;
+
   @media (--show-full-navigation) {
     display: flex;
     padding: 0.75em 0;
@@ -139,6 +141,7 @@ export default {
 .submenu-link,
 .menu-link {
   @mixin link-reset;
+
   line-height: 1.1;
   padding: 0.25em 0;
 
@@ -149,6 +152,7 @@ export default {
 
 .menu-link {
   @mixin heading;
+
   font-size: 1.25em;
   align-items: center;
   display: flex;
@@ -180,6 +184,7 @@ export default {
 
 .btn-show-submenu {
   display: none;
+
   @media (--show-full-navigation) {
     display: block;
   }

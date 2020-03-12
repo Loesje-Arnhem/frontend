@@ -62,6 +62,7 @@ export default {
 .warning {
   background: var(--color-black);
 }
+
 .success {
   background: var(--color-black);
 }

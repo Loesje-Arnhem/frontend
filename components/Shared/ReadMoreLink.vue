@@ -45,6 +45,7 @@ export default {
   &:hover {
     box-shadow: 0 3px 0 0 currentColor;
   }
+
   &:hover svg {
     margin-left: 0.25em;
   }

@@ -46,6 +46,7 @@ export default {
   max-width: var(--container-width-md);
   display: flex;
   flex-direction: column;
+
   @media (--viewport-md) {
     display: block;
   }
@@ -53,6 +54,7 @@ export default {
 
 .image-wrapper {
   margin-bottom: 2em;
+
   @media (--viewport-md) {
     shape-outside: url(/images/nederland.png);
     shape-image-threshold: 0.1;
@@ -63,6 +65,7 @@ export default {
 
 .text {
   order: -1;
+
   @media (--viewport-md) {
     padding-top: 6em;
   }

@@ -135,6 +135,7 @@ export default {
 <style scoped>
 .list {
   @mixin list-reset;
+
   background: url('/images/backgrounds/wall.jpg');
   margin: 0 0 1em;
   display: grid;

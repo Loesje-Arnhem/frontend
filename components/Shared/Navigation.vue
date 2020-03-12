@@ -134,6 +134,7 @@ a {
 
 .icon {
   @mixin icon 0.8em;
+
   transition: transform ease-out 0.2s;
 }
 

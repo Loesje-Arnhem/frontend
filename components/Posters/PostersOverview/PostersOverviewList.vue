@@ -32,6 +32,7 @@ export default {
 <style lang="postcss" module>
 .list {
   @mixin list-reset;
+
   background: url('/images/backgrounds/wall.jpg');
   margin: 0 0 1em;
   display: grid;

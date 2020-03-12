@@ -45,11 +45,13 @@ export default {
 <style lang="postcss" scoped>
 .instagram {
   @mixin clearfix;
+
   min-height: 80vw;
 }
 
 .wrapper {
   @mixin center;
+
   position: relative;
 }
 
@@ -59,6 +61,7 @@ export default {
   right: 0;
   top: 0;
   pointer-events: none;
+
   @media (--dark-mode) {
     filter: invert(100%);
   }
@@ -66,6 +69,7 @@ export default {
 
 .list {
   @mixin list-reset;
+
   padding: 7em 0 0 2em;
   display: flex;
   flex-wrap: wrap;
@@ -77,6 +81,7 @@ export default {
   bottom: 0;
   left: 0;
   text-align: right;
+
   @mixin center;
 }
 

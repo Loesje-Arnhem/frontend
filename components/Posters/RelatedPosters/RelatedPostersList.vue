@@ -27,6 +27,7 @@ export default {
 <style lang="postcss" module>
 .list {
   @mixin list-reset;
+
   margin-bottom: 3em;
   display: flex;
   flex-wrap: wrap;

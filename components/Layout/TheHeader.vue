@@ -63,6 +63,7 @@ export default {
 <style lang="postcss" scoped>
 header {
   background: var(--color-primary);
+
   @media (--show-full-navigation) {
     background: transparent;
   }
@@ -70,6 +71,7 @@ header {
 
 .header-wrapper {
   display: flex;
+
   @mixin center;
 }
 
@@ -95,6 +97,7 @@ header {
 
 .logo-wrapper {
   @mixin link-reset;
+
   flex: 0 0 auto;
   margin-bottom: -2em;
   position: relative;
@@ -150,6 +153,7 @@ header {
 .logo {
   fill: var(--color-primary);
   display: none;
+
   @media (--show-full-navigation) {
     display: block;
   }
@@ -157,6 +161,7 @@ header {
 
 .triangle {
   display: none;
+
   @media (--viewport-lg) {
     display: block;
     position: absolute;
@@ -173,6 +178,7 @@ header {
   display: none;
   width: 15vw;
   max-width: 13em;
+
   @media (--show-full-navigation) {
     display: block;
   }

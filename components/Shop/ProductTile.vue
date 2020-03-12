@@ -38,6 +38,7 @@ export default {
 <style scoped lang="postcss">
 .product-tile {
   @mixin tile-border;
+
   padding: 0.5em;
   display: grid;
   grid-template-rows: subgrid;

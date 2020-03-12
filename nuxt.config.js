@@ -61,6 +61,7 @@ export default {
     '@nuxtjs/auth',
     'nuxt-i18n',
   ],
+  buildModules: ['@nuxtjs/stylelint-module'],
   manifest: {
     name: 'Loesje',
     background_color: '#000',

@@ -36,6 +36,7 @@ export default {
 <style scoped lang="postcss">
 .category-list {
   @mixin list-reset;
+
   padding: 1em;
   border: 0.3em solid var(--color-black);
   border-radius: 50% 4% 20% 1%/5% 50% 2% 45%;

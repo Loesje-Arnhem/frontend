@@ -116,6 +116,7 @@ export default {
 <style lang="postcss" scoped>
 .form {
   @mixin block;
+
   & >>> .fields {
     grid-template-columns: repeat(4, 1fr);
   }

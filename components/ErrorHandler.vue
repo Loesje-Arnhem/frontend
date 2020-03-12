@@ -43,6 +43,7 @@ export default {
 <style lang="postcss" scoped>
 .alert {
   @mixin notch;
+
   &.active {
     position: fixed;
     bottom: 0;

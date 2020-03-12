@@ -75,6 +75,7 @@ export default {
 .nav {
   @mixin color-negative;
   @mixin notch;
+
   position: relative;
 }
 

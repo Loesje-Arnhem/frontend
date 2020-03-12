@@ -44,6 +44,7 @@ export default {
 
 .link {
   @mixin link-reset;
+
   transition: all 0.15s ease-in-out;
   display: block;
 

@@ -57,6 +57,7 @@ export default {
 <style lang="postcss" scoped>
 .btn {
   @mixin heading;
+
   background: var(--color-black);
   color: var(--color-white);
   text-align: center;
@@ -101,9 +102,11 @@ export default {
 
 .title {
   transition: box-shadow 0.2s ease-out;
+
   @nest .btn:hover & {
     box-shadow: 0 3px 0 0 currentColor;
   }
+
   @nest .btn-outline:hover & {
     box-shadow: 0 2px 0 0 currentColor;
   }

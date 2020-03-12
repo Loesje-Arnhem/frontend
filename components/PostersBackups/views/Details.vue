@@ -202,6 +202,7 @@ dd {
 
 .tags {
   @mixin list-reset;
+
   margin-bottom: 0.5em;
 
   li {
@@ -236,6 +237,7 @@ dd {
 
 .icon-favorites {
   @mixin icon;
+
   flex: 0 0 auto;
   margin-top: -0.1em;
   margin-right: 0.5em;

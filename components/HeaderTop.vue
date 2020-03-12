@@ -27,11 +27,13 @@ export default {
 <style lang="postcss" module>
 .intro {
   @mixin center;
+
   padding-top: 2em;
 }
 
 .wrapper {
   max-width: var(--container-width-md);
+
   @media (--viewport-sm) {
     display: flex;
     align-items: center;

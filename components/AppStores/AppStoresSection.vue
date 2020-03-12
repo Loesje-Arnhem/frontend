@@ -78,6 +78,7 @@ export default {
 
 .wrapper {
   @mixin center var(--container-width-lg);
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -111,6 +112,7 @@ export default {
   right: 50%;
   margin-right: 3em;
   bottom: 12em;
+
   @media (--viewport-md) {
     bottom: auto;
     right: 15em;
