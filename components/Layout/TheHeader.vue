@@ -25,7 +25,7 @@ import SkipLinks from '@/components/SkipLinks.vue'
 import MainNavigation from '@/components/Menu/MainNavigation.vue'
 import MobileNavigation from '@/components/MobileNavigation.vue'
 
-const bodyScrollLock = require('body-scroll-lock')
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 export default {
   components: {
@@ -45,16 +45,22 @@ export default {
       this.showMenu = status
     },
     afterEnter() {
-      const bg = this.$refs.bg
-      bodyScrollLock.disableBodyScroll(bg)
+      this.lockBodyScoll(true)
     },
     beforeLeave() {
       const bg = this.$refs.bg
       bg.scrollTop = 0
     },
     afterLeave() {
-      const bg = this.$refs.bg
-      bodyScrollLock.enableBodyScroll(bg)
+      this.lockBodyScoll(false)
+    },
+    lockBodyScoll(isOpen) {
+      const { bg } = this.$refs
+      if (isOpen) {
+        disableBodyScroll(bg)
+      } else {
+        enableBodyScroll(bg)
+      }
     },
   },
 }

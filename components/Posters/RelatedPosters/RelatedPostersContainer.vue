@@ -20,14 +20,16 @@ export default {
   },
   computed: {
     subjects() {
-      return this.relatedPosters.subjects.map(subject => subject.subjectId)
+      return this.relatedPosters.subjects.map((subject) => subject.subjectId)
     },
     search() {
       return this.relatedPosters.search
     },
     posterIds() {
       if (this.relatedPosters.posters) {
-        return this.relatedPosters.posters.map(poster => poster.poster.posterId)
+        return this.relatedPosters.posters.map(
+          (poster) => poster.poster.posterId,
+        )
       }
       return []
     },

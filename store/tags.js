@@ -3,11 +3,11 @@ export const state = () => ({
 })
 
 export const getters = {
-  selectedTags: state => state.selectedTags,
-  selectedSources: state =>
-    state.selectedTags.filter(tag => tag.taxonomy === 'source'),
-  selectedSubjects: state =>
-    state.selectedTags.filter(tag => tag.taxonomy === 'subject'),
+  selectedTags: (state) => state.selectedTags,
+  selectedSources: (state) =>
+    state.selectedTags.filter((tag) => tag.taxonomy === 'source'),
+  selectedSubjects: (state) =>
+    state.selectedTags.filter((tag) => tag.taxonomy === 'subject'),
 }
 
 export const mutations = {
@@ -15,11 +15,11 @@ export const mutations = {
     if (!state.selectedTags.includes(payload)) state.selectedTags.push(payload)
   },
   removeTag: (state, payload) => {
-    state.selectedTags.filter(tag => tag !== payload)
+    state.selectedTags.filter((tag) => tag !== payload)
   },
   toggle: (state, payload) => {
     if (state.selectedTags.includes(payload)) {
-      state.selectedTags = state.selectedTags.filter(tag => tag !== payload)
+      state.selectedTags = state.selectedTags.filter((tag) => tag !== payload)
     } else {
       mutations.addTag(state, payload)
     }

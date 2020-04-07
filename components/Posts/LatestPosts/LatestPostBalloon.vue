@@ -28,8 +28,8 @@ export default {
       'IntersectionObserverEntry' in window
     ) {
       const imageObserver = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
+        (entries) => {
+          entries.forEach((entry) => {
             this.toggleAnimation(entry.isIntersecting)
           })
         },

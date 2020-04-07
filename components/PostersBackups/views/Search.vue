@@ -41,10 +41,10 @@ export default {
       selectedTags: 'tags/selectedTags',
     }),
     selectedSourcesIds() {
-      return this.selectedSources.map(item => item.id)
+      return this.selectedSources.map((item) => item.id)
     },
     selectedSubjectsIds() {
-      return this.selectedSubjects.map(item => item.id)
+      return this.selectedSubjects.map((item) => item.id)
     },
   },
   methods: {

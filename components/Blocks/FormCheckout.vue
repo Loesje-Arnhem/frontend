@@ -6,7 +6,6 @@
           id="firstName"
           v-model="firstName"
           title="Voornaam"
-          type="text"
           class="firstName"
           name="firstName"
         />
@@ -14,7 +13,6 @@
           id="lastName"
           v-model="lastName"
           title="Achternaam"
-          type="text"
           class="lastName"
           name="lastName"
         />
@@ -23,14 +21,12 @@
           v-model="companyName"
           class="companyName"
           title="Bedrijfsnaam"
-          type="text"
           name="companyName"
         />
         <form-input-text
           id="country"
           v-model="country"
           title="Land"
-          type="text"
           class="country"
           name="country"
         />
@@ -38,7 +34,6 @@
           id="zipcode"
           v-model="zipcode"
           title="Postcode"
-          type="text"
           class="zipcode"
           name="zipcode"
         />
@@ -54,7 +49,6 @@
           id="houseNumberAddition"
           v-model="houseNumberAddition"
           title="Toev"
-          type="text"
           class="houseNumberAddition"
           name="houseNumberAddition"
         />
@@ -62,7 +56,6 @@
           id="street"
           v-model="street"
           title="Straat"
-          type="text"
           class="street"
           name="street"
         />
@@ -70,7 +63,6 @@
           id="city"
           v-model="city"
           title="Plaats"
-          type="text"
           class="city"
           name="city"
         />

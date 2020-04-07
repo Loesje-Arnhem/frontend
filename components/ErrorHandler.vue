@@ -25,7 +25,7 @@ export default {
     }
   },
   created() {
-    EventBusUtil.$on('axios-interceptor-throws-error', error =>
+    EventBusUtil.$on('axios-interceptor-throws-error', (error) =>
       this.handleError(error),
     )
   },

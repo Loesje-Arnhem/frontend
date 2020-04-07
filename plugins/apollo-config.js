@@ -1,4 +1,4 @@
-export default function(context) {
+export default function (context) {
   return {
     httpEndpoint: 'https://api.loesje.michielkoning.nl/graphql',
     httpLinkOptions: {

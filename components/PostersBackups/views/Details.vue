@@ -133,9 +133,9 @@ export default {
     },
     findTags(tagsFromPoster, tagsFromApp) {
       const array = []
-      tagsFromPoster.forEach(itemFromPoster => {
+      tagsFromPoster.forEach((itemFromPoster) => {
         const foundedItem = tagsFromApp.find(
-          itemFromApp => itemFromApp.id === itemFromPoster,
+          (itemFromApp) => itemFromApp.id === itemFromPoster,
         )
         array.push(foundedItem)
       })

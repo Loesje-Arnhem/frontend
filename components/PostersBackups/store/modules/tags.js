@@ -6,13 +6,13 @@ const moduleState = {
 }
 
 const getters = {
-  sources: state => state.tags.filter(tag => tag.type === 'source'),
-  subjects: state => state.tags.filter(tag => tag.type === 'subject'),
-  selectedTags: state => state.selectedTags,
-  selectedSources: state =>
-    state.selectedTags.filter(tag => tag.type === 'source'),
-  selectedSubjects: state =>
-    state.selectedTags.filter(tag => tag.type === 'subject'),
+  sources: (state) => state.tags.filter((tag) => tag.type === 'source'),
+  subjects: (state) => state.tags.filter((tag) => tag.type === 'subject'),
+  selectedTags: (state) => state.selectedTags,
+  selectedSources: (state) =>
+    state.selectedTags.filter((tag) => tag.type === 'source'),
+  selectedSubjects: (state) =>
+    state.selectedTags.filter((tag) => tag.type === 'subject'),
 }
 
 const mutations = {
@@ -24,11 +24,11 @@ const mutations = {
     if (!state.selectedTags.includes(payload)) state.selectedTags.push(payload)
   },
   removeTag: (state, payload) => {
-    state.selectedTags.filter(tag => tag !== payload)
+    state.selectedTags.filter((tag) => tag !== payload)
   },
   toggle: (state, payload) => {
     if (state.selectedTags.includes(payload)) {
-      state.selectedTags = state.selectedTags.filter(tag => tag !== payload)
+      state.selectedTags = state.selectedTags.filter((tag) => tag !== payload)
     } else {
       mutations.addTag(state, payload)
     }
@@ -50,7 +50,7 @@ const actions = {
     })
 
     const addTypeOnTags = (tags, type) =>
-      tags.map(tag => {
+      tags.map((tag) => {
         const newTag = tag
         newTag.type = type
         return newTag

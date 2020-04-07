@@ -69,7 +69,7 @@ export default {
     },
     selectedTagsIds() {
       if (this.selectedTags) {
-        return this.selectedTags.map(tag => tag.tagId)
+        return this.selectedTags.map((tag) => tag.tagId)
       }
       return []
     },

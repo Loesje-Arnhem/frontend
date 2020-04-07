@@ -90,7 +90,7 @@ export default {
           search: this.search,
         },
       })
-      this.results = response.data.map(item => {
+      this.results = response.data.map((item) => {
         const title = item.title.rendered
         return {
           slug: item.slug,

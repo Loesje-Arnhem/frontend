@@ -7,8 +7,8 @@ const instance = axios.create({
 })
 
 instance.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     EventBusUtil.$emit('axios-interceptor-throws-error', error)
   },
 )

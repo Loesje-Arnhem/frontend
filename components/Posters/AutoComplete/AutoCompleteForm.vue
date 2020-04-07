@@ -73,7 +73,7 @@ export default {
       },
       debounce: 200,
       skip: true,
-      update: data => data.posters.edges,
+      update: (data) => data.posters.edges,
     },
   },
   computed: {
@@ -81,7 +81,7 @@ export default {
       if (!this.results) {
         return []
       }
-      return this.results.map(item => {
+      return this.results.map((item) => {
         const { title, slug, id } = item.node
         return {
           id,
