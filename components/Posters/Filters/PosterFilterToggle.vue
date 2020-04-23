@@ -33,22 +33,6 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.btn {
-  display: flex;
-  align-items: center;
-  background: var(--color-white);
-
-  &:hover,
-  &.is-active {
-    background: var(--color-black);
-    color: var(--color-white);
-  }
-
-  &.is-active .icon {
-    transform: rotate(-180deg);
-  }
-}
-
 .title {
   flex: 1 0 auto;
   text-align: left;
@@ -65,6 +49,22 @@ export default {
   transform-origin: center;
   transition: transform 0.2s ease-out;
   margin-left: 0.5em;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  background: var(--color-white);
+
+  &:hover,
+  &.is-active {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+
+  &.is-active .icon {
+    transform: rotate(-180deg);
+  }
 }
 </style>
 

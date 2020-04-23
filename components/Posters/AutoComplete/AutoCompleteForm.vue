@@ -173,6 +173,7 @@ input {
   border: 0;
   flex: 1 1 auto;
   padding: 0.75em 0;
+  order: -1;
 }
 
 .btn-submit {
@@ -182,10 +183,6 @@ input {
 
 .icon-search {
   @mixin icon 1.25em;
-}
-
-.btn-submit {
-  order: -1;
 }
 
 .autocomplete {

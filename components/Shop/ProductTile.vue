@@ -58,7 +58,4 @@ img {
 h3 {
   margin-bottom: 0;
 }
-
-.price {
-}
 </style>

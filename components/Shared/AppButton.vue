@@ -67,8 +67,6 @@ export default {
   padding: 0.75em 2em;
   border: 2px solid var(--color-white);
   max-width: 20em;
-  background: var(--color-black);
-  color: var(--color-white);
   position: relative;
 
   &:disabled {

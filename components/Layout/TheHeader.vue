@@ -104,6 +104,7 @@ header {
 .logo-wrapper {
   @mixin link-reset;
 
+  align-self: center;
   flex: 0 0 auto;
   margin-bottom: -2em;
   position: relative;
@@ -150,10 +151,6 @@ header {
 .fade2-enter,
 .fade2-leave-to {
   transform: translateY(-100vh);
-}
-
-.logo-wrapper {
-  align-self: center;
 }
 
 .logo {

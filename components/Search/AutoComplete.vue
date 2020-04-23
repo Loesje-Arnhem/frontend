@@ -175,14 +175,11 @@ input {
 .btn-submit {
   margin: 0.25em;
   padding: 0.25em 0.25em;
+  order: -1;
 }
 
 .icon-search {
   @mixin icon 1.25em;
-}
-
-.btn-submit {
-  order: -1;
 }
 
 .autocomplete {
