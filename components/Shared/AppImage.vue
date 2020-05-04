@@ -7,8 +7,8 @@ export default {
   props: {
     src: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     width() {
@@ -31,7 +31,7 @@ export default {
     },
     hasSizeInSrc() {
       return this.getSizeFromUrl().length > 1
-    }
+    },
   },
   methods: {
     getSizeFromUrl() {
@@ -41,7 +41,7 @@ export default {
         return sizes[0].split('x')
       }
       return []
-    }
-  }
+    },
+  },
 }
 </script>

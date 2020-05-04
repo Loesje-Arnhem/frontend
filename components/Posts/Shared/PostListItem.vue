@@ -22,19 +22,19 @@ export default {
   components: {
     PostDate,
     ClickableListItem,
-    ReadMoreLink
+    ReadMoreLink,
   },
   props: {
     post: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     url() {
       return `/over-mij/nieuws/${this.post.node.slug}`
-    }
-  }
+    },
+  },
 }
 </script>
 

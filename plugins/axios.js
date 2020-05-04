@@ -3,14 +3,14 @@ import EventBusUtil from '@/utils/eventBusUtil'
 
 const instance = axios.create({
   // baseURL: process.env.baseUrl
-  baseURL: 'https://api.loesje.michielkoning.nl/wp-json/'
+  baseURL: 'https://api.loesje.michielkoning.nl/wp-json/',
 })
 
 instance.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     EventBusUtil.$emit('axios-interceptor-throws-error', error)
-  }
+  },
 )
 
 export default instance

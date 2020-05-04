@@ -32,7 +32,7 @@ export default {
   components: {
     PostersOverviewSection,
     PostersAutoCompleteContainer,
-    PosterFilters
+    PosterFilters,
     // AutoComplete,
     // Navigation,
     // Filters,
@@ -44,15 +44,15 @@ export default {
     return {
       title: 'Posters',
       search: 'test',
-      selectedTags: []
+      selectedTags: [],
     }
   },
 
   head() {
     return {
-      title: this.title
+      title: this.title,
     }
-  }
+  },
 }
 </script>
 

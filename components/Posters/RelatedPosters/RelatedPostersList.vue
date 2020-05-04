@@ -13,20 +13,21 @@ import RelatedPostersListItem from '@/components/Posters/RelatedPosters/RelatedP
 
 export default {
   components: {
-    RelatedPostersListItem
+    RelatedPostersListItem,
   },
   props: {
     posters: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
 <style lang="postcss" module>
 .list {
   @mixin list-reset;
+
   margin-bottom: 3em;
   display: flex;
   flex-wrap: wrap;

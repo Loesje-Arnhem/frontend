@@ -8,7 +8,7 @@
     />
     <app-stores-section />
     <featured-products-section />
-    <BlockInstagram />
+    <block-instagram />
     <groups />
   </div>
 </template>
@@ -29,16 +29,16 @@ export default {
     RelatedPostersSection,
     AppStoresSection,
     LatestPostsSection,
-    FeaturedProductsSection
+    FeaturedProductsSection,
   },
 
   apollo: {
-    page: frontPageQuery
+    page: frontPageQuery,
   },
   head() {
     return {
-      title: 'Home'
+      title: 'Home',
     }
-  }
+  },
 }
 </script>

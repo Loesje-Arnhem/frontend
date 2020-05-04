@@ -22,8 +22,8 @@ export default {
     TheHeader,
     TheFooter,
     ErrorHandler,
-    HeaderTop
-  }
+    HeaderTop,
+  },
 }
 </script>
 

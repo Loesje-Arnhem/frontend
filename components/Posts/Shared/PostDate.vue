@@ -7,14 +7,14 @@ import AppDate from '@/components/Shared/AppDate.vue'
 
 export default {
   components: {
-    AppDate
+    AppDate,
   },
   props: {
     date: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

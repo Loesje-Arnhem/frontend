@@ -16,14 +16,14 @@ import PostersOverviewContainer from '@/components/Posters/PostersOverview/Poste
 export default {
   components: {
     CenterWrapper,
-    PostersOverviewContainer
+    PostersOverviewContainer,
   },
   props: {
     notIn: {
       type: Number,
-      default: 0
-    }
-  }
+      default: 0,
+    },
+  },
 }
 </script>
 

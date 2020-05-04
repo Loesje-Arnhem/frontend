@@ -25,18 +25,18 @@ import SkipLinks from '@/components/SkipLinks.vue'
 import MainNavigation from '@/components/Menu/MainNavigation.vue'
 import MobileNavigation from '@/components/MobileNavigation.vue'
 
-const bodyScrollLock = require('body-scroll-lock')
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 export default {
   components: {
     SkipLinks,
     MainNavigation,
-    MobileNavigation
+    MobileNavigation,
   },
 
   data() {
     return {
-      showMenu: false
+      showMenu: false,
     }
   },
 
@@ -45,24 +45,31 @@ export default {
       this.showMenu = status
     },
     afterEnter() {
-      const bg = this.$refs.bg
-      bodyScrollLock.disableBodyScroll(bg)
+      this.lockBodyScoll(true)
     },
     beforeLeave() {
       const bg = this.$refs.bg
       bg.scrollTop = 0
     },
     afterLeave() {
-      const bg = this.$refs.bg
-      bodyScrollLock.enableBodyScroll(bg)
-    }
-  }
+      this.lockBodyScoll(false)
+    },
+    lockBodyScoll(isOpen) {
+      const { bg } = this.$refs
+      if (isOpen) {
+        disableBodyScroll(bg)
+      } else {
+        enableBodyScroll(bg)
+      }
+    },
+  },
 }
 </script>
 
 <style lang="postcss" scoped>
 header {
   background: var(--color-primary);
+
   @media (--show-full-navigation) {
     background: transparent;
   }
@@ -70,6 +77,7 @@ header {
 
 .header-wrapper {
   display: flex;
+
   @mixin center;
 }
 
@@ -95,6 +103,8 @@ header {
 
 .logo-wrapper {
   @mixin link-reset;
+
+  align-self: center;
   flex: 0 0 auto;
   margin-bottom: -2em;
   position: relative;
@@ -143,13 +153,10 @@ header {
   transform: translateY(-100vh);
 }
 
-.logo-wrapper {
-  align-self: center;
-}
-
 .logo {
   fill: var(--color-primary);
   display: none;
+
   @media (--show-full-navigation) {
     display: block;
   }
@@ -157,6 +164,7 @@ header {
 
 .triangle {
   display: none;
+
   @media (--viewport-lg) {
     display: block;
     position: absolute;
@@ -173,6 +181,7 @@ header {
   display: none;
   width: 15vw;
   max-width: 13em;
+
   @media (--show-full-navigation) {
     display: block;
   }

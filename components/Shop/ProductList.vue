@@ -15,20 +15,21 @@
 import ProductTile from '@/components/Shop/ProductTile.vue'
 export default {
   components: {
-    ProductTile
+    ProductTile,
   },
   props: {
     products: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
 <style scoped lang="postcss">
 .list {
   @mixin list-reset;
+
   margin: 0 0 1em;
   display: grid;
   grid-gap: 1rem;

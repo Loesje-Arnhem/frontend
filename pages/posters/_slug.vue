@@ -19,27 +19,27 @@ export default {
   components: {
     PosterDetails,
     Navigation,
-    PostersOverviewSection
+    PostersOverviewSection,
   },
 
   async asyncData({ app, params }) {
     const poster = await app.apolloProvider.defaultClient.query({
       query: PosterQuery,
       variables: {
-        slug: params.slug
-      }
+        slug: params.slug,
+      },
     })
 
     return {
-      poster: poster.data.poster
+      poster: poster.data.poster,
     }
   },
 
   head() {
     return {
-      title: this.poster.title
+      title: this.poster.title,
     }
-  }
+  },
 }
 </script>
 
@@ -80,6 +80,7 @@ dd {
 
 .tags {
   @mixin list-reset;
+
   margin-bottom: 0.5em;
 
   li {

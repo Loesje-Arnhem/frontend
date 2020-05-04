@@ -16,14 +16,14 @@ import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
 export default {
   components: {
     PostDate,
-    CenterWrapper
+    CenterWrapper,
   },
   props: {
     post: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

@@ -71,7 +71,7 @@ export default {
   components: {
     FormFieldset,
     FormInputText,
-    AppForm
+    AppForm,
   },
   data() {
     return {
@@ -83,27 +83,27 @@ export default {
         phoneNumber: '',
         companyName: '',
         totalAttendees: '',
-        date: ''
-      }
+        date: '',
+      },
     }
   },
   validations: {
     form: {
       name: {
-        required
+        required,
       },
       email: {
         required,
-        email
-      }
-    }
+        email,
+      },
+    },
   },
   computed: {
     errorMessageName() {
       if (this.$v.form.name.$anyError) {
         if (!this.$v.form.name.required) {
           return this.$t('form.errors.general.required', {
-            field: this.$t('form.fields.name').toLowerCase()
+            field: this.$t('form.fields.name').toLowerCase(),
           })
         }
       }
@@ -113,7 +113,7 @@ export default {
       if (this.$v.form.email.$anyError) {
         if (!this.$v.form.email.required) {
           return this.$t('form.errors.general.required', {
-            field: this.$t('form.fields.email').toLowerCase()
+            field: this.$t('form.fields.email').toLowerCase(),
           })
         }
 
@@ -122,13 +122,14 @@ export default {
         }
       }
       return null
-    }
+    },
   },
   methods: {
     encodeFormData(data) {
       return Object.keys(data)
         .map(
-          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+          (key) =>
+            `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`,
         )
         .join('&')
     },
@@ -139,18 +140,19 @@ export default {
     async submitForm() {
       if (this.validate()) {
         await axios.post('/', this.encodeFormData(this.form), {
-          header: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          header: { 'Content-Type': 'application/x-www-form-urlencoded' },
         })
         this.submitted = true
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="postcss" scoped>
 .form {
   @mixin block;
+
   & >>> .fields {
     grid-template-columns: repeat(4, 1fr);
   }

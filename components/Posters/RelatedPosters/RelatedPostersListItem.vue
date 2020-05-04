@@ -9,17 +9,17 @@ import PosterTile from '@/components/Poster/PosterTile.vue'
 
 export default {
   components: {
-    PosterTile
+    PosterTile,
   },
   props: {
     poster: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
-      transform: null
+      transform: null,
     }
   },
   computed: {
@@ -36,7 +36,7 @@ export default {
     rotate() {
       const rotate = this.randomizeRange()
       return `rotate(${rotate}deg)`
-    }
+    },
   },
   mounted() {
     if (!this.transform) this.generateStyle()
@@ -47,8 +47,8 @@ export default {
     },
     randomizeRange() {
       return Math.floor(Math.random() * 8 - 4)
-    }
-  }
+    },
+  },
 }
 </script>
 

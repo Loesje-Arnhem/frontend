@@ -4,7 +4,7 @@ export default ({ store }) => {
   window.onNuxtReady(() => {
     new VuexPersistence({
       key: 'favorites',
-      modules: ['favorites']
+      modules: ['favorites'],
     }).plugin(store)
   })
 }

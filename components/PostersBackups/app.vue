@@ -14,7 +14,7 @@ import { mapActions } from 'vuex'
 export default {
   data() {
     return {
-      transitionName: 'slide-left'
+      transitionName: 'slide-left',
     }
   },
   watch: {
@@ -26,7 +26,7 @@ export default {
       } else {
         this.transitionName = 'slide-left'
       }
-    }
+    },
   },
   created() {
     this.populateTags()
@@ -34,9 +34,9 @@ export default {
 
   methods: {
     ...mapActions({
-      populateTags: 'tags/populateTags'
-    })
-  }
+      populateTags: 'tags/populateTags',
+    }),
+  },
 }
 </script>
 

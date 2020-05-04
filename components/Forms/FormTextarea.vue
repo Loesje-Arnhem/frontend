@@ -18,25 +18,25 @@
 import FormField from '~/components/Forms/FormField.vue'
 export default {
   components: {
-    FormField
+    FormField,
   },
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     id: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
       type: String,
-      required: true
+      required: true,
     },
     errorMessage: {
       type: String,
-      default: ''
-    }
-  }
+      default: '',
+    },
+  },
 }
 </script>

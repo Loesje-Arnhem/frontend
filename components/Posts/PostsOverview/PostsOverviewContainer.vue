@@ -3,7 +3,7 @@
     :query="require('~/graphql/Posts.gql')"
     :variables="{ first: 12, where: { notIn } }"
   >
-    <template slot-scope="{ result: { data }, isLoading, query }">
+    <template v-slot="{ result: { data }, isLoading, query }">
       <posts-overview-section
         :data="data"
         :has-more="hasMore"
@@ -20,19 +20,19 @@ import PostsOverviewSection from '@/components/Posts/PostsOverview/PostsOverview
 
 export default {
   components: {
-    PostsOverviewSection
+    PostsOverviewSection,
   },
 
   props: {
     notIn: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
 
   data() {
     return {
-      hasMore: true
+      hasMore: true,
     }
   },
 
@@ -40,7 +40,7 @@ export default {
     async loadMore(query, endCursor) {
       await query.fetchMore({
         variables: {
-          after: endCursor
+          after: endCursor,
         },
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
@@ -55,12 +55,12 @@ export default {
               __typename: previousResult.posts.__typename,
               pageInfo: newPosts.pageInfo,
               // Merging the tag list
-              edges: [...previousResult.posts.edges, ...newPosts.edges]
-            }
+              edges: [...previousResult.posts.edges, ...newPosts.edges],
+            },
           }
-        }
+        },
       })
-    }
-  }
+    },
+  },
 }
 </script>

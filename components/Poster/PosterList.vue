@@ -11,20 +11,21 @@ import PosterTile from '@/components/Poster/PosterTile.vue'
 
 export default {
   components: {
-    PosterTile
+    PosterTile,
   },
   props: {
     posters: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 }
 </script>
 
 <style scoped>
 .list {
   @mixin list-reset;
+
   background: url('/images/backgrounds/wall.jpg');
   margin: 0 0 1em;
   display: grid;

@@ -81,24 +81,25 @@ export default {
     IconTwitter,
     IconPinterest,
     IconLinkedin,
-    IconInstagram
+    IconInstagram,
   },
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     socialMedia: {
       type: Object,
-      default: () => {}
-    }
-  }
+      default: () => {},
+    },
+  },
 }
 </script>
 
 <style lang="postcss" module>
 .list {
   @mixin list-reset;
+
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(2.25em, 1fr));
 }

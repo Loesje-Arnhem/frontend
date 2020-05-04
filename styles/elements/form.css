@@ -29,10 +29,8 @@ input[type='tel'],
 input[type='url'],
 input[type='password'],
 select {
-
   appearance: none;
   background: var(--color-white);
-  border: 2px solid var(--color-black);
   border-radius: 0;
   width: 100%;
   height: auto;
@@ -43,6 +41,7 @@ select {
 
   --rough-stroke-width: 2px;
   --rough-roughness: 1;
+
   border: var(--rough-stroke-width) solid var(--rough-stroke);
 
   @nest .is-loaded & {
@@ -67,8 +66,6 @@ select {
     outline: none;
     border-color: var(--color-black);
   }
-
-
 }
 
 input {

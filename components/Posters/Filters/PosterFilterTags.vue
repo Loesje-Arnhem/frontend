@@ -15,20 +15,21 @@ import PosterTag from '~/components/Poster/PosterTag.vue'
 
 export default {
   components: {
-    PosterTag
+    PosterTag,
   },
   props: {
     list: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 }
 </script>
 
 <style lang="postcss" module>
 .list {
   @mixin list-reset;
+
   margin: 0 -0.25rem 1em;
   display: flex;
   flex-wrap: wrap;

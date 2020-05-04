@@ -2,7 +2,7 @@
   <div>
     <div v-if="posters">
       <posters-overview-list :posters="posters.edges" />
-      <InfiniteLoading
+      <infinite-loading
         ref="infiniteLoading"
         :identifier="infiniteId"
         @infinite="loadMorePosters"
@@ -14,7 +14,7 @@
             {{ $t('noPostersFound') }}
           </span>
         </template>
-      </InfiniteLoading>
+      </infinite-loading>
     </div>
     <app-loader v-if="$apollo.queries.posters.loading" />
   </div>
@@ -31,24 +31,24 @@ export default {
   components: {
     PostersOverviewList,
     AppLoader,
-    InfiniteLoading
+    InfiniteLoading,
   },
   props: {
     notIn: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {
-      infiniteId: +new Date()
+      infiniteId: +new Date(),
     }
   },
   computed: {
     ...mapGetters({
       selectedTags: 'tags/selectedTags',
       selectedSources: 'tags/selectedSources',
-      selectedSubjects: 'tags/selectedSubjects'
+      selectedSubjects: 'tags/selectedSubjects',
     }),
     taxQueryArray() {
       const taxQuery = []
@@ -68,15 +68,27 @@ export default {
       let taxQuery = null
       if (this.taxQueryArray.length) {
         taxQuery = {
-          taxArray: this.taxQueryArray
+          taxArray: [
+            {
+              terms: this.selectedTagsIds,
+              taxonomy: 'SUBJECT',
+              operator: 'IN',
+            },
+          ],
         }
       }
       return {
         search,
         notIn: this.notIn,
-        taxQuery
+        taxQuery,
       }
-    }
+    },
+    selectedTagsIds() {
+      if (this.selectedTags) {
+        return this.selectedTags.map((tag) => tag.tagId)
+      }
+      return []
+    },
   },
 
   apollo: {
@@ -85,10 +97,10 @@ export default {
       variables() {
         return {
           first: 24,
-          where: this.where
+          where: this.where,
         }
-      }
-    }
+      },
+    },
   },
 
   methods: {
@@ -97,24 +109,24 @@ export default {
         return {
           terms: this.getSelectedTagIdsByType(type),
           taxonomy: type.toUpperCase(),
-          operator: 'IN'
+          operator: 'IN',
         }
       }
     },
 
     getSelectedTagIdsByType(type) {
       const selectedTags = this.selectedTags.filter(
-        tag => tag.taxonomy.name === type
+        (tag) => tag.taxonomy.name === type,
       )
       if (selectedTags) {
-        return selectedTags.map(tag => tag.tagId)
+        return selectedTags.map((tag) => tag.tagId)
       }
       return []
     },
     async loadMorePosters($state) {
       await this.$apollo.queries.posters.fetchMore({
         variables: {
-          after: this.posters.pageInfo.endCursor
+          after: this.posters.pageInfo.endCursor,
         },
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
@@ -129,13 +141,13 @@ export default {
               __typename: previousResult.posters.__typename,
               pageInfo: newPosters.pageInfo,
               // Merging the tag list
-              edges: [...previousResult.posters.edges, ...newPosters.edges]
-            }
+              edges: [...previousResult.posters.edges, ...newPosters.edges],
+            },
           }
-        }
+        },
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

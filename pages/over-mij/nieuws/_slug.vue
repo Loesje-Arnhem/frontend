@@ -19,31 +19,31 @@ export default {
   components: {
     PostDetails,
     PostsOverviewContainer,
-    RelatedPostersSection
+    RelatedPostersSection,
   },
 
   async asyncData({ app, params }) {
     const post = await app.apolloProvider.defaultClient.query({
       query: PostQuery,
       variables: {
-        uri: params.slug
-      }
+        uri: params.slug,
+      },
     })
     return {
-      post: post.data.post
+      post: post.data.post,
     }
   },
 
   data() {
     return {
-      post: {}
+      post: {},
     }
   },
 
   head() {
     return {
-      title: this.post.title
+      title: this.post.title,
     }
-  }
+  },
 }
 </script>

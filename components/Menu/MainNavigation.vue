@@ -26,13 +26,13 @@ import MenuQuery from '~/graphql/Menu.gql'
 
 export default {
   components: {
-    MainNavigationItem
+    MainNavigationItem,
   },
   data() {
     return {
       arrowPosition: 0,
       arrowWidth: 0,
-      mounted: false
+      mounted: false,
     }
   },
 
@@ -41,7 +41,7 @@ export default {
       this.$nextTick(() => {
         this.setArrowPosition()
       })
-    }
+    },
   },
   mounted() {
     this.setArrowPosition()
@@ -52,22 +52,22 @@ export default {
   methods: {
     setArrowPosition() {
       const activeLink = this.$refs.menu.querySelector(
-        '.nuxt-link-active[aria-haspopup=true], .nuxt-link-exact-active'
+        '.nuxt-link-active[aria-haspopup=true], .nuxt-link-exact-active',
       )
       if (activeLink) {
         this.arrowPosition = `translateX(${activeLink.parentElement.offsetLeft}px)`
         this.arrowWidth = `${activeLink.offsetWidth}px`
       }
-    }
+    },
   },
   apollo: {
     menu: {
       query: MenuQuery,
       variables: {
-        location: 'HEADER_MENU'
-      }
-    }
-  }
+        location: 'HEADER_MENU',
+      },
+    },
+  },
 }
 </script>
 
@@ -75,6 +75,7 @@ export default {
 .nav {
   @mixin color-negative;
   @mixin notch;
+
   position: relative;
 }
 

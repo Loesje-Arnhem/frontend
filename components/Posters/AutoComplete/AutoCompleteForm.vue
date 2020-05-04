@@ -47,18 +47,18 @@ import PostersQuery from '~/graphql/PostersAutocomplete.gql'
 
 export default {
   components: {
-    IconSearch
+    IconSearch,
   },
   validations: {
     search: {
       required,
-      minLength: minLength(2)
-    }
+      minLength: minLength(2),
+    },
   },
   data() {
     return {
       search: '',
-      arrowCounter: -1
+      arrowCounter: -1,
     }
   },
   apollo: {
@@ -67,21 +67,21 @@ export default {
       variables() {
         return {
           where: {
-            search: this.search
-          }
+            search: this.search,
+          },
         }
       },
       debounce: 200,
       skip: true,
-      update: data => data.posters.edges
-    }
+      update: (data) => data.posters.edges,
+    },
   },
   computed: {
     resultsWithHighlightText() {
       if (!this.results) {
         return []
       }
-      return this.results.map(item => {
+      return this.results.map((item) => {
         const { title, slug, id } = item.node
         return {
           id,
@@ -90,14 +90,14 @@ export default {
           // make current searchterm bold with a regex
           title: title.replace(
             new RegExp(`(^|)(${this.search})(|$)`, 'ig'),
-            '$1<strong>$2</strong>$3'
-          )
+            '$1<strong>$2</strong>$3',
+          ),
         }
       })
     },
     isOpen() {
       return !this.$v.search.$invalid && this.resultsWithHighlightText.length
-    }
+    },
   },
 
   mounted() {
@@ -146,8 +146,8 @@ export default {
       this.search = ''
       this.$apollo.queries.results.skip = true
       this.arrowCounter = -1
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -173,6 +173,7 @@ input {
   border: 0;
   flex: 1 1 auto;
   padding: 0.75em 0;
+  order: -1;
 }
 
 .btn-submit {
@@ -182,10 +183,6 @@ input {
 
 .icon-search {
   @mixin icon 1.25em;
-}
-
-.btn-submit {
-  order: -1;
 }
 
 .autocomplete {

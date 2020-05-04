@@ -2,7 +2,7 @@
   <li
     :class="[
       $style['menu-item'],
-      { [$style['has-popup']]: item.childItems.edges.length > 0 }
+      { [$style['has-popup']]: item.childItems.edges.length > 0 },
     ]"
     @mouseover="mouseover"
     @mouseout="mouseout"
@@ -25,7 +25,7 @@
         width="16"
         height="16"
       />
-      <span class="sr-only">Toon submenu voor {{ item.label }}</span>
+      <span :class="$style['sr-only']">Toon submenu voor {{ item.label }}</span>
     </button>
     <template v-if="item.childItems.edges.length">
       <animation-slide-in>
@@ -52,18 +52,18 @@ export default {
   components: {
     MenuItem,
     IconChevronDown,
-    AnimationSlideIn
+    AnimationSlideIn,
   },
   props: {
     item: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       isOpen: false,
-      timer: null
+      timer: null,
     }
   },
   methods: {
@@ -78,14 +78,15 @@ export default {
       this.timer = setTimeout(() => {
         this.isOpen = false
       }, 250)
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="postcss" module>
 .submenu {
   @mixin list-reset;
+
   margin: 0 0 0.5em 1em;
 
   @media (--show-full-navigation) {
@@ -120,6 +121,7 @@ export default {
 
 .menu-item {
   position: relative;
+
   @media (--show-full-navigation) {
     display: flex;
     padding: 0.75em 0;
@@ -139,6 +141,7 @@ export default {
 .submenu-link,
 .menu-link {
   @mixin link-reset;
+
   line-height: 1.1;
   padding: 0.25em 0;
 
@@ -149,6 +152,7 @@ export default {
 
 .menu-link {
   @mixin heading;
+
   font-size: 1.25em;
   align-items: center;
   display: flex;
@@ -161,6 +165,10 @@ export default {
   &[aria-haspopup='true'] {
     padding-right: 0.25em;
   }
+}
+
+.sr-only {
+  @mixin sr-only;
 }
 
 .submenu-link {
@@ -176,6 +184,7 @@ export default {
 
 .btn-show-submenu {
   display: none;
+
   @media (--show-full-navigation) {
     display: block;
   }

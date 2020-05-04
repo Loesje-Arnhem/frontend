@@ -16,17 +16,17 @@ import AppButton from '@/components/Shared/AppButton.vue'
 
 export default {
   components: {
-    AppButton
+    AppButton,
   },
   props: {
     buttonTitle: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>

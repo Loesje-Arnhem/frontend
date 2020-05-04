@@ -16,23 +16,23 @@ export default {
   props: {
     to: {
       type: String,
-      default: null
+      default: null,
     },
     buttonTag: {
       type: String,
       default: 'button',
       validator(value) {
         return ['nuxt-link', 'a', 'button'].includes(value)
-      }
+      },
     },
     type: {
       type: String,
-      default: 'button'
+      default: 'button',
     },
     isPrimary: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
     cssClass() {
@@ -49,14 +49,15 @@ export default {
         return this.type
       }
       return null
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="postcss" scoped>
 .btn {
   @mixin heading;
+
   background: var(--color-black);
   color: var(--color-white);
   text-align: center;
@@ -66,8 +67,6 @@ export default {
   padding: 0.75em 2em;
   border: 2px solid var(--color-white);
   max-width: 20em;
-  background: var(--color-black);
-  color: var(--color-white);
   position: relative;
 
   &:disabled {
@@ -101,9 +100,11 @@ export default {
 
 .title {
   transition: box-shadow 0.2s ease-out;
+
   @nest .btn:hover & {
     box-shadow: 0 3px 0 0 currentColor;
   }
+
   @nest .btn-outline:hover & {
     box-shadow: 0 2px 0 0 currentColor;
   }

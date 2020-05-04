@@ -11,29 +11,32 @@
 
 <script>
 import AppButton from '@/components/Shared/AppButton.vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
-    AppButton
+    AppButton,
   },
   props: {
     tag: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
-    isSelectedTag() {
-      return this.$store.getters['tags/selectedTagByTagId'](this.tag.tagId)
-    }
+    ...mapGetters({
+      selectedTags: 'tags/selectedTags',
+    }),
+    isSelected() {
+      return this.selectedTags.includes(this.tag)
+    },
   },
   methods: {
     ...mapActions({
-      toggle: 'tags/toggle'
+      toggle: 'tags/toggle',
     }),
     toggleTag() {
       this.toggle(this.tag)
-    }
-  }
+    },
+  },
 }
 </script>

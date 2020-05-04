@@ -51,11 +51,11 @@ import AppImage from '@/components/Shared/AppImage.vue'
 
 export default {
   components: {
-    AppImage
+    AppImage,
   },
   data() {
     return {
-      themeColor: '#000'
+      themeColor: '#000',
     }
   },
   methods: {
@@ -63,10 +63,10 @@ export default {
       this.themeColor = this.themeColor === '#000' ? '#f0f' : '#000'
       document.documentElement.style.setProperty(
         '--color-black',
-        this.themeColor
+        this.themeColor,
       )
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -78,6 +78,7 @@ export default {
 
 .wrapper {
   @mixin center var(--container-width-lg);
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -111,6 +112,7 @@ export default {
   right: 50%;
   margin-right: 3em;
   bottom: 12em;
+
   @media (--viewport-md) {
     bottom: auto;
     right: 15em;

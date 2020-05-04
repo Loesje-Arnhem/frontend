@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navigation />
+    <navigation />
     <poster-list :posters="list" />
   </div>
 </template>
@@ -13,10 +13,10 @@ import Navigation from '@/components/Shared/Navigation.vue'
 export default {
   components: {
     PosterList,
-    Navigation
+    Navigation,
   },
   computed: {
-    ...mapState('favorites', ['list'])
-  }
+    ...mapState('favorites', ['list']),
+  },
 }
 </script>

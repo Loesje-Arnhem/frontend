@@ -36,6 +36,7 @@ h1,
 h2,
 h3 {
   @mixin heading;
+
   line-height: 1.1;
   font-weight: var(--font-weight-bold);
 }

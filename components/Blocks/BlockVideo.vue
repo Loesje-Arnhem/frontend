@@ -12,12 +12,12 @@ export default {
       const { video } = this.$refs
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: true
+          video: true,
         })
         video.srcObject = stream
         video.play()
       } catch (error) {}
-    }
-  }
+    },
+  },
 }
 </script>

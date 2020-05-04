@@ -9,7 +9,7 @@ import AutoCompleteForm from '@/components/Posters/AutoComplete/AutoCompleteForm
 
 export default {
   components: {
-    AutoCompleteForm
-  }
+    AutoCompleteForm,
+  },
 }
 </script>

@@ -47,18 +47,18 @@ export default {
     AppButton,
     FormFieldset,
     FormInputText,
-    FormSelect
+    FormSelect,
   },
   props: {
     product: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       selectedAttribute: null,
-      quantity: 1
+      quantity: 1,
     }
   },
   methods: {
@@ -69,19 +69,20 @@ export default {
           input: {
             productId: this.product.productId,
             clientMutationId: 'AddToCart',
-            quantity: this.quantity
-          }
-        }
+            quantity: this.quantity,
+          },
+        },
       })
       window.console.log(response.data.addToCart)
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="postcss" scoped>
 .form {
   @mixin block;
+
   & >>> .fields {
     grid-template-columns: repeat(2, 1fr);
   }

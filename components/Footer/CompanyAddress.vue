@@ -30,7 +30,7 @@ import IconEnvelope from '@/assets/icons/envelope.svg'
 
 export default {
   components: {
-    IconEnvelope
-  }
+    IconEnvelope,
+  },
 }
 </script>

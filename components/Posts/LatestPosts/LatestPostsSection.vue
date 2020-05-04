@@ -5,11 +5,9 @@
         <div class="latest-posts">
           <h1 id="latest-posts-title">{{ $t('title') }}</h1>
           <latest-posts-container>
-            <latest-posts-list
-              v-if="data"
-              slot-scope="data"
-              :posts="data.posts"
-            />
+            <template v-slot="{ result: { data } }">
+              <latest-posts-list v-if="data" :posts="data.posts" />
+            </template>
           </latest-posts-container>
           <app-button to="/over-mij/nieuws/">{{ $t('btnMore') }}</app-button>
         </div>
@@ -35,8 +33,8 @@ export default {
     LatestPostsContainer,
     CenterWrapper,
     BecomeMember,
-    LatestPostsList
-  }
+    LatestPostsList,
+  },
 }
 </script>
 

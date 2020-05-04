@@ -10,11 +10,9 @@
     </center-wrapper>
     <center-wrapper size="full">
       <related-posters-container :related-posters="relatedPosters">
-        <related-posters-list
-          v-if="data"
-          slot-scope="data"
-          :posters="data.posters"
-        />
+        <template v-slot="{ result: { data } }">
+          <related-posters-list v-if="data" :posters="data.posters" />
+        </template>
       </related-posters-container>
     </center-wrapper>
     <center-wrapper :class="$style['btn-wrapper']">
@@ -34,13 +32,13 @@ export default {
     RelatedPostersContainer,
     AppButton,
     CenterWrapper,
-    RelatedPostersList
+    RelatedPostersList,
   },
   props: {
     relatedPosters: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   computed: {
     title() {
@@ -53,8 +51,8 @@ export default {
         text += this.$t('aboutSubject', { subject: name })
       }
       return text
-    }
-  }
+    },
+  },
 }
 </script>
 

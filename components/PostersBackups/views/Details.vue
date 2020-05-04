@@ -1,12 +1,12 @@
 <template>
   <div>
-    <Navigation />
+    <navigation />
 
     <template v-if="poster">
       <div class="wrapper">
         <h1 class="sr-only">{{ poster.title.rendered }}</h1>
 
-        <Poster :poster="poster" class="poster" />
+        <poster :poster="poster" class="poster" />
         <div class="content">
           <div class="meta-data">
             {{ poster.date | formatDate }}
@@ -17,7 +17,7 @@
               class="btn-favorites"
               @click="toggleFavorites(poster)"
             >
-              <Icon icon="heart-o" class="icon-favorites" />
+              <icon icon="heart-o" class="icon-favorites" />
 
               Voeg toe aan je favorieten
             </button>
@@ -58,10 +58,10 @@
             </dl>
           </div>
         </div>
-        <SocialMedia :poster="poster" />
+        <social-media :poster="poster" />
       </div>
 
-      <List :subjects="poster.subject" :exclude="poster.id" />
+      <list :subjects="poster.subject" :exclude="poster.id" />
     </template>
   </div>
 </template>
@@ -82,7 +82,7 @@ export default {
     List,
     Icon,
     Navigation,
-    SocialMedia
+    SocialMedia,
   },
   filters: {
     formatDate(value) {
@@ -90,20 +90,20 @@ export default {
       return posterDate.toLocaleDateString('nl-NL', {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
       })
-    }
+    },
   },
   data() {
     return {
       poster: null,
-      slug: this.$route.params.slug
+      slug: this.$route.params.slug,
     }
   },
   computed: {
     ...mapGetters({
       sources: 'tags/sources',
-      subjects: 'tags/subjects'
+      subjects: 'tags/subjects',
     }),
     isInFavorites() {
       return this.$store.getters['favorites/isInFavorites'](this.slug)
@@ -113,7 +113,7 @@ export default {
     },
     posterSubjects() {
       return this.findTags(this.poster.subject, this.subjects)
-    }
+    },
   },
   mounted() {
     this.getPoster()
@@ -121,7 +121,7 @@ export default {
   methods: {
     ...mapActions({
       toggleFavorites: 'favorites/toggle',
-      addTagToStore: 'tags/addTag'
+      addTagToStore: 'tags/addTag',
     }),
 
     addTag(item) {
@@ -133,9 +133,9 @@ export default {
     },
     findTags(tagsFromPoster, tagsFromApp) {
       const array = []
-      tagsFromPoster.forEach(itemFromPoster => {
+      tagsFromPoster.forEach((itemFromPoster) => {
         const foundedItem = tagsFromApp.find(
-          itemFromApp => itemFromApp.id === itemFromPoster
+          (itemFromApp) => itemFromApp.id === itemFromPoster,
         )
         array.push(foundedItem)
       })
@@ -153,19 +153,19 @@ export default {
         const response = await axios.get('poster', {
           params: {
             slug: this.slug,
-            _embed: '1'
-          }
+            _embed: '1',
+          },
         })
         ;[this.poster] = response.data
       } catch (error) {
         window.console.error(error)
       }
-    }
+    },
   },
   beforeRouteUpdate(to, from, next) {
     next()
     this.getPoster()
-  }
+  },
 }
 </script>
 
@@ -202,6 +202,7 @@ dd {
 
 .tags {
   @mixin list-reset;
+
   margin-bottom: 0.5em;
 
   li {
@@ -236,6 +237,7 @@ dd {
 
 .icon-favorites {
   @mixin icon;
+
   flex: 0 0 auto;
   margin-top: -0.1em;
   margin-right: 0.5em;

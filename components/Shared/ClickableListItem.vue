@@ -9,12 +9,12 @@ export default {
   props: {
     url: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      down: null
+      down: null,
     }
   },
   methods: {
@@ -29,17 +29,19 @@ export default {
     },
     goToItem() {
       this.$router.push(this.url)
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="postcss" scoped>
 .list-item {
   cursor: pointer;
+
   &:hover .read-more,
   &:focus-within .read-more {
     box-shadow: 0 3px 0 0 var(--color-black);
+
     & >>> .icon {
       margin-left: 0.25em;
     }

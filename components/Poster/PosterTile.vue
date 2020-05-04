@@ -14,13 +14,13 @@
 import AppImage from '@/components/Shared/AppImage.vue'
 export default {
   components: {
-    AppImage
+    AppImage,
   },
   props: {
     poster: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   computed: {
     image() {
@@ -28,8 +28,8 @@ export default {
         return this.poster.featuredImage.medium
       }
       return 'https://api.loesje.michielkoning.nl/wp-content/uploads/2019/06/190626-zomer-212x300.jpg'
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -44,6 +44,7 @@ export default {
 
 .link {
   @mixin link-reset;
+
   transition: all 0.15s ease-in-out;
   display: block;
 

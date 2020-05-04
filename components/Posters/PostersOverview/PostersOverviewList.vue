@@ -18,20 +18,21 @@ import ListAnimation from '@/components/Animations/ListAnimation.vue'
 export default {
   components: {
     PostersOverviewListItem,
-    ListAnimation
+    ListAnimation,
   },
   props: {
     posters: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
 <style lang="postcss" module>
 .list {
   @mixin list-reset;
+
   background: url('/images/backgrounds/wall.jpg');
   margin: 0 0 1em;
   display: grid;

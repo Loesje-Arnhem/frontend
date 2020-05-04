@@ -17,16 +17,16 @@ import IconClose from '@/assets/icons/close.svg'
 
 export default {
   components: {
-    IconClose
+    IconClose,
   },
   data() {
     return {
-      message: ''
+      message: '',
     }
   },
   created() {
-    EventBusUtil.$on('axios-interceptor-throws-error', error =>
-      this.handleError(error)
+    EventBusUtil.$on('axios-interceptor-throws-error', (error) =>
+      this.handleError(error),
     )
   },
   methods: {
@@ -35,14 +35,15 @@ export default {
     },
     dismiss() {
       this.message = ''
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="postcss" scoped>
 .alert {
   @mixin notch;
+
   &.active {
     position: fixed;
     bottom: 0;

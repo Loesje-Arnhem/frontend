@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <Navigation />
-    <AutoComplete @onSearch="searchPosters" />
-    <Filters />
-    <Tags v-if="selectedTags.length" :list="selectedTags" />
-    <List
+    <navigation />
+    <auto-complete @onSearch="searchPosters" />
+    <filters />
+    <tags v-if="selectedTags.length" :list="selectedTags" />
+    <list
       :search="search"
       :subjects="selectedSubjectsIds"
       :sources="selectedSourcesIds"
@@ -27,30 +27,30 @@ export default {
     AutoComplete,
     Filters,
     List,
-    Tags
+    Tags,
   },
   data() {
     return {
-      search: null
+      search: null,
     }
   },
   computed: {
     ...mapGetters({
       selectedSubjects: 'tags/selectedSubjects',
       selectedSources: 'tags/selectedSources',
-      selectedTags: 'tags/selectedTags'
+      selectedTags: 'tags/selectedTags',
     }),
     selectedSourcesIds() {
-      return this.selectedSources.map(item => item.id)
+      return this.selectedSources.map((item) => item.id)
     },
     selectedSubjectsIds() {
-      return this.selectedSubjects.map(item => item.id)
-    }
+      return this.selectedSubjects.map((item) => item.id)
+    },
   },
   methods: {
     searchPosters(value) {
       this.search = value
-    }
-  }
+    },
+  },
 }
 </script>

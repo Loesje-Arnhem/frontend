@@ -21,27 +21,27 @@ import PageQuery from '~/graphql/Page.gql'
 export default {
   components: {
     RelatedPostersSection,
-    FormWorkshop
+    FormWorkshop,
   },
   async asyncData({ app, params }) {
     const page = await app.apolloProvider.defaultClient.query({
       query: PageQuery,
       variables: {
-        uri: 'workshops'
-      }
+        uri: 'workshops',
+      },
     })
 
     const response = page.data.page
 
     return {
-      page: response
+      page: response,
     }
   },
   head() {
     return {
-      title: this.page.title
+      title: this.page.title,
     }
-  }
+  },
 }
 </script>
 

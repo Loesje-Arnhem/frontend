@@ -14,20 +14,21 @@ import PostListItem from '@/components/Posts/Shared/PostListItem.vue'
 
 export default {
   components: {
-    PostListItem
+    PostListItem,
   },
   props: {
     posts: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
 <style lang="postcss" module>
 .list {
   @mixin list-reset;
+
   margin-bottom: 2em;
 }
 

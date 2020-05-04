@@ -21,18 +21,36 @@ import IconChevronDown from '@/assets/icons/chevron-down.svg'
 
 export default {
   components: {
-    IconChevronDown
+    IconChevronDown,
   },
   props: {
     isActive: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }
 </script>
 
 <style lang="postcss" module>
+.title {
+  flex: 1 0 auto;
+  text-align: left;
+}
+
+.sr-only {
+  @mixin sr-only;
+}
+
+.icon {
+  @mixin icon 1em;
+
+  flex: 0 0 auto;
+  transform-origin: center;
+  transition: transform 0.2s ease-out;
+  margin-left: 0.5em;
+}
+
 .btn {
   display: flex;
   align-items: center;
@@ -47,23 +65,6 @@ export default {
   &.is-active .icon {
     transform: rotate(-180deg);
   }
-}
-
-.title {
-  flex: 1 0 auto;
-  text-align: left;
-}
-
-.sr-only {
-  @mixin sr-only;
-}
-
-.icon {
-  @mixin icon 1em;
-  flex: 0 0 auto;
-  transform-origin: center;
-  transition: transform 0.2s ease-out;
-  margin-left: 0.5em;
 }
 </style>
 

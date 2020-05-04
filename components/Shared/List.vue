@@ -9,7 +9,7 @@
         <poster-tile v-if="poster.node" :poster="poster.node" class="link" />
       </li>
     </transition-group>
-    <InfiniteLoading
+    <infinite-loading
       ref="infiniteLoading"
       :identifier="infiniteId"
       @infinite="getPosters"
@@ -19,7 +19,7 @@
       <span slot="no-results" class="no-results">
         <span v-if="!posters.edges.length">There are no assets found</span>
       </span>
-    </InfiniteLoading>
+    </infinite-loading>
   </div>
 </template>
 
@@ -33,34 +33,34 @@ export default {
   components: {
     PosterTile,
     InfiniteLoading,
-    AppLoader
+    AppLoader,
   },
   props: {
     search: {
       type: String,
-      default: 'voetbal'
+      default: 'voetbal',
     },
     subjects: {
       type: Array,
-      default: () => {}
+      default: () => {},
     },
     sources: {
       type: Array,
-      default: () => {}
+      default: () => {},
     },
     exclude: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {
       posters: {
-        edges: []
+        edges: [],
       },
       infiniteId: +new Date(),
       pageSize: 20,
-      page: 1
+      page: 1,
     }
   },
   watch: {
@@ -74,12 +74,12 @@ export default {
     sources() {
       // this.resetSearch()
       // window.console.log('sources')
-    }
+    },
   },
   apollo: {
     // Pages
     posters: {
-      query: PostersQuery
+      query: PostersQuery,
       // variables() {
       //   return {
       //     first: 20,
@@ -87,14 +87,14 @@ export default {
       //     notIn: []
       //   }
       // }
-    }
+    },
   },
   methods: {
     getPosters($state) {
       this.$apollo.queries.posters.fetchMore({
         // New variables
         variables: {
-          after: this.posters.pageInfo.endCursor
+          after: this.posters.pageInfo.endCursor,
         },
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
@@ -111,10 +111,10 @@ export default {
               __typename: previousResult.posters.__typename,
               pageInfo: newPosters.pageInfo,
               // Merging the tag list
-              edges: [...previousResult.posters.edges, ...newPosters.edges]
-            }
+              edges: [...previousResult.posters.edges, ...newPosters.edges],
+            },
           }
-        }
+        },
       })
     },
 
@@ -124,17 +124,18 @@ export default {
       this.$nextTick(() => {
         this.infiniteId += 1
       })
-    }
+    },
   },
   beforeRouteUpdate() {
     this.infiniteId += 1
-  }
+  },
 }
 </script>
 
 <style scoped>
 .list {
   @mixin list-reset;
+
   background: url('/images/backgrounds/wall.jpg');
   margin: 0 0 1em;
   display: grid;

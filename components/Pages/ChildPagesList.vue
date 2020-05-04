@@ -17,14 +17,14 @@ import ChildPage from '@/components/Pages/ChildPage.vue'
 
 export default {
   components: {
-    ChildPage
+    ChildPage,
   },
   props: {
     pages: {
       type: Object,
-      default: () => {}
-    }
-  }
+      default: () => {},
+    },
+  },
 }
 </script>
 

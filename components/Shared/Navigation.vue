@@ -25,16 +25,16 @@ import IconChevronLeft from '@/assets/icons/chevron-left.svg'
 export default {
   components: {
     IconChevronLeft,
-    IconChevronRight
+    IconChevronRight,
   },
   computed: {
     ...mapGetters({
-      totalFavorites: 'favorites/total'
+      totalFavorites: 'favorites/total',
     }),
 
     favoritesText() {
       return `Bekijk je ${this.counter(
-        this.totalFavorites
+        this.totalFavorites,
       )} favoriete poster${this.plural(this.totalFavorites)}`
     },
     isSearch() {
@@ -42,7 +42,7 @@ export default {
     },
     isFavorites() {
       return this.$route.name === 'Favorites'
-    }
+    },
   },
   methods: {
     counter(count) {
@@ -94,8 +94,8 @@ export default {
     plural(count) {
       if (count === 1) return ''
       return 's'
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -110,8 +110,15 @@ a {
   align-items: center;
 }
 
+.icon {
+  @mixin icon 0.8em;
+
+  transition: transform ease-out 0.2s;
+}
+
+/* stylelint-disable no-descending-specificity */
 .btn-search {
-  .icon {
+  & .icon {
     margin-right: 0.25em;
   }
 
@@ -123,7 +130,7 @@ a {
 .btn-favorites {
   margin-left: auto;
 
-  .icon {
+  & .icon {
     margin-left: 0.25em;
   }
 
@@ -131,11 +138,7 @@ a {
     transform: translate(0.2em, 0.1em);
   }
 }
-
-.icon {
-  @mixin icon 0.8em;
-  transition: transform ease-out 0.2s;
-}
+/* stylelint-enable no-descending-specificity */
 
 .slide-enter-active,
 .slide-leave-active {

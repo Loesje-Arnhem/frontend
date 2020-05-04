@@ -19,25 +19,26 @@ import ClickableListItem from '@/components/Shared/ClickableListItem.vue'
 export default {
   components: {
     AppImage,
-    ClickableListItem
+    ClickableListItem,
   },
   props: {
     product: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     url() {
       return `/winkeltje/${this.product.slug}`
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped lang="postcss">
 .product-tile {
   @mixin tile-border;
+
   padding: 0.5em;
   display: grid;
   grid-template-rows: subgrid;
@@ -56,8 +57,5 @@ img {
 
 h3 {
   margin-bottom: 0;
-}
-
-.price {
 }
 </style>
