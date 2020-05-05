@@ -1,19 +1,19 @@
 
 fragment relatedPostersGroup on Page_Relatedpostersgroup {
-  title
-  search
-  subjects {
+  title: relatedPostersTitle
+  search: relatedPostersSearch
+  subjects: relatedPostersSubjects {
     ... on Subject {
       subjectId
       name
     }
   }
-  posters {
-    ... on Page_Relatedpostersgroup_posters {
+  posters: relatedPostersPosters {
+    ... on Page_Relatedpostersgroup_relatedPostersPosters {
       poster {
-        ... on Page_Relatedpostersgroup_posters_Poster {
+        ... on Page_Relatedpostersgroup_relatedPostersPosters_Poster {
           ... on Poster {
-            posterId
+            databaseId
           }
         }
       }

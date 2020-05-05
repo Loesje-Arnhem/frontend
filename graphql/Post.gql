@@ -21,7 +21,7 @@ query GET_POST_BY_URI($uri: String) {
           poster {
             ... on Post_Relatedpostersgroup_posters_Poster {
               ... on Poster {
-                posterId
+                databaseId
               }
             }
           }

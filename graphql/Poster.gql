@@ -3,7 +3,7 @@
 query GET_POSTER($slug: String) {
   poster: posterBy(slug: $slug) {
     id
-    posterId
+    databaseId
     title
     date
     link

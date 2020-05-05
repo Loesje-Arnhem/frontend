@@ -1,6 +1,6 @@
 <template>
   <apollo-query :query="require('~/graphql/Sources.gql')">
-    <template v-slot="{ result: { data } }">
+    <template v-slot="data">
       <posters-filter-section :data="data" :is-loading="isLoading > 0" />
     </template>
   </apollo-query>

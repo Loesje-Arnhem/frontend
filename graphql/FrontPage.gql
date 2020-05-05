@@ -1,7 +1,7 @@
 #import "./Fragments/PageContent.gql"
 
-query GET_FRONT_PAGE {
-  page: pageBy(pageId: 6434) {
+query FrontPage {
+  page(id:6434, idType:DATABASE_ID) {
     ...pageContent
   }
 }

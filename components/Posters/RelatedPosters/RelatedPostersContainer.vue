@@ -15,7 +15,7 @@ import AppLoader from '@/components/Shared/AppLoader.vue'
 
 export default {
   components: {
-    AppLoader
+    AppLoader,
   },
   props: {
     relatedPosters: {

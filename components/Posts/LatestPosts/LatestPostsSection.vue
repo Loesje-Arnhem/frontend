@@ -5,7 +5,7 @@
         <div class="latest-posts">
           <h1 id="latest-posts-title">{{ $t('title') }}</h1>
           <latest-posts-container>
-            <template v-slot="{ result: { data } }">
+            <template v-slot="data">
               <latest-posts-list v-if="data" :posts="data.posts" />
             </template>
           </latest-posts-container>

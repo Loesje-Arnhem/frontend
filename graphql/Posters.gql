@@ -13,7 +13,7 @@ query GET_POSTERS($first: Int, $after: String, $where: RootQueryToPosterConnecti
     edges {
       node {
         id
-        posterId
+        databaseId
         title
         slug
         featuredImage {

@@ -10,7 +10,7 @@
     </center-wrapper>
     <center-wrapper size="full">
       <related-posters-container :related-posters="relatedPosters">
-        <template v-slot="{ result: { data } }">
+        <template v-slot="data">
           <related-posters-list v-if="data" :posters="data.posters" />
         </template>
       </related-posters-container>

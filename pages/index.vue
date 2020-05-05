@@ -19,7 +19,7 @@ import Groups from '~/components/Blocks/Groups.vue'
 import BlockInstagram from '~/components/Blocks/BlockInstagram.vue'
 import AppStoresSection from '~/components/AppStores/AppStoresSection.vue'
 import LatestPostsSection from '~/components/Posts/LatestPosts/LatestPostsSection.vue'
-import FeaturedProductsSection from '~/components/Shop/FeaturedProducts/FeaturedProductsSection.vue'
+// import FeaturedProductsSection from '~/components/Shop/FeaturedProducts/FeaturedProductsSection.vue'
 import frontPageQuery from '~/graphql/FrontPage.gql'
 
 export default {
@@ -29,7 +29,7 @@ export default {
     RelatedPostersSection,
     AppStoresSection,
     LatestPostsSection,
-    FeaturedProductsSection,
+    // FeaturedProductsSection,
   },
 
   apollo: {
