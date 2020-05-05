@@ -1,0 +1,5 @@
+export const twitterUrl = 'https://twitter.com/LoesjeNL'
+export const facebookUrl = 'https://twitter.com/LoesjeNL'
+export const instagramUrl = 'https://instagram.com/loesjevdposters'
+export const pinterestUrl = 'https://www.pinterest.com/loesjenl/'
+export const linkedinUrl = 'https://www.linkedin.com/company/loesje/'

@@ -1,0 +1,7 @@
+export const title = 'Loesjes winkeltje'
+export const companyName = 'Loesje'
+export const street = 'Hommelstraat 65'
+export const city = 'Arnhem'
+export const zipcode = '6828 AJ'
+export const email = 'winkeltje@loesje.nl'
+export const kvk = 'KVKnummer: 40122845'

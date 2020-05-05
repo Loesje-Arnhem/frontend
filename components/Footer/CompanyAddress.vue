@@ -1,24 +1,24 @@
 <template>
   <address itemscope itemtype="http://schema.org/Organization">
-    <h2 itemprop="name">{{ $t('address.title') }}</h2>
+    <h2 itemprop="name">{{ title }}</h2>
     <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
       <span class="text">
-        <span itemprop="name">{{ $t('address.companyName') }}</span>
+        <span itemprop="name">{{ title }} {{ $t('shop') }}</span>
         <br />
-        <span itemprop="streetAddress">{{ $t('address.street') }}</span>
+        <span itemprop="streetAddress">{{ street }}</span>
         <br />
-        <span itemprop="locality">{{ $t('address.city') }}</span
+        <span itemprop="locality">{{ city }}</span
         >,
-        <span itemprop="postal-code">{{ $t('address.zipcode') }}</span>
+        <span itemprop="postal-code">{{ zipcode }}</span>
         <br />
-        {{ $t('address.kvk') }}
+        {{ kvk }}
       </span>
     </p>
     <p>
       <span class="text">
         <icon-envelope aria-hidden="true" width="20" height="20" />
-        <a :href="`mailto:${$t('address.email')}`" itemprop="email">
-          {{ $t('address.email') }}
+        <a :href="`mailto:${email}`" itemprop="email">
+          {{ email }}
         </a>
       </span>
     </p>
@@ -27,10 +27,21 @@
 
 <script>
 import IconEnvelope from '@/assets/icons/envelope.svg'
+import { title } from '~/data/siteDetails'
+import { street, zipcode, city, email } from '~/data/address'
 
 export default {
   components: {
     IconEnvelope,
+  },
+  data() {
+    return {
+      title,
+      street,
+      zipcode,
+      city,
+      email,
+    }
   },
 }
 </script>

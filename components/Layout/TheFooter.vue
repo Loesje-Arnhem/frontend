@@ -10,7 +10,7 @@
       <div :class="$style['follow-us']">
         <h2>Volg me op</h2>
 
-        <social-media-links :social-media="socialMedia" title="Volg Loesje" />
+        <social-media-links />
 
         <div :class="$style['mood-wrapper']">
           <app-image :class="$style.mood" src="/images/casette-player.png" />
@@ -34,17 +34,6 @@ export default {
     AppStores,
     CompanyAddress,
     AppImage,
-  },
-  data() {
-    return {
-      socialMedia: {
-        twitter: 'https://twitter.com/LoesjeNL',
-        facebook: 'https://twitter.com/LoesjeNL',
-        instagram: 'https://instagram.com/loesjevdposters',
-        pinterest: 'https://www.pinterest.com/loesjenl/',
-        linkedin: 'https://www.linkedin.com/company/loesje/',
-      },
-    }
   },
 }
 </script>

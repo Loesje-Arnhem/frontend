@@ -1,8 +1,8 @@
 <template>
   <ul :class="$style.list">
-    <li v-if="socialMedia.facebook">
+    <li>
       <a
-        :href="socialMedia.facebook"
+        :href="facebookUrl"
         :class="$style.link"
         rel="noopener"
         target="_blank"
@@ -13,22 +13,17 @@
         </span>
       </a>
     </li>
-    <li v-if="socialMedia.twitter">
-      <a
-        :href="socialMedia.twitter"
-        :class="$style.link"
-        rel="noopener"
-        target="_blank"
-      >
+    <li>
+      <a :href="twitterUrl" :class="$style.link" rel="noopener" target="_blank">
         <icon-twitter aria-hidden="true" width="32" height="32" />
         <span class="sr-only">
           {{ $t('followOn', { title, network: 'Twitter' }) }}
         </span>
       </a>
     </li>
-    <li v-if="socialMedia.linkedin">
+    <li>
       <a
-        :href="socialMedia.linkedin"
+        :href="linkedinUrl"
         :class="$style.link"
         rel="noopener"
         target="_blank"
@@ -39,9 +34,9 @@
         </span>
       </a>
     </li>
-    <li v-if="socialMedia.pinterest">
+    <li>
       <a
-        :href="socialMedia.pinterest"
+        :href="pinterestUrl"
         :class="$style.link"
         rel="noopener"
         target="_blank"
@@ -52,9 +47,9 @@
         </span>
       </a>
     </li>
-    <li v-if="socialMedia.instagram">
+    <li>
       <a
-        :href="socialMedia.instagram"
+        :href="instagramUrl"
         :class="$style.link"
         rel="noopener"
         target="_blank"
@@ -74,6 +69,13 @@ import IconTwitter from '@/assets/icons/twitter.svg'
 import IconLinkedin from '@/assets/icons/linkedin.svg'
 import IconPinterest from '@/assets/icons/pinterest.svg'
 import IconInstagram from '@/assets/icons/instagram.svg'
+import {
+  facebookUrl,
+  twitterUrl,
+  pinterestUrl,
+  instagramUrl,
+  linkedinUrl,
+} from '~/data/socialMedia'
 
 export default {
   components: {
@@ -83,15 +85,14 @@ export default {
     IconLinkedin,
     IconInstagram,
   },
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    socialMedia: {
-      type: Object,
-      default: () => {},
-    },
+  data() {
+    return {
+      facebookUrl,
+      twitterUrl,
+      pinterestUrl,
+      instagramUrl,
+      linkedinUrl,
+    }
   },
 }
 </script>
