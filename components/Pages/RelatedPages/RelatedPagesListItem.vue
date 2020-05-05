@@ -1,11 +1,11 @@
 <template>
-  <clickable-list-item :url="url" :class="$style['child-page']">
+  <clickable-list-item :url="page.uri" :class="$style['related-page']">
     <h2 :class="$style.title">
-      <nuxt-link :to="url">{{ page.node.title }}</nuxt-link>
+      <nuxt-link :to="page.uri">{{ page.title }}</nuxt-link>
     </h2>
     <div :class="$style.text">
       <!-- eslint-disable-next-line -->
-    <div v-html="page.node.excerpt" />
+    <div v-html="page.excerpt" />
       <read-more-link />
     </div>
   </clickable-list-item>
@@ -26,16 +26,11 @@ export default {
       required: true,
     },
   },
-  computed: {
-    url() {
-      return `/${this.page.node.uri}/`
-    },
-  },
 }
 </script>
 
 <style lang="postcss" module>
-.child-page {
+.related-page {
   --rough-stroke-width: 3px;
   --rough-roughness: 2.5;
 

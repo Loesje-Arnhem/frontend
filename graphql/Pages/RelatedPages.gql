@@ -1,0 +1,22 @@
+#import "./Fragments/Page.gql"
+
+query RelatedPages(
+  $notIn: [ID]
+  $parentPageId: String
+) {
+  pages(
+    where: {
+      notIn: $notIn
+      parent: $parentPageId
+      orderby: { field: MENU_ORDER, order: ASC }
+    }
+  ) {
+    edges {
+      node {
+        ...page
+        excerpt
+        uri
+      }
+    }
+  }
+}

@@ -9,19 +9,21 @@
       v-if="page"
       :related-posters="page.relatedPosters"
     />
-    <child-pages-list v-if="pages" :pages="pages" />
+    <related-pages-section
+      :not-in="page.databaseId"
+      :parent-page-id="parentId"
+    />
   </div>
 </template>
 
 <script>
-import ChildPagesList from '@/components/Pages/ChildPagesList.vue'
+import RelatedPagesSection from '@/components/Pages/RelatedPages/RelatedPagesSection.vue'
 import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import PageQuery from '~/graphql/Pages/Page.gql'
-import ChildPagesQuery from '~/graphql/Pages/ChildPages.gql'
 
 export default {
   components: {
-    ChildPagesList,
+    RelatedPagesSection,
     RelatedPostersSection,
   },
   async asyncData({ app, params }) {
@@ -32,32 +34,17 @@ export default {
       },
     })
 
-    const response = page.data.page
-
-    let pages = null
-    if (response.parent) {
-      pages = await app.apolloProvider.defaultClient.query({
-        query: ChildPagesQuery,
-        variables: {
-          parent: response.parent.pageId,
-          notIn: response.pageId,
-        },
-      })
-    }
-
-    if (response.childPages && response.childPages.edges.length) {
-      pages = await app.apolloProvider.defaultClient.query({
-        query: ChildPagesQuery,
-        variables: {
-          parent: page.data.page.pageId,
-        },
-      })
-    }
-
     return {
-      page: response,
-      pages: pages ? pages.data.pages : null,
+      page: page.data.page,
     }
+  },
+  computed: {
+    parentId() {
+      if (this.page.parent) {
+        return this.page.parent.databaseId
+      }
+      return this.page.databaseId
+    },
   },
   head() {
     return {

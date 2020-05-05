@@ -5,15 +5,7 @@ query Page($uri: ID!) {
     ...pageContent
     databaseId
     content
-    childPages {
-      edges {
-        node {
-          id
-        }
-      }
-    }
     parent {
-      __typename
       ... on Page {
         databaseId
       }
