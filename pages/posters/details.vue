@@ -34,7 +34,11 @@ export default {
       poster: poster.data.poster,
     }
   },
-
+  nuxtI18n: {
+    paths: {
+      nl: '/posters/:slug',
+    },
+  },
   head() {
     return {
       title: this.poster.title,

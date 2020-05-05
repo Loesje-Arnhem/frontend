@@ -47,7 +47,11 @@ export default {
       selectedTags: [],
     }
   },
-
+  nuxtI18n: {
+    paths: {
+      nl: '/posters',
+    },
+  },
   head() {
     return {
       title: this.title,

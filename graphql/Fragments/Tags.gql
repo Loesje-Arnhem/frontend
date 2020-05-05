@@ -1,17 +1,23 @@
 fragment source on Source {
   id
-  tagId: databaseId
+  databaseId
   name
   taxonomy {
-    name
+    node {
+      id
+      name
+    }
   }
 }
 
 fragment subject on Subject {
   id
-  tagId: databaseId
+  databaseId
   name
   taxonomy {
-    name
+    node {
+      id
+      name
+    }
   }
 }

@@ -1,9 +1,9 @@
 #import "./Fragments/PageContent.gql"
 
-query GET_PAGE_BY_URI($uri: String) {
-  page: pageBy(uri: $uri) {
+query Page($uri: ID!) {
+  page(id: $uri, idType: URI) {
     ...pageContent
-    pageId
+    databaseId
     content
     childPages {
       edges {
@@ -15,7 +15,7 @@ query GET_PAGE_BY_URI($uri: String) {
     parent {
       __typename
       ... on Page {
-        pageId
+        databaseId
       }
     }
   }

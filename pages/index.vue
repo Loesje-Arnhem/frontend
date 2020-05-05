@@ -7,7 +7,7 @@
       :related-posters="page.relatedPosters"
     />
     <app-stores-section />
-    <featured-products-section />
+    <!-- <featured-products-section /> -->
     <block-instagram />
     <groups />
   </div>
@@ -20,7 +20,7 @@ import BlockInstagram from '~/components/Blocks/BlockInstagram.vue'
 import AppStoresSection from '~/components/AppStores/AppStoresSection.vue'
 import LatestPostsSection from '~/components/Posts/LatestPosts/LatestPostsSection.vue'
 // import FeaturedProductsSection from '~/components/Shop/FeaturedProducts/FeaturedProductsSection.vue'
-import frontPageQuery from '~/graphql/FrontPage.gql'
+import frontPageQuery from '~/graphql/Pages/FrontPage.gql'
 
 export default {
   components: {

@@ -1,5 +1,5 @@
 #import "./RelatedPosters.gql"
-#import "./Seo.gql"
+#import "./../../Fragments/Seo.gql"
 
 fragment pageContent on Page {
   title

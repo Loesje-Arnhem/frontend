@@ -1,3 +1,5 @@
+#import "./Fragments/Post.gql"
+
 query GET_POSTS($first: Int, $after: String, $where: RootQueryToPostConnectionWhereArgs) {
   posts(first: $first, after: $after, where: $where) {
     pageInfo {
@@ -8,13 +10,9 @@ query GET_POSTS($first: Int, $after: String, $where: RootQueryToPostConnectionWh
     }
     edges {
       node {
-        id
-        postId
-        title
+        ...post
         excerpt
-        date
-        slug
-        link
+        uri
       }
     }
   }

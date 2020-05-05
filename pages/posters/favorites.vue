@@ -19,6 +19,11 @@ export default {
   computed: {
     ...mapState('favorites', ['list']),
   },
+  nuxtI18n: {
+    paths: {
+      nl: '/posters/favorieten',
+    },
+  },
 }
 </script>
 

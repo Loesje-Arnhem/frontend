@@ -1,7 +1,7 @@
 #import "./Fragments/Tags.gql"
 
-query GET_POSTER($slug: String) {
-  poster: posterBy(slug: $slug) {
+query Poster($slug: ID!) {
+  poster(id: $slug, idType: URI) {
     id
     databaseId
     title

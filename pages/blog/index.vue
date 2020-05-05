@@ -11,7 +11,7 @@
 <script>
 import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
 import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import PageQuery from '~/graphql/Page.gql'
+import PageQuery from '~/graphql/Pages/Page.gql'
 
 export default {
   components: {
@@ -29,6 +29,11 @@ export default {
       variables: {
         uri: 'over-mij/nieuws',
       },
+    },
+  },
+  nuxtI18n: {
+    paths: {
+      nl: '/over-mij/nieuws',
     },
   },
   head() {

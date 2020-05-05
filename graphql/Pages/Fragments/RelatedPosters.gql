@@ -1,0 +1,21 @@
+fragment relatedPostersGroup on Page_Relatedpostersgroup {
+  title: relatedPostersTitle
+  search: relatedPostersSearch
+  subjects: relatedPostersSubjects {
+    ... on Subject {
+      databaseId
+      name
+    }
+  }
+  posters: relatedPostersPosters {
+    ... on Page_Relatedpostersgroup_relatedPostersPosters {
+      poster {
+        ... on Page_Relatedpostersgroup_relatedPostersPosters_Poster {
+          ... on Poster {
+            databaseId
+          }
+        }
+      }
+    }
+  }
+}

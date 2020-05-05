@@ -1,7 +1,7 @@
 #import "./Fragments/Product.gql"
 
 query GET_PRODUCT($slug: String) {
-  product: productBy(slug: $slug) {
+  product(id: $slug, idType: SLUG) {
     ...product
     attributes {
       edges {

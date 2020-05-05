@@ -16,8 +16,8 @@
 <script>
 import ChildPagesList from '@/components/Pages/ChildPagesList.vue'
 import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import PageQuery from '~/graphql/Page.gql'
-import ChildPagesQuery from '~/graphql/ChildPages.gql'
+import PageQuery from '~/graphql/Pages/Page.gql'
+import ChildPagesQuery from '~/graphql/Pages/ChildPages.gql'
 
 export default {
   components: {
@@ -63,6 +63,11 @@ export default {
     return {
       title: this.page.title,
     }
+  },
+  nuxtI18n: {
+    paths: {
+      nl: '/*',
+    },
   },
 }
 </script>

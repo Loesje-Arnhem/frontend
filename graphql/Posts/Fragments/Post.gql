@@ -1,0 +1,6 @@
+fragment post on Post {
+  id
+  title
+  databaseId
+  date
+}

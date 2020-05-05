@@ -1,5 +1,5 @@
 <template>
-  <div v-if="post.title">
+  <div>
     <post-details :post="post" />
     <related-posters-section
       v-if="post"
@@ -13,7 +13,7 @@
 import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
 import PostDetails from '@/components/Posts/PostDetails/PostDetails.vue'
 import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import PostQuery from '~/graphql/Post.gql'
+import PostQuery from '~/graphql/Posts/Post.gql'
 
 export default {
   components: {
@@ -44,6 +44,11 @@ export default {
     return {
       title: this.post.title,
     }
+  },
+  nuxtI18n: {
+    paths: {
+      nl: '/over-mij/nieuws/:slug',
+    },
   },
 }
 </script>

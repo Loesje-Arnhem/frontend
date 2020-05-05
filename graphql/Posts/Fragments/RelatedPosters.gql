@@ -1,17 +1,16 @@
-
-fragment relatedPostersGroup on Page_Relatedpostersgroup {
+fragment relatedPostersGroup on Post_Relatedpostersgroup {
   title: relatedPostersTitle
   search: relatedPostersSearch
   subjects: relatedPostersSubjects {
     ... on Subject {
-      subjectId
+      databaseId
       name
     }
   }
   posters: relatedPostersPosters {
-    ... on Page_Relatedpostersgroup_relatedPostersPosters {
+    ... on Post_Relatedpostersgroup_relatedPostersPosters {
       poster {
-        ... on Page_Relatedpostersgroup_relatedPostersPosters_Poster {
+        ... on Post_Relatedpostersgroup_relatedPostersPosters_Poster {
           ... on Poster {
             databaseId
           }
