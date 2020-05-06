@@ -8,8 +8,6 @@
       <app-stores />
 
       <div :class="$style['follow-us']">
-        <h2>Volg me op</h2>
-
         <social-media-links />
 
         <div :class="$style['mood-wrapper']">

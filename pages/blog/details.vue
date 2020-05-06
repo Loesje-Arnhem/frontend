@@ -5,7 +5,7 @@
       v-if="post"
       :related-posters="post.relatedPosters"
     />
-    <posts-overview-container :not-in="post.postId" />
+    <posts-overview-container :not-in="post.databaseId" />
   </div>
 </template>
 

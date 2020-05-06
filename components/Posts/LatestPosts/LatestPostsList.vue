@@ -2,7 +2,7 @@
   <ul :class="$style.list">
     <post-list-item
       v-for="post in posts"
-      :key="post.node.postId"
+      :key="post.node.databaseId"
       :post="post"
       :class="$style['list-item']"
     />

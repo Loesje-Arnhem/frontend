@@ -4,7 +4,7 @@
       <!-- eslint-disable-next-line -->
       <router-link :to="url" v-html="post.node.title" />
     </h2>
-
+    {{ post.node.date }}
     <post-date :date="post.node.date" />
     <!-- eslint-disable-next-line -->
     <div class="text" v-html="post.node.excerpt" />

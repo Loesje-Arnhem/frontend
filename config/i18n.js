@@ -12,27 +12,30 @@ export default {
   ],
   vueI18nLoader: true,
   vueI18n: {
+    silentFallbackWarn: true,
     numberFormats: {
-      currency: {
-        style: 'currency',
-        currency: 'EUR',
-        currencyDisplay: 'symbol',
+      nl: {
+        currency: {
+          style: 'currency',
+          currency: 'EUR',
+          currencyDisplay: 'symbol',
+        },
       },
-      dateTimeFormats: {
-        nl: {
-          short: {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          },
-          long: {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            weekday: 'short',
-            hour: 'numeric',
-            minute: 'numeric',
-          },
+    },
+    dateTimeFormats: {
+      nl: {
+        short: {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        },
+        long: {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          weekday: 'short',
+          hour: 'numeric',
+          minute: 'numeric',
         },
       },
     },

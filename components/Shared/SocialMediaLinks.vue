@@ -1,66 +1,99 @@
 <template>
-  <ul :class="$style.list">
-    <li>
-      <a
-        :href="facebookUrl"
-        :class="$style.link"
-        rel="noopener"
-        target="_blank"
-      >
-        <icon-facebook aria-hidden="true" width="32" height="32" />
-        <span class="sr-only">
-          {{ $t('followOn', { title, network: 'Facebook' }) }}
-        </span>
-      </a>
-    </li>
-    <li>
-      <a :href="twitterUrl" :class="$style.link" rel="noopener" target="_blank">
-        <icon-twitter aria-hidden="true" width="32" height="32" />
-        <span class="sr-only">
-          {{ $t('followOn', { title, network: 'Twitter' }) }}
-        </span>
-      </a>
-    </li>
-    <li>
-      <a
-        :href="linkedinUrl"
-        :class="$style.link"
-        rel="noopener"
-        target="_blank"
-      >
-        <icon-linkedin aria-hidden="true" width="32" height="32" />
-        <span class="sr-only">
-          {{ $t('followOn', { title, network: 'LinkedIn' }) }}
-        </span>
-      </a>
-    </li>
-    <li>
-      <a
-        :href="pinterestUrl"
-        :class="$style.link"
-        rel="noopener"
-        target="_blank"
-      >
-        <icon-pinterest aria-hidden="true" width="32" height="32" />
-        <span class="sr-only">
-          {{ $t('followOn', { title, network: 'pinterest' }) }}
-        </span>
-      </a>
-    </li>
-    <li>
-      <a
-        :href="instagramUrl"
-        :class="$style.link"
-        rel="noopener"
-        target="_blank"
-      >
-        <icon-instagram aria-hidden="true" width="32" height="32" />
-        <span class="sr-only">
-          {{ $t('followOn', { title, network: 'Instagram' }) }}
-        </span>
-      </a>
-    </li>
-  </ul>
+  <div>
+    <h2>{{ $t('followMeOn') }}</h2>
+    <ul :class="$style.list">
+      <li>
+        <a
+          :href="facebookUrl"
+          :class="$style.link"
+          rel="noopener"
+          target="_blank"
+        >
+          <icon-facebook aria-hidden="true" width="32" height="32" />
+          <span class="sr-only">
+            {{
+              $t('followMeOnNetwork', {
+                title: title,
+              })
+            }}
+            <span lang="en">Facebook</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          :href="twitterUrl"
+          :class="$style.link"
+          rel="noopener"
+          target="_blank"
+        >
+          <icon-twitter aria-hidden="true" width="32" height="32" />
+          <span class="sr-only">
+            {{
+              $t('followMeOnNetwork', {
+                title: title,
+              })
+            }}
+            <span lang="en">Twitter</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          :href="linkedinUrl"
+          :class="$style.link"
+          rel="noopener"
+          target="_blank"
+        >
+          <icon-linkedin aria-hidden="true" width="32" height="32" />
+          <span class="sr-only">
+            {{
+              $t('followMeOnNetwork', {
+                title: title,
+              })
+            }}
+            <span lang="en">LinkedIn</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          :href="pinterestUrl"
+          :class="$style.link"
+          rel="noopener"
+          target="_blank"
+        >
+          <icon-pinterest aria-hidden="true" width="32" height="32" />
+          <span class="sr-only">
+            {{
+              $t('followMeOnNetwork', {
+                title: title,
+              })
+            }}
+            <span lang="en">Pinterest</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a
+          :href="instagramUrl"
+          :class="$style.link"
+          rel="noopener"
+          target="_blank"
+        >
+          <icon-instagram aria-hidden="true" width="32" height="32" />
+          <span class="sr-only">
+            {{
+              $t('followMeOnNetwork', {
+                title: title,
+              })
+            }}
+            <span lang="en">Instagram</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -109,3 +142,12 @@ export default {
   @mixin link-reset;
 }
 </style>
+
+<i18n>
+{
+  "nl": {
+    "followMeOnNetwork": "Bekijk %{title} op",
+    "followMeOn": "Volg me op"
+  }
+}
+</i18n>
