@@ -1,41 +1,60 @@
 <template>
   <li
-    :class="[
-      $style['menu-item'],
-      { [$style['has-popup']]: item.childItems.edges.length > 0 },
-    ]"
+    :class="[$style['menu-item'], { 'has-popup': hasChildren }]"
+    class="menu-item"
     @mouseover="mouseover"
     @mouseout="mouseout"
   >
-    <menu-item
-      :item="item"
+    <!-- eslint-disable vue/no-v-html -->
+    <nuxt-link
+      ref="link"
+      :to="url"
+      :aria-haspopup="hasChildren"
       :class="$style['menu-link']"
-      :aria-haspopup="item.childItems.edges.length > 0"
-      :aria-expanded="isOpen"
+      class="menu-link"
+      @click.native="changePage"
+      v-html="title"
     />
+    <!-- eslint-enable vue/no-v-html -->
+
     <button
-      v-if="item.childItems.edges.length"
+      v-if="hasChildren"
+      :aria-expanded="isOpen ? 'true' : 'false'"
       :class="$style['btn-show-submenu']"
-      :aria-expanded="isOpen"
       @click="toggleMenu"
     >
       <icon-chevron-down
-        :class="$style.icon"
         aria-hidden="true"
         width="16"
         height="16"
+        :class="$style['icon']"
       />
-      <span :class="$style['sr-only']">Toon submenu voor {{ item.label }}</span>
+      <span class="sr-only">
+        {{
+          $t('showSubmenuFor', {
+            title: title,
+          })
+        }}
+      </span>
     </button>
-    <template v-if="item.childItems.edges.length">
+    <template v-if="hasChildren">
       <animation-slide-in>
         <ul v-show="isOpen" :class="$style.submenu">
           <li
-            v-for="subItem in item.childItems.edges"
-            :key="subItem.node.label"
-            :class="$style['submenu-item']"
+            v-for="subItem in children.edges"
+            :key="subItem.node.id"
+            :class="$style['menu-item']"
+            class="menu-item"
           >
-            <menu-item :item="subItem.node" :class="$style['submenu-link']" />
+            <!-- eslint-disable vue/no-v-html -->
+            <nuxt-link
+              :to="subItem.node.uri"
+              :class="$style['submenu-link']"
+              class="submenu-link"
+              @click.native="changePage"
+              v-html="subItem.node.title"
+            />
+            <!-- eslint-enable vue/no-v-html -->
           </li>
         </ul>
       </animation-slide-in>
@@ -44,20 +63,31 @@
 </template>
 
 <script>
-import MenuItem from '@/components/Menu/MenuItem.vue'
-import IconChevronDown from '@/assets/icons/chevron-down.svg'
+import IconChevronDown from '~/assets/icons/chevron-down.svg'
 import AnimationSlideIn from '~/components/Animations/SlideInAnimation.vue'
+import EventBusUtil from '~/utils/eventBusUtil'
 
 export default {
   components: {
-    MenuItem,
     IconChevronDown,
     AnimationSlideIn,
   },
   props: {
-    item: {
-      type: Object,
+    url: {
+      type: String,
       required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    children: {
+      type: Object,
+      default: () => {},
+    },
+    resetSubmenu: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -66,18 +96,47 @@ export default {
       timer: null,
     }
   },
+  computed: {
+    hasChildren() {
+      return this.children?.edges?.length > 0
+    },
+  },
+  watch: {
+    resetSubmenu(value) {
+      if (value) {
+        this.setActiveSubmenu()
+      }
+    },
+  },
+  mounted() {
+    EventBusUtil.$on('change-page', () => (this.isOpen = false))
+  },
   methods: {
     toggleMenu() {
       this.isOpen = !this.isOpen
     },
+
+    setActiveSubmenu() {
+      if (!this.isSmallScreen) return
+      const { link } = this.$refs
+      this.isOpen = link.$el.classList.contains('nuxt-link-active')
+    },
     mouseover() {
+      if (this.isSmallScreen()) return
       this.isOpen = true
       clearTimeout(this.timer)
     },
     mouseout() {
+      if (this.isSmallScreen()) return
       this.timer = setTimeout(() => {
         this.isOpen = false
       }, 250)
+    },
+    changePage() {
+      EventBusUtil.$emit('change-page')
+    },
+    isSmallScreen() {
+      return window.innerWidth < 768
     },
   },
 }

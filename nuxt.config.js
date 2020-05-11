@@ -11,6 +11,7 @@ import loading from './config/loading'
 import manifest from './config/manifest'
 import mode from './config/mode'
 import plugins from './config/plugins'
+import server from './config/server'
 
 export default {
   apollo,
@@ -27,4 +28,5 @@ export default {
   mode,
   modules,
   plugins,
+  server,
 }

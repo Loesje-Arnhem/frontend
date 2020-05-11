@@ -1,0 +1,24 @@
+fragment childPages on Page {
+  childPages(where: { orderby: { field: MENU_ORDER, order: ASC } }) {
+    edges {
+      node {
+        id
+        uri
+        title
+      }
+    }
+  }
+}
+
+query Menu($aboutPageId: ID!, $joinPageId: ID!) {
+  about: page(id: $aboutPageId, idType: DATABASE_ID) {
+    title
+    uri
+    ...childPages
+  }
+  join: page(id: $joinPageId, idType: DATABASE_ID) {
+    title
+    uri
+    ...childPages
+  }
+}

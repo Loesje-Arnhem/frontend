@@ -1,12 +1,15 @@
 {
   "shop": "Winkeltje",
-
   "followOn": "%{title} op %{network}",
   "albums": "Albums",
   "biography": "Biography",
   "contact": "Contact",
   "close": "Close",
-  "home": "Home",
+  "pages": {
+    "home": "Home",
+    "posters": "Posters",
+    "workshops": "Workshops"
+  },
   "latestPosts": "Latest posts",
   "loadMore": "Load more posts",
   "loading": "Loading…",
