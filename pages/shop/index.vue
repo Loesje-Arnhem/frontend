@@ -27,7 +27,11 @@ export default {
       title: 'Winkeltje',
     }
   },
-
+  nuxtI18n: {
+    paths: {
+      nl: '/winkeltje',
+    },
+  },
   head() {
     return {
       title: this.title,

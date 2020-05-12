@@ -1,0 +1,14 @@
+fragment relatedProductsGroup on Page_Relatedproductsgroup {
+  title: relatedProductsTitle
+  relatedProductsProducts {
+    ... on Page_Relatedproductsgroup_relatedProductsProducts {
+      product {
+        ... on Page_Relatedproductsgroup_relatedProductsProducts_Product {
+          ... on Product {
+            productId
+          }
+        }
+      }
+    }
+  }
+}

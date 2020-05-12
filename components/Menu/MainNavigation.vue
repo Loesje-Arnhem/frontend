@@ -32,6 +32,12 @@
               :title="$t('pages.workshops')"
               :url="localePath({ name: 'workshops' })"
             />
+            <main-navigation-item
+              :title="$t('pages.shop')"
+              :url="localePath({ name: 'shop' })"
+              :children="data.productCategories"
+              :reset-submenu="menuIsOpen"
+            />
           </ul>
         </template>
       </main-navigation-container>

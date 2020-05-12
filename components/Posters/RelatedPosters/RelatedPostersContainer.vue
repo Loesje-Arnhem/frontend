@@ -25,10 +25,7 @@ export default {
   },
   computed: {
     subjects() {
-      return this.relatedPosters.subjects.map((subject) => subject.subjectId)
-    },
-    search() {
-      return this.relatedPosters.search
+      return this.relatedPosters.subjects.map((subject) => subject.databaseId)
     },
     posterIds() {
       if (this.relatedPosters.posters) {

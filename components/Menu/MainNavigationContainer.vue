@@ -8,7 +8,12 @@
   >
     <template v-slot="{ result: { data }, isLoading }">
       <app-loader v-if="isLoading" />
-      <slot v-else-if="data" :about="data.about" :join="data.join" />
+      <slot
+        v-else-if="data"
+        :about="data.about"
+        :join="data.join"
+        :productCategories="data.productCategories"
+      />
     </template>
   </apollo-query>
 </template>

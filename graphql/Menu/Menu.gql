@@ -21,4 +21,13 @@ query Menu($aboutPageId: ID!, $joinPageId: ID!) {
     uri
     ...childPages
   }
+  productCategories {
+    edges {
+      node {
+        id
+        uri
+        title: name
+      }
+    }
+  }
 }

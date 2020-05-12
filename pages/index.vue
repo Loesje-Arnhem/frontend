@@ -1,13 +1,10 @@
 <template>
-  <div>
+  <div v-if="page">
     <h1 class="sr-only">Home</h1>
     <latest-posts-section />
-    <related-posters-section
-      v-if="page"
-      :related-posters="page.relatedPosters"
-    />
+    <related-posters-section :related-posters="page.relatedPosters" />
     <app-stores-section />
-    <!-- <featured-products-section /> -->
+    <featured-products-section :related-products="page.relatedProducts" />
     <block-instagram />
     <groups />
   </div>
@@ -19,7 +16,7 @@ import Groups from '~/components/Blocks/Groups.vue'
 import BlockInstagram from '~/components/Blocks/BlockInstagram.vue'
 import AppStoresSection from '~/components/AppStores/AppStoresSection.vue'
 import LatestPostsSection from '~/components/Posts/LatestPosts/LatestPostsSection.vue'
-// import FeaturedProductsSection from '~/components/Shop/FeaturedProducts/FeaturedProductsSection.vue'
+import FeaturedProductsSection from '~/components/Shop/FeaturedProducts/FeaturedProductsSection.vue'
 import frontPageQuery from '~/graphql/Pages/FrontPage.gql'
 
 export default {
@@ -29,7 +26,7 @@ export default {
     RelatedPostersSection,
     AppStoresSection,
     LatestPostsSection,
-    // FeaturedProductsSection,
+    FeaturedProductsSection,
   },
 
   apollo: {

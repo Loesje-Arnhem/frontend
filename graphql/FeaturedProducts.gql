@@ -1,7 +1,7 @@
 #import "./Fragments/Product.gql"
 
-query GET_RELATED_PRODUCTS {
-  products(where: {featured: true, stockStatus: IN_STOCK}, first: 5) {
+query relatedProducts($where: RootQueryToProductConnectionWhereArgs) {
+  products(where: $where) {
     edges {
       node {
         ...product
