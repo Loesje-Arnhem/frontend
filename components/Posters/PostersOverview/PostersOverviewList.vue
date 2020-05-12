@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import PostersOverviewListItem from '@/components/Posters/PostersOverview/PostersOverviewListItem.vue'
-import ListAnimation from '@/components/Animations/ListAnimation.vue'
+import PostersOverviewListItem from '~/components/Posters/PostersOverview/PostersOverviewListItem.vue'
+import ListAnimation from '~/components/Animations/ListAnimation.vue'
 
 export default {
   components: {

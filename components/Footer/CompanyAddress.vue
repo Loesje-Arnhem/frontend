@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import IconEnvelope from '@/assets/icons/envelope.svg'
+import IconEnvelope from '~/assets/icons/envelope.svg'
 import { title } from '~/data/siteDetails'
 import { street, zipcode, city, email } from '~/data/address'
 

@@ -97,11 +97,11 @@
 </template>
 
 <script>
-import IconFacebook from '@/assets/icons/facebook.svg'
-import IconTwitter from '@/assets/icons/twitter.svg'
-import IconLinkedin from '@/assets/icons/linkedin.svg'
-import IconPinterest from '@/assets/icons/pinterest.svg'
-import IconInstagram from '@/assets/icons/instagram.svg'
+import IconFacebook from '~/assets/icons/facebook.svg'
+import IconTwitter from '~/assets/icons/twitter.svg'
+import IconLinkedin from '~/assets/icons/linkedin.svg'
+import IconPinterest from '~/assets/icons/pinterest.svg'
+import IconInstagram from '~/assets/icons/instagram.svg'
 import {
   facebookUrl,
   twitterUrl,

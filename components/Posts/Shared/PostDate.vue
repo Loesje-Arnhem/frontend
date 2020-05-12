@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AppDate from '@/components/Shared/AppDate.vue'
+import AppDate from '~/components/Shared/AppDate.vue'
 
 export default {
   components: {

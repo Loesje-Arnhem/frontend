@@ -33,10 +33,10 @@
 </template>
 
 <script>
-import PostersFilterSubjectContainer from '@/components/Posters/Filters/PostersFilterSubjectContainer.vue'
-import PostersFilterSourcesContainer from '@/components/Posters/Filters/PostersFilterSourcesContainer.vue'
-import PostersFilterToggle from '@/components/Posters/Filters/PosterFilterToggle.vue'
-import SlideInAnimation from '@/components/Animations/SlideInAnimation.vue'
+import PostersFilterSubjectContainer from '~/components/Posters/Filters/PostersFilterSubjectContainer.vue'
+import PostersFilterSourcesContainer from '~/components/Posters/Filters/PostersFilterSourcesContainer.vue'
+import PostersFilterToggle from '~/components/Posters/Filters/PosterFilterToggle.vue'
+import SlideInAnimation from '~/components/Animations/SlideInAnimation.vue'
 
 export default {
   components: {

@@ -1,6 +1,6 @@
 <template>
   <apollo-query
-    :query="require('~/graphql/FeaturedProducts.gql')"
+    :query="require('~/graphql/RelatedProducts.gql')"
     :variables="{ first: 5, where: where }"
   >
     <template v-slot="{ result: { data }, isLoading }">
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import AppLoader from '@/components/Shared/AppLoader.vue'
+import AppLoader from '~/components/Shared/AppLoader.vue'
 
 export default {
   components: {

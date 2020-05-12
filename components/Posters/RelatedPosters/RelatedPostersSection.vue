@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import RelatedPostersContainer from '@/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
-import AppButton from '@/components/Shared/AppButton.vue'
-import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
-import RelatedPostersList from '@/components/Posters/RelatedPosters/RelatedPostersList.vue'
+import RelatedPostersContainer from '~/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
+import AppButton from '~/components/Shared/AppButton.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import RelatedPostersList from '~/components/Posters/RelatedPosters/RelatedPostersList.vue'
 
 export default {
   components: {

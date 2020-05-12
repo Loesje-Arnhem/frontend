@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import AppImage from '@/components/Shared/AppImage.vue'
-import ClickableListItem from '@/components/Shared/ClickableListItem.vue'
+import AppImage from '~/components/Shared/AppImage.vue'
+import ClickableListItem from '~/components/Shared/ClickableListItem.vue'
 
 export default {
   components: {

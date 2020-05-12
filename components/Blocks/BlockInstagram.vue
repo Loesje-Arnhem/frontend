@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import AppImage from '@/components/Shared/AppImage.vue'
-import AppButton from '@/components/Shared/AppButton.vue'
+import AppImage from '~/components/Shared/AppImage.vue'
+import AppButton from '~/components/Shared/AppButton.vue'
 
 export default {
   components: {

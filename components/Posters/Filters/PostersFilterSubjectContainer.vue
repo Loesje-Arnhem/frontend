@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import AppLoader from '@/components/Shared/AppLoader.vue'
-import PosterFilterTags from '@/components/Posters/Filters/PosterFilterTags.vue'
+import AppLoader from '~/components/Shared/AppLoader.vue'
+import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
 
 export default {
   components: {

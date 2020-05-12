@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import AppImage from '@/components/Shared/AppImage.vue'
-import FormAddToCart from '@/components/Shop/FormAddToCart.vue'
+import AppImage from '~/components/Shared/AppImage.vue'
+import FormAddToCart from '~/components/Shop/FormAddToCart.vue'
 
 export default {
   components: {

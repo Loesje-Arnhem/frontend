@@ -19,8 +19,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import IconChevronRight from '@/assets/icons/chevron-right.svg'
-import IconChevronLeft from '@/assets/icons/chevron-left.svg'
+import IconChevronRight from '~/assets/icons/chevron-right.svg'
+import IconChevronLeft from '~/assets/icons/chevron-left.svg'
 
 export default {
   components: {

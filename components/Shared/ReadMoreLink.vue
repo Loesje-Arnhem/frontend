@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import IconChevronRight from '@/assets/icons/chevron-right.svg'
+import IconChevronRight from '~/assets/icons/chevron-right.svg'
 
 export default {
   components: {

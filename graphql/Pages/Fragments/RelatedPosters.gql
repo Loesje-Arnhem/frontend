@@ -10,10 +10,8 @@ fragment relatedPostersGroup on Page_Relatedpostersgroup {
   posters: relatedPostersPosters {
     ... on Page_Relatedpostersgroup_relatedPostersPosters {
       poster {
-        ... on Page_Relatedpostersgroup_relatedPostersPosters_Poster {
-          ... on Poster {
-            databaseId
-          }
+        ... on Poster {
+          databaseId
         }
       }
     }

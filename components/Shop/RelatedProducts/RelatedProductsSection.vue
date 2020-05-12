@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import AppButton from '@/components/Shared/AppButton.vue'
-import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
-import ProductList from '@/components/Shop/ProductList.vue'
-import RelatedProductsContainer from '~/components/Shop/FeaturedProducts/FeaturedProductsContainer.vue'
+import AppButton from '~/components/Shared/AppButton.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import ProductList from '~/components/Shop/ProductList.vue'
+import RelatedProductsContainer from '~/components/Shop/RelatedProducts/RelatedProductsContainer.vue'
 
 export default {
   components: {

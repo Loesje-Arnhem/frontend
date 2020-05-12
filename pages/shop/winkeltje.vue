@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import CategoryList from '@/components/Shop/CategoryList.vue'
+import CategoryList from '~/components/Shop/CategoryList.vue'
 import ProductCategoriesQuery from '~/graphql/ProductCategories.gql'
 
 export default {

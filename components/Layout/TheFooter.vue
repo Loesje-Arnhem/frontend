@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
-import AppStores from '@/components/Footer/AppStores.vue'
-import CompanyAddress from '@/components/Footer/CompanyAddress.vue'
-import QuickLinks from '@/components/Footer/QuickLinks.vue'
-import AppImage from '@/components/Shared/AppImage.vue'
+import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
+import AppStores from '~/components/Footer/AppStores.vue'
+import CompanyAddress from '~/components/Footer/CompanyAddress.vue'
+import QuickLinks from '~/components/Footer/QuickLinks.vue'
+import AppImage from '~/components/Shared/AppImage.vue'
 
 export default {
   components: {

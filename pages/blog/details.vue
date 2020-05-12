@@ -5,21 +5,25 @@
       v-if="post"
       :related-posters="post.relatedPosters"
     />
+    {{ post.relatedProducts }}
+    <!-- <related-products-section :related-products="post.relatedProducts" /> -->
     <posts-overview-container :not-in="post.databaseId" />
   </div>
 </template>
 
 <script>
-import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
-import PostDetails from '@/components/Posts/PostDetails/PostDetails.vue'
-import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import PostQuery from '~/graphql/Posts/Post.gql'
+import PostsOverviewContainer from '~/components/Posts/PostsOverview/PostsOverviewContainer.vue'
+import PostDetails from '~/components/Posts/PostDetails/PostDetails.vue'
+import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
+// import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {
     PostDetails,
     PostsOverviewContainer,
     RelatedPostersSection,
+    // RelatedProductsSection,
   },
 
   async asyncData({ app, params }) {
@@ -31,12 +35,6 @@ export default {
     })
     return {
       post: post.data.post,
-    }
-  },
-
-  data() {
-    return {
-      post: {},
     }
   },
 

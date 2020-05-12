@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import PostsOverviewSection from '@/components/Posts/PostsOverview/PostsOverviewSection.vue'
+import PostsOverviewSection from '~/components/Posts/PostsOverview/PostsOverviewSection.vue'
 
 export default {
   components: {

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import DailyPoster from '@/components/DailyPoster.vue'
+import DailyPoster from '~/components/DailyPoster.vue'
 
 export default {
   components: {

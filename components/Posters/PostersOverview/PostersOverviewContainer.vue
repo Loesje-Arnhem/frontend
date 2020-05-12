@@ -23,8 +23,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading'
-import PostersOverviewList from '@/components/Posters/PostersOverview/PostersOverviewList.vue'
-import AppLoader from '@/components/Shared/AppLoader.vue'
+import PostersOverviewList from '~/components/Posters/PostersOverview/PostersOverviewList.vue'
+import AppLoader from '~/components/Shared/AppLoader.vue'
 import PostersQuery from '~/graphql/Posters.gql'
 
 export default {

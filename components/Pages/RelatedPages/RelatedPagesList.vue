@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import RelatedPagesListItem from '@/components/Pages/RelatedPages/RelatedPagesListItem.vue'
+import RelatedPagesListItem from '~/components/Pages/RelatedPages/RelatedPagesListItem.vue'
 
 export default {
   components: {

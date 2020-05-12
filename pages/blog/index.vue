@@ -5,31 +5,33 @@
       v-if="page"
       :related-posters="page.relatedPosters"
     />
+    <related-products-section :related-products="page.relatedProducts" />
   </div>
 </template>
 
 <script>
-import PostsOverviewContainer from '@/components/Posts/PostsOverview/PostsOverviewContainer.vue'
-import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import PageQuery from '~/graphql/Pages/Page.gql'
+import { blogPageId } from '~/data/pages'
+import PageQuery from '~/graphql/Pages/PageById.gql'
+import PostsOverviewContainer from '~/components/Posts/PostsOverview/PostsOverviewContainer.vue'
+import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
+import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {
     RelatedPostersSection,
     PostsOverviewContainer,
+    RelatedProductsSection,
   },
-  data() {
-    return {
-      page: {},
-    }
-  },
-  apollo: {
-    page: {
+  async asyncData({ app, params }) {
+    const page = await app.apolloProvider.defaultClient.query({
       query: PageQuery,
       variables: {
-        uri: 'over-mij/nieuws',
+        id: blogPageId,
       },
-    },
+    })
+    return {
+      page: page.data.page,
+    }
   },
   nuxtI18n: {
     paths: {

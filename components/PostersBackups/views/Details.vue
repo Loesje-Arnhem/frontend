@@ -70,11 +70,11 @@
 import { mapGetters, mapActions } from 'vuex'
 import axios from 'axios'
 
-import Poster from '@/components/Shared/Poster.vue'
-import List from '@/components/Shared/List.vue'
-import Icon from '@/components/Shared/Icon.vue'
-import Navigation from '@/components/Shared/Navigation.vue'
-import SocialMedia from '@/components/Details/SocialMedia.vue'
+import Poster from '~/components/Shared/Poster.vue'
+import List from '~/components/Shared/List.vue'
+import Icon from '~/components/Shared/Icon.vue'
+import Navigation from '~/components/Shared/Navigation.vue'
+import SocialMedia from '~/components/Details/SocialMedia.vue'
 
 export default {
   components: {

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import PosterTile from '@/components/Poster/PosterTile.vue'
+import PosterTile from '~/components/Poster/PosterTile.vue'
 
 export default {
   components: {

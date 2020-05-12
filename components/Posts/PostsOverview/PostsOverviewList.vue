@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import PostListItem from '@/components/Posts/Shared/PostListItem.vue'
-import ListAnimation from '@/components/Animations/ListAnimation.vue'
+import PostListItem from '~/components/Posts/Shared/PostListItem.vue'
+import ListAnimation from '~/components/Animations/ListAnimation.vue'
 
 export default {
   components: {

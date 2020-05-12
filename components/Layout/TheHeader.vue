@@ -21,11 +21,10 @@
 </template>
 
 <script>
-import SkipLinks from '@/components/SkipLinks.vue'
-import MainNavigation from '@/components/Menu/MainNavigation.vue'
-import MobileNavigation from '@/components/MobileNavigation.vue'
-
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import SkipLinks from '~/components/SkipLinks.vue'
+import MainNavigation from '~/components/Menu/MainNavigation.vue'
+import MobileNavigation from '~/components/MobileNavigation.vue'
 
 export default {
   components: {

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import IconChevronDown from '@/assets/icons/chevron-down.svg'
+import IconChevronDown from '~/assets/icons/chevron-down.svg'
 
 export default {
   components: {

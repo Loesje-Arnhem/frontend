@@ -42,7 +42,7 @@
 
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
-import IconSearch from '@/assets/icons/search.svg'
+import IconSearch from '~/assets/icons/search.svg'
 import axios from '~/plugins/axios'
 
 export default {

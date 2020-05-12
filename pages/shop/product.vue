@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import ProductDetails from '@/components/Shop/ProductDetails.vue'
-import ProductList from '@/components/Shop/ProductList.vue'
+import ProductDetails from '~/components/Shop/ProductDetails.vue'
+import ProductList from '~/components/Shop/ProductList.vue'
 import ProductQuery from '~/graphql/Product.gql'
 
 export default {
@@ -25,21 +25,18 @@ export default {
         slug: params.slug,
       },
     })
-
     return {
       product: product.data.product,
     }
   },
-
-  data() {
-    return {
-      title: 'Winkeltje',
-    }
+  nuxtI18n: {
+    paths: {
+      nl: '/winkeltje/:slug',
+    },
   },
-
   head() {
     return {
-      title: this.title,
+      title: this.product.name,
     }
   },
 }

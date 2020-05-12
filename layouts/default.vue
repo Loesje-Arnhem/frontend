@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import TheHeader from '@/components/Layout/TheHeader.vue'
-import TheFooter from '@/components/Layout/TheFooter.vue'
-import ErrorHandler from '@/components/ErrorHandler.vue'
-import HeaderTop from '@/components/HeaderTop.vue'
+import TheHeader from '~/components/Layout/TheHeader.vue'
+import TheFooter from '~/components/Layout/TheFooter.vue'
+import ErrorHandler from '~/components/ErrorHandler.vue'
+import HeaderTop from '~/components/HeaderTop.vue'
 
 export default {
   components: {

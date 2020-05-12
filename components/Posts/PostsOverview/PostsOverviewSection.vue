@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import AppButton from '@/components/Shared/AppButton.vue'
-import PostsOverviewList from '@/components/Posts/PostsOverview/PostsOverviewList.vue'
-import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
-import AppLoader from '@/components/Shared/AppLoader.vue'
+import AppButton from '~/components/Shared/AppButton.vue'
+import PostsOverviewList from '~/components/Posts/PostsOverview/PostsOverviewList.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import AppLoader from '~/components/Shared/AppLoader.vue'
 
 export default {
   components: {

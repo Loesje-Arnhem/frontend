@@ -7,8 +7,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import PosterList from '@/components/Poster/PosterList.vue'
-import Navigation from '@/components/Shared/Navigation.vue'
+import PosterList from '~/components/Poster/PosterList.vue'
+import Navigation from '~/components/Shared/Navigation.vue'
 
 export default {
   components: {

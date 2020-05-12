@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import FormLogin from '@/components/Blocks/FormLogin.vue'
+import FormLogin from '~/components/Blocks/FormLogin.vue'
 export default {
   components: {
     FormLogin,

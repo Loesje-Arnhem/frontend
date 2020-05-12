@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import PosterDetails from '@/components/Poster/PosterDetails.vue'
-import Navigation from '@/components/Shared/Navigation.vue'
-import PostersOverviewSection from '@/components/Posters/PostersOverview/PostersOverviewSection.vue'
+import PosterDetails from '~/components/Poster/PosterDetails.vue'
+import Navigation from '~/components/Shared/Navigation.vue'
+import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
 import PosterQuery from '~/graphql/Poster.gql'
 
 export default {

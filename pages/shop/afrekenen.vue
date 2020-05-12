@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import FormCheckout from '@/components/Blocks/FormCheckout.vue'
+import FormCheckout from '~/components/Blocks/FormCheckout.vue'
 export default {
   components: {
     FormCheckout,

@@ -1,0 +1,8 @@
+query ProductCategory($slug: ID!) {
+  productCategory(id: $slug, idType: SLUG) {
+    id
+    databaseId
+    name
+    description
+  }
+}

@@ -10,31 +10,34 @@
       v-if="page"
       :related-posters="page.relatedPosters"
     />
+    <related-products-section :related-products="page.relatedProducts" />
   </div>
 </template>
 
 <script>
-import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import FormWorkshop from '@/components/Blocks/FormWorkshop.vue'
-import PageQuery from '~/graphql/Pages/Page.gql'
+import PageQuery from '~/graphql/Pages/PageById.gql'
+import { workshopsPageId } from '~/data/pages'
+import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
+import FormWorkshop from '~/components/Blocks/FormWorkshop.vue'
+import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {
     RelatedPostersSection,
     FormWorkshop,
+    RelatedProductsSection,
   },
+
   async asyncData({ app, params }) {
     const page = await app.apolloProvider.defaultClient.query({
       query: PageQuery,
       variables: {
-        uri: 'workshops',
+        id: workshopsPageId,
       },
     })
 
-    const response = page.data.page
-
     return {
-      page: response,
+      page: page.data.page,
     }
   },
   head() {

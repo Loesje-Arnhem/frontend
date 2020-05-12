@@ -1,9 +1,10 @@
+#import "./Page.gql"
 #import "./RelatedPosters.gql"
 #import "./RelatedProducts.gql"
 #import "./../../Fragments/Seo.gql"
 
 fragment pageContent on Page {
-  title
+  ...page
   content
   relatedPosters: relatedPostersGroup {
     ...relatedPostersGroup

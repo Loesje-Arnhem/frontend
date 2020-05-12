@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import IconBars from '@/assets/icons/bars.svg'
-import IconLogo from '@/assets/icons/logo.svg'
+import IconBars from '~/assets/icons/bars.svg'
+import IconLogo from '~/assets/icons/logo.svg'
 
 export default {
   components: {

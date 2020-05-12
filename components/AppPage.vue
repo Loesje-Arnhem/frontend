@@ -1,7 +1,8 @@
 <template>
   <div>
-    <!-- eslint-disable-next-line -->
+    <!-- eslint-disable vue/no-v-html -->
     <h1 v-html="title" />
+    <!-- eslint-enable vue/no-v-html -->
     <slot />
   </div>
 </template>

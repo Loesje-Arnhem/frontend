@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import AppLoader from '@/components/Shared/AppLoader.vue'
+import AppLoader from '~/components/Shared/AppLoader.vue'
 
 export default {
   components: {

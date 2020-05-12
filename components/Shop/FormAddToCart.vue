@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import FormSelect from '@/components/Forms/FormSelect.vue'
+import FormSelect from '~/components/Forms/FormSelect.vue'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppButton from '~/components/Shared/AppButton.vue'

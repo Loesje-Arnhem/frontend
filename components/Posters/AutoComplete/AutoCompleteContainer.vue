@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AutoComplete from '@/components/Posters/AutoComplete/AutoComplete.vue'
+import AutoComplete from '~/components/Posters/AutoComplete/AutoComplete.vue'
 
 export default {
   components: {

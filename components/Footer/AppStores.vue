@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import IconPlayStore from '@/assets/icons/play-store.svg'
-import IconAppleStore from '@/assets/icons/apple-store.svg'
+import IconPlayStore from '~/assets/icons/play-store.svg'
+import IconAppleStore from '~/assets/icons/apple-store.svg'
 
 export default {
   components: {

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import AppImage from '@/components/Shared/AppImage.vue'
+import AppImage from '~/components/Shared/AppImage.vue'
 
 export default {
   components: {

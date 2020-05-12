@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import PostListItem from '@/components/Posts/Shared/PostListItem.vue'
+import PostListItem from '~/components/Posts/Shared/PostListItem.vue'
 
 export default {
   components: {

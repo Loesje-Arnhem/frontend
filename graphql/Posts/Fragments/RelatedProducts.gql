@@ -1,7 +1,7 @@
-fragment relatedProductsGroup on Page_Relatedproductsgroup {
+fragment relatedProductsGroup on Post_Relatedproductsgroup {
   title: relatedProductsTitle
   relatedProductsProducts {
-    ... on Page_Relatedproductsgroup_relatedProductsProducts {
+    ... on Post_Relatedproductsgroup_relatedProductsProducts {
       product {
         ... on Product {
           productId

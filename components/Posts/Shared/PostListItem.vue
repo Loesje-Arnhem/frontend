@@ -4,7 +4,6 @@
       <!-- eslint-disable-next-line -->
       <router-link :to="url" v-html="post.node.title" />
     </h2>
-    {{ post.node.date }}
     <post-date :date="post.node.date" />
     <!-- eslint-disable-next-line -->
     <div class="text" v-html="post.node.excerpt" />
@@ -15,9 +14,9 @@
 </template>
 
 <script>
-import PostDate from '@/components/Posts/Shared/PostDate.vue'
-import ReadMoreLink from '@/components/Shared/ReadMoreLink.vue'
-import ClickableListItem from '@/components/Shared/ClickableListItem.vue'
+import PostDate from '~/components/Posts/Shared/PostDate.vue'
+import ReadMoreLink from '~/components/Shared/ReadMoreLink.vue'
+import ClickableListItem from '~/components/Shared/ClickableListItem.vue'
 
 export default {
   components: {

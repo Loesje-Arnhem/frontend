@@ -1,23 +1,24 @@
 <template>
-  <div v-if="page">
-    <h1 class="sr-only">Home</h1>
+  <div>
+    <h1 class="sr-only">{{ page.title }}</h1>
     <latest-posts-section />
     <related-posters-section :related-posters="page.relatedPosters" />
     <app-stores-section />
-    <featured-products-section :related-products="page.relatedProducts" />
+    <related-products-section :related-products="page.relatedProducts" />
     <block-instagram />
     <groups />
   </div>
 </template>
 
 <script>
-import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
+import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import Groups from '~/components/Blocks/Groups.vue'
 import BlockInstagram from '~/components/Blocks/BlockInstagram.vue'
 import AppStoresSection from '~/components/AppStores/AppStoresSection.vue'
 import LatestPostsSection from '~/components/Posts/LatestPosts/LatestPostsSection.vue'
-import FeaturedProductsSection from '~/components/Shop/FeaturedProducts/FeaturedProductsSection.vue'
-import frontPageQuery from '~/graphql/Pages/FrontPage.gql'
+import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
+import PageQuery from '~/graphql/Pages/PageById.gql'
+import { homePageId } from '~/data/pages'
 
 export default {
   components: {
@@ -26,15 +27,24 @@ export default {
     RelatedPostersSection,
     AppStoresSection,
     LatestPostsSection,
-    FeaturedProductsSection,
+    RelatedProductsSection,
   },
 
-  apollo: {
-    page: frontPageQuery,
+  async asyncData({ app, params }) {
+    const page = await app.apolloProvider.defaultClient.query({
+      query: PageQuery,
+      variables: {
+        id: homePageId,
+      },
+    })
+
+    return {
+      page: page.data.page,
+    }
   },
   head() {
     return {
-      title: 'Home',
+      title: this.page.title,
     }
   },
 }

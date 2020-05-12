@@ -1,7 +1,7 @@
 #import "./Fragments/PageContent.gql"
 
-query FrontPage {
-  page(id: 6434, idType: DATABASE_ID) {
+query Page($id: ID!) {
+  page(id: $id, idType: DATABASE_ID) {
     ...pageContent
   }
 }

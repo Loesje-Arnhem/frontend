@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import EventBusUtil from '@/utils/eventBusUtil'
-import IconClose from '@/assets/icons/close.svg'
+import EventBusUtil from '~/utils/eventBusUtil'
+import IconClose from '~/assets/icons/close.svg'
 
 export default {
   components: {

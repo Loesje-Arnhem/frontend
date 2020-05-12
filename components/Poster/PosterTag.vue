@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import AppButton from '@/components/Shared/AppButton.vue'
 import { mapActions, mapGetters } from 'vuex'
+import AppButton from '~/components/Shared/AppButton.vue'
 export default {
   components: {
     AppButton,

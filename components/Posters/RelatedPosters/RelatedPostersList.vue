@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import RelatedPostersListItem from '@/components/Posters/RelatedPosters/RelatedPostersListItem.vue'
+import RelatedPostersListItem from '~/components/Posters/RelatedPosters/RelatedPostersListItem.vue'
 
 export default {
   components: {

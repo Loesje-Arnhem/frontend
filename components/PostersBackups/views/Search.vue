@@ -14,12 +14,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import AutoComplete from '@/components/Search/AutoComplete.vue'
-import Navigation from '@/components/Shared/Navigation.vue'
+import AutoComplete from '~/components/Search/AutoComplete.vue'
+import Navigation from '~/components/Shared/Navigation.vue'
 
-import Filters from '@/components/Search/Filters.vue'
-import Tags from '@/components/Search/Tags.vue'
-import List from '@/components/Shared/List.vue'
+import Filters from '~/components/Search/Filters.vue'
+import Tags from '~/components/Search/Tags.vue'
+import List from '~/components/Shared/List.vue'
 
 export default {
   components: {

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
-import PostersOverviewContainer from '@/components/Posters/PostersOverview/PostersOverviewContainer.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import PostersOverviewContainer from '~/components/Posters/PostersOverview/PostersOverviewContainer.vue'
 
 export default {
   components: {

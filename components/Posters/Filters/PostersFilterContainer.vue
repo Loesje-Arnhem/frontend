@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import PostersFilterSection from '@/components/Posters/Filters/PostersFilterSection.vue'
+import PostersFilterSection from '~/components/Posters/Filters/PostersFilterSection.vue'
 
 export default {
   components: {

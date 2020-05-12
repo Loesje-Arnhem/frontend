@@ -13,18 +13,21 @@
       :not-in="page.databaseId"
       :parent-page-id="parentId"
     />
+    <related-products-section :related-products="page.relatedProducts" />
   </div>
 </template>
 
 <script>
-import RelatedPagesSection from '@/components/Pages/RelatedPages/RelatedPagesSection.vue'
-import RelatedPostersSection from '@/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import PageQuery from '~/graphql/Pages/Page.gql'
+import PageQuery from '~/graphql/Pages/PageByUri.gql'
+import RelatedPagesSection from '~/components/Pages/RelatedPages/RelatedPagesSection.vue'
+import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
+import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {
     RelatedPagesSection,
     RelatedPostersSection,
+    RelatedProductsSection,
   },
   async asyncData({ app, params }) {
     const page = await app.apolloProvider.defaultClient.query({

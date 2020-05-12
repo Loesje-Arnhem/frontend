@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import PostDate from '@/components/Posts/Shared/PostDate.vue'
-import CenterWrapper from '@/components/Wrappers/CenterWrapper.vue'
+import PostDate from '~/components/Posts/Shared/PostDate.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 
 export default {
   components: {

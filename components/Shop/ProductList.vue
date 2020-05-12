@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ProductTile from '@/components/Shop/ProductTile.vue'
+import ProductTile from '~/components/Shop/ProductTile.vue'
 export default {
   components: {
     ProductTile,

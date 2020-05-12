@@ -69,12 +69,12 @@
 
 <script>
 import { mapActions } from 'vuex'
-import AppDate from '@/components/Shared/AppDate.vue'
-import AppImage from '@/components/Shared/AppImage.vue'
-import PosterTag from '@/components/Poster/PosterTag.vue'
-import SocialMediaLinks from '@/components/Shared/SocialMediaLinks.vue'
-import IconHeart from '@/assets/icons/heart-o.svg'
-import AppButton from '@/components/Shared/AppButton.vue'
+import AppDate from '~/components/Shared/AppDate.vue'
+import AppImage from '~/components/Shared/AppImage.vue'
+import PosterTag from '~/components/Poster/PosterTag.vue'
+import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
+import IconHeart from '~/assets/icons/heart-o.svg'
+import AppButton from '~/components/Shared/AppButton.vue'
 
 export default {
   components: {

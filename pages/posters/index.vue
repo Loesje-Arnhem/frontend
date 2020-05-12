@@ -18,15 +18,15 @@
 </template>
 
 <script>
-import PostersOverviewSection from '@/components/Posters/PostersOverview/PostersOverviewSection.vue'
-import PostersAutoCompleteContainer from '@/components/Posters/AutoComplete/AutoCompleteContainer.vue'
-import PosterFilters from '@/components/Posters/Filters/PosterFilters.vue'
+import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
+import PostersAutoCompleteContainer from '~/components/Posters/AutoComplete/AutoCompleteContainer.vue'
+import PosterFilters from '~/components/Posters/Filters/PosterFilters.vue'
 
-// import Filters from '@/components/Search/Filters.vue'
-// import AutoComplete from '@/components/Search/AutoComplete.vue'
-// import Navigation from '@/components/Shared/Navigation.vue'
-// import PosterFilterTags from '@/components/Posters/Filters/PosterFilterTags.vue'
-// import List from '@/components/Shared/List.vue'
+// import Filters from '~/components/Search/Filters.vue'
+// import AutoComplete from '~/components/Search/AutoComplete.vue'
+// import Navigation from '~/components/Shared/Navigation.vue'
+// import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
+// import List from '~/components/Shared/List.vue'
 
 export default {
   components: {
