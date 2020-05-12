@@ -10,7 +10,7 @@
 
 <script>
 import ProductDetails from '~/components/Shop/ProductDetails.vue'
-import ProductList from '~/components/Shop/ProductList.vue'
+import ProductList from '~/components/Shop/ProductList/ProductList.vue'
 import ProductQuery from '~/graphql/Product.gql'
 
 export default {

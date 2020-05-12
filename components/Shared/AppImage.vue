@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     getSizeFromUrl() {
-      const regex = /(\d{1,4})x(\d{1,3})/g
+      const regex = /(\d{1,4})x(\d{1,4})/g
       const sizes = this.src.match(regex)
       if (sizes) {
         return sizes[0].split('x')

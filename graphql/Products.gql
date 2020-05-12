@@ -1,7 +1,7 @@
 #import "./Fragments/Product.gql"
 
-query GET_PRODUCTS($categoryName: String) {
-  products(where: { category: $categoryName}) {
+query Products($where: RootQueryToProductConnectionWhereArgs) {
+  products(where: $where) {
     edges {
       node {
         ...product

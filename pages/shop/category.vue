@@ -7,12 +7,18 @@
       v-html="productCategory.description"
     />
     <!-- eslint-enable vue/no-v-html -->
+    <product-list :category="productCategory.databaseId" />
   </div>
 </template>
 
 <script>
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
+import ProductList from '~/components/Shop/ProductList/ProductList.vue'
+
 export default {
+  components: {
+    ProductList,
+  },
   async asyncData({ app, params }) {
     const productCategory = await app.apolloProvider.defaultClient.query({
       query: ProductCategoryQuery,
@@ -23,12 +29,6 @@ export default {
 
     return {
       productCategory: productCategory.data.productCategory,
-    }
-  },
-
-  data() {
-    return {
-      title: 'Winkeltje',
     }
   },
   nuxtI18n: {

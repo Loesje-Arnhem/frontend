@@ -30,7 +30,7 @@ export default {
     posterIds() {
       if (this.relatedPosters.posters) {
         return this.relatedPosters.posters.map(
-          (poster) => poster.poster.posterId,
+          (poster) => poster.poster.databaseId,
         )
       }
       return []
