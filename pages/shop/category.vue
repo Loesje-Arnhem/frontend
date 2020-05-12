@@ -7,17 +7,17 @@
       v-html="productCategory.description"
     />
     <!-- eslint-enable vue/no-v-html -->
-    <product-list :category="productCategory.databaseId" />
+    <product-list-section :category="productCategory.databaseId" />
   </div>
 </template>
 
 <script>
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
-import ProductList from '~/components/Shop/ProductList/ProductList.vue'
+import ProductListSection from '~/components/Shop/ProductList/ProductListSection.vue'
 
 export default {
   components: {
-    ProductList,
+    ProductListSection,
   },
   async asyncData({ app, params }) {
     const productCategory = await app.apolloProvider.defaultClient.query({

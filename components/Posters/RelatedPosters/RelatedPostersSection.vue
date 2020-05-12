@@ -9,11 +9,16 @@
       </h1>
     </center-wrapper>
     <center-wrapper size="full">
-      <related-posters-container :related-posters="relatedPosters">
+      <posters-container
+        :subjects="subjects"
+        :poster-ids="posterIds"
+        :search="relatedPosters.search"
+        :first="5"
+      >
         <template v-slot="data">
           <related-posters-list v-if="data" :posters="data.posters" />
         </template>
-      </related-posters-container>
+      </posters-container>
     </center-wrapper>
     <center-wrapper :class="$style['btn-wrapper']">
       <app-button to="/posters">{{ btnText }}</app-button>
@@ -22,14 +27,14 @@
 </template>
 
 <script>
-import RelatedPostersContainer from '~/components/Posters/RelatedPosters/RelatedPostersContainer.vue'
+import PostersContainer from '~/components/Posters/Shared/PostersContainer.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import RelatedPostersList from '~/components/Posters/RelatedPosters/RelatedPostersList.vue'
 
 export default {
   components: {
-    RelatedPostersContainer,
+    PostersContainer,
     AppButton,
     CenterWrapper,
     RelatedPostersList,
@@ -51,6 +56,17 @@ export default {
         text += this.$t('aboutSubject', { subject: name })
       }
       return text
+    },
+    subjects() {
+      return this.relatedPosters.subjects.map((subject) => subject.databaseId)
+    },
+    posterIds() {
+      if (this.relatedPosters.posters) {
+        return this.relatedPosters.posters.map(
+          (poster) => poster.poster.databaseId,
+        )
+      }
+      return []
     },
   },
 }

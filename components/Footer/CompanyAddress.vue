@@ -28,7 +28,7 @@
 <script>
 import IconEnvelope from '~/assets/icons/envelope.svg'
 import { title } from '~/data/siteDetails'
-import { street, zipcode, city, email } from '~/data/address'
+import { street, zipcode, city, email, kvk } from '~/data/address'
 
 export default {
   components: {
@@ -41,6 +41,7 @@ export default {
       zipcode,
       city,
       email,
+      kvk,
     }
   },
 }

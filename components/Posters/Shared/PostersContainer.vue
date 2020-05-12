@@ -1,7 +1,7 @@
 <template>
   <apollo-query
     :query="require('~/graphql/Posters.gql')"
-    :variables="{ first: 5, where: where }"
+    :variables="{ first, where }"
   >
     <template v-slot="{ result: { data }, isLoading }">
       <slot v-if="data" :posters="data.posters.edges" />
@@ -18,23 +18,24 @@ export default {
     AppLoader,
   },
   props: {
-    relatedPosters: {
-      type: Object,
-      default: () => {},
+    first: {
+      type: Number,
+      default: 20,
+    },
+    posterIds: {
+      type: Array,
+      default: () => [],
+    },
+    subjects: {
+      type: Array,
+      default: () => [],
+    },
+    search: {
+      type: String,
+      default: null,
     },
   },
   computed: {
-    subjects() {
-      return this.relatedPosters.subjects.map((subject) => subject.databaseId)
-    },
-    posterIds() {
-      if (this.relatedPosters.posters) {
-        return this.relatedPosters.posters.map(
-          (poster) => poster.poster.databaseId,
-        )
-      }
-      return []
-    },
     where() {
       if (this.posterIds.length) {
         return {
@@ -42,7 +43,6 @@ export default {
         }
       }
 
-      const search = this.relatedPosters.search
       let taxQuery = null
 
       if (this.subjects.length) {
@@ -57,7 +57,7 @@ export default {
         }
       }
       return {
-        search,
+        search: this.search,
         taxQuery,
       }
     },

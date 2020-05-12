@@ -13,7 +13,7 @@
           <span class="sr-only">
             {{
               $t('followMeOnNetwork', {
-                title: title,
+                title: 'Facebook',
               })
             }}
             <span lang="en">Facebook</span>
@@ -31,7 +31,7 @@
           <span class="sr-only">
             {{
               $t('followMeOnNetwork', {
-                title: title,
+                title: 'Twitter',
               })
             }}
             <span lang="en">Twitter</span>
@@ -49,7 +49,7 @@
           <span class="sr-only">
             {{
               $t('followMeOnNetwork', {
-                title: title,
+                title: 'LinkedIn',
               })
             }}
             <span lang="en">LinkedIn</span>
@@ -67,7 +67,7 @@
           <span class="sr-only">
             {{
               $t('followMeOnNetwork', {
-                title: title,
+                title: 'Pinterest',
               })
             }}
             <span lang="en">Pinterest</span>
@@ -85,7 +85,7 @@
           <span class="sr-only">
             {{
               $t('followMeOnNetwork', {
-                title: title,
+                title: 'Instagram',
               })
             }}
             <span lang="en">Instagram</span>

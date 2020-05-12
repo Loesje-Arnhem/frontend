@@ -1,13 +1,13 @@
 <template>
-  <product-list v-if="products.edges" :products="products.edges" />
+  <product-list-section v-if="products.edges" :products="products.edges" />
 </template>
 
 <script>
-import ProductList from '~/components/Shop/ProductList/ProductList.vue'
+import ProductListSection from '~/components/Shop/ProductList/ProductListSection.vue'
 import ProductsQuery from '~/graphql/Products.gql'
 export default {
   components: {
-    ProductList,
+    ProductListSection,
   },
   async asyncData({ app }) {
     const products = await app.apolloProvider.defaultClient.query({

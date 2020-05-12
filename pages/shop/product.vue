@@ -1,22 +1,19 @@
 <template>
   <div class="product">
     <product-details :product="product" />
-    <product-list
-      v-if="product.related.edges"
-      :products="product.related.edges"
-    />
+    <product-list-section :related-products="product.related.edges" />
   </div>
 </template>
 
 <script>
 import ProductDetails from '~/components/Shop/ProductDetails.vue'
-import ProductList from '~/components/Shop/ProductList/ProductList.vue'
+import ProductListSection from '~/components/Shop/ProductList/ProductListSection.vue'
 import ProductQuery from '~/graphql/Product.gql'
 
 export default {
   components: {
     ProductDetails,
-    ProductList,
+    ProductListSection,
   },
   async asyncData({ app, params }) {
     const product = await app.apolloProvider.defaultClient.query({

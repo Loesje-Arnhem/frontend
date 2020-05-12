@@ -1,12 +1,13 @@
 fragment product on Product {
   id
+  productId
   name
   slug
-  # image {
-  #   id
-  #   medium: sourceUrl(size: MEDIUM)
-  #   mediumLarge: sourceUrl(size: MEDIUM_LARGE)
-  # }
+  image {
+    id
+    medium: sourceUrl(size: MEDIUM)
+    mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+  }
   ... on SimpleProduct {
     id
     price
