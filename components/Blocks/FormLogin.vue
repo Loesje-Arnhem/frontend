@@ -20,6 +20,8 @@
         />
       </form-fieldset>
       <app-button type="submit">Inloggen</app-button>
+      <p>{{ error }}</p>
+      <p>{{ user }}</p>
     </div>
   </form>
 </template>
@@ -38,8 +40,10 @@ export default {
   },
   data() {
     return {
-      userName: '',
+      userName: 'michiel',
       password: '',
+      error: null,
+      user: null,
     }
   },
   methods: {
@@ -56,8 +60,9 @@ export default {
           },
         })
         await this.$apolloHelpers.onLogin(res.data.login.authToken)
-      } catch (e) {
-        window.console.error(e)
+        // this.user = res.data.login.user
+      } catch (error) {
+        this.error = error
       }
     },
   },

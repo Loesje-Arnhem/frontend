@@ -10,5 +10,10 @@ export default {
   components: {
     FormLogin,
   },
+  nuxtI18n: {
+    paths: {
+      nl: '/winkeltje/inloggen',
+    },
+  },
 }
 </script>
