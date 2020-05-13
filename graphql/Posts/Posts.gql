@@ -1,6 +1,6 @@
 #import "./Fragments/Post.gql"
 
-query GET_POSTS($first: Int, $after: String, $where: RootQueryToPostConnectionWhereArgs) {
+query Posts($first: Int, $after: String, $where: RootQueryToPostConnectionWhereArgs) {
   posts(first: $first, after: $after, where: $where) {
     pageInfo {
       hasNextPage

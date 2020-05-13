@@ -1,6 +1,6 @@
 #import "./Fragments/PageContent.gql"
 
-query Page($id: ID!) {
+query PageById($id: ID!) {
   page(id: $id, idType: DATABASE_ID) {
     ...pageContent
   }

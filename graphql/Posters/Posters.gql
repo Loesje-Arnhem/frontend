@@ -1,4 +1,6 @@
-query GET_POSTERS(
+#import "./Fragments/Poster.gql"
+
+query Posters(
   $first: Int
   $after: String
   $where: RootQueryToPosterConnectionWhereArgs
@@ -12,9 +14,7 @@ query GET_POSTERS(
     }
     edges {
       node {
-        id
-        databaseId
-        title
+        ...poster
         slug
         featuredImage {
           id

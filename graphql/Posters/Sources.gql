@@ -1,6 +1,6 @@
 #import "./Fragments/Tags.gql"
 
-query GET_SOURCES {
+query Sources {
   sources(first: 100) {
     edges {
       node {

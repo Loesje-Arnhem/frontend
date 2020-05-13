@@ -1,10 +1,9 @@
+#import "./Fragments/Poster.gql"
 #import "./Fragments/Tags.gql"
 
 query Poster($slug: ID!) {
   poster(id: $slug, idType: URI) {
-    id
-    databaseId
-    title
+    ...poster
     date
     link
     slug

@@ -1,0 +1,5 @@
+fragment poster on Poster {
+  id
+  databaseId
+  title
+}
