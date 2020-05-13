@@ -1,7 +1,15 @@
 <template>
   <center-wrapper>
     <div :class="$style.wrapper">
-      <product-category-list />
+      <div>
+        <ul v-if="cart.contents">
+          <li v-for="item in cart.contents.edges" :key="item.node.id">
+            {{ item.node.name }}
+          </li>
+        </ul>
+        {{ cart }}
+        <product-category-list />
+      </div>
       <div>
         <slot />
       </div>
@@ -12,11 +20,18 @@
 <script>
 import ProductCategoryList from '~/components/Shop/Layout/ProductCategoryList.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import CartQuery from '~/graphql/Cart.gql'
 
 export default {
   components: {
     ProductCategoryList,
     CenterWrapper,
+  },
+
+  apollo: {
+    cart: {
+      query: CartQuery,
+    },
   },
 }
 </script>
