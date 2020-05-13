@@ -18,5 +18,5 @@ query GET_PRODUCT_CATEGORIES {
 fragment CategoryFields on ProductCategory {
   id
   name
-  slug
+  uri
 }

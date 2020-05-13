@@ -1,17 +1,19 @@
 <template>
-  <div class="product">
+  <shop-wrapper>
     <product-details :product="product" />
     <product-list-section :related-products="product.related.edges" />
-  </div>
+  </shop-wrapper>
 </template>
 
 <script>
 import ProductDetails from '~/components/Shop/ProductDetails.vue'
 import ProductListSection from '~/components/Shop/ProductList/ProductListSection.vue'
 import ProductQuery from '~/graphql/Product.gql'
+import ShopWrapper from '~/components/Shop/Layout/ShopWrapper.vue'
 
 export default {
   components: {
+    ShopWrapper,
     ProductDetails,
     ProductListSection,
   },

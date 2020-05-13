@@ -1,10 +1,9 @@
 <template>
-  <ul v-if="products.length" class="list">
+  <ul v-if="products.length" :class="$style.list">
     <product-tile
       v-for="product in products"
       :key="product.node.id"
       :product="product.node"
-      class="list-item"
     />
   </ul>
 </template>
@@ -25,7 +24,7 @@ export default {
 }
 </script>
 
-<style scoped lang="postcss">
+<style module lang="postcss">
 .list {
   @mixin list-reset;
 

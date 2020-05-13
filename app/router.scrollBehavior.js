@@ -1,6 +1,5 @@
 export default function (to, from, savedPosition) {
-  const dailyPostersHeight = document.querySelector('.poster-daily')
-    .offsetHeight
+  const dailyPostersHeight = document.querySelector('.header-top').offsetHeight
   const scrollPosition = document.documentElement.scrollTop
   const scrollTo =
     scrollPosition > dailyPostersHeight ? dailyPostersHeight : scrollPosition

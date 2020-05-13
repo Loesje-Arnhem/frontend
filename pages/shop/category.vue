@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <shop-wrapper>
     <h1>{{ productCategory.name }}</h1>
     <!-- eslint-disable vue/no-v-html -->
     <p
@@ -8,16 +8,18 @@
     />
     <!-- eslint-enable vue/no-v-html -->
     <product-list-section :category="productCategory.databaseId" />
-  </div>
+  </shop-wrapper>
 </template>
 
 <script>
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
 import ProductListSection from '~/components/Shop/ProductList/ProductListSection.vue'
+import ShopWrapper from '~/components/Shop/Layout/ShopWrapper.vue'
 
 export default {
   components: {
     ProductListSection,
+    ShopWrapper,
   },
   async asyncData({ app, params }) {
     const productCategory = await app.apolloProvider.defaultClient.query({

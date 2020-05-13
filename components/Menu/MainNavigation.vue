@@ -32,9 +32,11 @@
               :title="$t('pages.workshops')"
               :url="localePath({ name: 'workshops' })"
             />
+
             <main-navigation-item
+              v-if="data.productCategories.edges.length"
               :title="$t('pages.shop')"
-              :url="localePath({ name: 'shop' })"
+              :url="data.productCategories.edges[0].node.uri"
               :children="data.productCategories"
               :reset-submenu="menuIsOpen"
             />

@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <apollo-query
-      :query="require('~/graphql/Products.gql')"
-      :variables="{ where }"
-    >
-      <template v-slot="{ result: { data }, isLoading }">
-        <app-loader v-if="isLoading" />
-        <slot v-else-if="data" :products="data.products.edges" />
-      </template>
-    </apollo-query>
-  </div>
+  <apollo-query
+    :query="require('~/graphql/Products.gql')"
+    :variables="{ where }"
+  >
+    <template v-slot="{ result: { data }, isLoading }">
+      <app-loader v-if="isLoading" />
+      <slot v-else-if="data" :products="data.products.edges" />
+    </template>
+  </apollo-query>
 </template>
 
 <script>
