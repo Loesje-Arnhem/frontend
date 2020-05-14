@@ -1,4 +1,4 @@
-#import "./Fragments/Tags.gql"
+#import "./Fragments/Subject.gql"
 
 query Subject {
   subjects(first: 100) {

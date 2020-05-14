@@ -1,4 +1,4 @@
-#import "./Fragments/Tags.gql"
+#import "./Fragments/Source.gql"
 
 query Sources {
   sources(first: 100) {

@@ -5,16 +5,19 @@ fragment product on Product {
   slug
   image {
     id
+    altText
     medium: sourceUrl(size: MEDIUM)
     mediumLarge: sourceUrl(size: MEDIUM_LARGE)
   }
   ... on SimpleProduct {
     id
+    regularPrice
     price
     salePrice
   }
   ... on VariableProduct {
     id
+    regularPrice
     price
     salePrice
   }

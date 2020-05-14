@@ -1,17 +1,19 @@
 <template>
   <div>
     <div class="product-details">
-      <app-image v-if="product.image" :src="product.image.mediumLarge" />
+      <product-gallery :images="gallery" />
       <div class="content">
         <h1>{{ product.name }}</h1>
+
+        <!-- eslint-disable-next-line -->
+        <div v-html="product.shortDescription"></div>
         <div class="prices">
           {{ product.regularPrice }} - {{ product.salesPrice }} -
+          {{ product.stockStatus }}
           {{ product.price }}
           {{ product.productId }}
         </div>
         <form-add-to-cart :product="product" />
-        <!-- eslint-disable-next-line -->
-      <div v-html="product.shortDescription"></div>
       </div>
     </div>
     <!-- eslint-disable-next-line -->
@@ -20,18 +22,29 @@
 </template>
 
 <script>
-import AppImage from '~/components/Shared/AppImage.vue'
 import FormAddToCart from '~/components/Shop/FormAddToCart.vue'
+import ProductGallery from '~/components/Shop/ProductDetails/ProductGallery.vue'
 
 export default {
   components: {
-    AppImage,
     FormAddToCart,
+    ProductGallery,
   },
   props: {
     product: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    gallery() {
+      if (this.product.image) {
+        if (this.product.galleryImages.nodes.length) {
+          return [this.product.image, ...this.product.galleryImages.nodes]
+        }
+        return [this.product.image]
+      }
+      return []
     },
   },
 }
@@ -43,5 +56,6 @@ export default {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+  align-items: start;
 }
 </style>

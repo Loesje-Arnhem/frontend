@@ -1,5 +1,5 @@
 query GET_PRODUCT_CATEGORIES {
-  productCategories {
+  productCategories(where: { hideEmpty: true, orderby: TERM_ORDER }) {
     edges {
       node {
         ...CategoryFields

@@ -4,24 +4,23 @@
       <form-fieldset title="Factuurgegevens">
         <form-input-text
           id="userName"
-          v-model="userName"
+          v-model="customer.firstname"
           title="Gebruikersnaam of e-mailadres"
           type="text"
           class="userName"
           name="userName"
         />
         <form-input-text
-          id="password"
-          v-model="password"
-          title="Wachtwoord"
-          type="password"
-          class="password"
-          name="password"
+          id="email"
+          v-model="customer.email"
+          title="E-mailadres"
+          type="text"
+          name="email"
         />
       </form-fieldset>
-      <app-button type="submit">Inloggen</app-button>
+      {{ customer }}
+      <app-button type="submit">Wijzigen</app-button>
       <p>{{ error }}</p>
-      <p>{{ user }}</p>
     </div>
   </form>
 </template>
@@ -30,7 +29,7 @@
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
-import LoginQuery from '~/graphql/Login.gql'
+import UserQuery from '~/graphql/User/User.gql'
 
 export default {
   components: {
@@ -40,30 +39,17 @@ export default {
   },
   data() {
     return {
-      userName: 'michiel',
       password: '',
       error: null,
-      user: null,
+      customer: {
+        firstname: null,
+        email: null,
+      },
     }
   },
-  methods: {
-    async login() {
-      try {
-        const res = await this.$apollo.mutate({
-          mutation: LoginQuery,
-          variables: {
-            login: {
-              login: this.userName,
-              password: this.password,
-              clientMutationId: 'login',
-            },
-          },
-        })
-        await this.$apolloHelpers.onLogin(res.data.login.authToken)
-        // this.user = res.data.login.user
-      } catch (error) {
-        this.error = error
-      }
+  apollo: {
+    customer: {
+      query: UserQuery,
     },
   },
 }

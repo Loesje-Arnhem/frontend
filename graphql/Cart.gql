@@ -1,4 +1,4 @@
-query GET_CART {
+query Cart {
   cart {
     contents {
       edges {

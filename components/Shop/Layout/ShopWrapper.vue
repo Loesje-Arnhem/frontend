@@ -2,12 +2,15 @@
   <center-wrapper>
     <div :class="$style.wrapper">
       <div>
-        <ul v-if="cart.contents">
-          <li v-for="item in cart.contents.edges" :key="item.node.id">
-            {{ item.node.name }}
-          </li>
-        </ul>
-        {{ cart }}
+        <template v-if="cart">
+          <ul>
+            <li v-for="item in cart.contents.edges" :key="item.node.id">
+              {{ item.node.quantity }}x {{ item.node.product.name }} -
+              {{ item.node.total }}
+            </li>
+          </ul>
+          {{ cart.total }}
+        </template>
         <product-category-list />
       </div>
       <div>
@@ -26,6 +29,11 @@ export default {
   components: {
     ProductCategoryList,
     CenterWrapper,
+  },
+  data() {
+    return {
+      cart: null,
+    }
   },
 
   apollo: {

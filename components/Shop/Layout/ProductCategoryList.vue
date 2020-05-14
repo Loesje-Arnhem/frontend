@@ -16,6 +16,20 @@
             <nuxt-link :to="productCategory.node.uri" class="link">
               {{ productCategory.node.name }}
             </nuxt-link>
+            <ul
+              v-if="productCategory.node.children.edges.length"
+              class="category-list"
+            >
+              <li
+                v-for="child in productCategory.node.children.edges"
+                :key="child.node.id"
+                class="list-item"
+              >
+                <nuxt-link :to="child.node.uri" class="link">
+                  {{ child.node.name }}
+                </nuxt-link>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
@@ -34,17 +48,23 @@ export default {
 </script>
 
 <style scoped lang="postcss">
+.categories {
+  @mixin tile-border;
+
+  padding: var(--spacing-s);
+}
+
 .category-list {
   @mixin list-reset;
 
-  padding: 1em;
-  border: 0.3em solid var(--color-black);
-  border-radius: 50% 4% 20% 1%/5% 50% 2% 45%;
-  border-bottom-width: 0.5em;
-  border-left-width: 0.5em;
+  & .category-list {
+    margin-left: 1em;
+    font-size: 0.9em;
+    margin-top: 0.25em;
+  }
 }
 
-.list-item {
+.list-item:not(:last-child) {
   margin-bottom: 0.25em;
 }
 

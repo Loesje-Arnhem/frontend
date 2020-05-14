@@ -41,6 +41,7 @@ import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
 import AddToCartQuery from '~/graphql/AddToCart.gql'
+import CartQuery from '~/graphql/Cart.gql'
 
 export default {
   components: {
@@ -63,7 +64,7 @@ export default {
   },
   methods: {
     async addToCart() {
-      const response = await this.$apollo.mutate({
+      await this.$apollo.mutate({
         mutation: AddToCartQuery,
         variables: {
           input: {
@@ -72,8 +73,13 @@ export default {
             quantity: this.quantity,
           },
         },
+        update: (store, { data: { addToCart } }) => {
+          store.writeQuery({
+            query: CartQuery,
+            data: addToCart,
+          })
+        },
       })
-      window.console.log(response.data.addToCart)
     },
   },
 }
@@ -81,8 +87,6 @@ export default {
 
 <style lang="postcss" scoped>
 .form {
-  @mixin block;
-
   & >>> .fields {
     grid-template-columns: repeat(2, 1fr);
   }

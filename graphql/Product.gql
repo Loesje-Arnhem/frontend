@@ -3,6 +3,8 @@
 query Product($slug: ID!) {
   product(id: $slug, idType: SLUG) {
     ...product
+    shortDescription
+    description
     attributes {
       edges {
         node {
@@ -15,12 +17,23 @@ query Product($slug: ID!) {
         }
       }
     }
+    galleryImages {
+      nodes {
+        id
+        altText
+        medium: sourceUrl(size: MEDIUM)
+        mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+      }
+    }
     related {
       edges {
         node {
           productId
         }
       }
+    }
+    ... on SimpleProduct {
+      stockStatus
     }
   }
 }

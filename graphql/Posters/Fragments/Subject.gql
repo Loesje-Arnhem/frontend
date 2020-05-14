@@ -1,0 +1,11 @@
+fragment subject on Subject {
+  id
+  databaseId
+  name
+  taxonomy {
+    node {
+      id
+      name
+    }
+  }
+}

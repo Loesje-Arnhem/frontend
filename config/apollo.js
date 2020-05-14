@@ -6,7 +6,7 @@ export default {
       // required
       httpEndpoint: `${apiUrl}graphql`,
       httpLinkOptions: {
-        credentials: 'same-origin',
+        credentials: 'include',
       },
       wsEndpoint: null,
       tokenName: 'apollo-token',
