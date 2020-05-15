@@ -44,7 +44,6 @@ export default {
       }
 
       let taxQuery = null
-
       if (this.subjects.length) {
         taxQuery = {
           taxArray: [

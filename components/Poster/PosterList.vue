@@ -1,7 +1,7 @@
 <template>
   <transition-group name="list" tag="ul" class="list">
     <li v-for="poster in posters" :key="poster.id" class="list-item">
-      <poster-tile :poster="poster" class="link" />
+      <poster-tile :poster="poster" class="link" :taxonomy="taxonomy" />
     </li>
   </transition-group>
 </template>

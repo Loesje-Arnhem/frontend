@@ -1,6 +1,6 @@
 <template>
   <app-button
-    :class="{ 'is-active': isSelectedTag }"
+    :class="{ 'is-active': isSelected }"
     :is-primary="false"
     css-class="btn-outline"
     @click="toggleTag()"
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import AppButton from '~/components/Shared/AppButton.vue'
 export default {
   components: {
@@ -21,13 +21,17 @@ export default {
       type: Object,
       required: true,
     },
+    taxonomy: {
+      type: String,
+      required: true,
+      validator(value) {
+        return ['subject', 'source'].includes(value)
+      },
+    },
   },
   computed: {
-    ...mapGetters({
-      selectedTags: 'tags/selectedTags',
-    }),
     isSelected() {
-      return this.selectedTags.includes(this.tag)
+      return this.$store.getters['tags/isSelected'](this.tag.id)
     },
   },
   methods: {
@@ -35,7 +39,11 @@ export default {
       toggle: 'tags/toggle',
     }),
     toggleTag() {
-      this.toggle(this.tag)
+      const tag = {
+        ...this.tag,
+        taxonomy: this.taxonomy,
+      }
+      this.toggle(tag)
     },
   },
 }

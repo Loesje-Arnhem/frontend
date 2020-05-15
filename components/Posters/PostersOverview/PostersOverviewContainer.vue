@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading'
 import PostersOverviewList from '~/components/Posters/PostersOverview/PostersOverviewList.vue'
 import AppLoader from '~/components/Shared/AppLoader.vue'
@@ -45,8 +45,8 @@ export default {
     }
   },
   computed: {
+    ...mapState('tags', ['selectedTags']),
     ...mapGetters({
-      selectedTags: 'tags/selectedTags',
       selectedSources: 'tags/selectedSources',
       selectedSubjects: 'tags/selectedSubjects',
     }),

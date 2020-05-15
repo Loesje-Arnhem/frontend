@@ -21,7 +21,7 @@
                 :key="item.node.id"
                 class="tag"
               >
-                <poster-tag :tag="item.node" />
+                <poster-tag :tag="item.node" taxonomy="source" />
               </li>
             </ul>
           </dd>
@@ -36,25 +36,13 @@
                 :key="item.node.id"
                 class="tag"
               >
-                <poster-tag :tag="item.node" />
+                <poster-tag :tag="item.node" taxonomy="subject" />
               </li>
             </ul>
           </dd>
         </template>
       </dl>
-      <app-button
-        :is-primary="false"
-        :class="{ 'is-active': isInFavorites }"
-        @onclick="toggleFavorites(poster)"
-      >
-        <icon-heart
-          class="icon-heart"
-          aria-hidden="true"
-          width="20"
-          height="20"
-        />
-        Voeg toe aan je favorieten
-      </app-button>
+      <poster-favorites :poster="poster" />
 
       <div class="social-media">
         <h3>Deel de poster op</h3>
@@ -73,17 +61,15 @@ import AppDate from '~/components/Shared/AppDate.vue'
 import AppImage from '~/components/Shared/AppImage.vue'
 import PosterTag from '~/components/Poster/PosterTag.vue'
 import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
-import IconHeart from '~/assets/icons/heart-o.svg'
-import AppButton from '~/components/Shared/AppButton.vue'
+import PosterFavorites from '~/components/Posters/Details/PosterFavorites.vue'
 
 export default {
   components: {
     AppDate,
     AppImage,
     SocialMediaLinks,
-    IconHeart,
     PosterTag,
-    AppButton,
+    PosterFavorites,
   },
 
   props: {

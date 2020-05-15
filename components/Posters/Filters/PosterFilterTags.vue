@@ -1,7 +1,7 @@
 <template>
   <transition-group name="list" tag="ul" :class="$style.list">
     <li v-for="item in list" :key="item.node.id" :class="$style['list-item']">
-      <poster-tag :tag="item.node" />
+      <poster-tag :tag="item.node" :taxonomy="taxonomy" />
     </li>
   </transition-group>
 </template>
@@ -17,6 +17,13 @@ export default {
     list: {
       type: Array,
       default: () => [],
+    },
+    taxonomy: {
+      type: String,
+      required: true,
+      validator(value) {
+        return ['subject', 'source'].includes(value)
+      },
     },
   },
 }

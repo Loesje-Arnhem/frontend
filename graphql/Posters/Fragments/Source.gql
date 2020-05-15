@@ -2,10 +2,4 @@ fragment source on Source {
   id
   databaseId
   name
-  taxonomy {
-    node {
-      id
-      name
-    }
-  }
 }

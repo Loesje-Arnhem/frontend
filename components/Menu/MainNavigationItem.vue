@@ -249,3 +249,11 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "nl": {
+    "showSubmenuFor": "Toon submenu voor %{title}"
+  }
+}
+</i18n>

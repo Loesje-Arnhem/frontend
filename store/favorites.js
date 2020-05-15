@@ -4,29 +4,25 @@ export const state = () => ({
 
 export const getters = {
   total: (state) => state.list.length,
-  isInFavorites: (state) => (posterId) =>
-    state.list.find((favorite) => favorite.posterId === posterId),
+  isInFavorites: (state) => (id) =>
+    state.list.find((favorite) => favorite.id === id),
 }
 
 export const mutations = {
-  /* eslint-disable no-param-reassign */
-  toggle: (state, payload) => {
-    if (
-      state.list.findIndex(
-        (favorite) => favorite.posterId === payload.posterId,
-      ) > -1
-    ) {
-      state.list = state.list.filter(
-        (favorite) => favorite.posterId !== payload.posterId,
-      )
-    } else {
-      state.list.push(payload)
-    }
+  add: (state, payload) => {
+    state.list.push(payload)
+  },
+  remove: (state, payload) => {
+    const list = [...state.list]
+    state.list = list.filter((favorite) => favorite.id !== payload)
   },
 }
 
 export const actions = {
-  toggle: ({ commit }, payload) => {
-    commit('toggle', payload)
+  add: ({ commit }, payload) => {
+    commit('add', payload)
+  },
+  remove: ({ commit }, payload) => {
+    commit('remove', payload)
   },
 }
