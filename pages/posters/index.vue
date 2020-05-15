@@ -2,7 +2,7 @@
   <div>
     <poster-filters />
     <posters-auto-complete-container />
-    <posters-overview-section />
+    <posters-overview-section :sources="sources" :subjects="subjects" />
     <!-- <div class="page">
       <h1>{{ title }}</h1>
       <navigation />
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
 import PostersAutoCompleteContainer from '~/components/Posters/AutoComplete/AutoCompleteContainer.vue'
 import PosterFilters from '~/components/Posters/Filters/PosterFilters.vue'
@@ -46,6 +47,9 @@ export default {
       search: 'test',
       selectedTags: [],
     }
+  },
+  computed: {
+    ...mapState('tags', ['sources', 'subjects']),
   },
   nuxtI18n: {
     paths: {

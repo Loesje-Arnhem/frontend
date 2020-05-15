@@ -1,32 +1,50 @@
 export const state = () => ({
-  selectedTags: [],
+  sources: [],
+  subjects: [],
 })
 
 export const getters = {
-  selectedSources: (state) =>
-    state.selectedTags.filter((tag) => tag.taxonomy === 'source'),
-  selectedSubjects: (state) =>
-    state.selectedTags.filter((tag) => tag.taxonomy === 'subject'),
-  isSelected: (state) => (tagId) =>
-    state.selectedTags.find((tag) => tag.id === tagId),
-}
-
-export const mutations = {
-  toggle: (state, payload) => {
-    const isSelected = state.selectedTags.find((tag) => tag.id === payload.id)
-    if (isSelected) {
-      const selectedTags = [...state.selectedTags]
-      state.selectedTags = selectedTags.filter((tag) => {
-        return tag.id !== payload.id
-      })
+  isSelected: (state) => (tagId, taxonomy) => {
+    if (taxonomy === 'source') {
+      return state.sources.includes(tagId)
     } else {
-      state.selectedTags.push(payload)
+      return state.subjects.includes(tagId)
     }
   },
 }
 
+export const mutations = {
+  addSubject: (state, payload) => {
+    state.subjects.push(payload)
+  },
+  removeSubject: (state, payload) => {
+    const subjects = [...state.subjects]
+    state.subjects = subjects.filter((tag) => {
+      return tag !== payload
+    })
+  },
+  addSource: (state, payload) => {
+    state.sources.push(payload)
+  },
+  removeSource: (state, payload) => {
+    const sources = [...state.sources]
+    state.sources = sources.filter((tag) => {
+      return tag !== payload
+    })
+  },
+}
+
 export const actions = {
-  toggle: ({ commit }, payload) => {
-    commit('toggle', payload)
+  addSubject: ({ commit }, payload) => {
+    commit('addSubject', payload)
+  },
+  removeSubject: ({ commit }, payload) => {
+    commit('removeSubject', payload)
+  },
+  addSource: ({ commit }, payload) => {
+    commit('addSource', payload)
+  },
+  removeSource: ({ commit }, payload) => {
+    commit('removeSource', payload)
   },
 }

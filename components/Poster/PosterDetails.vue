@@ -15,30 +15,20 @@
         <template v-if="poster.subjects.edges.length">
           <dt>Onderwerpen:</dt>
           <dd>
-            <ul class="tags-list">
-              <li
-                v-for="item in poster.subjects.edges"
-                :key="item.node.id"
-                class="tag"
-              >
-                <poster-tag :tag="item.node" taxonomy="source" />
-              </li>
-            </ul>
+            <poster-filter-tags
+              :list="poster.subjects.edges"
+              taxonomy="subject"
+            />
           </dd>
         </template>
 
         <template v-if="poster.sources.edges.length">
           <dt>Bronnen:</dt>
           <dd>
-            <ul class="tags-list">
-              <li
-                v-for="item in poster.sources.edges"
-                :key="item.node.id"
-                class="tag"
-              >
-                <poster-tag :tag="item.node" taxonomy="subject" />
-              </li>
-            </ul>
+            <poster-filter-tags
+              :list="poster.sources.edges"
+              taxonomy="source"
+            />
           </dd>
         </template>
       </dl>
@@ -59,17 +49,17 @@
 import { mapActions } from 'vuex'
 import AppDate from '~/components/Shared/AppDate.vue'
 import AppImage from '~/components/Shared/AppImage.vue'
-import PosterTag from '~/components/Poster/PosterTag.vue'
 import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
 import PosterFavorites from '~/components/Posters/Details/PosterFavorites.vue'
+import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
 
 export default {
   components: {
     AppDate,
     AppImage,
     SocialMediaLinks,
-    PosterTag,
     PosterFavorites,
+    PosterFilterTags,
   },
 
   props: {
@@ -149,22 +139,5 @@ dt {
 
 dd {
   margin-left: 0;
-}
-
-.tag {
-  margin: 0 0.125em 0.125em;
-}
-
-.tags-list {
-  @mixin list-reset;
-
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -0.125em;
-}
-
-.icon-heart {
-  margin-right: 0.25em;
-  transform: translateY(0.1em);
 }
 </style>

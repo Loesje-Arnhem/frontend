@@ -54,11 +54,10 @@ export default {
       if (this.isInFavorites) {
         this.remove(this.poster.id)
       } else {
-        const { id, databaseId, slug, featuredImage } = this.poster
+        const { id, slug, featuredImage } = this.poster
 
         const poster = {
           id,
-          databaseId,
           slug,
           featuredImage: {
             medium: featuredImage.medium,

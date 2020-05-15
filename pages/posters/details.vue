@@ -5,7 +5,11 @@
 
       <poster-details :poster="poster" />
     </div>
-    <posters-overview-section :not-in="poster.posterId" />
+    <posters-overview-section
+      :title="$t('relatedTitle')"
+      :not-in="poster.databaseId"
+      :subjects="subjects"
+    />
   </div>
 </template>
 
@@ -34,6 +38,17 @@ export default {
       poster: poster.data.poster,
     }
   },
+  computed: {
+    subjects() {
+      if (this.poster.subjects.edges.length) {
+        return this.poster.subjects.edges.map(
+          (subject) => subject.node.databaseId,
+        )
+      }
+      return []
+    },
+  },
+
   nuxtI18n: {
     paths: {
       nl: '/posters/:slug',
@@ -127,3 +142,11 @@ dd {
   text-decoration: underline;
 }
 </style>
+
+<i18n>
+{
+  "nl": {
+    "relatedTitle": "Gerelateerde posters"
+  }
+}
+</i18n>

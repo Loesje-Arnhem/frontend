@@ -31,19 +31,31 @@ export default {
   },
   computed: {
     isSelected() {
-      return this.$store.getters['tags/isSelected'](this.tag.id)
+      return this.$store.getters['tags/isSelected'](
+        this.tag.databaseId,
+        this.taxonomy,
+      )
     },
   },
   methods: {
     ...mapActions({
-      toggle: 'tags/toggle',
+      addSubject: 'tags/addSubject',
+      addSource: 'tags/addSource',
+      removeSubject: 'tags/removeSubject',
+      removeSource: 'tags/removeSource',
     }),
     toggleTag() {
-      const tag = {
-        ...this.tag,
-        taxonomy: this.taxonomy,
+      if (this.isSelected) {
+        if (this.taxonomy === 'subject') {
+          this.removeSubject(this.tag.databaseId)
+        } else {
+          this.removeSource(this.tag.databaseId)
+        }
+      } else if (this.taxonomy === 'source') {
+        this.addSource(this.tag.databaseId)
+      } else {
+        this.addSubject(this.tag.databaseId)
       }
-      this.toggle(tag)
     },
   },
 }

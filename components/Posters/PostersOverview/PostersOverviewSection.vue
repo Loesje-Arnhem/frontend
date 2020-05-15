@@ -2,9 +2,14 @@
   <section aria-labelledby="posters-overview-title">
     <center-wrapper>
       <h1 id="posters-overview-title">
-        {{ $t('title') }}
+        {{ sectionTitle }}
       </h1>
-      <posters-overview-container :not-in="notIn" />
+      <posters-overview-container
+        :not-in="notIn"
+        :subjects="subjects"
+        :sources="sources"
+        :search="search"
+      />
     </center-wrapper>
   </section>
 </template>
@@ -19,9 +24,33 @@ export default {
     PostersOverviewContainer,
   },
   props: {
+    search: {
+      type: String,
+      default: null,
+    },
     notIn: {
       type: Number,
       default: 0,
+    },
+    subjects: {
+      type: Array,
+      default: () => [],
+    },
+    sources: {
+      type: Array,
+      default: () => [],
+    },
+    title: {
+      type: String,
+      default: null,
+    },
+  },
+  computed: {
+    sectionTitle() {
+      if (this.title) {
+        return this.title
+      }
+      return this.$t('title')
     },
   },
 }

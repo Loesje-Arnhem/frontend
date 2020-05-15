@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
 import InfiniteLoading from 'vue-infinite-loading'
 import PostersOverviewList from '~/components/Posters/PostersOverview/PostersOverviewList.vue'
 import AppLoader from '~/components/Shared/AppLoader.vue'
@@ -38,6 +37,18 @@ export default {
       type: Number,
       default: 0,
     },
+    subjects: {
+      type: Array,
+      default: () => [],
+    },
+    sources: {
+      type: Array,
+      default: () => [],
+    },
+    search: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
@@ -45,49 +56,33 @@ export default {
     }
   },
   computed: {
-    ...mapState('tags', ['selectedTags']),
-    ...mapGetters({
-      selectedSources: 'tags/selectedSources',
-      selectedSubjects: 'tags/selectedSubjects',
-    }),
-    taxQueryArray() {
-      const taxQuery = []
-      if (this.getTaxQueryByType('source')) {
-        taxQuery.push(this.getTaxQueryByType('source'))
-      }
-      if (this.getTaxQueryByType('subject')) {
-        taxQuery.push(this.getTaxQueryByType('subject'))
-      }
-      return taxQuery
-    },
     where() {
-      let search = ''
-      if (this.searchText) {
-        search = this.searchText.searchText
+      const where = {}
+
+      if (this.notIn) {
+        where.notIn = this.notIn
       }
-      let taxQuery = null
-      if (this.taxQueryArray.length) {
-        taxQuery = {
-          taxArray: [
-            {
-              terms: this.selectedTagsIds,
-              taxonomy: 'SUBJECT',
-              operator: 'IN',
-            },
-          ],
-        }
+
+      if (this.search) {
+        where.search = this.search
       }
-      return {
-        search,
-        notIn: this.notIn,
-        taxQuery,
+
+      const taxArray = []
+
+      if (this.subjects.length) {
+        const query = this.getTaxQueryByType(this.subjects, 'SUBJECT')
+        taxArray.push(query)
       }
-    },
-    selectedTagsIds() {
-      if (this.selectedTags) {
-        return this.selectedTags.map((tag) => tag.tagId)
+
+      if (this.sources.length) {
+        const query = this.getTaxQueryByType(this.sources, 'SOURCE')
+        taxArray.push(query)
       }
-      return []
+
+      if (taxArray.length) {
+        where.taxQuery = { taxArray }
+      }
+      return where
     },
   },
 
@@ -104,25 +99,14 @@ export default {
   },
 
   methods: {
-    getTaxQueryByType(type) {
-      if (this.getSelectedTagIdsByType(type).length) {
-        return {
-          terms: this.getSelectedTagIdsByType(type),
-          taxonomy: type.toUpperCase(),
-          operator: 'IN',
-        }
+    getTaxQueryByType(tags, taxonomy) {
+      return {
+        terms: tags,
+        taxonomy,
+        operator: 'IN',
       }
     },
 
-    getSelectedTagIdsByType(type) {
-      const selectedTags = this.selectedTags.filter(
-        (tag) => tag.taxonomy.name === type,
-      )
-      if (selectedTags) {
-        return selectedTags.map((tag) => tag.tagId)
-      }
-      return []
-    },
     async loadMorePosters($state) {
       await this.$apollo.queries.posters.fetchMore({
         variables: {
