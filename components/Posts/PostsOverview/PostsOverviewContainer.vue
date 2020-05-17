@@ -4,11 +4,13 @@
     :variables="{ first: 12, where: { notIn } }"
   >
     <template v-slot="{ result: { data }, isLoading, query }">
-      <posts-overview-section
-        :data="data"
-        :has-more="hasMore"
-        :is-related="notIn > 0"
-        :is-loading="isLoading > 0"
+      <slot
+        :posts="data.posts.edges"
+        :loading="isLoading > 0"
+        :has-more="data.posts.pageInfo.hasNextPage && isLoading === 0"
+      />
+      <load-more
+        :loading="isLoading > 0"
         @loadMore="loadMore(query, data.posts.pageInfo.endCursor)"
       />
     </template>
@@ -16,24 +18,21 @@
 </template>
 
 <script>
-import PostsOverviewSection from '~/components/Posts/PostsOverview/PostsOverviewSection.vue'
+import LoadMore from '~/components/Shared/LoadMore.vue'
 
 export default {
   components: {
-    PostsOverviewSection,
+    LoadMore,
   },
-
   props: {
     notIn: {
       type: Number,
       default: 0,
     },
-  },
-
-  data() {
-    return {
-      hasMore: true,
-    }
+    first: {
+      type: Number,
+      default: 20,
+    },
   },
 
   methods: {
@@ -45,10 +44,6 @@ export default {
         // Transform the previous result with new data
         updateQuery: (previousResult, { fetchMoreResult }) => {
           const newPosts = fetchMoreResult.posts
-
-          if (!fetchMoreResult.posts.pageInfo.hasNextPage) {
-            this.hasMore = false
-          }
 
           return {
             posts: {

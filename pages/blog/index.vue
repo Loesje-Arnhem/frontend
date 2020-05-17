@@ -1,6 +1,6 @@
 <template>
   <div v-if="page.title">
-    <posts-overview-container />
+    <posts-overview-section />
     <related-posters-section
       v-if="page"
       :related-posters="page.relatedPosters"
@@ -12,14 +12,14 @@
 <script>
 import { blogPageId } from '~/data/pages'
 import PageQuery from '~/graphql/Pages/PageById.gql'
-import PostsOverviewContainer from '~/components/Posts/PostsOverview/PostsOverviewContainer.vue'
+import PostsOverviewSection from '~/components/Posts/PostsOverview/PostsOverviewSection.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {
     RelatedPostersSection,
-    PostsOverviewContainer,
+    PostsOverviewSection,
     RelatedProductsSection,
   },
   async asyncData({ app, params }) {

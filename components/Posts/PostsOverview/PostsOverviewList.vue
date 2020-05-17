@@ -1,5 +1,5 @@
 <template>
-  <list-animation :class="$style.list">
+  <list-animation v-if="posts.length" :class="$style.list">
     <post-list-item
       v-for="post in posts"
       :key="post.node.id"

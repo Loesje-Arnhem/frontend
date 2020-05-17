@@ -7,13 +7,13 @@
     />
     {{ post.relatedProducts }}
     <!-- <related-products-section :related-products="post.relatedProducts" /> -->
-    <posts-overview-container :not-in="post.databaseId" />
+    <posts-overview-section :not-in="post.databaseId" />
   </div>
 </template>
 
 <script>
 import PostQuery from '~/graphql/Posts/Post.gql'
-import PostsOverviewContainer from '~/components/Posts/PostsOverview/PostsOverviewContainer.vue'
+import PostsOverviewSection from '~/components/Posts/PostsOverview/PostsOverviewSection.vue'
 import PostDetails from '~/components/Posts/PostDetails/PostDetails.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 // import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
@@ -21,7 +21,7 @@ import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPo
 export default {
   components: {
     PostDetails,
-    PostsOverviewContainer,
+    PostsOverviewSection,
     RelatedPostersSection,
     // RelatedProductsSection,
   },

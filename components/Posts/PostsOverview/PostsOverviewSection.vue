@@ -5,54 +5,35 @@
   >
     <center-wrapper>
       <h1 id="posts-overview-title">{{ title }}</h1>
-      <posts-overview-list v-if="data" :posts="data.posts.edges" />
-      <app-loader v-if="isLoading" />
-      <div v-if="showBtnMore" :class="$style['button-wrapper']">
-        <app-button @click="$emit('loadMore')">
-          {{ $t('btnMore') }}
-        </app-button>
-      </div>
+      <posts-overview-container :not-in="notIn">
+        <template v-slot="data">
+          <posts-overview-list :posts="data.posts" />
+        </template>
+      </posts-overview-container>
     </center-wrapper>
   </section>
 </template>
 
 <script>
-import AppButton from '~/components/Shared/AppButton.vue'
 import PostsOverviewList from '~/components/Posts/PostsOverview/PostsOverviewList.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import AppLoader from '~/components/Shared/AppLoader.vue'
+import PostsOverviewContainer from '~/components/Posts/PostsOverview/PostsOverviewContainer.vue'
 
 export default {
   components: {
-    AppButton,
     PostsOverviewList,
     CenterWrapper,
-    AppLoader,
+    PostsOverviewContainer,
   },
   props: {
-    data: {
-      type: Object,
-      default: () => {},
-    },
-    hasMore: {
-      type: Boolean,
-      default: true,
-    },
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
-    isRelated: {
-      type: Boolean,
-      default: false,
+    notIn: {
+      type: Number,
+      default: 0,
     },
   },
   computed: {
-    showBtnMore() {
-      return !this.isLoading && this.hasMore
-    },
     title() {
-      if (this.isRelated) {
+      if (this.notIn) {
         return this.$t('relatedTitle')
       }
       return this.$t('title')
