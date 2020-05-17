@@ -5,13 +5,14 @@
   >
     <template v-slot="{ result: { data }, isLoading, query }">
       <template v-if="data">
-        <slot v-if="data.posters.edges.length" :posters="data.posters.edges" />
-        <load-more
-          v-if="showMore"
-          :title="btnMoreText"
-          :state="state(data, isLoading)"
-          @loadMore="loadMore(query, data)"
-        />
+        <slot :posters="data.posters.edges" />
+        <client-only>
+          <load-more
+            v-if="showMore"
+            :state="state(data, isLoading)"
+            @loadMore="loadMore(query, data)"
+          />
+        </client-only>
       </template>
       <app-loader v-if="isLoading" />
     </template>
@@ -31,10 +32,6 @@ export default {
     showMore: {
       type: Boolean,
       default: false,
-    },
-    btnMoreText: {
-      type: String,
-      default: null,
     },
     first: {
       type: Number,

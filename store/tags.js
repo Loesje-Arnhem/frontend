@@ -1,50 +1,45 @@
 export const state = () => ({
-  sources: [],
-  subjects: [],
+  tags: [
+    {
+      node: {
+        id: 'c291cmNlOjI4',
+        databaseId: 28,
+        name: 'Landelijke serie',
+        taxonomy: 'source',
+      },
+    },
+  ],
 })
 
 export const getters = {
-  isSelected: (state) => (tagId, taxonomy) => {
-    if (taxonomy === 'source') {
-      return state.sources.includes(tagId)
-    } else {
-      return state.subjects.includes(tagId)
-    }
+  isSelected: (state) => (tagId) => {
+    return state.tags.find((tag) => tag.node.id === tagId)
+  },
+  sourceIds: (state) => {
+    const sources = state.tags.filter((tag) => tag.node.taxonomy === 'source')
+    return sources.map((subject) => subject.node.databaseId)
+  },
+  subjectIds: (state) => {
+    const subjects = state.tags.filter((tag) => tag.node.taxonomy === 'subject')
+    return subjects.map((subject) => subject.node.databaseId)
   },
 }
 
 export const mutations = {
-  addSubject: (state, payload) => {
-    state.subjects.push(payload)
+  add: (state, payload) => {
+    state.tags.push(payload)
   },
-  removeSubject: (state, payload) => {
-    const subjects = [...state.subjects]
-    state.subjects = subjects.filter((tag) => {
-      return tag !== payload
-    })
-  },
-  addSource: (state, payload) => {
-    state.sources.push(payload)
-  },
-  removeSource: (state, payload) => {
-    const sources = [...state.sources]
-    state.sources = sources.filter((tag) => {
-      return tag !== payload
-    })
+  remove: (state, payload) => {
+    const tags = [...state.tags]
+    state.tags = tags.filter((tag) => tag.node.id !== payload)
   },
 }
 
 export const actions = {
-  addSubject: ({ commit }, payload) => {
-    commit('addSubject', payload)
+  add: ({ commit }, payload) => {
+    commit('add', payload)
   },
-  removeSubject: ({ commit }, payload) => {
-    commit('removeSubject', payload)
-  },
-  addSource: ({ commit }, payload) => {
-    commit('addSource', payload)
-  },
-  removeSource: ({ commit }, payload) => {
-    commit('removeSource', payload)
+  remove: ({ commit }, payload) => {
+    commit('remove', payload)
   },
 }

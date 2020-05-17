@@ -2,7 +2,8 @@
   <div>
     <poster-filters />
     <posters-auto-complete-container />
-    <posters-overview-section :sources="sources" :subjects="subjects" />
+    <poster-filter-tags :list="tags" taxonomy="subject" />
+    <posters-overview-section :sources="sourceIds" :subjects="subjectIds" />
     <!-- <div class="page">
       <h1>{{ title }}</h1>
       <navigation />
@@ -18,10 +19,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
 import PostersAutoCompleteContainer from '~/components/Posters/AutoComplete/AutoCompleteContainer.vue'
 import PosterFilters from '~/components/Posters/Filters/PosterFilters.vue'
+import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
 
 // import Filters from '~/components/Search/Filters.vue'
 // import AutoComplete from '~/components/Search/AutoComplete.vue'
@@ -34,6 +36,7 @@ export default {
     PostersOverviewSection,
     PostersAutoCompleteContainer,
     PosterFilters,
+    PosterFilterTags,
     // AutoComplete,
     // Navigation,
     // Filters,
@@ -49,7 +52,12 @@ export default {
     }
   },
   computed: {
-    ...mapState('tags', ['sources', 'subjects']),
+    ...mapState('tags', ['tags']),
+
+    ...mapGetters({
+      sourceIds: 'tags/sourceIds',
+      subjectIds: 'tags/subjectIds',
+    }),
   },
   nuxtI18n: {
     paths: {

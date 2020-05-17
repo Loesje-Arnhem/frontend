@@ -12,7 +12,11 @@
         :show-more="true"
       >
         <template v-slot="data">
-          <posters-overview-list :posters="data.posters" />
+          <posters-overview-list
+            v-if="data.posters.length"
+            :posters="data.posters"
+          />
+          <p v-else>Geen gerelateerde posters gevonden</p>
         </template>
       </posters-container>
     </center-wrapper>

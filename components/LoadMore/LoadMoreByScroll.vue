@@ -1,6 +1,7 @@
 <template>
   <infinite-loading
     ref="infiniteLoading"
+    placeholder="Loading..."
     :identifier="infiniteId"
     @infinite="$emit('loadMore')"
   >
@@ -10,7 +11,12 @@
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading'
+
 export default {
+  components: {
+    InfiniteLoading,
+  },
   props: {
     state: {
       type: String,

@@ -5,7 +5,7 @@
     css-class="btn-outline"
     @click="toggleTag()"
   >
-    {{ tag.name }}
+    {{ tag.node.name }}
   </app-button>
 </template>
 
@@ -31,30 +31,24 @@ export default {
   },
   computed: {
     isSelected() {
-      return this.$store.getters['tags/isSelected'](
-        this.tag.databaseId,
-        this.taxonomy,
-      )
+      return this.$store.getters['tags/isSelected'](this.tag.node.id)
     },
   },
   methods: {
     ...mapActions({
-      addSubject: 'tags/addSubject',
-      addSource: 'tags/addSource',
-      removeSubject: 'tags/removeSubject',
-      removeSource: 'tags/removeSource',
+      add: 'tags/add',
+      remove: 'tags/remove',
     }),
     toggleTag() {
+      const tag = this.tag
+      tag.node.taxonomy = this.taxonomy
       if (this.isSelected) {
-        if (this.taxonomy === 'subject') {
-          this.removeSubject(this.tag.databaseId)
-        } else {
-          this.removeSource(this.tag.databaseId)
-        }
-      } else if (this.taxonomy === 'source') {
-        this.addSource(this.tag.databaseId)
+        this.remove(tag.node.id)
       } else {
-        this.addSubject(this.tag.databaseId)
+        this.add(tag)
+        this.$router.push({
+          path: '/posters',
+        })
       }
     },
   },
