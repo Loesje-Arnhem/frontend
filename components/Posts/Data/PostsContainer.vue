@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
+import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
 import AppLoader from '~/components/Shared/AppLoader.vue'
 
 export default {
@@ -28,14 +28,6 @@ export default {
     LoadMore,
   },
   props: {
-    notIn: {
-      type: Number,
-      default: 0,
-    },
-    first: {
-      type: Number,
-      default: 12,
-    },
     showMore: {
       type: Boolean,
       default: false,
@@ -43,6 +35,14 @@ export default {
     btnMoreText: {
       type: String,
       default: null,
+    },
+    notIn: {
+      type: Number,
+      default: 0,
+    },
+    first: {
+      type: Number,
+      default: 12,
     },
   },
 

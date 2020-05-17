@@ -4,24 +4,31 @@
       <h1 id="posters-overview-title">
         {{ sectionTitle }}
       </h1>
-      <posters-overview-container
+      <posters-container
         :not-in="notIn"
         :subjects="subjects"
         :sources="sources"
         :search="search"
-      />
+        :show-more="true"
+      >
+        <template v-slot="data">
+          <posters-overview-list :posters="data.posters" />
+        </template>
+      </posters-container>
     </center-wrapper>
   </section>
 </template>
 
 <script>
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import PostersOverviewContainer from '~/components/Posters/PostersOverview/PostersOverviewContainer.vue'
+import PostersContainer from '~/components/Posters/Data/PostersContainer.vue'
+import PostersOverviewList from '~/components/Posters/PostersOverview/PostersOverviewList.vue'
 
 export default {
   components: {
+    PostersOverviewList,
     CenterWrapper,
-    PostersOverviewContainer,
+    PostersContainer,
   },
   props: {
     search: {

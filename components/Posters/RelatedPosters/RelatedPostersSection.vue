@@ -16,6 +16,7 @@
         :first="5"
       >
         <template v-slot="data">
+          a{{ data.poster }}
           <related-posters-list v-if="data" :posters="data.posters" />
         </template>
       </posters-container>
@@ -27,7 +28,7 @@
 </template>
 
 <script>
-import PostersContainer from '~/components/Posters/Shared/PostersContainer.vue'
+import PostersContainer from '~/components/Posters/Data/PostersContainer.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import RelatedPostersList from '~/components/Posters/RelatedPosters/RelatedPostersList.vue'
