@@ -1,7 +1,7 @@
 #import "./Fragments/Post.gql"
 
-query Posts($first: Int, $after: String, $where: RootQueryToPostConnectionWhereArgs) {
-  posts(first: $first, after: $after, where: $where) {
+query Posts($first: Int, $after: String, $notIn: ID) {
+  posts(first: $first, after: $after, where: { notIn: [$notIn] }) {
     pageInfo {
       hasNextPage
       endCursor

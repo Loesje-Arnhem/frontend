@@ -12,7 +12,7 @@
 <script>
 import { blogPageId } from '~/data/pages'
 import PageQuery from '~/graphql/Pages/PageById.gql'
-import PostsOverviewSection from '~/components/Posts/PostsOverview/PostsOverviewSection.vue'
+import PostsOverviewSection from '~/components/Posts/Overview/PostsOverviewSection.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
 

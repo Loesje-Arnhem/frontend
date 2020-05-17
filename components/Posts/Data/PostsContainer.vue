@@ -1,27 +1,30 @@
 <template>
   <apollo-query
     :query="require('~/graphql/Posts/Posts.gql')"
-    :variables="{ first: 12, where: { notIn } }"
+    :variables="{ first, notIn }"
   >
     <template v-slot="{ result: { data }, isLoading, query }">
-      <slot
-        :posts="data.posts.edges"
-        :loading="isLoading > 0"
-        :has-more="data.posts.pageInfo.hasNextPage && isLoading === 0"
-      />
-      <load-more
-        :loading="isLoading > 0"
-        @loadMore="loadMore(query, data.posts.pageInfo.endCursor)"
-      />
+      <template v-if="data">
+        <slot v-if="data.posts.edges.length" :posts="data.posts.edges" />
+        <load-more
+          v-if="showMore"
+          :title="btnMoreText"
+          :state="state(data, isLoading)"
+          @loadMore="loadMore(query, data)"
+        />
+      </template>
+      <app-loader v-if="isLoading" />
     </template>
   </apollo-query>
 </template>
 
 <script>
-import LoadMore from '~/components/Shared/LoadMore.vue'
+import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
+import AppLoader from '~/components/Shared/AppLoader.vue'
 
 export default {
   components: {
+    AppLoader,
     LoadMore,
   },
   props: {
@@ -31,12 +34,29 @@ export default {
     },
     first: {
       type: Number,
-      default: 20,
+      default: 12,
+    },
+    showMore: {
+      type: Boolean,
+      default: false,
+    },
+    btnMoreText: {
+      type: String,
+      default: null,
     },
   },
 
   methods: {
-    async loadMore(query, endCursor) {
+    state(data, isLoading) {
+      if (!data.posts.pageInfo.hasNextPage) {
+        return 'complete'
+      } else if (isLoading > 0) {
+        return 'loading'
+      }
+      return 'loaded'
+    },
+    async loadMore(query, data) {
+      const { endCursor } = data.posts.pageInfo
       await query.fetchMore({
         variables: {
           after: endCursor,

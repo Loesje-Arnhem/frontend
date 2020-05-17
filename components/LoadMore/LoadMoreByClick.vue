@@ -1,25 +1,34 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else :class="$style['button-wrapper']">
+  <div v-if="state === 'loaded'" :class="$style['button-wrapper']">
     <app-button @click="$emit('loadMore')">
-      {{ $t('btnMore') }}
+      {{ btnText }}
     </app-button>
   </div>
 </template>
 
 <script>
 import AppButton from '~/components/Shared/AppButton.vue'
-import AppLoader from '~/components/Shared/AppLoader.vue'
 
 export default {
   components: {
     AppButton,
-    AppLoader,
   },
   props: {
-    loading: {
-      type: Boolean,
-      default: false,
+    state: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      default: null,
+    },
+  },
+  computed: {
+    btnText() {
+      if (this.title) {
+        return this.title
+      }
+      return this.$t('btnMore')
     },
   },
 }
@@ -34,7 +43,7 @@ export default {
 <i18n>
 {
   "nl": {
-    "btnMore": "Toon meer nieuwsartikelen"
+    "btnMore": "Toon meer"
   }
 }
 </i18n>

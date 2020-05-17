@@ -5,25 +5,29 @@
   >
     <center-wrapper>
       <h1 id="posts-overview-title">{{ title }}</h1>
-      <posts-overview-container :not-in="notIn">
+      <posts-container
+        :not-in="notIn"
+        :show-more="true"
+        :btn-more-text="$t('btnMore')"
+      >
         <template v-slot="data">
           <posts-overview-list :posts="data.posts" />
         </template>
-      </posts-overview-container>
+      </posts-container>
     </center-wrapper>
   </section>
 </template>
 
 <script>
-import PostsOverviewList from '~/components/Posts/PostsOverview/PostsOverviewList.vue'
+import PostsOverviewList from '~/components/Posts/Overview/PostsOverviewList.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import PostsOverviewContainer from '~/components/Posts/PostsOverview/PostsOverviewContainer.vue'
+import PostsContainer from '~/components/Posts/Data/PostsContainer.vue'
 
 export default {
   components: {
     PostsOverviewList,
     CenterWrapper,
-    PostsOverviewContainer,
+    PostsContainer,
   },
   props: {
     notIn: {
