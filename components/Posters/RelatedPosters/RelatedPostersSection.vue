@@ -16,7 +16,6 @@
         :first="5"
       >
         <template v-slot="data">
-          a{{ data.poster }}
           <related-posters-list v-if="data" :posters="data.posters" />
         </template>
       </posters-container>
