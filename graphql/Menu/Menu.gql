@@ -21,7 +21,7 @@ query Menu($aboutPageId: ID!, $joinPageId: ID!) {
     uri
     ...childPages
   }
-  productCategories {
+  productCategories(where: { hideEmpty: true, orderby: TERM_ORDER }) {
     edges {
       node {
         id
