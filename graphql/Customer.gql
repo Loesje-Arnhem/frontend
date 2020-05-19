@@ -1,0 +1,8 @@
+query customer($id: ID) {
+  customer(id: $id) {
+    id
+    username
+    firstName
+    lastName
+  }
+}

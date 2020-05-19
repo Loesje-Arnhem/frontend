@@ -1,0 +1,21 @@
+fragment customer on Customer {
+  id
+  customerId
+  username
+  firstName
+  lastName
+  email
+  billing {
+    address1
+    address2
+    city
+    company
+    country
+    email
+    firstName
+    lastName
+    phone
+    postcode
+    state
+  }
+}

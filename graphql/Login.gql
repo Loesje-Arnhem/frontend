@@ -1,7 +1,0 @@
-mutation LOGIN($login: LoginInput!) {
-  login(input: $login) {
-    customer {
-      id
-    }
-  }
-}

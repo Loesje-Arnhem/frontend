@@ -38,6 +38,8 @@ export default {
       nl: '/winkeltje/categorie/:slug',
     },
   },
+  middleware: ['isAuth'],
+
   head() {
     return {
       title: this.productCategory.name,

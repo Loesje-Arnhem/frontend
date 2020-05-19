@@ -1,0 +1,10 @@
+#import "./Fragments/Customer.gql"
+
+mutation LOGIN($input: LoginInput!) {
+  login(input: $input) {
+    authToken
+    customer {
+      ...customer
+    }
+  }
+}
