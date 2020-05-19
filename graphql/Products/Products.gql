@@ -1,10 +1,11 @@
 #import "./Fragments/Product.gql"
 
-query RelatedProducts($where: RootQueryToProductConnectionWhereArgs) {
+query Products($where: RootQueryToProductConnectionWhereArgs) {
   products(where: $where) {
     edges {
       node {
         ...product
+        slug
       }
     }
   }

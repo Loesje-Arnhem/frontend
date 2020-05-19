@@ -16,7 +16,7 @@ import PostQuery from '~/graphql/Posts/Post.gql'
 import PostsOverviewSection from '~/components/Posts/Overview/PostsOverviewSection.vue'
 import PostDetails from '~/components/Posts/Details/PostDetails.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-// import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
+// import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {

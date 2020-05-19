@@ -18,7 +18,7 @@ import Groups from '~/components/Blocks/Groups.vue'
 import BlockInstagram from '~/components/Blocks/BlockInstagram.vue'
 import AppStoresSection from '~/components/AppStores/AppStoresSection.vue'
 import LatestPostsSection from '~/components/Posts/LatestPosts/LatestPostsSection.vue'
-import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
+import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {

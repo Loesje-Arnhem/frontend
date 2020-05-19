@@ -13,7 +13,7 @@
 
 <script>
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
-import ProductListSection from '~/components/Shop/ProductList/ProductListSection.vue'
+import ProductListSection from '~/components/Shop/Products/ProductList/ProductListSection.vue'
 import ShopWrapper from '~/components/Shop/Layout/ShopWrapper.vue'
 
 export default {
@@ -38,7 +38,6 @@ export default {
       nl: '/winkeltje/categorie/:slug',
     },
   },
-  middleware: ['isAuth'],
 
   head() {
     return {

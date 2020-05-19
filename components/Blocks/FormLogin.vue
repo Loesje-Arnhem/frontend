@@ -45,14 +45,13 @@
           />
         </form-fieldset>
         <app-button type="submit">Inloggen</app-button>
-        <p>{{ error }}</p>
-        <p>{{ user }}</p>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
@@ -68,12 +67,15 @@ export default {
   data() {
     return {
       userName: 'michiel',
-      password: '',
+      password: '8GJYBIMBqF9s*2D#rS',
       error: null,
       user: null,
     }
   },
   methods: {
+    ...mapActions({
+      add: 'customer/add',
+    }),
     async login() {
       try {
         const res = await this.$apollo.mutate({
@@ -87,8 +89,9 @@ export default {
           },
         })
         await this.$apolloHelpers.onLogin(res.data.login.authToken)
+        const customer = { ...res.data.login.customer }
+        this.add(customer)
         this.user = res.data.login.customer
-        // this.user = res.data.login.user
       } catch (error) {
         this.error = error
       }
@@ -107,9 +110,7 @@ export default {
             },
           },
         })
-        // await this.$apolloHelpers.onLogin(res.data.login.authToken)
         this.user = res.data.login.customer
-        // this.user = res.data.login.user
       } catch (error) {
         this.error = error
       }

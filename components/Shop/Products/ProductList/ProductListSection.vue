@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import ProductsContainer from '~/components/Shop/Shared/ProductsContainer.vue'
-import ProductList from '~/components/Shop/Shared/ProductList.vue'
+import ProductsContainer from '~/components/Shop/Products/Data/ProductsContainer.vue'
+import ProductList from '~/components/Shop/Products/Shared/ProductList.vue'
 
 export default {
   components: {

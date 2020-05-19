@@ -21,7 +21,7 @@
 import PageQuery from '~/graphql/Pages/PageByUri.gql'
 import RelatedPagesSection from '~/components/Pages/RelatedPages/RelatedPagesSection.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
+import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {

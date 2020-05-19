@@ -2,7 +2,6 @@ fragment product on Product {
   id
   productId
   name
-  slug
   image {
     id
     altText

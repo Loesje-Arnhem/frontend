@@ -22,8 +22,8 @@
 <script>
 import AppButton from '~/components/Shared/AppButton.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import ProductList from '~/components/Shop/Shared/ProductList.vue'
-import ProductsContainer from '~/components/Shop/Shared/ProductsContainer.vue'
+import ProductList from '~/components/Shop/Products/Shared/ProductList.vue'
+import ProductsContainer from '~/components/Shop/Products/Data/ProductsContainer.vue'
 
 export default {
   components: {

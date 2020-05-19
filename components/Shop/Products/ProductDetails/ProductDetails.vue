@@ -23,7 +23,7 @@
 
 <script>
 import FormAddToCart from '~/components/Shop/FormAddToCart.vue'
-import ProductGallery from '~/components/Shop/ProductDetails/ProductGallery.vue'
+import ProductGallery from '~/components/Shop/Products/ProductDetails/ProductGallery.vue'
 
 export default {
   components: {

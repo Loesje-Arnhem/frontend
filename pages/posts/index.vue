@@ -14,7 +14,7 @@ import { blogPageId } from '~/data/pages'
 import PageQuery from '~/graphql/Pages/PageById.gql'
 import PostsOverviewSection from '~/components/Posts/Overview/PostsOverviewSection.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
+import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {

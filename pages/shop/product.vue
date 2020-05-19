@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import ProductDetails from '~/components/Shop/ProductDetails.vue'
-import ProductListSection from '~/components/Shop/ProductList/ProductListSection.vue'
-import ProductQuery from '~/graphql/Product.gql'
+import ProductDetails from '~/components/Shop/Products/ProductDetails/ProductDetails.vue'
+import ProductListSection from '~/components/Shop/Products/ProductList/ProductListSection.vue'
+import ProductQuery from '~/graphql/Products/Product.gql'
 import ShopWrapper from '~/components/Shop/Layout/ShopWrapper.vue'
 
 export default {

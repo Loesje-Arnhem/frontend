@@ -19,7 +19,7 @@ import PageQuery from '~/graphql/Pages/PageById.gql'
 import { workshopsPageId } from '~/data/pages'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import FormWorkshop from '~/components/Blocks/FormWorkshop.vue'
-import RelatedProductsSection from '~/components/Shop/RelatedProducts/RelatedProductsSection.vue'
+import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {
