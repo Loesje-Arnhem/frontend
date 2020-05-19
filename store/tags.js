@@ -1,14 +1,6 @@
 export const state = () => ({
-  tags: [
-    {
-      node: {
-        id: 'c291cmNlOjI4',
-        databaseId: 28,
-        name: 'Landelijke serie',
-        taxonomy: 'source',
-      },
-    },
-  ],
+  tags: [],
+  search: '',
 })
 
 export const getters = {
@@ -26,6 +18,9 @@ export const getters = {
 }
 
 export const mutations = {
+  search: (state, payload) => {
+    state.search = payload
+  },
   add: (state, payload) => {
     state.tags.push(payload)
   },
@@ -36,6 +31,9 @@ export const mutations = {
 }
 
 export const actions = {
+  search: ({ commit }, payload) => {
+    commit('search', payload)
+  },
   add: ({ commit }, payload) => {
     commit('add', payload)
   },

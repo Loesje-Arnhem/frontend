@@ -40,7 +40,7 @@ export default {
       remove: 'tags/remove',
     }),
     toggleTag() {
-      const tag = this.tag
+      const tag = { ...this.tag }
       tag.node.taxonomy = this.taxonomy
       if (this.isSelected) {
         this.remove(tag.node.id)

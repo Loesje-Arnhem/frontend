@@ -10,7 +10,10 @@
       v-bind="$attrs"
       :value="value"
       :type="type"
+      class="input"
       :maxlength="maxlength"
+      @keyup.down="$emit('keyupDown')"
+      @keyup.up="$emit('keyupUp')"
       @input="$emit('input', $event.target.value)"
     />
   </form-field>

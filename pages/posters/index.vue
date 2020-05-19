@@ -1,9 +1,14 @@
 <template>
   <div>
     <poster-filters />
-    <posters-auto-complete-container />
+    <posters-auto-complete />
+    hier moet taxonomy weg
     <poster-filter-tags :list="tags" taxonomy="subject" />
-    <posters-overview-section :sources="sourceIds" :subjects="subjectIds" />
+    <posters-overview-section
+      :sources="sourceIds"
+      :subjects="subjectIds"
+      :search="search"
+    />
     <!-- <div class="page">
       <h1>{{ title }}</h1>
       <navigation />
@@ -21,7 +26,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
-import PostersAutoCompleteContainer from '~/components/Posters/AutoComplete/AutoCompleteContainer.vue'
+import PostersAutoComplete from '~/components/Posters/AutoComplete/AutoComplete.vue'
 import PosterFilters from '~/components/Posters/Filters/PosterFilters.vue'
 import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
 
@@ -34,7 +39,7 @@ import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
 export default {
   components: {
     PostersOverviewSection,
-    PostersAutoCompleteContainer,
+    PostersAutoComplete,
     PosterFilters,
     PosterFilterTags,
     // AutoComplete,
@@ -47,12 +52,11 @@ export default {
   data() {
     return {
       title: 'Posters',
-      search: 'test',
       selectedTags: [],
     }
   },
   computed: {
-    ...mapState('tags', ['tags']),
+    ...mapState('tags', ['tags', 'search']),
 
     ...mapGetters({
       sourceIds: 'tags/sourceIds',
