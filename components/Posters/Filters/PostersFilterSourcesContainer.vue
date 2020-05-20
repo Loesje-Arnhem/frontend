@@ -2,11 +2,7 @@
   <apollo-query :query="require('~/graphql/Posters/Sources.gql')">
     <template v-slot="{ result: { data }, isLoading }">
       <app-loader v-if="isLoading" />
-      <poster-filter-tags
-        v-else-if="data"
-        :list="data.sources.edges"
-        taxonomy="source"
-      />
+      <poster-filter-tags v-else-if="data" :list="data.sources.edges" />
     </template>
   </apollo-query>
 </template>

@@ -21,13 +21,6 @@ export default {
       type: Object,
       required: true,
     },
-    taxonomy: {
-      type: String,
-      required: true,
-      validator(value) {
-        return ['subject', 'source'].includes(value)
-      },
-    },
   },
   computed: {
     isSelected() {
@@ -41,7 +34,6 @@ export default {
     }),
     toggleTag() {
       const tag = { ...this.tag }
-      tag.node.taxonomy = this.taxonomy
       if (this.isSelected) {
         this.remove(tag.node.id)
       } else {

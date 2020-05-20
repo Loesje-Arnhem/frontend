@@ -1,5 +1,12 @@
+#import "./Taxonomy.gql"
+
 fragment source on Source {
   id
   databaseId
   name
+  taxonomy {
+    node {
+      ...taxonomy
+    }
+  }
 }

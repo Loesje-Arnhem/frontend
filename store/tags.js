@@ -1,5 +1,18 @@
 export const state = () => ({
-  tags: [],
+  tags: [
+    {
+      node: {
+        id: 'c291cmNlOjM4',
+        databaseId: 38,
+        name: 'Lokale groepen',
+        taxonomy: {
+          node: {
+            name: 'source',
+          },
+        },
+      },
+    },
+  ],
   search: '',
 })
 
@@ -8,11 +21,15 @@ export const getters = {
     return state.tags.find((tag) => tag.node.id === tagId)
   },
   sourceIds: (state) => {
-    const sources = state.tags.filter((tag) => tag.node.taxonomy === 'source')
+    const sources = state.tags.filter(
+      (tag) => tag.node.taxonomy.node.name === 'source',
+    )
     return sources.map((subject) => subject.node.databaseId)
   },
   subjectIds: (state) => {
-    const subjects = state.tags.filter((tag) => tag.node.taxonomy === 'subject')
+    const subjects = state.tags.filter(
+      (tag) => tag.node.taxonomy.node.name === 'subject',
+    )
     return subjects.map((subject) => subject.node.databaseId)
   },
 }

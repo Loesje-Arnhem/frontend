@@ -1,7 +1,7 @@
 <template>
   <transition-group name="list" tag="ul" :class="$style.list">
     <li v-for="item in list" :key="item.node.id" :class="$style['list-item']">
-      <poster-tag :tag="item" :taxonomy="taxonomy" />
+      <poster-tag :tag="item" />
     </li>
   </transition-group>
 </template>

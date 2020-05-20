@@ -2,8 +2,7 @@
   <div>
     <poster-filters />
     <posters-auto-complete />
-    hier moet taxonomy weg
-    <poster-filter-tags :list="tags" taxonomy="subject" />
+    <poster-filter-tags :list="tags" />
     <posters-overview-section
       :sources="sourceIds"
       :subjects="subjectIds"

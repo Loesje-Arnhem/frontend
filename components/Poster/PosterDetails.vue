@@ -15,20 +15,14 @@
         <template v-if="poster.subjects.edges.length">
           <dt>Onderwerpen:</dt>
           <dd>
-            <poster-filter-tags
-              :list="poster.subjects.edges"
-              taxonomy="subject"
-            />
+            <poster-filter-tags :list="poster.subjects.edges" />
           </dd>
         </template>
 
         <template v-if="poster.sources.edges.length">
           <dt>Bronnen:</dt>
           <dd>
-            <poster-filter-tags
-              :list="poster.sources.edges"
-              taxonomy="source"
-            />
+            <poster-filter-tags :list="poster.sources.edges" />
           </dd>
         </template>
       </dl>
