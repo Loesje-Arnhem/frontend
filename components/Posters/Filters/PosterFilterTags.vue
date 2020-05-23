@@ -18,13 +18,6 @@ export default {
       type: Array,
       default: () => [],
     },
-    taxonomy: {
-      type: String,
-      required: true,
-      validator(value) {
-        return ['subject', 'source'].includes(value)
-      },
-    },
   },
 }
 </script>

@@ -8,7 +8,14 @@
       <app-stores />
 
       <div :class="$style['follow-us']">
-        <social-media-links />
+        <social-media-links
+          :title="$t('followMeOn')"
+          :facebook="facebookUrl"
+          :twitter="twitterUrl"
+          :pinterest="pinterestUrl"
+          :instagram="instagramUrl"
+          :linkedin="linkedinUrl"
+        />
 
         <div :class="$style['mood-wrapper']">
           <app-image :class="$style.mood" src="/images/casette-player.png" />
@@ -24,6 +31,13 @@ import AppStores from '~/components/Footer/AppStores.vue'
 import CompanyAddress from '~/components/Footer/CompanyAddress.vue'
 import QuickLinks from '~/components/Footer/QuickLinks.vue'
 import AppImage from '~/components/Shared/AppImage.vue'
+import {
+  facebookUrl,
+  twitterUrl,
+  pinterestUrl,
+  instagramUrl,
+  linkedinUrl,
+} from '~/data/socialMedia'
 
 export default {
   components: {
@@ -32,6 +46,15 @@ export default {
     AppStores,
     CompanyAddress,
     AppImage,
+  },
+  data() {
+    return {
+      facebookUrl,
+      twitterUrl,
+      pinterestUrl,
+      instagramUrl,
+      linkedinUrl,
+    }
   },
 }
 </script>
@@ -67,3 +90,12 @@ export default {
   margin-bottom: 0.5em;
 }
 </style>
+
+<i18n>
+{
+  "nl": {
+    "followMeOnNetwork": "Bekijk %{title} op",
+    "followMeOn": "Volg me op"
+  }
+}
+</i18n>

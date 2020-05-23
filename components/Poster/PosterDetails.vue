@@ -29,10 +29,11 @@
       <poster-favorites :poster="poster" />
 
       <div class="social-media">
-        <h3>Deel de poster op</h3>
         <social-media-links
-          :title="`Deel ${poster.title}`"
-          :social-media="socialMedia"
+          title="Deel de poster op"
+          :twitter="twitter"
+          :facebook="facebook"
+          :pinterest="pinterest"
         />
       </div>
     </div>
@@ -40,7 +41,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import AppDate from '~/components/Shared/AppDate.vue'
 import AppImage from '~/components/Shared/AppImage.vue'
 import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
@@ -64,24 +64,15 @@ export default {
   },
 
   computed: {
-    socialMedia() {
-      return {
-        twitter: `https://twitter.com/share?text=${this.poster.title}&url=${this.poster.link}`,
-        facebook: `https://www.facebook.com/sharer.php?u=${this.poster.link}&p=${this.poster.title}`,
-        pinterest: `https://pinterest.com/pin/create/button/?url=${this.poster.link}&media=${this.poster.featuredImage.large}&description=${this.poster.title}`,
-      }
+    twitter() {
+      return `https://twitter.com/share?text=${this.poster.title}&url=${this.poster.link}`
     },
-    isInFavorites() {
-      return this.$store.getters['favorites/isInFavorites'](
-        this.poster.posterId,
-      )
+    facebook() {
+      return `https://www.facebook.com/sharer.php?u=${this.poster.link}&p=${this.poster.title}`
     },
-  },
-
-  methods: {
-    ...mapActions({
-      toggleFavorites: 'favorites/toggle',
-    }),
+    pinterest() {
+      return `https://pinterest.com/pin/create/button/?url=${this.poster.link}&media=${this.poster.featuredImage.large}&description=${this.poster.title}`
+    },
   },
 }
 </script>

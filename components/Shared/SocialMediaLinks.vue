@@ -1,93 +1,58 @@
 <template>
   <div>
-    <h2>{{ $t('followMeOn') }}</h2>
+    <h2>{{ title }}</h2>
     <ul :class="$style.list">
-      <li>
-        <a
-          :href="facebookUrl"
-          :class="$style.link"
-          rel="noopener"
-          target="_blank"
-        >
+      <li v-if="facebook">
+        <a :href="facebook" :class="$style.link" rel="noopener" target="_blank">
           <icon-facebook aria-hidden="true" width="32" height="32" />
           <span class="sr-only">
-            {{
-              $t('followMeOnNetwork', {
-                title: 'Facebook',
-              })
-            }}
+            {{ title }}
             <span lang="en">Facebook</span>
           </span>
         </a>
       </li>
-      <li>
-        <a
-          :href="twitterUrl"
-          :class="$style.link"
-          rel="noopener"
-          target="_blank"
-        >
+      <li v-if="twitter">
+        <a :href="twitter" :class="$style.link" rel="noopener" target="_blank">
           <icon-twitter aria-hidden="true" width="32" height="32" />
           <span class="sr-only">
-            {{
-              $t('followMeOnNetwork', {
-                title: 'Twitter',
-              })
-            }}
+            {{ title }}
             <span lang="en">Twitter</span>
           </span>
         </a>
       </li>
-      <li>
-        <a
-          :href="linkedinUrl"
-          :class="$style.link"
-          rel="noopener"
-          target="_blank"
-        >
+      <li v-if="linkedin">
+        <a :href="linkedin" :class="$style.link" rel="noopener" target="_blank">
           <icon-linkedin aria-hidden="true" width="32" height="32" />
           <span class="sr-only">
-            {{
-              $t('followMeOnNetwork', {
-                title: 'LinkedIn',
-              })
-            }}
+            {{ title }}
             <span lang="en">LinkedIn</span>
           </span>
         </a>
       </li>
-      <li>
+      <li v-if="pinterest">
         <a
-          :href="pinterestUrl"
+          :href="pinterest"
           :class="$style.link"
           rel="noopener"
           target="_blank"
         >
           <icon-pinterest aria-hidden="true" width="32" height="32" />
           <span class="sr-only">
-            {{
-              $t('followMeOnNetwork', {
-                title: 'Pinterest',
-              })
-            }}
+            {{ title }}
             <span lang="en">Pinterest</span>
           </span>
         </a>
       </li>
-      <li>
+      <li v-if="instagram">
         <a
-          :href="instagramUrl"
+          :href="instagram"
           :class="$style.link"
           rel="noopener"
           target="_blank"
         >
           <icon-instagram aria-hidden="true" width="32" height="32" />
           <span class="sr-only">
-            {{
-              $t('followMeOnNetwork', {
-                title: 'Instagram',
-              })
-            }}
+            {{ title }}
             <span lang="en">Instagram</span>
           </span>
         </a>
@@ -102,13 +67,6 @@ import IconTwitter from '~/assets/icons/twitter.svg'
 import IconLinkedin from '~/assets/icons/linkedin.svg'
 import IconPinterest from '~/assets/icons/pinterest.svg'
 import IconInstagram from '~/assets/icons/instagram.svg'
-import {
-  facebookUrl,
-  twitterUrl,
-  pinterestUrl,
-  instagramUrl,
-  linkedinUrl,
-} from '~/data/socialMedia'
 
 export default {
   components: {
@@ -118,14 +76,32 @@ export default {
     IconLinkedin,
     IconInstagram,
   },
-  data() {
-    return {
-      facebookUrl,
-      twitterUrl,
-      pinterestUrl,
-      instagramUrl,
-      linkedinUrl,
-    }
+
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    facebook: {
+      type: String,
+      default: null,
+    },
+    twitter: {
+      type: String,
+      default: null,
+    },
+    pinterest: {
+      type: String,
+      default: null,
+    },
+    instagram: {
+      type: String,
+      default: null,
+    },
+    linkedin: {
+      type: String,
+      default: null,
+    },
   },
 }
 </script>
@@ -142,12 +118,3 @@ export default {
   @mixin link-reset;
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "followMeOnNetwork": "Bekijk %{title} op",
-    "followMeOn": "Volg me op"
-  }
-}
-</i18n>
