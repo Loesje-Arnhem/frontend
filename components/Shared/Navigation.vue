@@ -2,7 +2,7 @@
   <nav>
     <nuxt-link v-if="!isSearch" to="/posters/" class="btn-search">
       <icon-chevron-left width="12" height="12" aria-hidden="true" />
-      Terug
+      Overzicht
     </nuxt-link>
     <Transition name="slide">
       <nuxt-link

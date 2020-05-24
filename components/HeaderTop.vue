@@ -28,7 +28,7 @@ export default {
 
 <style lang="postcss" module>
 .wrapper {
-  padding-top: calc(var(--menu-height) + var(--spacing-s));
+  padding-top: var(--spacing-s);
   max-width: var(--container-width-md);
 
   @media (--viewport-sm) {

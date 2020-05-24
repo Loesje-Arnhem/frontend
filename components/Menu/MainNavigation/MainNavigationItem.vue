@@ -145,7 +145,6 @@ export default {
 .menu-link {
   @mixin link-reset;
 
-  color: currentColor;
   transition: border var(--animation);
   border-bottom-style: solid;
   border-bottom-color: currentColor;
@@ -174,6 +173,7 @@ export default {
   }
 
   @media (--show-full-navigation) {
+    color: var(--color-white);
     border-bottom-width: 0;
   }
 }
@@ -204,6 +204,9 @@ export default {
 
   right: calc(var(--spacing-xs) * -1);
   top: var(--spacing-xs);
+  @media (--show-full-navigation) {
+    color: var(--color-white);
+  }
 }
 
 .icon {
@@ -247,6 +250,15 @@ export default {
       border-left: 0.5em solid transparent;
       border-right: 0.5em solid transparent;
       border-bottom: 0.5em solid var(--color-white);
+    }
+
+    @nest .menu-item:last-child & {
+      left: auto;
+      right: calc(-1 * var(--spacing-xs));
+      &::before {
+        left: auto;
+        right: var(--spacing-m);
+      }
     }
   }
 }

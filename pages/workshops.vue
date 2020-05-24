@@ -1,10 +1,6 @@
 <template>
   <div class="page">
-    <div class="intro">
-      <h1>{{ page.title }}</h1>
-      <!-- eslint-disable-next-line -->
-      <div class="text" v-html="page.content" />
-    </div>
+    <app-content :title="page.title" :content="page.content" />
     <form-workshop />
     <related-posters-section
       v-if="page"
@@ -16,6 +12,8 @@
 
 <script>
 import PageQuery from '~/graphql/Pages/PageById.gql'
+import AppContent from '~/components/Shared/AppContent.vue'
+
 import { workshopsPageId } from '~/data/pages'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import FormWorkshop from '~/components/Blocks/FormWorkshop.vue'
@@ -23,6 +21,7 @@ import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/R
 
 export default {
   components: {
+    AppContent,
     RelatedPostersSection,
     FormWorkshop,
     RelatedProductsSection,
@@ -47,10 +46,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="postcss">
-.intro {
-  @mixin center var(--container-width-md);
-  @mixin block;
-}
-</style>

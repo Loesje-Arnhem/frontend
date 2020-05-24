@@ -1,10 +1,10 @@
 <template>
   <center-wrapper :class="$style.wrapper" size="md">
     <article :class="$style.post">
-      <h1>{{ post.title }}</h1>
-      <post-date :date="post.date" :class="$style.date" />
+      <h1>{{ title }}</h1>
+      <post-date v-if="date" :date="date" :class="$style.date" />
       <!-- eslint-disable-next-line -->
-      <div class="text" v-html="post.content" />
+      <div class="text" v-html="content" />
     </article>
   </center-wrapper>
 </template>
@@ -19,9 +19,17 @@ export default {
     CenterWrapper,
   },
   props: {
-    post: {
-      type: Object,
+    title: {
+      type: String,
       required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    date: {
+      type: String,
+      default: null,
     },
   },
 }

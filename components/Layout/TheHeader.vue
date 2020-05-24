@@ -12,6 +12,11 @@
         <div v-show="showMenu" :class="$style.background">
           <transition name="fade">
             <div v-show="showMenu" ref="content" :class="$style.content">
+              <main-navigation-toggle
+                :close="true"
+                :class="$style.toggle"
+                @toggleMenu="toggleMenu(false)"
+              />
               <main-navigation
                 :class="$style['main-navigation']"
                 :menu-is-open="showMenu"
@@ -27,6 +32,7 @@
 <script>
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import SkipLinks from '~/components/Menu/SkipLinks.vue'
+import MainNavigationToggle from '~/components/Menu/MainNavigation/MainNavigationToggle.vue'
 import MobileNavigation from '~/components/Menu/MobileNavigation.vue'
 import MainNavigation from '~/components/Menu/MainNavigation/MainNavigation.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
@@ -37,6 +43,7 @@ export default {
     MobileNavigation,
     MainNavigation,
     CenterWrapper,
+    MainNavigationToggle,
   },
   data() {
     return {
@@ -73,7 +80,7 @@ export default {
 
 .fade-enter,
 .fade-leave-to {
-  transform: translateY(-2em);
+  transform: translateX(-2em);
   opacity: 0;
 }
 
@@ -84,20 +91,20 @@ export default {
 
 .slide-enter,
 .slide-leave-to {
-  transform: translateY(-100vh);
+  transform: translateX(-100vw);
 }
 </style>
 
 <style lang="postcss" module>
 .header {
-  @media (--show-full-navigation) {
-    @mixin color-negative;
-  }
+  @mixin color-negative;
+
+  border-bottom: 1px solid var(--color-white);
 }
 
 .background {
   position: fixed;
-  background: var(--color-white);
+  background: var(--color-black);
   top: 0;
   left: 0;
   right: 0;
@@ -118,7 +125,7 @@ export default {
 }
 
 .content {
-  padding: 5em var(--gutter) var(--gutter);
+  padding: var(--gutter) var(--gutter) 5em;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   max-height: 100vh;
@@ -129,56 +136,18 @@ export default {
     padding: 0;
     overflow: visible;
     transform: none;
-    display: grid !important;
-    grid-template-columns: auto 1fr;
-    grid-column-gap: var(--gutter);
+    display: block !important;
     max-height: none;
-    align-items: end;
-    flex: 0 0 auto;
     width: 100%;
   }
 }
 
-.logo-wrapper {
-  @mixin link-reset;
-
-  display: none;
-
-  @media (--show-full-navigation) {
-    display: block;
-    margin-top: var(--spacing-xs);
-    width: 5em;
-  }
-
-  @media (--navigation-lg) {
-    grid-row: span 2;
-    margin-bottom: var(--spacing-s);
-    width: 7em;
-  }
-}
-
-.meta-navigation {
-  align-self: start;
-  justify-self: end;
-}
-
-.main-navigation {
-  order: -1;
+.toggle {
+  margin-bottom: 1em;
+  align-self: flex-end;
 
   @media (--show-full-navigation) {
-    grid-column: span 2;
-    order: 1;
-    align-self: end;
+    display: none;
   }
-
-  @media (--navigation-lg) {
-    grid-column: span 1;
-  }
-}
-
-.logo {
-  width: 100%;
-  height: auto;
-  display: block;
 }
 </style>

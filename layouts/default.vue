@@ -36,11 +36,9 @@ export default {
 }
 
 .header {
-  @media (--show-full-navigation) {
-    z-index: var(--z-main-navigation);
-    top: 0;
-    position: sticky;
-  }
+  z-index: var(--z-main-navigation);
+  top: 0;
+  position: sticky;
 }
 
 .main {

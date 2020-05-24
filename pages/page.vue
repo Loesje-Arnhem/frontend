@@ -1,10 +1,7 @@
 <template>
   <div class="page">
-    <div class="intro">
-      <h1>{{ page.title }}</h1>
-      <!-- eslint-disable-next-line -->
-      <div class="text" v-html="page.content" />
-    </div>
+    <app-content :title="page.title" :content="page.content" />
+
     <related-posters-section
       v-if="page"
       :related-posters="page.relatedPosters"
@@ -19,6 +16,7 @@
 
 <script>
 import PageQuery from '~/graphql/Pages/PageByUri.gql'
+import AppContent from '~/components/Shared/AppContent.vue'
 import RelatedPagesSection from '~/components/Pages/RelatedPages/RelatedPagesSection.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
@@ -28,6 +26,7 @@ export default {
     RelatedPagesSection,
     RelatedPostersSection,
     RelatedProductsSection,
+    AppContent,
   },
   async asyncData({ app, params }) {
     const page = await app.apolloProvider.defaultClient.query({
@@ -61,10 +60,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="postcss">
-.intro {
-  @mixin center var(--container-width-md);
-  @mixin block;
-}
-</style>
