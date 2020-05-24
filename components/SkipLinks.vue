@@ -23,7 +23,7 @@ export default {
   &:focus,
   &:active {
     position: fixed;
-    z-index: var(--z-index-skip-links);
+    z-index: var(--z-skip-links);
     top: 1rem;
     left: 1rem;
   }

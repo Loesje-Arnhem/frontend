@@ -1,6 +1,6 @@
 <template>
-  <div :class="$style['notch-wrapper']">
-    <div :class="[$style['center-wrapper'], $style['center-wrapper-' + size]]">
+  <div :class="[$style.notch, { [$style.top]: top }]">
+    <div :class="[$style['wrapper'], $style['wrapper-' + size]]">
       <slot />
     </div>
   </div>
@@ -13,31 +13,40 @@ export default {
       type: String,
       default: 'xlg',
     },
+    top: {
+      type: Boolean,
+      default: false,
+    },
   },
 }
 </script>
 
 <style lang="postcss" module>
-.notch-wrapper {
-  padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+.notch {
+  padding-left: var(--notch-left);
+  padding-right: var(--notch-right);
+
+  &.top {
+    padding-top: var(--notch-top);
+  }
 }
 
-.center-wrapper {
+.wrapper {
   width: 100%;
   padding-left: var(--gutter);
   padding-right: var(--gutter);
   margin: 0 auto;
 }
 
-.center-wrapper-xlg {
+.wrapper-xlg {
   max-width: var(--container-width-xlg);
 }
 
-.center-wrapper-lg {
+.wrapper-lg {
   max-width: var(--container-width-lg);
 }
 
-.center-wrapper-md {
+.wrapper-md {
   max-width: var(--container-width-md);
 }
 </style>

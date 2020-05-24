@@ -6,7 +6,7 @@
     <center-wrapper>
       <h1 id="featured-products">{{ title }}</h1>
 
-      <products-container :category="category" :product-ids="productIds">
+      <products-container :product-ids="productIds">
         <template v-slot="data">
           <product-list v-if="data" :products="data.products" />
         </template>

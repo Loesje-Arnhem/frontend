@@ -118,7 +118,7 @@ header {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  z-index: var(--z-index-main-navigation);
+  z-index: var(--z-main-navigation);
   padding: 5em env(safe-area-inset-right) 0 env(safe-area-inset-left);
   background: var(--color-black);
 

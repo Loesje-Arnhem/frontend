@@ -49,9 +49,11 @@ footer {
 }
 
 .header {
-  position: sticky;
-  top: 0;
-  z-index: var(--z-index-main-navigation);
+  @media (--show-full-navigation) {
+    z-index: var(--z-main-navigation);
+    top: 0;
+    position: sticky;
+  }
 }
 
 .main {
