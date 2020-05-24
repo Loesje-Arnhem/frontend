@@ -140,8 +140,11 @@ export default {
 .menu {
   @mixin list-reset;
 
+  padding-bottom: 5em;
+
   @media (--show-full-navigation) {
     display: flex;
+    padding-bottom: 0;
     justify-content: space-between;
   }
 }

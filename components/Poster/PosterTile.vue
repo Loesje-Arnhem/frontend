@@ -48,8 +48,7 @@ export default {
   transition: all 0.15s ease-in-out;
   display: block;
 
-  &:focus,
-  &:hover {
+  @mixin hover {
     transform: scale(1.05);
   }
 }

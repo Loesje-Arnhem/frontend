@@ -2,7 +2,7 @@
   <header :class="$style.header">
     <center-wrapper>
       <skip-links />
-      <mobile-navigation @toggleMenu="toggleMenu" />
+      <mobile-navigation :expanded="showMenu" @toggleMenu="toggleMenu" />
 
       <transition
         name="slide"
@@ -15,6 +15,7 @@
               <main-navigation-toggle
                 :close="true"
                 :class="$style.toggle"
+                :expanded="showMenu"
                 @toggleMenu="toggleMenu(false)"
               />
               <main-navigation
@@ -125,7 +126,7 @@ export default {
 }
 
 .content {
-  padding: var(--gutter) var(--gutter) 5em;
+  padding: var(--gutter) var(--gutter) 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   max-height: 100vh;
@@ -143,6 +144,7 @@ export default {
 }
 
 .toggle {
+  flex: 0 0 auto;
   margin-bottom: 1em;
   align-self: flex-end;
 

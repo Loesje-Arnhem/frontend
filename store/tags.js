@@ -2,9 +2,8 @@ export const state = () => ({
   tags: [
     {
       node: {
-        id: 'c291cmNlOjM4',
-        databaseId: 38,
-        name: 'Lokale groepen',
+        databaseId: 28,
+        name: 'Landelijke serie',
         taxonomy: {
           node: {
             name: 'source',

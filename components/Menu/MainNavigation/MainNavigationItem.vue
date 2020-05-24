@@ -204,6 +204,7 @@ export default {
 
   right: calc(var(--spacing-xs) * -1);
   top: var(--spacing-xs);
+
   @media (--show-full-navigation) {
     color: var(--color-white);
   }

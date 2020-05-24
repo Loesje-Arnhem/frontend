@@ -1,17 +1,21 @@
 <template>
-  <transition-group name="list" tag="ul" :class="$style.list">
-    <li v-for="item in list" :key="item.node.id" :class="$style['list-item']">
-      <poster-tag :tag="item" />
-    </li>
-  </transition-group>
+  <center-wrapper>
+    <transition-group name="list" tag="ul" :class="$style.list">
+      <li v-for="item in list" :key="item.node.id" :class="$style['list-item']">
+        <poster-tag :tag="item" />
+      </li>
+    </transition-group>
+  </center-wrapper>
 </template>
 
 <script>
 import PosterTag from '~/components/Poster/PosterTag.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 
 export default {
   components: {
     PosterTag,
+    CenterWrapper,
   },
   props: {
     list: {

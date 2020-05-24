@@ -1,0 +1,6 @@
+@define-mixin hover {
+  &:hover,
+  &:focus {
+    @mixin-content;
+  }
+}

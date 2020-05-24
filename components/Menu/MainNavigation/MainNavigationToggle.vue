@@ -1,6 +1,6 @@
 <template>
   <button
-    :aria-expanded="showMenu ? 'true' : 'false'"
+    :aria-expanded="expanded ? 'true' : 'false'"
     :class="$style.btn"
     @click="$emit('toggleMenu')"
   >
@@ -11,7 +11,9 @@
       height="24"
       :class="$style.icon"
     />
-    {{ title }}
+    <soan :class="$style.title">
+      {{ title }}
+    </soan>
   </button>
 </template>
 
@@ -25,7 +27,7 @@ export default {
     IconBars,
   },
   props: {
-    showMenu: {
+    expanded: {
       type: Boolean,
       default: false,
     },
@@ -43,28 +45,27 @@ export default {
     },
     title() {
       if (this.close) {
-        return 'Sluiten'
+        return this.$t('close')
       }
-      return 'Menu'
+      return this.$t('menu')
     },
   },
 }
 </script>
 
 <style lang="postcss" module>
+.title {
+  transition: box-shadow 0.2s ease-out;
+}
+
 .btn {
   @mixin btn;
+  @mixin hover-with-title;
 
   font-size: var(--font-size-xs);
-  border-color: currentColor;
+  border-color: var(--color-white);
   display: flex;
   align-items: center;
-
-  &:hover,
-  &:focus {
-    background: var(--color-white);
-    color: var(--color-black);
-  }
 
   @media (--show-full-navigation) {
     display: none;
@@ -80,7 +81,8 @@ export default {
 <i18n>
 {
   "nl": {
-    "title": "Menu"
+    "menu": "Menu",
+    "close": "Sluiten"
   }
 }
 </i18n>

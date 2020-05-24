@@ -1,0 +1,11 @@
+@define-mixin hover-with-title {
+  & .title {
+    transition: box-shadow 0.2s ease-out;
+  }
+
+  @mixin hover {
+    & .title {
+      box-shadow: 0 2px 0 0 currentColor;
+    }
+  }
+}

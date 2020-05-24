@@ -29,15 +29,7 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.title {
-  transition: box-shadow 0.2s ease-out;
-
-  @nest .link:hover & {
-    box-shadow: 0 2px 0 0 currentColor;
-  }
-
-  @nest .link:hover & {
-    box-shadow: 0 2px 0 0 currentColor;
-  }
+.link {
+  @mixin hover-with-title;
 }
 </style>

@@ -33,15 +33,28 @@ export default {
 
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
+
+  @media (--viewport-sm) {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 .list-item {
-  margin-bottom: 2em;
-  grid-column: span 2;
+  @media (--viewport-sm) {
+    grid-column: span 5;
 
-  &:nth-child(2n) {
-    grid-column: 2 / span 2;
+    &:nth-child(2n) {
+      grid-column: 2 / span 5;
+    }
+  }
+
+  @media (--viewport-md) {
+    margin-bottom: 2em;
+    grid-column: span 4;
+
+    &:nth-child(2n) {
+      grid-column: 3 / span 4;
+    }
   }
 }
 </style>
