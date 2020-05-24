@@ -75,16 +75,19 @@ export default {
 .buttons {
   display: flex;
   margin-bottom: 1em;
-  border-left: 1px solid var(--color-black);
   flex-wrap: wrap;
 }
 
 .filter-item {
+  @mixin tile-border 1px, 1;
+
   flex: 0 0 auto;
   width: 50%;
   padding: 0.5em 1em;
-  border: 1px solid var(--color-black);
-  border-left: 0;
+
+  &:not(:first-child) {
+    border-left: 0;
+  }
 
   @media (--viewport-md) {
     width: 25%;

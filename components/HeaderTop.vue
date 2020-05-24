@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.intro">
+  <center-wrapper :top="true">
     <div :class="$style.wrapper">
       <div :class="$style.text">
         <h1>Blijf plakken</h1>
@@ -11,37 +11,40 @@
       </div>
       <daily-poster :class="$style['daily-poster']" />
     </div>
-  </div>
+  </center-wrapper>
 </template>
 
 <script>
 import DailyPoster from '~/components/DailyPoster.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 
 export default {
   components: {
     DailyPoster,
+    CenterWrapper,
   },
 }
 </script>
 
 <style lang="postcss" module>
-.intro {
-  @mixin center;
-
-  padding-top: 2em;
-}
-
 .wrapper {
+  padding-top: calc(var(--menu-height) + var(--spacing-s));
   max-width: var(--container-width-md);
 
   @media (--viewport-sm) {
     display: flex;
     align-items: center;
   }
+
+  @media (--show-full-navigation) {
+    padding-top: 2em;
+  }
 }
 
 .text {
-  padding-left: 2em;
+  @media (--viewport-sm) {
+    padding-left: 2em;
+  }
 }
 
 .daily-poster {

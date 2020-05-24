@@ -1,12 +1,15 @@
-@define-mixin tile-border {
-  --rough-stroke-width: 3px;
-  --rough-roughness: 1.5;
+@define-mixin tile-border $stroke-width: 3px, $stroke-roughness: 1.5 {
+  --rough-stroke-width: $(stroke-width);
+  --rough-roughness: $(stroke-roughness);
 
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
+  border: var(--rough-stroke-width) solid var(--color-black);
 
-  @supports (border-image-source: paint(rough-boxes)) {
-    border-image-source: paint(rough-boxes);
-    border-image-slice: 0 fill;
-    border-image-outset: 1em;
+  @nest .is-loaded & {
+    @supports (border-image-source: paint(rough-boxes)) {
+      border-image-source: paint(rough-boxes);
+      border-image-slice: 0 fill;
+      border-image-outset: 10px;
+      background: none;
+    }
   }
 }

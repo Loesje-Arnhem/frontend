@@ -23,8 +23,7 @@ export default {
 
 <style lang="postcss" module>
 .notch {
-  padding-left: var(--notch-left);
-  padding-right: var(--notch-right);
+  padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
 
   &.top {
     padding-top: var(--notch-top);

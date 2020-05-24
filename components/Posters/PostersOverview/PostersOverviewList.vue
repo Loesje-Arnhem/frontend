@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <list-animation v-if="posters.length" :class="$style.list">
-      <posters-overview-list-item
-        v-for="poster in posters"
-        :key="poster.node.id"
-        :poster="poster"
-        :class="$style['list-item']"
-      />
-    </list-animation>
-  </div>
+  <list-animation v-if="posters.length" :class="$style.list">
+    <posters-overview-list-item
+      v-for="poster in posters"
+      :key="poster.node.id"
+      :poster="poster"
+      :class="$style['list-item']"
+    />
+  </list-animation>
 </template>
 
 <script>

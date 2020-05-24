@@ -142,12 +142,7 @@ export default {
 
   @media (--show-full-navigation) {
     display: flex;
-    border-top: 0;
     justify-content: space-between;
-  }
-
-  @media (--navigation-lg) {
-    margin-left: var(--spacing-l);
   }
 }
 

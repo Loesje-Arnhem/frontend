@@ -1,6 +1,6 @@
 <template>
   <header :class="$style.header">
-    <center-wrapper :top="true">
+    <center-wrapper>
       <skip-links />
       <mobile-navigation @toggleMenu="toggleMenu" />
 
@@ -90,12 +90,8 @@ export default {
 
 <style lang="postcss" module>
 .header {
-  margin-bottom: var(--menu-height);
-
   @media (--show-full-navigation) {
     @mixin color-negative;
-
-    margin: 0;
   }
 }
 

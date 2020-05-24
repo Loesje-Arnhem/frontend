@@ -1,9 +1,9 @@
 <template>
-  <div class="page">
-    <header-top class="header-top" />
+  <div :class="$style.page">
+    <header-top :class="$style['header-top']" class="header-top" />
 
-    <the-header class="header" />
-    <main id="content" class="main" tabindex="-1">
+    <the-header :class="$style.header" />
+    <main id="content" :class="$style.main" tabindex="-1">
       <nuxt />
     </main>
     <the-footer />
@@ -27,20 +27,7 @@ export default {
 }
 </script>
 
-<style>
-/* .description,
-h1,
-.products,
-.categories,
-.header-top,
-.header,
-header,
-footer {
-  display: none;
-} */
-</style>
-
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .page {
   flex-direction: column;
   display: flex;

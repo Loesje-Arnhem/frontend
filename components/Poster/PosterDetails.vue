@@ -96,8 +96,11 @@ export default {
 .poster-details {
   display: grid;
   grid-gap: 1em;
-  grid-template-columns: 1fr 1fr;
   margin-bottom: 2em;
+
+  @media (--viewport-sm) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .btn-favorites {

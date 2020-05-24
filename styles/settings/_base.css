@@ -3,7 +3,8 @@
 @import './grid.css';
 @import './menu.css';
 @import './notch.css';
-@import './rough-borders.css';
+@import './rough-boxes.css';
 @import './spacings.css';
 @import './typography.css';
 @import './z-index.css';
+@import './rough-boxes.css';

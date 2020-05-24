@@ -225,10 +225,10 @@ export default {
 
   @media (--show-full-navigation) {
     @mixin list-reset;
+    @mixin tile-border 1px, 1;
 
     color: var(--color-black);
     background: var(--color-white);
-    border: 1px solid var(--color-black);
     border-top: 0;
     position: absolute;
     top: 100%;
