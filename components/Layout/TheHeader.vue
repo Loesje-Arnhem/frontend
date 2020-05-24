@@ -1,44 +1,48 @@
 <template>
-  <header>
-    <skip-links />
-    <mobile-navigation @toggleMenu="toggleMenu" />
+  <header :class="$style.header">
+    <center-wrapper :top="true">
+      <skip-links />
+      <mobile-navigation @toggleMenu="toggleMenu" />
 
-    <transition
-      name="fade2"
-      @after-enter="afterEnter"
-      @after-leave="afterLeave"
-      @before-leave="beforeLeave"
-    >
-      <div v-show="showMenu" class="bg">
-        <transition name="fade">
-          <div v-show="showMenu" ref="bg" class="content">
-            <main-navigation />
-          </div>
-        </transition>
-      </div>
-    </transition>
+      <transition
+        name="slide"
+        @after-enter="afterEnter"
+        @after-leave="afterLeave"
+      >
+        <div v-show="showMenu" :class="$style.background">
+          <transition name="fade">
+            <div v-show="showMenu" ref="content" :class="$style.content">
+              <main-navigation
+                :class="$style['main-navigation']"
+                :menu-is-open="showMenu"
+              />
+            </div>
+          </transition>
+        </div>
+      </transition>
+    </center-wrapper>
   </header>
 </template>
 
 <script>
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
-import SkipLinks from '~/components/SkipLinks.vue'
-import MainNavigation from '~/components/Menu/MainNavigation.vue'
-import MobileNavigation from '~/components/MobileNavigation.vue'
+import SkipLinks from '~/components/Menu/SkipLinks.vue'
+import MobileNavigation from '~/components/Menu/MobileNavigation.vue'
+import MainNavigation from '~/components/Menu/MainNavigation/MainNavigation.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 
 export default {
   components: {
     SkipLinks,
-    MainNavigation,
     MobileNavigation,
+    MainNavigation,
+    CenterWrapper,
   },
-
   data() {
     return {
       showMenu: false,
     }
   },
-
   methods: {
     toggleMenu(status) {
       this.showMenu = status
@@ -46,19 +50,15 @@ export default {
     afterEnter() {
       this.lockBodyScoll(true)
     },
-    beforeLeave() {
-      const bg = this.$refs.bg
-      bg.scrollTop = 0
-    },
     afterLeave() {
       this.lockBodyScoll(false)
     },
     lockBodyScoll(isOpen) {
-      const { bg } = this.$refs
+      const { content } = this.$refs
       if (isOpen) {
-        disableBodyScroll(bg)
+        disableBodyScroll(content)
       } else {
-        enableBodyScroll(bg)
+        enableBodyScroll(content)
       }
     },
   },
@@ -66,71 +66,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-header {
-  background: var(--color-primary);
-
-  @media (--show-full-navigation) {
-    background: transparent;
-  }
-}
-
-.header-wrapper {
-  display: flex;
-
-  @mixin center;
-}
-
-.content {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  max-height: 100vh;
-
-  @media (--show-full-navigation) {
-    flex-direction: column;
-    overflow: visible;
-    transform: translateY(0);
-    display: flex !important;
-    max-height: none;
-    justify-content: flex-end;
-    flex: 1 0 auto;
-  }
-}
-
-.usps {
-  order: -1;
-}
-
-.logo-wrapper {
-  @mixin link-reset;
-
-  align-self: center;
-  flex: 0 0 auto;
-  margin-bottom: -2em;
-  position: relative;
-  z-index: 9;
-}
-
-.bg {
-  flex: 1 1 auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  z-index: var(--z-main-navigation);
-  padding: 5em env(safe-area-inset-right) 0 env(safe-area-inset-left);
-  background: var(--color-black);
-
-  @media (--show-full-navigation) {
-    height: auto;
-    position: static;
-    padding: 0;
-    overflow: visible;
-    display: flex !important;
-  }
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.3s 0.2s;
@@ -142,47 +77,111 @@ header {
   opacity: 0;
 }
 
-.fade2-enter-active,
-.fade2-leave-active {
+.slide-enter-active,
+.slide-leave-active {
   transition: transform 0.3s;
 }
 
-.fade2-enter,
-.fade2-leave-to {
+.slide-enter,
+.slide-leave-to {
   transform: translateY(-100vh);
+}
+</style>
+
+<style lang="postcss" module>
+.header {
+  background: var(--color-primary);
+  margin-bottom: var(--menu-height);
+
+  @media (--navigation-md) {
+    background: transparent;
+    margin: 0;
+  }
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  overflow: hidden;
+  z-index: var(--z-main-navigation);
+  padding: var(--notch-top) var(--notch-right) 0 var(--notch-left);
+  background: var(--color-black);
+
+  @media (--navigation-md) {
+    height: auto;
+    position: static;
+    padding: 0;
+    overflow: visible;
+    display: block !important;
+  }
+}
+
+.content {
+  padding: 5em var(--gutter) var(--gutter);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  @media (--navigation-md) {
+    padding: 0;
+    overflow: visible;
+    transform: none;
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: var(--gutter);
+    max-height: none;
+    align-items: end;
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+.logo-wrapper {
+  @mixin link-reset;
+
+  display: none;
+
+  @media (--navigation-md) {
+    display: block;
+    margin-top: var(--spacing-xs);
+    width: 5em;
+  }
+
+  @media (--navigation-lg) {
+    grid-row: span 2;
+    margin-bottom: var(--spacing-s);
+    width: 7em;
+  }
+}
+
+.meta-navigation {
+  align-self: start;
+  justify-self: end;
+}
+
+.main-navigation {
+  order: -1;
+
+  @media (--navigation-md) {
+    grid-column: span 2;
+    order: 1;
+    align-self: end;
+  }
+
+  @media (--navigation-lg) {
+    grid-column: span 1;
+  }
 }
 
 .logo {
-  fill: var(--color-primary);
-  display: none;
-
-  @media (--show-full-navigation) {
-    display: block;
-  }
-}
-
-.triangle {
-  display: none;
-
-  @media (--viewport-lg) {
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 20em;
-    width: 10vw;
-    height: auto;
-  }
-}
-
-.header-bow {
-  flex: 1 0 auto;
-  fill: var(--color-primary);
-  display: none;
-  width: 15vw;
-  max-width: 13em;
-
-  @media (--show-full-navigation) {
-    display: block;
-  }
+  width: 100%;
+  height: auto;
+  display: block;
 }
 </style>
