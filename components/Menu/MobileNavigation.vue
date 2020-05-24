@@ -1,18 +1,24 @@
 <template>
-  <div class="wrapper">
+  <div :class="$style.wrapper">
     <center-wrapper :top="true">
-      <div class="buttons">
-        <nuxt-link class="logo-wrapper" to="/">
+      <div :class="$style.buttons">
+        <nuxt-link :class="$style['logo-wrapper']" to="/">
           <icon-logo class="logo" height="50" width="87" aria-hidden="true" />
-          <span class="sr-only">Loesje</span>
+
+          <span class="sr-only">{{ title }}</span>
         </nuxt-link>
         <button
-          :aria-expanded="menuIsExpanded"
-          class="btn"
+          :aria-expanded="menuIsExpanded ? 'true' : 'false'"
+          :class="$style.btn"
           @click="toggleMenu(!menuIsExpanded)"
         >
-          <icon-bars aria-hidden="true" width="24" height="24" class="bars" />
-          {{ $t('menu') }}
+          <icon-bars
+            aria-hidden="true"
+            width="24"
+            height="24"
+            :class="$style.bars"
+          />
+          {{ $t('title') }}
         </button>
       </div>
     </center-wrapper>
@@ -23,25 +29,30 @@
 import IconBars from '~/assets/icons/bars.svg'
 import IconLogo from '~/assets/icons/logo.svg'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import { title } from '~/data/siteDetails'
+import EventBusUtil from '~/utils/eventBusUtil'
 
 export default {
   components: {
     IconBars,
-    IconLogo,
     CenterWrapper,
+    IconLogo,
+  },
+  props: {
+    showMenu: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       menuIsExpanded: false,
+      title,
     }
   },
-
-  watch: {
-    $route() {
-      this.toggleMenu(false)
-    },
+  mounted() {
+    EventBusUtil.$on('change-page', () => this.toggleMenu(false))
   },
-
   methods: {
     toggleMenu(status) {
       this.menuIsExpanded = status
@@ -51,14 +62,15 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .wrapper {
+  @mixin color-negative;
+
   position: fixed;
   padding: var(--spacing-xs) 0;
   top: 0;
   left: 0;
   right: 0;
-  background: var(--color-black);
   z-index: var(--z-mobile-navigation);
   border-bottom: 1px solid var(--color-white);
 
@@ -74,17 +86,24 @@ export default {
 }
 
 .logo-wrapper {
+  @mixin link-reset;
+
   display: flex;
   align-items: center;
 }
 
+.logo {
+  fill: var(--color-white);
+}
+
 .btn {
-  padding: 0.5em 0.75em 0.5em 0.5em;
+  @mixin btn;
+
   color: var(--color-white);
+  font-size: var(--font-size-xs);
+  border-color: currentColor;
   display: flex;
   align-items: center;
-  border: 2px solid var(--color-white);
-  width: auto;
 
   &[aria-expanded='true'] {
     background: var(--color-white);
@@ -94,9 +113,14 @@ export default {
 
 .bars {
   margin-right: var(--spacing-xxs);
-}
-
-.logo {
-  fill: var(--color-white);
+  fill: currentColor;
 }
 </style>
+
+<i18n>
+{
+  "nl": {
+    "title": "Menu"
+  }
+}
+</i18n>

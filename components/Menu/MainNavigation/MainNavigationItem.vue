@@ -5,17 +5,14 @@
     @mouseover="mouseover"
     @mouseout="mouseout"
   >
-    <!-- eslint-disable vue/no-v-html -->
-    <nuxt-link
+    <menu-item
       ref="link"
-      :to="uri"
+      :uri="uri"
+      :title="title"
       :aria-haspopup="hasChildren"
       :class="$style['menu-link']"
       class="menu-link"
-      @click.native="changePage"
-      v-html="title"
     />
-    <!-- eslint-enable vue/no-v-html -->
 
     <button
       v-if="hasChildren"
@@ -43,18 +40,15 @@
           <li
             v-for="subItem in children.edges"
             :key="subItem.node.id"
-            :class="$style['menu-item']"
-            class="menu-item"
+            :class="$style['submenu-item']"
+            class="submenu-item"
           >
-            <!-- eslint-disable vue/no-v-html -->
-            <nuxt-link
-              :to="subItem.node.uri"
+            <menu-item
+              :uri="subItem.node.uri"
+              :title="subItem.node.title"
               :class="$style['submenu-link']"
               class="submenu-link"
-              @click.native="changePage"
-              v-html="subItem.node.title"
             />
-            <!-- eslint-enable vue/no-v-html -->
           </li>
         </ul>
       </animation-slide-in>
@@ -66,11 +60,13 @@
 import IconChevronDown from '~/assets/icons/chevron-down.svg'
 import AnimationSlideIn from '~/components/Animations/SlideInAnimation.vue'
 import EventBusUtil from '~/utils/eventBusUtil'
+import MenuItem from '~/components/Menu/MainNavigation/MenuItem.vue'
 
 export default {
   components: {
     IconChevronDown,
     AnimationSlideIn,
+    MenuItem,
   },
   props: {
     uri: {
@@ -132,9 +128,6 @@ export default {
         this.isOpen = false
       }, 250)
     },
-    changePage() {
-      EventBusUtil.$emit('change-page')
-    },
     isSmallScreen() {
       return window.innerWidth < 768
     },
@@ -145,7 +138,6 @@ export default {
 <style lang="postcss" module>
 .menu-item {
   position: relative;
-  font-weight: var(--font-weight-headings);
 }
 
 /* stylelint-disable */
@@ -153,36 +145,26 @@ export default {
 .menu-link {
   @mixin link-reset;
 
-  color: var(--color-white);
+  color: currentColor;
   transition: border var(--animation);
   border-bottom-style: solid;
-  border-bottom-color: var(--color-white);
+  border-bottom-color: currentColor;
   display: block;
   line-height: var(--line-height-headings);
   padding: var(--spacing-xs) 0;
-
-  &:hover,
-  &:focus,
-  &:global(.nuxt-link-active[aria-haspopup='true']),
-  &:global(.nuxt-link-exact-active) {
-    color: var(--color-white);
-
-    & + .btn-show-submenu {
-      color: var(--color-white);
-    }
-  }
 }
 
 .menu-link {
   @mixin heading;
 
+  margin-top: 0.1em;
   font-size: var(--font-size-xl);
   border-bottom-width: 2px;
 
   @nest .menu-item:first-child & {
-    border-top: 2px solid var(--color-white);
+    border-top: 2px solid currentColor;
 
-    @media (--navigation-md) {
+    @media (--show-full-navigation) {
       border-top: 0;
     }
   }
@@ -191,38 +173,26 @@ export default {
     padding-right: var(--spacing-m);
   }
 
-  @media (--navigation-md) {
-    &,
-    &:global(.nuxt-link-active[aria-haspopup='true']),
-    &:global(.nuxt-link-exact-active) {
-      border-bottom: 2px solid transparent;
-    }
-
-    &:hover,
-    &:focus {
-      border-bottom-color: currentColor;
-    }
+  @media (--show-full-navigation) {
+    border-bottom-width: 0;
   }
 }
 
 .submenu-link {
-  font-size: var(--font-size-l);
   border-bottom-width: 1px;
 
-  @media (--navigation-md) {
-    padding: var(--spacing-xs) var(--spacing-xs);
-    border-bottom-color: var(--color-white);
-    border-left: 2px solid transparent;
-
-    &:global(.nuxt-link-exact-active),
-    &:hover,
-    &:focus {
-      border-left-color: currentColor;
-    }
+  @media (--show-full-navigation) {
+    border-bottom: 0;
+    color: var(--color-black);
+    padding: var(--spacing-xxs) var(--spacing-xs);
   }
 
-  @nest .menu-item:last-child & {
+  @nest .submenu-item:last-child & {
     border-bottom-width: 0;
+  }
+
+  &:global(.nuxt-link-exact-active) :global(.title) {
+    box-shadow: 0 2px 0 0 currentColor;
   }
 }
 
@@ -234,10 +204,6 @@ export default {
 
   right: calc(var(--spacing-xs) * -1);
   top: var(--spacing-xs);
-
-  @media (--navigation-md) {
-    top: var(--spacing-s);
-  }
 }
 
 .icon {
@@ -245,7 +211,7 @@ export default {
   @nest [aria-expanded='true'] & {
     transform: rotate(-180deg);
 
-    @media (--navigation-md) {
+    @media (--show-full-navigation) {
       transform: rotate(0deg);
     }
   }
@@ -255,18 +221,33 @@ export default {
   @mixin list-reset;
 
   padding-left: var(--spacing-m);
-  border-bottom: 2px solid var(--color-black);
+  border-bottom: 2px solid currentColor;
 
-  @media (--navigation-md) {
-    border-bottom: 0;
-    padding-left: 0;
-    filter: drop-shadow(0 0 0.1em rgba(0, 0, 0, 0.2));
-    background: var(--color-background);
+  @media (--show-full-navigation) {
+    @mixin list-reset;
+
+    color: var(--color-black);
+    background: var(--color-white);
+    border: 1px solid var(--color-black);
+    border-top: 0;
     position: absolute;
-    left: calc(-1 * var(--spacing-xs));
     top: 100%;
+    margin: 0;
+    left: calc(-1 * var(--spacing-xs));
+    padding: var(--spacing-xxs) 0;
     white-space: nowrap;
-    z-index: var(--z-main-navigation);
+
+    &::before {
+      position: absolute;
+      content: '';
+      height: 0;
+      width: 0;
+      left: var(--spacing-m);
+      top: calc(-1 * var(--spacing-xs));
+      border-left: 0.5em solid transparent;
+      border-right: 0.5em solid transparent;
+      border-bottom: 0.5em solid var(--color-white);
+    }
   }
 }
 </style>
@@ -275,12 +256,6 @@ export default {
 {
   "nl": {
     "showSubmenuFor": "Toon submenu voor %{title}"
-  },
-  "de": {
-    "showSubmenuFor": "Untermenü anzeigen für %{title}"
-  },
-  "en": {
-    "showSubmenuFor": "Show submenu for %{title}"
   }
 }
 </i18n>

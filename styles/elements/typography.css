@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Franklin';
-  src: url('./../../assets/fonts/franklin-gothic.woff');
+  src: url('./../../assets/fonts/franklin-gothic.woff') format('woff');
 }
 
 html {

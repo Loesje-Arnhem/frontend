@@ -99,8 +99,9 @@ export default {
       const activeLink = this.getMainLink()
 
       if (activeLink) {
+        const title = activeLink.querySelector('.title')
         this.arrowPosition = `translateX(${activeLink.parentElement.offsetLeft}px)`
-        this.arrowWidth = `${activeLink.offsetWidth}px`
+        this.arrowWidth = `${title.offsetWidth}px`
       } else {
         this.arrowWidth = 0
       }
@@ -131,7 +132,7 @@ export default {
   position: relative;
   margin-bottom: var(--spacing-m);
 
-  @media (--navigation-md) {
+  @media (--show-full-navigation) {
     margin-bottom: 0;
   }
 }
@@ -139,7 +140,7 @@ export default {
 .menu {
   @mixin list-reset;
 
-  @media (--navigation-md) {
+  @media (--show-full-navigation) {
     display: flex;
     border-top: 0;
     justify-content: space-between;
@@ -155,9 +156,9 @@ export default {
   background: var(--color-white);
   display: none;
   position: absolute;
-  bottom: 0;
+  bottom: 13px;
 
-  @media (--navigation-md) {
+  @media (--show-full-navigation) {
     display: block;
   }
 

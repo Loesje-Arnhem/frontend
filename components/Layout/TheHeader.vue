@@ -90,17 +90,18 @@ export default {
 
 <style lang="postcss" module>
 .header {
-  background: var(--color-primary);
   margin-bottom: var(--menu-height);
 
-  @media (--navigation-md) {
-    background: transparent;
+  @media (--show-full-navigation) {
+    @mixin color-negative;
+
     margin: 0;
   }
 }
 
 .background {
   position: fixed;
+  background: var(--color-white);
   top: 0;
   left: 0;
   right: 0;
@@ -109,9 +110,9 @@ export default {
   overflow: hidden;
   z-index: var(--z-main-navigation);
   padding: var(--notch-top) var(--notch-right) 0 var(--notch-left);
-  background: var(--color-black);
 
-  @media (--navigation-md) {
+  @media (--show-full-navigation) {
+    background: transparent;
     height: auto;
     position: static;
     padding: 0;
@@ -128,7 +129,7 @@ export default {
   display: flex;
   flex-direction: column;
 
-  @media (--navigation-md) {
+  @media (--show-full-navigation) {
     padding: 0;
     overflow: visible;
     transform: none;
@@ -147,7 +148,7 @@ export default {
 
   display: none;
 
-  @media (--navigation-md) {
+  @media (--show-full-navigation) {
     display: block;
     margin-top: var(--spacing-xs);
     width: 5em;
@@ -168,7 +169,7 @@ export default {
 .main-navigation {
   order: -1;
 
-  @media (--navigation-md) {
+  @media (--show-full-navigation) {
     grid-column: span 2;
     order: 1;
     align-self: end;
