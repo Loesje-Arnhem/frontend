@@ -5,7 +5,7 @@
     @mouseover="mouseover"
     @mouseout="mouseout"
   >
-    <menu-item
+    <main-navigation-link
       ref="link"
       :uri="uri"
       :title="title"
@@ -43,7 +43,7 @@
             :class="$style['submenu-item']"
             class="submenu-item"
           >
-            <menu-item
+            <main-navigation-link
               :uri="subItem.node.uri"
               :title="subItem.node.title"
               :class="$style['submenu-link']"
@@ -60,13 +60,13 @@
 import IconChevronDown from '~/assets/icons/chevron-down.svg'
 import AnimationSlideIn from '~/components/Animations/SlideInAnimation.vue'
 import EventBusUtil from '~/utils/eventBusUtil'
-import MenuItem from '~/components/Menu/MainNavigation/MenuItem.vue'
+import MainNavigationLink from '~/components/Menu/MainNavigation/MainNavigationLink.vue'
 
 export default {
   components: {
     IconChevronDown,
     AnimationSlideIn,
-    MenuItem,
+    MainNavigationLink,
   },
   props: {
     uri: {
