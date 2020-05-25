@@ -1,20 +1,20 @@
 <template>
-  <div class="page">
+  <div>
     <h1>Favorieten</h1>
-    <navigation />
+    <poster-navigation />
     <poster-list :posters="list" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import PosterList from '~/components/Poster/PosterList.vue'
-import Navigation from '~/components/Shared/Navigation.vue'
+import PosterList from '~/components/Posters/Shared/PosterList.vue'
+import PosterNavigation from '~/components/Posters/Shared/PosterNavigation.vue'
 
 export default {
   components: {
     PosterList,
-    Navigation,
+    PosterNavigation,
   },
   computed: {
     ...mapState('favorites', ['list']),
@@ -26,10 +26,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-.page {
-  @mixin block;
-  @mixin center;
-}
-</style>

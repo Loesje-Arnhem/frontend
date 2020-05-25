@@ -45,7 +45,7 @@ import AppDate from '~/components/Shared/AppDate.vue'
 import AppImage from '~/components/Shared/AppImage.vue'
 import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
 import PosterFavorites from '~/components/Posters/Details/PosterFavorites.vue'
-import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
+import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
 
 export default {
   components: {

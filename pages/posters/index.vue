@@ -27,12 +27,12 @@ import { mapState, mapGetters } from 'vuex'
 import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
 import PostersAutoComplete from '~/components/Posters/AutoComplete/AutoComplete.vue'
 import PosterFilters from '~/components/Posters/Filters/PosterFilters.vue'
-import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
+import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
 
 // import Filters from '~/components/Search/Filters.vue'
 // import AutoComplete from '~/components/Search/AutoComplete.vue'
 // import Navigation from '~/components/Shared/Navigation.vue'
-// import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
+// import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
 // import List from '~/components/Shared/List.vue'
 
 export default {

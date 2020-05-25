@@ -1,9 +1,9 @@
 <template>
-  <router-link :to="`/posters/${poster.slug}`" class="link">
+  <router-link :to="`/posters/${poster.slug}`" :class="$style.link">
     <app-image
       :alt="poster.title"
       :src="image"
-      class="poster"
+      :class="$style.poster"
       width="200"
       height="500"
     />
@@ -33,13 +33,12 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .poster {
   @mixin tile-border;
 
   display: block;
   width: 100%;
-  height: auto;
 }
 
 .link {

@@ -12,10 +12,8 @@
         :show-more="true"
       >
         <template v-slot="data">
-          <posters-overview-list
-            v-if="data.posters.length"
-            :posters="data.posters"
-          />
+          <poster-list v-if="data.posters.length" :posters="data.posters" />
+
           <p v-else>Geen gerelateerde posters gevonden</p>
         </template>
       </posters-container>
@@ -26,11 +24,11 @@
 <script>
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import PostersContainer from '~/components/Posters/Data/PostersContainer.vue'
-import PostersOverviewList from '~/components/Posters/PostersOverview/PostersOverviewList.vue'
+import PosterList from '~/components/Posters/Shared/PosterList.vue'
 
 export default {
   components: {
-    PostersOverviewList,
+    PosterList,
     CenterWrapper,
     PostersContainer,
   },
