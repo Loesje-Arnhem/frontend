@@ -5,7 +5,7 @@
       :key="poster.node.id"
       :class="$style['list-item']"
     >
-      <poster-tile :poster="poster" class="link" />
+      <poster-tile :poster="poster.node" />
     </li>
   </list-animation>
 </template>

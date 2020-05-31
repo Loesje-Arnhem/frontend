@@ -1,7 +1,6 @@
 <template>
   <list-animation :class="$style.list">
     <li v-for="item in list" :key="item.node.id" :class="$style['list-item']">
-      item.node.id{{ item.node.id }}
       <poster-tag :tag="item" />
     </li>
   </list-animation>
