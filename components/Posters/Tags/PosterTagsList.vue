@@ -1,17 +1,20 @@
 <template>
-  <transition-group name="list" tag="ul" :class="$style.list">
+  <list-animation :class="$style.list">
     <li v-for="item in list" :key="item.node.id" :class="$style['list-item']">
+      item.node.id{{ item.node.id }}
       <poster-tag :tag="item" />
     </li>
-  </transition-group>
+  </list-animation>
 </template>
 
 <script>
 import PosterTag from '~/components/Posters/Tags/PosterTag.vue'
+import ListAnimation from '~/components/Animations/ListAnimation.vue'
 
 export default {
   components: {
     PosterTag,
+    ListAnimation,
   },
   props: {
     list: {

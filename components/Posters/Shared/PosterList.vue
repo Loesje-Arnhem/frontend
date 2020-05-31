@@ -1,17 +1,23 @@
 <template>
-  <transition-group name="list" tag="ul" class="list">
-    <li v-for="poster in posters" :key="poster.id" class="list-item">
+  <list-animation :class="$style.list">
+    <li
+      v-for="poster in posters"
+      :key="poster.node.id"
+      :class="$style['list-item']"
+    >
       <poster-tile :poster="poster" class="link" />
     </li>
-  </transition-group>
+  </list-animation>
 </template>
 
 <script>
 import PosterTile from '~/components/Posters/Shared/PosterTile.vue'
+import ListAnimation from '~/components/Animations/ListAnimation.vue'
 
 export default {
   components: {
     PosterTile,
+    ListAnimation,
   },
   props: {
     posters: {
@@ -22,7 +28,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="postcss" module>
 .list {
   @mixin list-reset;
 

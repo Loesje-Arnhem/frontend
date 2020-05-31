@@ -1,8 +1,9 @@
 <template>
   <div>
-    <poster-navigation />
-
-    <poster-details :poster="poster" />
+    <center-wrapper>
+      <poster-navigation />
+      <poster-details :poster="poster" />
+    </center-wrapper>
     <posters-overview-section
       :title="$t('relatedTitle')"
       :not-in="poster.databaseId"
@@ -16,12 +17,14 @@ import PosterDetails from '~/components/Posters/Details/PosterDetails.vue'
 import PosterNavigation from '~/components/Posters/Shared/PosterNavigation.vue'
 import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 
 export default {
   components: {
     PosterDetails,
     PosterNavigation,
     PostersOverviewSection,
+    CenterWrapper,
   },
 
   async asyncData({ app, params }) {
