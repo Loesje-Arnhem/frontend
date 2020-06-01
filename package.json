@@ -25,7 +25,7 @@
     "css-paint-polyfill": "^1.2.0",
     "graphql-tag": "^2.10.3",
     "nuxt": "^2.12.2",
-    "nuxt-i18n": "^6.11.1",
+    "nuxt-i18n": "^6.12.1",
     "throttle-debounce": "^2.1.0",
     "vue-youtube": "^1.4.0",
     "vuelidate": "^0.7.5",
