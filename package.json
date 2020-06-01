@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
-    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.1",
     "@nuxtjs/eslint-config": "^3.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@vue/test-utils": "^1.0.3",
