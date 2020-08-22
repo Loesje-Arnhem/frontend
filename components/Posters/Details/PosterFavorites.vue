@@ -57,10 +57,12 @@ export default {
         const { id, slug, featuredImage } = this.poster
 
         const poster = {
-          id,
-          slug,
-          featuredImage: {
-            medium: featuredImage.medium,
+          node: {
+            id,
+            slug,
+            featuredImage: {
+              medium: featuredImage.medium,
+            },
           },
         }
         this.add(poster)

@@ -19,13 +19,13 @@
             <main-navigation-item
               :title="data.about.title"
               :uri="data.about.uri"
-              :children="data.about.childPages"
+              :children="data.about.children"
               :reset-submenu="menuIsOpen"
             />
             <main-navigation-item
               :title="data.join.title"
               :uri="data.join.uri"
-              :children="data.join.childPages"
+              :children="data.join.children"
               :reset-submenu="menuIsOpen"
             />
             <main-navigation-item

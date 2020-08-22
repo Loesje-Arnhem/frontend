@@ -7,10 +7,10 @@ fragment pageContent on Page {
   ...page
   content
   relatedPosters: relatedPostersGroup {
-    ...relatedPostersGroup
+    ...relatedPostersPageGroup
   }
   relatedProducts: relatedProductsGroup {
-    ...relatedProductsGroup
+    ...relatedProductsPageGroup
   }
   seo {
     ...seo

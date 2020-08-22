@@ -8,10 +8,10 @@ query Post($uri: ID!) {
     ...post
     content
     relatedPosters: relatedPostersGroup {
-      ...relatedPostersGroup
+      ...relatedPostersPostGroup
     }
     relatedProducts: relatedProductsGroup {
-      ...relatedProductsGroup
+      ...relatedProductsPostGroup
     }
     seo {
       ...seo
