@@ -1,18 +1,17 @@
 #import "./Fragments/RelatedPosters.gql"
-#import "./Fragments/RelatedProducts.gql"
 #import "./Fragments/Post.gql"
 #import "./../Fragments/Seo.gql"
 
 query Post($uri: ID!) {
-  post(id: $uri, idType: SLUG) {
+  post(id: $uri, idType: URI) {
     ...post
     content
     relatedPosters: relatedPostersGroup {
       ...relatedPostersPostGroup
     }
-    relatedProducts: relatedProductsGroup {
-      ...relatedProductsPostGroup
-    }
+    # relatedProducts: relatedProductsGroup {
+    #   ...relatedProductsPostGroup
+    # }
     seo {
       ...seo
     }

@@ -31,11 +31,12 @@ export default {
     // RelatedProductsSection,
   },
 
-  async asyncData({ app, params }) {
+  async asyncData({ app, route }) {
     const post = await app.apolloProvider.defaultClient.query({
       query: PostQuery,
       variables: {
-        uri: params.slug,
+        // uri: params.slug,
+        uri: route.fullPath,
       },
     })
     return {

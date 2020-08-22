@@ -9,9 +9,11 @@ query Poster($slug: ID!) {
     link
     slug
     featuredImage {
-      id
-      large: sourceUrl(size: LARGE)
-      medium: sourceUrl(size: MEDIUM)
+      node {
+        id
+        large: sourceUrl(size: LARGE)
+        medium: sourceUrl(size: MEDIUM)
+      }
     }
     sources {
       edges {

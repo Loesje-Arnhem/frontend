@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
+import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
 import AppLoader from '~/components/Shared/AppLoader.vue'
 
 export default {
