@@ -1,0 +1,7 @@
+#import "./Fragments/Cart.gql"
+
+query Cart {
+  cart {
+    ...cart
+  }
+}

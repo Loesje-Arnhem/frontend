@@ -2,8 +2,8 @@
 #import "./Fragments/Source.gql"
 #import "./Fragments/Subject.gql"
 
-query Poster($slug: ID!) {
-  poster(id: $slug, idType: URI) {
+query Poster($uri: ID!) {
+  poster(id: $uri, idType: URI) {
     ...poster
     date
     link
