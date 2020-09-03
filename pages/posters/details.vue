@@ -27,12 +27,11 @@ export default {
     CenterWrapper,
   },
 
-  async asyncData({ app, route }) {
+  async asyncData({ app, params }) {
     const poster = await app.apolloProvider.defaultClient.query({
       query: PosterQuery,
       variables: {
-        // slug: params.slug,
-        uri: route.fullPath,
+        slug: params.slug,
       },
     })
 

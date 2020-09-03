@@ -5,7 +5,7 @@
       <app-image
         v-if="poster.featuredImage"
         :alt="poster.title"
-        :src="poster.featuredImage.large"
+        :src="poster.featuredImage.node.large"
         :class="$style.image"
       />
     </article>

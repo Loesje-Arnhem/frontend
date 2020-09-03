@@ -25,8 +25,9 @@
               v-for="option in attribute.node.options"
               :key="option"
               :value="option"
-              >{{ option }}</option
             >
+              {{ option }}
+            </option>
           </form-select>
         </div>
       </div>
