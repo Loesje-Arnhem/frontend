@@ -17,15 +17,15 @@
               :uri="localePath({ name: 'posters' })"
             />
             <main-navigation-item
-              :title="data.about.title"
-              :uri="data.about.uri"
-              :children="data.about.children"
+              :title="data.aboutPage.title"
+              :uri="data.aboutPage.uri"
+              :children="data.aboutPageChildren"
               :reset-submenu="menuIsOpen"
             />
             <main-navigation-item
-              :title="data.join.title"
-              :uri="data.join.uri"
-              :children="data.join.children"
+              :title="data.joinPage.title"
+              :uri="data.joinPage.uri"
+              :children="data.joinPageChildren"
               :reset-submenu="menuIsOpen"
             />
             <main-navigation-item

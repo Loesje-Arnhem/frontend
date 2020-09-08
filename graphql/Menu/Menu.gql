@@ -11,7 +11,7 @@ query Menu($aboutPageId: ID!, $joinPageId: ID!) {
   joinPage: page(id: $joinPageId, idType: DATABASE_ID) {
     ...page
   }
-  aboutPageChildres: pages(
+  aboutPageChildren: pages(
     where: { parent: $aboutPageId, orderby: { field: MENU_ORDER, order: ASC } }
   ) {
     edges {
@@ -20,12 +20,21 @@ query Menu($aboutPageId: ID!, $joinPageId: ID!) {
       }
     }
   }
-  joinPageChildres: pages(
+  joinPageChildren: pages(
     where: { parent: $joinPageId, orderby: { field: MENU_ORDER, order: ASC } }
   ) {
     edges {
       node {
         ...page
+      }
+    }
+  }
+  productCategories(where: { hideEmpty: true, orderby: TERM_ORDER }) {
+    edges {
+      node {
+        id
+        uri
+        title: name
       }
     }
   }

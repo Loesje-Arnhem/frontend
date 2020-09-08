@@ -10,8 +10,10 @@
       <app-loader v-if="isLoading" />
       <slot
         v-else-if="data"
-        :about="data.about"
-        :join="data.join"
+        :aboutPage="data.aboutPage"
+        :joinPage="data.joinPage"
+        :aboutPageChildren="data.aboutPageChildren"
+        :joinPageChildren="data.joinPageChildren"
         :productCategories="data.productCategories"
       />
     </template>
