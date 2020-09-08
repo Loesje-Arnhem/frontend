@@ -1,7 +1,7 @@
 fragment page on Page {
   id
   uri
-  title: id
+  title
 }
 
 query Menu($aboutPageId: ID!, $joinPageId: ID!) {
