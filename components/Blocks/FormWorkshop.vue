@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import { required, email } from 'vuelidate/lib/validators'
 
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
@@ -139,10 +138,12 @@ export default {
     },
     async submitForm() {
       if (this.validate()) {
-        await axios.post('/', this.encodeFormData(this.form), {
-          header: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        })
-        this.submitted = true
+        try {
+          await this.$axios.$post('/', this.encodeFormData(this.form), {
+            header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          })
+          this.submitted = true
+        } catch (error) {}
       }
     },
   },

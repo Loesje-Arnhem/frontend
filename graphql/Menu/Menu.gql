@@ -4,7 +4,7 @@ fragment children on Page {
       node {
         id
         uri
-        #title
+        title: id
       }
     }
   }

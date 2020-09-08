@@ -43,7 +43,6 @@
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
 import IconSearch from '~/assets/icons/search.svg'
-import axios from '~/plugins/axios'
 
 export default {
   components: {
@@ -85,24 +84,26 @@ export default {
         this.close()
         return
       }
-      const response = await axios.get('wp/v2/poster', {
-        params: {
-          search: this.search,
-        },
-      })
-      this.results = response.data.map((item) => {
-        const title = item.title.rendered
-        return {
-          slug: item.slug,
-          value: title,
-          // make current searchterm bold with a regex
-          title: title.replace(
-            new RegExp(`(^|)(${this.search})(|$)`, 'ig'),
-            '$1<strong>$2</strong>$3',
-          ),
-        }
-      })
-      this.isOpen = this.results.length > 0
+      try {
+        const response = await this.$axios.$get('wp/v2/poster', {
+          params: {
+            search: this.search,
+          },
+        })
+        this.results = response.data.map((item) => {
+          const title = item.title.rendered
+          return {
+            slug: item.slug,
+            value: title,
+            // make current searchterm bold with a regex
+            title: title.replace(
+              new RegExp(`(^|)(${this.search})(|$)`, 'ig'),
+              '$1<strong>$2</strong>$3',
+            ),
+          }
+        })
+        this.isOpen = this.results.length > 0
+      } catch (error) {}
     },
     goToPoster(result) {
       this.$router.push(`/posters/${result.slug}`)
