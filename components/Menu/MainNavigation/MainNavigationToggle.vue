@@ -11,9 +11,9 @@
       height="24"
       :class="$style.icon"
     />
-    <soan :class="$style.title">
+    <span :class="$style.title">
       {{ title }}
-    </soan>
+    </span>
   </button>
 </template>
 

@@ -1,22 +1,22 @@
 <template>
-  <list-animation v-if="posts.length" :class="$style.list">
+  <div v-if="posts.length" :class="$style.list">
     <post-list-item
       v-for="post in posts"
       :key="post.node.id"
       :post="post"
       :class="$style['list-item']"
     />
-  </list-animation>
+  </div>
 </template>
 
 <script>
 import PostListItem from '~/components/Posts/Shared/PostListItem.vue'
-import ListAnimation from '~/components/Animations/ListAnimation.vue'
+// import ListAnimation from '~/components/Animations/ListAnimation.vue'
 
 export default {
   components: {
     PostListItem,
-    ListAnimation,
+    // ListAnimation,
   },
 
   props: {

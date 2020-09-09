@@ -1,4 +1,4 @@
-fragment relatedProductsGroup on Post_Relatedproductsgroup {
+fragment relatedProductsPostGroup on Post_Relatedproductsgroup {
   title: relatedProductsTitle
   relatedProductsProducts {
     ... on Post_Relatedproductsgroup_relatedProductsProducts {

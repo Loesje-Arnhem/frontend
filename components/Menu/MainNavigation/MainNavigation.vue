@@ -3,63 +3,57 @@
     <h2 id="menu" class="sr-only" tabindex="-1">
       {{ $t('title') }}
     </h2>
-
     <div ref="menu">
-      <main-navigation-container>
-        <template v-slot="data">
-          <ul :class="$style.menu">
-            <main-navigation-item
-              :title="$t('pages.home')"
-              :uri="localePath({ name: 'index' })"
-            />
-            <main-navigation-item
-              :title="$t('pages.posters')"
-              :uri="localePath({ name: 'posters' })"
-            />
-            <main-navigation-item
-              :title="data.about.title"
-              :uri="data.about.uri"
-              :children="data.about.childPages"
-              :reset-submenu="menuIsOpen"
-            />
-            <main-navigation-item
-              :title="data.join.title"
-              :uri="data.join.uri"
-              :children="data.join.childPages"
-              :reset-submenu="menuIsOpen"
-            />
-            <main-navigation-item
-              :title="$t('pages.workshops')"
-              :uri="localePath({ name: 'workshops' })"
-            />
+      <ul :class="$style.menu">
+        <main-navigation-item
+          :title="$t('pages.home')"
+          :uri="localePath({ name: 'index' })"
+        />
+        <main-navigation-item
+          :title="$t('pages.posters')"
+          :uri="localePath({ name: 'posters' })"
+        />
+        <main-navigation-item
+          :title="menu.aboutPage.title"
+          :uri="menu.aboutPage.uri"
+          :children="menu.aboutPageChildren"
+          :reset-submenu="menuIsOpen"
+        />
+        <main-navigation-item
+          :title="menu.joinPage.title"
+          :uri="menu.joinPage.uri"
+          :children="menu.joinPageChildren"
+          :reset-submenu="menuIsOpen"
+        />
+        <main-navigation-item
+          :title="$t('pages.workshops')"
+          :uri="localePath({ name: 'workshops' })"
+        />
 
-            <main-navigation-item
-              v-if="data.productCategories.edges.length"
-              :title="$t('pages.shop')"
-              :uri="data.productCategories.edges[0].node.uri"
-              :children="data.productCategories"
-              :reset-submenu="menuIsOpen"
-            />
-          </ul>
-          <div
-            :class="[$style.arrow, { [$style.active]: mounted }]"
-            :style="{ transform: arrowPosition, width: arrowWidth }"
-          />
-        </template>
-      </main-navigation-container>
+        <main-navigation-item
+          v-if="menu.productCategories.edges.length"
+          :title="$t('pages.shop')"
+          :uri="menu.productCategories.edges[0].node.uri"
+          :children="menu.productCategories"
+          :reset-submenu="menuIsOpen"
+        />
+      </ul>
+      <div
+        :class="[$style.arrow, { [$style.active]: mounted }]"
+        :style="{ transform: arrowPosition, width: arrowWidth }"
+      />
     </div>
   </nav>
 </template>
 
 <script>
 import { debounce } from 'throttle-debounce'
+import { mapState } from 'vuex'
 import MainNavigationItem from '~/components/Menu/MainNavigation/MainNavigationItem.vue'
-import MainNavigationContainer from '~/components/Menu/MainNavigation/MainNavigationContainer.vue'
 
 export default {
   components: {
     MainNavigationItem,
-    MainNavigationContainer,
   },
   props: {
     menuIsOpen: {
@@ -73,6 +67,9 @@ export default {
       arrowWidth: 0,
       mounted: false,
     }
+  },
+  computed: {
+    ...mapState('menu', ['menu']),
   },
   watch: {
     $route() {

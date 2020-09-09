@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import CartQuery from '~/graphql/Cart.gql'
+import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
 
 export default {
   data() {

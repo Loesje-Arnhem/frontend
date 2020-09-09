@@ -1,0 +1,33 @@
+fragment cart on Cart {
+  contents {
+    edges {
+      node {
+        product {
+          productId
+          id
+          name
+        }
+        quantity
+        subtotal
+        subtotalTax
+        tax
+        total
+      }
+    }
+  }
+  contentsTax
+  contentsTotal
+  discountTax
+  discountTotal
+  displayPricesIncludeTax
+  feeTax
+  feeTotal
+  isEmpty
+  needsShippingAddress
+  shippingTax
+  shippingTotal
+  subtotal
+  subtotalTax
+  total
+  totalTax
+}

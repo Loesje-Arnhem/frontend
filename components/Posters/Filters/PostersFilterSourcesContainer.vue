@@ -9,7 +9,7 @@
 
 <script>
 import AppLoader from '~/components/Shared/AppLoader.vue'
-import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
+import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
 
 export default {
   components: {

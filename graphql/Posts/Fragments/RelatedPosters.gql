@@ -1,4 +1,4 @@
-fragment relatedPostersGroup on Post_Relatedpostersgroup {
+fragment relatedPostersPostGroup on Post_Relatedpostersgroup {
   title: relatedPostersTitle
   search: relatedPostersSearch
   subjects: relatedPostersSubjects {

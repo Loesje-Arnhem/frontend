@@ -22,11 +22,15 @@
 
     <slide-in-animation mode="out-in">
       <div v-if="showSources" key="sources" class="tags" tabindex="-1">
-        <posters-filter-sources-container />
+        <center-wrapper>
+          <posters-filter-sources-container />
+        </center-wrapper>
       </div>
 
       <div v-if="showSubjects" key="subjects" class="tags" tabindex="-1">
-        <posters-filter-subject-container />
+        <center-wrapper>
+          <posters-filter-subject-container />
+        </center-wrapper>
       </div>
     </slide-in-animation>
   </div>
@@ -37,6 +41,7 @@ import PostersFilterSubjectContainer from '~/components/Posters/Filters/PostersF
 import PostersFilterSourcesContainer from '~/components/Posters/Filters/PostersFilterSourcesContainer.vue'
 import PostersFilterToggle from '~/components/Posters/Filters/PosterFilterToggle.vue'
 import SlideInAnimation from '~/components/Animations/SlideInAnimation.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 
 export default {
   components: {
@@ -44,6 +49,7 @@ export default {
     PostersFilterSubjectContainer,
     PostersFilterSourcesContainer,
     SlideInAnimation,
+    CenterWrapper,
   },
   data() {
     return {

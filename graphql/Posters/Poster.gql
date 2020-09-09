@@ -3,15 +3,17 @@
 #import "./Fragments/Subject.gql"
 
 query Poster($slug: ID!) {
-  poster(id: $slug, idType: URI) {
+  poster(id: $slug, idType: SLUG) {
     ...poster
     date
     link
     slug
     featuredImage {
-      id
-      large: sourceUrl(size: LARGE)
-      medium: sourceUrl(size: MEDIUM)
+      node {
+        id
+        large: sourceUrl(size: LARGE)
+        medium: sourceUrl(size: MEDIUM)
+      }
     }
     sources {
       edges {

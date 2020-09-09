@@ -1,25 +1,33 @@
-fragment childPages on Page {
-  childPages(where: { orderby: { field: MENU_ORDER, order: ASC } }) {
-    edges {
-      node {
-        id
-        uri
-        title
-      }
-    }
-  }
+fragment page on Page {
+  id
+  uri
+  title
 }
 
 query Menu($aboutPageId: ID!, $joinPageId: ID!) {
-  about: page(id: $aboutPageId, idType: DATABASE_ID) {
-    title
-    uri
-    ...childPages
+  aboutPage: page(id: $aboutPageId, idType: DATABASE_ID) {
+    ...page
   }
-  join: page(id: $joinPageId, idType: DATABASE_ID) {
-    title
-    uri
-    ...childPages
+  joinPage: page(id: $joinPageId, idType: DATABASE_ID) {
+    ...page
+  }
+  aboutPageChildren: pages(
+    where: { parent: $aboutPageId, orderby: { field: MENU_ORDER, order: ASC } }
+  ) {
+    edges {
+      node {
+        ...page
+      }
+    }
+  }
+  joinPageChildren: pages(
+    where: { parent: $joinPageId, orderby: { field: MENU_ORDER, order: ASC } }
+  ) {
+    edges {
+      node {
+        ...page
+      }
+    }
   }
   productCategories(where: { hideEmpty: true, orderby: TERM_ORDER }) {
     edges {

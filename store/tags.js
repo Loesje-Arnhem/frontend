@@ -2,6 +2,7 @@ export const state = () => ({
   tags: [
     {
       node: {
+        id: 'c291cmNlOjI4',
         databaseId: 28,
         name: 'Landelijke serie',
         taxonomy: {

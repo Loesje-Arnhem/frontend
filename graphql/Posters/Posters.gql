@@ -17,8 +17,10 @@ query Posters(
         ...poster
         slug
         featuredImage {
-          id
-          medium: sourceUrl(size: MEDIUM)
+          node {
+            id
+            medium: sourceUrl(size: MEDIUM)
+          }
         }
       }
     }

@@ -29,4 +29,6 @@ export default {
   modules,
   plugins,
   server,
+  modern: true,
+  target: 'static',
 }

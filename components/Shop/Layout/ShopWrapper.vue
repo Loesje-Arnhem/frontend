@@ -23,7 +23,7 @@
 <script>
 import ProductCategoryList from '~/components/Shop/Layout/ProductCategoryList.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import CartQuery from '~/graphql/Cart.gql'
+import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
 
 export default {
   components: {

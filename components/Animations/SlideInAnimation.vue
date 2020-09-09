@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .slide-in-enter-active,
 .slide-in-leave-active {
   transition: all 0.2s;

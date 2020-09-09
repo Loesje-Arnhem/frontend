@@ -1,34 +1,42 @@
 <template>
-  <div class="poster-details">
+  <div :class="$style['poster-details']">
     <article class="content">
       <h1 class="sr-only">{{ poster.title }}</h1>
       <app-image
         v-if="poster.featuredImage"
         :alt="poster.title"
-        :src="poster.featuredImage.large"
-        class="image"
+        :src="poster.featuredImage.node.large"
+        :class="$style.image"
       />
     </article>
-    <div class="meta-data">
+    <div :class="$style['meta-data']">
       <app-date :date="poster.date" />
-      <dl class="tags">
+
+      <dl>
         <template v-if="poster.subjects.edges.length">
-          <dt>Onderwerpen:</dt>
-          <dd>
-            <poster-filter-tags :list="poster.subjects.edges" />
+          <dt :class="$style['taxonomy-title']">Onderwerpen:</dt>
+          <dd :class="$style['taxonomy-list']">
+            <poster-filter-tags
+              :list="poster.subjects.edges"
+              :class="$style['tags-list']"
+            />
           </dd>
         </template>
 
         <template v-if="poster.sources.edges.length">
-          <dt>Bronnen:</dt>
-          <dd>
-            <poster-filter-tags :list="poster.sources.edges" />
+          <dt :class="$style['taxonomy-title']">Bronnen:</dt>
+          <dd :class="$style['taxonomy-list']">
+            <poster-filter-tags
+              :list="poster.sources.edges"
+              :class="$style['tags-list']"
+            />
           </dd>
         </template>
       </dl>
+
       <poster-favorites :poster="poster" />
 
-      <div class="social-media">
+      <div :class="$style['social-media']">
         <social-media-links
           title="Deel de poster op"
           :twitter="twitter"
@@ -45,7 +53,7 @@ import AppDate from '~/components/Shared/AppDate.vue'
 import AppImage from '~/components/Shared/AppImage.vue'
 import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
 import PosterFavorites from '~/components/Posters/Details/PosterFavorites.vue'
-import PosterFilterTags from '~/components/Posters/Filters/PosterFilterTags.vue'
+import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
 
 export default {
   components: {
@@ -77,7 +85,17 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
+.poster-details {
+  display: grid;
+  grid-gap: 1em;
+  margin-bottom: 2em;
+
+  @media (--viewport-sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .image {
   --rough-stroke-width: 3px;
   --rough-roughness: 1.5;
@@ -93,39 +111,24 @@ export default {
   }
 }
 
-.poster-details {
-  display: grid;
-  grid-gap: 1em;
-  margin-bottom: 2em;
-
-  @media (--viewport-sm) {
-    grid-template-columns: 1fr 1fr;
-  }
+.meta-data {
+  display: flex;
+  flex-direction: column;
 }
 
-.btn-favorites {
-  padding: 0.25em 0.75em;
-  border: 2px solid var(--color-black);
-  border-radius: 1em;
-  background: var(--color-white);
-
-  &.is-active,
-  &:hover {
-    background: var(--color-black);
-    color: var(--color-white);
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 2px var(--color-black);
-    outline: none;
-  }
-}
-
-dt {
+.taxonomy-title {
   font-weight: var(--font-weight-bold);
 }
 
-dd {
+.taxonomy-list {
   margin-left: 0;
+}
+
+.tags-list {
+  margin-bottom: 0;
+}
+
+.social-media {
+  margin-top: auto;
 }
 </style>

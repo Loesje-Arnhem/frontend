@@ -25,8 +25,9 @@
               v-for="option in attribute.node.options"
               :key="option"
               :value="option"
-              >{{ option }}</option
             >
+              {{ option }}
+            </option>
           </form-select>
         </div>
       </div>
@@ -40,8 +41,8 @@ import FormSelect from '~/components/Forms/FormSelect.vue'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
-import AddToCartQuery from '~/graphql/AddToCart.gql'
-import CartQuery from '~/graphql/Cart.gql'
+import AddToCartQuery from '~/graphql/Shop/Cart/AddToCart.gql'
+import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
 
 export default {
   components: {
