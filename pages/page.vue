@@ -43,7 +43,7 @@ export default {
   computed: {
     parentId() {
       if (this.page.parent) {
-        return this.page.parent.databaseId
+        return this.page.parent.node.databaseId
       }
       return this.page.databaseId
     },

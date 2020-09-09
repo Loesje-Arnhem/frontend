@@ -1,9 +1,6 @@
 #import "./Fragments/Page.gql"
 
-query RelatedPages(
-  $notIn: [ID]
-  $parentPageId: String
-) {
+query RelatedPages($notIn: [ID], $parentPageId: ID) {
   pages(
     where: {
       notIn: $notIn

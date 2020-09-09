@@ -4,8 +4,10 @@ query PageByUri($uri: ID!) {
   page(id: $uri, idType: URI) {
     ...pageContent
     parent {
-      ... on Page {
-        databaseId
+      node {
+        ... on Page {
+          databaseId
+        }
       }
     }
   }
