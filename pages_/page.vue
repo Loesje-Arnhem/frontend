@@ -10,7 +10,7 @@
       :not-in="page.databaseId"
       :parent-page-id="parentId"
     />
-    <related-products-section :related-products="page.relatedProducts" />
+    <!-- <related-products-section :related-products="page.relatedProducts" /> -->
   </div>
 </template>
 
@@ -19,13 +19,13 @@ import PageQuery from '~/graphql/Pages/PageByUri.gql'
 import AppContent from '~/components/Shared/AppContent.vue'
 import RelatedPagesSection from '~/components/Pages/RelatedPages/RelatedPagesSection.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
+// import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {
     RelatedPagesSection,
     RelatedPostersSection,
-    RelatedProductsSection,
+    // RelatedProductsSection,
     AppContent,
   },
   async asyncData({ app, params }) {

@@ -10,4 +10,7 @@ export const modules = [
   'nuxt-i18n',
 ]
 
-export const buildModules = ['@nuxtjs/stylelint-module']
+export const buildModules = [
+  '@nuxtjs/stylelint-module',
+  '@nuxtjs/composition-api',
+]

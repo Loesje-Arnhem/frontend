@@ -9,16 +9,10 @@
       </h1>
     </center-wrapper>
     <center-wrapper size="full">
-      <posters-container
-        :subjects="subjects"
-        :poster-ids="posterIds"
-        :search="relatedPosters.search"
-        :first="5"
-      >
-        <template v-slot="data">
-          <related-posters-list v-if="data" :posters="data.posters" />
-        </template>
-      </posters-container>
+      <related-posters-list
+        v-if="posters && posters.edges.length"
+        :posters="posters.edges"
+      />
     </center-wrapper>
     <center-wrapper :class="$style['btn-wrapper']">
       <app-button to="/posters">{{ btnText }}</app-button>
@@ -27,14 +21,22 @@
 </template>
 
 <script>
-import PostersContainer from '~/components/Posters/Data/PostersContainer.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import RelatedPostersList from '~/components/Posters/RelatedPosters/RelatedPostersList.vue'
+import usePosters from '~/compositions/posters'
 
 export default {
+  setup() {
+    const { posters, loading, error } = usePosters()
+
+    return {
+      posters,
+      loading,
+      error,
+    }
+  },
   components: {
-    PostersContainer,
     AppButton,
     CenterWrapper,
     RelatedPostersList,
@@ -44,11 +46,12 @@ export default {
       type: Object,
       default: () => {},
     },
+    title: {
+      type: String,
+      default: 'posters',
+    },
   },
   computed: {
-    title() {
-      return this.relatedPosters.title || this.$t('title')
-    },
     btnText() {
       let text = this.$t('btnText')
       if (this.relatedPosters.subjects.length === 1) {

@@ -4,11 +4,7 @@
       <div :class="$style.wrapper">
         <div class="latest-posts">
           <h1 id="latest-posts-title">{{ $t('title') }}</h1>
-          <posts-container :first="3">
-            <template v-slot="data">
-              <latest-posts-list v-if="data" :posts="data.posts" />
-            </template>
-          </posts-container>
+          <latest-posts-list v-if="posts" :posts="posts.edges" />
           <app-button to="/over-mij/nieuws/">{{ $t('btnMore') }}</app-button>
         </div>
         <become-member />
@@ -24,13 +20,21 @@ import Balloon from '~/components/Posts/LatestPosts/LatestPostBalloon.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import BecomeMember from '~/components/BecomeMember/BecomeMember.vue'
 import LatestPostsList from '~/components/Posts/LatestPosts/LatestPostsList.vue'
-import PostsContainer from '~/components/Posts/Data/PostsContainer.vue'
+import usePosts from '~/compositions/posts'
 
 export default {
+  setup() {
+    const { posts, loading, error } = usePosts()
+
+    return {
+      posts,
+      loading,
+      error,
+    }
+  },
   components: {
     Balloon,
     AppButton,
-    PostsContainer,
     CenterWrapper,
     BecomeMember,
     LatestPostsList,

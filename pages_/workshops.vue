@@ -1,42 +1,43 @@
 <template>
-  <div v-if="page.title">
-    <posts-overview-section />
+  <div class="page">
+    <app-content :title="page.title" :content="page.content" />
+    <form-workshop />
     <related-posters-section
       v-if="page"
       :related-posters="page.relatedPosters"
     />
-    <related-products-section :related-products="page.relatedProducts" />
+    <!-- <related-products-section :related-products="page.relatedProducts" /> -->
   </div>
 </template>
 
 <script>
-import { blogPageId } from '~/data/pages'
 import PageQuery from '~/graphql/Pages/PageById.gql'
-import PostsOverviewSection from '~/components/Posts/Overview/PostsOverviewSection.vue'
+import AppContent from '~/components/Shared/AppContent.vue'
+
+import { workshopsPageId } from '~/data/pages'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
+import FormWorkshop from '~/components/Blocks/FormWorkshop.vue'
+// import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
   components: {
+    AppContent,
     RelatedPostersSection,
-    PostsOverviewSection,
-    RelatedProductsSection,
+    FormWorkshop,
+    // RelatedProductsSection,
   },
+
   async asyncData({ app, params }) {
     const page = await app.apolloProvider.defaultClient.query({
       query: PageQuery,
       variables: {
-        id: blogPageId,
+        id: workshopsPageId,
       },
     })
+
     return {
       page: page.data.page,
     }
-  },
-  nuxtI18n: {
-    paths: {
-      nl: '/over-mij/nieuws',
-    },
   },
   head() {
     return {
