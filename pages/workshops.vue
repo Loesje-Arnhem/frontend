@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div v-if="page" class="page">
     <app-content :title="page.title" :content="page.content" />
     <form-workshop />
     <related-posters-section
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import usePage from '~/compositions/page'
+import { usePageById } from '~/compositions/page'
 import AppContent from '~/components/Shared/AppContent.vue'
 
 import { workshopsPageId } from '~/data/pages'
@@ -21,7 +21,7 @@ import FormWorkshop from '~/components/Blocks/FormWorkshop.vue'
 
 export default {
   setup() {
-    const { page, loading, error } = usePage(workshopsPageId)
+    const { page, loading, error } = usePageById(workshopsPageId)
 
     return {
       page,
@@ -36,10 +36,10 @@ export default {
     // RelatedProductsSection,
   },
 
-  head() {
-    return {
-      title: this.page.title,
-    }
-  },
+  // head() {
+  //   return {
+  //     title: this.page.title,
+  //   }
+  // },
 }
 </script>

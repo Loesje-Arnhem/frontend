@@ -1,7 +1,6 @@
 #import "./Page.gql"
 #import "./RelatedPosters.gql"
 #import "./RelatedProducts.gql"
-#import "./../../Fragments/Seo.gql"
 
 fragment pageContent on Page {
   ...page
@@ -12,7 +11,7 @@ fragment pageContent on Page {
   relatedProducts: relatedProductsGroup {
     ...relatedProductsPageGroup
   }
-  seo {
-    ...seo
-  }
+  # seo {
+  #   ...seo
+  # }
 }

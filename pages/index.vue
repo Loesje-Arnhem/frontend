@@ -21,11 +21,11 @@ import Groups from '~/components/Blocks/Groups.vue'
 import AppStoresSection from '~/components/AppStores/AppStoresSection.vue'
 import LatestPostsSection from '~/components/Posts/LatestPosts/LatestPostsSection.vue'
 // import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
-import usePage from '~/compositions/page'
+import { usePageById } from '~/compositions/page'
 
 export default {
   setup() {
-    const { page, loading, error } = usePage(homePageId)
+    const { page, loading, error } = usePageById(homePageId)
 
     return {
       page,
