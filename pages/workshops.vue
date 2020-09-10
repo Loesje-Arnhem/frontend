@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import PageQuery from '~/graphql/Pages/PageById.gql'
+import usePage from '~/compositions/page'
 import AppContent from '~/components/Shared/AppContent.vue'
 
 import { workshopsPageId } from '~/data/pages'
@@ -20,6 +20,15 @@ import FormWorkshop from '~/components/Blocks/FormWorkshop.vue'
 // import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
+  setup() {
+    const { page, loading, error } = usePage(workshopsPageId)
+
+    return {
+      page,
+      loading,
+      error,
+    }
+  },
   components: {
     AppContent,
     RelatedPostersSection,
@@ -27,18 +36,6 @@ export default {
     // RelatedProductsSection,
   },
 
-  async asyncData({ app, params }) {
-    const page = await app.apolloProvider.defaultClient.query({
-      query: PageQuery,
-      variables: {
-        id: workshopsPageId,
-      },
-    })
-
-    return {
-      page: page.data.page,
-    }
-  },
   head() {
     return {
       title: this.page.title,
