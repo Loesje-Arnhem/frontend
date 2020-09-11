@@ -24,7 +24,9 @@ import usePosts from '~/compositions/posts'
 
 export default {
   setup() {
-    const { posts, loading, error } = usePosts()
+    const { posts, loading, error } = usePosts({
+      first: 3,
+    })
 
     return {
       posts,

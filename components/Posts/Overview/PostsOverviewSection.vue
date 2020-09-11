@@ -5,15 +5,13 @@
   >
     <center-wrapper>
       <h1 id="posts-overview-title">{{ title }}</h1>
-      <posts-container
-        :not-in="notIn"
-        :show-more="true"
-        :btn-more-text="$t('btnMore')"
-      >
-        <template v-slot="data">
-          <posts-overview-list :posts="data.posts" />
-        </template>
-      </posts-container>
+      <posts-overview-list v-if="posts" :posts="posts.edges" />
+      <app-loader v-if="loading" />
+      <load-more
+        v-else-if="posts.pageInfo.hasNextPage"
+        :title="$t('btnMoreText')"
+        @loadMore="loadMore"
+      />
     </center-wrapper>
   </section>
 </template>
@@ -21,13 +19,29 @@
 <script>
 import PostsOverviewList from '~/components/Posts/Overview/PostsOverviewList.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import PostsContainer from '~/components/Posts/Data/PostsContainer.vue'
+import usePosts from '~/compositions/posts'
+import AppLoader from '~/components/Shared/AppLoader.vue'
+import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
 
 export default {
+  setup(props) {
+    const { notIn } = props
+    const { posts, loading, error, loadMore } = usePosts({
+      notIn,
+    })
+
+    return {
+      posts,
+      loading,
+      error,
+      loadMore,
+    }
+  },
   components: {
     PostsOverviewList,
     CenterWrapper,
-    PostsContainer,
+    AppLoader,
+    LoadMore,
   },
   props: {
     notIn: {

@@ -1,5 +1,6 @@
 <template>
-  <div v-if="page.title">
+  <div v-if="page">
+    <h1 class="sr-only">{{ page.title }}</h1>
     <posts-overview-section />
     <!-- <related-posters-section
       v-if="page"
@@ -11,37 +12,35 @@
 
 <script>
 import { blogPageId } from '~/data/pages'
-import PageQuery from '~/graphql/Pages/PageById.gql'
 import PostsOverviewSection from '~/components/Posts/Overview/PostsOverviewSection.vue'
 // import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
+import { usePageById } from '~/compositions/page'
 
 export default {
+  setup() {
+    const { page, loading, error } = usePageById(blogPageId)
+
+    return {
+      page,
+      loading,
+      error,
+    }
+  },
   components: {
     // RelatedPostersSection,
     PostsOverviewSection,
     RelatedProductsSection,
-  },
-  async asyncData({ app, params }) {
-    const page = await app.apolloProvider.defaultClient.query({
-      query: PageQuery,
-      variables: {
-        id: blogPageId,
-      },
-    })
-    return {
-      page: page.data.page,
-    }
   },
   nuxtI18n: {
     paths: {
       nl: '/over-mij/nieuws',
     },
   },
-  head() {
-    return {
-      title: this.page.title,
-    }
-  },
+  // head() {
+  //   return {
+  //     title: this.page.title,
+  //   }
+  // },
 }
 </script>

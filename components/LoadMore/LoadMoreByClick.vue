@@ -16,7 +16,8 @@ export default {
   props: {
     state: {
       type: String,
-      required: true,
+      // required: true,
+      default: 'loaded',
     },
     title: {
       type: String,
