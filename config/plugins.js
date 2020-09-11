@@ -9,4 +9,5 @@ export default [
   { src: '~/plugins/houdini', mode: 'client' },
   { src: '~/plugins/vuex-persist', mode: 'client' },
   { src: '~/plugins/vue-infinite-loading', mode: 'client' },
+  { src: '~/plugins/loader', mode: 'client' },
 ]

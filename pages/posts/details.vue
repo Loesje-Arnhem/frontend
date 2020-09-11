@@ -24,7 +24,6 @@ import AppContent from '~/components/Shared/AppContent.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 // import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 import { usePost } from '~/compositions/posts'
-import AppLoader from '~/components/Shared/AppLoader.vue'
 
 export default {
   setup() {
@@ -39,7 +38,6 @@ export default {
     }
   },
   components: {
-    AppLoader,
     AppContent,
     PostsOverviewSection,
     RelatedPostersSection,

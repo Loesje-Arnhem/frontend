@@ -20,7 +20,6 @@
 import PostsOverviewList from '~/components/Posts/Overview/PostsOverviewList.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import usePosts from '~/compositions/posts'
-import AppLoader from '~/components/Shared/AppLoader.vue'
 import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
 
 export default {
@@ -40,7 +39,6 @@ export default {
   components: {
     PostsOverviewList,
     CenterWrapper,
-    AppLoader,
     LoadMore,
   },
   props: {

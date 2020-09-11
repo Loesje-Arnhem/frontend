@@ -45,16 +45,45 @@ export default ({
     }
   }
 
-  const { result, error, loading } = useQuery(PosterQuery, {
-    first,
-    where: where(),
-  })
+  const { result, error, loading, fetchMore } = useQuery(
+    PosterQuery,
+    {
+      first,
+      where: where(),
+    },
+    {
+      notifyOnNetworkStatusChange: true,
+    },
+  )
 
   const posters = useResult(result)
+
+  const loadMore = async () => {
+    const { endCursor } = posters.value.pageInfo
+    await fetchMore({
+      variables: {
+        after: endCursor,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        return {
+          ...previousResult,
+          posters: {
+            ...previousResult.posters,
+            pageInfo: fetchMoreResult.posters.pageInfo,
+            edges: [
+              ...previousResult.posters.edges,
+              ...fetchMoreResult.posters.edges,
+            ],
+          },
+        }
+      },
+    })
+  }
 
   return {
     posters,
     error,
     loading,
+    loadMore,
   }
 }

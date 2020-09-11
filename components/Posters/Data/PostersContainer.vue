@@ -20,12 +20,10 @@
 </template>
 
 <script>
-import AppLoader from '~/components/Shared/AppLoader.vue'
 import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
 
 export default {
   components: {
-    AppLoader,
     LoadMore,
   },
   props: {

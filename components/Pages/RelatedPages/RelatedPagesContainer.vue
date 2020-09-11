@@ -14,12 +14,7 @@
 </template>
 
 <script>
-import AppLoader from '~/components/Shared/AppLoader.vue'
-
 export default {
-  components: {
-    AppLoader,
-  },
   props: {
     notIn: {
       type: Number,

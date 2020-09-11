@@ -11,12 +11,7 @@
 </template>
 
 <script>
-import AppLoader from '~/components/Shared/AppLoader.vue'
-
 export default {
-  components: {
-    AppLoader,
-  },
   props: {
     category: {
       type: Number,

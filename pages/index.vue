@@ -1,6 +1,5 @@
 <template>
-  <div v-if="loading">{{ loading }}</div>
-  <div v-else-if="error">{{ error }}</div>
+  <app-loader v-if="loading" />
   <div v-else-if="page">
     <h1 class="sr-only">{{ page.title }}</h1>
     <latest-posts-section />
