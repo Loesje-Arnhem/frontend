@@ -9,7 +9,7 @@
       <app-loader v-if="loading" />
       <load-more
         v-else-if="posts.pageInfo.hasNextPage"
-        :title="$t('btnMoreText')"
+        :title="$t('btnMore')"
         @loadMore="loadMore"
       />
     </center-wrapper>

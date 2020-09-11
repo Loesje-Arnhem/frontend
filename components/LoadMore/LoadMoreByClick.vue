@@ -1,5 +1,5 @@
 <template>
-  <div v-if="state === 'loaded'" :class="$style['button-wrapper']">
+  <div :class="$style['button-wrapper']">
     <app-button @click="$emit('loadMore')">
       {{ btnText }}
     </app-button>
@@ -14,11 +14,6 @@ export default {
     AppButton,
   },
   props: {
-    state: {
-      type: String,
-      // required: true,
-      default: 'loaded',
-    },
     title: {
       type: String,
       default: null,
