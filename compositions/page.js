@@ -1,9 +1,4 @@
-import {
-  useQuery,
-  useResult,
-  useContext,
-  computed,
-} from '@vue/apollo-composable'
+import { useQuery, useResult } from '@vue/apollo-composable'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
 
@@ -21,10 +16,7 @@ export const usePageById = (id) => {
   }
 }
 
-export const usePageByUri = () => {
-  const { params } = useContext()
-  const uri = computed(() => params.value.pathMatch)
-
+export const usePageByUri = (uri) => {
   const { result, error, loading } = useQuery(PageByUriQuery, {
     uri,
   })

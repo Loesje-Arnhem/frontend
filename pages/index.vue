@@ -1,5 +1,7 @@
 <template>
-  <div v-if="page">
+  <div v-if="loading">{{ loading }}</div>
+  <div v-else-if="error">{{ error }}</div>
+  <div v-else-if="page">
     <h1 class="sr-only">{{ page.title }}</h1>
     <latest-posts-section />
     <related-posters-section :related-posters="page.relatedPosters" />

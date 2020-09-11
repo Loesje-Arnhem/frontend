@@ -1,7 +1,6 @@
 <template>
   <div v-if="page" class="page">
     <app-content :title="page.title" :content="page.content" />
-
     <related-posters-section
       v-if="page"
       :related-posters="page.relatedPosters"
@@ -15,20 +14,30 @@
 </template>
 
 <script>
+import { useContext, computed } from '@nuxtjs/composition-api'
 import AppContent from '~/components/Shared/AppContent.vue'
 import RelatedPagesSection from '~/components/Pages/RelatedPages/RelatedPagesSection.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 // import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 import { usePageByUri } from '~/compositions/page'
-
 export default {
   setup() {
-    const { page, loading, error } = usePageByUri()
+    const { params } = useContext()
+    const uri = computed(() => params.value.pathMatch)
+    const { page, loading, error } = usePageByUri(uri)
+    const parentId = computed(() => {
+      if (page.value.parent) {
+        return page.value.parent.node.databaseId
+      }
+      return page.value.databaseId
+    })
 
     return {
+      parentId,
       page,
       loading,
       error,
+      uri,
     }
   },
   components: {
@@ -38,19 +47,11 @@ export default {
     AppContent,
   },
 
-  computed: {
-    parentId() {
-      if (this.page.parent) {
-        return this.page.parent.node.databaseId
-      }
-      return this.page.databaseId
-    },
-  },
-  head() {
-    return {
-      title: this.page.title,
-    }
-  },
+  // head() {
+  //   return {
+  //     title: this.page.title,
+  //   }
+  // },
   nuxtI18n: {
     paths: {
       nl: '/*',

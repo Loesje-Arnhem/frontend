@@ -27,8 +27,26 @@ import RelatedPostersList from '~/components/Posters/RelatedPosters/RelatedPoste
 import usePosters from '~/compositions/posters'
 
 export default {
-  setup() {
-    const { posters, loading, error } = usePosters()
+  setup(props) {
+    const { relatedPosters } = props
+
+    let subjects = []
+    if (relatedPosters.subjects.length) {
+      subjects = relatedPosters.subjects.map((subject) => subject.databaseId)
+    }
+
+    let posterIds = []
+    if (relatedPosters.posters) {
+      posterIds = props.relatedPosters.posters.map(
+        (poster) => poster.poster.databaseId,
+      )
+    }
+
+    const { posters, loading, error } = usePosters({
+      search: relatedPosters.search,
+      subjects,
+      posterIds,
+    })
 
     return {
       posters,
@@ -46,12 +64,11 @@ export default {
       type: Object,
       default: () => {},
     },
-    title: {
-      type: String,
-      default: 'posters',
-    },
   },
   computed: {
+    title() {
+      return this.relatedPosters.title || this.$t('title')
+    },
     btnText() {
       let text = this.$t('btnText')
       if (this.relatedPosters.subjects.length === 1) {
@@ -59,17 +76,6 @@ export default {
         text += this.$t('aboutSubject', { subject: name })
       }
       return text
-    },
-    subjects() {
-      return this.relatedPosters.subjects.map((subject) => subject.databaseId)
-    },
-    posterIds() {
-      if (this.relatedPosters.posters) {
-        return this.relatedPosters.posters.map(
-          (poster) => poster.poster.databaseId,
-        )
-      }
-      return []
     },
   },
 }

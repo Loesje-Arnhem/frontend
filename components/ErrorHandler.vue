@@ -25,13 +25,11 @@ export default {
     }
   },
   created() {
-    EventBusUtil.$on('axios-interceptor-throws-error', (error) =>
-      this.handleError(error),
-    )
+    EventBusUtil.$on('fetch-throws-error', (error) => this.handleError(error))
   },
   methods: {
-    handleError(err) {
-      this.message = err.message
+    handleError(error) {
+      this.message = error
     },
     dismiss() {
       this.message = ''
