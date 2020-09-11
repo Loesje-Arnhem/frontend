@@ -37,7 +37,6 @@ export default {
       page,
       loading,
       error,
-      uri,
     }
   },
   components: {

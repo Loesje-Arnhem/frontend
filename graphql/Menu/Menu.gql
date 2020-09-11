@@ -1,4 +1,4 @@
-fragment page on Page {
+fragment menuItem on Page {
   id
   uri
   title
@@ -6,17 +6,17 @@ fragment page on Page {
 
 query Menu($aboutPageId: ID!, $joinPageId: ID!) {
   aboutPage: page(id: $aboutPageId, idType: DATABASE_ID) {
-    ...page
+    ...menuItem
   }
   joinPage: page(id: $joinPageId, idType: DATABASE_ID) {
-    ...page
+    ...menuItem
   }
   aboutPageChildren: pages(
     where: { parent: $aboutPageId, orderby: { field: MENU_ORDER, order: ASC } }
   ) {
     edges {
       node {
-        ...page
+        ...menuItem
       }
     }
   }
@@ -25,7 +25,7 @@ query Menu($aboutPageId: ID!, $joinPageId: ID!) {
   ) {
     edges {
       node {
-        ...page
+        ...menuItem
       }
     }
   }

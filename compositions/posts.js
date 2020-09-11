@@ -1,11 +1,13 @@
 import { useQuery, useResult } from '@vue/apollo-composable'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
+import PostQuery from '~/graphql/Posts/Post.gql'
 
-export default ({ first = 12 } = {}) => {
+export default ({ first = 12, notIn = null } = {}) => {
   const { result, error, loading, fetchMore } = useQuery(
     PostsQuery,
     {
       first,
+      notIn,
     },
     {
       notifyOnNetworkStatusChange: true,
@@ -39,6 +41,20 @@ export default ({ first = 12 } = {}) => {
   return {
     loadMore,
     posts,
+    error,
+    loading,
+  }
+}
+
+export const usePost = (slug) => {
+  const { result, error, loading } = useQuery(PostQuery, {
+    slug,
+  })
+
+  const post = useResult(result)
+
+  return {
+    post,
     error,
     loading,
   }
