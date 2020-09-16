@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <app-loader v-if="loading" />
+
+  <div v-else-if="poster">
     <center-wrapper>
       <poster-navigation />
       <poster-details :poster="poster" />
@@ -7,19 +9,31 @@
     <posters-overview-section
       :title="$t('relatedTitle')"
       :not-in="poster.databaseId"
-      :subjects="subjects"
+      :subjects="[]"
     />
   </div>
 </template>
 
 <script>
+import { useContext, computed } from '@nuxtjs/composition-api'
 import PosterDetails from '~/components/Posters/Details/PosterDetails.vue'
 import PosterNavigation from '~/components/Posters/Shared/PosterNavigation.vue'
 import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
-import PosterQuery from '~/graphql/Posters/Poster.gql'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import { usePoster } from '~/compositions/posters'
 
 export default {
+  setup() {
+    const { params } = useContext()
+    const slug = computed(() => params.value.slug)
+    const { poster, loading, error } = usePoster(slug)
+
+    return {
+      poster,
+      loading,
+      error,
+    }
+  },
   components: {
     PosterDetails,
     PosterNavigation,
@@ -27,28 +41,16 @@ export default {
     CenterWrapper,
   },
 
-  async asyncData({ app, params }) {
-    const poster = await app.apolloProvider.defaultClient.query({
-      query: PosterQuery,
-      variables: {
-        slug: params.slug,
-      },
-    })
-
-    return {
-      poster: poster.data.poster,
-    }
-  },
-  computed: {
-    subjects() {
-      if (this.poster.subjects.edges.length) {
-        return this.poster.subjects.edges.map(
-          (subject) => subject.node.databaseId,
-        )
-      }
-      return []
-    },
-  },
+  // computed: {
+  //   subjects() {
+  //     if (this.poster.subjects.edges.length) {
+  //       return this.poster.subjects.edges.map(
+  //         (subject) => subject.node.databaseId,
+  //       )
+  //     }
+  //     return []
+  //   },
+  // },
 
   nuxtI18n: {
     paths: {
@@ -57,7 +59,7 @@ export default {
   },
   head() {
     return {
-      title: this.poster.title,
+      // title: this.poster.title,
     }
   },
 }

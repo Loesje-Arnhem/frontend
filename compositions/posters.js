@@ -1,5 +1,6 @@
 import { useQuery, useResult } from '@vue/apollo-composable'
-import PosterQuery from '~/graphql/Posters/Posters.gql'
+import PostersQuery from '~/graphql/Posters/Posters.gql'
+import PosterQuery from '~/graphql/Posters/Poster.gql'
 
 export default ({
   first = 5,
@@ -46,7 +47,7 @@ export default ({
   }
 
   const { result, error, loading, fetchMore } = useQuery(
-    PosterQuery,
+    PostersQuery,
     {
       first,
       where: where(),
@@ -85,5 +86,19 @@ export default ({
     error,
     loading,
     loadMore,
+  }
+}
+
+export const usePoster = (slug) => {
+  const { result, error, loading } = useQuery(PosterQuery, {
+    slug,
+  })
+
+  const post = useResult(result)
+
+  return {
+    post,
+    error,
+    loading,
   }
 }
