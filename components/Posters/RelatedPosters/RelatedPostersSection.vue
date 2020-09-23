@@ -43,6 +43,7 @@ export default {
     }
 
     const { posters, loading, error } = usePosters({
+      first: 5,
       search: relatedPosters.search,
       subjects,
       posterIds,

@@ -60,6 +60,8 @@ export default ({
   const posters = useResult(result)
 
   const loadMore = async () => {
+    if (!posters.value) return
+
     const { endCursor } = posters.value.pageInfo
     await fetchMore({
       variables: {

@@ -5,8 +5,8 @@
     :identifier="infiniteId"
     @infinite="$emit('load-more')"
   >
-    <span slot="no-more" />
-    <span slot="spinner" />
+    <div slot="no-more" />
+    <app-loader slot="spinner" />
   </infinite-loading>
 </template>
 
@@ -22,6 +22,14 @@ export default {
       type: String,
       default: null,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    hasMore: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -29,12 +37,26 @@ export default {
     }
   },
   watch: {
-    state() {
+    loading(value) {
+      if (value) {
+        this.updateState('loading')
+      } else {
+        this.updateState('loaded')
+      }
+    },
+    hasMore(value) {
+      if (!value) {
+        this.updateState('complete')
+      }
+    },
+  },
+  methods: {
+    updateState(state) {
       const { stateChanger } = this.$refs.infiniteLoading
-      if (this.state === 'loaded') {
+      if (state === 'loaded') {
         stateChanger.loaded()
       }
-      if (this.state === 'complete') {
+      if (state === 'complete') {
         stateChanger.complete()
       }
     },
