@@ -61,7 +61,9 @@ export default {
             id,
             slug,
             featuredImage: {
-              medium: featuredImage.medium,
+              node: {
+                medium: featuredImage.node.medium,
+              },
             },
           },
         }

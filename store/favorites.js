@@ -5,7 +5,7 @@ export const state = () => ({
 export const getters = {
   total: (state) => state.list.length,
   isInFavorites: (state) => (id) =>
-    state.list.find((favorite) => favorite.id === id),
+    state.list.findIndex((favorite) => favorite.node.id === id) > -1,
 }
 
 export const mutations = {
@@ -14,7 +14,7 @@ export const mutations = {
   },
   remove: (state, payload) => {
     const list = [...state.list]
-    state.list = list.filter((favorite) => favorite.id !== payload)
+    state.list = list.filter((favorite) => favorite.node.id !== payload)
   },
 }
 
