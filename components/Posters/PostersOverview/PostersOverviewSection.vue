@@ -4,33 +4,57 @@
       <h1 id="posters-overview-title">
         {{ sectionTitle }}
       </h1>
-      <posters-container
-        :not-in="notIn"
-        :subjects="subjects"
-        :sources="sources"
-        :search="search"
-        :show-more="true"
-      >
-        <template v-slot="data">
-          <poster-list v-if="data.posters.length" :posters="data.posters" />
-
-          <p v-else>Geen gerelateerde posters gevonden</p>
-        </template>
-      </posters-container>
+      <poster-list
+        v-if="posters && posters.edges.length"
+        :posters="posters.edges"
+      />
+      <app-loader v-if="loading" />
+      <load-more
+        v-else-if="posters.pageInfo.hasNextPage"
+        :title="$t('btnMore')"
+        @loadMore="loadMore"
+      />
+      <p v-if="posters && posters.edges.length === 0">Geen posters gevonden</p>
     </center-wrapper>
   </section>
 </template>
 
 <script>
+import { computed } from '@nuxtjs/composition-api'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import PostersContainer from '~/components/Posters/Data/PostersContainer.vue'
 import PosterList from '~/components/Posters/Shared/PosterList.vue'
+import usePosters from '~/compositions/posters'
+import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
 
 export default {
+  setup(props) {
+    const { notIn, subjects, sources, search } = props
+
+    const { posters, loading, error, loadMore } = usePosters({
+      search,
+      subjects,
+      notIn,
+      sources,
+    })
+
+    const state = computed(() => {
+      if (loading.value) return 'loading'
+      if (!posters.value.pageInfo.hasNextPage) return 'completed'
+      return null
+    })
+
+    return {
+      state,
+      posters,
+      loading,
+      error,
+      loadMore,
+    }
+  },
   components: {
+    LoadMore,
     PosterList,
     CenterWrapper,
-    PostersContainer,
   },
   props: {
     search: {

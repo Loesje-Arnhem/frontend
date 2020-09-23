@@ -9,7 +9,7 @@
     <posters-overview-section
       :title="$t('relatedTitle')"
       :not-in="poster.databaseId"
-      :subjects="[]"
+      :subjects="subjects"
     />
   </div>
 </template>
@@ -28,7 +28,16 @@ export default {
     const slug = computed(() => params.value.slug)
     const { poster, loading, error } = usePoster(slug)
 
+    const subjects = computed(() => {
+      if (poster.value.subjects.edges.length) {
+        return poster.value.subjects.edges.map(
+          (subject) => subject.node.databaseId,
+        )
+      }
+      return []
+    })
     return {
+      subjects,
       poster,
       loading,
       error,
@@ -40,18 +49,6 @@ export default {
     PostersOverviewSection,
     CenterWrapper,
   },
-
-  // computed: {
-  //   subjects() {
-  //     if (this.poster.subjects.edges.length) {
-  //       return this.poster.subjects.edges.map(
-  //         (subject) => subject.node.databaseId,
-  //       )
-  //     }
-  //     return []
-  //   },
-  // },
-
   nuxtI18n: {
     paths: {
       nl: '/posters/:slug',

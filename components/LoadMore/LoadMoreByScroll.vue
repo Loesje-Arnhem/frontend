@@ -3,7 +3,7 @@
     ref="infiniteLoading"
     placeholder="Loading..."
     :identifier="infiniteId"
-    @infinite="$emit('loadMore')"
+    @infinite="$emit('load-more')"
   >
     <span slot="no-more" />
     <span slot="spinner" />
@@ -20,7 +20,7 @@ export default {
   props: {
     state: {
       type: String,
-      required: true,
+      default: null,
     },
   },
   data() {

@@ -5,7 +5,10 @@
   >
     <center-wrapper>
       <h1 id="posts-overview-title">{{ title }}</h1>
-      <posts-overview-list v-if="posts" :posts="posts.edges" />
+      <posts-overview-list
+        v-if="posts && posts.edges.length"
+        :posts="posts.edges"
+      />
       <app-loader v-if="loading" />
       <load-more
         v-else-if="posts.pageInfo.hasNextPage"

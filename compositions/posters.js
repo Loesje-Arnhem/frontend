@@ -3,7 +3,7 @@ import PostersQuery from '~/graphql/Posters/Posters.gql'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
 
 export default ({
-  first = 5,
+  first = 20,
   search = null,
   notIn = 0,
   subjects = [],
@@ -94,10 +94,10 @@ export const usePoster = (slug) => {
     slug,
   })
 
-  const post = useResult(result)
+  const poster = useResult(result)
 
   return {
-    post,
+    poster,
     error,
     loading,
   }
