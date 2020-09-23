@@ -8,11 +8,10 @@
         v-if="posters && posters.edges.length"
         :posters="posters.edges"
       />
-      <app-loader v-if="loading" />
       <load-more
-        v-else-if="posters.pageInfo.hasNextPage"
-        :title="$t('btnMore')"
-        @loadMore="loadMore"
+        :loading="loading"
+        :has-more="posters && posters.pageInfo.hasNextPage"
+        @load-more="loadMore"
       />
       <p v-if="posters && posters.edges.length === 0">Geen posters gevonden</p>
     </center-wrapper>

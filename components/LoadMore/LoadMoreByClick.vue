@@ -1,7 +1,8 @@
 <template>
-  <div :class="$style['button-wrapper']">
-    <app-button @click="$emit('loadMore')">
-      {{ btnText }}
+  <app-loader v-if="loading" />
+  <div v-else-if="hasMore" :class="$style['button-wrapper']">
+    <app-button @click="$emit('load-more')">
+      {{ title }}
     </app-button>
   </div>
 </template>
@@ -16,15 +17,17 @@ export default {
   props: {
     title: {
       type: String,
-      default: null,
+      default() {
+        return this.$t('btnMore')
+      },
     },
-  },
-  computed: {
-    btnText() {
-      if (this.title) {
-        return this.title
-      }
-      return this.$t('btnMore')
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    hasMore: {
+      type: Boolean,
+      default: false,
     },
   },
 }
