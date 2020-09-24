@@ -1,5 +1,6 @@
 <template>
-  <div v-if="page" class="page">
+  <app-loader v-if="loading" />
+  <div v-else-if="page" class="page">
     <app-content :title="page.title" :content="page.content" />
     <form-workshop />
     <related-posters-section

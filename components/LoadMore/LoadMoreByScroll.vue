@@ -2,7 +2,6 @@
   <infinite-loading
     ref="infiniteLoading"
     placeholder="Loading..."
-    :identifier="infiniteId"
     @infinite="$emit('load-more')"
   >
     <div slot="no-more" />
@@ -31,13 +30,9 @@ export default {
       default: true,
     },
   },
-  data() {
-    return {
-      infiniteId: +new Date(),
-    }
-  },
   watch: {
     loading(value) {
+      console.log(value)
       if (value) {
         this.updateState('loading')
       } else {

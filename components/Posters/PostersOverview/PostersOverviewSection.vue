@@ -9,6 +9,7 @@
         :posters="posters.edges"
       />
       <load-more
+        v-if="posters && posters.edges.length"
         :loading="loading"
         :has-more="posters && posters.pageInfo.hasNextPage"
         @load-more="loadMore"
@@ -29,7 +30,7 @@ export default {
     const { notIn, subjects, sources, search } = props
 
     const { posters, loading, error, loadMore } = usePosters({
-      search: 'voetbal' + search,
+      search,
       subjects,
       notIn,
       sources,

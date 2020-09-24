@@ -3,7 +3,7 @@
     <app-button
       :is-primary="false"
       :class="{ 'is-active': isInFavorites }"
-      @click="toggle"
+      @click="toggleFavorite"
     >
       <icon-heart
         :class="$style.icon"
@@ -50,7 +50,7 @@ export default {
       add: 'favorites/add',
       remove: 'favorites/remove',
     }),
-    toggle() {
+    toggleFavorite() {
       if (this.isInFavorites) {
         this.remove(this.poster.id)
       } else {
