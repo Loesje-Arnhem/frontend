@@ -1,6 +1,6 @@
 <template>
   <app-loader v-if="loading" />
-  <div v-else-if="hasMore" :class="$style['button-wrapper']">
+  <div v-else-if="hasMore" :class="$style.wrapper">
     <app-button @click="$emit('load-more')">
       {{ title }}
     </app-button>
@@ -18,7 +18,7 @@ export default {
     title: {
       type: String,
       default() {
-        return this.$t('btnMore')
+        return this.$t('title')
       },
     },
     loading: {
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.button-wrapper {
+.wrapper {
   text-align: center;
 }
 </style>
@@ -42,7 +42,7 @@ export default {
 <i18n>
 {
   "nl": {
-    "btnMore": "Toon meer"
+    "title": "Toon meer"
   }
 }
 </i18n>

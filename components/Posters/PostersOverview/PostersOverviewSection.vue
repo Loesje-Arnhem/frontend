@@ -4,10 +4,12 @@
       <h1 id="posters-overview-title">
         {{ title }}
       </h1>
-      <poster-list
-        v-if="posters && posters.edges.length"
-        :posters="posters.edges"
-      />
+    </center-wrapper>
+    <poster-list
+      v-if="posters && posters.edges.length"
+      :posters="posters.edges"
+    />
+    <center-wrapper>
       <load-more
         v-if="posters && posters.edges.length"
         :loading="loading"
@@ -30,7 +32,6 @@ export default {
     const { notIn, subjects, sources, search } = props
 
     const { posters, loading, error, loadMore } = usePosters({
-      first: 10,
       search,
       subjects,
       notIn,

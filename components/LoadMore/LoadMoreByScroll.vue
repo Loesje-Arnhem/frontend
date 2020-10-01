@@ -1,9 +1,5 @@
 <template>
-  <infinite-loading
-    ref="infiniteLoading"
-    placeholder="Loading..."
-    @infinite="testa"
-  >
+  <infinite-loading ref="infiniteLoading" @infinite="loadMore">
     <div slot="no-more" />
     <app-loader slot="spinner" />
   </infinite-loading>
@@ -17,10 +13,6 @@ export default {
     InfiniteLoading,
   },
   props: {
-    state: {
-      type: String,
-      default: null,
-    },
     loading: {
       type: Boolean,
       default: false,
@@ -30,12 +22,13 @@ export default {
       default: true,
     },
   },
+
   watch: {
     loading(value) {
-      if (value) {
-        this.updateState('loading')
-      } else {
-        this.updateState('loaded')
+      if (!value) {
+        this.$nextTick(() => {
+          this.updateState('loaded')
+        })
       }
     },
     hasMore(value) {
@@ -45,9 +38,10 @@ export default {
     },
   },
   methods: {
-    testa(value) {
-      console.log('value', this.loading)
-      this.$emit('load-more')
+    loadMore() {
+      this.$nextTick(() => {
+        this.$emit('load-more')
+      })
     },
     updateState(state) {
       const { stateChanger } = this.$refs.infiniteLoading
