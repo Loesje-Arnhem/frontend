@@ -6,32 +6,38 @@
     <div ref="menu">
       <ul :class="$style.menu">
         <main-navigation-item
+          class="home"
           :title="$t('pages.home')"
           :uri="localePath({ name: 'index' })"
         />
         <main-navigation-item
+          class="page"
           :title="$t('pages.posters')"
           :uri="localePath({ name: 'posters' })"
         />
         <main-navigation-item
+          class="page"
           :title="menu.aboutPage.title"
           :uri="menu.aboutPage.uri"
           :children="menu.aboutPageChildren"
           :reset-submenu="menuIsOpen"
         />
         <main-navigation-item
+          class="page"
           :title="menu.joinPage.title"
           :uri="menu.joinPage.uri"
           :children="menu.joinPageChildren"
           :reset-submenu="menuIsOpen"
         />
         <main-navigation-item
+          class="page"
           :title="$t('pages.workshops')"
           :uri="localePath({ name: 'workshops' })"
         />
 
         <main-navigation-item
           v-if="menu.productCategories.edges.length"
+          class="page"
           :title="$t('pages.shop')"
           :uri="menu.productCategories.edges[0].node.uri"
           :children="menu.productCategories"
@@ -104,21 +110,13 @@ export default {
       }
     },
     getMainLink() {
-      let activeLink = this.$refs.menu.querySelector(
-        '.menu-link.nuxt-link-active[aria-haspopup=true], .menu-link.nuxt-link-exact-active',
+      const activeLink = this.$refs.menu.querySelector(
+        '.home .nuxt-link-exact-active',
       )
       if (activeLink) {
         return activeLink
       }
-      const activeSubLink = this.$refs.menu.querySelector(
-        '.submenu-link.nuxt-link-exact-active',
-      )
-      if (activeSubLink) {
-        const menuItem = activeSubLink.closest('.menu-item.has-popup')
-        activeLink = menuItem.querySelector('.menu-link')
-        return activeLink
-      }
-      return null
+      return this.$refs.menu.querySelector('.page .nuxt-link-active')
     },
   },
 }
