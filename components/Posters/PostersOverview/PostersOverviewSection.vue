@@ -30,6 +30,7 @@ export default {
     const { notIn, subjects, sources, search } = props
 
     const { posters, loading, error, loadMore } = usePosters({
+      first: 10,
       search,
       subjects,
       notIn,

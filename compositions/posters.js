@@ -61,7 +61,6 @@ export default ({
 
   const loadMore = async () => {
     const { endCursor } = posters.value.pageInfo
-    console.log(endCursor)
     await fetchMore({
       variables: {
         after: endCursor,

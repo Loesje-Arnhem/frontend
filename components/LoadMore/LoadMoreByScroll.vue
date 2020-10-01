@@ -2,7 +2,7 @@
   <infinite-loading
     ref="infiniteLoading"
     placeholder="Loading..."
-    @infinite="$emit('load-more')"
+    @infinite="testa"
   >
     <div slot="no-more" />
     <app-loader slot="spinner" />
@@ -32,7 +32,6 @@ export default {
   },
   watch: {
     loading(value) {
-      console.log(value)
       if (value) {
         this.updateState('loading')
       } else {
@@ -46,6 +45,10 @@ export default {
     },
   },
   methods: {
+    testa(value) {
+      console.log('value', this.loading)
+      this.$emit('load-more')
+    },
     updateState(state) {
       const { stateChanger } = this.$refs.infiniteLoading
       if (state === 'loaded') {
