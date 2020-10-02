@@ -25,6 +25,14 @@ import LatestPostsSection from '~/components/Posts/LatestPosts/LatestPostsSectio
 import { usePageById } from '~/compositions/page'
 
 export default {
+  components: {
+    Groups,
+    // BlockInstagram,
+    RelatedPostersSection,
+    AppStoresSection,
+    LatestPostsSection,
+    // RelatedProductsSection,
+  },
   setup() {
     const { page, loading, error } = usePageById(homePageId)
 
@@ -33,15 +41,6 @@ export default {
       loading,
       error,
     }
-  },
-
-  components: {
-    Groups,
-    // BlockInstagram,
-    RelatedPostersSection,
-    AppStoresSection,
-    LatestPostsSection,
-    // RelatedProductsSection,
   },
 
   head() {

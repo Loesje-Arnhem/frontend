@@ -21,6 +21,12 @@ import FormWorkshop from '~/components/Blocks/FormWorkshop.vue'
 // import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
+  components: {
+    AppContent,
+    RelatedPostersSection,
+    FormWorkshop,
+    // RelatedProductsSection,
+  },
   setup() {
     const { page, loading, error } = usePageById(workshopsPageId)
 
@@ -29,12 +35,6 @@ export default {
       loading,
       error,
     }
-  },
-  components: {
-    AppContent,
-    RelatedPostersSection,
-    FormWorkshop,
-    // RelatedProductsSection,
   },
 
   // head() {

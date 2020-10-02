@@ -3,7 +3,7 @@
     :query="require('~/graphql/Products/Products.gql')"
     :variables="{ where }"
   >
-    <template v-slot="{ result: { data }, isLoading }">
+    <template #default="{ result: { data }, isLoading }">
       <app-loader v-if="isLoading" />
       <slot v-else-if="data" :products="data.products.edges" />
     </template>

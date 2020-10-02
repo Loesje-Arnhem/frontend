@@ -23,6 +23,13 @@ import LatestPostsList from '~/components/Posts/LatestPosts/LatestPostsList.vue'
 import usePosts from '~/compositions/posts'
 
 export default {
+  components: {
+    Balloon,
+    AppButton,
+    CenterWrapper,
+    BecomeMember,
+    LatestPostsList,
+  },
   setup() {
     const { posts, loading, error } = usePosts({
       first: 3,
@@ -33,13 +40,6 @@ export default {
       loading,
       error,
     }
-  },
-  components: {
-    Balloon,
-    AppButton,
-    CenterWrapper,
-    BecomeMember,
-    LatestPostsList,
   },
 }
 </script>

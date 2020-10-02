@@ -12,8 +12,8 @@
       :type="type"
       class="input"
       :maxlength="maxlength"
-      @keyup.down="$emit('keyupDown')"
-      @keyup.up="$emit('keyupUp')"
+      @keyup.down="$emit('keyup-down')"
+      @keyup.up="$emit('keyup-up')"
       @input="$emit('input', $event.target.value)"
     />
   </form-field>

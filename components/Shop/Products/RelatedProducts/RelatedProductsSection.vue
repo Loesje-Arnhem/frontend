@@ -7,7 +7,7 @@
       <h1 id="featured-products">{{ title }}</h1>
 
       <products-container :product-ids="productIds">
-        <template v-slot="data">
+        <template #default="data">
           <product-list v-if="data" :products="data.products" />
         </template>
       </products-container>

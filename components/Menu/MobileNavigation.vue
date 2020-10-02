@@ -6,7 +6,7 @@
 
         <span class="sr-only">{{ title }}</span>
       </nuxt-link>
-      <main-navigation-toggle @toggleMenu="toggleMenu(true)" />
+      <main-navigation-toggle @toggle-menu="toggleMenu(true)" />
     </div>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
   methods: {
     toggleMenu(status) {
       this.menuIsExpanded = status
-      this.$emit('toggleMenu', status)
+      this.$emit('toggle-menu', status)
     },
   },
 }

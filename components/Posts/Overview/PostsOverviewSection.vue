@@ -26,6 +26,17 @@ import usePosts from '~/compositions/posts'
 import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
 
 export default {
+  components: {
+    PostsOverviewList,
+    CenterWrapper,
+    LoadMore,
+  },
+  props: {
+    notIn: {
+      type: Number,
+      default: 0,
+    },
+  },
   setup(props) {
     const { notIn } = props
     const { posts, loading, error, loadMore } = usePosts({
@@ -38,17 +49,6 @@ export default {
       error,
       loadMore,
     }
-  },
-  components: {
-    PostsOverviewList,
-    CenterWrapper,
-    LoadMore,
-  },
-  props: {
-    notIn: {
-      type: Number,
-      default: 0,
-    },
   },
   computed: {
     title() {

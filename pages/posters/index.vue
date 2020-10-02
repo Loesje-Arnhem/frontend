@@ -34,8 +34,15 @@ export default {
     return {
       title: 'Posters',
       selectedTags: [],
+      search: null,
     }
   },
+  head() {
+    return {
+      title: this.title,
+    }
+  },
+
   computed: {
     ...mapState('tags', ['tags', 'search']),
 
@@ -48,11 +55,6 @@ export default {
     paths: {
       nl: '/posters',
     },
-  },
-  head() {
-    return {
-      title: this.title,
-    }
   },
 }
 </script>

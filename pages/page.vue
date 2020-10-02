@@ -22,6 +22,12 @@ import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPo
 // import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 import { usePageByUri } from '~/compositions/page'
 export default {
+  components: {
+    RelatedPagesSection,
+    RelatedPostersSection,
+    // RelatedProductsSection,
+    AppContent,
+  },
   setup() {
     const { params } = useContext()
     const uri = computed(() => params.value.pathMatch)
@@ -39,12 +45,6 @@ export default {
       loading,
       error,
     }
-  },
-  components: {
-    RelatedPagesSection,
-    RelatedPostersSection,
-    // RelatedProductsSection,
-    AppContent,
   },
 
   // head() {

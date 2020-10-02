@@ -1,6 +1,6 @@
 <template>
   <product-category-container>
-    <template v-slot="data">
+    <template #default="data">
       <nav
         v-if="data.productCategories"
         aria-labelledby="categories-title"

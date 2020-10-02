@@ -1,6 +1,6 @@
 <template>
   <products-container :category="category" :product-ids="productIds">
-    <template v-slot="data">
+    <template #default="data">
       <product-list v-if="data" :products="data.products" />
     </template>
   </products-container>

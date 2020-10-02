@@ -23,6 +23,12 @@ import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import { usePoster } from '~/compositions/posters'
 
 export default {
+  components: {
+    PosterDetails,
+    PosterNavigation,
+    PostersOverviewSection,
+    CenterWrapper,
+  },
   setup() {
     const { params } = useContext()
     const slug = computed(() => params.value.slug)
@@ -42,12 +48,6 @@ export default {
       loading,
       error,
     }
-  },
-  components: {
-    PosterDetails,
-    PosterNavigation,
-    PostersOverviewSection,
-    CenterWrapper,
   },
   nuxtI18n: {
     paths: {

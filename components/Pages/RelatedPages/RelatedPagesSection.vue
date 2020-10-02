@@ -5,7 +5,7 @@
   >
     <h2 id="related-pages-title" class="sr-only">Overige pagina's</h2>
     <related-pages-container :not-in="notIn" :parent-page-id="parentPageId">
-      <template v-slot="data">
+      <template #default="data">
         <related-pages-list v-if="data" :pages="data.pages" />
       </template>
     </related-pages-container>

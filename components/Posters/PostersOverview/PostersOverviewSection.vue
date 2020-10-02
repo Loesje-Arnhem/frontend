@@ -28,23 +28,6 @@ import usePosters from '~/compositions/posters'
 import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
 
 export default {
-  setup(props) {
-    const { notIn, subjects, sources, search } = props
-
-    const { posters, loading, error, loadMore } = usePosters({
-      search,
-      subjects,
-      notIn,
-      sources,
-    })
-
-    return {
-      posters,
-      loading,
-      error,
-      loadMore,
-    }
-  },
   components: {
     LoadMore,
     PosterList,
@@ -73,6 +56,23 @@ export default {
         return this.$t('title')
       },
     },
+  },
+  setup(props) {
+    const { notIn, subjects, sources, search } = props
+
+    const { posters, loading, error, loadMore } = usePosters({
+      search,
+      subjects,
+      notIn,
+      sources,
+    })
+
+    return {
+      posters,
+      loading,
+      error,
+      loadMore,
+    }
   },
 }
 </script>

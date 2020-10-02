@@ -18,6 +18,11 @@ import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/R
 import { usePageById } from '~/compositions/page'
 
 export default {
+  components: {
+    // RelatedPostersSection,
+    PostsOverviewSection,
+    RelatedProductsSection,
+  },
   setup() {
     const { page, loading, error } = usePageById(blogPageId)
 
@@ -27,11 +32,7 @@ export default {
       error,
     }
   },
-  components: {
-    // RelatedPostersSection,
-    PostsOverviewSection,
-    RelatedProductsSection,
-  },
+
   nuxtI18n: {
     paths: {
       nl: '/over-mij/nieuws',

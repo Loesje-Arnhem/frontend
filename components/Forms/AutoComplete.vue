@@ -12,8 +12,8 @@
         placeholder="Zoek op tekst"
         autocomplete="off"
         @input="onInput"
-        @keyup-down="onArrowDown"
-        @keyup-up="onArrowUp"
+        @keyupDown="onArrowDown"
+        @keyupUp="onArrowUp"
       />
       <button type="submit" :class="$style['btn-submit']">
         <icon-search aria-hidden="true" width="32" height="32" />
@@ -25,7 +25,7 @@
             v-for="(result, index) in resultsWithHighlightText"
             :key="result.id"
           >
-            <!-- eslint-disable vue/no-v-html -->
+            <!-- eslint-disable -->
             <router-link
               :class="[
                 { [$style.active]: index === arrowCounter },
@@ -58,12 +58,6 @@ export default {
     search: {
       required,
       minLength: minLength(2),
-    },
-  },
-  props: {
-    results2: {
-      type: Array,
-      default: () => [],
     },
   },
   data() {

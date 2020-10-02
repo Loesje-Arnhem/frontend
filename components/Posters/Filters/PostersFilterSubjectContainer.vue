@@ -1,6 +1,6 @@
 <template>
   <apollo-query :query="require('~/graphql/Posters/Subjects.gql')">
-    <template v-slot="{ result: { data }, isLoading }">
+    <template #default="{ result: { data }, isLoading }">
       <app-loader v-if="isLoading" />
       <poster-filter-tags v-else-if="data" :list="data.subjects.edges" />
     </template>

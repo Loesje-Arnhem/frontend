@@ -27,6 +27,17 @@ import RelatedPostersList from '~/components/Posters/RelatedPosters/RelatedPoste
 import usePosters from '~/compositions/posters'
 
 export default {
+  components: {
+    AppButton,
+    CenterWrapper,
+    RelatedPostersList,
+  },
+  props: {
+    relatedPosters: {
+      type: Object,
+      default: () => {},
+    },
+  },
   setup(props) {
     const { relatedPosters } = props
 
@@ -54,17 +65,6 @@ export default {
       loading,
       error,
     }
-  },
-  components: {
-    AppButton,
-    CenterWrapper,
-    RelatedPostersList,
-  },
-  props: {
-    relatedPosters: {
-      type: Object,
-      default: () => {},
-    },
   },
   computed: {
     title() {

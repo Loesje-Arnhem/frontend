@@ -6,7 +6,7 @@
       parentPageId: parentPageId.toString(),
     }"
   >
-    <template v-slot="{ result: { data }, isLoading }">
+    <template #default="{ result: { data }, isLoading }">
       <app-loader v-if="isLoading" />
       <slot v-else-if="data && data.pages.edges" :pages="data.pages.edges" />
     </template>

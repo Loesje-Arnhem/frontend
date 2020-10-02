@@ -4,8 +4,8 @@
       <nuxt-link :to="page.uri">{{ page.title }}</nuxt-link>
     </h2>
     <div :class="$style.text">
-      <!-- eslint-disable-next-line -->
-    <div v-html="page.excerpt" />
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <div v-html="page.excerpt" />
       <read-more-link />
     </div>
   </clickable-list-item>

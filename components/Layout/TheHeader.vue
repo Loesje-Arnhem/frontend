@@ -2,7 +2,7 @@
   <header :class="$style.header">
     <center-wrapper>
       <skip-links />
-      <mobile-navigation :expanded="showMenu" @toggleMenu="toggleMenu" />
+      <mobile-navigation :expanded="showMenu" @toggle-menu="toggleMenu" />
 
       <transition
         name="slide"
@@ -16,7 +16,7 @@
                 :close="true"
                 :class="$style.toggle"
                 :expanded="showMenu"
-                @toggleMenu="toggleMenu(false)"
+                @toggle-menu="toggleMenu(false)"
               />
               <main-navigation
                 :class="$style['main-navigation']"

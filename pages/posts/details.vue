@@ -26,6 +26,12 @@ import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPo
 import { usePost } from '~/compositions/posts'
 
 export default {
+  components: {
+    AppContent,
+    PostsOverviewSection,
+    RelatedPostersSection,
+    // RelatedProductsSection,
+  },
   setup() {
     const { params } = useContext()
     const uri = computed(() => params.value.slug)
@@ -36,12 +42,6 @@ export default {
       loading,
       error,
     }
-  },
-  components: {
-    AppContent,
-    PostsOverviewSection,
-    RelatedPostersSection,
-    // RelatedProductsSection,
   },
 
   // head() {

@@ -2,7 +2,7 @@
   <button
     :aria-expanded="expanded ? 'true' : 'false'"
     :class="$style.btn"
-    @click="$emit('toggleMenu')"
+    @click="$emit('toggle-menu')"
   >
     <component
       :is="icon"
