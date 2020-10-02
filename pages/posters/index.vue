@@ -5,17 +5,18 @@
       <posters-auto-complete />
       <poster-filter-tags :list="tags" />
     </center-wrapper>
-    <posters-overview-section
+    {{ search }}
+    <!-- <posters-overview-section
       :sources="sourceIds"
       :subjects="subjectIds"
       :search="search"
-    />
+    /> -->
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
+// import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
 import PostersAutoComplete from '~/components/Posters/AutoComplete/AutoComplete.vue'
 import PosterFilters from '~/components/Posters/Filters/PosterFilters.vue'
 import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
@@ -23,7 +24,7 @@ import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 
 export default {
   components: {
-    PostersOverviewSection,
+    // PostersOverviewSection,
     PostersAutoComplete,
     PosterFilters,
     PosterFilterTags,
@@ -34,7 +35,6 @@ export default {
     return {
       title: 'Posters',
       selectedTags: [],
-      search: null,
     }
   },
   head() {

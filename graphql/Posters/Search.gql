@@ -4,7 +4,7 @@ query Search($search: String) {
   posters(where: { search: $search }, first: 10) {
     edges {
       node {
-        slug
+        uri
         ...poster
       }
     }

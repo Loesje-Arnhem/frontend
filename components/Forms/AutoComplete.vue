@@ -1,37 +1,37 @@
 <template>
-  <form method="get" @keyup.esc="reset" @submit.prevent="onSubmit">
-    <legend class="sr-only">Zoeken naar posters</legend>
+  <form method="get" @keyup.esc="reset" @submit.prevent="submit">
+    <legend class="sr-only">{{ $t('title') }}</legend>
     <div :class="$style['input-wrapper']">
       <form-input-text
         id="search"
-        v-model="$v.search.$model"
+        :value="$v.value.$model"
         :class="$style.search"
-        title="Zoek op tekst"
+        :title="$t('title')"
         type="search"
         name="search"
-        placeholder="Zoek op tekst"
+        v-bind="$attrs"
         autocomplete="off"
-        @input="onInput"
-        @keyupDown="onArrowDown"
-        @keyupUp="onArrowUp"
+        @input="input"
+        @keyup-down="onArrowDown"
+        @keyup-up="onArrowUp"
       />
       <button type="submit" :class="$style['btn-submit']">
         <icon-search aria-hidden="true" width="32" height="32" />
-        <span class="sr-only">Zoeken</span>
+        <span class="sr-only">{{ $t('title') }}</span>
       </button>
-      <div v-if="isOpen" :class="$style.autocomplete">
+      <div v-if="resultsWithHighlightText.length" :class="$style.autocomplete">
         <ul :class="$style.list">
           <li
             v-for="(result, index) in resultsWithHighlightText"
             :key="result.id"
           >
-            <!-- eslint-disable -->
+            <!-- eslint-disable vue/no-v-html -->
             <router-link
               :class="[
                 { [$style.active]: index === arrowCounter },
                 $style['btn-result'],
               ]"
-              :to="result.url"
+              :to="result.uri"
               v-html="result.title"
             />
             <!-- eslint-enable -->
@@ -44,9 +44,7 @@
 
 <script>
 import { required, minLength } from 'vuelidate/lib/validators'
-import { mapActions } from 'vuex'
 import IconSearch from '~/assets/icons/search.svg'
-import SearchQuery from '~/graphql/Posters/Search.gql'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 
 export default {
@@ -54,71 +52,66 @@ export default {
     IconSearch,
     FormInputText,
   },
+  inheritAttrs: false,
   validations: {
-    search: {
+    value: {
       required,
       minLength: minLength(2),
     },
   },
+  props: {
+    results: {
+      type: Array,
+      default: () => [],
+    },
+    value: {
+      type: String,
+      default: '',
+    },
+    title: {
+      type: String,
+      default() {
+        return this.$t('title')
+      },
+    },
+  },
   data() {
     return {
-      search: '',
       arrowCounter: -1,
     }
   },
-  apollo: {
-    results: {
-      query: SearchQuery,
-      variables() {
-        return {
-          search: this.search,
-        }
-      },
-      debounce: 200,
-      skip: true,
-      update: (data) => data.posters.edges,
-    },
-  },
+
   computed: {
     resultsWithHighlightText() {
       if (!this.results) {
         return []
       }
       return this.results.map((item) => {
-        const { title, slug, id } = item.node
+        const { title } = item.node
         return {
-          id,
-          url: `/posters/${slug}`,
-          value: title,
+          ...item.node,
           // make current searchterm bold with a regex
           title: title.replace(
-            new RegExp(`(^|)(${this.search})(|$)`, 'ig'),
+            new RegExp(`(^|)(${this.value})(|$)`, 'ig'),
             '$1<strong>$2</strong>$3',
           ),
         }
       })
     },
-    isOpen() {
-      return !this.$v.search.$invalid && this.resultsWithHighlightText.length
-    },
   },
 
   mounted() {
     document.addEventListener('click', this.handleClickOutside)
-    this.search = this.$store.state.tags.search
   },
   destroyed() {
     document.removeEventListener('click', this.handleClickOutside)
   },
   methods: {
-    ...mapActions({
-      addSearch: 'tags/search',
-    }),
-    onInput() {
-      this.$apollo.queries.results.skip = this.$v.search.$invalid
+    input(value) {
+      this.$emit('input', value)
     },
-    goToPoster(result) {
-      this.$router.push(result.url)
+    selectItem(result) {
+      this.$router.push(result.uri)
     },
     onArrowDown() {
       if (this.arrowCounter < this.results.length - 1) {
@@ -130,18 +123,15 @@ export default {
         this.arrowCounter = this.arrowCounter - 1
       }
     },
-    onSubmit() {
-      if (this.arrowCounter > -1) {
-        this.goToPoster(this.resultsWithHighlightText[this.arrowCounter])
-      } else {
-        this.submit()
-      }
-    },
     submit() {
-      this.isValid = this.$v.search.minLength
-      if (this.isValid) {
-        this.close()
-        this.addSearch(this.search)
+      if (this.arrowCounter > -1) {
+        this.selectItem(this.resultsWithHighlightText[this.arrowCounter])
+      } else {
+        this.isValid = this.$v.search.minLength
+        if (this.isValid) {
+          this.close()
+          this.$emit('submit', this.value)
+        }
       }
     },
     handleClickOutside(event) {
@@ -150,14 +140,12 @@ export default {
       }
     },
     reset() {
-      this.addSearch('')
-      this.search = ''
+      this.$emit('submit', '')
       this.close()
     },
     close() {
-      this.$apollo.queries.results.skip = true
       this.arrowCounter = -1
-      this.results = []
+      this.$emit('close')
     },
   },
 }
@@ -201,7 +189,7 @@ export default {
   }
 
   & :global(.input) {
-    padding: 0.75em 2em 0.75em 0.75em;
+    padding-right: 2em 0.75em 0.75em;
   }
 }
 
@@ -226,3 +214,11 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "nl": {
+    "title": "Zoeken"
+  }
+}
+</i18n>
