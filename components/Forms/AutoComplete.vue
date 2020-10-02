@@ -4,7 +4,7 @@
     <div :class="$style['input-wrapper']">
       <form-input-text
         id="search"
-        :value="$v.value.$model"
+        :value="value"
         :class="$style.search"
         :title="$t('title')"
         type="search"
@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { required, minLength } from 'vuelidate/lib/validators'
 import IconSearch from '~/assets/icons/search.svg'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 
@@ -53,16 +52,11 @@ export default {
     FormInputText,
   },
   inheritAttrs: false,
-  validations: {
-    value: {
-      required,
-      minLength: minLength(2),
-    },
-  },
+
   props: {
     results: {
-      type: Array,
-      default: () => [],
+      type: Object,
+      default: () => {},
     },
     value: {
       type: String,
@@ -83,10 +77,10 @@ export default {
 
   computed: {
     resultsWithHighlightText() {
-      if (!this.results) {
+      if (!this.results || !this.results.edges.length) {
         return []
       }
-      return this.results.map((item) => {
+      return this.results.edges.map((item) => {
         const { title } = item.node
         return {
           ...item.node,
@@ -114,7 +108,7 @@ export default {
       this.$router.push(result.uri)
     },
     onArrowDown() {
-      if (this.arrowCounter < this.results.length - 1) {
+      if (this.arrowCounter < this.resultsWithHighlightText.length - 1) {
         this.arrowCounter = this.arrowCounter + 1
       }
     },
@@ -127,11 +121,8 @@ export default {
       if (this.arrowCounter > -1) {
         this.selectItem(this.resultsWithHighlightText[this.arrowCounter])
       } else {
-        this.isValid = this.$v.search.minLength
-        if (this.isValid) {
-          this.close()
-          this.$emit('submit', this.value)
-        }
+        this.close()
+        this.$emit('submit', this.value)
       }
     },
     handleClickOutside(event) {
@@ -204,7 +195,7 @@ export default {
   text-align: left;
   display: block;
   font-size: 1em;
-  padding: 0.5em 1em;
+  padding: 0.5em 0.75em;
 
   &.active,
   &:focus,

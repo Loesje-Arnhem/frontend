@@ -1,6 +1,9 @@
 import { useQuery, useResult } from '@vue/apollo-composable'
+import { ref } from '@nuxtjs/composition-api'
+// import { ref, computed } from '@nuxtjs/composition-api'
 import PostersQuery from '~/graphql/Posters/Posters.gql'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
+import SearchQuery from '~/graphql/Posters/Search.gql'
 
 export default ({
   first = 20,
@@ -100,5 +103,36 @@ export const usePoster = (slug) => {
     poster,
     error,
     loading,
+  }
+}
+
+export const useSearchPosters = () => {
+  const search = ref('')
+
+  // const enabled = computed(() => search.value.length > 2)
+
+  const { result, refetch } = useQuery(
+    SearchQuery,
+    {
+      search: search.value,
+    },
+    {
+      // prefetch: false,
+      // debounce: 200,
+      // enabled: enabled.value,
+      fetchPolicy: 'no-cache',
+    },
+  )
+  const searchPosters = () => {
+    refetch({
+      search: search.value,
+    })
+  }
+  const posters = useResult(result)
+
+  return {
+    searchPosters,
+    search,
+    posters,
   }
 }

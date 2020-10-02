@@ -4,7 +4,6 @@
 export default [
   '~/plugins/vue-youtube',
   '~/plugins/axios',
-  '~/plugins/vuelidate',
   '~/plugins/apollo',
   { src: '~/plugins/houdini', mode: 'client' },
   { src: '~/plugins/vuex-persist', mode: 'client' },

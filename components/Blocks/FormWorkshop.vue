@@ -14,7 +14,7 @@
       <form-fieldset title="Contact">
         <form-input-text
           id="email"
-          v-model="form.email"
+          v-model="$v.emailAddress.$model"
           :error-message="errorMessageEmail"
           title="E-mailadres"
           type="email"
@@ -22,7 +22,7 @@
         />
         <form-input-text
           id="name"
-          v-model="form.name"
+          v-model="$v.name.$model"
           :error-message="errorMessageName"
           title="Naam"
           name="name"
@@ -60,8 +60,9 @@
 </template>
 
 <script>
-import { required, email } from 'vuelidate/lib/validators'
-
+import { email, required } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
+import { ref } from '@vue/composition-api'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppForm from '~/components/Forms/AppForm.vue'
@@ -72,13 +73,23 @@ export default {
     FormInputText,
     AppForm,
   },
+  setup() {
+    const name = ref('')
+    const emailAddress = ref('')
+    const rules = {
+      name: { required },
+      emailAddress: { required, email },
+    }
+
+    const $v = useVuelidate(rules, { name, emailAddress })
+
+    return { name, email, $v }
+  },
   data() {
     return {
       submitted: false,
 
       form: {
-        email: '',
-        name: '',
         phoneNumber: '',
         companyName: '',
         totalAttendees: '',
@@ -86,41 +97,14 @@ export default {
       },
     }
   },
-  validations: {
-    form: {
-      name: {
-        required,
-      },
-      email: {
-        required,
-        email,
-      },
-    },
-  },
   computed: {
     errorMessageName() {
-      if (this.$v.form.name.$anyError) {
-        if (!this.$v.form.name.required) {
-          return this.$t('form.errors.general.required', {
-            field: this.$t('form.fields.name').toLowerCase(),
-          })
-        }
-      }
-      return null
+      return this.$v.name.$errors.map((error) => error.$message).join('')
     },
     errorMessageEmail() {
-      if (this.$v.form.email.$anyError) {
-        if (!this.$v.form.email.required) {
-          return this.$t('form.errors.general.required', {
-            field: this.$t('form.fields.email').toLowerCase(),
-          })
-        }
-
-        if (!this.$v.form.email.email) {
-          return this.$t('form.errors.fields.email.invalidEmail')
-        }
-      }
-      return null
+      return this.$v.emailAddress.$errors
+        .map((error) => error.$message)
+        .join('')
     },
   },
   methods: {

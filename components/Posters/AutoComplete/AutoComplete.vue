@@ -1,50 +1,45 @@
 <template>
   <auto-complete
     v-model="search"
-    :results="results"
-    title="Zoeken naar posters"
-    placeholder="Zoeken naar posters op tekst"
-    @input="input"
+    :results="posters"
+    :title="$t('title')"
+    :placeholder="$t('placeholder')"
+    @input="searchPosters"
     @close="close"
   />
 </template>
 
 <script>
 import AutoComplete from '@/components/Forms/AutoComplete.vue'
-import SearchQuery from '~/graphql/Posters/Search.gql'
+import { useSearchPosters } from '~/compositions/posters'
 
 export default {
   components: {
     AutoComplete,
   },
+  setup() {
+    const { posters, search, searchPosters } = useSearchPosters()
 
-  data() {
     return {
-      search: '',
+      searchPosters,
+      posters,
+      search,
     }
-  },
-  apollo: {
-    results: {
-      query: SearchQuery,
-      variables() {
-        return {
-          search: this.search,
-        }
-      },
-      debounce: 200,
-      skip: true,
-      update: (data) => data.posters.edges,
-    },
   },
 
   methods: {
-    input() {
-      this.$apollo.queries.results.skip = false
-    },
     close() {
-      this.$apollo.queries.results.skip = true
-      this.results = []
+      this.results = {}
     },
   },
 }
 </script>
+
+<i18n>
+{
+  "nl": {
+    "title": "Zoeken naar posters",
+    "placeholder": "Zoeken naar posters op tekst"
+  }
+}
+</i18n>
