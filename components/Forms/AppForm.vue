@@ -1,10 +1,16 @@
 <template>
+  <p v-if="submitted">
+    {{ $t('form.forms.contact.success') }}
+  </p>
+
   <form
+    v-else
     :name="name"
     data-netlify="true"
     action
     method="post"
-    @submit="$emit('submit')"
+    novalidate
+    @submit.prevent="$emit('submit')"
   >
     <slot />
     <app-button type="submit">{{ buttonTitle }}</app-button>
@@ -21,11 +27,15 @@ export default {
   props: {
     buttonTitle: {
       type: String,
-      required: true,
+      default: 'Verzenden',
     },
     name: {
       type: String,
       required: true,
+    },
+    submitted: {
+      type: Boolean,
+      default: false,
     },
   },
 }

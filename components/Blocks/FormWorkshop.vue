@@ -1,21 +1,16 @@
 <template>
-  <div class="wrapper">
-    <p v-if="submitted">
-      {{ $t('form.forms.contact.success') }}
-    </p>
-
+  <div :class="$style.wrapper">
     <app-form
-      v-else
-      class="form"
+      :class="$style.form"
       name="workshop"
-      button-title="Verzenden"
-      @submit.prevent="submitForm"
+      :submitted="submitted"
+      @submit="submit"
     >
       <form-fieldset title="Contact">
         <form-input-text
           id="email"
-          v-model="$v.emailAddress.$model"
-          :errors="$v.emailAddress.$errors"
+          v-model="$v.email.$model"
+          :errors="$v.email.$errors"
           title="E-mailadres"
           type="email"
           name="email"
@@ -29,27 +24,27 @@
         />
         <form-input-text
           id="phoneNumber"
-          v-model="form.phoneNumber"
+          v-model="$v.phoneNumber.$model"
           title="Telefoonnummer"
           type="tel"
           name="phoneNumber"
         />
         <form-input-text
           id="companyName"
-          v-model="form.companyName"
+          v-model="$v.companyName.$model"
           title="Bedrijfsnaam"
           name="companyName"
         />
         <form-input-text
           id="totalAttendees"
-          v-model="form.totalAttendees"
+          v-model="$v.totalAttendees.$model"
           title="Aantal mensen"
           type="number"
           name="totalAttendees"
         />
         <form-input-text
           id="date"
-          v-model="form.date"
+          v-model="$v.date.$model"
           title="Streefdatum"
           type="date"
           name="date"
@@ -62,7 +57,7 @@
 <script>
 import { email, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-import { ref } from '@vue/composition-api'
+import { reactive, toRef, ref } from '@vue/composition-api'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppForm from '~/components/Forms/AppForm.vue'
@@ -74,27 +69,46 @@ export default {
     AppForm,
   },
   setup() {
-    const name = ref('')
-    const emailAddress = ref('')
+    const submitted = ref(false)
+    const form = reactive({
+      name: '',
+      email: '',
+      phoneNumber: '',
+      companyName: '',
+      totalAttendees: '',
+      date: '',
+    })
+
     const rules = {
       name: { required },
-      emailAddress: { required, email },
+      email: { required, email },
+      phoneNumber: {},
+      companyName: {},
+      totalAttendees: {},
+      date: {},
     }
 
-    const $v = useVuelidate(rules, { name, emailAddress })
-    return { name, email, $v }
-  },
-  data() {
-    return {
-      submitted: false,
+    const $v = useVuelidate(rules, {
+      email: toRef(form, 'email'),
+      name: toRef(form, 'name'),
+      phoneNumber: toRef(form, 'phoneNumber'),
+      companyName: toRef(form, 'companyName'),
+      totalAttendees: toRef(form, 'totalAttendees'),
+      date: toRef(form, 'date'),
+    })
 
-      form: {
-        phoneNumber: '',
-        companyName: '',
-        totalAttendees: '',
-        date: '',
-      },
+    // handle the submit of the form, only called
+    // if the form is valid
+    const submit = () => {
+      $v.value.$touch()
+
+      if ($v.value.$invalid) return
+      submitted.value = true
+
+      alert('Form Submitted ' + JSON.stringify(form, null, 2))
     }
+
+    return { $v, submit, submitted }
   },
 
   methods: {
@@ -124,11 +138,11 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" module>
 .form {
   @mixin block;
 
-  & >>> .fields {
+  & :global(.fields) {
     grid-template-columns: repeat(4, 1fr);
   }
 }
