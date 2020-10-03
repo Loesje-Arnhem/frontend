@@ -57,10 +57,11 @@
 <script>
 import { email, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-import { reactive, toRef, ref } from '@vue/composition-api'
+import { reactive, toRef } from '@vue/composition-api'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppForm from '~/components/Forms/AppForm.vue'
+import useForm from '~/compositions/form'
 
 export default {
   components: {
@@ -69,7 +70,6 @@ export default {
     AppForm,
   },
   setup() {
-    const submitted = ref(false)
     const form = reactive({
       name: '',
       email: '',
@@ -97,16 +97,7 @@ export default {
       date: toRef(form, 'date'),
     })
 
-    // handle the submit of the form, only called
-    // if the form is valid
-    const submit = () => {
-      $v.value.$touch()
-
-      if ($v.value.$invalid) return
-      submitted.value = true
-
-      alert('Form Submitted ' + JSON.stringify(form, null, 2))
-    }
+    const { submit, submitted } = useForm($v)
 
     return { $v, submit, submitted }
   },
