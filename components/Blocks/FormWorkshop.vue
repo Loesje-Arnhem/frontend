@@ -15,7 +15,7 @@
         <form-input-text
           id="email"
           v-model="$v.emailAddress.$model"
-          :error-message="errorMessageEmail"
+          :errors="$v.emailAddress.$errors"
           title="E-mailadres"
           type="email"
           name="email"
@@ -23,7 +23,7 @@
         <form-input-text
           id="name"
           v-model="$v.name.$model"
-          :error-message="errorMessageName"
+          :errors="$v.name.$errors"
           title="Naam"
           name="name"
         />
@@ -82,7 +82,6 @@ export default {
     }
 
     const $v = useVuelidate(rules, { name, emailAddress })
-
     return { name, email, $v }
   },
   data() {
@@ -97,16 +96,7 @@ export default {
       },
     }
   },
-  computed: {
-    errorMessageName() {
-      return this.$v.name.$errors.map((error) => error.$message).join('')
-    },
-    errorMessageEmail() {
-      return this.$v.emailAddress.$errors
-        .map((error) => error.$message)
-        .join('')
-    },
-  },
+
   methods: {
     encodeFormData(data) {
       return Object.keys(data)

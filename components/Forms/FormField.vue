@@ -2,11 +2,13 @@
   <div class="field">
     <label :for="id" class="label">{{ title }}</label>
     <slot />
-    <span aria-live="assertive">{{ errorMessage }}</span>
+    <span aria-live="assertive">{{ $t(errorMessage) }}</span>
   </div>
 </template>
 
 <script>
+import { computed } from '@vue/composition-api'
+
 export default {
   props: {
     title: {
@@ -17,10 +19,26 @@ export default {
       type: String,
       required: true,
     },
-    errorMessage: {
-      type: String,
-      default: '',
+    errors: {
+      type: Array,
+      default: () => [],
     },
+  },
+  setup(props) {
+    const errorMessage = computed(() =>
+      props.errors.map((error) => error.$validator).join(''),
+    )
+    return {
+      errorMessage,
+    }
   },
 }
 </script>
+
+<i18n>
+{
+  "nl": {
+    "email": "test"
+  }
+}
+</i18n>

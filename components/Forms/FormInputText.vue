@@ -1,10 +1,5 @@
 <template>
-  <form-field
-    :id="id"
-    :error-message="errorMessage"
-    :title="title"
-    class="field"
-  >
+  <form-field :id="id" :errors="errors" :title="title" class="field">
     <input
       :id="id"
       v-bind="$attrs"
@@ -15,6 +10,7 @@
       @keyup.down="$emit('keyup-down')"
       @keyup.up="$emit('keyup-up')"
       @input="$emit('input', $event.target.value)"
+      @change="$emit('change', $event.target.value)"
     />
   </form-field>
 </template>
@@ -47,9 +43,9 @@ export default {
       type: Number,
       default: 50,
     },
-    errorMessage: {
-      type: String,
-      default: null,
+    errors: {
+      type: Array,
+      default: () => [],
     },
   },
 }
