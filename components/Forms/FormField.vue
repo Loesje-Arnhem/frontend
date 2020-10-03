@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { computed } from '@vue/composition-api'
+import { computed } from '@nuxtjs/composition-api'
 
 export default {
   props: {

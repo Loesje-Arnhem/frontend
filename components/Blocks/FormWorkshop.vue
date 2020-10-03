@@ -57,7 +57,7 @@
 <script>
 import { email, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-import { reactive, toRef } from '@vue/composition-api'
+import { reactive, toRef } from '@nuxtjs/composition-api'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppForm from '~/components/Forms/AppForm.vue'
@@ -71,7 +71,7 @@ export default {
   },
   setup() {
     const form = reactive({
-      name: '',
+      name: 'michiel',
       email: '',
       phoneNumber: '',
       companyName: '',
@@ -97,34 +97,9 @@ export default {
       date: toRef(form, 'date'),
     })
 
-    const { submit, submitted } = useForm($v)
+    const { submit, submitted } = useForm($v, form, rules)
 
     return { $v, submit, submitted }
-  },
-
-  methods: {
-    encodeFormData(data) {
-      return Object.keys(data)
-        .map(
-          (key) =>
-            `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`,
-        )
-        .join('&')
-    },
-    validate() {
-      this.$v.$touch()
-      return !this.$v.$invalid
-    },
-    async submitForm() {
-      if (this.validate()) {
-        try {
-          await this.$axios.$post('/', this.encodeFormData(this.form), {
-            header: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          })
-          this.submitted = true
-        } catch (error) {}
-      }
-    },
   },
 }
 </script>
