@@ -1,6 +1,6 @@
 import { useContext, ref } from '@nuxtjs/composition-api'
 
-export default ($v, form) => {
+export default ($v, form, rules) => {
   const { $axios } = useContext()
   const submitted = ref(false)
   const loading = ref(true)

@@ -4,5 +4,6 @@
   --z-header: 5;
   --z-error-handler: 3;
   --z-mobile-navigation: 2;
-  --z-main-navigation: 1;
+  --z-main-navigation: 2;
+  --z-autocomplete: 1;
 }
