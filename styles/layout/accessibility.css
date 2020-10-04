@@ -1,3 +1,24 @@
+*:focus {
+  outline: 1px dashed var(--color-black);
+}
+
+.visuallyhidden {
+  display: none;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media screen and (inverted-colors: inverted) {
+  img {
+    filter: invert(100%);
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -7,27 +28,4 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-}
-
-*:focus {
-  outline: 1px dashed var(--color-black);
-}
-
-.visuallyhidden {
-  display: none;
-}
-
-/* stylelint-disable-next-line media-feature-name-no-unknown */
-@media screen and (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* stylelint-disable-next-line media-feature-name-no-unknown */
-@media screen and (inverted-colors: inverted) {
-  img {
-    filter: invert(100%);
-  }
 }

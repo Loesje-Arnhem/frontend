@@ -15,7 +15,7 @@ query Posters(
     edges {
       node {
         ...poster
-        slug
+        uri
         featuredImage {
           node {
             id

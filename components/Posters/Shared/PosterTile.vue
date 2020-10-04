@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/posters/${poster.slug}`" :class="$style.link">
+  <router-link :to="poster.uri" :class="$style.link">
     <app-image
       :alt="poster.title"
       :src="image"
