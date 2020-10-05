@@ -132,6 +132,8 @@ export default {
     },
     reset() {
       this.$emit('submit', '')
+      this.$emit('input', '')
+
       this.close()
     },
     close() {

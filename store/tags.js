@@ -13,7 +13,7 @@ export const state = () => ({
       },
     },
   ],
-  search: '',
+  search: 'voetbal',
 })
 
 export const getters = {

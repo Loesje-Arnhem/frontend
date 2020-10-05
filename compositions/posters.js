@@ -49,7 +49,7 @@ export default ({
     }
   }
 
-  const { result, error, loading, fetchMore } = useQuery(
+  const { result, error, loading, fetchMore, refetch } = useQuery(
     PostersQuery,
     {
       first,
@@ -85,6 +85,7 @@ export default ({
   }
 
   return {
+    refetch,
     posters,
     error,
     loading,
@@ -106,8 +107,8 @@ export const usePoster = (slug) => {
   }
 }
 
-export const useSearchPosters = () => {
-  const search = ref('')
+export const useSearchPosters = (userSearch) => {
+  const search = ref(userSearch)
 
   // const enabled = computed(() => search.value.length > 2)
 
