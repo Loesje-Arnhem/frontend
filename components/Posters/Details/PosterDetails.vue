@@ -37,11 +37,10 @@
       <poster-favorites :poster="poster" />
 
       <div :class="$style['social-media']">
-        <social-media-links
-          title="Deel de poster op"
-          :twitter="twitter"
-          :facebook="facebook"
-          :pinterest="pinterest"
+        <share-this
+          :title="poster.title"
+          :link="poster.link"
+          :image="poster.featuredImage.node.large"
         />
       </div>
     </div>
@@ -51,15 +50,15 @@
 <script>
 import AppDate from '~/components/Shared/AppDate.vue'
 import AppImage from '~/components/Shared/AppImage.vue'
-import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
 import PosterFavorites from '~/components/Posters/Details/PosterFavorites.vue'
 import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
+import ShareThis from '~/components/Posters/Shared/ShareThis.vue'
 
 export default {
   components: {
     AppDate,
     AppImage,
-    SocialMediaLinks,
+    ShareThis,
     PosterFavorites,
     PosterFilterTags,
   },
@@ -68,18 +67,6 @@ export default {
     poster: {
       type: Object,
       required: true,
-    },
-  },
-
-  computed: {
-    twitter() {
-      return `https://twitter.com/share?text=${this.poster.title}&url=${this.poster.link}`
-    },
-    facebook() {
-      return `https://www.facebook.com/sharer.php?u=${this.poster.link}&p=${this.poster.title}`
-    },
-    pinterest() {
-      return `https://pinterest.com/pin/create/button/?url=${this.poster.link}&media=${this.poster.featuredImage.large}&description=${this.poster.title}`
     },
   },
 }

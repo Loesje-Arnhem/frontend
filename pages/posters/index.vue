@@ -5,7 +5,7 @@
       <posters-auto-complete />
       <poster-filter-tags :list="tags" />
     </center-wrapper>
-    searchFromCompositionAPI = {{ searchFromCompositionAPI }}
+    searchFromCompositionAPI = {{ searchFromCompositionAPI.search }}
     <posters-overview-section
       :sources="sourceIds"
       :subjects="subjectIds"

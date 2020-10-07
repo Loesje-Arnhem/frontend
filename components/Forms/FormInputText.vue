@@ -41,7 +41,7 @@ export default {
     },
     maxlength: {
       type: Number,
-      default: 50,
+      default: 250,
     },
     errors: {
       type: Array,

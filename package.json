@@ -12,7 +12,7 @@
     "generate": "nuxt generate",
     "precommit": "npm run lint",
     "start": "nuxt start",
-    "lh": "lighthouse-ci --score=90 --runner=wpt",
+    "lh": "lighthouse-ci https://nu.nl --score=90 --runner=wpt",
     "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "dependencies": {

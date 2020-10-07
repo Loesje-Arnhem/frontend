@@ -1,6 +1,6 @@
 <template>
   <div>
-    searchFromCompositionAPI = {{ searchFromCompositionAPI }}
+    searchFromCompositionAPI = {{ searchFromCompositionAPI.search }}
     <auto-complete
       v-model="search"
       :results="{ edges: [] }"
