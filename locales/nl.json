@@ -1,6 +1,6 @@
 {
-  "followOn": "%{title} o %{network}",
-  "albums": "Albums",
+  "followOn": "%{title} op %{network}",
+  "albums": "Albumss",
   "biography": "Biography",
   "contact": "Contact",
   "close": "Close",

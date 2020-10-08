@@ -24,5 +24,4 @@ jobs:
         with:
           urls: |
             ${{ steps.netlify.outputs.url }}
-          budgetPath: ./budget.json
           uploadArtifacts: true
