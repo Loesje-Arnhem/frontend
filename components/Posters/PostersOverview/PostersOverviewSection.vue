@@ -77,15 +77,14 @@ export default {
 
     const counter = computed(() => store.state.tags.search)
     watch(counter, (first, second) => {
-      console.log(
-        'Watch props.selected function called with args:',
-        first,
-        second,
-      )
+      // console.log(
+      //   'Watch props.selected function called with args:',
+      //   first,
+      //   second,
+      // )
       // Both props are undefined so its just a bare callback func to be run
     })
     const refetch2 = () => {
-      console.log('asdsa')
       testa.value = 'sadasd'
       refetch({
         where: {

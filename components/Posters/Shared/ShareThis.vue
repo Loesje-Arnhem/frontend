@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ supportsShareAPI }}
     <app-button v-if="supportsShareAPI" @click="share">share</app-button>
     <social-media-links
       v-else
@@ -74,7 +75,9 @@ export default {
     },
     async share() {
       try {
-        const imageData = await this.toDataURL(this.image)
+        const imageData = await this.toDataURL(
+          'https://www.loesje.nl/wp-content/uploads/2020/08/200813-Hittegolf-480x678.jpg',
+        )
         await window.navigator.share({
           title: this.title,
           url: this.link,
