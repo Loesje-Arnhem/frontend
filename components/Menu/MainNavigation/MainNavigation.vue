@@ -39,10 +39,11 @@
           v-if="menu.productCategories.edges.length"
           class="page"
           :title="$t('pages.shop')"
-          :uri="menu.productCategories.edges[0].node.uri"
-          :children="menu.productCategories"
           :reset-submenu="menuIsOpen"
+          uri="winkeltje"
         />
+        <!-- :uri="menu.productCategories.edges[0].node.uri"
+          :children="menu.productCategories" -->
       </ul>
       <div
         :class="[$style.arrow, { [$style.active]: mounted }]"

@@ -15,13 +15,18 @@
 </template>
 
 <script>
-import { useContext, computed } from '@nuxtjs/composition-api'
+import {
+  useContext,
+  computed,
+  useMeta,
+  defineComponent,
+} from '@nuxtjs/composition-api'
 import AppContent from '~/components/Shared/AppContent.vue'
 import RelatedPagesSection from '~/components/Pages/RelatedPages/RelatedPagesSection.vue'
 import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
 // import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 import { usePageByUri } from '~/compositions/page'
-export default {
+export default defineComponent({
   components: {
     RelatedPagesSection,
     RelatedPostersSection,
@@ -39,6 +44,10 @@ export default {
       return page.value.databaseId
     })
 
+    useMeta({
+      title: computed(() => page?.value?.title).value,
+    })
+
     return {
       parentId,
       page,
@@ -46,6 +55,7 @@ export default {
       error,
     }
   },
+  head: {},
 
   // head() {
   //   return {
@@ -57,5 +67,5 @@ export default {
       nl: '/*',
     },
   },
-}
+})
 </script>

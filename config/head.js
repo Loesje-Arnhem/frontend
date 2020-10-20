@@ -7,7 +7,7 @@ import meta from './head/meta'
  */
 export default {
   title,
-  titleTemplate: '%s',
+  titleTemplate: '%s - Loesje',
   meta,
   link,
 }
