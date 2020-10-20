@@ -34,9 +34,14 @@ export default defineComponent({
     AppContent,
   },
   setup() {
-    const { params } = useContext()
+    const { params, error } = useContext()
     const uri = computed(() => params.value.pathMatch)
-    const { page, loading, error } = usePageByUri(uri)
+    const { page, loading, onError } = usePageByUri(uri)
+
+    onError((err) => {
+      error({ statusCode: 404, message: err.message })
+    })
+
     const parentId = computed(() => {
       if (page.value.parent) {
         return page.value.parent.node.databaseId

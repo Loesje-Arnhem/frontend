@@ -3,7 +3,7 @@ import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
 
 export const usePageById = (id) => {
-  const { result, error, loading } = useQuery(PageByIdQuery, {
+  const { result, error, loading, onError } = useQuery(PageByIdQuery, {
     id,
   })
 
@@ -13,11 +13,12 @@ export const usePageById = (id) => {
     page,
     error,
     loading,
+    onError,
   }
 }
 
 export const usePageByUri = (uri) => {
-  const { result, error, loading } = useQuery(PageByUriQuery, {
+  const { result, error, loading, onError } = useQuery(PageByUriQuery, {
     uri,
   })
 
@@ -27,5 +28,6 @@ export const usePageByUri = (uri) => {
     page,
     error,
     loading,
+    onError,
   }
 }
