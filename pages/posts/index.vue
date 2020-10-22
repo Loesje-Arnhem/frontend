@@ -12,17 +12,9 @@
 
 <script>
 import { blogPageId } from '~/data/pages'
-import PostsOverviewSection from '~/components/Posts/Overview/PostsOverviewSection.vue'
-// import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 import { usePageById } from '~/compositions/page'
 
 export default {
-  components: {
-    // RelatedPostersSection,
-    PostsOverviewSection,
-    RelatedProductsSection,
-  },
   setup() {
     const { page, loading, error } = usePageById(blogPageId)
 
@@ -38,10 +30,5 @@ export default {
       nl: '/over-mij/nieuws',
     },
   },
-  // head() {
-  //   return {
-  //     title: this.page.title,
-  //   }
-  // },
 }
 </script>

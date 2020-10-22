@@ -21,18 +21,8 @@ import {
   useMeta,
   defineComponent,
 } from '@nuxtjs/composition-api'
-import AppContent from '~/components/Shared/AppContent.vue'
-import RelatedPagesSection from '~/components/Pages/RelatedPages/RelatedPagesSection.vue'
-import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-// import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 import { usePageByUri } from '~/compositions/page'
 export default defineComponent({
-  components: {
-    RelatedPagesSection,
-    RelatedPostersSection,
-    // RelatedProductsSection,
-    AppContent,
-  },
   setup() {
     const { params, error } = useContext()
     const uri = computed(() => params.value.pathMatch)
@@ -62,11 +52,6 @@ export default defineComponent({
   },
   head: {},
 
-  // head() {
-  //   return {
-  //     title: this.page.title,
-  //   }
-  // },
   nuxtI18n: {
     paths: {
       nl: '/*',
