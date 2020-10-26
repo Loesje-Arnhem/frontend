@@ -28,16 +28,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      add: 'tags/add',
-      remove: 'tags/remove',
-    }),
+    ...mapActions('tags', ['add', 'remove']),
     toggleTag() {
       const tag = { ...this.tag }
       if (this.isSelected) {
         this.remove(tag.node.databaseId)
       } else {
-        this.add(tag.node.databaseId)
+        this.add(tag)
         this.$router.push({
           path: '/posters',
         })

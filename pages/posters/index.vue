@@ -3,12 +3,12 @@
     <center-wrapper>
       <poster-filters />
       <posters-auto-complete />
-      <poster-filter-tags :list="tags" />
+      <poster-tags-list :list="selectedTags" />
     </center-wrapper>
     searchFromCompositionAPI = {{ searchFromCompositionAPI.search }}
     <posters-overview-section
-      :sources="sourceIds"
-      :subjects="subjectIds"
+      :sources="selectedSourceIds"
+      :subjects="selectedSubjectIds"
       :search="search"
     />
   </div>
@@ -30,17 +30,12 @@ export default {
   data() {
     return {
       title: 'Posters',
-      selectedTags: [],
     }
   },
 
   computed: {
-    ...mapState('tags', ['tags', 'search']),
-
-    ...mapGetters({
-      sourceIds: 'tags/sourceIds',
-      subjectIds: 'tags/subjectIds',
-    }),
+    ...mapState('tags', ['selectedTags', 'search']),
+    ...mapGetters('tags', ['selectedSourceIds', 'selectedSubjectIds']),
   },
   nuxtI18n: {
     paths: {

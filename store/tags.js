@@ -3,14 +3,15 @@ import SubjectsQuery from '~/graphql/Posters/Subjects.gql'
 
 export const state = () => ({
   all: [],
-  selectedTags: [28],
-  tags: [],
+  selectedTags: [],
   search: 'voetbal',
 })
 
 export const getters = {
   isSelected: (state) => (tagId) => {
-    return state.selectedTags.find((selectedTagId) => selectedTagId === tagId)
+    return state.selectedTags.find(
+      (selectedTag) => selectedTag.node.databaseId === tagId,
+    )
   },
   sources: (state) => {
     return state.all.filter((tag) => tag.node.taxonomy.node.name === 'source')
@@ -18,14 +19,14 @@ export const getters = {
   subjects: (state) => {
     return state.all.filter((tag) => tag.node.taxonomy.node.name === 'subject')
   },
-  sourceIds: (state) => {
-    const sources = state.tags.filter(
+  selectedSourceIds: (state) => {
+    const sources = state.selectedTags.filter(
       (tag) => tag.node.taxonomy.node.name === 'source',
     )
     return sources.map((subject) => subject.node.databaseId)
   },
-  subjectIds: (state) => {
-    const subjects = state.tags.filter(
+  selectedSubjectIds: (state) => {
+    const subjects = state.selectedTags.filter(
       (tag) => tag.node.taxonomy.node.name === 'subject',
     )
     return subjects.map((subject) => subject.node.databaseId)
@@ -42,7 +43,7 @@ export const mutations = {
   remove: (state, payload) => {
     const selectedTags = [...state.selectedTags]
     state.selectedTags = selectedTags.filter(
-      (selectedTag) => selectedTag !== payload,
+      (selectedTag) => selectedTag.node.databaseId !== payload,
     )
   },
   set: (state, payload) => {
@@ -75,5 +76,9 @@ export const actions = {
       ...responseSources.data.sources.edges,
       ...responseSubjects.data.subjects.edges,
     ])
+    const nationalSeries = responseSources.data.sources.edges.find(
+      (source) => source.node.databaseId === 28,
+    )
+    commit('add', nationalSeries)
   },
 }

@@ -5,6 +5,7 @@
         {{ title }}
       </h1>
     </center-wrapper>
+    {{ sources }}
     <button @click="refetch2">zoeken naar {{ counter }}</button>
     <poster-list
       v-if="posters && posters.edges.length"

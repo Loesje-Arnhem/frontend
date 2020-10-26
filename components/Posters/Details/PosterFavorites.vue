@@ -46,10 +46,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      add: 'favorites/add',
-      remove: 'favorites/remove',
-    }),
+    ...mapActions('favorites', ['add', 'remove']),
     toggleFavorite() {
       if (this.isInFavorites) {
         this.remove(this.poster.id)
