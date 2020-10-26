@@ -1,48 +1,56 @@
 <template>
-  <div>
-    searchFromCompositionAPI = {{ searchFromCompositionAPI.search }}
-    <auto-complete
-      v-model="search"
-      :results="{ edges: [] }"
-      :title="$t('title')"
-      :placeholder="$t('placeholder')"
-      @input="searchPosters"
-      @close="close"
-      @submit="updateSearch2"
-    />
-  </div>
+  <auto-complete
+    v-model="search"
+    :results="results"
+    :title="$t('title')"
+    :placeholder="$t('placeholder')"
+    @close="close"
+    @submit="updateSearch"
+  />
 </template>
 
 <script>
-import AutoComplete from '@/components/Forms/AutoComplete.vue'
 import { mapActions } from 'vuex'
-import { useContext } from '@nuxtjs/composition-api'
-import useSearch from '@/compositions/tags'
-import { useSearchPosters } from '~/compositions/posters'
+import { useContext, computed, ref } from '@nuxtjs/composition-api'
+import { useQuery, useResult } from '@vue/apollo-composable'
+import AutoComplete from '~/components/Forms/AutoComplete.vue'
+import SearchQuery from '~/graphql/Posters/Search.gql'
 
 export default {
   components: {
     AutoComplete,
   },
   setup() {
-    const { searchFromCompositionAPI, updateSearch } = useSearch()
     const { store } = useContext()
-    const { posters, search, searchPosters } = useSearchPosters(
-      store.state.tags.search,
+    const search = ref(store.state.tags.search)
+    const enabled = computed(() => search.value.length > 2)
+
+    const { result } = useQuery(
+      SearchQuery,
+      { search },
+      {
+        prefetch: false,
+        debounce: 200,
+        enabled,
+        fetchPolicy: 'no-cache',
+      },
     )
 
+    const posters = useResult(result)
+
+    const results = computed(() => {
+      if (!enabled.value) {
+        return {
+          edges: [],
+        }
+      }
+      return posters.value
+    })
+
     return {
-      searchFromCompositionAPI,
-      searchPosters,
-      posters,
+      results,
       search,
-      updateSearch2: updateSearch,
     }
-  },
-  computed: {
-    search2() {
-      return this.$store.getters['tags/search']
-    },
   },
 
   methods: {

@@ -24,7 +24,7 @@
 import AppButton from '~/components/Shared/AppButton.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import RelatedPostersList from '~/components/Posters/RelatedPosters/RelatedPostersList.vue'
-import usePosters from '~/compositions/posters'
+import { usePosters } from '~/compositions/posters'
 
 export default {
   components: {
@@ -39,15 +39,15 @@ export default {
     },
   },
   setup(props) {
-    const { relatedPosters } = props
-
     let subjects = []
-    if (relatedPosters.subjects.length) {
-      subjects = relatedPosters.subjects.map((subject) => subject.databaseId)
+    if (props.relatedPosters.subjects.length) {
+      subjects = props.relatedPosters.subjects.map(
+        (subject) => subject.databaseId,
+      )
     }
 
     let posterIds = []
-    if (relatedPosters.posters) {
+    if (props.relatedPosters.posters) {
       posterIds = props.relatedPosters.posters.map(
         (poster) => poster.poster.databaseId,
       )
@@ -55,7 +55,7 @@ export default {
 
     const { posters, loading, error } = usePosters({
       first: 5,
-      search: relatedPosters.search,
+      search: props.relatedPosters.search,
       subjects,
       posterIds,
     })

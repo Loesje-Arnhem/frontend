@@ -5,7 +5,6 @@
       <posters-auto-complete />
       <poster-tags-list :list="selectedTags" />
     </center-wrapper>
-    searchFromCompositionAPI = {{ searchFromCompositionAPI.search }}
     <posters-overview-section
       :sources="selectedSourceIds"
       :subjects="selectedSubjectIds"
@@ -16,23 +15,8 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import useSearch from '@/compositions/tags'
 
 export default {
-  setup() {
-    const { searchFromCompositionAPI } = useSearch()
-
-    return {
-      searchFromCompositionAPI,
-    }
-  },
-
-  data() {
-    return {
-      title: 'Posters',
-    }
-  },
-
   computed: {
     ...mapState('tags', ['selectedTags', 'search']),
     ...mapGetters('tags', ['selectedSourceIds', 'selectedSubjectIds']),

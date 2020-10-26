@@ -75,7 +75,8 @@ export default {
       notIn: props.notIn,
     })
 
-    watch(where, (first) => {
+    watch(where, () => {
+      posters.value = []
       refetch({
         where: where.value,
       })
