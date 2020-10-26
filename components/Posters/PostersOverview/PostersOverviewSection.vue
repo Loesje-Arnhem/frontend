@@ -5,13 +5,13 @@
         {{ title }}
       </h1>
     </center-wrapper>
-    {{ sources }}
-    <button @click="refetch2">zoeken naar {{ counter }}</button>
+    <p>sources2: {{ sources2 }}</p>
+    <p>sources from props: {{ sources }}</p>
+    {{ where }}
     <poster-list
       v-if="posters && posters.edges.length"
       :posters="posters.edges"
     />
-    from props = {{ search2 }}
     <center-wrapper>
       <load-more
         v-if="posters && posters.edges.length"
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { watch, useContext, computed, ref } from '@nuxtjs/composition-api'
+import { computed, watch } from '@nuxtjs/composition-api'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import PosterList from '~/components/Posters/Shared/PosterList.vue'
 import usePosters from '~/compositions/posters'
@@ -62,46 +62,55 @@ export default {
     },
   },
   setup(props) {
-    const { notIn, subjects, sources, search } = props
+    const sourcesFromProps = computed(() => props.sources)
+    const subjectsFromProps = computed(() => props.subjects)
 
-    const { store } = useContext()
-
-    // Watch prop value change and assign to value 'selected' Ref
+    const where = computed(() => {
+      const taxQuery = {
+        taxArray: [],
+      }
+      if (props.subjects.length) {
+        taxQuery.taxArray.push({
+          terms: props.subjects,
+          taxonomy: 'SUBJECT',
+          operator: 'IN',
+        })
+      }
+      if (props.sources.length) {
+        taxQuery.taxArray.push({
+          terms: props.sources,
+          taxonomy: 'SOURCE',
+          operator: 'IN',
+        })
+      }
+      return {
+        notIn: [props.notIn],
+        search: props.search,
+        taxQuery: taxQuery.taxArray.length ? taxQuery : null,
+      }
+    })
 
     const { posters, loading, error, loadMore, refetch } = usePosters({
-      search,
-      subjects,
-      notIn,
-      sources,
+      search: props.search,
+      subjects: subjectsFromProps.value,
+      sources: sourcesFromProps.value,
+      notIn: props.notIn,
     })
-    const testa = ref('')
 
-    const counter = computed(() => store.state.tags.search)
-    watch(counter, (first, second) => {
-      // console.log(
-      //   'Watch props.selected function called with args:',
-      //   first,
-      //   second,
-      // )
-      // Both props are undefined so its just a bare callback func to be run
-    })
-    const refetch2 = () => {
-      testa.value = 'sadasd'
+    watch(where, (first) => {
       refetch({
-        where: {
-          search: counter,
-        },
+        where: where.value,
       })
-    }
+    })
 
     return {
-      search2: search,
-      refetch2,
-      counter,
+      where,
+      search2: props.search,
       posters,
       loading,
       error,
       loadMore,
+      sources2: sourcesFromProps,
     }
   },
 }

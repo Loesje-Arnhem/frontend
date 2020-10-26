@@ -16,10 +16,10 @@
     "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.1-rc.3",
+    "@nuxtjs/apollo": "^4.0.1-rc.4",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.12.2",
-    "@nuxtjs/composition-api": "^0.12.5",
+    "@nuxtjs/composition-api": "^0.13.5",
     "@nuxtjs/pwa": "^3.0.2",
     "@vue/apollo-composable": "^4.0.0-alpha.10",
     "@vuelidate/core": "^2.0.0-alpha.4",
@@ -28,7 +28,7 @@
     "cross-env": "^7.0.2",
     "css-paint-polyfill": "^2.0.0",
     "graphql-tag": "^2.11.0",
-    "nuxt": "^2.14.6",
+    "nuxt": "^2.14.7",
     "nuxt-i18n": "^6.15.1",
     "throttle-debounce": "^2.3.0",
     "vue-youtube": "^1.4.0",

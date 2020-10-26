@@ -4,7 +4,7 @@ import SubjectsQuery from '~/graphql/Posters/Subjects.gql'
 export const state = () => ({
   all: [],
   selectedTags: [],
-  search: 'voetbal',
+  search: '',
 })
 
 export const getters = {

@@ -1,59 +1,64 @@
 import { useQuery, useResult } from '@vue/apollo-composable'
 import { ref } from '@nuxtjs/composition-api'
-// import { ref, computed } from '@nuxtjs/composition-api'
 import PostersQuery from '~/graphql/Posters/Posters.gql'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
 import SearchQuery from '~/graphql/Posters/Search.gql'
+
+export const where = ({
+  subjects = [],
+  sources = [],
+  notIn = 0,
+  posterIds = [],
+  search = '',
+}) => {
+  if (posterIds.length) {
+    return {
+      in: posterIds,
+    }
+  }
+  let taxQuery = null
+  if (subjects.length) {
+    taxQuery = {
+      taxArray: [
+        {
+          terms: subjects,
+          taxonomy: 'SUBJECT',
+          operator: 'IN',
+        },
+      ],
+    }
+  }
+  if (sources.length) {
+    taxQuery = {
+      taxArray: [
+        {
+          terms: sources,
+          taxonomy: 'SOURCE',
+          operator: 'IN',
+        },
+      ],
+    }
+  }
+  return {
+    notIn: [notIn],
+    search,
+    taxQuery,
+  }
+}
 
 export default ({
   first = 20,
   search = null,
   notIn = 0,
+  posterIds = [],
   subjects = [],
   sources = [],
-  posterIds = [],
 } = {}) => {
-  const where = () => {
-    if (posterIds.length) {
-      return {
-        in: posterIds,
-      }
-    }
-    let taxQuery = null
-    if (subjects.length) {
-      taxQuery = {
-        taxArray: [
-          {
-            terms: subjects,
-            taxonomy: 'SUBJECT',
-            operator: 'IN',
-          },
-        ],
-      }
-    }
-    if (sources.length) {
-      taxQuery = {
-        taxArray: [
-          {
-            terms: sources,
-            taxonomy: 'SOURCE',
-            operator: 'IN',
-          },
-        ],
-      }
-    }
-    return {
-      notIn: [notIn],
-      search,
-      taxQuery,
-    }
-  }
-
   const { result, error, loading, fetchMore, refetch } = useQuery(
     PostersQuery,
     {
       first,
-      where: where(),
+      where: where({ subjects, sources, notIn, posterIds, search }),
     },
     {
       notifyOnNetworkStatusChange: true,
