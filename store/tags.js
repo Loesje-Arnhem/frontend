@@ -1,24 +1,22 @@
+import SourcesQuery from '~/graphql/Posters/Sources.gql'
+import SubjectsQuery from '~/graphql/Posters/Subjects.gql'
+
 export const state = () => ({
-  tags: [
-    {
-      node: {
-        id: 'c291cmNlOjI4',
-        databaseId: 28,
-        name: 'Landelijke serie',
-        taxonomy: {
-          node: {
-            name: 'source',
-          },
-        },
-      },
-    },
-  ],
+  all: [],
+  selectedTags: [28],
+  tags: [],
   search: 'voetbal',
 })
 
 export const getters = {
   isSelected: (state) => (tagId) => {
-    return state.tags.find((tag) => tag.node.id === tagId)
+    return state.selectedTags.find((selectedTagId) => selectedTagId === tagId)
+  },
+  sources: (state) => {
+    return state.all.filter((tag) => tag.node.taxonomy.node.name === 'source')
+  },
+  subjects: (state) => {
+    return state.all.filter((tag) => tag.node.taxonomy.node.name === 'subject')
   },
   sourceIds: (state) => {
     const sources = state.tags.filter(
@@ -39,11 +37,16 @@ export const mutations = {
     state.search = payload
   },
   add: (state, payload) => {
-    state.tags.push(payload)
+    state.selectedTags.push(payload)
   },
   remove: (state, payload) => {
-    const tags = [...state.tags]
-    state.tags = tags.filter((tag) => tag.node.id !== payload)
+    const selectedTags = [...state.selectedTags]
+    state.selectedTags = selectedTags.filter(
+      (selectedTag) => selectedTag !== payload,
+    )
+  },
+  set: (state, payload) => {
+    state.all = payload
   },
 }
 
@@ -56,5 +59,21 @@ export const actions = {
   },
   remove: ({ commit }, payload) => {
     commit('remove', payload)
+  },
+  async set({ commit }, context) {
+    const responseSources = await context.app.apolloProvider.defaultClient.query(
+      {
+        query: SourcesQuery,
+      },
+    )
+    const responseSubjects = await context.app.apolloProvider.defaultClient.query(
+      {
+        query: SubjectsQuery,
+      },
+    )
+    commit('set', [
+      ...responseSources.data.sources.edges,
+      ...responseSubjects.data.subjects.edges,
+    ])
   },
 }

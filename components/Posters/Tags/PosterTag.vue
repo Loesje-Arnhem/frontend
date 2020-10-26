@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     isSelected() {
-      return this.$store.getters['tags/isSelected'](this.tag.node.id)
+      return this.$store.getters['tags/isSelected'](this.tag.node.databaseId)
     },
   },
   methods: {
@@ -35,9 +35,9 @@ export default {
     toggleTag() {
       const tag = { ...this.tag }
       if (this.isSelected) {
-        this.remove(tag.node.id)
+        this.remove(tag.node.databaseId)
       } else {
-        this.add(tag)
+        this.add(tag.node.databaseId)
         this.$router.push({
           path: '/posters',
         })

@@ -23,13 +23,13 @@
     <slide-in-animation mode="out-in">
       <div v-if="showSources" key="sources" class="tags" tabindex="-1">
         <center-wrapper>
-          <posters-filter-sources-container />
+          <poster-filter-tags :list="sources" />
         </center-wrapper>
       </div>
 
       <div v-if="showSubjects" key="subjects" class="tags" tabindex="-1">
         <center-wrapper>
-          <posters-filter-subject-container />
+          <poster-filter-tags :list="subjects" />
         </center-wrapper>
       </div>
     </slide-in-animation>
@@ -37,19 +37,18 @@
 </template>
 
 <script>
-import PostersFilterSubjectContainer from '~/components/Posters/Filters/PostersFilterSubjectContainer.vue'
-import PostersFilterSourcesContainer from '~/components/Posters/Filters/PostersFilterSourcesContainer.vue'
+import { mapGetters } from 'vuex'
 import PostersFilterToggle from '~/components/Posters/Filters/PosterFilterToggle.vue'
 import SlideInAnimation from '~/components/Animations/SlideInAnimation.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
 
 export default {
   components: {
     PostersFilterToggle,
-    PostersFilterSubjectContainer,
-    PostersFilterSourcesContainer,
     SlideInAnimation,
     CenterWrapper,
+    PosterFilterTags,
   },
   data() {
     return {
@@ -57,6 +56,9 @@ export default {
       showSources: false,
       selectedTags: [],
     }
+  },
+  computed: {
+    ...mapGetters('tags', ['sources', 'subjects']),
   },
 
   methods: {
