@@ -6,8 +6,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  set(state, menu) {
-    state.menu = menu
+  set(state, payload) {
+    state.menu = payload
   },
 }
 

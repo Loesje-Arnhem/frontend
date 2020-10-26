@@ -6,7 +6,7 @@
     </nuxt-link>
     <Transition name="slide">
       <nuxt-link
-        v-if="totalFavorites && !isFavorites"
+        v-if="total && !isFavorites"
         to="/posters/favorieten"
         class="btn-favorites"
       >
@@ -28,14 +28,12 @@ export default {
     IconChevronRight,
   },
   computed: {
-    ...mapGetters({
-      totalFavorites: 'favorites/total',
-    }),
+    ...mapGetters('favorites', ['total']),
 
     favoritesText() {
       return `Bekijk je ${this.counter(
-        this.totalFavorites,
-      )} favoriete poster${this.plural(this.totalFavorites)}`
+        this.total,
+      )} favoriete poster${this.plural(this.total)}`
     },
     isSearch() {
       return this.$route.name === 'Search'
