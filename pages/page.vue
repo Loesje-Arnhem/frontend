@@ -34,9 +34,8 @@ export default defineComponent({
     AppContent,
   },
   setup() {
-    const { params, error } = useContext()
-    const uri = computed(() => params.value.pathMatch)
-    const { page, loading, onError } = usePageByUri(uri)
+    const { error } = useContext()
+    const { page, loading, onError } = usePageByUri()
 
     onError((err) => {
       error({ statusCode: 404, message: err.message })
