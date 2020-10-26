@@ -5,9 +5,6 @@
         {{ title }}
       </h1>
     </center-wrapper>
-    <p>sources2: {{ sources2 }}</p>
-    <p>sources from props: {{ sources }}</p>
-    {{ where }}
     <poster-list
       v-if="posters && posters.edges.length"
       :posters="posters.edges"
@@ -28,7 +25,7 @@
 import { computed, watch } from '@nuxtjs/composition-api'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import PosterList from '~/components/Posters/Shared/PosterList.vue'
-import usePosters from '~/compositions/posters'
+import { usePosters, setupWhere } from '~/compositions/posters'
 import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
 
 export default {
@@ -62,38 +59,19 @@ export default {
     },
   },
   setup(props) {
-    const sourcesFromProps = computed(() => props.sources)
-    const subjectsFromProps = computed(() => props.subjects)
-
     const where = computed(() => {
-      const taxQuery = {
-        taxArray: [],
-      }
-      if (props.subjects.length) {
-        taxQuery.taxArray.push({
-          terms: props.subjects,
-          taxonomy: 'SUBJECT',
-          operator: 'IN',
-        })
-      }
-      if (props.sources.length) {
-        taxQuery.taxArray.push({
-          terms: props.sources,
-          taxonomy: 'SOURCE',
-          operator: 'IN',
-        })
-      }
-      return {
-        notIn: [props.notIn],
+      return setupWhere({
+        subjects: props.subjects,
+        sources: props.sources,
         search: props.search,
-        taxQuery: taxQuery.taxArray.length ? taxQuery : null,
-      }
+        notIn: props.notIn,
+      })
     })
 
     const { posters, loading, error, loadMore, refetch } = usePosters({
       search: props.search,
-      subjects: subjectsFromProps.value,
-      sources: sourcesFromProps.value,
+      subjects: props.subjects.value,
+      sources: props.sources.value,
       notIn: props.notIn,
     })
 
@@ -104,13 +82,10 @@ export default {
     })
 
     return {
-      where,
-      search2: props.search,
       posters,
       loading,
       error,
       loadMore,
-      sources2: sourcesFromProps,
     }
   },
 }

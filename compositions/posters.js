@@ -4,7 +4,7 @@ import PostersQuery from '~/graphql/Posters/Posters.gql'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
 import SearchQuery from '~/graphql/Posters/Search.gql'
 
-export const where = ({
+export const setupWhere = ({
   subjects = [],
   sources = [],
   notIn = 0,
@@ -16,37 +16,31 @@ export const where = ({
       in: posterIds,
     }
   }
-  let taxQuery = null
+  const taxQuery = {
+    taxArray: [],
+  }
   if (subjects.length) {
-    taxQuery = {
-      taxArray: [
-        {
-          terms: subjects,
-          taxonomy: 'SUBJECT',
-          operator: 'IN',
-        },
-      ],
-    }
+    taxQuery.taxArray.push({
+      terms: subjects,
+      taxonomy: 'SUBJECT',
+      operator: 'IN',
+    })
   }
   if (sources.length) {
-    taxQuery = {
-      taxArray: [
-        {
-          terms: sources,
-          taxonomy: 'SOURCE',
-          operator: 'IN',
-        },
-      ],
-    }
+    taxQuery.taxArray.push({
+      terms: sources,
+      taxonomy: 'SOURCE',
+      operator: 'IN',
+    })
   }
   return {
-    notIn: [notIn],
+    notIn,
     search,
-    taxQuery,
+    taxQuery: taxQuery.taxArray.length ? taxQuery : null,
   }
 }
 
-export default ({
+export const usePosters = ({
   first = 20,
   search = null,
   notIn = 0,
@@ -58,7 +52,7 @@ export default ({
     PostersQuery,
     {
       first,
-      where: where({ subjects, sources, notIn, posterIds, search }),
+      where: setupWhere({ subjects, sources, notIn, posterIds, search }),
     },
     {
       notifyOnNetworkStatusChange: true,
