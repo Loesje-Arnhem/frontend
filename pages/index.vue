@@ -16,23 +16,9 @@
 
 <script>
 import { homePageId } from '~/data/pages'
-import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import Groups from '~/components/Blocks/Groups.vue'
-// import BlockInstagram from '~/components/Blocks/BlockInstagram.vue'
-import AppStoresSection from '~/components/AppStores/AppStoresSection.vue'
-import LatestPostsSection from '~/components/Posts/LatestPosts/LatestPostsSection.vue'
-// import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 import { usePageById } from '~/compositions/page'
 
 export default {
-  components: {
-    Groups,
-    // BlockInstagram,
-    RelatedPostersSection,
-    AppStoresSection,
-    LatestPostsSection,
-    // RelatedProductsSection,
-  },
   setup() {
     const { page, loading, error } = usePageById(homePageId)
 
@@ -40,12 +26,6 @@ export default {
       page,
       loading,
       error,
-    }
-  },
-
-  head() {
-    return {
-      // title: this.page.title,
     }
   },
 }

@@ -16,19 +16,9 @@
 
 <script>
 import { useContext, computed } from '@nuxtjs/composition-api'
-import PosterDetails from '~/components/Posters/Details/PosterDetails.vue'
-import PosterNavigation from '~/components/Posters/Shared/PosterNavigation.vue'
-import PostersOverviewSection from '~/components/Posters/PostersOverview/PostersOverviewSection.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import { usePoster } from '~/compositions/posters'
 
 export default {
-  components: {
-    PosterDetails,
-    PosterNavigation,
-    PostersOverviewSection,
-    CenterWrapper,
-  },
   setup() {
     const { params } = useContext()
     const slug = computed(() => params.value.slug)
@@ -53,11 +43,6 @@ export default {
     paths: {
       nl: '/posters/:slug',
     },
-  },
-  head() {
-    return {
-      // title: this.poster.title,
-    }
   },
 }
 </script>

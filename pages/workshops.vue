@@ -13,20 +13,9 @@
 
 <script>
 import { usePageById } from '~/compositions/page'
-import AppContent from '~/components/Shared/AppContent.vue'
-
 import { workshopsPageId } from '~/data/pages'
-import RelatedPostersSection from '~/components/Posters/RelatedPosters/RelatedPostersSection.vue'
-import FormWorkshop from '~/components/Blocks/FormWorkshop.vue'
-// import RelatedProductsSection from '~/components/Shop/Products/RelatedProducts/RelatedProductsSection.vue'
 
 export default {
-  components: {
-    AppContent,
-    RelatedPostersSection,
-    FormWorkshop,
-    // RelatedProductsSection,
-  },
   setup() {
     const { page, loading, error } = usePageById(workshopsPageId)
 
@@ -36,11 +25,5 @@ export default {
       error,
     }
   },
-
-  // head() {
-  //   return {
-  //     title: this.page.title,
-  //   }
-  // },
 }
 </script>
