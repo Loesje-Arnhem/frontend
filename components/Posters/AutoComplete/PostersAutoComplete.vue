@@ -40,19 +40,9 @@ export default {
 
     const posters = useResult(result)
 
-    const results = computed(() => {
-      if (!enabled.value) {
-        return {
-          edges: [],
-        }
-      }
-      return posters.value
-    })
-
     return {
-      posters,
       submit,
-      results,
+      posters,
       search,
     }
   },
