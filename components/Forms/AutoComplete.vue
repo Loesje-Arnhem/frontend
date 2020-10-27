@@ -1,5 +1,10 @@
 <template>
-  <form method="get" @keyup.esc="reset" @submit.prevent="submit">
+  <form
+    method="get"
+    :class="$style.form"
+    @keyup.esc="reset"
+    @submit.prevent="submit"
+  >
     <legend class="sr-only">{{ $t('title') }}</legend>
     <div :class="$style['input-wrapper']">
       <form-input-text
@@ -15,10 +20,21 @@
         @keyup-down="onArrowDown"
         @keyup-up="onArrowUp"
       />
-      <button type="submit" :class="$style['btn-submit']">
-        <icon-search aria-hidden="true" width="32" height="32" />
-        <span class="sr-only">{{ $t('title') }}</span>
-      </button>
+      <div :class="$style.buttons">
+        <button
+          v-if="value.length"
+          type="button"
+          :class="$style['btn-reset']"
+          @click="reset"
+        >
+          <icon-close aria-hidden="true" width="24" height="24" />
+          <span class="sr-only">{{ $t('title') }}</span>
+        </button>
+        <button type="submit" :class="$style['btn-submit']">
+          <icon-search aria-hidden="true" width="32" height="32" />
+          <span class="sr-only">{{ $t('title') }}</span>
+        </button>
+      </div>
       <div
         v-if="resultsWithHighlightText.length && showList"
         :class="$style.autocomplete"
@@ -47,11 +63,13 @@
 
 <script>
 import IconSearch from '~/assets/icons/search.svg'
+import IconClose from '~/assets/icons/close.svg'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 
 export default {
   components: {
     IconSearch,
+    IconClose,
     FormInputText,
   },
   inheritAttrs: false,
@@ -146,22 +164,23 @@ export default {
 
 <style module lang="postcss">
 .form {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 .input-wrapper {
   position: relative;
 }
 
-.btn-submit {
+.buttons {
   position: absolute;
   top: 0.25em;
   right: 0.25em;
   padding: 0.25em 0.25em;
+  display: flex;
 }
 
-.icon-search {
-  @mixin icon 1.25em;
+.btn-reset {
+  margin-right: 0.5em;
 }
 
 .autocomplete {
@@ -182,7 +201,7 @@ export default {
   }
 
   & :global(.input) {
-    padding-right: 2em 0.75em 0.75em;
+    padding: 0.75em 2em 0.75em 0.75em;
   }
 }
 

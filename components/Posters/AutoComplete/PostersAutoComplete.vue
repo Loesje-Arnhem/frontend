@@ -11,13 +11,9 @@
 <script>
 import { useContext, computed, ref } from '@nuxtjs/composition-api'
 import { useQuery, useResult } from '@vue/apollo-composable'
-import AutoComplete from '~/components/Forms/AutoComplete.vue'
 import SearchQuery from '~/graphql/Posters/Search.gql'
 
 export default {
-  components: {
-    AutoComplete,
-  },
   setup() {
     const { store } = useContext()
     const search = ref(store.state.tags.search)
@@ -40,7 +36,7 @@ export default {
 
     const posters = useResult(result)
     const list = computed(() => {
-      if (!posters.value) return []
+      if (!enabled.value || !posters.value) return []
       return posters.value.edges.map((item) => {
         return {
           id: item.node.id,
