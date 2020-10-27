@@ -19,7 +19,10 @@
         <icon-search aria-hidden="true" width="32" height="32" />
         <span class="sr-only">{{ $t('title') }}</span>
       </button>
-      <div v-if="resultsWithHighlightText.length" :class="$style.autocomplete">
+      <div
+        v-if="resultsWithHighlightText.length && showList"
+        :class="$style.autocomplete"
+      >
         <ul :class="$style.list">
           <li
             v-for="(result, index) in resultsWithHighlightText"
@@ -72,6 +75,7 @@ export default {
   data() {
     return {
       arrowCounter: -1,
+      showList: false,
     }
   },
 
@@ -102,6 +106,7 @@ export default {
   },
   methods: {
     input(value) {
+      this.showList = true
       this.$emit('input', value)
     },
     selectItem(result) {
@@ -131,14 +136,13 @@ export default {
       }
     },
     reset() {
-      this.$emit('submit', '')
       this.$emit('input', '')
-      this.$emit('close')
-
+      this.$emit('submit', '')
       this.close()
     },
     close() {
       this.arrowCounter = -1
+      this.showList = false
     },
   },
 }

@@ -1,12 +1,10 @@
 <template>
   <auto-complete
     v-model="search"
-    :results="results"
+    :results="posters"
     :title="$t('title')"
     :placeholder="$t('placeholder')"
-    @close="reset"
     @submit="submit"
-    @input="updateString"
   />
 </template>
 
@@ -22,19 +20,11 @@ export default {
   },
   setup() {
     const { store } = useContext()
-    const submitted = ref(false)
     const search = ref(store.state.tags.search)
-    const updateString = () => (submitted.value = false)
-
-    const enabled = computed(() => search.value.length > 2 && !submitted.value)
-
-    const reset = () => {
-      store.dispatch('tags/search', '')
-    }
+    const enabled = computed(() => search.value.length > 2)
 
     const submit = () => {
       store.dispatch('tags/search', search.value)
-      submitted.value = true
     }
 
     const { result } = useQuery(
@@ -60,11 +50,10 @@ export default {
     })
 
     return {
-      updateString,
+      posters,
       submit,
       results,
       search,
-      reset,
     }
   },
 }
