@@ -1,7 +1,7 @@
 <template>
   <auto-complete
     v-model="search"
-    :results="posters"
+    :results="list"
     :title="$t('title')"
     :placeholder="$t('placeholder')"
     @submit="submit"
@@ -39,10 +39,20 @@ export default {
     )
 
     const posters = useResult(result)
+    const list = computed(() => {
+      if (!posters.value) return []
+      return posters.value.edges.map((item) => {
+        return {
+          id: item.node.id,
+          title: item.node.title,
+          uri: item.node.uri,
+        }
+      })
+    })
 
     return {
+      list,
       submit,
-      posters,
       search,
     }
   },

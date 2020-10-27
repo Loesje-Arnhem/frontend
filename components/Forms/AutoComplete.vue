@@ -58,8 +58,8 @@ export default {
 
   props: {
     results: {
-      type: Object,
-      default: () => {},
+      type: Array,
+      default: () => [],
     },
     value: {
       type: String,
@@ -81,15 +81,11 @@ export default {
 
   computed: {
     resultsWithHighlightText() {
-      if (!this.results || !this.results.edges.length) {
-        return []
-      }
-      return this.results.edges.map((item) => {
-        const { title } = item.node
+      return this.results.map((item) => {
         return {
-          ...item.node,
+          ...item,
           // make current searchterm bold with a regex
-          title: title.replace(
+          title: item.title.replace(
             new RegExp(`(^|)(${this.value})(|$)`, 'ig'),
             '$1<strong>$2</strong>$3',
           ),
