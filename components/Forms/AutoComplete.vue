@@ -133,12 +133,12 @@ export default {
     reset() {
       this.$emit('submit', '')
       this.$emit('input', '')
+      this.$emit('close')
 
       this.close()
     },
     close() {
       this.arrowCounter = -1
-      this.$emit('close')
     },
   },
 }

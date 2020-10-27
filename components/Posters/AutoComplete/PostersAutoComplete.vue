@@ -4,13 +4,13 @@
     :results="results"
     :title="$t('title')"
     :placeholder="$t('placeholder')"
-    @close="close"
-    @submit="updateSearch"
+    @close="reset"
+    @submit="submit"
+    @input="updateString"
   />
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import { useContext, computed, ref } from '@nuxtjs/composition-api'
 import { useQuery, useResult } from '@vue/apollo-composable'
 import AutoComplete from '~/components/Forms/AutoComplete.vue'
@@ -22,15 +22,27 @@ export default {
   },
   setup() {
     const { store } = useContext()
+    const submitted = ref(false)
     const search = ref(store.state.tags.search)
-    const enabled = computed(() => search.value.length > 2)
+    const updateString = () => (submitted.value = false)
+
+    const enabled = computed(() => search.value.length > 2 && !submitted.value)
+
+    const reset = () => {
+      store.dispatch('tags/search', '')
+    }
+
+    const submit = () => {
+      store.dispatch('tags/search', search.value)
+      submitted.value = true
+    }
 
     const { result } = useQuery(
       SearchQuery,
       { search },
       {
         prefetch: false,
-        debounce: 200,
+        debounce: 400,
         enabled,
         fetchPolicy: 'no-cache',
       },
@@ -48,21 +60,12 @@ export default {
     })
 
     return {
+      updateString,
+      submit,
       results,
       search,
+      reset,
     }
-  },
-
-  methods: {
-    ...mapActions({
-      updateSearch: 'tags/search',
-    }),
-    submit(value) {
-      this.updateSearch(value)
-    },
-    close() {
-      this.results = {}
-    },
   },
 }
 </script>

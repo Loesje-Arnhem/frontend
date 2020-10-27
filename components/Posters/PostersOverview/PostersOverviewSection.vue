@@ -68,7 +68,7 @@ export default {
       })
     })
 
-    const { posters, loading, error, loadMore, refetch } = usePosters({
+    const { posters, loading, error, loadMore } = usePosters({
       search: props.search,
       subjects: props.subjects.value,
       sources: props.sources.value,
@@ -76,10 +76,10 @@ export default {
     })
 
     watch(where, () => {
-      posters.value = []
-      refetch({
-        where: where.value,
-      })
+      // posters.value = []
+      // refetch({
+      //   where: where.value,
+      // })
     })
 
     return {
