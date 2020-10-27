@@ -1,5 +1,5 @@
 <template>
-  <auto-complete
+  <form-auto-complete
     v-model="search"
     :results="list"
     :title="$t('title')"

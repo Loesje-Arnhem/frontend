@@ -9,13 +9,13 @@
     <div :class="$style['input-wrapper']">
       <form-input-text
         id="search"
+        type="search"
+        name="search"
+        autocomplete="off"
         :value="value"
         :class="$style.search"
         :title="$t('title')"
-        type="search"
-        name="search"
         v-bind="$attrs"
-        autocomplete="off"
         @input="input"
         @keyup-down="onArrowDown"
         @keyup-up="onArrowUp"

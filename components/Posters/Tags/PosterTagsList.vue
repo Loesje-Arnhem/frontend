@@ -1,19 +1,17 @@
 <template>
-  <list-animation :class="$style.list">
+  <ul :class="$style.list">
     <li v-for="item in list" :key="item.node.id" :class="$style['list-item']">
       <poster-tag :tag="item" />
     </li>
-  </list-animation>
+  </ul>
 </template>
 
 <script>
 import PosterTag from '~/components/Posters/Tags/PosterTag.vue'
-import ListAnimation from '~/components/Animations/ListAnimation.vue'
 
 export default {
   components: {
     PosterTag,
-    ListAnimation,
   },
   props: {
     list: {

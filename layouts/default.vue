@@ -1,37 +1,37 @@
 <template>
   <div :class="$style.page">
     <header-top :class="$style['header-top']" class="header-top" />
-
-    <the-header :class="$style.header" />
-    <main id="content" :class="$style.main" tabindex="-1">
+    <the-header ref="header" :class="$style.header" />
+    <main id="content" :class="$style.main" tabindex="-1" :style="mainCSS">
       <nuxt />
     </main>
-    <the-footer />
+    <the-footer ref="footer" />
     <error-handler />
   </div>
 </template>
 
 <script>
-import TheHeader from '~/components/Layout/TheHeader.vue'
-import TheFooter from '~/components/Layout/TheFooter.vue'
-import ErrorHandler from '~/components/ErrorHandler.vue'
-import HeaderTop from '~/components/HeaderTop.vue'
+import { onMounted, ref } from '@nuxtjs/composition-api'
 
 export default {
-  components: {
-    TheHeader,
-    TheFooter,
-    ErrorHandler,
-    HeaderTop,
+  setup(_, { refs }) {
+    const mainCSS = ref()
+
+    onMounted(() => {
+      const { header, footer } = refs
+      const layoutHeight = header.$el.clientHeight + footer.$el.clientHeight
+      mainCSS.value = { 'min-height': `calc(100vh - ${layoutHeight}px)` }
+    })
+
+    return {
+      mainCSS,
+    }
   },
 }
 </script>
 
 <style lang="postcss" module>
 .page {
-  flex-direction: column;
-  display: flex;
-  min-height: 100vh;
   position: relative;
 }
 
@@ -39,9 +39,5 @@ export default {
   z-index: var(--z-main-navigation);
   top: 0;
   position: sticky;
-}
-
-.main {
-  flex: 1 1 auto;
 }
 </style>
