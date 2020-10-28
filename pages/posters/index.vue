@@ -28,9 +28,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="postcss">
-.page {
-  @mixin center;
-}
-</style>

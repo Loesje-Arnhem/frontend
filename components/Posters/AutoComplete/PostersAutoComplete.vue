@@ -27,10 +27,10 @@ export default {
       SearchQuery,
       { search },
       {
-        prefetch: false,
-        debounce: 400,
-        enabled,
-        fetchPolicy: 'no-cache',
+        // prefetch: false,
+        // debounce: 200,
+        // enabled,
+        // fetchPolicy: 'no-cache',
       },
     )
 

@@ -1,3 +1,4 @@
+import { computed } from '@nuxtjs/composition-api'
 import { useQuery, useResult } from '@vue/apollo-composable'
 import PostersQuery from '~/graphql/Posters/Posters.gql'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
@@ -46,11 +47,42 @@ export const usePosters = ({
   subjects = [],
   sources = [],
 } = {}) => {
-  const { result, error, loading, fetchMore, refetch } = useQuery(
+  const where = computed(() => {
+    const subjects2 = subjects.value ? subjects.value : subjects
+    const sources2 = sources.value ? sources.value : sources
+    if (posterIds.length) {
+      return {
+        in: posterIds,
+      }
+    }
+    const taxQuery = {
+      taxArray: [],
+    }
+    if (subjects2.length) {
+      taxQuery.taxArray.push({
+        terms: subjects2,
+        taxonomy: 'SUBJECT',
+        operator: 'IN',
+      })
+    }
+    if (sources2.length) {
+      taxQuery.taxArray.push({
+        terms: sources2,
+        taxonomy: 'SOURCE',
+        operator: 'IN',
+      })
+    }
+    return {
+      notIn,
+      search: search.value ? search.value : search,
+      taxQuery: taxQuery.taxArray.length ? taxQuery : null,
+    }
+  })
+  const { result, error, loading, fetchMore } = useQuery(
     PostersQuery,
     {
       first,
-      where: setupWhere({ subjects, sources, notIn, posterIds, search }),
+      where,
     },
     {
       notifyOnNetworkStatusChange: true,
@@ -82,7 +114,6 @@ export const usePosters = ({
   }
 
   return {
-    refetch,
     posters,
     error,
     loading,

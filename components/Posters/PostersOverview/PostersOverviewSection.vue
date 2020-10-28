@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import { computed, watch } from '@nuxtjs/composition-api'
+import { computed } from '@nuxtjs/composition-api'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import PosterList from '~/components/Posters/Shared/PosterList.vue'
-import { usePosters, setupWhere } from '~/compositions/posters'
+import { usePosters } from '~/compositions/posters'
 import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
 
 export default {
@@ -59,27 +59,14 @@ export default {
     },
   },
   setup(props) {
-    const where = computed(() => {
-      return setupWhere({
-        subjects: props.subjects,
-        sources: props.sources,
-        search: props.search,
-        notIn: props.notIn,
-      })
-    })
-
+    const sources = computed(() => props.sources)
+    const search = computed(() => props.search)
+    const subjects = computed(() => props.subjects)
     const { posters, loading, error, loadMore } = usePosters({
-      search: props.search,
-      subjects: props.subjects.value,
-      sources: props.sources.value,
+      search,
+      subjects,
+      sources,
       notIn: props.notIn,
-    })
-
-    watch(where, () => {
-      // posters.value = []
-      // refetch({
-      //   where: where.value,
-      // })
     })
 
     return {
