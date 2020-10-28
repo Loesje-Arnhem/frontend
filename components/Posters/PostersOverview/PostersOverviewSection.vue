@@ -26,7 +26,7 @@ import { computed } from '@nuxtjs/composition-api'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import PosterList from '~/components/Posters/Shared/PosterList.vue'
 import { usePosters } from '~/compositions/posters'
-import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
+import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
 
 export default {
   components: {

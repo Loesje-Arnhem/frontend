@@ -3,42 +3,6 @@ import { useQuery, useResult } from '@vue/apollo-composable'
 import PostersQuery from '~/graphql/Posters/Posters.gql'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
 
-export const setupWhere = ({
-  subjects = [],
-  sources = [],
-  notIn = 0,
-  posterIds = [],
-  search = '',
-}) => {
-  if (posterIds.length) {
-    return {
-      in: posterIds,
-    }
-  }
-  const taxQuery = {
-    taxArray: [],
-  }
-  if (subjects.length) {
-    taxQuery.taxArray.push({
-      terms: subjects,
-      taxonomy: 'SUBJECT',
-      operator: 'IN',
-    })
-  }
-  if (sources.length) {
-    taxQuery.taxArray.push({
-      terms: sources,
-      taxonomy: 'SOURCE',
-      operator: 'IN',
-    })
-  }
-  return {
-    notIn,
-    search,
-    taxQuery: taxQuery.taxArray.length ? taxQuery : null,
-  }
-}
-
 export const usePosters = ({
   first = 20,
   search = null,
@@ -48,8 +12,8 @@ export const usePosters = ({
   sources = [],
 } = {}) => {
   const where = computed(() => {
-    const subjects2 = subjects.value ? subjects.value : subjects
-    const sources2 = sources.value ? sources.value : sources
+    const subjectList = subjects.value ? subjects.value : subjects
+    const sourcesList = sources.value ? sources.value : sources
     if (posterIds.length) {
       return {
         in: posterIds,
@@ -58,26 +22,27 @@ export const usePosters = ({
     const taxQuery = {
       taxArray: [],
     }
-    if (subjects2.length) {
+    if (subjectList.length) {
       taxQuery.taxArray.push({
-        terms: subjects2,
+        terms: subjectList,
         taxonomy: 'SUBJECT',
         operator: 'IN',
       })
     }
-    if (sources2.length) {
+    if (sourcesList.length) {
       taxQuery.taxArray.push({
-        terms: sources2,
+        terms: sourcesList,
         taxonomy: 'SOURCE',
         operator: 'IN',
       })
     }
     return {
       notIn,
-      search: search.value ? search.value : search,
+      search: search?.value ? search.value : search,
       taxQuery: taxQuery.taxArray.length ? taxQuery : null,
     }
   })
+
   const { result, error, loading, fetchMore } = useQuery(
     PostersQuery,
     {
