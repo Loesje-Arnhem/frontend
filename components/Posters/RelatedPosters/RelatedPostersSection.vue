@@ -9,6 +9,7 @@
       </h1>
     </center-wrapper>
     <center-wrapper size="full">
+      <app-loader v-if="loading" />
       <related-posters-list
         v-if="posters && posters.edges.length"
         :posters="posters.edges"
