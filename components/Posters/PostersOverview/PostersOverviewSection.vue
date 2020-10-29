@@ -10,13 +10,10 @@
       :posters="posters.edges"
     />
     <center-wrapper>
-      <load-more
-        v-if="posters && posters.edges.length"
-        :loading="loading"
-        :has-more="posters && posters.pageInfo.hasNextPage"
-        @load-more="loadMore"
-      />
-      <p v-if="posters && posters.edges.length === 0">Geen posters gevonden</p>
+      <load-more v-if="hasNextPage" :loading="loading" @load-more="loadMore" />
+      <p v-if="posters && posters.edges.length === 0 && !loading">
+        Geen posters gevonden
+      </p>
     </center-wrapper>
   </section>
 </template>
@@ -26,7 +23,7 @@ import { computed } from '@nuxtjs/composition-api'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import PosterList from '~/components/Posters/Shared/PosterList.vue'
 import { usePosters } from '~/compositions/posters'
-import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
+import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
 
 export default {
   components: {
@@ -62,7 +59,7 @@ export default {
     const sources = computed(() => props.sources)
     const search = computed(() => props.search)
     const subjects = computed(() => props.subjects)
-    const { posters, loading, error, loadMore } = usePosters({
+    const { posters, loading, error, loadMore, hasNextPage } = usePosters({
       search,
       subjects,
       sources,
@@ -74,6 +71,7 @@ export default {
       loading,
       error,
       loadMore,
+      hasNextPage,
     }
   },
 }

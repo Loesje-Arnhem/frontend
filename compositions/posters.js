@@ -78,11 +78,17 @@ export const usePosters = ({
     })
   }
 
+  const hasNextPage = computed(() => {
+    if (!posters.value) return true
+    return posters.value.pageInfo.hasNextPage
+  })
+
   return {
     posters,
     error,
     loading,
     loadMore,
+    hasNextPage,
   }
 }
 

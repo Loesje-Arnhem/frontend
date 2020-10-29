@@ -1,57 +1,47 @@
 <template>
-  <infinite-loading ref="infiniteLoading" @infinite="loadMore">
-    <div slot="no-more" />
-    <app-loader slot="spinner" />
-  </infinite-loading>
+  <div ref="wrapper">
+    <app-loader v-if="loading" />
+    <span class="sr-only">{{ $t('loading') }}</span>
+  </div>
 </template>
 
 <script>
-import InfiniteLoading from 'vue-infinite-loading'
+import { onMounted, onUnmounted } from '@nuxtjs/composition-api'
 
 export default {
-  components: {
-    InfiniteLoading,
-  },
   props: {
     loading: {
       type: Boolean,
       default: false,
     },
-    hasMore: {
-      type: Boolean,
-      default: true,
-    },
   },
+  setup(props, { refs, emit }) {
+    if (!process.client) return
+    let observer
+    let wrapper
+    onMounted(() => {
+      wrapper = refs.wrapper
+      if (!wrapper) return
 
-  watch: {
-    loading(value) {
-      if (!value) {
-        this.$nextTick(() => {
-          this.updateState('loaded')
-        })
-      }
-    },
-    hasMore(value) {
-      if (!value) {
-        this.updateState('complete')
-      }
-    },
-  },
-  methods: {
-    loadMore() {
-      this.$nextTick(() => {
-        this.$emit('load-more')
+      observer = new window.IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && !props.loading) {
+          emit('load-more')
+        }
       })
-    },
-    updateState(state) {
-      const { stateChanger } = this.$refs.infiniteLoading
-      if (state === 'loaded') {
-        stateChanger.loaded()
-      }
-      if (state === 'complete') {
-        stateChanger.complete()
-      }
-    },
+      observer.observe(wrapper)
+    })
+    onUnmounted(() => {
+      if (!wrapper) return
+      observer.unobserve(wrapper)
+    })
   },
 }
 </script>
+
+<i18n>
+{
+  "nl": {
+    "loading": "Aan het laden"
+  }
+}
+</i18n>

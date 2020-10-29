@@ -1,6 +1,6 @@
 <template>
   <app-loader v-if="loading" />
-  <div v-else-if="hasMore" :class="$style.wrapper">
+  <div v-else :class="$style.wrapper">
     <app-button @click="$emit('load-more')">
       {{ title }}
     </app-button>
@@ -22,10 +22,6 @@ export default {
       },
     },
     loading: {
-      type: Boolean,
-      default: false,
-    },
-    hasMore: {
       type: Boolean,
       default: false,
     },

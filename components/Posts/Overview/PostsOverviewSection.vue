@@ -10,8 +10,8 @@
         :posts="posts.edges"
       />
       <load-more
+        v-if="hasNextPage"
         :loading="loading"
-        :has-more="posts && posts.pageInfo.hasNextPage"
         :title="$t('btnMore')"
         @load-more="loadMore"
       />
@@ -39,7 +39,7 @@ export default {
   },
   setup(props) {
     const { notIn } = props
-    const { posts, loading, error, loadMore } = usePosts({
+    const { posts, loading, error, loadMore, hasNextPage } = usePosts({
       notIn,
     })
 
@@ -48,6 +48,7 @@ export default {
       loading,
       error,
       loadMore,
+      hasNextPage,
     }
   },
   computed: {

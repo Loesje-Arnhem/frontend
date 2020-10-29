@@ -65,7 +65,6 @@
     "prettier": "^2.1.2",
     "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0",
-    "vue-infinite-loading": "^2.4.5",
     "vue-jest": "^3.0.7"
   }
 }

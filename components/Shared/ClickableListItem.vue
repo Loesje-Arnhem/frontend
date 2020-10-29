@@ -9,6 +9,8 @@
 </template>
 
 <script>
+// import { useContext } from '@nuxtjs/composition-api'
+
 export default {
   props: {
     url: {
@@ -16,6 +18,29 @@ export default {
       required: true,
     },
   },
+  // setup(props) {
+  //   let down = null
+  //   const { router } = useContext()
+
+  //   const goToItem = () => {
+  //     router.push(props.url)
+  //   }
+
+  //   const mouseDown = () => {
+  //     down = +new Date()
+  //   }
+  //   const mouseUp = () => {
+  //     const up = +new Date()
+  //     if (up - down < 200) {
+  //       goToItem()
+  //     }
+  //   }
+
+  //   return {
+  //     mouseUp,
+  //     mouseDown,
+  //   }
+  // },
   data() {
     return {
       down: null,

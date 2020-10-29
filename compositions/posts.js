@@ -1,4 +1,5 @@
 import { useQuery, useResult } from '@vue/apollo-composable'
+import { computed } from '@nuxtjs/composition-api'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
 import PostQuery from '~/graphql/Posts/Post.gql'
 
@@ -38,7 +39,13 @@ export default ({ first = 12, notIn = null } = {}) => {
     })
   }
 
+  const hasNextPage = computed(() => {
+    if (!posts.value) return true
+    return posts.value.pageInfo.hasNextPage
+  })
+
   return {
+    hasNextPage,
     loadMore,
     posts,
     error,
