@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="$style.posters">
     <center-wrapper>
       <poster-filters />
       <posters-auto-complete />
@@ -28,3 +28,9 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" module>
+.posters {
+  @mixin block;
+}
+</style>
