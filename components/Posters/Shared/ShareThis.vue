@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ supportsShareAPI }}
     <app-button v-if="supportsShareAPI" @click="share">share</app-button>
     <social-media-links
       v-else
@@ -13,15 +12,9 @@
 </template>
 
 <script>
-import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
-import AppButton from '~/components/Shared/AppButton.vue'
+import { onMounted, computed, ref } from '@nuxtjs/composition-api'
 
 export default {
-  components: {
-    SocialMediaLinks,
-    AppButton,
-  },
-
   props: {
     title: {
       type: String,
@@ -37,32 +30,27 @@ export default {
     },
   },
 
-  data() {
-    return {
-      supportsShareAPI: false,
-    }
-  },
+  setup(props) {
+    const supportsShareAPI = ref(false)
 
-  computed: {
-    twitter() {
-      return `https://twitter.com/share?text=${this.title}&url=${this.link}`
-    },
-    facebook() {
-      return `https://www.facebook.com/sharer.php?u=${this.link}&p=${this.title}`
-    },
-    pinterest() {
-      return `https://pinterest.com/pin/create/button/?url=${this.link}&media=${this.image}&description=${this.title}`
-    },
-  },
-  mounted() {
-    this.supportsShareAPI = window?.navigator?.share
-  },
-  methods: {
-    async toDataURL(url) {
+    onMounted(() => {
+      supportsShareAPI.value = window?.navigator?.canShare
+    })
+    const twitter = computed(() => {
+      return `https://twitter.com/share?text=${props.title}&url=${props.link}`
+    })
+    const facebook = computed(() => {
+      return `https://www.facebook.com/sharer.php?u=${props.link}&p=${props.title}`
+    })
+    const pinterest = computed(() => {
+      return `https://pinterest.com/pin/create/button/?url=${props.link}&media=${props.image}&description=${this.title}`
+    })
+    const toDataURL = async (url) => {
       try {
-        const { data } = await this.$axios.$get(url, {
+        const data = await this.$axios.$get(url, {
           responseType: 'blob',
         })
+
         return new Promise((resolve, reject) => {
           const reader = new FileReader()
           reader.onloadend = () => resolve(reader.result)
@@ -72,20 +60,95 @@ export default {
       } catch (error) {
         return null
       }
-    },
-    async share() {
+    }
+
+    const share = async () => {
+      const imageData = await toDataURL(
+        'http://localhost:3333/images/electriciteitskastje.png',
+      )
+
+      const blob = await (await fetch(imageData)).blob()
+      const file = new File([blob], 'picture.png', { type: 'image/png' })
+      console.log(blob)
+
       try {
-        const imageData = await this.toDataURL(
-          'https://www.loesje.nl/wp-content/uploads/2020/08/200813-Hittegolf-480x678.jpg',
-        )
+        console.log(file)
         await window.navigator.share({
           title: this.title,
           url: this.link,
           text: this.title,
-          files: imageData ? [imageData] : [],
+          files: file ? [file] : [],
         })
-      } catch {}
-    },
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    return {
+      twitter,
+      facebook,
+      pinterest,
+      share,
+    }
   },
+
+  // data() {
+  //   return {
+  //     supportsShareAPI: false,
+  //   }
+  // },
+
+  // computed: {
+  //   twitter() {
+  //     return `https://twitter.com/share?text=${this.title}&url=${this.link}`
+  //   },
+  //   facebook() {
+  //     return `https://www.facebook.com/sharer.php?u=${this.link}&p=${this.title}`
+  //   },
+  //   pinterest() {
+  //     return `https://pinterest.com/pin/create/button/?url=${this.link}&media=${this.image}&description=${this.title}`
+  //   },
+  // },
+  // mounted() {
+  //   this.supportsShareAPI = window?.navigator?.canShare
+  // },
+  // methods: {
+  //   async toDataURL(url) {
+  //     try {
+  //       const data = await this.$axios.$get(url, {
+  //         responseType: 'blob',
+  //       })
+
+  //       return new Promise((resolve, reject) => {
+  //         const reader = new FileReader()
+  //         reader.onloadend = () => resolve(reader.result)
+  //         reader.onerror = reject
+  //         reader.readAsDataURL(data)
+  //       })
+  //     } catch (error) {
+  //       return null
+  //     }
+  //   },
+  //   async share() {
+  //     const imageData = await this.toDataURL(
+  //       'http://localhost:3333/images/electriciteitskastje.png',
+  //     )
+
+  //     const blob = await (await fetch(imageData)).blob()
+  //     const file = new File([blob], 'picture.png', { type: 'image/png' })
+  //     console.log(blob)
+
+  //     try {
+  //       console.log(file)
+  //       await window.navigator.share({
+  //         title: this.title,
+  //         url: this.link,
+  //         text: this.title,
+  //         files: file ? [file] : [],
+  //       })
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   },
+  // },
 }
 </script>
