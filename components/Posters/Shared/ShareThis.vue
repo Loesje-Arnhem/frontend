@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { onMounted, computed, ref } from '@nuxtjs/composition-api'
+import { onMounted, computed, ref, useContext } from '@nuxtjs/composition-api'
 
 export default {
   props: {
@@ -31,10 +31,12 @@ export default {
   },
 
   setup(props) {
+    const { $axios } = useContext()
+
     const supportsShareAPI = ref(false)
 
     onMounted(() => {
-      supportsShareAPI.value = window?.navigator?.canShare
+      supportsShareAPI.value = process.client && window?.navigator?.canShare
     })
     const twitter = computed(() => {
       return `https://twitter.com/share?text=${props.title}&url=${props.link}`
@@ -43,11 +45,11 @@ export default {
       return `https://www.facebook.com/sharer.php?u=${props.link}&p=${props.title}`
     })
     const pinterest = computed(() => {
-      return `https://pinterest.com/pin/create/button/?url=${props.link}&media=${props.image}&description=${this.title}`
+      return `https://pinterest.com/pin/create/button/?url=${props.link}&media=${props.image}&description=${props.title}`
     })
     const toDataURL = async (url) => {
       try {
-        const data = await this.$axios.$get(url, {
+        const data = await $axios.$get(url, {
           responseType: 'blob',
         })
 
@@ -74,9 +76,9 @@ export default {
       try {
         console.log(file)
         await window.navigator.share({
-          title: this.title,
-          url: this.link,
-          text: this.title,
+          title: props.title,
+          url: props.link,
+          text: props.title,
           files: file ? [file] : [],
         })
       } catch (error) {
@@ -84,71 +86,12 @@ export default {
       }
     }
     return {
+      supportsShareAPI,
       twitter,
       facebook,
       pinterest,
       share,
     }
   },
-
-  // data() {
-  //   return {
-  //     supportsShareAPI: false,
-  //   }
-  // },
-
-  // computed: {
-  //   twitter() {
-  //     return `https://twitter.com/share?text=${this.title}&url=${this.link}`
-  //   },
-  //   facebook() {
-  //     return `https://www.facebook.com/sharer.php?u=${this.link}&p=${this.title}`
-  //   },
-  //   pinterest() {
-  //     return `https://pinterest.com/pin/create/button/?url=${this.link}&media=${this.image}&description=${this.title}`
-  //   },
-  // },
-  // mounted() {
-  //   this.supportsShareAPI = window?.navigator?.canShare
-  // },
-  // methods: {
-  //   async toDataURL(url) {
-  //     try {
-  //       const data = await this.$axios.$get(url, {
-  //         responseType: 'blob',
-  //       })
-
-  //       return new Promise((resolve, reject) => {
-  //         const reader = new FileReader()
-  //         reader.onloadend = () => resolve(reader.result)
-  //         reader.onerror = reject
-  //         reader.readAsDataURL(data)
-  //       })
-  //     } catch (error) {
-  //       return null
-  //     }
-  //   },
-  //   async share() {
-  //     const imageData = await this.toDataURL(
-  //       'http://localhost:3333/images/electriciteitskastje.png',
-  //     )
-
-  //     const blob = await (await fetch(imageData)).blob()
-  //     const file = new File([blob], 'picture.png', { type: 'image/png' })
-  //     console.log(blob)
-
-  //     try {
-  //       console.log(file)
-  //       await window.navigator.share({
-  //         title: this.title,
-  //         url: this.link,
-  //         text: this.title,
-  //         files: file ? [file] : [],
-  //       })
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   },
-  // },
 }
 </script>
