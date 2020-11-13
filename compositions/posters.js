@@ -24,14 +24,14 @@ export const usePosters = ({
     }
     if (subjectList.length) {
       taxQuery.taxArray.push({
-        terms: subjectList,
+        terms: subjectList.map(String),
         taxonomy: 'SUBJECT',
         operator: 'IN',
       })
     }
     if (sourcesList.length) {
       taxQuery.taxArray.push({
-        terms: sourcesList,
+        terms: sourcesList.map(String),
         taxonomy: 'SOURCE',
         operator: 'IN',
       })

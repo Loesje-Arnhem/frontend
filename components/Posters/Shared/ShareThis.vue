@@ -36,7 +36,7 @@ export default {
     const supportsShareAPI = ref(false)
 
     onMounted(() => {
-      supportsShareAPI.value = true
+      supportsShareAPI.value = process.client && window?.navigator?.canShare
     })
     const twitter = computed(() => {
       return `https://twitter.com/share?text=${props.title}&url=${props.link}`
@@ -81,8 +81,6 @@ export default {
 
       // const file = await dataUrlToFile(imageData, 'poster.png')
       const file = new File([imageData], 'poster.png', { type: 'image/png' })
-      console.log(imageData)
-      console.log(file)
 
       try {
         await window.navigator.share({
@@ -92,7 +90,7 @@ export default {
           files: file ? [file] : [],
         })
       } catch (error) {
-        console.log(error)
+        window.console.error(error)
       }
     }
     return {
