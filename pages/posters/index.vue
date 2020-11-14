@@ -9,6 +9,8 @@
       :sources="selectedSourceIds"
       :subjects="selectedSubjectIds"
       :search="search"
+      :date-before="dateBefore"
+      :date-after="dateAfter"
     />
   </div>
 </template>
@@ -18,7 +20,7 @@ import { mapState, mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapState('tags', ['selectedTags', 'search']),
+    ...mapState('tags', ['selectedTags', 'search', 'dateBefore', 'dateAfter']),
     ...mapGetters('tags', ['selectedSourceIds', 'selectedSubjectIds']),
   },
   nuxtI18n: {

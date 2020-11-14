@@ -17,21 +17,21 @@
       </posters-filter-toggle>
 
       <input
-        v-model="dateFrom"
+        v-model="dateBefore"
         type="date"
         class="filter-item"
-        name="date-from"
+        name="date-before"
         placeholder="Datum van"
         min="1983-01-01"
-        :max="dateUntil ? dateUntil : today"
+        :max="dateAfter ? dateAfter : today"
       />
       <input
-        v-model="dateUntil"
+        v-model="dateAfter"
         type="date"
-        name="date-until"
+        name="date-after"
         class="filter-item"
         placeholder="Datum tot"
-        :min="dateFrom ? dateFrom : '1983-01-01'"
+        :min="dateBefore ? dateBefore : '1983-01-01'"
         :max="today"
       />
     </div>
@@ -75,20 +75,20 @@ export default {
   },
   computed: {
     ...mapGetters('tags', ['sources', 'subjects']),
-    dateFrom: {
+    dateBefore: {
       get() {
-        return this.$store.state.tags.dateFrom
+        return this.$store.state.tags.dateBefore
       },
       set(value) {
-        this.$store.commit('tags/updateDateFrom', value)
+        this.$store.commit('tags/updatedateBefore', value)
       },
     },
-    dateUntil: {
+    dateAfter: {
       get() {
-        return this.$store.state.tags.dateUntil
+        return this.$store.state.tags.dateAfter
       },
       set(value) {
-        this.$store.commit('tags/updateDateUntil', value)
+        this.$store.commit('tags/updatedateAfter', value)
       },
     },
     today() {
