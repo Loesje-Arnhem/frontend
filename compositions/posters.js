@@ -40,6 +40,16 @@ export const usePosters = ({
       notIn,
       search: search?.value ? search.value : search,
       taxQuery: taxQuery.taxArray.length ? taxQuery : null,
+      posterDateBefore: {
+        day: 3,
+        month: 4,
+        year: 2020,
+      },
+      posterDateAfter: {
+        day: 30,
+        month: 4,
+        year: 2020,
+      },
     }
   })
 

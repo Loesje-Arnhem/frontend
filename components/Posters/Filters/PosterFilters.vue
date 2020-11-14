@@ -16,8 +16,21 @@
         Onderwerpen
       </posters-filter-toggle>
 
-      <input type="date" class="filter-item" placeholder="Datum van" />
-      <input type="date" class="filter-item" placeholder="Datum tot" />
+      <input
+        type="date"
+        class="filter-item"
+        placeholder="Datum van"
+        min="1983-01-01"
+        :max="today"
+      />
+      {{ today }}
+      <input
+        type="date"
+        class="filter-item"
+        placeholder="Datum tot"
+        min="1983-01-01"
+        :max="today"
+      />
     </div>
 
     <slide-in-animation mode="out-in">
@@ -59,6 +72,14 @@ export default {
   },
   computed: {
     ...mapGetters('tags', ['sources', 'subjects']),
+    today() {
+      const now = new Date()
+      let month = now.getMonth() + 1
+      let day = now.getDate()
+      if (month < 10) month = '0' + month
+      if (day < 10) day = '0' + day
+      return now.getFullYear() + '-' + month + '-' + day
+    },
   },
 
   methods: {
