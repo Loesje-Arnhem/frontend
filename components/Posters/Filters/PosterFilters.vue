@@ -17,18 +17,21 @@
       </posters-filter-toggle>
 
       <input
+        v-model="dateFrom"
         type="date"
         class="filter-item"
+        name="date-from"
         placeholder="Datum van"
         min="1983-01-01"
-        :max="today"
+        :max="dateUntil ? dateUntil : today"
       />
-      {{ today }}
       <input
+        v-model="dateUntil"
         type="date"
+        name="date-until"
         class="filter-item"
         placeholder="Datum tot"
-        min="1983-01-01"
+        :min="dateFrom ? dateFrom : '1983-01-01'"
         :max="today"
       />
     </div>
@@ -72,6 +75,22 @@ export default {
   },
   computed: {
     ...mapGetters('tags', ['sources', 'subjects']),
+    dateFrom: {
+      get() {
+        return this.$store.state.tags.dateFrom
+      },
+      set(value) {
+        this.$store.commit('tags/updateDateFrom', value)
+      },
+    },
+    dateUntil: {
+      get() {
+        return this.$store.state.tags.dateUntil
+      },
+      set(value) {
+        this.$store.commit('tags/updateDateUntil', value)
+      },
+    },
     today() {
       const now = new Date()
       let month = now.getMonth() + 1
