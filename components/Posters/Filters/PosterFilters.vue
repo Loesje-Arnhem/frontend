@@ -15,25 +15,35 @@
       >
         Onderwerpen
       </posters-filter-toggle>
+      <div class="filter-item">
+        <div class="form-item-2">
+          <label for="date-after">Van</label>
+          <input
+            id="date-after"
+            v-model="dateAfter"
+            type="date"
+            name="date-after"
+            placeholder="Datum tot"
+            :min="dateBefore ? dateBefore : '1983-01-01'"
+            :max="today"
+          />
+        </div>
+      </div>
 
-      <input
-        v-model="dateBefore"
-        type="date"
-        class="filter-item"
-        name="date-before"
-        placeholder="Datum van"
-        min="1983-01-01"
-        :max="dateAfter ? dateAfter : today"
-      />
-      <input
-        v-model="dateAfter"
-        type="date"
-        name="date-after"
-        class="filter-item"
-        placeholder="Datum tot"
-        :min="dateBefore ? dateBefore : '1983-01-01'"
-        :max="today"
-      />
+      <div class="filter-item">
+        <div class="form-item-2">
+          <label for="date-before">Voor</label>
+          <input
+            id="date-before"
+            v-model="dateBefore"
+            type="date"
+            name="date-before"
+            placeholder="Datum van"
+            min="1983-01-01"
+            :max="dateAfter ? dateAfter : today"
+          />
+        </div>
+      </div>
     </div>
 
     <slide-in-animation mode="out-in">
@@ -129,16 +139,26 @@ export default {
 .filter-item {
   @mixin tile-border 1px, 1;
 
+  border-bottom-width: 0;
   flex: 0 0 auto;
-  width: 50%;
-  padding: 0.5em 1em;
+  width: 100%;
+  padding: 0 1em;
 
-  &:not(:first-child) {
-    border-left: 0;
+  @media (--viewport-sm) {
+    width: 50%;
+
+    &:nth-child(2n) {
+      border-left-width: 0;
+    }
   }
 
   @media (--viewport-md) {
     width: 25%;
+    border-right-width: 1px;
+
+    &:first-child {
+      border-left: 0;
+    }
   }
 }
 
@@ -150,5 +170,20 @@ export default {
   padding: 1em 0 0;
   background: rgba(255, 255, 255, 0.8);
   z-index: 1;
+}
+
+.form-item-2 {
+  display: flex;
+  align-items: center;
+
+  & label {
+    margin: 0;
+  }
+
+  & input {
+    flex: 1 1 auto;
+    margin-left: 0.25em;
+    border: 0;
+  }
 }
 </style>
