@@ -1,5 +1,5 @@
 <template>
-  <products-container :category="category" :product-ids="databaseIds">
+  <products-container :category="category" :database-ids="databaseIds">
     <template #default="data">
       <product-list v-if="data" :products="data.products" />
     </template>

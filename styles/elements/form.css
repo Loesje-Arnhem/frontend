@@ -81,3 +81,7 @@ label {
     text-decoration: underline;
   }
 }
+
+.border {
+  @mixin tile-border 2px, 1;
+}

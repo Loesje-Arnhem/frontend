@@ -1,12 +1,12 @@
 <template>
   <section
+    v-if="databaseIds.length"
     aria-labelledby="featured-products"
     :class="$style['featured-products']"
   >
     <center-wrapper>
       <h1 id="featured-products">{{ title }}</h1>
-
-      <products-container :product-ids="databaseIds">
+      <products-container :database-ids="databaseIds">
         <template #default="data">
           <product-list v-if="data" :products="data.products" />
         </template>

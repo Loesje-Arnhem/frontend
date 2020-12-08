@@ -1,6 +1,7 @@
 <template>
   <router-link :to="poster.uri" :class="$style.link">
     <app-image
+      class="border"
       :alt="poster.title"
       :src="image"
       :class="$style.poster"
@@ -30,15 +31,20 @@ export default {
       return 'https://api.loesje.michielkoning.nl/wp-content/uploads/2019/06/190626-zomer-212x300.jpg'
     },
   },
+  mounted() {
+    window.CSS.paintWorklet.addModule('/roughBoxes.js')
+  },
 }
 </script>
 
 <style lang="postcss" module>
 .poster {
-  @mixin tile-border;
-
   display: block;
   width: 100%;
+  border-image-source: paint(rough-boxes);
+  border-image-slice: 0 fill;
+  border-image-outset: 10px;
+  background: none;
 }
 
 .link {

@@ -41,8 +41,8 @@ import FormSelect from '~/components/Forms/FormSelect.vue'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
-import AddToCartQuery from '~/graphql/Shop/Cart/AddToCart.gql'
-import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
+// import AddToCartQuery from '~/graphql/Shop/Cart/AddToCart.gql'
+// import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
 
 export default {
   components: {
@@ -65,22 +65,22 @@ export default {
   },
   methods: {
     async addToCart() {
-      await this.$apollo.mutate({
-        mutation: AddToCartQuery,
-        variables: {
-          input: {
-            databaseId: this.product.databaseId,
-            clientMutationId: 'AddToCart',
-            quantity: this.quantity,
-          },
-        },
-        update: (store, { data: { addToCart } }) => {
-          store.writeQuery({
-            query: CartQuery,
-            data: addToCart,
-          })
-        },
-      })
+      // await this.$apollo.mutate({
+      //   mutation: AddToCartQuery,
+      //   variables: {
+      //     input: {
+      //       databaseId: this.product.databaseId,
+      //       clientMutationId: 'AddToCart',
+      //       quantity: this.quantity,
+      //     },
+      //   },
+      //   update: (store, { data: { addToCart } }) => {
+      //     store.writeQuery({
+      //       query: CartQuery,
+      //       data: addToCart,
+      //     })
+      //   },
+      // })
     },
   },
 }
