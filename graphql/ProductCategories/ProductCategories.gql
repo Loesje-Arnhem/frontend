@@ -3,6 +3,7 @@ query GET_PRODUCT_CATEGORIES {
     edges {
       node {
         ...CategoryFields
+        parentDatabaseId
         children {
           edges {
             node {

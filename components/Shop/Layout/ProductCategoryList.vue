@@ -1,48 +1,49 @@
 <template>
-  <product-category-container>
-    <template #default="data">
-      <nav
-        v-if="data.productCategories"
-        aria-labelledby="categories-title"
-        class="categories"
-      >
-        <h2 id="categories-title" class="sr-only">Categorien</h2>
-        <ul class="category-list">
-          <li
-            v-for="productCategory in data.productCategories"
-            :key="productCategory.node.id"
-            class="list-item"
+  <nav aria-labelledby="categories-title" class="categories">
+    <h2 id="categories-title" class="sr-only">Categorien</h2>
+    <app-loader v-if="loading" />
+    <ul v-else-if="productCategories" class="category-list">
+      <template v-for="productCategory in productCategories.edges">
+        <li
+          v-if="!productCategory.node.parentDatabaseId"
+          :key="productCategory.node.id"
+          class="list-item"
+        >
+          <nuxt-link :to="productCategory.node.uri" class="link">
+            {{ productCategory.node.name }}
+          </nuxt-link>
+          <ul
+            v-if="productCategory.node.children.edges.length"
+            class="category-list"
           >
-            <nuxt-link :to="productCategory.node.uri" class="link">
-              {{ productCategory.node.name }}
-            </nuxt-link>
-            <ul
-              v-if="productCategory.node.children.edges.length"
-              class="category-list"
+            <li
+              v-for="child in productCategory.node.children.edges"
+              :key="child.node.id"
+              class="list-item"
             >
-              <li
-                v-for="child in productCategory.node.children.edges"
-                :key="child.node.id"
-                class="list-item"
-              >
-                <nuxt-link :to="child.node.uri" class="link">
-                  {{ child.node.name }}
-                </nuxt-link>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </template>
-  </product-category-container>
+              <nuxt-link :to="child.node.uri" class="link">
+                {{ child.node.name }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </li>
+      </template>
+    </ul>
+  </nav>
 </template>
 
 <script>
-import ProductCategoryContainer from '~/components/Shop/Layout/ProductCategoryContainer.vue'
+import useProductCategories from '~/compositions/productCategories'
 
 export default {
-  components: {
-    ProductCategoryContainer,
+  setup() {
+    const { productCategories, loading, error } = useProductCategories()
+
+    return {
+      productCategories,
+      loading,
+      error,
+    }
   },
 }
 </script>
