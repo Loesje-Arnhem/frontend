@@ -29,4 +29,5 @@ export default {
   server,
   components: true,
   target: 'static',
+  modern: 'client',
 }
