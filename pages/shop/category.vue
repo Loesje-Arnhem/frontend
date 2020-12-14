@@ -1,34 +1,54 @@
 <template>
   <shop-wrapper>
-    {{ productCategory }}
-    <h1>{{ productCategory.name }}</h1>
-    <!-- eslint-disable vue/no-v-html -->
-    <p
-      v-if="productCategory.description"
-      v-html="productCategory.description"
-    />
-    <!-- eslint-enable vue/no-v-html -->
-    <product-list-section :category="productCategory.databaseId" />
+    <template v-if="productCategory">
+      <h1>{{ productCategory.name }}</h1>
+      <!-- eslint-disable vue/no-v-html -->
+      <p
+        v-if="productCategory.description"
+        v-html="productCategory.description"
+      />
+      <!-- eslint-enable vue/no-v-html -->
+      <product-list
+        v-if="productCategory.products"
+        :products="productCategory.products.edges"
+      />
+    </template>
   </shop-wrapper>
 </template>
 
 <script>
-import { useContext, useAsync } from '@nuxtjs/composition-api'
+import {
+  useStatic,
+  useContext,
+  computed,
+  defineComponent,
+  useMeta,
+} from '@nuxtjs/composition-api'
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
 
-export default {
+export default defineComponent({
   setup() {
     const { params, app } = useContext()
+    const slug = computed(() =>
+      params.value.slug2 ? params.value.slug2 : params.value.slug1,
+    )
+    const result = useStatic(
+      (slug) =>
+        app.apolloProvider.defaultClient.query({
+          query: ProductCategoryQuery,
+          variables: {
+            slug,
+          },
+        }),
+      slug,
+      'category',
+    )
+    const productCategory = computed(() => result.value?.data?.productCategory)
 
-    const productCategory = useAsync(() => {
-      return app.apolloProvider.defaultClient.query({
-        query: ProductCategoryQuery,
-        variables: {
-          slug: params.value.slug2 ? params.value.slug2 : params.value.slug1,
-        },
-      })
-    })
+    useMeta(() => ({ title: productCategory.value?.name }))
+
     return {
+      result,
       productCategory,
     }
   },
@@ -38,11 +58,12 @@ export default {
       nl: '/winkeltje/categorie/:slug1/:slug2?',
     },
   },
+  head: {},
 
-  head() {
-    return {
-      title: this.productCategory.name,
-    }
-  },
-}
+  // head() {
+  //   return {
+  //     title: this.productCategory.name,
+  //   }
+  // },
+})
 </script>

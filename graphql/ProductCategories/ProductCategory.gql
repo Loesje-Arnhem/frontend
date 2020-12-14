@@ -1,8 +1,17 @@
+#import "./../Products/Fragments/Product.gql"
+
 query ProductCategory($slug: ID!) {
   productCategory(id: $slug, idType: SLUG) {
     id
     databaseId
     name
     description
+    products {
+      edges {
+        node {
+          ...product
+        }
+      }
+    }
   }
 }
