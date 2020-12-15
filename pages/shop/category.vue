@@ -32,6 +32,7 @@ export default defineComponent({
     const slug = computed(() =>
       params.value.slug2 ? params.value.slug2 : params.value.slug1,
     )
+
     const result = useStatic(
       (slug) =>
         app.apolloProvider.defaultClient.query({
@@ -59,11 +60,5 @@ export default defineComponent({
     },
   },
   head: {},
-
-  // head() {
-  //   return {
-  //     title: this.productCategory.name,
-  //   }
-  // },
 })
 </script>
