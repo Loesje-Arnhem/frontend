@@ -22,7 +22,6 @@ export const useCategory = () => {
   )
   const { result, error, loading, onError } = useQuery(ProductCategoryQuery, {
     slug,
-    fetchResults: true,
   })
 
   const productCategory = useResult(result)

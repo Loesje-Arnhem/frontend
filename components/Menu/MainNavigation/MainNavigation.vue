@@ -4,7 +4,7 @@
       {{ $t('title') }}
     </h2>
     <div ref="menu">
-      <ul v-if="menu" :class="$style.menu">
+      <ul v-if="pages" :class="$style.menu">
         <main-navigation-item
           class="home"
           :title="$t('pages.home')"
@@ -17,16 +17,16 @@
         />
         <main-navigation-item
           class="page"
-          :title="menu.aboutPage.title"
-          :uri="menu.aboutPage.uri"
-          :children="menu.aboutPageChildren"
+          :title="pages.aboutPage.title"
+          :uri="pages.aboutPage.uri"
+          :children="pages.aboutPageChildren"
           :reset-submenu="menuIsOpen"
         />
         <main-navigation-item
           class="page"
-          :title="menu.joinPage.title"
-          :uri="menu.joinPage.uri"
-          :children="menu.joinPageChildren"
+          :title="pages.joinPage.title"
+          :uri="pages.joinPage.uri"
+          :children="pages.joinPageChildren"
           :reset-submenu="menuIsOpen"
         />
         <main-navigation-item
@@ -36,12 +36,12 @@
         />
 
         <main-navigation-item
-          v-if="menu.productCategories.edges.length"
+          v-if="pages.productCategories.edges.length"
           class="page"
           :title="$t('pages.shop')"
           :reset-submenu="menuIsOpen"
-          :uri="menu.productCategories.edges[0].node.uri"
-          :children="menu.productCategories"
+          :uri="pages.productCategories.edges[0].node.uri"
+          :children="pages.productCategories"
         />
       </ul>
       <div
@@ -72,7 +72,7 @@ export default {
   setup() {
     const { app } = useContext()
 
-    const menu = ref()
+    const pages = ref(null)
     const { fetch } = useFetch(async () => {
       const result = await app.apolloProvider.defaultClient.query({
         query: MenuQuery,
@@ -81,11 +81,11 @@ export default {
           aboutPageId,
         },
       })
-      menu.value = result.data
+      pages.value = result.data
     })
     fetch()
     return {
-      menu,
+      pages,
     }
   },
   data() {

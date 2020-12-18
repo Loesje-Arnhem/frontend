@@ -1,10 +1,10 @@
-#import "./Fragments/Product.gql"
+#import "./Fragments/ProductDetails.gql"
 
 query Products($where: RootQueryToProductConnectionWhereArgs) {
   products(where: $where) {
     edges {
       node {
-        ...product
+        ...productDetails
         slug
       }
     }

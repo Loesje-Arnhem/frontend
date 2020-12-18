@@ -1,7 +1,6 @@
-fragment product on Product {
+fragment productDetails on Product {
   id
   databaseId
-  slug
   name
   image {
     id

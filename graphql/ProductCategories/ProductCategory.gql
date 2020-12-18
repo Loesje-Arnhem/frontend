@@ -1,4 +1,4 @@
-#import "./../Products/Fragments/Product.gql"
+#import "./../Products/Fragments/ProductDetails.gql"
 
 query ProductCategory($slug: ID!) {
   productCategory(id: $slug, idType: SLUG) {
@@ -9,7 +9,8 @@ query ProductCategory($slug: ID!) {
     products {
       edges {
         node {
-          ...product
+          ...productDetails
+          slug
         }
       }
     }

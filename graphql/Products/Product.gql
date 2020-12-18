@@ -1,8 +1,8 @@
-#import "./Fragments/Product.gql"
+#import "./Fragments/ProductDetails.gql"
 
 query Product($slug: ID!) {
   product(id: $slug, idType: SLUG) {
-    ...product
+    ...productDetails
     shortDescription
     description
     attributes {
@@ -33,6 +33,9 @@ query Product($slug: ID!) {
       }
     }
     ... on SimpleProduct {
+      stockStatus
+    }
+    ... on VariableProduct {
       stockStatus
     }
   }
