@@ -1,5 +1,5 @@
 export default {
   fallback: true,
   exclude: [/^\/posters\//],
-  interval: 2000,
+  // interval: 2000,
 }

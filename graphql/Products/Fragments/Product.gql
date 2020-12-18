@@ -1,6 +1,7 @@
 fragment product on Product {
   id
   databaseId
+  slug
   name
   image {
     id

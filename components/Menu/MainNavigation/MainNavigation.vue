@@ -4,7 +4,7 @@
       {{ $t('title') }}
     </h2>
     <div ref="menu">
-      <ul :class="$style.menu">
+      <ul v-if="menu" :class="$style.menu">
         <main-navigation-item
           class="home"
           :title="$t('pages.home')"
@@ -54,8 +54,10 @@
 
 <script>
 import { debounce } from 'throttle-debounce'
-import { mapState } from 'vuex'
+import { ref, useFetch, useContext } from '@nuxtjs/composition-api'
 import MainNavigationItem from '~/components/Menu/MainNavigation/MainNavigationItem.vue'
+import MenuQuery from '~/graphql/Menu/Menu.gql'
+import { joinPageId, aboutPageId } from '~/data/pages'
 
 export default {
   components: {
@@ -67,15 +69,31 @@ export default {
       default: false,
     },
   },
+  setup() {
+    const { app } = useContext()
+
+    const menu = ref()
+    const { fetch } = useFetch(async () => {
+      const result = await app.apolloProvider.defaultClient.query({
+        query: MenuQuery,
+        variables: {
+          joinPageId,
+          aboutPageId,
+        },
+      })
+      menu.value = result.data
+    })
+    fetch()
+    return {
+      menu,
+    }
+  },
   data() {
     return {
       arrowPosition: 0,
       arrowWidth: 0,
       mounted: false,
     }
-  },
-  computed: {
-    ...mapState('menu', ['menu']),
   },
   watch: {
     $route() {
