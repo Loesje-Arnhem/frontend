@@ -44,7 +44,6 @@
             v-for="(result, index) in resultsWithHighlightText"
             :key="result.id"
           >
-            <!-- eslint-disable vue/no-v-html -->
             <router-link
               :class="[
                 { [$style.active]: index === arrowCounter },
@@ -53,7 +52,6 @@
               :to="result.uri"
               v-html="result.title"
             />
-            <!-- eslint-enable -->
           </li>
         </ul>
       </div>
