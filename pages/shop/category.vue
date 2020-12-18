@@ -1,6 +1,7 @@
 <template>
   <shop-wrapper>
-    <template v-if="productCategory">
+    <app-loader v-if="loading" />
+    <template v-else-if="productCategory">
       <h1>{{ productCategory.name }}</h1>
       <p
         v-if="productCategory.description"
@@ -15,48 +16,24 @@
 </template>
 
 <script>
-import {
-  useStatic,
-  useContext,
-  computed,
-  defineComponent,
-  useMeta,
-} from '@nuxtjs/composition-api'
-import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
+import { useCategory } from '~/compositions/productCategories'
+import { workshopsPageId } from '~/data/pages'
 
-export default defineComponent({
+export default {
   setup() {
-    const { params, app } = useContext()
-    const slug = computed(() =>
-      params.value.slug2 ? params.value.slug2 : params.value.slug1,
-    )
-
-    const result = useStatic(
-      (slug) =>
-        app.apolloProvider.defaultClient.query({
-          query: ProductCategoryQuery,
-          variables: {
-            slug,
-          },
-        }),
-      slug,
-      'category',
-    )
-    const productCategory = computed(() => result.value?.data?.productCategory)
-
-    useMeta(() => ({ title: productCategory.value?.name }))
+    const { productCategory, loading, error } = useCategory(workshopsPageId)
 
     return {
-      result,
       productCategory,
+      loading,
+      error,
     }
   },
-
   nuxtI18n: {
     paths: {
       nl: '/winkeltje/categorie/:slug1/:slug2?',
     },
   },
   head: {},
-})
+}
 </script>
