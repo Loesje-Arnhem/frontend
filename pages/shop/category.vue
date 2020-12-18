@@ -2,12 +2,10 @@
   <shop-wrapper>
     <template v-if="productCategory">
       <h1>{{ productCategory.name }}</h1>
-      <!-- eslint-disable vue/no-v-html -->
       <p
         v-if="productCategory.description"
         v-html="productCategory.description"
       />
-      <!-- eslint-enable vue/no-v-html -->
       <product-list
         v-if="productCategory.products"
         :products="productCategory.products.edges"
