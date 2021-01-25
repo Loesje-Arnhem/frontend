@@ -61,10 +61,6 @@ export default {
   right: 0;
   top: 0;
   pointer-events: none;
-
-  @media (--dark-mode) {
-    filter: invert(100%);
-  }
 }
 
 .list {
