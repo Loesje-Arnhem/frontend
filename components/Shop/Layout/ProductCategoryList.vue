@@ -1,5 +1,5 @@
 <template>
-  <nav aria-labelledby="categories-title" class="categories">
+  <nav aria-labelledby="categories-title" class="categories tile">
     <h2 id="categories-title" class="sr-only">Categorien</h2>
     <app-loader v-if="loading" />
     <ul v-else-if="productCategories" class="category-list">
@@ -50,8 +50,6 @@ export default {
 
 <style scoped lang="postcss">
 .categories {
-  @mixin tile-border;
-
   padding: var(--spacing-s);
 }
 

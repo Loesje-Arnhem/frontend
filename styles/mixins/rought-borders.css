@@ -1,0 +1,32 @@
+@define-mixin input-border $stroke-width: 3px, $stroke-roughness: 1.5 {
+  --rough-stroke-width: $(stroke-width);
+  --rough-roughness: $(stroke-roughness);
+
+  border: var(--rough-stroke-width) solid var(--color-black);
+
+  @nest .is-loaded & {
+    @supports (border-image-source: paint(rough-boxes)) {
+      border-image-source: paint(rough-boxes);
+      border-image-slice: 0 fill;
+      background: none;
+    }
+  }
+}
+
+@define-mixin tile-border $stroke-width: 2px, $stroke-roughness: 3 {
+  --rough-stroke-width: $(stroke-width);
+  --rough-roughness: $(stroke-roughness);
+  --rough-fill: var(--color-white);
+  --rough-stroke: var(--color-black);
+
+  border: var(--rough-stroke-width) solid var(--rough-stroke);
+
+  @nest .is-loaded & {
+    @supports (border-image-source: paint(rough-boxes)) {
+      border-image-source: paint(rough-boxes);
+      border-image-slice: 0 fill;
+      background: none;
+      border-image-outset: 10px;
+    }
+  }
+}

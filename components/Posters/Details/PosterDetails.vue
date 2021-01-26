@@ -2,12 +2,14 @@
   <div :class="$style['poster-details']">
     <article class="content">
       <h1 class="sr-only">{{ poster.title }}</h1>
-      <app-image
-        v-if="poster.featuredImage"
-        :alt="poster.title"
-        :src="poster.featuredImage.node.large"
-        :class="$style.image"
-      />
+      <div class="tile">
+        <app-image
+          v-if="poster.featuredImage"
+          :alt="poster.title"
+          :src="poster.featuredImage.node.large"
+          :class="$style.image"
+        />
+      </div>
     </article>
     <div :class="$style['meta-data']">
       <app-date :date="poster.PosterMetaGroup.date" />
@@ -80,21 +82,6 @@ export default {
 
   @media (--viewport-sm) {
     grid-template-columns: 1fr 1fr;
-  }
-}
-
-.image {
-  --rough-stroke-width: 3px;
-  --rough-roughness: 1.5;
-
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
-
-  @nest .is-loaded & {
-    @supports (border-image-source: paint(rough-boxes)) {
-      border-image-source: paint(rough-boxes);
-      border-image-slice: 0 fill;
-      border-image-outset: 1em;
-    }
   }
 }
 

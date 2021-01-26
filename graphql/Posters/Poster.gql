@@ -28,14 +28,14 @@ query Poster($slug: ID!) {
     sources {
       edges {
         node {
-          ...source
+          ...sourceDetails
         }
       }
     }
     subjects {
       edges {
         node {
-          ...subject
+          ...subjectDetails
         }
       }
     }

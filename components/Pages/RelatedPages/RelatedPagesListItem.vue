@@ -1,5 +1,9 @@
 <template>
-  <clickable-list-item :url="page.uri" :class="$style['related-page']">
+  <clickable-list-item
+    :url="page.uri"
+    :class="$style['related-page']"
+    class="tile"
+  >
     <h2 :class="$style.title">
       <nuxt-link :to="page.uri">{{ page.title }}</nuxt-link>
     </h2>
@@ -30,19 +34,6 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.related-page {
-  --rough-stroke-width: 3px;
-  --rough-roughness: 2.5;
-
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
-
-  @supports (border-image-source: paint(rough-boxes)) {
-    border-image-source: paint(rough-boxes);
-    border-image-slice: 10 fill;
-    border-image-outset: 0;
-  }
-}
-
 .title {
   @mixin color-negative;
 

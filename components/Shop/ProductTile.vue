@@ -1,5 +1,5 @@
 <template>
-  <clickable-list-item :url="url" :class="$style['product-tile']">
+  <clickable-list-item :url="url" :class="$style['product-tile']" class="tile">
     <div :class="$style['image-wrapper']">
       <app-image
         v-if="product.image"
@@ -41,8 +41,6 @@ export default {
 
 <style module lang="postcss">
 .product-tile {
-  @mixin tile-border;
-
   padding: 0 0 0.5em;
   display: grid;
   grid-template-rows: subgrid;

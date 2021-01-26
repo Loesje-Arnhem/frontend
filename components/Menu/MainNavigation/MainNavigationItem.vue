@@ -36,7 +36,7 @@
     </button>
     <template v-if="hasChildren">
       <animation-slide-in>
-        <ul v-show="isOpen" :class="$style.submenu">
+        <ul v-show="isOpen" :class="$style.submenu" class="tile">
           <li
             v-for="subItem in children.edges"
             :key="subItem.node.id"
@@ -229,7 +229,6 @@ export default {
 
   @media (--show-full-navigation) {
     @mixin list-reset;
-    @mixin tile-border 1px, 1;
 
     color: var(--color-black);
     background: var(--color-white);

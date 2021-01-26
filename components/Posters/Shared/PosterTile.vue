@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.tile">
+  <div :class="$style.tile" class="tile">
     <router-link :to="poster.uri" :class="$style.link">
       <app-image
         class="border"
@@ -37,25 +37,6 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.tile {
-  --rough-stroke-width: 2px;
-  --rough-roughness: 5;
-  --rough-fill: var(--color-white);
-  --rough-stroke: var(--color-black);
-
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
-
-  @nest :global(.is-loaded) & {
-    @supports (border-image-source: paint(rough-boxes)) {
-      padding: 0.5em;
-      border-image-source: paint(rough-boxes);
-      border-image-slice: 0 fill;
-      border-image-outset: 0.5em;
-      background: none;
-    }
-  }
-}
-
 .poster {
   display: block;
   width: 100%;

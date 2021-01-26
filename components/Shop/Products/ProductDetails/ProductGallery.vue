@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.gallery">
+  <div :class="$style.gallery" class="tile">
     <ul v-if="images.length > 1" ref="list" :class="$style.list">
       <li v-for="image in images" :key="image.id" :class="$style.item">
         <app-image
@@ -35,10 +35,6 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.gallery {
-  @mixin tile-border;
-}
-
 .list {
   @mixin list-reset;
 
