@@ -1,13 +1,17 @@
 <template>
-  <clickable-list-item :url="url" class="product-tile">
-    <div class="image-wrapper">
-      <app-image v-if="product.image" :src="product.image.medium" />
+  <clickable-list-item :url="url" :class="$style['product-tile']">
+    <div :class="$style['image-wrapper']">
+      <app-image
+        v-if="product.image"
+        :src="product.image.medium"
+        :class="$style.image"
+      />
     </div>
-    <h3 class="title">
-      <nuxt-link :to="url">{{ product.name }}</nuxt-link>
+    <h3 :class="$style.title">
+      <nuxt-link :class="$style.link" :to="url" v-html="product.name" />
     </h3>
-    <div v-if="product.price" class="price">
-      {{ product.price }}
+    <div :class="$style.price">
+      <template v-if="product.price">{{ product.price }}</template>
     </div>
   </clickable-list-item>
 </template>
@@ -35,27 +39,35 @@ export default {
 }
 </script>
 
-<style scoped lang="postcss">
+<style module lang="postcss">
 .product-tile {
   @mixin tile-border;
 
-  padding: 0.5em;
+  padding: 0 0 0.5em;
   display: grid;
   grid-template-rows: subgrid;
-  grid-template-rows: 12em auto 1.5em;
+  grid-row: span 3;
+  grid-gap: 0.25em;
+  overflow: hidden;
 }
 
-a {
+.link {
   @mixin link-reset;
 }
 
-img {
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
+.title,
+.price {
+  padding: 0 0.5em;
 }
 
-h3 {
-  margin-bottom: 0;
+.image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.title {
+  margin: 0;
 }
 </style>

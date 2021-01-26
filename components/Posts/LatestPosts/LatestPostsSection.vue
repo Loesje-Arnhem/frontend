@@ -1,5 +1,10 @@
 <template>
-  <section :class="$style['latest-posts']" aria-labelledby="latest-posts-title">
+  <app-loader v-if="loading" />
+  <section
+    v-else-if="posts"
+    :class="$style['latest-posts']"
+    aria-labelledby="latest-posts-title"
+  >
     <center-wrapper size="lg">
       <div :class="$style.wrapper">
         <div class="latest-posts">

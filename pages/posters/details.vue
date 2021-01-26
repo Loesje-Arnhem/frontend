@@ -6,6 +6,7 @@
       <poster-navigation />
       <poster-details :poster="poster" />
     </center-wrapper>
+    <related-products-section :related-products="poster.relatedProducts" />
     <posters-overview-section
       :title="$t('relatedTitle')"
       :not-in="poster.databaseId"

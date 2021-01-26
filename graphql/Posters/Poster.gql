@@ -1,6 +1,7 @@
 #import "./Fragments/PosterDetails.gql"
 #import "./Fragments/SourceDetails.gql"
 #import "./Fragments/SubjectDetails.gql"
+#import "./Fragments/RelatedProducts.gql"
 
 query Poster($slug: ID!) {
   poster(id: $slug, idType: SLUG) {
@@ -14,6 +15,9 @@ query Poster($slug: ID!) {
         large: sourceUrl(size: LARGE)
         medium: sourceUrl(size: MEDIUM)
       }
+    }
+    relatedProducts: relatedProductsGroup {
+      ...relatedProductsPosterGroup
     }
     PosterMetaGroup {
       date
