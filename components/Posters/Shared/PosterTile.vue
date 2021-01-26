@@ -1,17 +1,5 @@
 <template>
-  <div>
-    <div id="el">
-      <div class="el">
-        <app-image
-          class="border"
-          :alt="poster.title"
-          :src="image"
-          :class="$style.poster"
-          width="200"
-          height="500"
-        />
-      </div>
-    </div>
+  <div :class="$style.tile">
     <router-link :to="poster.uri" :class="$style.link">
       <app-image
         class="border"
@@ -48,29 +36,26 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
-/* stylelint-disable */
-
-.el {
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
-  --rough-stroke: black;
+<style lang="postcss" module>
+.tile {
   --rough-stroke-width: 2px;
-  --rough-roughness: 7;
-  padding: 0.25em;
-}
+  --rough-roughness: 5;
+  --rough-fill: var(--color-white);
+  --rough-stroke: var(--color-black);
 
-@supports (border-image-source: paint(rough-boxes)) {
-  .is-loaded .el {
-    border-image-source: paint(rough-boxes);
-    border-image-slice: 0 fill;
-    border-image-outset: 10px;
-    background: none;
-    --rough-fill: #fff;
+  border: var(--rough-stroke-width) solid var(--rough-stroke);
+
+  @nest :global(.is-loaded) & {
+    @supports (border-image-source: paint(rough-boxes)) {
+      padding: 0.5em;
+      border-image-source: paint(rough-boxes);
+      border-image-slice: 0 fill;
+      border-image-outset: 0.5em;
+      background: none;
+    }
   }
 }
-</style>
 
-<style lang="postcss" module>
 .poster {
   display: block;
   width: 100%;
@@ -79,26 +64,6 @@ export default {
 .link {
   @mixin link-reset;
 
-  transition: all 0.15s ease-in-out;
   display: block;
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
-  --rough-stroke: black;
-  --rough-stroke-width: 2px;
-  --rough-roughness: 7;
-  padding: 0.25em;
-
-  @mixin hover {
-    transform: scale(1.05);
-  }
-}
-
-@supports (border-image-source: paint(rough-boxes)) {
-  :global(.is-loaded) .link {
-    border-image-source: paint(rough-boxes);
-    border-image-slice: 0 fill;
-    border-image-outset: 10px;
-    background: none;
-    --rough-fill: #fff;
-  }
 }
 </style>
