@@ -1,10 +1,10 @@
-#import "./Fragments/Source.gql"
+#import "./Fragments/SourceDetails.gql"
 
 query Sources {
   sources(first: 100) {
     edges {
       node {
-        ...source
+        ...sourceDetails
       }
     }
   }

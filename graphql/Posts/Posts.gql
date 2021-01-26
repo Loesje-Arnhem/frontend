@@ -1,4 +1,4 @@
-#import "./Fragments/Post.gql"
+#import "./Fragments/PostDetails.gql"
 
 query Posts($first: Int, $after: String, $notIn: ID) {
   posts(first: $first, after: $after, where: { notIn: [$notIn] }) {
@@ -10,7 +10,7 @@ query Posts($first: Int, $after: String, $notIn: ID) {
     }
     edges {
       node {
-        ...post
+        ...postDetails
         excerpt
         uri
       }
