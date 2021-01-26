@@ -1,4 +1,4 @@
-fragment post on Post {
+fragment postDetails on Post {
   id
   title
   databaseId

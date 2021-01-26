@@ -1,11 +1,11 @@
-#import "./Fragments/Poster.gql"
+#import "./Fragments/PosterDetails.gql"
 
 query Search($search: String) {
   posters(where: { search: $search }, first: 10) {
     edges {
       node {
         uri
-        ...poster
+        ...posterDetails
       }
     }
   }

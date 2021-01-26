@@ -1,10 +1,10 @@
-#import "./Fragments/Subject.gql"
+#import "./Fragments/SubjectDetails.gql"
 
 query Subject {
   subjects(first: 100) {
     edges {
       node {
-        ...subject
+        ...subjectDetails
       }
     }
   }

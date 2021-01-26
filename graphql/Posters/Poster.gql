@@ -1,10 +1,10 @@
-#import "./Fragments/Poster.gql"
-#import "./Fragments/Source.gql"
-#import "./Fragments/Subject.gql"
+#import "./Fragments/PosterDetails.gql"
+#import "./Fragments/SourceDetails.gql"
+#import "./Fragments/SubjectDetails.gql"
 
 query Poster($slug: ID!) {
   poster(id: $slug, idType: SLUG) {
-    ...poster
+    ...posterDetails
     date
     uri
     link

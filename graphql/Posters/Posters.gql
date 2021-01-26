@@ -1,4 +1,4 @@
-#import "./Fragments/Poster.gql"
+#import "./Fragments/PosterDetails.gql"
 
 query Posters(
   $first: Int
@@ -14,7 +14,7 @@ query Posters(
     }
     edges {
       node {
-        ...poster
+        ...posterDetails
         uri
         featuredImage {
           node {
