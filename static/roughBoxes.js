@@ -24,7 +24,7 @@ class RoughDrawable {
   }
 
   drawLine(ctx, x1, y1, x2, y2, existingPath) {
-    const lengthSq = (x1 - x2) ** 2 + (x1 - x2) ** 2
+    const lengthSq = Math.pow(x1 - x2, 2) + Math.pow(x1 - x2, 2)
     let offset = this.maxRandomnessOffset || 0
     if (offset * offset * 100 > lengthSq) {
       offset = Math.sqrt(lengthSq) / 10
