@@ -13,7 +13,7 @@
   }
 }
 
-@define-mixin tile-border $stroke-width: 2px, $stroke-roughness: 3 {
+@define-mixin tile-border $stroke-width: 2px, $stroke-roughness: 2 {
   --rough-stroke-width: $(stroke-width);
   --rough-roughness: $(stroke-roughness);
   --rough-fill: var(--color-white);
