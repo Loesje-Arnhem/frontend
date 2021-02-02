@@ -13,20 +13,19 @@
   }
 }
 
-@define-mixin tile-border $stroke-width: 2px, $stroke-roughness: 3 {
-  --rough-stroke-width: $(stroke-width);
-  --rough-roughness: $(stroke-roughness);
+@define-mixin tile-border {
+  --rough-stroke-width: 1px;
+  --rough-roughness: 2;
   --rough-fill: var(--color-white);
   --rough-stroke: var(--color-black);
 
-  border: var(--rough-stroke-width) solid var(--rough-stroke);
+  border: 2px solid var(--rough-stroke);
 
   @nest .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
       border-image-source: paint(rough-boxes);
       border-image-slice: 0 fill;
       background: none;
-      border-image-outset: 10px;
     }
   }
 }

@@ -43,19 +43,24 @@ export default {
 .product-tile {
   padding: 0 0 0.5em;
   display: grid;
-  grid-template-rows: subgrid;
   grid-row: span 3;
   grid-gap: 0.25em;
-  overflow: hidden;
+  grid-template-rows: 16em auto 1.5em;
+
+  @supports (grid-template-rows: subgrid) {
+    grid-template-rows: subgrid;
+  }
 }
 
 .link {
   @mixin link-reset;
 }
 
-.title,
-.price {
-  padding: 0 0.5em;
+@supports (grid-template-rows: subgrid) {
+  .title,
+  .price {
+    padding: 0 0.5em;
+  }
 }
 
 .image {

@@ -5,12 +5,7 @@
       :class="{ 'is-active': isInFavorites }"
       @click="toggleFavorite"
     >
-      <icon-heart
-        :class="$style.icon"
-        aria-hidden="true"
-        width="20"
-        height="20"
-      />
+      <img src="/images/heart.png" alt="" :class="$style.icon" />
       {{ title }}
     </app-button>
   </div>
@@ -18,14 +13,8 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import AppButton from '~/components/Shared/AppButton.vue'
-import IconHeart from '~/assets/icons/heart-o.svg'
 
 export default {
-  components: {
-    AppButton,
-    IconHeart,
-  },
   props: {
     poster: {
       type: Object,
@@ -74,7 +63,13 @@ export default {
 <style lang="postcss" module>
 .icon {
   margin-right: 0.25em;
+  height: 1em;
+  width: auto;
   transform: translateY(0.1em);
+
+  @nest :global(.is-active) & {
+    filter: invert(1);
+  }
 }
 </style>
 
