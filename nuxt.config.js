@@ -28,6 +28,5 @@ export default {
   plugins,
   server,
   components: true,
-  target: 'static',
   modern: 'client',
 }
