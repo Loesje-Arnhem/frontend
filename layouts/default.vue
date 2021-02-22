@@ -1,5 +1,6 @@
 <template>
   <div :class="$style.page">
+    <vue-announcer />
     <header-top :class="$style['header-top']" class="header-top" />
     <the-header ref="header" :class="$style.header" />
     <main id="content" :class="$style.main" tabindex="-1" :style="mainCSS">

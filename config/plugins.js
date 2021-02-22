@@ -7,4 +7,5 @@ export default [
   '~/plugins/apollo',
   { src: '~/plugins/houdini', mode: 'client' },
   { src: '~/plugins/vuex-persist', mode: 'client' },
+  { src: '~/plugins/vue-announcer.js', mode: 'client' },
 ]

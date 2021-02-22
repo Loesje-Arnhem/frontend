@@ -15,12 +15,16 @@
 </template>
 
 <script>
+import { useMeta } from '@nuxtjs/composition-api'
 import { homePageId } from '~/data/pages'
 import { usePageById } from '~/compositions/page'
 
 export default {
   setup() {
     const { page, loading, error } = usePageById(homePageId)
+    useMeta({
+      title: 'Home',
+    })
 
     return {
       page,
@@ -28,5 +32,6 @@ export default {
       error,
     }
   },
+  head: {},
 }
 </script>

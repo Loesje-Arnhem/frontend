@@ -39,7 +39,7 @@ export default defineComponent({
     })
 
     useMeta({
-      title: computed(() => page?.value?.title).value,
+      title: page.value?.title,
     })
 
     return {

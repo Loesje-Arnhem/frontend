@@ -21,6 +21,7 @@
     "@nuxtjs/axios": "^5.12.4",
     "@nuxtjs/composition-api": "^0.17.0",
     "@nuxtjs/pwa": "^3.3.2",
+    "@vue-a11y/announcer": "^2.1.0",
     "@vue/apollo-composable": "^4.0.0-alpha.10",
     "@vuelidate/core": "^2.0.0-alpha.8",
     "@vuelidate/validators": "^2.0.0-alpha.5",
