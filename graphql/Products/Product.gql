@@ -21,6 +21,7 @@ query Product($slug: ID!) {
       nodes {
         id
         altText
+        thumbnail: sourceUrl(size: THUMBNAIL)
         medium: sourceUrl(size: MEDIUM)
         mediumLarge: sourceUrl(size: MEDIUM_LARGE)
       }
