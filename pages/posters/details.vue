@@ -16,29 +16,38 @@
 </template>
 
 <script>
-import { useContext, computed } from '@nuxtjs/composition-api'
-import { usePoster } from '~/compositions/posters'
+import PosterQuery from '~/graphql/Posters/Poster.gql'
 
 export default {
-  setup() {
-    const { params } = useContext()
-    const slug = computed(() => params.value.slug)
-    const { poster, loading, error } = usePoster(slug)
-
-    const subjects = computed(() => {
-      if (poster.value.subjects.edges.length) {
-        return poster.value.subjects.edges.map(
+  async asyncData({ app, params }) {
+    const { defaultClient } = app.apolloProvider
+    const poster = await defaultClient.query({
+      query: PosterQuery,
+      variables: {
+        slug: params.slug,
+      },
+    })
+    return {
+      poster: poster.data.poster,
+    }
+  },
+  head() {
+    return {
+      title: this.poster.title,
+    }
+  },
+  computed: {
+    subjects() {
+      if (!this.poster) {
+        return []
+      }
+      if (this.poster.subjects.edges.length) {
+        return this.poster.subjects.edges.map(
           (subject) => subject.node.databaseId,
         )
       }
       return []
-    })
-    return {
-      subjects,
-      poster,
-      loading,
-      error,
-    }
+    },
   },
   nuxtI18n: {
     paths: {

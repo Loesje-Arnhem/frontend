@@ -1,6 +1,5 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page">
+  <div v-if="page">
     <h1 class="sr-only">{{ page.title }}</h1>
     <latest-posts-section />
     <related-posters-section :related-posters="page.relatedPosters" />
@@ -15,23 +14,26 @@
 </template>
 
 <script>
-import { useMeta } from '@nuxtjs/composition-api'
 import { homePageId } from '~/data/pages'
-import { usePageById } from '~/compositions/page'
+import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 
 export default {
-  setup() {
-    const { page, loading, error } = usePageById(homePageId)
-    useMeta({
-      title: 'Home',
+  async asyncData({ app }) {
+    const { defaultClient } = app.apolloProvider
+    const page = await defaultClient.query({
+      query: PageByIdQuery,
+      variables: {
+        id: homePageId,
+      },
     })
-
     return {
-      page,
-      loading,
-      error,
+      page: page.data.page,
     }
   },
-  head: {},
+  head() {
+    return {
+      title: this.page.title,
+    }
+  },
 }
 </script>

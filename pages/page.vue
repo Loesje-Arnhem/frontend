@@ -1,11 +1,7 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page" class="page">
+  <div v-if="page" class="page">
     <app-content :title="page.title" :content="page.content" />
-    <related-posters-section
-      v-if="page"
-      :related-posters="page.relatedPosters"
-    />
+    <related-posters-section :related-posters="page.relatedPosters" />
     <related-pages-section
       :not-in="page.databaseId"
       :parent-page-id="parentId"
@@ -15,41 +11,35 @@
 </template>
 
 <script>
-import {
-  useContext,
-  computed,
-  useMeta,
-  defineComponent,
-} from '@nuxtjs/composition-api'
-import { usePageByUri } from '~/compositions/page'
+import { defineComponent } from '@nuxtjs/composition-api'
+import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
+
 export default defineComponent({
-  setup() {
-    const { error } = useContext()
-    const { page, loading, onError } = usePageByUri()
-
-    onError((err) => {
-      error({ statusCode: 404, message: err.message })
+  async asyncData({ app, params }) {
+    const { defaultClient } = app.apolloProvider
+    const page = await defaultClient.query({
+      query: PageByUriQuery,
+      variables: {
+        uri: params.pathMatch,
+      },
     })
-
-    const parentId = computed(() => {
-      if (page.value.parent) {
-        return page.value.parent.node.databaseId
-      }
-      return page.value.databaseId
-    })
-
-    useMeta({
-      title: page.value?.title,
-    })
-
     return {
-      parentId,
-      page,
-      loading,
-      error,
+      page: page.data.page,
     }
   },
-  head: {},
+  head() {
+    return {
+      title: this.page.title,
+    }
+  },
+  computed: {
+    parentId() {
+      if (this.page.parent) {
+        return this.page.parent.node.databaseId
+      }
+      return this.page.databaseId
+    },
+  },
 
   nuxtI18n: {
     paths: {

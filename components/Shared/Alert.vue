@@ -1,17 +1,11 @@
 <template>
   <div v-if="show && text" :class="type" class="alert">
-    <icon :icon="icon" class="icon-alert" />
     {{ text }}
   </div>
 </template>
 
 <script>
-import Icon from '~/components/Shared/Icon.vue'
-
 export default {
-  components: {
-    Icon,
-  },
   props: {
     text: {
       type: String,

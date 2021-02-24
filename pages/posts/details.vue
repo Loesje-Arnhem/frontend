@@ -1,7 +1,5 @@
 <template>
-  <app-loader v-if="loading" />
-
-  <div v-else-if="post">
+  <div v-if="post">
     <app-content
       :title="post.title"
       :content="post.content"
@@ -18,22 +16,26 @@
 </template>
 
 <script>
-import { useContext, computed } from '@nuxtjs/composition-api'
-import { usePost } from '~/compositions/posts'
+import PostQuery from '~/graphql/Posts/Post.gql'
 
 export default {
-  setup() {
-    const { params } = useContext()
-    const uri = computed(() => params.value.slug)
-    const { post, loading, error } = usePost(uri)
-
+  async asyncData({ app, params }) {
+    const { defaultClient } = app.apolloProvider
+    const post = await defaultClient.query({
+      query: PostQuery,
+      variables: {
+        slug: params.slug,
+      },
+    })
     return {
-      post,
-      loading,
-      error,
+      post: post.data.post,
     }
   },
-
+  head() {
+    return {
+      title: this.post.title,
+    }
+  },
   nuxtI18n: {
     paths: {
       nl: '/over-mij/nieuws/:slug',

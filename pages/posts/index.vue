@@ -12,19 +12,26 @@
 
 <script>
 import { blogPageId } from '~/data/pages'
-import { usePageById } from '~/compositions/page'
+import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 
 export default {
-  setup() {
-    const { page, loading, error } = usePageById(blogPageId)
-
+  async asyncData({ app }) {
+    const { defaultClient } = app.apolloProvider
+    const page = await defaultClient.query({
+      query: PageByIdQuery,
+      variables: {
+        id: blogPageId,
+      },
+    })
     return {
-      page,
-      loading,
-      error,
+      page: page.data.page,
     }
   },
-
+  head() {
+    return {
+      title: this.page.title,
+    }
+  },
   nuxtI18n: {
     paths: {
       nl: '/over-mij/nieuws',

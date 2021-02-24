@@ -17,15 +17,21 @@ import { onMounted, ref } from '@nuxtjs/composition-api'
 export default {
   setup(_, { refs }) {
     const mainCSS = ref()
+    const header = ref(null)
+    const footer = ref(null)
 
     onMounted(() => {
-      const { header, footer } = refs
-      const layoutHeight = header.$el.clientHeight + footer.$el.clientHeight
+      if (!header.value || !footer.value) {
+        return
+      }
+      const layoutHeight = header.value.clientHeight + footer.value.clientHeight
       mainCSS.value = { 'min-height': `calc(100vh - ${layoutHeight}px)` }
     })
 
     return {
       mainCSS,
+      header,
+      footer,
     }
   },
 }
