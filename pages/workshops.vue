@@ -14,14 +14,14 @@ import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 export default {
   async asyncData({ app }) {
     const { defaultClient } = app.apolloProvider
-    const page = await defaultClient.query({
+    const result = await defaultClient.query({
       query: PageByIdQuery,
       variables: {
         id: workshopsPageId,
       },
     })
     return {
-      page: page.data.page,
+      page: result.data.page,
     }
   },
   head() {

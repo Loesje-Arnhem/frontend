@@ -1,18 +1,20 @@
 <template>
   <ul :class="$style.thumbs">
-    <li
-      v-for="(image, index) in thumbs"
-      :key="`thumb-${image.id}`"
-      class="tile"
-      :class="[$style.thumb, { [$style.active]: index === activeSlide }]"
-      @click="goToSlideNumber(index)"
-    >
-      <app-image
-        :src="image.thumbnail"
-        :alt="image.altText"
-        :class="$style.image"
-      />
-    </li>
+    <template v-for="(image, index) in thumbs">
+      <li
+        v-if="image.thumbnail"
+        :key="`thumb-${image.id}`"
+        class="tile"
+        :class="[$style.thumb, { [$style.active]: index === activeSlide }]"
+        @click="goToSlideNumber(index)"
+      >
+        <app-image
+          :src="image.thumbnail"
+          :alt="image.altText"
+          :class="$style.image"
+        />
+      </li>
+    </template>
   </ul>
 </template>
 
@@ -42,7 +44,7 @@ export default {
 
   display: grid;
   grid-gap: 0.5em;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(6em, 1fr));
 }
 
 .thumb {

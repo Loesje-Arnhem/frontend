@@ -1,7 +1,6 @@
 <template>
   <shop-wrapper>
-    <app-loader v-if="loading" />
-    <template v-else-if="productCategory">
+    <template v-if="productCategory">
       <h1>{{ productCategory.name }}</h1>
       <p
         v-if="productCategory.description"
@@ -16,17 +15,25 @@
 </template>
 
 <script>
-import { useCategory } from '~/compositions/productCategories'
-import { workshopsPageId } from '~/data/pages'
+import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
 
 export default {
-  setup() {
-    const { productCategory, loading, error } = useCategory(workshopsPageId)
-
+  async asyncData({ app, params }) {
+    const { defaultClient } = app.apolloProvider
+    const slug = params.slug2 ? params.slug2 : params.slug1
+    const result = await defaultClient.query({
+      query: ProductCategoryQuery,
+      variables: {
+        slug,
+      },
+    })
     return {
-      productCategory,
-      loading,
-      error,
+      productCategory: result.data.productCategory,
+    }
+  },
+  head() {
+    return {
+      title: this.productCategory.name,
     }
   },
   nuxtI18n: {
@@ -34,6 +41,5 @@ export default {
       nl: '/winkeltje/categorie/:slug1/:slug2?',
     },
   },
-  head: {},
 }
 </script>

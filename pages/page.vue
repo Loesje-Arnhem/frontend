@@ -17,14 +17,14 @@ import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
 export default defineComponent({
   async asyncData({ app, params }) {
     const { defaultClient } = app.apolloProvider
-    const page = await defaultClient.query({
+    const result = await defaultClient.query({
       query: PageByUriQuery,
       variables: {
         uri: params.pathMatch,
       },
     })
     return {
-      page: page.data.page,
+      page: result.data.page,
     }
   },
   head() {

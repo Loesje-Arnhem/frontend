@@ -26,10 +26,6 @@ import useCarousel from '~/compositions/carousel'
 export default {
   components: { CarouselThumbs },
   props: {
-    value: {
-      type: Number,
-      required: true,
-    },
     totalPages: {
       type: Number,
       required: true,

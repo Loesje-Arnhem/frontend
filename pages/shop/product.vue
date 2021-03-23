@@ -1,7 +1,6 @@
 <template>
   <shop-wrapper>
-    <app-loader v-if="loading" />
-    <template v-else-if="product">
+    <template v-if="product">
       <product-details :product="product" />
       <product-list-section :related-products="product.related.edges" />
     </template>
@@ -9,34 +8,24 @@
 </template>
 
 <script>
-import { useContext, computed, useMeta } from '@nuxtjs/composition-api'
-import ProductDetails from '~/components/Shop/Products/ProductDetails/ProductDetails.vue'
-import ProductListSection from '~/components/Shop/Products/ProductList/ProductListSection.vue'
-import ShopWrapper from '~/components/Shop/Layout/ShopWrapper.vue'
-import useProducts from '~/compositions/products'
+import ProductQuery from '~/graphql/Products/Product.gql'
 
 export default {
-  components: {
-    ShopWrapper,
-    ProductDetails,
-    ProductListSection,
-  },
-  setup() {
-    const { error } = useContext()
-    const { product, loading, onError } = useProducts()
-
-    onError((err) => {
-      error({ statusCode: 404, message: err.message })
+  async asyncData({ app, params }) {
+    const { defaultClient } = app.apolloProvider
+    const result = await defaultClient.query({
+      query: ProductQuery,
+      variables: {
+        slug: params.slug,
+      },
     })
-
-    useMeta({
-      title: computed(() => product?.value?.title).value,
-    })
-
     return {
-      product,
-      loading,
-      error,
+      product: result.data.product,
+    }
+  },
+  head() {
+    return {
+      title: this.product.name,
     }
   },
 
@@ -45,6 +34,5 @@ export default {
       nl: '/winkeltje/:slug',
     },
   },
-  head: {},
 }
 </script>

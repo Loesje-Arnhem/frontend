@@ -21,14 +21,14 @@ import PostQuery from '~/graphql/Posts/Post.gql'
 export default {
   async asyncData({ app, params }) {
     const { defaultClient } = app.apolloProvider
-    const post = await defaultClient.query({
+    const result = await defaultClient.query({
       query: PostQuery,
       variables: {
         slug: params.slug,
       },
     })
     return {
-      post: post.data.post,
+      post: result.data.post,
     }
   },
   head() {

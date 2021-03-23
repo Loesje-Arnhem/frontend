@@ -1,9 +1,6 @@
 <template>
-  <app-loader v-if="loading" />
-
-  <div v-else-if="poster">
+  <div v-if="poster">
     <center-wrapper>
-      <poster-navigation />
       <poster-details :poster="poster" />
     </center-wrapper>
     <related-products-section :related-products="poster.relatedProducts" />
@@ -21,14 +18,14 @@ import PosterQuery from '~/graphql/Posters/Poster.gql'
 export default {
   async asyncData({ app, params }) {
     const { defaultClient } = app.apolloProvider
-    const poster = await defaultClient.query({
+    const result = await defaultClient.query({
       query: PosterQuery,
       variables: {
         slug: params.slug,
       },
     })
     return {
-      poster: poster.data.poster,
+      poster: result.data.poster,
     }
   },
   head() {

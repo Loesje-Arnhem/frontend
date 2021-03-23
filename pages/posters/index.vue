@@ -19,6 +19,9 @@
 import { mapState, mapGetters } from 'vuex'
 
 export default {
+  head: {
+    title: 'Posters',
+  },
   computed: {
     ...mapState('tags', ['selectedTags', 'search', 'dateBefore', 'dateAfter']),
     ...mapGetters('tags', ['selectedSourceIds', 'selectedSubjectIds']),

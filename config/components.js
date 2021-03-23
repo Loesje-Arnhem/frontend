@@ -1,0 +1,20 @@
+// Auto import components: https://go.nuxtjs.dev/config-components
+export default [
+  '~/components',
+  '~/components/Animations',
+  '~/components/AppStores',
+  '~/components/BecomeMember',
+  '~/components/Blocks',
+  '~/components/Carousel',
+  '~/components/Footer',
+  '~/components/Forms',
+  '~/components/Layout',
+  '~/components/LoadMore',
+  '~/components/Menu',
+  '~/components/Pages',
+  '~/components/Posters',
+  '~/components/Posts',
+  '~/components/Shared',
+  '~/components/Shop',
+  '~/components/Wrappers',
+]

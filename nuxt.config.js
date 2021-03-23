@@ -8,9 +8,10 @@ import head from './config/head'
 import i18n from './config/i18n'
 import loaders from './config/loaders'
 import loading from './config/loading'
-import manifest from './config/manifest'
+import pwa from './config/pwa'
 import plugins from './config/plugins'
 import server from './config/server'
+import components from './config/components'
 
 export default {
   apollo,
@@ -23,10 +24,10 @@ export default {
   i18n,
   loaders,
   loading,
-  manifest,
+  pwa,
   modules,
   plugins,
   server,
-  components: true,
+  components,
   modern: 'client',
 }

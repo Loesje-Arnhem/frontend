@@ -1,20 +1,22 @@
 <template>
-  <nav>
-    <nuxt-link v-if="!isSearch" to="/posters/" class="btn-search">
-      <icon-chevron-left width="12" height="12" aria-hidden="true" />
-      Overzicht
-    </nuxt-link>
-    <Transition name="slide">
-      <nuxt-link
-        v-if="total && !isFavorites"
-        to="/posters/favorieten"
-        class="btn-favorites"
-      >
-        {{ favoritesText }}
-        <icon-chevron-right width="12" height="12" aria-hidden="true" />
+  <center-wrapper>
+    <nav>
+      <nuxt-link v-if="!isSearch" to="/posters/" class="btn-search">
+        <icon-chevron-left width="12" height="12" aria-hidden="true" />
+        Overzicht
       </nuxt-link>
-    </Transition>
-  </nav>
+      <Transition name="slide">
+        <nuxt-link
+          v-if="total && !isFavorites"
+          to="/posters/favorieten"
+          class="btn-favorites"
+        >
+          {{ favoritesText }}
+          <icon-chevron-right width="12" height="12" aria-hidden="true" />
+        </nuxt-link>
+      </Transition>
+    </nav>
+  </center-wrapper>
 </template>
 
 <script>
@@ -100,7 +102,7 @@ export default {
 <style scoped>
 nav {
   display: flex;
-  margin-bottom: 1em;
+  margin: 1em 0;
 }
 
 a {
