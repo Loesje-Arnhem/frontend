@@ -2,7 +2,7 @@
   "name": "loesje",
   "version": "1.0.0",
   "private": true,
-  "description": "My posh Nuxt.js project",
+  "description": "Blijf plakken",
   "author": "Michiel Koning",
   "scripts": {
     "build": "nuxt build",

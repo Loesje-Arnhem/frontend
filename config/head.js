@@ -1,11 +1,10 @@
 // Global page headers: https://go.nuxtjs.dev/config-head
-import { title, facebook, apiUrl } from './../data/siteDetails'
+import { facebook, apiUrl } from './../data/siteDetails'
 
 /*
  ** Headers of the page
  */
 export default {
-  title,
   titleTemplate: '%s - Loesje',
   meta: [
     {

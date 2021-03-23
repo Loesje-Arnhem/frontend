@@ -1,4 +1,7 @@
+import { baseUrl } from './../data/siteDetails'
+
 export default {
+  baseUrl,
   defaultLocale: 'nl',
   lazy: true,
   seo: false,
