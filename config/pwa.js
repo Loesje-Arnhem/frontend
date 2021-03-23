@@ -10,6 +10,7 @@ import {
 export default {
   manifest: {
     background_color: backgroundColor,
+    theme_color: themeColor,
     categories,
     lang: 'nl',
     name: title,
@@ -20,7 +21,6 @@ export default {
     appleStatusBarStyle: 'black-translucent',
     mobileApp: true,
     mobileAppIOS: true,
-    theme_color: themeColor,
     twitterCard: 'summary_large_image',
     twitterCreator: twitter,
     twitterSite: twitter,

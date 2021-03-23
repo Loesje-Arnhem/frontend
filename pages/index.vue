@@ -1,14 +1,13 @@
 <template>
   <div v-if="page">
     <h1 class="sr-only">{{ page.title }}</h1>
-    <latest-posts-section />
-    <related-posters-section :related-posters="page.relatedPosters" />
+    <!-- <related-posters-section :related-posters="page.relatedPosters" />
     <app-stores-section />
     <related-products-section
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
     />
-    <!-- <block-instagram /> -->
+    <block-instagram /> -->
     <groups />
   </div>
 </template>
