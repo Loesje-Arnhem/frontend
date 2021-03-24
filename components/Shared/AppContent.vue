@@ -2,7 +2,7 @@
   <center-wrapper :class="$style.wrapper" size="md">
     <article :class="$style.post">
       <h1>{{ title }}</h1>
-      <!-- <post-date v-if="date" :date="date" :class="$style.date" /> -->
+      <post-date v-if="date" :date="date" :class="$style.date" />
       <!-- eslint-disable-next-line -->
       <div class="text" v-html="content" />
     </article>
@@ -10,12 +10,12 @@
 </template>
 
 <script>
-// import PostDate from '~/components/Posts/Shared/PostDate.vue'
+import PostDate from '~/components/Posts/Shared/PostDate.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 
 export default {
   components: {
-    // PostDate,
+    PostDate,
     CenterWrapper,
   },
   props: {
