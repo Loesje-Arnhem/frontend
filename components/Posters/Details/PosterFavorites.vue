@@ -5,12 +5,7 @@
       :class="{ 'is-active': isInFavorites }"
       @click="toggleFavorite"
     >
-      <icon-heart
-        :class="$style.icon"
-        aria-hidden="true"
-        width="20"
-        height="20"
-      />
+      <app-icon :class="$style.icon" width="20" height="20" />
       {{ title }}
     </app-button>
   </div>
@@ -19,12 +14,10 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import AppButton from '~/components/Shared/AppButton.vue'
-import IconHeart from '~/assets/icons/heart-o.svg'
 
 export default {
   components: {
     AppButton,
-    IconHeart,
   },
   props: {
     poster: {

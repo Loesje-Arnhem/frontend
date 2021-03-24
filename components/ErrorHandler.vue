@@ -4,7 +4,7 @@
       <span class="text" aria-live="polite" role="region">{{ message }}</span>
 
       <button v-if="message" type="button" class="dismiss" @click="dismiss">
-        <icon-close aria-hidden="true" width="24" height="24" />
+        <app-icon icon="close" width="24" height="24" />
         <span class="sr-only">{{ $t('close') }}</span>
       </button>
     </div>
@@ -13,12 +13,8 @@
 
 <script>
 import EventBusUtil from '~/utils/eventBusUtil'
-import IconClose from '~/assets/icons/close.svg'
 
 export default {
-  components: {
-    IconClose,
-  },
   data() {
     return {
       message: '',

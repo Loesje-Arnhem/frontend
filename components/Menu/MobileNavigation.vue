@@ -2,7 +2,7 @@
   <div :class="$style.wrapper">
     <div :class="$style.buttons">
       <nuxt-link :class="$style['logo-wrapper']" to="/">
-        <icon-logo class="logo" height="50" width="87" aria-hidden="true" />
+        <app-icon icon="logo" class="logo" height="50" width="87" />
 
         <span class="sr-only">{{ title }}</span>
       </nuxt-link>
@@ -12,14 +12,12 @@
 </template>
 
 <script>
-import IconLogo from '~/assets/icons/logo.svg'
 import { title } from '~/data/siteDetails'
 import EventBusUtil from '~/utils/eventBusUtil'
 import MainNavigationToggle from '~/components/Menu/MainNavigation/MainNavigationToggle.vue'
 
 export default {
   components: {
-    IconLogo,
     MainNavigationToggle,
   },
   props: {

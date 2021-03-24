@@ -7,12 +7,7 @@
       class="btn-store"
       rel="noopener"
     >
-      <icon-apple-store
-        width="120"
-        height="40"
-        aria-hidden="true"
-        class="icon-store"
-      />
+      <app-icon icon="apple-store" width="120" height="40" class="icon-store" />
       <span class="sr-only"
         >De loesje App voor iOs is verkrijgbaar in de AppStore</span
       >
@@ -23,30 +18,13 @@
       class="btn-store"
       rel="noopener"
     >
-      <icon-play-store
-        width="135"
-        height="40"
-        aria-hidden="true"
-        class="icon-store"
-      />
+      <app-icon icon="play-store" width="135" height="40" class="icon-store" />
       <span class="sr-only"
         >De loesje App voor Android is verkrijgbaar in de Play Store</span
       >
     </a>
   </div>
 </template>
-
-<script>
-import IconPlayStore from '~/assets/icons/play-store.svg'
-import IconAppleStore from '~/assets/icons/apple-store.svg'
-
-export default {
-  components: {
-    IconPlayStore,
-    IconAppleStore,
-  },
-}
-</script>
 
 <style lang="postcss" scoped>
 .btn-store {

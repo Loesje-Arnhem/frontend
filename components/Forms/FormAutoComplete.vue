@@ -27,11 +27,11 @@
           :class="$style['btn-reset']"
           @click="reset"
         >
-          <icon-close aria-hidden="true" width="24" height="24" />
+          <app-icon icon="close" width="24" height="24" />
           <span class="sr-only">{{ $t('title') }}</span>
         </button>
         <button type="submit" :class="$style['btn-submit']">
-          <icon-search aria-hidden="true" width="32" height="32" />
+          <app-icon icon="search" width="32" height="32" />
           <span class="sr-only">{{ $t('title') }}</span>
         </button>
       </div>
@@ -60,16 +60,7 @@
 </template>
 
 <script>
-import IconSearch from '~/assets/icons/search.svg'
-import IconClose from '~/assets/icons/close.svg'
-import FormInputText from '~/components/Forms/FormInputText.vue'
-
 export default {
-  components: {
-    IconSearch,
-    IconClose,
-    FormInputText,
-  },
   inheritAttrs: false,
 
   props: {

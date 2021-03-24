@@ -4,13 +4,7 @@
     :class="$style.btn"
     @click="$emit('toggle-menu')"
   >
-    <component
-      :is="icon"
-      aria-hidden="true"
-      width="24"
-      height="24"
-      :class="$style.icon"
-    />
+    <app-icon :icon="icon" width="24" height="24" :class="$style.icon" />
     <span :class="$style.title">
       {{ title }}
     </span>
@@ -18,14 +12,7 @@
 </template>
 
 <script>
-import IconClose from '~/assets/icons/close.svg'
-import IconBars from '~/assets/icons/bars.svg'
-
 export default {
-  components: {
-    IconClose,
-    IconBars,
-  },
   props: {
     expanded: {
       type: Boolean,
@@ -39,9 +26,9 @@ export default {
   computed: {
     icon() {
       if (this.close) {
-        return 'icon-close'
+        return 'close'
       }
-      return 'icon-bars'
+      return 'bars'
     },
     title() {
       if (this.close) {

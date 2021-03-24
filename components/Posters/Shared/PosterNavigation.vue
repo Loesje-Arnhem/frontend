@@ -2,7 +2,7 @@
   <center-wrapper>
     <nav>
       <nuxt-link v-if="!isSearch" to="/posters/" class="btn-search">
-        <icon-chevron-left width="12" height="12" aria-hidden="true" />
+        <app-icon icon="chevron-left" width="12" height="12" />
         Overzicht
       </nuxt-link>
       <Transition name="slide">
@@ -12,7 +12,7 @@
           class="btn-favorites"
         >
           {{ favoritesText }}
-          <icon-chevron-right width="12" height="12" aria-hidden="true" />
+          <app-icon icon="chevron-right" width="12" height="12" />
         </nuxt-link>
       </Transition>
     </nav>
@@ -21,14 +21,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import IconChevronRight from '~/assets/icons/chevron-right.svg'
-import IconChevronLeft from '~/assets/icons/chevron-left.svg'
 
 export default {
-  components: {
-    IconChevronLeft,
-    IconChevronRight,
-  },
   computed: {
     ...mapGetters('favorites', ['total']),
 

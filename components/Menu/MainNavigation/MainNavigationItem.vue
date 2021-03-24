@@ -20,8 +20,8 @@
       :class="$style['btn-show-submenu']"
       @click="toggleMenu"
     >
-      <icon-chevron-down
-        aria-hidden="true"
+      <app-icon
+        icon="chevron-down"
         width="16"
         height="16"
         :class="$style['icon']"
@@ -57,14 +57,12 @@
 </template>
 
 <script>
-import IconChevronDown from '~/assets/icons/chevron-down.svg'
 import AnimationSlideIn from '~/components/Animations/SlideInAnimation.vue'
 import EventBusUtil from '~/utils/eventBusUtil'
 import MainNavigationLink from '~/components/Menu/MainNavigation/MainNavigationLink.vue'
 
 export default {
   components: {
-    IconChevronDown,
     AnimationSlideIn,
     MainNavigationLink,
   },
