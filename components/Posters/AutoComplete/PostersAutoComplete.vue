@@ -10,7 +10,7 @@
 
 <script>
 import { useContext, computed, ref } from '@nuxtjs/composition-api'
-// import { useQuery, useResult } from '@vue/apollo-composable'
+import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import SearchQuery from '~/graphql/Posters/Search.gql'
 
 export default {
@@ -23,31 +23,31 @@ export default {
       store.dispatch('tags/search', search.value)
     }
 
-    // const { result } = useQuery(
-    //   SearchQuery,
-    //   { search },
-    //   {
-    //     // prefetch: false,
-    //     // debounce: 200,
-    //     // enabled,
-    //     // fetchPolicy: 'no-cache',
-    //   },
-    // )
+    const { result } = useQuery(
+      SearchQuery,
+      { search },
+      {
+        // prefetch: false,
+        // debounce: 200,
+        // enabled,
+        // fetchPolicy: 'no-cache',
+      },
+    )
 
-    // const posters = useResult(result)
-    // const list = computed(() => {
-    //   if (!enabled.value || !posters.value) return []
-    //   return posters.value.edges.map((item) => {
-    //     return {
-    //       id: item.node.id,
-    //       title: item.node.title,
-    //       uri: item.node.uri,
-    //     }
-    //   })
-    // })
+    const posters = useResult(result)
+    const list = computed(() => {
+      if (!enabled.value || !posters.value) return []
+      return posters.value.edges.map((item) => {
+        return {
+          id: item.node.id,
+          title: item.node.title,
+          uri: item.node.uri,
+        }
+      })
+    })
 
     return {
-      // list,
+      list,
       submit,
       search,
     }

@@ -1,11 +1,40 @@
 <template>
-  <div>{{ posts }}</div>
+  <app-loader v-if="loading" />
+  <section
+    v-else-if="posts"
+    :class="$style['latest-posts']"
+    aria-labelledby="latest-posts-title"
+  >
+    <center-wrapper size="lg">
+      <div :class="$style.wrapper">
+        <div class="latest-posts">
+          <h1 id="latest-posts-title">{{ $t('title') }}</h1>
+          <latest-posts-list v-if="posts" :posts="posts.edges" />
+          <app-button to="/over-mij/nieuws/">{{ $t('btnMore') }}</app-button>
+        </div>
+        <become-member />
+        <balloon />
+      </div>
+    </center-wrapper>
+  </section>
 </template>
 
 <script>
+import AppButton from '~/components/Shared/AppButton.vue'
+import Balloon from '~/components/Posts/LatestPosts/LatestPostBalloon.vue'
+import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import BecomeMember from '~/components/BecomeMember/BecomeMember.vue'
+import LatestPostsList from '~/components/Posts/LatestPosts/LatestPostsList.vue'
 import usePosts from '~/compositions/posts'
 
 export default {
+  components: {
+    Balloon,
+    AppButton,
+    CenterWrapper,
+    BecomeMember,
+    LatestPostsList,
+  },
   setup() {
     const { posts, loading, error } = usePosts({
       first: 3,

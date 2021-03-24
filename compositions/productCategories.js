@@ -1,4 +1,4 @@
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import { useContext, computed } from '@nuxtjs/composition-api'
 import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories.gql'
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'

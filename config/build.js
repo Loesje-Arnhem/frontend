@@ -43,4 +43,5 @@ export default {
       },
     },
   },
+  transpile: ['@vue/apollo-composable/dist'],
 }
