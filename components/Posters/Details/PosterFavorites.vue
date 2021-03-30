@@ -5,7 +5,7 @@
       :class="{ 'is-active': isInFavorites }"
       @click="toggleFavorite"
     >
-      <app-icon :class="$style.icon" width="20" height="20" />
+      <app-icon :class="$style.icon" icon="heart" width="20" height="20" />
       {{ title }}
     </app-button>
   </div>
