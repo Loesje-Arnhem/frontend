@@ -1,20 +1,26 @@
 <template>
   <center-wrapper>
     <nav>
-      <nuxt-link v-if="!isSearch" to="/posters/" class="btn-search">
-        <app-icon icon="chevron-left" width="12" height="12" />
-        Overzicht
-      </nuxt-link>
-      <Transition name="slide">
+      <transition name="slide">
+        <nuxt-link
+          v-if="!isSearch"
+          :to="localePath({ name: 'posters' })"
+          class="btn-search"
+        >
+          <app-icon icon="chevron-left" width="12" height="12" />
+          Overzicht
+        </nuxt-link>
+      </transition>
+      <transition name="slide">
         <nuxt-link
           v-if="total && !isFavorites"
-          to="/posters/favorieten"
+          :to="localePath({ name: 'posters-favorites' })"
           class="btn-favorites"
         >
           {{ favoritesText }}
           <app-icon icon="chevron-right" width="12" height="12" />
         </nuxt-link>
-      </Transition>
+      </transition>
     </nav>
   </center-wrapper>
 </template>
@@ -32,10 +38,10 @@ export default {
       )} favoriete poster${this.plural(this.total)}`
     },
     isSearch() {
-      return this.$route.name === 'Search'
+      return this.$route.path === this.localePath({ name: 'posters' })
     },
     isFavorites() {
-      return this.$route.name === 'Favorites'
+      return this.localePath({ name: 'posters-favorites' }) === this.$route.path
     },
   },
   methods: {

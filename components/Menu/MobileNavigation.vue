@@ -1,7 +1,10 @@
 <template>
   <div :class="$style.wrapper">
     <div :class="$style.buttons">
-      <nuxt-link :class="$style['logo-wrapper']" to="/">
+      <nuxt-link
+        :class="$style['logo-wrapper']"
+        :to="localePath({ name: 'index' })"
+      >
         <app-icon icon="logo" class="logo" height="50" width="87" />
 
         <span class="sr-only">{{ title }}</span>
