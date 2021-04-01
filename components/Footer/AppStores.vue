@@ -7,10 +7,13 @@
       class="btn-store"
       rel="noopener"
     >
-      <app-icon icon="apple-store" width="120" height="40" class="icon-store" />
-      <span class="sr-only"
-        >De loesje App voor iOs is verkrijgbaar in de AppStore</span
-      >
+      <app-icon
+        icon="apple-store"
+        width="120"
+        height="40"
+        class="icon-store"
+        title="De loesje App voor iOs is verkrijgbaar in de AppStore"
+      />
     </a>
     <a
       href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
@@ -18,10 +21,13 @@
       class="btn-store"
       rel="noopener"
     >
-      <app-icon icon="play-store" width="135" height="40" class="icon-store" />
-      <span class="sr-only"
-        >De loesje App voor Android is verkrijgbaar in de Play Store</span
-      >
+      <app-icon
+        icon="play-store"
+        width="135"
+        height="40"
+        class="icon-store"
+        title="De loesje App voor Android is verkrijgbaar in de Play Store"
+      />
     </a>
   </div>
 </template>

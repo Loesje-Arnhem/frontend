@@ -7,6 +7,7 @@
     >
       <app-icon :class="$style.icon" icon="heart" width="20" height="20" />
       {{ title }}
+      <span class="sr-only">Toevoegen aan favorieten</span>
     </app-button>
   </div>
 </template>

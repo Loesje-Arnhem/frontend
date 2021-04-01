@@ -27,12 +27,10 @@
           :class="$style['btn-reset']"
           @click="reset"
         >
-          <app-icon icon="close" width="24" height="24" />
-          <span class="sr-only">{{ $t('title') }}</span>
+          <app-icon icon="close" width="24" height="24" title="Sluiten" />
         </button>
         <button type="submit" :class="$style['btn-submit']">
-          <app-icon icon="search" width="32" height="32" />
-          <span class="sr-only">{{ $t('title') }}</span>
+          <app-icon icon="search" width="48" height="48" title="Zoeken" />
         </button>
       </div>
       <div
