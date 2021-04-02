@@ -7,22 +7,12 @@
   >
     <span :class="$style['sr-only']">{{ $t('viewAll') }}</span>
     <span :class="$style.title"><slot /></span>
-    <icon-chevron-down
-      :class="$style.icon"
-      width="12"
-      height="12"
-      aria-hidden="true"
-    />
+    <app-icon icon="chevron-down" :class="$style.icon" width="12" height="12" />
   </button>
 </template>
 
 <script>
-import IconChevronDown from '~/assets/icons/chevron-down.svg'
-
 export default {
-  components: {
-    IconChevronDown,
-  },
   props: {
     isActive: {
       type: Boolean,

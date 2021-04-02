@@ -1,6 +1,5 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page">
+  <div v-if="page">
     <h1 class="sr-only">{{ page.title }}</h1>
     <latest-posts-section />
     <related-posters-section :related-posters="page.relatedPosters" />
@@ -9,23 +8,31 @@
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
     />
-    <!-- <block-instagram /> -->
+    <block-instagram />
     <groups />
   </div>
 </template>
 
 <script>
 import { homePageId } from '~/data/pages'
-import { usePageById } from '~/compositions/page'
+import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 
 export default {
-  setup() {
-    const { page, loading, error } = usePageById(homePageId)
-
+  async asyncData({ app }) {
+    const { defaultClient } = app.apolloProvider
+    const result = await defaultClient.query({
+      query: PageByIdQuery,
+      variables: {
+        id: homePageId,
+      },
+    })
     return {
-      page,
-      loading,
-      error,
+      page: result.data.page,
+    }
+  },
+  head() {
+    return {
+      title: this.page.title,
     }
   },
 }

@@ -1,9 +1,6 @@
 <template>
-  <app-loader v-if="loading" />
-
-  <div v-else-if="poster">
+  <div v-if="poster">
     <center-wrapper>
-      <poster-navigation />
       <poster-details :poster="poster" />
     </center-wrapper>
     <related-products-section :related-products="poster.relatedProducts" />
@@ -16,29 +13,38 @@
 </template>
 
 <script>
-import { useContext, computed } from '@nuxtjs/composition-api'
-import { usePoster } from '~/compositions/posters'
+import PosterQuery from '~/graphql/Posters/Poster.gql'
 
 export default {
-  setup() {
-    const { params } = useContext()
-    const slug = computed(() => params.value.slug)
-    const { poster, loading, error } = usePoster(slug)
-
-    const subjects = computed(() => {
-      if (poster.value.subjects.edges.length) {
-        return poster.value.subjects.edges.map(
+  async asyncData({ app, params }) {
+    const { defaultClient } = app.apolloProvider
+    const result = await defaultClient.query({
+      query: PosterQuery,
+      variables: {
+        slug: params.slug,
+      },
+    })
+    return {
+      poster: result.data.poster,
+    }
+  },
+  head() {
+    return {
+      title: this.poster.title,
+    }
+  },
+  computed: {
+    subjects() {
+      if (!this.poster) {
+        return []
+      }
+      if (this.poster.subjects.edges.length) {
+        return this.poster.subjects.edges.map(
           (subject) => subject.node.databaseId,
         )
       }
       return []
-    })
-    return {
-      subjects,
-      poster,
-      loading,
-      error,
-    }
+    },
   },
   nuxtI18n: {
     paths: {

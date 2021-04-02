@@ -16,7 +16,7 @@
     </p>
     <p>
       <span class="text">
-        <icon-envelope aria-hidden="true" width="20" height="20" />
+        <app-icon icon="envelope" width="20" height="20" />
         <a :href="`mailto:${email}`" itemprop="email">
           {{ email }}
         </a>
@@ -26,14 +26,10 @@
 </template>
 
 <script>
-import IconEnvelope from '~/assets/icons/envelope.svg'
 import { title } from '~/data/siteDetails'
 import { street, zipcode, city, email, kvk } from '~/data/address'
 
 export default {
-  components: {
-    IconEnvelope,
-  },
   data() {
     return {
       title,

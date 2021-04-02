@@ -1,13 +1,22 @@
-import { title } from './../data/siteDetails'
-import link from './head/link'
-import meta from './head/meta'
+// Global page headers: https://go.nuxtjs.dev/config-head
+import { facebook, apiUrl } from './../data/siteDetails'
 
 /*
  ** Headers of the page
  */
 export default {
-  title,
   titleTemplate: '%s - Loesje',
-  meta,
-  link,
+  meta: [
+    {
+      hid: 'og:publisher',
+      name: 'og:publisher',
+      content: facebook,
+    },
+  ],
+  link: [
+    {
+      rel: 'dns-prefetch',
+      href: apiUrl,
+    },
+  ],
 }

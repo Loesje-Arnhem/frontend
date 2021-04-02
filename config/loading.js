@@ -4,5 +4,5 @@
 
 export default {
   color: 'var(--nuxt-loader-color)',
-  height: '2px',
+  height: '3px',
 }

@@ -1,5 +1,5 @@
 import { provide, reactive } from '@nuxtjs/composition-api'
-import { DefaultApolloClient } from '@vue/apollo-composable'
+import { DefaultApolloClient } from '@vue/apollo-composable/dist'
 
 const provideApollo = ({ app }) => {
   app.setup = () => {

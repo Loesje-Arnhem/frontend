@@ -16,7 +16,9 @@
       />
     </center-wrapper>
     <center-wrapper :class="$style['btn-wrapper']">
-      <app-button to="/posters">{{ btnText }}</app-button>
+      <app-button :to="localePath({ name: 'posters' })">
+        {{ btnText }}
+      </app-button>
     </center-wrapper>
   </section>
 </template>

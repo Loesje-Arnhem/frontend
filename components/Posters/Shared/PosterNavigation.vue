@@ -1,32 +1,34 @@
 <template>
-  <nav>
-    <nuxt-link v-if="!isSearch" to="/posters/" class="btn-search">
-      <icon-chevron-left width="12" height="12" aria-hidden="true" />
-      Overzicht
-    </nuxt-link>
-    <Transition name="slide">
-      <nuxt-link
-        v-if="total && !isFavorites"
-        to="/posters/favorieten"
-        class="btn-favorites"
-      >
-        {{ favoritesText }}
-        <icon-chevron-right width="12" height="12" aria-hidden="true" />
-      </nuxt-link>
-    </Transition>
-  </nav>
+  <center-wrapper>
+    <nav>
+      <transition name="slide">
+        <nuxt-link
+          v-if="!isSearch"
+          :to="localePath({ name: 'posters' })"
+          class="btn-search"
+        >
+          <app-icon icon="chevron-left" width="12" height="12" />
+          Overzicht
+        </nuxt-link>
+      </transition>
+      <transition name="slide">
+        <nuxt-link
+          v-if="total && !isFavorites"
+          :to="localePath({ name: 'posters-favorites' })"
+          class="btn-favorites"
+        >
+          {{ favoritesText }}
+          <app-icon icon="chevron-right" width="12" height="12" />
+        </nuxt-link>
+      </transition>
+    </nav>
+  </center-wrapper>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import IconChevronRight from '~/assets/icons/chevron-right.svg'
-import IconChevronLeft from '~/assets/icons/chevron-left.svg'
 
 export default {
-  components: {
-    IconChevronLeft,
-    IconChevronRight,
-  },
   computed: {
     ...mapGetters('favorites', ['total']),
 
@@ -36,10 +38,10 @@ export default {
       )} favoriete poster${this.plural(this.total)}`
     },
     isSearch() {
-      return this.$route.name === 'Search'
+      return this.$route.path === this.localePath({ name: 'posters' })
     },
     isFavorites() {
-      return this.$route.name === 'Favorites'
+      return this.localePath({ name: 'posters-favorites' }) === this.$route.path
     },
   },
   methods: {
@@ -100,7 +102,7 @@ export default {
 <style scoped>
 nav {
   display: flex;
-  margin-bottom: 1em;
+  margin: 1em 0;
 }
 
 a {

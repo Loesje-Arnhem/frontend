@@ -1,4 +1,4 @@
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import { useContext, computed } from '@nuxtjs/composition-api'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'

@@ -10,7 +10,9 @@
         <div class="latest-posts">
           <h1 id="latest-posts-title">{{ $t('title') }}</h1>
           <latest-posts-list v-if="posts" :posts="posts.edges" />
-          <app-button to="/over-mij/nieuws/">{{ $t('btnMore') }}</app-button>
+          <app-button :to="localePath({ name: 'posts' })">
+            {{ $t('btnMore') }}
+          </app-button>
         </div>
         <become-member />
         <balloon />

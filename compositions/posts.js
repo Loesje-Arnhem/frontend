@@ -1,4 +1,4 @@
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import { computed } from '@nuxtjs/composition-api'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
 import PostQuery from '~/graphql/Posts/Post.gql'

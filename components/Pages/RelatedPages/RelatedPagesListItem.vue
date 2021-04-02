@@ -2,7 +2,7 @@
   <clickable-list-item
     :url="page.uri"
     :class="$style['related-page']"
-    class="tile"
+    class="box"
   >
     <h2 :class="$style.title">
       <nuxt-link :to="page.uri">{{ page.title }}</nuxt-link>

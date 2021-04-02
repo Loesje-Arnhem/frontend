@@ -2,22 +2,12 @@
   <!-- eslint-disable-next-line vue/require-component-is -->
   <component :is="tag" :to="to" class="read-more">
     Lees verder
-    <icon-chevron-right
-      class="icon"
-      aria-hidden="true"
-      width="16"
-      height="16"
-    />
+    <app-icon icon="chevron-right" class="icon" width="16" height="16" />
   </component>
 </template>
 
 <script>
-import IconChevronRight from '~/assets/icons/chevron-right.svg'
-
 export default {
-  components: {
-    IconChevronRight,
-  },
   props: {
     to: {
       type: String,

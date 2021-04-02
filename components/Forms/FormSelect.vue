@@ -14,25 +14,13 @@
       >
         <slot />
       </select>
-      <icon-chevron-down
-        class="icon"
-        aria-hidden="true"
-        width="24"
-        height="24"
-      />
+      <app-icon icon="chevron-down" class="icon" width="24" height="24" />
     </div>
   </form-field>
 </template>
 
 <script>
-import IconChevronDown from '~/assets/icons/chevron-down.svg'
-import FormField from '~/components/Forms/FormField.vue'
-
 export default {
-  components: {
-    FormField,
-    IconChevronDown,
-  },
   inheritAttrs: false,
   props: {
     title: {

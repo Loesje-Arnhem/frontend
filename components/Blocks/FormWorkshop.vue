@@ -8,19 +8,21 @@
     >
       <form-fieldset title="Contact">
         <form-input-text
+          id="name"
+          v-model="$v.name.$model"
+          :errors="$v.name.$errors"
+          title="Naam"
+          name="name"
+          autocomplete="name"
+        />
+        <form-input-text
           id="email"
           v-model="$v.email.$model"
           :errors="$v.email.$errors"
           title="E-mailadres"
           type="email"
           name="email"
-        />
-        <form-input-text
-          id="name"
-          v-model="$v.name.$model"
-          :errors="$v.name.$errors"
-          title="Naam"
-          name="name"
+          autocomplete="name"
         />
         <form-input-text
           id="phoneNumber"
@@ -28,6 +30,7 @@
           title="Telefoonnummer"
           type="tel"
           name="phoneNumber"
+          autocomplete="tel"
         />
         <form-input-text
           id="companyName"

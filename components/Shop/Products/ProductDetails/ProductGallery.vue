@@ -1,30 +1,34 @@
 <template>
-  <div :class="$style.gallery" class="tile">
-    <ul v-if="images.length > 1" ref="list" :class="$style.list">
-      <li v-for="image in images" :key="image.id" :class="$style.item">
+  <div :class="$style.gallery">
+    <app-carousel
+      v-if="images.length > 1"
+      :total-pages="images.length"
+      :thumbs="images"
+    >
+      <carousel-card
+        v-for="(image, index) in images"
+        :key="image.id"
+        :index="index"
+      >
         <app-image
           :src="image.medium"
           :alt="image.altText"
           :class="$style.image"
         />
-      </li>
-    </ul>
-    <app-image
-      v-else-if="images[0]"
-      :src="images[0].mediumLarge"
-      :alt="images[0].altText"
-      :class="$style.image"
-    />
+      </carousel-card>
+    </app-carousel>
+    <div v-else-if="images[0]" class="tile">
+      <app-image
+        :src="images[0].mediumLarge"
+        :alt="images[0].altText"
+        :class="$style.image"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import AppImage from '~/components/Shared/AppImage.vue'
-
 export default {
-  components: {
-    AppImage,
-  },
   props: {
     images: {
       type: Array,
@@ -35,21 +39,8 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.list {
-  @mixin list-reset;
-
-  display: flex;
-  overflow: hidden;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: scroll;
-}
-
-.item {
-  scroll-snap-align: start;
-  flex: 0 0 100%;
-  width: 100%;
+.main-image {
+  margin-bottom: 0.5em;
 }
 
 .image {

@@ -1,28 +1,32 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page" class="page">
+  <div v-if="page" class="page">
     <app-content :title="page.title" :content="page.content" />
     <form-workshop />
-    <related-posters-section
-      v-if="page"
-      :related-posters="page.relatedPosters"
-    />
+    <related-posters-section :related-posters="page.relatedPosters" />
     <related-products-section :related-products="page.relatedProducts" />
   </div>
 </template>
 
 <script>
-import { usePageById } from '~/compositions/page'
 import { workshopsPageId } from '~/data/pages'
+import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 
 export default {
-  setup() {
-    const { page, loading, error } = usePageById(workshopsPageId)
-
+  async asyncData({ app }) {
+    const { defaultClient } = app.apolloProvider
+    const result = await defaultClient.query({
+      query: PageByIdQuery,
+      variables: {
+        id: workshopsPageId,
+      },
+    })
     return {
-      page,
-      loading,
-      error,
+      page: result.data.page,
+    }
+  },
+  head() {
+    return {
+      title: this.page.title,
     }
   },
 }

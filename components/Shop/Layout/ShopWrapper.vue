@@ -1,8 +1,8 @@
 <template>
   <center-wrapper>
     <div :class="$style.wrapper">
-      <div>
-        <product-category-list />
+      <div :class="$style['categories-column']">
+        <product-category-list :class="$style.categories" />
       </div>
       <div>
         <slot />
@@ -28,6 +28,18 @@ export default {
   padding: 2em 0 4em;
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 3fr;
+
+  @media (--viewport-md) {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+.categories-column {
+  position: relative;
+}
+
+.categories {
+  position: sticky;
+  top: 4.5em;
 }
 </style>

@@ -4,50 +4,34 @@
     <ul class="list">
       <li>
         <a href="/workshops/">
-          <icon-chevron-right
-            width="12"
-            height="12"
-            aria-hidden="true"
-          />Workshops
+          <app-icon icon="chevron-right" width="12" height="12" />
+          Workshops
         </a>
       </li>
       <li>
         <a href="/doe-mee/lokale-groepen/">
-          <icon-chevron-right width="12" height="12" aria-hidden="true" />Lokale
-          groepen
+          <app-icon icon="chevron-right" width="12" height="12" />Lokale groepen
         </a>
       </li>
       <li>
         <a href="/doe-mee/lokale-groepen/">
-          <icon-chevron-right width="12" height="12" aria-hidden="true" />Loesje
+          <app-icon icon="chevron-right" width="12" height="12" />Loesje
           internationaal
         </a>
       </li>
       <li>
         <a href="/doe-mee/lokale-groepen/">
-          <icon-chevron-right width="12" height="12" aria-hidden="true" />Word
-          lid
+          <app-icon icon="chevron-right" width="12" height="12" />Word lid
         </a>
       </li>
       <li>
         <a href="/doe-mee/lokale-groepen/">
-          <icon-chevron-right width="12" height="12" aria-hidden="true" />Word
-          donateur
+          <app-icon icon="chevron-right" width="12" height="12" />Word donateur
         </a>
       </li>
     </ul>
   </nav>
 </template>
-
-<script>
-import IconChevronRight from '~/assets/icons/chevron-right.svg'
-
-export default {
-  components: {
-    IconChevronRight,
-  },
-}
-</script>
 
 <style lang="postcss" scoped>
 .list {

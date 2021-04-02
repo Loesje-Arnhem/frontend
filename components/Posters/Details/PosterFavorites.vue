@@ -5,8 +5,9 @@
       :class="{ 'is-active': isInFavorites }"
       @click="toggleFavorite"
     >
-      <img src="/images/heart.png" alt="" :class="$style.icon" />
+      <app-icon :class="$style.icon" icon="heart" width="20" height="20" />
       {{ title }}
+      <span class="sr-only">Toevoegen aan favorieten</span>
     </app-button>
   </div>
 </template>
