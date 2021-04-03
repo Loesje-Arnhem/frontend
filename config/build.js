@@ -16,10 +16,10 @@ export default {
   postcss: {
     plugins: {
       'postcss-mixins': {
-        mixinsDir: './styles/mixins/',
+        mixinsDir: './assets/css/mixins/',
       },
       'postcss-preset-env': {
-        importFrom: ['./styles/media-queries/media-queries.css'],
+        importFrom: ['./assets/css/media-queries/media-queries.css'],
 
         features: {
           'nesting-rules': true,

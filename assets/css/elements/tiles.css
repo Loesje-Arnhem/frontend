@@ -11,6 +11,8 @@
 
 .box {
   @mixin tile-border;
+
+  border-image-outset: 0.5em;
 }
 
 .box-inverted {

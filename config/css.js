@@ -1,1 +1,1 @@
-export default ['~/styles/base.css']
+export default ['~/assets/css/base.css']

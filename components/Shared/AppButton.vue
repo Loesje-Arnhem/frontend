@@ -56,8 +56,12 @@ export default {
 
 <style lang="postcss" scoped>
 .btn {
-  @mixin heading;
+  --rough-fill: var(--color-black);
 
+  @mixin heading;
+  @mixin tile-border;
+
+  border-image-outset: 0.75em 2em;
   background: var(--color-black);
   color: var(--color-white);
   text-align: center;

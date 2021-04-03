@@ -11,7 +11,7 @@
         <app-image
           :src="image.thumbnail"
           :alt="image.altText"
-          :class="$style.image"
+          :class="[$style.image, { [$style.active]: index === activeSlide }]"
         />
       </li>
     </template>
@@ -47,16 +47,13 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(6em, 1fr));
 }
 
-.thumb {
+.image {
+  display: block;
   opacity: 0.5;
   transition: opacity var(--animation);
 
   &.active {
     opacity: 1;
   }
-}
-
-.image {
-  display: block;
 }
 </style>

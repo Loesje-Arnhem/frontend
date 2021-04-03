@@ -1,25 +1,23 @@
-@define-mixin input-border $stroke-width: 3px, $stroke-roughness: 1.5 {
-  --rough-stroke-width: $(stroke-width);
-  --rough-roughness: $(stroke-roughness);
-
-  border: var(--rough-stroke-width) solid var(--color-black);
+@define-mixin input-border {
+  --rough-stroke-width: 2px;
+  --rough-roughness: 1;
+  border: var(--rough-stroke-width) solid var(--rough-stroke);
 
   @nest .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
       border-image-source: paint(rough-boxes);
       border-image-slice: 0 fill;
       background: none;
+      border-image-outset: var(--input-padding-vertical) calc(var(--input-padding-horizontal) * 2);
     }
   }
 }
 
 @define-mixin tile-border {
-  --rough-stroke-width: 1px;
+  --rough-stroke-width: 2px;
   --rough-roughness: 2;
-  --rough-fill: var(--color-white);
-  --rough-stroke: var(--color-black);
 
-  border: 2px solid var(--rough-stroke);
+  border: var(--rough-stroke-width) solid var(--rough-stroke);
 
   @nest .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {

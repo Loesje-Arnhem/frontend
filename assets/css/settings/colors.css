@@ -7,10 +7,12 @@
   --color-gray-light: #becdd3;
   --color-gray-lighter: #e6e6e6;
   --color-gray-lightest: #f1f4f5;
+
+  --rough-fill: var(--color-white);
+  --rough-stroke: var(--color-black);
 }
 
 /*
-@media (--dark-mode) {
   :root {
     --color-black: #fff;
     --color-white: #000;

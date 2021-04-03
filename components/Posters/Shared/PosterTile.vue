@@ -2,7 +2,6 @@
   <div :class="$style.tile" class="tile">
     <router-link :to="poster.uri" :class="$style.link">
       <app-image
-        class="border"
         :alt="poster.title"
         :src="image"
         :class="$style.poster"
