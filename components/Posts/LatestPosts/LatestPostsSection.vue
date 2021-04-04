@@ -22,19 +22,15 @@
 </template>
 
 <script>
-import AppButton from '~/components/Shared/AppButton.vue'
 import Balloon from '~/components/Posts/LatestPosts/LatestPostBalloon.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import BecomeMember from '~/components/BecomeMember/BecomeMember.vue'
 import LatestPostsList from '~/components/Posts/LatestPosts/LatestPostsList.vue'
 import usePosts from '~/compositions/posts'
 
 export default {
   components: {
     Balloon,
-    AppButton,
     CenterWrapper,
-    BecomeMember,
     LatestPostsList,
   },
   setup() {

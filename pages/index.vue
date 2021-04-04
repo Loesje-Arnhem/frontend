@@ -8,7 +8,7 @@
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
     />
-    <block-instagram />
+    <!-- <block-instagram /> -->
     <groups />
   </div>
 </template>

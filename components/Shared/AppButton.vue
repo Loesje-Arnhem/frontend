@@ -1,13 +1,12 @@
 <template>
-  <!-- eslint-disable-next-line vue/require-component-is -->
-
   <component
     :is="tag"
     :type="generatedType"
     :to="to"
-    :class="cssClass"
+    :class="cssClasses"
     @click="$emit('click')"
   >
+    {{ classes }}
     <span class="title"><slot /></span>
   </component>
 </template>
@@ -36,8 +35,19 @@ export default {
     },
   },
   computed: {
-    cssClass() {
-      return this.isPrimary ? 'btn' : 'btn-outline'
+    cssClasses() {
+      const classes = []
+      if (this.isPrimary) {
+        classes.push('btn')
+
+        if (this.tag !== 'nuxt-link') {
+          classes.push('rough-border')
+        }
+      } else {
+        classes.push('btn-outline')
+      }
+
+      return classes
     },
     tag() {
       if (this.to) {
@@ -58,16 +68,13 @@ export default {
 <style lang="postcss" scoped>
 .btn {
   @mixin heading;
-  @mixin tile-border;
-
-  --rough-fill: var(--color-black);
 
   background: var(--color-black);
   color: var(--color-white);
   text-align: center;
-  display: block;
+  display: inline-block;
   text-decoration: none;
-  padding: 0.75em 2em;
+  padding: 0.5em 2em;
   max-width: 20em;
   position: relative;
 
@@ -86,6 +93,12 @@ export default {
       border-image-outset: 0.25em 0.5em;
     }
   }
+}
+
+.rough-border {
+  @mixin tile-border;
+
+  --rough-fill: var(--color-black);
 }
 
 .btn-outline {

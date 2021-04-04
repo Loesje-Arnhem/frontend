@@ -11,9 +11,3 @@
 .box {
   @mixin tile-border;
 }
-
-.box-inverted {
-  @mixin tile-border;
-
-  --rough-fill: var(--color-black);
-}
