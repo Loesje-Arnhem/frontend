@@ -1,5 +1,4 @@
 :root {
+  --rough-fill: var(--color-white);
   --rough-stroke: var(--color-black);
-  --rough-stroke-width: 3px;
-  --rough-roughness: 1.5;
 }

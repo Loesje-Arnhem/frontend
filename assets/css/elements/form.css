@@ -29,16 +29,14 @@ input[type='tel'],
 input[type='url'],
 input[type='password'],
 select {
-  @mixin input-border;
-  --input-padding-vertical: 0.5em;
-  --input-padding-horizontal: 0.25em;
+  @mixin tile-border 1;
 
   appearance: none;
   background: var(--color-white);
   border-radius: 0;
   width: 100%;
   height: auto;
-  padding: var(--input-padding-vertical) var(--input-padding-horizontal);
+  padding: 0.5em 0.25em;
   font-size: 1rem;
   font-family: inherit;
   transition: border-color 0.15s ease-out;

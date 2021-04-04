@@ -32,7 +32,5 @@ export default {
   display: inline-block;
   fill: currentColor;
   position: relative;
-  width: 1em;
-  height: 1em;
 }
 </style>

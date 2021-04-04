@@ -5,17 +5,18 @@
 
   @nest .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
+      border: 0;
       border-image-source: paint(rough-boxes);
       border-image-slice: 0 fill;
       background: none;
-      border-image-outset: var(--input-padding-vertical) calc(var(--input-padding-horizontal) * 2);
+      border-image-outset: 0.5em;
     }
   }
 }
 
-@define-mixin tile-border {
-  --rough-stroke-width: 2px;
-  --rough-roughness: 2;
+@define-mixin tile-border $roughness: 2, $stroke-width: 2px, $image-outset: 0.5em  {
+  --rough-stroke-width: $stroke-width;
+  --rough-roughness: $roughness;
 
   border: var(--rough-stroke-width) solid var(--rough-stroke);
 
@@ -24,6 +25,7 @@
       border-image-source: paint(rough-boxes);
       border-image-slice: 0 fill;
       background: none;
+      border-image-outset: $image-outset;
     }
   }
 }

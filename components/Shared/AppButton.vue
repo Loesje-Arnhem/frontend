@@ -1,5 +1,6 @@
 <template>
   <!-- eslint-disable-next-line vue/require-component-is -->
+
   <component
     :is="tag"
     :type="generatedType"
@@ -56,20 +57,17 @@ export default {
 
 <style lang="postcss" scoped>
 .btn {
-  --rough-fill: var(--color-black);
-
   @mixin heading;
   @mixin tile-border;
 
-  border-image-outset: 0.75em 2em;
+  --rough-fill: var(--color-black);
+
   background: var(--color-black);
   color: var(--color-white);
   text-align: center;
-  border-radius: 0.25em;
-  display: inline-block;
+  display: block;
   text-decoration: none;
   padding: 0.75em 2em;
-  border: 2px solid var(--color-white);
   max-width: 20em;
   position: relative;
 
@@ -80,6 +78,12 @@ export default {
 
     &:hover {
       background: transparent;
+    }
+  }
+
+  @nest .is-loaded & {
+    @supports (border-image-source: paint(rough-boxes)) {
+      border-image-outset: 0.25em 0.5em;
     }
   }
 }
