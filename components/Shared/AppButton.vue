@@ -6,7 +6,6 @@
     :class="cssClasses"
     @click="$emit('click')"
   >
-    {{ classes }}
     <span class="title"><slot /></span>
   </component>
 </template>
