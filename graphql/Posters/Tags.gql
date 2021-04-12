@@ -1,0 +1,19 @@
+#import "./Fragments/SubjectDetails.gql"
+#import "./Fragments/SourceDetails.gql"
+
+query Tags {
+  sources(first: 100) {
+    edges {
+      node {
+        ...sourceDetails
+      }
+    }
+  }
+  subjects(first: 100) {
+    edges {
+      node {
+        ...subjectDetails
+      }
+    }
+  }
+}

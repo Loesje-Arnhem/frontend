@@ -7,6 +7,9 @@
         @toggle="toggleList('sources')"
       >
         Bronnen
+        <template v-if="selectedSourceIds.length">
+          ({{ selectedSourceIds.length }})
+        </template>
       </posters-filter-toggle>
       <posters-filter-toggle
         :is-active="showSubjects"
@@ -14,6 +17,9 @@
         @toggle="toggleList('subjects')"
       >
         Onderwerpen
+        <template v-if="selectedSubjectIds.length">
+          ({{ selectedSubjectIds.length }})
+        </template>
       </posters-filter-toggle>
       <div class="filter-item">
         <div class="form-item-2">
@@ -68,6 +74,7 @@ import PostersFilterToggle from '~/components/Posters/Filters/PosterFilterToggle
 import SlideInAnimation from '~/components/Animations/SlideInAnimation.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
+import TagsQuery from '~/graphql/Posters/Tags.gql'
 
 export default {
   components: {
@@ -80,11 +87,18 @@ export default {
     return {
       showSubjects: false,
       showSources: false,
-      selectedTags: [],
+      sources: [],
+      subjects: [],
     }
   },
+  async fetch() {
+    const result = await this.$apollo.query({ query: TagsQuery })
+    const { sources, subjects } = result.data
+    this.sources = sources.edges
+    this.subjects = subjects.edges
+  },
   computed: {
-    ...mapGetters('tags', ['sources', 'subjects']),
+    ...mapGetters('tags', ['selectedSourceIds', 'selectedSubjectIds']),
     dateBefore: {
       get() {
         return this.$store.state.tags.dateBefore
@@ -110,6 +124,18 @@ export default {
       return now.getFullYear() + '-' + month + '-' + day
     },
   },
+
+  // watch: {
+  //   sources(value) {
+  //     if (value) {
+  //       // select national series as default
+  //       const nationalSeries = value.find(
+  //         (source) => source.node.databaseId === 28,
+  //       )
+  //       this.$store.commit('tags/add', nationalSeries)
+  //     }
+  //   },
+  // },
 
   methods: {
     toggleList(type) {

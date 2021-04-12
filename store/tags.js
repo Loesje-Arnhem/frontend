@@ -1,8 +1,4 @@
-import SourcesQuery from '~/graphql/Posters/Sources.gql'
-import SubjectsQuery from '~/graphql/Posters/Subjects.gql'
-
 export const state = () => ({
-  all: [],
   selectedTags: [],
   search: '',
   dateBefore: null,
@@ -14,12 +10,6 @@ export const getters = {
     return state.selectedTags.find(
       (selectedTag) => selectedTag.node.databaseId === tagId,
     )
-  },
-  sources: (state) => {
-    return state.all.filter((tag) => tag.node.taxonomy.node.name === 'source')
-  },
-  subjects: (state) => {
-    return state.all.filter((tag) => tag.node.taxonomy.node.name === 'subject')
   },
   selectedSourceIds: (state) => {
     const sources = state.selectedTags.filter(
@@ -39,10 +29,10 @@ export const mutations = {
   search: (state, payload) => {
     state.search = payload
   },
-  updatedateBefore: (state, payload) => {
+  updateDateBefore: (state, payload) => {
     state.dateBefore = payload
   },
-  updatedateAfter: (state, payload) => {
+  updateDateAfter: (state, payload) => {
     state.dateAfter = payload
   },
   add: (state, payload) => {
@@ -54,9 +44,6 @@ export const mutations = {
       (selectedTag) => selectedTag.node.databaseId !== payload,
     )
   },
-  set: (state, payload) => {
-    state.all = payload
-  },
 }
 
 export const actions = {
@@ -64,35 +51,15 @@ export const actions = {
     commit('search', payload)
   },
   updatedateBefore: ({ commit }, payload) => {
-    commit('updatedateBefore', payload)
+    commit('updateDateBefore', payload)
   },
   updatedateAfter: ({ commit }, payload) => {
-    commit('updatedateAfter', payload)
+    commit('updateDateAfter', payload)
   },
   add: ({ commit }, payload) => {
     commit('add', payload)
   },
   remove: ({ commit }, payload) => {
     commit('remove', payload)
-  },
-  async set({ commit }, context) {
-    const responseSources = await context.app.apolloProvider.defaultClient.query(
-      {
-        query: SourcesQuery,
-      },
-    )
-    const responseSubjects = await context.app.apolloProvider.defaultClient.query(
-      {
-        query: SubjectsQuery,
-      },
-    )
-    commit('set', [
-      ...responseSources.data.sources.edges,
-      ...responseSubjects.data.subjects.edges,
-    ])
-    const nationalSeries = responseSources.data.sources.edges.find(
-      (source) => source.node.databaseId === 28,
-    )
-    commit('add', nationalSeries)
   },
 }
