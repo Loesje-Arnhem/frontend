@@ -2,8 +2,9 @@
   <div class="poster-daily">
     <div class="image-wrapper">
       <img
-        src="https://www.loesje.nl/wp-content/uploads/2019/02/2019-08-22.jpg"
-        alt="Klussen Slaat mijn broertje eindelijk de spijker op zijn kop"
+        v-if="dailyPoster"
+        :src="dailyPoster.image"
+        :alt="dailyPoster.title"
         class="image"
       />
     </div>
@@ -14,6 +15,45 @@
     />
   </div>
 </template>
+
+<script>
+import DailyPostersQuery from '~/graphql/Posters/DailyPoster.gql'
+
+export default {
+  data() {
+    return {
+      poster: {
+        edges: [],
+      },
+    }
+  },
+  async fetch() {
+    const date = new Date()
+    const result = await this.$apollo.query({
+      query: DailyPostersQuery,
+      variables: {
+        year: date.getFullYear(),
+        month: 4, // date.getMonth() + 1
+        day: 13, // date.getDate()
+      },
+    })
+    if (result.data) {
+      this.poster = result.data.dailyPosters
+    }
+  },
+  computed: {
+    dailyPoster() {
+      if (!this.poster.edges.length) {
+        return null
+      }
+      return {
+        title: this.poster.edges[0].node.title,
+        image: this.poster.edges[0].node.featuredImage.node.medium,
+      }
+    },
+  },
+}
+</script>
 
 <style lang="postcss" scoped>
 .poster-daily {
