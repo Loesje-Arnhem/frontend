@@ -45,6 +45,7 @@ export default {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 1em;
 
   @media (--viewport-sm) {
     grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));

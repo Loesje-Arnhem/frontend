@@ -43,11 +43,18 @@ export default {
 <style lang="postcss" module>
 .page {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .header {
   z-index: var(--z-main-navigation);
   top: 0;
   position: sticky;
+}
+
+.main {
+  flex: 1 0 auto;
 }
 </style>

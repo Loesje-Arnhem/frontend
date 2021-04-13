@@ -103,6 +103,7 @@ export default {
 nav {
   display: flex;
   margin: 1em 0;
+  height: 1em;
 }
 
 a {
