@@ -124,13 +124,15 @@ export default {
       }
     },
     getMainLink() {
-      const activeLink = this.$refs.menu.querySelector(
-        '.home .nuxt-link-exact-active',
-      )
+      const { menu } = this.$refs
+      if (!menu) {
+        return null
+      }
+      const activeLink = menu.querySelector('.home .nuxt-link-exact-active')
       if (activeLink) {
         return activeLink
       }
-      return this.$refs.menu.querySelector('.page .nuxt-link-active')
+      return menu.querySelector('.page .nuxt-link-active')
     },
   },
 }
