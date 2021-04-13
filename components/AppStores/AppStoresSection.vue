@@ -4,7 +4,7 @@
       <div :class="$style['image-wrapper']">
         <app-image
           :class="$style.mood"
-          :src="require('./images/arcarde.png')"
+          :src="require('~/assets/images/arcarde.png')"
           width="500"
           height="800"
         />
@@ -37,7 +37,7 @@
       </div>
       <button :class="$style['btn-action']" @click="action">
         <app-image
-          :src="require('./images/arcarde-button.png')"
+          :src="require('~/assets/images/arcarde-button.png')"
           width="100"
           height="100"
         />
@@ -92,9 +92,9 @@ export default {
   margin: 0 auto;
 
   @media (--viewport-md) {
-    shape-outside: url(/images/nederland.png);
+    shape-outside: url(~/assets/images/arcarde.png);
     shape-image-threshold: 0.1;
-    shape-margin: 5em;
+    shape-margin: 1.5em;
     margin-bottom: 2em;
     float: right;
   }

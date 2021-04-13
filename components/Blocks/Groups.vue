@@ -3,7 +3,10 @@
     <div class="center">
       <div class="wrapper">
         <div class="image-wrapper">
-          <app-image src="/images/nederland.png" class="mood" />
+          <app-image
+            :src="require('~/assets/images/nederland.png')"
+            class="mood"
+          />
         </div>
         <div class="text">
           <h1>Hier ben ik actief</h1>
@@ -56,7 +59,7 @@ export default {
   margin-bottom: 2em;
 
   @media (--viewport-md) {
-    shape-outside: url(/images/nederland.png);
+    shape-outside: url(~/assets/images/nederland.png);
     shape-image-threshold: 0.1;
     shape-margin: 2em;
     float: right;

@@ -88,7 +88,7 @@ export default {
 <style lang="postcss" module>
 .related-posters {
   padding: 3em 0;
-  background: url('/images/backgrounds/wall.jpg');
+  background: url('~assets/images/wall.jpg');
 }
 
 .title {

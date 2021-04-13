@@ -36,7 +36,7 @@ export default {
 
 <style lang="postcss" module>
 .wrapper {
-  background: url('/images/backgrounds/wall.jpg');
+  background: url('~assets/images/wall.jpg');
 }
 
 .list {

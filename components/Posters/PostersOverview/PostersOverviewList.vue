@@ -31,7 +31,7 @@ export default {
 .list {
   @mixin list-reset;
 
-  background: url('/images/backgrounds/wall.jpg');
+  background: url('~assets/images/wall.jpg');
   margin: 0 0 1em;
   display: grid;
   grid-gap: 1rem;

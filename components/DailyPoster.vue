@@ -7,7 +7,11 @@
         class="image"
       />
     </div>
-    <img src="/images/electriciteitskastje.png" alt="" class="background" />
+    <img
+      :src="require('~/assets/images/electriciteitskastje.png')"
+      alt=""
+      class="background"
+    />
   </div>
 </template>
 

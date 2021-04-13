@@ -18,7 +18,10 @@
         />
 
         <div :class="$style['mood-wrapper']">
-          <app-image :class="$style.mood" src="/images/casette-player.png" />
+          <app-image
+            :class="$style.mood"
+            :src="require('~/assets/images/casette-player.png')"
+          />
         </div>
       </div>
     </div>
