@@ -54,7 +54,6 @@
 
 <script>
 import { debounce } from 'throttle-debounce'
-import { ref, useFetch, useContext } from '@nuxtjs/composition-api'
 import MainNavigationItem from '~/components/Menu/MainNavigation/MainNavigationItem.vue'
 import MenuQuery from '~/graphql/Menu/Menu.gql'
 import { joinPageId, aboutPageId } from '~/data/pages'
@@ -69,30 +68,28 @@ export default {
       default: false,
     },
   },
-  setup() {
-    const { app } = useContext()
 
-    const pages = ref(null)
-    const { fetch } = useFetch(async () => {
-      const result = await app.apolloProvider.defaultClient.query({
-        query: MenuQuery,
-        variables: {
-          joinPageId,
-          aboutPageId,
-        },
-      })
-      pages.value = result.data
-    })
-    fetch()
-    return {
-      pages,
-    }
-  },
   data() {
     return {
       arrowPosition: 0,
       arrowWidth: 0,
       mounted: false,
+      pages: null,
+    }
+  },
+  async fetch() {
+    const result = await this.$apollo.query({
+      query: MenuQuery,
+      variables: {
+        joinPageId,
+        aboutPageId,
+      },
+    })
+    if (result.data) {
+      this.pages = result.data
+      this.$nextTick(() => {
+        this.setArrowPosition()
+      })
     }
   },
   watch: {
@@ -103,7 +100,6 @@ export default {
     },
   },
   mounted() {
-    this.setArrowPosition()
     setTimeout(() => {
       this.mounted = true
     }, 0)
