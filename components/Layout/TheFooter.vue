@@ -16,13 +16,12 @@
           :instagram="instagramUrl"
           :linkedin="linkedinUrl"
         />
-
-        <div :class="$style['mood-wrapper']">
-          <app-image
-            :class="$style.mood"
-            :src="require('~/assets/images/casette-player.png')"
-          />
-        </div>
+      </div>
+      <div :class="$style['mood-wrapper']">
+        <app-image
+          :class="$style.mood"
+          :src="require('~/assets/images/casette-player.png')"
+        />
       </div>
     </div>
   </footer>
@@ -66,20 +65,32 @@ export default {
 .footer {
   @mixin block;
   @mixin color-negative;
+
+  position: relative;
 }
 
 .wrapper {
   @mixin center;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
-  grid-gap: var(--gutter);
+  grid-gap: 2em var(--gutter);
+
+  @media (--viewport-sm) {
+    grid-template-columns: repeat(2, 1fr);
+    padding-bottom: 8em;
+  }
+  @media (--viewport-md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .mood-wrapper {
-  margin-top: 2em;
-  text-align: right;
   transform: rotate(3deg);
+  @media (--viewport-sm) {
+    position: absolute;
+    bottom: var(--gutter);
+    right: var(--gutter);
+  }
 }
 
 .btn-store {

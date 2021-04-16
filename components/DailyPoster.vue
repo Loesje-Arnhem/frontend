@@ -34,7 +34,7 @@ export default {
       variables: {
         year: date.getFullYear(),
         month: 4, // date.getMonth() + 1
-        day: 13, // date.getDate()
+        day: 14, // date.getDate()
       },
     })
     if (result.data) {

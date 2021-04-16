@@ -2,38 +2,17 @@
   <div :class="$style.page">
     <vue-announcer />
     <header-top :class="$style['header-top']" class="header-top" />
-    <the-header ref="header" :class="$style.header" />
-    <main id="content" :class="$style.main" tabindex="-1" :style="mainCSS">
+    <the-header :class="$style.header" />
+    <main id="content" :class="$style.main" tabindex="-1">
       <nuxt />
     </main>
-    <the-footer ref="footer" />
+    <the-footer />
     <error-handler />
   </div>
 </template>
 
 <script>
-import { onMounted, ref } from '@nuxtjs/composition-api'
-
 export default {
-  setup(_, { refs }) {
-    const mainCSS = ref()
-    const header = ref(null)
-    const footer = ref(null)
-
-    onMounted(() => {
-      if (!header.value || !footer.value) {
-        return
-      }
-      const layoutHeight = header.value.clientHeight + footer.value.clientHeight
-      mainCSS.value = { 'min-height': `calc(100vh - ${layoutHeight}px)` }
-    })
-
-    return {
-      mainCSS,
-      header,
-      footer,
-    }
-  },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
   },
@@ -56,5 +35,12 @@ export default {
 
 .main {
   flex: 1 0 auto;
+  min-height: calc(100vh - 1193px);
+  @media (--viewport-sm) {
+    min-height: calc(100vh - 702px);
+  }
+  @media (--viewport-md) {
+    min-height: calc(100vh - 486px);
+  }
 }
 </style>
