@@ -5,6 +5,7 @@
         <app-image
           :class="$style.mood"
           :src="require('~/assets/images/arcarde.png')"
+          loading="lazy"
           width="500"
           height="800"
         />
@@ -40,6 +41,7 @@
           :src="require('~/assets/images/arcarde-button.png')"
           width="100"
           height="100"
+          loading="lazy"
         />
       </button>
     </div>

@@ -1,12 +1,12 @@
 <template>
   <div v-if="page" class="page">
     <app-content :title="page.title" :content="page.content" />
-    <!-- <related-posters-section :related-posters="page.relatedPosters" />
+    <related-posters-section :related-posters="page.relatedPosters" />
     <related-pages-section
       :not-in="page.databaseId"
       :parent-page-id="parentId"
     />
-    <related-products-section :related-products="page.relatedProducts" /> -->
+    <related-products-section :related-products="page.relatedProducts" />
   </div>
 </template>
 

@@ -5,9 +5,14 @@
       :class="{ 'is-active': isInFavorites }"
       @click="toggleFavorite"
     >
-      <app-icon :class="$style.icon" icon="heart" width="20" height="20" />
+      <app-icon
+        :class="$style.icon"
+        :icon="isInFavorites ? 'heart' : 'heart-o'"
+        width="20"
+        height="20"
+      />
       {{ title }}
-      <span class="sr-only">Toevoegen aan favorieten</span>
+      <span class="sr-only">: {{ poster.title }}</span>
     </app-button>
   </div>
 </template>
@@ -67,10 +72,7 @@ export default {
   height: 1em;
   width: auto;
   transform: translateY(0.1em);
-
-  @nest :global(.is-active) & {
-    filter: invert(1);
-  }
+  color: currentColor;
 }
 </style>
 

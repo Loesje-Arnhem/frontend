@@ -9,6 +9,10 @@ export default {
       type: String,
       required: true,
     },
+    lazy: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     width() {
@@ -24,7 +28,7 @@ export default {
       return null
     },
     loading() {
-      if (this.hasSizeInSrc) {
+      if (this.hasSizeInSrc && this.lazy) {
         return 'lazy'
       }
       return null

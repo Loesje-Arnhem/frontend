@@ -1,10 +1,11 @@
 <template>
   <div class="poster-daily">
     <div class="image-wrapper">
-      <img
+      <app-image
         v-if="dailyPoster"
         :src="dailyPoster.image"
         :alt="dailyPoster.title"
+        :lazy="false"
         class="image"
       />
     </div>
@@ -12,6 +13,8 @@
       :src="require('~/assets/images/electriciteitskastje.png')"
       alt=""
       class="background"
+      width="339"
+      height="390"
     />
   </div>
 </template>
