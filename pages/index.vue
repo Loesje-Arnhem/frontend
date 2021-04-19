@@ -1,7 +1,7 @@
 <template>
   <div v-if="page">
     <h1 class="sr-only">{{ page.title }}</h1>
-    <latest-posts-section />
+    <latest-posts-section :posts="posts" />
     <related-posters-section :related-posters="page.relatedPosters" />
     <app-stores-section />
     <related-products-section
@@ -16,18 +16,26 @@
 <script>
 import { homePageId } from '~/data/pages'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
+import PostsQuery from '~/graphql/Posts/Posts.gql'
 
 export default {
   async asyncData({ app }) {
     const { defaultClient } = app.apolloProvider
-    const result = await defaultClient.query({
+    const page = await defaultClient.query({
       query: PageByIdQuery,
       variables: {
         id: homePageId,
       },
     })
+    const posts = await defaultClient.query({
+      query: PostsQuery,
+      variables: {
+        first: 3,
+      },
+    })
     return {
-      page: result.data.page,
+      page: page.data.page,
+      posts: posts.data.posts,
     }
   },
   head() {

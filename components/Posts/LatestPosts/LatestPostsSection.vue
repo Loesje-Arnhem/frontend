@@ -1,7 +1,6 @@
 <template>
-  <app-loader v-if="loading" />
   <section
-    v-else-if="posts"
+    if="posts"
     :class="$style['latest-posts']"
     aria-labelledby="latest-posts-title"
   >
@@ -25,7 +24,6 @@
 import Balloon from '~/components/Posts/LatestPosts/LatestPostBalloon.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import LatestPostsList from '~/components/Posts/LatestPosts/LatestPostsList.vue'
-import usePosts from '~/compositions/posts'
 
 export default {
   components: {
@@ -33,16 +31,12 @@ export default {
     CenterWrapper,
     LatestPostsList,
   },
-  setup() {
-    const { posts, loading, error } = usePosts({
-      first: 3,
-    })
 
-    return {
-      posts,
-      loading,
-      error,
-    }
+  props: {
+    posts: {
+      type: Object,
+      default: () => {},
+    },
   },
 }
 </script>
