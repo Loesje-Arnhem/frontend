@@ -186,7 +186,7 @@ export default {
     }
   }
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     width: 25%;
     border-bottom: 0;
 

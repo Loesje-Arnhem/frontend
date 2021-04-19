@@ -30,7 +30,7 @@
           <app-icon icon="close" width="24" height="24" title="Sluiten" />
         </button>
         <button type="submit" :class="$style['btn-submit']">
-          <app-icon icon="search" width="48" height="48" title="Zoeken" />
+          <app-icon icon="search" width="24" height="24" title="Zoeken" />
         </button>
       </div>
       <div
@@ -160,7 +160,7 @@ export default {
 
 .buttons {
   position: absolute;
-  top: 0.25em;
+  top: 0.5em;
   right: 0.25em;
   padding: 0.25em 0.25em;
   display: flex;

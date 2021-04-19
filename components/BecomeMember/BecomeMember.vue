@@ -40,7 +40,7 @@
 .image {
   position: absolute;
   bottom: -2em;
-  right: -2em;
+  right: calc(var(--gutter) * -1);
 }
 </style>
 

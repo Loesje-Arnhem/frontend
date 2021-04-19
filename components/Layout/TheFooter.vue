@@ -79,7 +79,7 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     padding-bottom: 8em;
   }
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     grid-template-columns: repeat(4, 1fr);
   }
 }

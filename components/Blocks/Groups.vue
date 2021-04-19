@@ -50,7 +50,7 @@ export default {
   display: flex;
   flex-direction: column;
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     display: block;
   }
 }
@@ -58,7 +58,7 @@ export default {
 .image-wrapper {
   margin-bottom: 2em;
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     shape-outside: url(~/assets/images/nederland.png);
     shape-image-threshold: 0.1;
     shape-margin: 2em;
@@ -69,7 +69,7 @@ export default {
 .text {
   order: -1;
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     padding-top: 6em;
   }
 }

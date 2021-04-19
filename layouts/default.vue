@@ -39,7 +39,7 @@ export default {
   @media (--viewport-sm) {
     min-height: calc(100vh - 702px);
   }
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     min-height: calc(100vh - 486px);
   }
 }

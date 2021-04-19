@@ -52,17 +52,10 @@ export default {
 
 <style lang="postcss" module>
 .balloon {
-  @media (--viewport-lg) {
-    position: absolute;
-  }
-
-  bottom: 4rem;
-  right: 4rem;
-
   &.animate {
     animation: balloonX 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
 
-    @media (--viewport-lg) {
+    @media (--viewport-md) {
       animation-name: balloonXLarge;
     }
   }
@@ -72,7 +65,7 @@ export default {
   @nest .balloon.animate & {
     animation: balloonY 20s infinite cubic-bezier(0.3, 0.27, 0.07, 1.64);
 
-    @media (--viewport-lg) {
+    @media (--viewport-md) {
       animation-name: balloonYLarge;
     }
   }

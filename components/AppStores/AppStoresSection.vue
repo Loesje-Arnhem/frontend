@@ -85,7 +85,7 @@ export default {
   display: flex;
   flex-direction: column;
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     display: block;
   }
 }
@@ -93,7 +93,7 @@ export default {
 .image-wrapper {
   margin: 0 auto;
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     shape-outside: url(~/assets/images/arcarde.png);
     shape-image-threshold: 0.1;
     shape-margin: 1.5em;
@@ -115,7 +115,7 @@ export default {
   margin-right: 3em;
   bottom: 12em;
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     bottom: auto;
     right: 15em;
     top: 20em;

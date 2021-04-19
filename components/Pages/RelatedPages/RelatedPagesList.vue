@@ -48,7 +48,7 @@ export default {
     }
   }
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     margin-bottom: 2em;
     grid-column: span 4;
 

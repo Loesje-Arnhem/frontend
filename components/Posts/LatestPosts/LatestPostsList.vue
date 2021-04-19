@@ -34,7 +34,7 @@ export default {
 
 .list-item {
   &:not(:last-child) {
-    margin: 0 0 3em;
+    margin: 0 0 2em;
   }
 }
 </style>
