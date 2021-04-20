@@ -5,6 +5,7 @@
     :width="width"
     :height="height"
     aria-hidden="true"
+    :title="title"
   />
 </template>
 
@@ -12,6 +13,10 @@
 export default {
   props: {
     icon: {
+      type: String,
+      required: true,
+    },
+    title: {
       type: String,
       required: true,
     },
