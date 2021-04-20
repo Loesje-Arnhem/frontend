@@ -5,6 +5,7 @@ fragment productDetails on Product {
   image {
     id
     altText
+    thumbnail: sourceUrl(size: THUMBNAIL)
     medium: sourceUrl(size: MEDIUM)
     mediumLarge: sourceUrl(size: MEDIUM_LARGE)
   }
