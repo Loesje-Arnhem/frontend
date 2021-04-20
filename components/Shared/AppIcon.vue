@@ -18,7 +18,7 @@ export default {
     },
     title: {
       type: String,
-      required: true,
+      default: '',
     },
     width: {
       type: [String, Number],
