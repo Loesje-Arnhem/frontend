@@ -1,8 +1,7 @@
 <template>
   <nav aria-labelledby="categories-title" class="categories tile">
     <h2 id="categories-title" class="sr-only">Categorien</h2>
-    <app-loader v-if="loading" />
-    <ul v-else-if="productCategories" class="category-list">
+    <ul v-if="productCategories" class="category-list">
       <template v-for="productCategory in productCategories.edges">
         <li
           v-if="!productCategory.node.parentDatabaseId"
@@ -33,16 +32,21 @@
 </template>
 
 <script>
-import useProductCategories from '~/compositions/productCategories'
+import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories.gql'
 
 export default {
-  setup() {
-    const { productCategories, loading, error } = useProductCategories()
-
+  data() {
     return {
-      productCategories,
-      loading,
-      error,
+      productCategories: {},
+    }
+  },
+
+  async fetch() {
+    const result = await this.$apollo.query({
+      query: ProductCategoriesQuery,
+    })
+    if (result.data) {
+      this.productCategories = result.data.productCategories
     }
   },
 }
@@ -55,6 +59,12 @@ export default {
 
 .category-list {
   @mixin list-reset;
+
+  display: none;
+
+  @media (--viewport-md) {
+    display: block;
+  }
 
   & .category-list {
     margin-left: 1em;

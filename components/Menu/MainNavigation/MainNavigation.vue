@@ -40,7 +40,7 @@
           class="page"
           :title="$t('pages.shop')"
           :reset-submenu="menuIsOpen"
-          :uri="pages.productCategories.edges[0].node.uri"
+          :uri="localePath({ name: 'shop' })"
           :children="pages.productCategories"
         />
       </ul>

@@ -3,3 +3,4 @@ export const joinPageId = 430
 export const aboutPageId = 415
 export const workshopsPageId = 362
 export const blogPageId = 757
+export const shopPageId = 30777

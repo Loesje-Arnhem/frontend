@@ -5,35 +5,45 @@
       v-if="productCategory.description"
       v-html="productCategory.description"
     />
-    <product-list-section :category="productCategory.databaseId" />
+    <product-list v-if="products.edges.length" :products="products.edges" />
   </shop-wrapper>
 </template>
 
 <script>
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
-import ProductListSection from '~/components/Shop/Products/ProductList/ProductListSection.vue'
-import ShopWrapper from '~/components/Shop/Layout/ShopWrapper.vue'
+import ProductsQuery from '~/graphql/Products/Products.gql'
 
 export default {
-  components: {
-    ProductListSection,
-    ShopWrapper,
-  },
   async asyncData({ app, params }) {
-    const productCategory = await app.apolloProvider.defaultClient.query({
+    const { defaultClient } = app.apolloProvider
+
+    const slug = params.subcategory ? params.subcategory : params.category
+
+    const productCategory = await defaultClient.query({
       query: ProductCategoryQuery,
       variables: {
-        slug: params.slug,
+        slug,
+      },
+    })
+
+    const products = await defaultClient.query({
+      query: ProductsQuery,
+      variables: {
+        where: {
+          categoryId: productCategory.data.productCategory.databaseId,
+          stockStatus: 'IN_STOCK',
+        },
       },
     })
 
     return {
       productCategory: productCategory.data.productCategory,
+      products: products.data.products,
     }
   },
   nuxtI18n: {
     paths: {
-      nl: '/winkeltje/categorie/:slug',
+      nl: '/winkeltje/categorie/:category/:subcategory?',
     },
   },
 

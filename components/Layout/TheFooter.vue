@@ -19,6 +19,8 @@
       </div>
       <div :class="$style['mood-wrapper']">
         <app-image
+          width="210"
+          height="240"
           :class="$style.mood"
           :src="require('~/assets/images/casette-player.png')"
         />

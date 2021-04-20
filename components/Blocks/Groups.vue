@@ -5,6 +5,8 @@
         <div class="image-wrapper">
           <app-image
             :src="require('~/assets/images/nederland.png')"
+            width="565"
+            height="600"
             class="mood"
           />
         </div>

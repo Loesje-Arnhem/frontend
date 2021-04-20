@@ -6,7 +6,7 @@
         class="filter-item"
         @toggle="toggleList('sources')"
       >
-        Bronnen
+        {{ $t('sources') }}
         <template v-if="selectedSourceIds.length">
           ({{ selectedSourceIds.length }})
         </template>
@@ -16,37 +16,34 @@
         class="filter-item"
         @toggle="toggleList('subjects')"
       >
-        Onderwerpen
+        {{ $t('subjects') }}
         <template v-if="selectedSubjectIds.length">
           ({{ selectedSubjectIds.length }})
         </template>
       </posters-filter-toggle>
       <div class="filter-item">
         <div class="form-item-2">
-          <label for="date-after">Van</label>
-          <input
-            id="date-after"
-            v-model="dateAfter"
-            type="date"
-            name="date-after"
-            placeholder="Datum tot"
-            :min="dateBefore ? dateBefore : '1983-01-01'"
-            :max="today"
-          />
-        </div>
-      </div>
-
-      <div class="filter-item">
-        <div class="form-item-2">
-          <label for="date-before">Voor</label>
+          <label for="date-before"> {{ $t('dateBefore') }} </label>
           <input
             id="date-before"
             v-model="dateBefore"
             type="date"
             name="date-before"
-            placeholder="Datum van"
             min="1983-01-01"
             :max="dateAfter ? dateAfter : today"
+          />
+        </div>
+      </div>
+      <div class="filter-item">
+        <div class="form-item-2">
+          <label for="date-after"> {{ $t('dateAfter') }} </label>
+          <input
+            id="date-after"
+            v-model="dateAfter"
+            type="date"
+            name="date-after"
+            :min="dateBefore ? dateBefore : '1983-01-01'"
+            :max="today"
           />
         </div>
       </div>
@@ -104,7 +101,7 @@ export default {
         return this.$store.state.tags.dateBefore
       },
       set(value) {
-        this.$store.commit('tags/updatedateBefore', value)
+        this.$store.commit('tags/updateDateBefore', value)
       },
     },
     dateAfter: {
@@ -112,7 +109,7 @@ export default {
         return this.$store.state.tags.dateAfter
       },
       set(value) {
-        this.$store.commit('tags/updatedateAfter', value)
+        this.$store.commit('tags/updateDateAfter', value)
       },
     },
     today() {
@@ -221,3 +218,14 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "nl": {
+    "sources": "Bronnen",
+    "subjects": "Onderwerpen",
+    "dateBefore": "Voor",
+    "dateAfter": "Van"
+  }
+}
+</i18n>

@@ -41,6 +41,7 @@
           :src="require('~/assets/images/arcarde-button.png')"
           width="100"
           height="100"
+          alt="Play"
           loading="lazy"
         />
       </button>

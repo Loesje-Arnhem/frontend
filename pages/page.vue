@@ -13,6 +13,7 @@
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
+import getSeoMetaData from '~/utils/seo'
 
 export default defineComponent({
   async asyncData({ app, params }) {
@@ -28,9 +29,7 @@ export default defineComponent({
     }
   },
   head() {
-    return {
-      title: this.page.title,
-    }
+    return getSeoMetaData(this.page.seo)
   },
   computed: {
     parentId() {

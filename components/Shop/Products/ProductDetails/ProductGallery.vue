@@ -14,6 +14,7 @@
           :src="image.medium"
           :alt="image.altText"
           :class="$style.image"
+          :lazy="index > 0"
         />
       </carousel-card>
     </app-carousel>
@@ -22,6 +23,7 @@
         :src="images[0].mediumLarge"
         :alt="images[0].altText"
         :class="$style.image"
+        :lazy="false"
       />
     </div>
   </div>

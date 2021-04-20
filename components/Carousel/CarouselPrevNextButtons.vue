@@ -5,14 +5,14 @@
       :disabled="!previousSlideEnabled"
       @click="goToPreviousSlide"
     >
-      prev
+      <app-icon icon="chevron-left" title="Vorige slide" />
     </button>
     <button
       class="btn-next"
       :disabled="!nextSlideEnabled"
       @click="goToNextSlide"
     >
-      next
+      <app-icon icon="chevron-right" title="Volgende slide" />
     </button>
   </div>
 </template>
@@ -44,23 +44,21 @@ export default {
 .btn-previous {
   position: absolute;
   top: 50%;
-  margin-top: -1em;
+  margin-top: -0.75em;
   touch-action: manipulation;
   z-index: 9;
 }
 
 .btn-next {
-  right: calc(var(--gutter) * 2);
-  transform: translateX(0.5em);
+  right: 0;
 }
 
 .btn-previous {
-  transform: translateX(-0.5em);
-  left: calc(var(--gutter) * 2);
+  left: 0;
 }
 
 .icon {
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
 }
 </style>

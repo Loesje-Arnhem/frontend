@@ -5,7 +5,7 @@ import { facebook, apiUrl } from './../data/siteDetails'
  ** Headers of the page
  */
 export default {
-  titleTemplate: '%s - Loesje',
+  titleTemplate: '%s',
   meta: [
     {
       hid: 'og:publisher',
