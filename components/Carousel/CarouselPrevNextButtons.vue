@@ -44,7 +44,7 @@ export default {
 .btn-previous {
   position: absolute;
   top: 50%;
-  margin-top: -1em;
+  margin-top: -0.75em;
   touch-action: manipulation;
   z-index: 9;
 }
@@ -58,7 +58,7 @@ export default {
 }
 
 .icon {
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
 }
 </style>

@@ -60,6 +60,12 @@ export default {
 .category-list {
   @mixin list-reset;
 
+  display: none;
+
+  @media (--viewport-md) {
+    display: block;
+  }
+
   & .category-list {
     margin-left: 1em;
     font-size: 0.9em;
