@@ -13,10 +13,6 @@
 <script>
 export default {
   props: {
-    category: {
-      type: Number,
-      default: 0,
-    },
     databaseIds: {
       type: Array,
       default: () => [],
@@ -26,12 +22,6 @@ export default {
     where() {
       const inStock = {
         stockStatus: 'IN_STOCK',
-      }
-      if (this.category) {
-        return {
-          ...inStock,
-          categoryId: this.category,
-        }
       }
 
       if (this.databaseIds.length) {
