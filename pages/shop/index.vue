@@ -10,6 +10,7 @@
 import { shopPageId } from '~/data/pages'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import ProductsQuery from '~/graphql/Products/Products.gql'
+import getSeoMetaData from '~/utils/seo'
 
 export default {
   async asyncData({ app }) {
@@ -42,9 +43,7 @@ export default {
     },
   },
   head() {
-    return {
-      title: this.page.title,
-    }
+    return getSeoMetaData(this.page.seo)
   },
 }
 </script>
