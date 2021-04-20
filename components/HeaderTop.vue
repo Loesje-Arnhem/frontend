@@ -4,10 +4,9 @@
       <div :class="$style.text">
         <h1>Blijf plakken</h1>
         <p>
-          Loesje-posters asouhdsaudhasihdas vind je overal. Op straat, bij de
-          buren, op een kaartje aan het prikbord… De posters geven frisse
-          gedachten, ontlokken ideeën of geven je inspiratie om de wereld een
-          stukje mooier te maken.
+          Loesje-posters vind je overal. Op straat, bij de buren, op een kaartje
+          aan het prikbord… De posters geven frisse gedachten, ontlokken ideeën
+          of geven je inspiratie om de wereld een stukje mooier te maken.
         </p>
       </div>
       <daily-poster :class="$style['daily-poster']" />
