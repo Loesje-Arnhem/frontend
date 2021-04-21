@@ -76,22 +76,23 @@ export default {
 <style lang="postcss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.3s 0.2s;
+  transition: all var(--animation) 0.2s;
 }
 
 .fade-enter,
 .fade-leave-to {
-  transform: translateX(-2em);
+  transform: translateX(-5em);
   opacity: 0;
 }
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: transform 0.3s;
+  transition: all var(--animation);
 }
 
 .slide-enter,
 .slide-leave-to {
+  opacity: 0.8;
   transform: translateX(-100vw);
 }
 </style>
