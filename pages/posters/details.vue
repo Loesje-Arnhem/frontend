@@ -14,6 +14,7 @@
 
 <script>
 import PosterQuery from '~/graphql/Posters/Poster.gql'
+import getSeoMetaData from '~/utils/seo'
 
 export default {
   async asyncData({ app, params }) {
@@ -29,9 +30,7 @@ export default {
     }
   },
   head() {
-    return {
-      title: this.poster.title,
-    }
+    return getSeoMetaData(this.poster.seo)
   },
   computed: {
     subjects() {

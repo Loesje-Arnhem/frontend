@@ -2,6 +2,7 @@
 #import "./Fragments/SourceDetails.gql"
 #import "./Fragments/SubjectDetails.gql"
 #import "./Fragments/RelatedProducts.gql"
+#import "./../Fragments/Seo.gql"
 
 query Poster($slug: ID!) {
   poster(id: $slug, idType: SLUG) {
@@ -38,6 +39,9 @@ query Poster($slug: ID!) {
           ...subjectDetails
         }
       }
+    }
+    seo {
+      ...seo
     }
   }
 }
