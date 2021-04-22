@@ -2,12 +2,14 @@
   <section :class="$style['app-stores']" aria-labelledby="app-stores-title">
     <div :class="$style.wrapper">
       <div :class="$style['image-wrapper']">
-        <app-image
+        <nuxt-picture
           :class="$style.mood"
-          :src="require('~/assets/images/arcarde.png')"
-          loading="lazy"
+          src="/images/arcarde.png"
           width="500"
           height="800"
+          quality="80"
+          fit="inside"
+          sizes="sm:100vw md:50vw lg:400px"
         />
       </div>
       <div :class="$style.text">

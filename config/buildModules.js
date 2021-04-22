@@ -6,4 +6,5 @@ export default [
   '@nuxtjs/stylelint-module',
   '@nuxtjs/composition-api/module',
   '@nuxtjs/google-fonts',
+  '@nuxt/image',
 ]
