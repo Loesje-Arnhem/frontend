@@ -30,7 +30,7 @@ export default {
       hid: 'rss:posters',
       type: 'application/atom+xml',
       rel: 'alternate',
-      href: `${apiUrl}feed/?post_type=poster`,
+      href: `${apiUrl}posters/feed?source=landelijke-serie`,
       title: 'Posters - Loesje',
     },
   ],
