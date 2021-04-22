@@ -18,11 +18,15 @@
         />
       </div>
       <div :class="$style['mood-wrapper']">
-        <app-image
+        <nuxt-picture
           width="210"
           height="240"
           :class="$style.mood"
-          :src="require('~/assets/images/casette-player.png')"
+          loading="lazy"
+          src="/images/casette-player.png"
+          quality="80"
+          fit="inside"
+          sizes="sm:50vw md:33vw lg:25vw xl:300 xxl:500"
         />
       </div>
     </div>
@@ -34,7 +38,7 @@ import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
 import AppStores from '~/components/Footer/AppStores.vue'
 import CompanyAddress from '~/components/Footer/CompanyAddress.vue'
 import QuickLinks from '~/components/Footer/QuickLinks.vue'
-import AppImage from '~/components/Shared/AppImage.vue'
+
 import {
   facebookUrl,
   twitterUrl,
@@ -49,7 +53,6 @@ export default {
     SocialMediaLinks,
     AppStores,
     CompanyAddress,
-    AppImage,
   },
   data() {
     return {

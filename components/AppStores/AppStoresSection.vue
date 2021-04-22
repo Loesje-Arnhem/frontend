@@ -6,10 +6,11 @@
           :class="$style.mood"
           src="/images/arcarde.png"
           width="500"
-          height="800"
+          height="560"
           quality="80"
           fit="inside"
-          sizes="sm:100vw md:50vw lg:400px"
+          sizes="sm:100vw md:75vw lg:500px xL:800"
+          loading="lazy"
         />
       </div>
       <div :class="$style.text">
@@ -39,12 +40,15 @@
         </p>
       </div>
       <button :class="$style['btn-action']" @click="action">
-        <app-image
-          :src="require('~/assets/images/arcarde-button.png')"
-          width="100"
-          height="100"
+        <nuxt-picture
+          src="/images/arcarde-button.png"
+          width="36"
+          height="34"
           alt="Play"
           loading="lazy"
+          quality="80"
+          fit="inside"
+          sizes="sm:36 md:72"
         />
       </button>
     </div>
@@ -52,12 +56,7 @@
 </template>
 
 <script>
-import AppImage from '~/components/Shared/AppImage.vue'
-
 export default {
-  components: {
-    AppImage,
-  },
   data() {
     return {
       themeColor: '#000',

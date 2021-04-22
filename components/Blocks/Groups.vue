@@ -3,11 +3,15 @@
     <div class="center">
       <div class="wrapper">
         <div class="image-wrapper">
-          <app-image
-            :src="require('~/assets/images/nederland.png')"
+          <nuxt-picture
+            src="/images/nederland.png"
             width="565"
             height="600"
             class="mood"
+            quality="80"
+            fit="inside"
+            loading="lazy"
+            sizes="sm:100vw md:80vw lg:565 xl:800"
           />
         </div>
         <div class="text">
@@ -24,18 +28,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import AppImage from '~/components/Shared/AppImage.vue'
-import AppButton from '~/components/Shared/AppButton.vue'
-
-export default {
-  components: {
-    AppImage,
-    AppButton,
-  },
-}
-</script>
 
 <style lang="postcss" scoped>
 .groups {

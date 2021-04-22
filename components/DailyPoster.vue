@@ -9,12 +9,15 @@
         class="image"
       />
     </div>
-    <img
-      :src="require('~/assets/images/electriciteitskastje.png')"
+    <nuxt-picture
+      src="/images/electriciteitskastje.png"
       alt=""
       class="background"
       width="339"
       height="390"
+      quality="80"
+      fit="inside"
+      sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
     />
   </div>
 </template>
