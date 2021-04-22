@@ -3,12 +3,15 @@
     <article class="content">
       <h1 class="sr-only">{{ poster.title }}</h1>
       <div class="tile">
-        <app-image
-          v-if="poster.featuredImage"
-          :alt="poster.title"
-          :src="poster.featuredImage.node.large"
-          :class="$style.image"
-        />
+        <fade-animation mode="out-in">
+          <app-image
+            v-if="poster.featuredImage"
+            :key="poster.featuredImage.node.large"
+            :alt="poster.title"
+            :src="poster.featuredImage.node.large"
+            :class="$style.image"
+          />
+        </fade-animation>
       </div>
     </article>
     <div :class="$style['meta-data']">
@@ -50,18 +53,10 @@
 </template>
 
 <script>
-import AppDate from '~/components/Shared/AppDate.vue'
-import AppImage from '~/components/Shared/AppImage.vue'
-import PosterFavorites from '~/components/Posters/Details/PosterFavorites.vue'
 import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
-import ShareThis from '~/components/Posters/Shared/ShareThis.vue'
 
 export default {
   components: {
-    AppDate,
-    AppImage,
-    ShareThis,
-    PosterFavorites,
     PosterFilterTags,
   },
 

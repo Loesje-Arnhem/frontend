@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide-in" :mode="mode">
+  <transition name="fade" :mode="mode">
     <slot />
   </transition>
 </template>
@@ -16,14 +16,13 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.slide-in-enter-active,
-.slide-in-leave-active {
-  transition: all var(--animation);
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--animation);
 }
 
-.slide-in-enter,
-.slide-in-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
-  transform: translateY(-0.5em);
 }
 </style>

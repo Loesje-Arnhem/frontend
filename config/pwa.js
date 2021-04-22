@@ -21,7 +21,7 @@ export default {
     appleStatusBarStyle: 'black-translucent',
     mobileApp: true,
     mobileAppIOS: true,
-    twitterCard: 'summary_large_image',
+    twitterCard: 'summary',
     twitterCreator: twitter,
     twitterSite: twitter,
     viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
