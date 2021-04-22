@@ -95,9 +95,9 @@ export default {
   margin: 0 auto;
 
   @media (--viewport-lg) {
-    shape-outside: url(~/assets/images/arcarde.png);
+    shape-outside: polygon(85% 0%, 0% 100%, 85% 100%);
     shape-image-threshold: 0.1;
-    shape-margin: 1.5em;
+    shape-margin: 8em;
     margin-bottom: 2em;
     float: right;
   }
