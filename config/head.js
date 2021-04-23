@@ -20,6 +20,12 @@ export default {
       href: apiUrl,
     },
     {
+      hid: 'favicon:svg',
+      rel: 'icon',
+      href: '/favicon.svg',
+      type: 'image/svg+xml',
+    },
+    {
       hid: 'rss:news',
       type: 'application/atom+xml',
       rel: 'alternate',
