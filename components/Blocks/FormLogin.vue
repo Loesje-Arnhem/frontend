@@ -25,26 +25,9 @@
         <p>{{ user }}</p>
       </div>
     </form>
-    <form v-if="user" class="form" @submit.prevent="update">
+    <form v-if="loggedIn" class="form" @submit.prevent="update">
       <div class="wrapper">
-        <form-fieldset title="Factuurgegevens">
-          <form-input-text
-            id="firstName"
-            v-model="user.firstName"
-            title="firstName"
-            type="text"
-            class="firstName"
-            name="firstName"
-          />
-          <form-input-text
-            id="lastName"
-            v-model="user.lastName"
-            title="Wachtwoord"
-            class="lastName"
-            name="lastName"
-          />
-        </form-fieldset>
-        <app-button type="submit">Inloggen</app-button>
+        <button @click="logout">Uitloggen</button>
       </div>
     </form>
   </div>
@@ -52,6 +35,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { v4 } from 'uuid'
 import FormFieldset from '~/components/Forms/FormFieldset.vue'
 import FormInputText from '~/components/Forms/FormInputText.vue'
 import AppButton from '~/components/Shared/AppButton.vue'
@@ -72,6 +56,11 @@ export default {
       user: null,
     }
   },
+  computed: {
+    loggedIn() {
+      return !!this.$apolloHelpers.getToken()
+    },
+  },
   methods: {
     ...mapActions({
       add: 'customer/add',
@@ -84,17 +73,20 @@ export default {
             input: {
               username: this.userName,
               password: this.password,
-              clientMutationId: 'login',
+              clientMutationId: v4(),
             },
           },
         })
         await this.$apolloHelpers.onLogin(res.data.login.authToken)
-        const customer = { ...res.data.login.customer }
-        this.add(customer)
-        this.user = res.data.login.customer
+        // const customer = { ...res.data.login.customer }
+        // this.add(customer)
+        // this.user = res.data.login.customer
       } catch (error) {
         this.error = error
       }
+    },
+    async logout() {
+      await this.$apolloHelpers.onLogout()
     },
     async update() {
       try {
@@ -110,7 +102,7 @@ export default {
             },
           },
         })
-        this.user = res.data.login.customer
+        this.user = res.data.updateCustomer.customer
       } catch (error) {
         this.error = error
       }

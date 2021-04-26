@@ -1,0 +1,5 @@
+mutation CLEAR_CART {
+  removeItemsFromCart(input: { all: true }) {
+    clientMutationId
+  }
+}

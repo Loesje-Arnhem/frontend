@@ -3,6 +3,7 @@
 mutation LOGIN($input: LoginInput!) {
   login(input: $input) {
     authToken
+    refreshToken
     customer {
       ...customer
     }

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <shop-wrapper>
     <form-login />
-  </div>
+  </shop-wrapper>
 </template>
 
 <script>

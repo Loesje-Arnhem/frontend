@@ -1,31 +1,24 @@
 <template>
   <div>
-    <template v-if="cart">
-      <ul>
-        <li v-for="item in cart.contents.edges" :key="item.node.id">
-          {{ item.node.quantity }}x {{ item.node.product.name }} -
-          {{ item.node.total }}
-        </li>
-      </ul>
-      {{ cart.total }}
-    </template>
+    <ul v-if="cart">
+      <li v-for="item in cart.contents.nodes" :key="item.key">
+        {{ item.quantity }}x {{ item.product.node.name }} -
+        {{ item.total }}
+      </li>
+    </ul>
+    {{ cart.total }}
   </div>
 </template>
 
 <script>
-import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
+import { useCart } from '~/compositions/cart'
 
 export default {
-  data() {
+  setup() {
+    const { cart } = useCart()
     return {
-      cart: null,
+      cart,
     }
-  },
-
-  apollo: {
-    cart: {
-      query: CartQuery,
-    },
   },
   nuxtI18n: {
     paths: {

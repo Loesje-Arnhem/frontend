@@ -27,14 +27,38 @@
           </ul>
         </li>
       </template>
+      <li><nuxt-link to="/winkeltje/winkelwagen">winkelwagen</nuxt-link></li>
+      <li><nuxt-link to="/winkeltje/inloggen">inloggen</nuxt-link></li>
+      <li><nuxt-link to="/winkeltje/registreren">registreren</nuxt-link></li>
+      <li><button @click="clearCart">cart leegmaken</button></li>
     </ul>
+    <list-animation v-if="cart">
+      <li v-for="item in cart.contents.nodes" :key="item.key">
+        {{ item.quantity }}x {{ item.product.node.name }} -
+        {{ item.total }}
+      </li>
+    </list-animation>
+    <div v-if="cart">{{ cart.total }}</div>
   </nav>
 </template>
 
 <script>
 import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories.gql'
-
+import { useClearCart, useCart } from '~/compositions/cart'
 export default {
+  setup() {
+    const { cart, refetch } = useCart()
+    const { clearCart, onDone } = useClearCart()
+
+    onDone(() => {
+      refetch()
+    })
+    return {
+      clearCart,
+      cart,
+    }
+  },
+
   data() {
     return {
       productCategories: {},

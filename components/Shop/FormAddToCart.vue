@@ -1,5 +1,5 @@
 <template>
-  <form class="form" @submit.prevent="addToCart">
+  <form class="form" @submit.prevent="add">
     <form-fieldset title="In winkelmandje">
       <form-input-text
         id="quantity"
@@ -37,51 +37,38 @@
 </template>
 
 <script>
-import FormSelect from '~/components/Forms/FormSelect.vue'
-import FormFieldset from '~/components/Forms/FormFieldset.vue'
-import FormInputText from '~/components/Forms/FormInputText.vue'
-import AppButton from '~/components/Shared/AppButton.vue'
-// import AddToCartQuery from '~/graphql/Shop/Cart/AddToCart.gql'
-// import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
+import { v4 } from 'uuid'
+import { ref } from '@nuxtjs/composition-api'
+
+import { useAddToCart, useCart } from '~/compositions/cart'
 
 export default {
-  components: {
-    AppButton,
-    FormFieldset,
-    FormInputText,
-    FormSelect,
-  },
   props: {
     product: {
       type: Object,
       required: true,
     },
   },
-  data() {
-    return {
-      selectedAttribute: null,
-      quantity: 1,
+  setup(props) {
+    const { addToCart, onDone } = useAddToCart()
+    const { refetch } = useCart()
+    const quantity = ref(1)
+
+    onDone(() => {
+      refetch()
+    })
+
+    const add = () => {
+      addToCart({
+        productId: props.product.databaseId,
+        clientMutationId: v4(),
+        quantity: parseInt(quantity.value),
+      })
     }
-  },
-  methods: {
-    async addToCart() {
-      // await this.$apollo.mutate({
-      //   mutation: AddToCartQuery,
-      //   variables: {
-      //     input: {
-      //       databaseId: this.product.databaseId,
-      //       clientMutationId: 'AddToCart',
-      //       quantity: this.quantity,
-      //     },
-      //   },
-      //   update: (store, { data: { addToCart } }) => {
-      //     store.writeQuery({
-      //       query: CartQuery,
-      //       data: addToCart,
-      //     })
-      //   },
-      // })
-    },
+    return {
+      quantity,
+      add,
+    }
   },
 }
 </script>

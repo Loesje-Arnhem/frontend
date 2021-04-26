@@ -1,6 +1,5 @@
 fragment customer on Customer {
   id
-  customerId
   username
   firstName
   lastName

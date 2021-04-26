@@ -7,6 +7,8 @@
   --color-gray-light: #becdd3;
   --color-gray-lighter: #e6e6e6;
   --color-gray-lightest: #f1f4f5;
+
+  accent-color: var(--color-black);
 }
 
 /*
