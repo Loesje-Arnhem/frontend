@@ -1,12 +1,13 @@
 <template>
   <li>
     {{ coupon.code }}
+    -{{ coupon.discountAmount }}
     <button @click="removeCoupon">remove</button>
   </li>
 </template>
 
 <script>
-import { useRemoveCoupon } from '~/compositions/cart'
+import { useRemoveCoupon } from '~/compositions/coupon'
 
 export default {
   props: {

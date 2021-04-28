@@ -8,7 +8,7 @@ import RemoveItemsFromCartQuery from '~/graphql/Shop/Cart/RemoveItemsFromCart.gq
 import ApplyCouponQuery from '~/graphql/Shop/Coupons/ApplyCoupon.gql'
 import RemoveCouponsQuery from '~/graphql/Shop/Coupons/RemoveCoupons.gql'
 
-const updateCartCache = (cache, data) => {
+export const updateCartCache = (cache, data) => {
   // https://www.apollographql.com/blog/when-to-use-refetch-queries-in-apollo-client/
   // We use an update function here to write the
   // new value of the Cart query.
