@@ -31,6 +31,7 @@ export default [
   '~/components/Posts/Shared',
   '~/components/Shared',
   '~/components/Shop',
+  '~/components/Shop/Cart',
   '~/components/Shop/Layout',
   '~/components/Shop/Products',
   '~/components/Shop/Products/Data',

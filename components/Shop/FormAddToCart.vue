@@ -1,5 +1,5 @@
 <template>
-  <form class="form" @submit.prevent="add">
+  <form class="form" @submit.prevent="addToCart">
     <form-fieldset title="In winkelmandje">
       <form-input-text
         id="quantity"
@@ -32,15 +32,13 @@
         </div>
       </div>
     </form-fieldset>
-    <app-button type="submit">In winkelmandje</app-button>
+    <app-button :disabled="loading" type="submit">In winkelmandje</app-button>
+    <div v-if="errors.length" v-html="errors.join(', ')" />
   </form>
 </template>
 
 <script>
-import { v4 } from 'uuid'
-import { ref } from '@nuxtjs/composition-api'
-
-import { useAddToCart, useCart } from '~/compositions/cart'
+import { useAddToCart } from '~/compositions/cart'
 
 export default {
   props: {
@@ -50,24 +48,15 @@ export default {
     },
   },
   setup(props) {
-    const { addToCart, onDone } = useAddToCart()
-    const { refetch } = useCart()
-    const quantity = ref(1)
+    const { addToCart, loading, errors, quantity } = useAddToCart(
+      props.product.databaseId,
+    )
 
-    onDone(() => {
-      refetch()
-    })
-
-    const add = () => {
-      addToCart({
-        productId: props.product.databaseId,
-        clientMutationId: v4(),
-        quantity: parseInt(quantity.value),
-      })
-    }
     return {
+      errors,
+      loading,
       quantity,
-      add,
+      addToCart,
     }
   },
 }

@@ -12,7 +12,7 @@ export default () => {
     httpLinkOptions: {
       credentials: 'include',
       headers: {
-        'woocommerce-session': `Session eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9lc2plLm1pY2hpZWxrb25pbmcubmwiLCJpYXQiOjE2MTk0MzA4MDAsIm5iZiI6MTYxOTQzMDgwMCwiZXhwIjoxNjE5NjAzNjAwLCJkYXRhIjp7ImN1c3RvbWVyX2lkIjoiNjkzOTk3YjMzY2M5YzVmMjZmN2U1YzllOGJjZGNiZmEifX0.pXofB3zyCJ3umPOFUkXOjiljLsAzcKIZYcAR0SpNnLs`,
+        'woocommerce-session': `Session eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9lc2plLm1pY2hpZWxrb25pbmcubmwiLCJpYXQiOjE2MTk2MDY3NDIsIm5iZiI6MTYxOTYwNjc0MiwiZXhwIjoxNjE5Nzc5NTQyLCJkYXRhIjp7ImN1c3RvbWVyX2lkIjoiMTlhNDYzN2FjZmZlMTdlNjU1MDBhNzg0NDVhMTRiZjcifX0.W-6mprbMAm7R83om7URqTNLgWPiCE07i4wtWqyFaeww`,
       },
     },
     wsEndpoint: null,

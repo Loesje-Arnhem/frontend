@@ -1,0 +1,11 @@
+#import "./Fragments/Cart.gql"
+
+mutation REMOVE_ITEMS_FROM_CART($clientMutationId: String, $keys: [ID]) {
+  removeItemsFromCart(
+    input: { clientMutationId: $clientMutationId, keys: $keys }
+  ) {
+    cart {
+      ...cart
+    }
+  }
+}

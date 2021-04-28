@@ -1,0 +1,14 @@
+#import "./Fragments/Cart.gql"
+
+mutation UPDATE_ITEM_QUANTITIES(
+  $clientMutationId: String
+  $items: [CartItemQuantityInput]
+) {
+  updateItemQuantities(
+    input: { clientMutationId: $clientMutationId, items: $items }
+  ) {
+    cart {
+      ...cart
+    }
+  }
+}

@@ -77,16 +77,6 @@ export default {
   max-width: 20em;
   position: relative;
 
-  &:disabled {
-    background: transparent;
-    color: var(--color-white);
-    border: 2px dashed var(--color-white);
-
-    &:hover {
-      background: transparent;
-    }
-  }
-
   @nest .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
       border-image-outset: 0.25em 0.5em;
