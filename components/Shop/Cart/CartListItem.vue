@@ -1,12 +1,16 @@
 <template>
-  <li class="list-item">
+  <li :class="$style['list-item']">
+    <div class="title">
+      {{ item.product.node.name }}
+    </div>
     <select v-model="quantity" @change="updateItemQuantities">
       <option v-for="index in 9" :key="index" :value="index">
         {{ index }}
       </option>
     </select>
-    {{ item.quantity }}x {{ item.key }} -
-    {{ item.total }}
+    <div class="price">
+      {{ item.total }}
+    </div>
     <button @click="removeItemsFromCart">Remove</button>
   </li>
 </template>
@@ -39,3 +43,10 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" module>
+.list-item {
+  display: grid;
+  grid-template-columns: auto 5em 6em 6em;
+}
+</style>
