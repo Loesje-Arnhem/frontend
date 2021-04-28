@@ -5,8 +5,6 @@ import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
 import AddToCartQuery from '~/graphql/Shop/Cart/AddToCart.gql'
 import UpdateItemQuantitiesQuery from '~/graphql/Shop/Cart/UpdateItemQuantities.gql'
 import RemoveItemsFromCartQuery from '~/graphql/Shop/Cart/RemoveItemsFromCart.gql'
-import ApplyCouponQuery from '~/graphql/Shop/Coupons/ApplyCoupon.gql'
-import RemoveCouponsQuery from '~/graphql/Shop/Coupons/RemoveCoupons.gql'
 
 const updateCartCache = (cache, data) => {
   // https://www.apollographql.com/blog/when-to-use-refetch-queries-in-apollo-client/
@@ -109,58 +107,5 @@ export const useUpdateItemQuantities = (product) => {
     quantity,
     loading,
     updateItemQuantities,
-  }
-}
-
-export const useApplyCoupon = () => {
-  const code = ref('faag9a3u')
-  const errors = ref([])
-
-  const { mutate: applyCoupon, loading, onError } = useMutation(
-    ApplyCouponQuery,
-    () => ({
-      variables: {
-        clientMutationId: v4(),
-        code: code.value,
-      },
-      update(cache, { data }) {
-        updateCartCache(cache, data?.applyCoupon)
-      },
-    }),
-  )
-  onError(({ graphQLErrors }) => {
-    errors.value = graphQLErrors.map((err) => err.message)
-  })
-  return {
-    errors,
-    code,
-    loading,
-    applyCoupon,
-  }
-}
-
-export const useRemoveCoupon = (code) => {
-  const errors = ref([])
-
-  const { mutate: removeCoupon, loading, onError } = useMutation(
-    RemoveCouponsQuery,
-    () => ({
-      variables: {
-        clientMutationId: v4(),
-        codes: [code],
-      },
-      update(cache, { data }) {
-        updateCartCache(cache, data?.removeCoupons)
-      },
-    }),
-  )
-  onError(({ graphQLErrors }) => {
-    errors.value = graphQLErrors.map((err) => err.message)
-  })
-  return {
-    errors,
-    code,
-    loading,
-    removeCoupon,
   }
 }

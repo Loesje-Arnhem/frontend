@@ -1,4 +1,4 @@
-#import "./Fragments/Cart.gql"
+#import "./../Fragments/Cart.gql"
 
 query GET_CART {
   cart {

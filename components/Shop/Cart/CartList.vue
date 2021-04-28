@@ -8,6 +8,14 @@
       />
     </ul>
     {{ cart.total }}
+    <ul v-if="cart.appliedCoupons">
+      <coupon-list-item
+        v-for="coupon in cart.appliedCoupons"
+        :key="coupon.code"
+        :coupon="coupon"
+      />
+    </ul>
+    <coupons v-else />
   </div>
 </template>
 

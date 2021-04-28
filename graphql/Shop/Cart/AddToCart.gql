@@ -1,4 +1,4 @@
-#import "./Fragments/Cart.gql"
+#import "./../Fragments/Cart.gql"
 
 mutation ADD_TO_CART(
   $productId: Int!

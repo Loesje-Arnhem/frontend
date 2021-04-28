@@ -1,4 +1,4 @@
-#import "./Fragments/Cart.gql"
+#import "./../Fragments/Cart.gql"
 
 mutation UPDATE_ITEM_QUANTITIES(
   $clientMutationId: String
