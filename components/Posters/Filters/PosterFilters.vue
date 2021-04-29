@@ -154,7 +154,7 @@ export default {
 }
 
 .buttons {
-  @mixin tile-border 2px, 1;
+  @mixin tile-border;
 
   display: flex;
   margin-bottom: 1em;

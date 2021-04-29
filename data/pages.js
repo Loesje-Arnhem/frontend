@@ -4,3 +4,4 @@ export const aboutPageId = 415
 export const workshopsPageId = 362
 export const blogPageId = 757
 export const shopPageId = 30777
+export const cartPageId = 30779

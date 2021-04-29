@@ -1,0 +1,17 @@
+query GET_CUSTOMER {
+  customer {
+    id
+    firstName
+    lastName
+    email
+    billing {
+      address1
+      address2
+      city
+      company
+      country
+      phone
+      postcode
+    }
+  }
+}

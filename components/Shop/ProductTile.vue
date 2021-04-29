@@ -56,11 +56,9 @@ export default {
   @mixin link-reset;
 }
 
-@supports (grid-template-rows: subgrid) {
-  .title,
-  .price {
-    padding: 0 0.5em;
-  }
+.title,
+.price {
+  padding: 0 0.5em;
 }
 
 .image {

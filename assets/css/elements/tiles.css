@@ -1,11 +1,5 @@
 .tile {
   @mixin tile-border;
-
-  @nest .is-loaded & {
-    @supports (border-image-source: paint(rough-boxes)) {
-      padding: 0.5em;
-    }
-  }
 }
 
 .box {

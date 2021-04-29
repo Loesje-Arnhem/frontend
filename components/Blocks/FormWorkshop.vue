@@ -22,7 +22,7 @@
           title="E-mailadres"
           type="email"
           name="email"
-          autocomplete="name"
+          autocomplete="email"
         />
         <form-input-text
           id="phoneNumber"
