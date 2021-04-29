@@ -1,1 +1,1 @@
-export default 'client'
+export default true
