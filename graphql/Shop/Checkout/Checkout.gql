@@ -1,0 +1,10 @@
+mutation CHECKOUT {
+  checkout(input: { paymentMethod: "cheque", billing: { firstName: "test" } }) {
+    clientMutationId
+    redirect
+    order {
+      id
+    }
+    result
+  }
+}

@@ -5,24 +5,24 @@ import CustomerQuery from '~/graphql/Shop/Customer/Customer.gql'
 export const useCustomer = () => {
   const { result, error, loading, onError, onResult } = useQuery(CustomerQuery)
   const form = reactive({
-    firstName: '',
-    lastName: '',
-    email: '',
+    firstName: 'michiel',
+    lastName: 'koning',
+    email: 'mail@michielkoning.nl',
     billing: {
-      street: '',
+      street: 'test',
       houseNumber: null,
-      houseNumberAddition: '',
-      city: '',
+      houseNumberAddition: '10',
+      city: 'wageningen',
       company: '',
-      country: '',
+      country: 'Nederland',
       phone: '',
-      postcode: '',
+      postcode: '6708RC',
     },
   })
 
   const customer = useResult(result)
   onResult(() => {
-    form.firstName = customer.value.id
+    // form.firstName = customer.value.id
   })
 
   return {

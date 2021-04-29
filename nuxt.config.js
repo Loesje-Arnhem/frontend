@@ -34,5 +34,4 @@ export default {
   plugins,
   pwa,
   server,
-  target: 'static',
 }
