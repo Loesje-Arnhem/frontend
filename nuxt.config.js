@@ -10,7 +10,7 @@ import head from './config/head'
 import i18n from './config/i18n'
 import loaders from './config/loaders'
 import loading from './config/loading'
-import modern from './config/modern'
+// import modern from './config/modern'
 import modules from './config/modules'
 import plugins from './config/plugins'
 import pwa from './config/pwa'
@@ -29,7 +29,7 @@ export default {
   i18n,
   loaders,
   loading,
-  modern,
+  // modern,
   modules,
   plugins,
   pwa,
