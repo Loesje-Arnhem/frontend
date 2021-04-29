@@ -11,12 +11,8 @@ jobs:
       - name: Deploying to Digitalocean droplet
         uses: appleboy/ssh-action@master # An action made to control Linux servers
         with: # We set all our secrets here for the action, these won't be shown in the action logs
-          host: ${{ secrets.host }} 
+          host: ${{ secrets.HOST }} 
           key: ${{ secrets.SSH }}
           script: |
-            cd <your-app-folder> # we move into our app's folder
+            cd ./frontend # we move into our app's folder
             git pull # we pull any changes from git
-            npm prune # we remove any unused dependencies
-            npm install # we install any missing dependencies
-            npm run build # we build our app
-            pm2 reload all # we reload the app via PM2
