@@ -19,4 +19,4 @@ jobs:
             cd ./frontend # we move into our app's folder
             git pull # we pull any changes from git
             npm ci
-            npm run build
+            npm start
