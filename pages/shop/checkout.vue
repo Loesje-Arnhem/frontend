@@ -1,6 +1,7 @@
 <template>
   <center-wrapper>
     <div class="checkout">
+      CHECKOT
       <address-fields />
     </div>
   </center-wrapper>
