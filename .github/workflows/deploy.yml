@@ -20,5 +20,6 @@ jobs:
             git pull # we pull any changes from git
             npm prune # we remove any unused dependencies
             npm install # we install any missing dependencies
+            pm2 stop
             npm run build
             npm start
