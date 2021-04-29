@@ -18,5 +18,6 @@ jobs:
           script: |
             cd ./frontend # we move into our app's folder
             git pull # we pull any changes from git
-            npm ci
+            npm prune # we remove any unused dependencies
+            npm install # we install any missing dependencies
             npm start
