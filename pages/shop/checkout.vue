@@ -1,6 +1,8 @@
 <template>
   <center-wrapper>
-    <address-fields />
+    <div class="checkout">
+      <address-fields />
+    </div>
   </center-wrapper>
 </template>
 
@@ -13,3 +15,11 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="postcss">
+.checkout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1em;
+}
+</style>
