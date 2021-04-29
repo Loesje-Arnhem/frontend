@@ -18,3 +18,4 @@ jobs:
           script: |
             cd ./frontend # we move into our app's folder
             git pull # we pull any changes from git
+            docker build -t frontend-docker .
