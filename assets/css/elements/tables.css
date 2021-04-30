@@ -1,0 +1,13 @@
+table {
+  width: 100%;
+}
+
+
+th {
+  text-align: left;
+  font-weight: var(--font-weight-bold);
+}
+
+td {
+  vertical-align: top;
+}

@@ -1,26 +1,37 @@
 <template>
   <center-wrapper>
-    <h1 v-if="page">{{ page.title }}</h1>
-    <div class="checkout">
-      <address-fields />
-    </div>
-    <payment-gateways
-      v-if="paymentGateways.edges.length"
-      :payment-gateways="paymentGateways.edges"
-    />
-    <app-button>Bestelling plaatsen</app-button>
+    <form class="form" @submit.prevent="checkout">
+      <h1 v-if="page">{{ page.title }}</h1>
+      <div class="checkout">
+        <address-fields />
+        <mini-cart />
+      </div>
+      <payment-gateways
+        v-if="paymentGateways.edges.length"
+        :payment-gateways="paymentGateways.edges"
+      />
+      <app-button type="submit" :disabled="loading">
+        Bestelling plaatsen
+      </app-button>
+    </form>
   </center-wrapper>
 </template>
 
 <script>
-import PaymentGateways from '../../components/Shop/Checkout/PaymentGateways.vue'
 import PaymentGatewaysQuery from '~/graphql/Shop/PaymentGateways.gql'
+import { useCheckout } from '~/compositions/checkout'
 import { checkoutPageId } from '~/data/pages'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import getSeoMetaData from '~/utils/seo'
 
 export default {
-  components: { PaymentGateways },
+  setup() {
+    const { checkout, loading } = useCheckout()
+    return {
+      loading,
+      checkout,
+    }
+  },
   async asyncData({ app }) {
     const { defaultClient } = app.apolloProvider
 

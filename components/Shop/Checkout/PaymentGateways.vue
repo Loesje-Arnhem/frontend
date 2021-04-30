@@ -12,6 +12,7 @@
           type="radio"
           :value="paymentGateway.node.id"
           name="payment-gateways"
+          :class="$style.input"
         />
         <label :for="`payment-${paymentGateway.node.id}`" :class="$style.label">
           {{ paymentGateway.node.title }}
@@ -49,12 +50,17 @@ export default {
 
 .list-item {
   display: flex;
-  gap: 0.5em;
+  gap: 0.25em;
+  align-items: center;
   border-bottom: 1px solid #000;
 
   &:last-child {
     border-bottom-width: 0;
   }
+}
+
+.input {
+  transform: translateY(-0.25em);
 }
 
 .label {
