@@ -1,5 +1,19 @@
-mutation CHECKOUT {
-  checkout(input: { paymentMethod: "cheque", billing: { firstName: "test" } }) {
+mutation CHECKOUT(
+  $billing: CustomerAddressInput
+  $shipping: CustomerAddressInput
+  $paymentMethod: String
+  $clientMutationId: String
+  $shipToDifferentAddress: Boolean
+) {
+  checkout(
+    input: {
+      paymentMethod: $paymentMethod
+      billing: $billing
+      shipping: $shipping
+      clientMutationId: $clientMutationId
+      shipToDifferentAddress: $shipToDifferentAddress
+    }
+  ) {
     clientMutationId
     redirect
     order {

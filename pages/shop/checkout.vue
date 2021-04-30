@@ -3,11 +3,31 @@
     <form class="form" @submit.prevent="checkout">
       <h1 v-if="page">{{ page.title }}</h1>
       <div class="checkout">
-        <address-fields />
+        <div>
+          <address-fields :user="billing" @input="updateBillingField" />
+
+          <input
+            id="shipToDifferentAddress"
+            v-model="shipToDifferentAddress"
+            type="checkbox"
+          />
+          <label for="shipToDifferentAddress">
+            Verzenden naar een ander adres?
+          </label>
+          <slide-in-animation>
+            <address-fields
+              v-if="shipToDifferentAddress"
+              :is-shipping="true"
+              :user="shipping"
+              @input="updateShippingField"
+            />
+          </slide-in-animation>
+        </div>
         <mini-cart />
       </div>
       <payment-gateways
         v-if="paymentGateways.edges.length"
+        v-model="paymentMethod"
         :payment-gateways="paymentGateways.edges"
       />
       <app-button type="submit" :disabled="loading">
@@ -26,10 +46,29 @@ import getSeoMetaData from '~/utils/seo'
 
 export default {
   setup() {
-    const { checkout, loading } = useCheckout()
+    const {
+      checkout,
+      loading,
+      paymentMethod,
+      billing,
+      shipping,
+      shipToDifferentAddress,
+    } = useCheckout()
+    const updateBillingField = (key, value) => {
+      billing[key] = value
+    }
+    const updateShippingField = (key, value) => {
+      shipping[key] = value
+    }
     return {
+      shipToDifferentAddress,
+      updateBillingField,
+      updateShippingField,
       loading,
       checkout,
+      paymentMethod,
+      billing,
+      shipping,
     }
   },
   async asyncData({ app }) {

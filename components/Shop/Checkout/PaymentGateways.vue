@@ -8,11 +8,12 @@
       >
         <input
           :id="`payment-${paymentGateway.node.id}`"
-          v-model="selectedPaymentGateway"
           type="radio"
           :value="paymentGateway.node.id"
           name="payment-gateways"
           :class="$style.input"
+          :checked="paymentGateway.node.id == value"
+          @change="$emit('input', paymentGateway.node.id)"
         />
         <label :for="`payment-${paymentGateway.node.id}`" :class="$style.label">
           {{ paymentGateway.node.title }}
@@ -23,22 +24,16 @@
 </template>
 
 <script>
-import { ref } from '@nuxtjs/composition-api'
-import FormFieldset from '../../Forms/FormFieldset.vue'
-
 export default {
-  components: { FormFieldset },
   props: {
     paymentGateways: {
       type: Array,
       required: true,
     },
-  },
-  setup() {
-    const selectedPaymentGateway = ref(null)
-    return {
-      selectedPaymentGateway,
-    }
+    value: {
+      type: String,
+      default: '',
+    },
   },
 }
 </script>

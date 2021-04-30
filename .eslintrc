@@ -17,6 +17,7 @@
   "rules": {
     "vue/component-name-in-template-casing": ["error", "kebab-case"],
     "vue/no-deprecated-slot-scope-attribute": 1,
-    "vue/no-v-html": 0
+    "vue/no-v-html": 0,
+    "vue/no-v-model-argument": 0
   }
 }

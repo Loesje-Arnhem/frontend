@@ -2,110 +2,114 @@
   <form class="form">
     <form-fieldset title="Factuurgegevens">
       <form-input-text
-        id="firstName"
-        v-model="form.firstName"
+        :id="`${id}-firstName`"
+        :value="user.firstName"
         title="Voornaam"
         class="firstName"
         name="firstName"
         autocomplete="given-name"
+        @input="$emit('input', 'firstName', $event)"
       />
       <form-input-text
-        id="lastName"
-        v-model="form.lastName"
+        :id="`${id}-lastName`"
+        :value="user.lastName"
         title="Achternaam"
         class="lastName"
         name="lastName"
         autocomplete="family-name"
+        @input="$emit('input', 'lastName', $event)"
       />
       <form-input-text
-        id="companyName"
-        v-model="form.billing.company"
+        :id="`${id}-companyName`"
+        :value="user.company"
         class="companyName"
         title="Bedrijfsnaam"
         name="companyName"
+        @input="$emit('input', 'company', $event)"
       />
+
       <form-input-text
-        id="country"
-        v-model="form.billing.country"
+        :id="`${id}-country`"
+        :value="user.country"
         title="Land"
         class="country"
         name="country"
         autocomplete="country"
+        @input="$emit('input', 'country', $event)"
       />
       <form-input-text
-        id="postcode"
-        v-model="form.billing.postcode"
+        :id="`${id}-postcode`"
+        :value="user.postcode"
         title="Postcode"
         class="postcode"
         name="postcode"
         autocomplete="postal-code"
-        @change="searchAddress"
+        @input="$emit('input', 'postcode', $event)"
       />
       <form-input-text
-        id="houseNumber"
-        v-model="form.billing.houseNumber"
+        :id="`${id}-houseNumber`"
+        :value="user.houseNumber"
         title="Nr"
         type="number"
         class="houseNumber"
         name="houseNumber"
-        @change="searchAddress"
       />
       <form-input-text
-        id="houseNumberAddition"
-        v-model="form.billing.houseNumberAddition"
+        :id="`${id}-houseNumberAddition`"
+        :value="user.houseNumberAddition"
         title="Toev"
         class="houseNumberAddition"
         name="houseNumberAddition"
-        @change="searchAddress"
       />
       <form-input-text
-        id="street"
-        v-model="form.billing.street"
+        :id="`${id}-street`"
+        :value="user.street"
         title="Straat"
         class="street"
         name="street"
-        readonly
       />
       <form-input-text
-        id="city"
-        v-model="form.billing.city"
+        :id="`${id}-city`"
+        :value="user.city"
         title="Plaats"
         class="city"
         name="city"
-        readonly
+        @input="$emit('input', 'city', $event)"
       />
       <form-input-text
-        id="email"
-        v-model="form.email"
+        v-if="!isShipping"
+        :id="`${id}-email`"
+        :value="user.email"
         title="E-mailadres"
         type="email"
         class="email"
         name="email"
         autocomplete="email"
+        @input="$emit('input', 'email', $event)"
       />
     </form-fieldset>
   </form>
 </template>
 
 <script>
-import { useCustomer } from '~/compositions/customer'
-
+import { computed } from '@nuxtjs/composition-api'
 export default {
-  setup() {
-    const { customer, form } = useCustomer()
-
-    const searchAddress = () => {
-      if (!form.postcode || !form.houseNumber) {
-        form.street = ''
-        return
-      }
-      form.street = 'test'
-    }
-
+  props: {
+    user: {
+      type: Object,
+      default: () => {},
+    },
+    isShipping: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
+    const id = computed(() => {
+      return props.isShipping ? `shipping` : 'user'
+    })
     return {
-      searchAddress,
-      form,
-      customer,
+      id,
     }
   },
 }

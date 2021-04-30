@@ -2,7 +2,6 @@ table {
   width: 100%;
 }
 
-
 th {
   text-align: left;
   font-weight: var(--font-weight-bold);
@@ -10,4 +9,5 @@ th {
 
 td {
   vertical-align: top;
+  padding: 0.1em 0;
 }
