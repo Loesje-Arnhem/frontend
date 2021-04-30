@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { useRouter, useContext } from '@nuxtjs/composition-api'
 import { useAddToCart } from '~/compositions/cart'
 
 export default {
@@ -48,9 +49,15 @@ export default {
     },
   },
   setup(props) {
-    const { addToCart, loading, errors, quantity } = useAddToCart(
+    const router = useRouter()
+    const { localePath } = useContext()
+    const { addToCart, loading, errors, quantity, onDone } = useAddToCart(
       props.product.databaseId,
     )
+
+    onDone(() => {
+      router.push(localePath({ name: 'shop-cart' }))
+    })
 
     return {
       errors,

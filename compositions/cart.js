@@ -41,7 +41,7 @@ export const useAddToCart = (productId) => {
   const errors = ref([])
   const quantity = ref(1)
 
-  const { mutate: addToCart, loading, onError } = useMutation(
+  const { mutate: addToCart, loading, onError, onDone } = useMutation(
     AddToCartQuery,
     () => ({
       variables: {
@@ -63,6 +63,7 @@ export const useAddToCart = (productId) => {
     errors,
     loading,
     addToCart,
+    onDone,
   }
 }
 
