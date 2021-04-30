@@ -1,0 +1,11 @@
+query GET_PAYMENT_GATEWAYS {
+  paymentGateways {
+    edges {
+      node {
+        id
+        title
+        description
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
 :root {
-  --rough-fill: var(--color-white);
+  --rough-fill: transparent;
   --rough-stroke: var(--color-black);
 }
