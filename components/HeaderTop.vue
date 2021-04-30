@@ -2,7 +2,7 @@
   <center-wrapper :top="true">
     <div :class="$style.wrapper">
       <div :class="$style.text">
-        <h1>Weltrustern Tom!</h1>
+        <h1>Blijf plakken</h1>
         <p>
           Loesje-posters vind je overal. Op straat, bij de buren, op een kaartje
           aan het prikbord… De posters geven frisse gedachten, ontlokken ideeën
@@ -13,18 +13,6 @@
     </div>
   </center-wrapper>
 </template>
-
-<script>
-import DailyPoster from '~/components/DailyPoster.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-
-export default {
-  components: {
-    DailyPoster,
-    CenterWrapper,
-  },
-}
-</script>
 
 <style lang="postcss" module>
 .wrapper {

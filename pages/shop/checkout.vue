@@ -4,41 +4,23 @@
     <div class="checkout">
       <address-fields />
     </div>
-    <ul v-if="paymentGateways.edges.length">
-      <li
-        v-for="paymentGateway in paymentGateways.edges"
-        :key="paymentGateway.node.id"
-      >
-        <input
-          :id="`payment-${paymentGateway.node.id}`"
-          v-model="selectedPaymentGateway"
-          type="radio"
-          :value="paymentGateway.node.id"
-          name="payment-gateways"
-        />
-        <label :for="`payment-${paymentGateway.node.id}`">
-          {{ paymentGateway.node.title }}
-        </label>
-      </li>
-    </ul>
+    <payment-gateways
+      v-if="paymentGateways.edges.length"
+      :payment-gateways="paymentGateways.edges"
+    />
     <app-button>Bestelling plaatsen</app-button>
   </center-wrapper>
 </template>
 
 <script>
-import { ref } from '@nuxtjs/composition-api'
+import PaymentGateways from '../../components/Shop/Checkout/PaymentGateways.vue'
 import PaymentGatewaysQuery from '~/graphql/Shop/PaymentGateways.gql'
 import { checkoutPageId } from '~/data/pages'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import getSeoMetaData from '~/utils/seo'
 
 export default {
-  setup() {
-    const selectedPaymentGateway = ref(null)
-    return {
-      selectedPaymentGateway,
-    }
-  },
+  components: { PaymentGateways },
   async asyncData({ app }) {
     const { defaultClient } = app.apolloProvider
 
