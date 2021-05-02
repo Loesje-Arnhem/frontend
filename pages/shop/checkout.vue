@@ -102,7 +102,9 @@ export default {
 <style scoped lang="postcss">
 .checkout {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   grid-gap: 1em;
+  @media (--viewport-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>
