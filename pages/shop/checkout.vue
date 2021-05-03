@@ -53,6 +53,7 @@ export default {
       billing,
       shipping,
       shipToDifferentAddress,
+      onDone,
     } = useCheckout()
     const updateBillingField = (key, value) => {
       billing[key] = value
@@ -60,6 +61,8 @@ export default {
     const updateShippingField = (key, value) => {
       shipping[key] = value
     }
+
+    onDone(() => {})
     return {
       shipToDifferentAddress,
       updateBillingField,

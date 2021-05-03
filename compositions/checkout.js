@@ -30,7 +30,7 @@ export const useCheckout = () => {
     lastName: 'koning',
     postcode: '6708RC',
   })
-  const { mutate: checkout, loading, onError } = useMutation(
+  const { mutate: checkout, loading, onError, onDone } = useMutation(
     CheckoutQuery,
     () => ({
       variables: {
@@ -53,6 +53,7 @@ export const useCheckout = () => {
     paymentMethod,
     errors,
     loading,
+    onDone,
     checkout,
   }
 }
