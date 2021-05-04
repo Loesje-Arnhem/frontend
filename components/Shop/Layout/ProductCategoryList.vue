@@ -31,30 +31,12 @@
       <li><nuxt-link to="/winkeltje/inloggen">inloggen</nuxt-link></li>
       <li><nuxt-link to="/winkeltje/registreren">registreren</nuxt-link></li>
     </ul>
-    <list-animation v-if="cart && cart.contents.nodes.length">
-      <li v-for="item in cart.contents.nodes" :key="item.key">
-        {{ item.quantity }}x {{ item.product.node.name }} -
-        {{ item.total }}
-      </li>
-    </list-animation>
-    <div v-if="loading">Loading</div>
-    <div v-if="cart">{{ cart.total }}</div>
   </nav>
 </template>
 
 <script>
 import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories.gql'
-import { useCart } from '~/compositions/cart'
 export default {
-  setup() {
-    const { cart, loading } = useCart()
-
-    return {
-      loading,
-      cart,
-    }
-  },
-
   data() {
     return {
       productCategories: {},
