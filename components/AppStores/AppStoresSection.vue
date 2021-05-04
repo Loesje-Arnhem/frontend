@@ -8,6 +8,7 @@
           width="500"
           height="560"
           quality="80"
+          alt=""
           fit="inside"
           sizes="sm:100vw md:75vw lg:500px xL:800"
           loading="lazy"

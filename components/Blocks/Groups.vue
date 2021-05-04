@@ -10,6 +10,7 @@
             class="mood"
             quality="80"
             fit="inside"
+            alt=""
             loading="lazy"
             sizes="sm:100vw md:80vw lg:565 xl:800"
           />
