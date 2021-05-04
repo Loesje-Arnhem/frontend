@@ -1,7 +1,9 @@
 <template>
   <center-wrapper>
     <h1>{{ page.title }}</h1>
-    <cart-list />
+    <client-only>
+      <cart-list />
+    </client-only>
     <app-button :to="localePath({ name: 'shop-checkout' })">
       Doorgaan met afrekenen
     </app-button>

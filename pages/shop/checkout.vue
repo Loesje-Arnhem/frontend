@@ -23,7 +23,9 @@
             />
           </slide-in-animation>
         </div>
-        <mini-cart />
+        <client-only>
+          <mini-cart />
+        </client-only>
       </div>
       <payment-gateways
         v-if="paymentGateways.edges.length"

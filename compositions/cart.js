@@ -27,7 +27,6 @@ export const updateCartCache = (cache, data) => {
 export const useCart = () => {
   const { result, error, loading, onError } = useQuery(CartQuery, null, {
     // prefetch: true,
-    debounce: 1,
   })
 
   const cart = useResult(result)
