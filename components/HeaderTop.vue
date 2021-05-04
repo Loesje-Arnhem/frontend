@@ -2,7 +2,7 @@
   <center-wrapper :top="true">
     <div :class="$style.wrapper">
       <div :class="$style.text">
-        <h1>Blijf plakken test</h1>
+        <h1>Blijf plakken</h1>
         <p>
           Loesje-posters vind je overal. Op straat, bij de buren, op een kaartje
           aan het prikbord… De posters geven frisse gedachten, ontlokken ideeën
