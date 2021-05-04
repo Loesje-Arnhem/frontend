@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Franklin';
-  src: url('./../../fonts/franklin-gothic.woff') format('woff'),
-    url('./../../fonts/franklin-gothic.woff2') format('woff2');
+  src: url('./../../fonts/franklin-gothic.woff2') format('woff2'),
+    url('./../../fonts/franklin-gothic.woff') format('woff');
   font-display: swap;
 }
 
