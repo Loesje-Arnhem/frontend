@@ -21,7 +21,6 @@ export default {
 <style lang="postcss" module>
 .date {
   font-size: 0.9em;
-  color: var(--color-gray);
   display: block;
   order: -1;
 }

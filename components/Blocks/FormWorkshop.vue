@@ -7,23 +7,34 @@
       @submit="submit"
     >
       <form-fieldset title="Contact">
-        <form-input-text
+        <form-field
           id="name"
-          v-model="$v.name.$model"
           :errors="$v.name.$errors"
-          title="Naam"
-          name="name"
-          autocomplete="name"
-        />
-        <form-input-text
+          :title="$t('form.fields.name')"
+        >
+          <input
+            id="name"
+            v-model.lazy="$v.name.$model"
+            type="text"
+            name="name"
+            autocomplete="name"
+            maxlength="50"
+          />
+        </form-field>
+        <form-field
           id="email"
-          v-model="$v.email.$model"
           :errors="$v.email.$errors"
-          title="E-mailadres"
-          type="email"
-          name="email"
-          autocomplete="email"
-        />
+          :title="$t('form.fields.email')"
+        >
+          <input
+            id="email"
+            v-model.lazy="$v.email.$model"
+            type="email"
+            name="email"
+            autocomplete="email"
+            maxlength="50"
+          />
+        </form-field>
         <form-input-text
           id="phoneNumber"
           v-model="$v.phoneNumber.$model"

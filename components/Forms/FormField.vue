@@ -38,7 +38,8 @@ export default {
 <i18n>
 {
   "nl": {
-    "email": "test"
+    "email": "Vul een geldig e-mailadres in",
+    "required": "Dit veld is verplicht"
   }
 }
 </i18n>

@@ -1,59 +1,58 @@
 {
-  "followOn": "%{title} op %{network}",
   "albums": "Albumss",
   "biography": "Biography",
-  "contact": "Contact",
   "close": "Close",
-  "pages": {
-    "home": "Home",
-    "posters": "Posters",
-    "workshops": "Workshops",
-    "shop": "Winkeltje"
-  },
-  "shop": "Winkeltje",
-  "latestPosts": "Latest posts",
-  "loadMore": "Load more posts",
-  "loading": "Loading…",
-  "next": "Next",
-  "noTourDays": "No tour dates confirmed",
-  "pause": "Pause",
-  "play": "Play",
-  "readMore": "Read more",
-  "tour": "Tour",
-  "videos": "Videos",
-  "viewNordgardenOn": "View Nordgarden on",
-  "socialMediaLinks": "Social media links",
-  "mainNavigation": "Main navigation",
-  "readFullBiography": "Read the full biography",
-  "view": "view",
-  "on": "on",
-  "menu": "Menu",
-  "gallery": "Gallery",
+  "contact": "Contact",
+  "followOn": "%{title} op %{network}",
   "form": {
-    "fields": {
-      "name": "Name",
-      "email": "Email address",
-      "message": "Message"
-    },
     "buttons": {
       "send": "Send"
+    },
+    "errors": {
+      "fields": {
+        "email": {
+          "invalidEmail": "Please enter a valid email address"
+        }
+      },
+      "general": {
+        "invalid": "Not all fields are filled correctly",
+        "required": "Please enter your {field}."
+      }
+    },
+    "fields": {
+      "email": "E-mailadres",
+      "name": "Naam"
     },
     "forms": {
       "contact": {
         "success": "The form has been submitted. We will contact you as soon as possible.",
         "title": "Contactform"
       }
-    },
-    "errors": {
-      "general": {
-        "invalid": "Not all fields are filled correctly",
-        "required": "Please enter your {field}."
-      },
-      "fields": {
-        "email": {
-          "invalidEmail": "Please enter a valid email address"
-        }
-      }
     }
-  }
+  },
+  "gallery": "Gallery",
+  "latestPosts": "Latest posts",
+  "loadMore": "Load more posts",
+  "loading": "Loading…",
+  "mainNavigation": "Main navigation",
+  "menu": "Menu",
+  "next": "Next",
+  "noTourDays": "No tour dates confirmed",
+  "on": "on",
+  "pages": {
+    "home": "Home",
+    "posters": "Posters",
+    "shop": "Winkeltje",
+    "workshops": "Workshops"
+  },
+  "pause": "Pause",
+  "play": "Play",
+  "readFullBiography": "Read the full biography",
+  "readMore": "Read more",
+  "shop": "Winkeltje",
+  "socialMediaLinks": "Social media links",
+  "tour": "Tour",
+  "videos": "Videos",
+  "view": "view",
+  "viewNordgardenOn": "View Nordgarden on"
 }
