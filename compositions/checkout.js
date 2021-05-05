@@ -3,11 +3,14 @@ import { ref, reactive } from '@nuxtjs/composition-api'
 import { v4 } from 'uuid'
 import CheckoutQuery from '~/graphql/Shop/Checkout/Checkout.gql'
 import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
+import useNewsletter from '~/compositions/newsletter'
 
 export const useCheckout = () => {
   const errors = ref([])
   const paymentMethod = ref('cod')
   const shipToDifferentAddress = ref(true)
+  const addToNewsletter = ref(true)
+  const { submit, form: newsletterForm } = useNewsletter()
   const billing = reactive({
     address1: 'Bevrijdingsstraat',
     address2: '10',
@@ -46,6 +49,15 @@ export const useCheckout = () => {
   onError(({ graphQLErrors }) => {
     errors.value = graphQLErrors.map((err) => err.message)
   })
+  onDone(async () => {
+    if (!addToNewsletter.value) {
+      return
+    }
+    newsletterForm.email = billing.email
+    newsletterForm.firstName = billing.firstName
+    newsletterForm.lastName = billing.lastName
+    await submit()
+  })
   return {
     shipping,
     billing,
@@ -53,7 +65,7 @@ export const useCheckout = () => {
     paymentMethod,
     errors,
     loading,
-    onDone,
     checkout,
+    addToNewsletter,
   }
 }

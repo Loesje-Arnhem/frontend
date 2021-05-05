@@ -27,6 +27,8 @@
           <mini-cart />
         </client-only>
       </div>
+      <input id="addToNewsletter" v-model="addToNewsletter" type="checkbox" />
+      <label for="addToNewsletter"> Toevoegen aan niewsbrief </label>
       <payment-gateways
         v-if="paymentGateways.edges.length"
         v-model="paymentMethod"
@@ -55,7 +57,7 @@ export default {
       billing,
       shipping,
       shipToDifferentAddress,
-      onDone,
+      addToNewsletter,
     } = useCheckout()
     const updateBillingField = (key, value) => {
       billing[key] = value
@@ -64,7 +66,6 @@ export default {
       shipping[key] = value
     }
 
-    onDone(() => {})
     return {
       shipToDifferentAddress,
       updateBillingField,
@@ -74,6 +75,7 @@ export default {
       paymentMethod,
       billing,
       shipping,
+      addToNewsletter,
     }
   },
   async asyncData({ app }) {
