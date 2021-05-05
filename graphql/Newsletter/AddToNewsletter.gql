@@ -1,0 +1,19 @@
+mutation ADD_TO_NEWSLETTER(
+  $clientMutationId: String
+  $email: String
+  $firstName: String
+  $lastName: String
+  $list: String
+) {
+  addToNewsletter(
+    input: {
+      clientMutationId: $clientMutationId
+      email: $email
+      firstName: $firstName
+      lastName: $lastName
+      list: $list
+    }
+  ) {
+    response
+  }
+}

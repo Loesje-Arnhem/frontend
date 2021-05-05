@@ -10,7 +10,10 @@ export const useCheckout = () => {
   const paymentMethod = ref('cod')
   const shipToDifferentAddress = ref(true)
   const addToNewsletter = ref(true)
-  const { submit, form: newsletterForm } = useNewsletter()
+  const {
+    addToNewsletter: submitToNewsletter,
+    form: newsletterForm,
+  } = useNewsletter()
   const billing = reactive({
     address1: 'Bevrijdingsstraat',
     address2: '10',
@@ -49,14 +52,17 @@ export const useCheckout = () => {
   onError(({ graphQLErrors }) => {
     errors.value = graphQLErrors.map((err) => err.message)
   })
-  onDone(async () => {
+
+  // submits to the newsletter when checkout succeeds
+  onDone(() => {
     if (!addToNewsletter.value) {
       return
     }
     newsletterForm.email = billing.email
     newsletterForm.firstName = billing.firstName
     newsletterForm.lastName = billing.lastName
-    await submit()
+    newsletterForm.list = 'products'
+    submitToNewsletter()
   })
   return {
     shipping,
