@@ -162,7 +162,7 @@ export default {
   position: absolute;
   top: 0.5em;
   right: 0.25em;
-  padding: 0.25em 0.25em;
+  padding: 0.25em;
   display: flex;
 }
 

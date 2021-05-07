@@ -26,12 +26,9 @@ export default {
 .list {
   @mixin list-reset;
 
-  margin: 0 -0.25rem 1em;
+  margin: 0 0 1em;
+  gap: 0.5em;
   display: flex;
   flex-wrap: wrap;
-}
-
-.list-item {
-  margin: 0 0.25rem 0.5rem;
 }
 </style>

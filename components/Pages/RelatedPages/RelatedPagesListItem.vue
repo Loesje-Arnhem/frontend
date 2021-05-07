@@ -42,6 +42,6 @@ export default {
 }
 
 .text {
-  padding: 1rem 1rem;
+  padding: 1rem;
 }
 </style>

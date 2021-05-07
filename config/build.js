@@ -4,6 +4,17 @@
 export default {
   babel: {
     plugins: ['@babel/plugin-proposal-optional-chaining'],
+    presets({ isServer }) {
+      return [
+        [
+          '@nuxt/babel-preset-app',
+          {
+            buildTarget: isServer ? 'server' : 'client',
+            corejs: { version: 3 }, // or version: 2
+          },
+        ],
+      ]
+    },
   },
   loaders: {
     cssModules: {
