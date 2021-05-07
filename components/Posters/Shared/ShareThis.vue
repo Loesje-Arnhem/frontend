@@ -49,17 +49,19 @@ export default {
     })
 
     const share = async () => {
-      const url = 'https://loesje.michielkoning.nl/icon.png'
+      const url = 'https://test.loesje.nl/icon.png'
 
       try {
         const response = await fetch(url)
         const imageData = await response.blob()
         const file = new File([imageData], 'poster.png', { type: 'image/png' })
+        const files = [file]
+        Object.freeze(files)
         window.navigator.share({
           title: props.title,
           url: props.link,
           text: props.title,
-          files: file ? [file] : [],
+          files,
         })
       } catch (error) {
         window.console.error(error)
