@@ -4,6 +4,7 @@
     :type="generatedType"
     :to="to"
     :class="cssClasses"
+    :href="href"
     @click="$emit('click')"
   >
     <span class="title"><slot /></span>
@@ -14,6 +15,10 @@
 export default {
   props: {
     to: {
+      type: String,
+      default: null,
+    },
+    href: {
       type: String,
       default: null,
     },
@@ -52,6 +57,9 @@ export default {
       if (this.to) {
         return 'nuxt-link'
       }
+      if (this.href) {
+        return 'a'
+      }
       return this.buttonTag
     },
     generatedType() {
@@ -84,6 +92,10 @@ export default {
   }
 }
 
+a {
+  @mixin link-reset;
+}
+
 .rough-border {
   @mixin tile-border;
 
@@ -91,6 +103,7 @@ export default {
 }
 
 .btn-outline {
+  line-height: 1.1;
   padding: 0.25em 0.75em;
   border: 2px solid var(--color-black);
   border-radius: 1em;

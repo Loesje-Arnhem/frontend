@@ -115,6 +115,7 @@ a {
   @mixin icon 0.8em;
 
   transition: transform ease-out 0.2s;
+  transform: translate(0, 0.1em);
 }
 
 /* stylelint-disable no-descending-specificity */
