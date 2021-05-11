@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="$style['social-media']">
     <h2>{{ title }}</h2>
     <ul :class="$style.list">
       <li v-if="facebook">

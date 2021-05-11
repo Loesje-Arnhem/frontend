@@ -33,6 +33,10 @@ export default {
   position: sticky;
 }
 
+.header-top {
+  @mixin hide-for-print;
+}
+
 .main {
   flex: 1 0 auto;
   min-height: calc(100vh - 1193px);

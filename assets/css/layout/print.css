@@ -1,0 +1,13 @@
+@media print {
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+  }
+  aside,
+  iframe,
+  form,
+  /* nav, */
+  footer,
+  section {
+    display: none;
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <div :class="$style['poster-details']">
-    <article class="content">
+    <article :class="$style.content">
       <h1 class="sr-only">{{ poster.title }}</h1>
       <div class="tile">
         <fade-animation mode="out-in">
@@ -84,11 +84,24 @@ export default {
   @media (--viewport-sm) {
     grid-template-columns: 1fr 1fr;
   }
+
+  @media print {
+    grid-template-columns: 1fr;
+  }
+}
+
+.content {
+  @media print {
+    width: 95%;
+    margin: 0 auto;
+  }
 }
 
 .meta-data {
   display: flex;
   flex-direction: column;
+
+  @mixin hide-for-print;
 }
 
 .definition-title {

@@ -4,10 +4,10 @@
     <latest-posts-section :posts="posts" />
     <related-posters-section :related-posters="page.relatedPosters" />
     <app-stores-section />
-    <!-- <related-products-section
+    <related-products-section
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
-    /> -->
+    />
     <!-- <block-instagram /> -->
     <groups />
   </div>
