@@ -2,7 +2,7 @@ module.exports = {
   client: {
     service: {
       name: 'carconfigurator',
-      url: 'https://api.loesje.michielkoning.nl/graphql',
+      url: 'https://www.loesje.nl/graphql',
     },
     includes: ['src/**/*.vue', 'src/**/*.js', 'src/**/*.graphql'],
   },

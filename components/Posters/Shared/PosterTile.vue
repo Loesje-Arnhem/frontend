@@ -29,7 +29,7 @@ export default {
       if (this.poster.featuredImage) {
         return this.poster.featuredImage.node.medium
       }
-      return 'https://api.loesje.michielkoning.nl/wp-content/uploads/2019/06/190626-zomer-212x300.jpg'
+      return 'https://www.loesje.nl/wp-content/uploads/2019/06/190626-zomer-212x300.jpg'
     },
   },
 }

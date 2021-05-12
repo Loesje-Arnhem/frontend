@@ -1,18 +1,33 @@
 import { useQuery, useResult } from '@vue/apollo-composable/dist'
-import { useContext, computed } from '@nuxtjs/composition-api'
-import ProductQuery from '~/graphql/Products/Product.gql'
+import { computed } from '@nuxtjs/composition-api'
+import ProductsQuery from '~/graphql/Products/Products.gql'
 
-export default () => {
-  const { params } = useContext()
-  const slug = computed(() => params.value.slug)
-  const { result, error, loading, onError } = useQuery(ProductQuery, {
-    slug,
+export default (databaseIds) => {
+  const where = computed(() => {
+    const inStock = {
+      stockStatus: 'IN_STOCK',
+    }
+
+    if (this.databaseIds.length) {
+      return {
+        ...inStock,
+        include: this.databaseIds,
+      }
+    }
+
+    return {
+      ...inStock,
+      featured: true,
+    }
+  })
+  const { result, error, loading, onError } = useQuery(ProductsQuery, {
+    where,
   })
 
-  const product = useResult(result)
+  const products = useResult(result)
 
   return {
-    product,
+    products,
     error,
     loading,
     onError,

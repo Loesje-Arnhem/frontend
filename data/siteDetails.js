@@ -1,4 +1,4 @@
-export const apiUrl = 'https://api.loesje.michielkoning.nl/'
+export const apiUrl = 'https://www.loesje.nl/'
 export const baseUrl = 'https://test.loesje.nl'
 export const categories = ['politics']
 export const facebook = 'https://www.facebook.com/loesjevdposters/'

@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     url() {
-      return this.post.node.uri
+      return '/informatie/nieuws/' + this.post.node.uri
     },
   },
 }
