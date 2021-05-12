@@ -1,4 +1,5 @@
 #import "./../Products/Fragments/ProductDetails.gql"
+#import "./../Fragments/SeoTaxonomy.gql"
 
 query ProductCategory($slug: ID!) {
   productCategory(id: $slug, idType: SLUG) {
@@ -6,13 +7,22 @@ query ProductCategory($slug: ID!) {
     databaseId
     name
     description
-    products {
+    products(
+      where: {
+        orderby: { field: MENU_ORDER, order: ASC }
+        stockStatus: IN_STOCK
+      }
+      first: 99
+    ) {
       edges {
         node {
           ...productDetails
           slug
         }
       }
+    }
+    seo {
+      ...seoTaxonomy
     }
   }
 }

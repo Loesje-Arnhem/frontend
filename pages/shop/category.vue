@@ -5,13 +5,16 @@
       v-if="productCategory.description"
       v-html="productCategory.description"
     />
-    <product-list v-if="products.edges.length" :products="products.edges" />
+    <product-list
+      v-if="productCategory.products.edges.length"
+      :products="productCategory.products.edges"
+    />
   </shop-wrapper>
 </template>
 
 <script>
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
-import ProductsQuery from '~/graphql/Products/Products.gql'
+import getSeoMetaData from '~/utils/seo'
 
 export default {
   async asyncData({ app, params }) {
@@ -26,19 +29,8 @@ export default {
       },
     })
 
-    const products = await defaultClient.query({
-      query: ProductsQuery,
-      variables: {
-        where: {
-          categoryId: productCategory.data.productCategory.databaseId,
-          stockStatus: 'IN_STOCK',
-        },
-      },
-    })
-
     return {
       productCategory: productCategory.data.productCategory,
-      products: products.data.products,
     }
   },
   nuxtI18n: {
@@ -48,9 +40,7 @@ export default {
   },
 
   head() {
-    return {
-      title: this.productCategory.name,
-    }
+    return getSeoMetaData(this.productCategory.seo)
   },
 }
 </script>

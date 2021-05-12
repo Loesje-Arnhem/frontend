@@ -8,33 +8,22 @@
 
 <script>
 import { shopPageId } from '~/data/pages'
-import PageByIdQuery from '~/graphql/Pages/PageById.gql'
-import ProductsQuery from '~/graphql/Products/Products.gql'
+import ShopPageQuery from '~/graphql/Shop/ShopPage.gql'
 import getSeoMetaData from '~/utils/seo'
 
 export default {
   async asyncData({ app }) {
     const { defaultClient } = app.apolloProvider
     const page = await defaultClient.query({
-      query: PageByIdQuery,
+      query: ShopPageQuery,
       variables: {
         id: shopPageId,
       },
     })
 
-    const products = await defaultClient.query({
-      query: ProductsQuery,
-      variables: {
-        where: {
-          featured: true,
-          stockStatus: 'IN_STOCK',
-        },
-      },
-    })
-
     return {
       page: page.data.page,
-      products: products.data.products,
+      products: page.data.products,
     }
   },
   nuxtI18n: {
