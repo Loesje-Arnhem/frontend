@@ -56,7 +56,7 @@ export default {
     )
 
     onDone(() => {
-      router.push(localePath({ name: 'shop-checkout' }))
+      router.push(localePath({ name: 'shop-cart' }))
     })
 
     return {

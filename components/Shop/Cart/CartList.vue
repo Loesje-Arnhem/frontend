@@ -1,13 +1,12 @@
 <template>
   <div v-if="cart">
-    <ul>
+    <ul :class="$style.list">
       <cart-list-item
         v-for="item in cart.contents.nodes"
         :key="item.key"
         :item="item"
       />
     </ul>
-    {{ cart.total }}
     <ul v-if="cart.appliedCoupons">
       <coupon-list-item
         v-for="coupon in cart.appliedCoupons"
@@ -36,3 +35,9 @@ export default {
   },
 }
 </script>
+
+<style module lang="postcss">
+.list {
+  @mixin list-reset;
+}
+</style>
