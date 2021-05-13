@@ -10,13 +10,7 @@
     <h3 :class="$style.title">
       <nuxt-link :class="$style.link" :to="url" v-html="product.name" />
     </h3>
-    <div :class="$style.price">
-      <template v-if="product.salePrice">
-        <span :class="$style['price-old']">{{ product.regularPrice }}</span>
-        {{ product.salePrice }}
-      </template>
-      <template v-else>{{ product.price }}</template>
-    </div>
+    <product-prices :product="product" :class="$style.price" />
   </clickable-list-item>
 </template>
 
@@ -74,9 +68,5 @@ export default {
 
 .title {
   margin: 0;
-}
-
-.price-old {
-  text-decoration: line-through;
 }
 </style>

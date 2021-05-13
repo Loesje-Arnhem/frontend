@@ -15,6 +15,7 @@
           :checked="paymentGateway.node.id == value"
           @change="$emit('input', paymentGateway.node.id)"
         />
+        <img :src="paymentGateway.node.icon" alt="" />
         <label :for="`payment-${paymentGateway.node.id}`" :class="$style.label">
           {{ paymentGateway.node.title }}
         </label>

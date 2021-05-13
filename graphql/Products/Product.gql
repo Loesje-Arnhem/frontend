@@ -5,15 +5,24 @@ query Product($slug: ID!) {
     ...productDetails
     shortDescription
     description
-    attributes {
-      edges {
-        node {
-          id
-          attributeId
-          name
-          options
-          variation
-          visible
+    globalAttributes {
+      nodes {
+        id
+        name
+        slug
+        variation
+        position
+        scope
+        attributeId
+        visible
+        terms {
+          nodes {
+            id
+            databaseId
+            name
+            slug
+            count
+          }
         }
       }
     }

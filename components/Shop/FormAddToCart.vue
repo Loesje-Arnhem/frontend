@@ -10,23 +10,26 @@
         name="quantity"
       />
 
-      <div v-if="product.attributes && product.attributes.edges.length">
+      <div
+        v-if="product.globalAttributes && product.globalAttributes.nodes.length"
+      >
         <div
-          v-for="attribute in product.attributes.edges"
-          :key="attribute.node.attributeId"
+          v-for="attribute in product.globalAttributes.nodes"
+          :key="attribute.id"
         >
           <form-select
-            :id="attribute.node.name"
+            v-if="attribute.terms.nodes.length"
+            :id="attribute.slug"
             v-model="selectedAttribute"
-            :name="attribute.node.name"
-            :title="attribute.node.name"
+            :name="attribute.slug"
+            :title="attribute.name"
           >
             <option
-              v-for="option in attribute.node.options"
-              :key="option"
-              :value="option"
+              v-for="option in attribute.terms.nodes"
+              :key="option.databaseId"
+              :value="option.databaseId"
             >
-              {{ option }}
+              {{ option.name }}
             </option>
           </form-select>
         </div>
@@ -38,7 +41,7 @@
 </template>
 
 <script>
-import { useRouter, useContext } from '@nuxtjs/composition-api'
+import { useRouter, useContext, ref } from '@nuxtjs/composition-api'
 import { useAddToCart } from '~/compositions/cart'
 
 export default {
@@ -50,6 +53,7 @@ export default {
   },
   setup(props) {
     const router = useRouter()
+    const selectedAttribute = ref(null)
     const { localePath } = useContext()
     const { addToCart, loading, errors, quantity, onDone } = useAddToCart(
       props.product.databaseId,
@@ -60,6 +64,7 @@ export default {
     })
 
     return {
+      selectedAttribute,
       errors,
       loading,
       quantity,

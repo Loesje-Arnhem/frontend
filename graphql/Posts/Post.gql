@@ -1,6 +1,7 @@
 #import "./Fragments/RelatedPosters.gql"
 #import "./Fragments/PostDetails.gql"
 #import "./Fragments/RelatedProducts.gql"
+#import "./../Fragments/Seo.gql"
 
 query Post($slug: ID!) {
   post(id: $slug, idType: SLUG) {
@@ -12,8 +13,8 @@ query Post($slug: ID!) {
     relatedProducts: relatedProductsGroup {
       ...relatedProductsPostGroup
     }
-    # seo {
-    #   ...seo
-    # }
+    seo {
+      ...seo
+    }
   }
 }

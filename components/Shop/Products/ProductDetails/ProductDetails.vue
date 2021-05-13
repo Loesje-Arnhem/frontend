@@ -7,12 +7,7 @@
 
         <!-- eslint-disable-next-line -->
         <div v-html="product.shortDescription"></div>
-        <div class="prices">
-          {{ product.regularPrice }} - {{ product.salesPrice }} -
-          {{ product.stockStatus }}
-          {{ product.price }}
-          {{ product.databaseId }}
-        </div>
+        <product-prices :product="product" />
         <form-add-to-cart :product="product" />
       </div>
     </div>
@@ -22,14 +17,7 @@
 </template>
 
 <script>
-import FormAddToCart from '~/components/Shop/FormAddToCart.vue'
-import ProductGallery from '~/components/Shop/Products/ProductDetails/ProductGallery.vue'
-
 export default {
-  components: {
-    FormAddToCart,
-    ProductGallery,
-  },
   props: {
     product: {
       type: Object,

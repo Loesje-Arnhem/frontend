@@ -1,10 +1,11 @@
 query GET_PAYMENT_GATEWAYS {
-  paymentGateways {
+  paymentGateways(where: {all: false}) {
     edges {
       node {
         id
         title
         description
+        icon
       }
     }
   }
