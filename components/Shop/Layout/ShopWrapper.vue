@@ -26,7 +26,6 @@ export default {
 
 <style lang="postcss" module>
 .wrapper {
-  padding: 2em 0 4em;
   display: grid;
   grid-gap: 1rem;
 

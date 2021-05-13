@@ -1,5 +1,5 @@
 <template>
-  <div v-if="cart">
+  <div v-if="cart && cart.contents.nodes.length">
     <table :class="$style.list" class="table-large">
       <thead>
         <tr>
@@ -28,6 +28,7 @@
     </ul>
     <coupons v-else />
   </div>
+  <p v-else>Je winkelmand is momenteel leeg.</p>
 </template>
 
 <script>

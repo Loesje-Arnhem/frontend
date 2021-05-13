@@ -3,10 +3,6 @@
     <product-details :product="product" />
 
     <product-list-section :related-products="product.related.edges" />
-    <related-products-section
-      :related-products="product.related"
-      title="page.relatedPosters.title"
-    />
   </shop-wrapper>
 </template>
 

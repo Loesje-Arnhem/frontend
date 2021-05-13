@@ -1,9 +1,12 @@
 <template>
-  <products-container :category="category" :database-ids="databaseIds">
-    <template #default="data">
-      <product-list v-if="data" :products="data.products" />
-    </template>
-  </products-container>
+  <section aria-labelledby="featured-products">
+    <h1 id="featured-products">Gerelateerde producten</h1>
+    <products-container :category="category" :database-ids="databaseIds">
+      <template #default="data">
+        <product-list v-if="data" :products="data.products" />
+      </template>
+    </products-container>
+  </section>
 </template>
 
 <script>

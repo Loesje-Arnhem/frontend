@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="product-wrapper">
     <div class="product-details">
       <product-gallery :images="gallery" />
       <div class="content">
@@ -7,11 +7,11 @@
 
         <!-- eslint-disable-next-line -->
         <div v-html="product.shortDescription"></div>
-        <product-prices :product="product" />
         <form-add-to-cart :product="product" />
       </div>
     </div>
     <!-- eslint-disable-next-line -->
+    <h2>Beschrijving</h2>
     <div class="description" v-html="product.description"></div>
   </div>
 </template>
@@ -39,6 +39,10 @@ export default {
 </script>
 
 <style scoped lang="postcss">
+.product-wrapper {
+  margin-bottom: 3em;
+}
+
 .product-details {
   margin: 0 0 1em;
   display: grid;
