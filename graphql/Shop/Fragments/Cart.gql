@@ -19,6 +19,7 @@ fragment cart on Cart {
             srcSet
             altText
             title
+            medium: sourceUrl(size: MEDIUM)
           }
           galleryImages {
             nodes {
