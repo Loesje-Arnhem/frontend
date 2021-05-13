@@ -27,9 +27,6 @@
           </ul>
         </li>
       </template>
-      <li><nuxt-link to="/winkeltje/winkelwagen">winkelwagen</nuxt-link></li>
-      <li><nuxt-link to="/winkeltje/inloggen">inloggen</nuxt-link></li>
-      <li><nuxt-link to="/winkeltje/registreren">registreren</nuxt-link></li>
     </ul>
   </nav>
 </template>

@@ -1,5 +1,6 @@
+/* eslint-disable */
 import { useQuery, useResult, useMutation } from '@vue/apollo-composable/dist'
-import { ref } from '@nuxtjs/composition-api'
+import { ref, computed } from '@nuxtjs/composition-api'
 import { v4 } from 'uuid'
 import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
 import AddToCartQuery from '~/graphql/Shop/Cart/AddToCart.gql'
@@ -31,7 +32,17 @@ export const useCart = () => {
 
   const cart = useResult(result)
 
+  const totalProducts = computed(() => {
+    if (!cart.value) {
+      return 0
+    }
+    return cart.value.contents.nodes.reduce((num, item) => {
+      return num + item.quantity
+    }, 0)
+  });
+
   return {
+    totalProducts,
     cart,
     error,
     loading,

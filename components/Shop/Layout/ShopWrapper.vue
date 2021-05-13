@@ -1,5 +1,6 @@
 <template>
   <center-wrapper>
+    <shop-header />
     <div :class="$style.wrapper">
       <div :class="$style['categories-column']">
         <product-category-list :class="$style.categories" />

@@ -1,35 +1,12 @@
+#import "./../../Products/Fragments/ProductDetails.gql"
+
 fragment cart on Cart {
   contents {
     nodes {
       key
       product {
         node {
-          id
-          databaseId
-          name
-          description
-          type
-          onSale
-          slug
-          averageRating
-          reviewCount
-          image {
-            id
-            sourceUrl
-            srcSet
-            altText
-            title
-            medium: sourceUrl(size: MEDIUM)
-          }
-          galleryImages {
-            nodes {
-              id
-              sourceUrl
-              srcSet
-              altText
-              title
-            }
-          }
+          ...productDetails
         }
       }
       variation {

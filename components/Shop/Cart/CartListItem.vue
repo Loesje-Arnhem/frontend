@@ -1,23 +1,30 @@
 <template>
-  <li :class="$style['list-item']">
-    <div>
+  <tr>
+    <td :class="$style['remove-wrapper']">
       <button @click="removeItemsFromCart">
         <app-icon icon="close" title="Verwijderen" />
       </button>
-    </div>
-    <div class="tile">
-      <img :src="item.product.node.image.medium" alt="" :class="$style.image" />
-    </div>
-    <div class="title">
+    </td>
+    <td :class="$style['image-wrapper']">
+      <div class="tile">
+        <img
+          :class="$style.image"
+          :src="item.product.node.image.medium"
+          alt=""
+        />
+      </div>
+    </td>
+    <td class="title">
       {{ item.product.node.name }}
-    </div>
-    <div :class="$style.price">
-      {{ item.total }}
-    </div>
-    <div :class="$style.select">
+    </td>
+    <td :class="$style.price">
+      <product-prices :product="item.product.node" />
+    </td>
+    <td>
       <form-select
         :id="`quantity-${item.product.node.databaseId}`"
         v-model="quantity"
+        :class="$style.select"
         :name="`quantity-${item.product.node.databaseId}`"
         title="Aantal"
         @change="updateItemQuantities"
@@ -26,18 +33,20 @@
           {{ index }}
         </option>
       </form-select>
-    </div>
-    <div :class="$style.price">{{ item.total }}</div>
-  </li>
+    </td>
+    <td :class="$style.price">{{ item.total }}</td>
+  </tr>
 </template>
 
 <script>
+import ProductPrices from '../Products/ProductPrices.vue'
 import {
   useUpdateItemQuantities,
   useRemoveItemsFromCart,
 } from '~/compositions/cart'
 
 export default {
+  components: { ProductPrices },
   props: {
     item: {
       type: Object,
@@ -61,24 +70,24 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.list-item {
-  display: grid;
-  grid-template-columns: 1.5em 6em auto 4em 5em 4em;
-  grid-gap: 0.5em;
+.remove-wrapper {
+  width: 1.5em;
+}
 
-  &:not(:last-child) {
-    border-bottom: 2px solid #000;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
-  }
+.image-wrapper {
+  width: 8em;
 }
 
 .image {
   display: block;
 }
 
+.quantity {
+  width: 5em;
+}
+
 .price {
-  text-align: right;
+  width: 8em;
 }
 
 .select {

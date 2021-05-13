@@ -1,5 +1,6 @@
 <template>
   <center-wrapper>
+    <shop-header />
     <h1>{{ page.title }}</h1>
     <client-only>
       <cart-list />
