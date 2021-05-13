@@ -6,17 +6,18 @@
       :date="post.date"
     />
 
-    <related-posters-section
+    <!-- <related-posters-section
       v-if="post"
       :related-posters="post.relatedPosters"
-    />
-    <related-products-section :related-products="post.relatedProducts" />
-    <posts-overview-section :not-in="post.databaseId" />
+    /> -->
+    <!-- <related-products-section :related-products="post.relatedProducts" /> -->
+    <!-- <posts-overview-section :not-in="post.databaseId" /> -->
   </div>
 </template>
 
 <script>
 import PostQuery from '~/graphql/Posts/Post.gql'
+import getSeoMetaData from '~/utils/seo'
 
 export default {
   async asyncData({ app, params }) {
@@ -32,9 +33,7 @@ export default {
     }
   },
   head() {
-    return {
-      title: this.post.title,
-    }
+    return getSeoMetaData(this.post.seo)
   },
   nuxtI18n: {
     paths: {

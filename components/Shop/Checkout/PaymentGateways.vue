@@ -15,7 +15,11 @@
           :checked="paymentGateway.node.id == value"
           @change="$emit('input', paymentGateway.node.id)"
         />
-        <img :src="paymentGateway.node.icon" alt="" />
+        <div
+          v-if="paymentGateway.node.icon"
+          :class="$style.icon"
+          v-html="paymentGateway.node.icon"
+        />
         <label :for="`payment-${paymentGateway.node.id}`" :class="$style.label">
           {{ paymentGateway.node.title }}
         </label>
@@ -46,12 +50,18 @@ export default {
 
 .list-item {
   display: flex;
-  gap: 0.25em;
+  gap: 0.5em;
   align-items: center;
   border-bottom: 1px solid #000;
 
   &:last-child {
     border-bottom-width: 0;
+  }
+}
+
+.icon {
+  & img {
+    display: block;
   }
 }
 
@@ -61,6 +71,7 @@ export default {
 
 .label {
   padding: 0.5em 0;
+  margin: 0;
   display: block;
   flex: 1 1 auto;
 }
