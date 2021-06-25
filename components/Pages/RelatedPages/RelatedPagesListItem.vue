@@ -10,7 +10,7 @@
     <div :class="$style.text">
       <!-- eslint-disable-next-line vue/no-v-html -->
       <div v-html="page.excerpt" />
-      <read-more-link />
+      <read-more-link :to="page.uri" />
     </div>
   </clickable-list-item>
 </template>

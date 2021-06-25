@@ -10,10 +10,8 @@ export const useCheckout = () => {
   const paymentMethod = ref('cod')
   const shipToDifferentAddress = ref(true)
   const addToNewsletter = ref(true)
-  const {
-    addToNewsletter: submitToNewsletter,
-    form: newsletterForm,
-  } = useNewsletter()
+  const { addToNewsletter: submitToNewsletter, form: newsletterForm } =
+    useNewsletter()
   const billing = reactive({
     address1: 'Bevrijdingsstraat',
     address2: '10',
@@ -36,19 +34,21 @@ export const useCheckout = () => {
     lastName: 'koning',
     postcode: '6708RC',
   })
-  const { mutate: checkout, loading, onError, onDone } = useMutation(
-    CheckoutQuery,
-    () => ({
-      variables: {
-        clientMutationId: v4(),
-        paymentMethod: paymentMethod.value,
-        shipToDifferentAddress: shipToDifferentAddress.value,
-        billing,
-        shipping,
-      },
-      refetchQueries: [{ query: CartQuery }],
-    }),
-  )
+  const {
+    mutate: checkout,
+    loading,
+    onError,
+    onDone,
+  } = useMutation(CheckoutQuery, () => ({
+    variables: {
+      clientMutationId: v4(),
+      paymentMethod: paymentMethod.value,
+      shipToDifferentAddress: shipToDifferentAddress.value,
+      billing,
+      shipping,
+    },
+    refetchQueries: [{ query: CartQuery }],
+  }))
   onError(({ graphQLErrors }) => {
     errors.value = graphQLErrors.map((err) => err.message)
   })

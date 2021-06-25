@@ -48,13 +48,20 @@ export default {
   },
   methods: {
     mouseUp() {
+      if (!this.down) {
+        return
+      }
       const up = +new Date()
       if (up - this.down < 200) {
         this.goToItem()
       }
     },
-    mouseDown() {
-      this.down = +new Date()
+    mouseDown(event) {
+      if (event.target.nodeName === 'A') {
+        this.down = null
+      } else {
+        this.down = +new Date()
+      }
     },
     goToItem() {
       this.$router.push(this.url)

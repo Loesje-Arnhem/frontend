@@ -6,12 +6,9 @@
       :date="post.date"
     />
 
-    <!-- <related-posters-section
-      v-if="post"
-      :related-posters="post.relatedPosters"
-    /> -->
-    <!-- <related-products-section :related-products="post.relatedProducts" /> -->
-    <!-- <posts-overview-section :not-in="post.databaseId" /> -->
+    <related-posters-section :related-posters="post.relatedPosters" />
+    <related-products-section :related-products="post.relatedProducts" />
+    <posts-overview-section :not-in="post.databaseId" />
   </div>
 </template>
 

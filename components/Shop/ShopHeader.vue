@@ -1,6 +1,6 @@
 <template>
-  <div :class="$style['shop-header']">
-    <div>
+  <div :class="$style.header">
+    <div :class="$style.promotion">
       <nuxt-link to="/winkeltje/docentenagenda-2021-2022">
         De nieuwe docentenagenda
       </nuxt-link>
@@ -13,11 +13,23 @@
 </template>
 
 <style module lang="postcss">
-.shop-header {
+.header {
   display: flex;
-  justify-content: space-between;
   padding: 0.5em 0;
   border-bottom: 2px solid var(--color-black);
   margin-bottom: 2em;
+
+  @media (--viewport-md) {
+    justify-content: space-between;
+    display: flex;
+  }
+}
+
+.promotion {
+  display: none;
+
+  @media (--viewport-md) {
+    display: block;
+  }
 }
 </style>

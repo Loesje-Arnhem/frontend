@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav :class="$style.nav">
     <ul :class="$style.list">
       <li>
         <nuxt-link :to="localePath({ name: 'shop-cart' })">
@@ -34,5 +34,14 @@ export default {
 
   display: flex;
   gap: 1em;
+  justify-content: space-between;
+
+  @media (--viewport-md) {
+    justify-content: flex-end;
+  }
+}
+
+.nav {
+  flex: 1 1 auto;
 }
 </style>
