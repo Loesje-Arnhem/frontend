@@ -4,13 +4,10 @@
       <product-gallery :images="gallery" />
       <div class="content">
         <h1>{{ product.name }}</h1>
-
-        <!-- eslint-disable-next-line -->
         <div v-html="product.shortDescription"></div>
         <form-add-to-cart :product="product" />
       </div>
     </div>
-    <!-- eslint-disable-next-line -->
     <h2>Beschrijving</h2>
     <div class="description" v-html="product.description"></div>
   </div>

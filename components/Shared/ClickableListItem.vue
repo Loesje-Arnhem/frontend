@@ -65,9 +65,5 @@ export default {
       }
     }
   }
-
-  & a {
-    @mixin link-reset;
-  }
 }
 </style>
