@@ -9,7 +9,7 @@
 </template>
 
 <script>
-// import { useContext } from '@nuxtjs/composition-api'
+import { useRouter, ref } from '@nuxtjs/composition-api'
 
 export default {
   props: {
@@ -18,54 +18,35 @@ export default {
       required: true,
     },
   },
-  // setup(props) {
-  //   let down = null
-  //   const { router } = useContext()
+  setup(props) {
+    const down = ref(null)
+    const router = useRouter()
 
-  //   const goToItem = () => {
-  //     router.push(props.url)
-  //   }
-
-  //   const mouseDown = () => {
-  //     down = +new Date()
-  //   }
-  //   const mouseUp = () => {
-  //     const up = +new Date()
-  //     if (up - down < 200) {
-  //       goToItem()
-  //     }
-  //   }
-
-  //   return {
-  //     mouseUp,
-  //     mouseDown,
-  //   }
-  // },
-  data() {
-    return {
-      down: null,
+    const goToItem = () => {
+      router.push(props.url)
     }
-  },
-  methods: {
-    mouseUp() {
-      if (!this.down) {
+
+    const mouseDown = (event) => {
+      if (event.target.nodeName === 'A') {
+        down.value = null
+      } else {
+        down.value = +new Date()
+      }
+    }
+    const mouseUp = () => {
+      if (!down.value) {
         return
       }
       const up = +new Date()
-      if (up - this.down < 200) {
-        this.goToItem()
+      if (up - down.value < 200) {
+        goToItem()
       }
-    },
-    mouseDown(event) {
-      if (event.target.nodeName === 'A') {
-        this.down = null
-      } else {
-        this.down = +new Date()
-      }
-    },
-    goToItem() {
-      this.$router.push(this.url)
-    },
+    }
+
+    return {
+      mouseUp,
+      mouseDown,
+    }
   },
 }
 </script>

@@ -8,7 +8,7 @@
     <!-- eslint-disable-next-line -->
     <div class="text" v-html="post.node.excerpt" />
     <div :class="$style['link-wrapper']" aria-hidden="true">
-      <read-more-link class="read-more" />
+      <read-more-link class="read-more" :to="url" />
     </div>
   </clickable-list-item>
 </template>

@@ -1,9 +1,8 @@
 <template>
-  <!-- eslint-disable-next-line vue/require-component-is -->
-  <component :is="tag" :to="to" class="read-more">
+  <nuxt-link :to="to" class="read-more" aria-hidden="true">
     Lees verder
     <app-icon icon="chevron-right" class="icon" width="16" height="16" />
-  </component>
+  </nuxt-link>
 </template>
 
 <script>
@@ -12,14 +11,6 @@ export default {
     to: {
       type: String,
       default: '',
-    },
-  },
-  computed: {
-    tag() {
-      if (this.to) {
-        return 'nuxt-link'
-      }
-      return 'span'
     },
   },
 }
