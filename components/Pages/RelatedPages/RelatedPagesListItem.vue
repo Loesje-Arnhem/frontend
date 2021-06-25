@@ -8,7 +8,6 @@
       <nuxt-link :to="page.uri">{{ page.title }}</nuxt-link>
     </h2>
     <div :class="$style.text">
-      <!-- eslint-disable-next-line vue/no-v-html -->
       <div v-html="page.excerpt" />
       <read-more-link :to="page.uri" />
     </div>
@@ -16,14 +15,7 @@
 </template>
 
 <script>
-import ReadMoreLink from '~/components/Shared/ReadMoreLink.vue'
-import ClickableListItem from '~/components/Shared/ClickableListItem.vue'
-
 export default {
-  components: {
-    ClickableListItem,
-    ReadMoreLink,
-  },
   props: {
     page: {
       type: Object,
