@@ -33,10 +33,7 @@ export default defineComponent({
   },
   computed: {
     parentId() {
-      if (this.page.parent) {
-        return this.page.parent.node.databaseId
-      }
-      return this.page.databaseId
+      return this.page.parentDatabaseId || this.page.databaseId
     },
   },
 
