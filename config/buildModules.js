@@ -8,4 +8,5 @@ export default [
   '@nuxtjs/google-fonts',
   '@nuxt/image',
   '@nuxt/postcss8',
+  '@nuxt/typescript-build',
 ]
