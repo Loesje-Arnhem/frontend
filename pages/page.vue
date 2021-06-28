@@ -3,6 +3,7 @@
     <app-content :title="page.title" :content="page.content" />
     <related-posters-section :related-posters="page.relatedPosters" />
     <related-pages-section
+      v-if="parentId"
       :not-in="page.databaseId"
       :parent-page-id="parentId"
     />

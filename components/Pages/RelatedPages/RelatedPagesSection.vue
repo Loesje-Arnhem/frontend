@@ -4,23 +4,15 @@
     aria-labelledby="related-pages-title"
   >
     <h2 id="related-pages-title" class="sr-only">Overige pagina's</h2>
-    <related-pages-container :not-in="notIn" :parent-page-id="parentPageId">
-      <template #default="data">
-        <related-pages-list v-if="data" :pages="data.pages" />
-      </template>
-    </related-pages-container>
+    <app-loader v-if="loading" />
+    <related-pages-list v-else-if="relatedPages" :pages="relatedPages.edges" />
   </section>
 </template>
 
 <script>
-import RelatedPagesContainer from '~/components/Pages/RelatedPages/RelatedPagesContainer.vue'
-import RelatedPagesList from '~/components/Pages/RelatedPages/RelatedPagesList.vue'
+import { useRelatedPages } from '~/compositions/page'
 
 export default {
-  components: {
-    RelatedPagesContainer,
-    RelatedPagesList,
-  },
   props: {
     notIn: {
       type: Number,
@@ -30,6 +22,18 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  setup(props) {
+    const { relatedPages, loading, error } = useRelatedPages(
+      props.parentPageId,
+      props.notIn,
+    )
+
+    return {
+      relatedPages,
+      loading,
+      error,
+    }
   },
 }
 </script>

@@ -10,12 +10,7 @@
 </template>
 
 <script>
-import RelatedPagesListItem from '~/components/Pages/RelatedPages/RelatedPagesListItem.vue'
-
 export default {
-  components: {
-    RelatedPagesListItem,
-  },
   props: {
     pages: {
       type: Array,
