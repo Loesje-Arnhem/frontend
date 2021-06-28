@@ -1,7 +1,7 @@
 import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 
-export const useRelatedPages = (parentPageId, notIn) => {
+export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
   const { result, error, loading, onError } = useQuery(RelatedPagesQuery, {
     notIn,
     parentPageId: parentPageId.toString(),

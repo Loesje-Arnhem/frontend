@@ -5,7 +5,7 @@
     class="box"
   >
     <h2 :class="$style.title">
-      <nuxt-link :to="page.uri">{{ page.title }}</nuxt-link>
+      <nuxt-link :to="page.uri" :class="$style.link">{{ page.title }}</nuxt-link>
     </h2>
     <div :class="$style.text">
       <div v-html="page.excerpt" />
@@ -14,15 +14,16 @@
   </clickable-list-item>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {  defineComponent } from '@nuxtjs/composition-api'
+export default defineComponent({
   props: {
     page: {
       type: Object,
       required: true,
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
@@ -36,4 +37,9 @@ export default {
 .text {
   padding: 1rem;
 }
+
+.link {
+  @mixin link-reset;
+}
+
 </style>

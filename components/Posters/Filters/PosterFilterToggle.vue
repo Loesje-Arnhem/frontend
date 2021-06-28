@@ -11,15 +11,16 @@
   </button>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+export default defineComponent({
   props: {
     isActive: {
       type: Boolean,
       default: false,
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
@@ -45,6 +46,8 @@ export default {
   display: flex;
   align-items: center;
   background: var(--color-white);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 
   &:hover,
   &.is-active {

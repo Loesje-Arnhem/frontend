@@ -2,7 +2,7 @@ import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import { computed } from '@nuxtjs/composition-api'
 import ProductsQuery from '~/graphql/Products/Products.gql'
 
-export default (databaseIds) => {
+export default () => {
   const where = computed(() => {
     const inStock = {
       stockStatus: 'IN_STOCK',

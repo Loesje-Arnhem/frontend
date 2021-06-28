@@ -1,7 +1,7 @@
 <template>
   <div class="filter">
     <div class="buttons">
-      <posters-filter-toggle
+      <poster-filter-toggle
         :is-active="showSources"
         class="filter-item"
         @toggle="toggleList('sources')"
@@ -10,8 +10,8 @@
         <template v-if="selectedSourceIds.length">
           ({{ selectedSourceIds.length }})
         </template>
-      </posters-filter-toggle>
-      <posters-filter-toggle
+      </poster-filter-toggle>
+      <poster-filter-toggle
         :is-active="showSubjects"
         class="filter-item"
         @toggle="toggleList('subjects')"
@@ -20,7 +20,7 @@
         <template v-if="selectedSubjectIds.length">
           ({{ selectedSubjectIds.length }})
         </template>
-      </posters-filter-toggle>
+      </poster-filter-toggle>
       <div class="filter-item">
         <div class="form-item-2">
           <label for="date-before"> {{ $t('dateBefore') }} </label>
@@ -52,34 +52,25 @@
     <slide-in-animation mode="out-in">
       <div v-if="showSources" key="sources" class="tags" tabindex="-1">
         <center-wrapper>
-          <poster-filter-tags :list="sources" />
+          <poster-tags-list :list="sources" />
         </center-wrapper>
       </div>
 
       <div v-if="showSubjects" key="subjects" class="tags" tabindex="-1">
         <center-wrapper>
-          <poster-filter-tags :list="subjects" />
+          <poster-tags-list :list="subjects" />
         </center-wrapper>
       </div>
     </slide-in-animation>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 import { mapGetters } from 'vuex'
-import PostersFilterToggle from '~/components/Posters/Filters/PosterFilterToggle.vue'
-import SlideInAnimation from '~/components/Animations/SlideInAnimation.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import PosterFilterTags from '~/components/Posters/Tags/PosterTagsList.vue'
 import TagsQuery from '~/graphql/Posters/Tags.gql'
 
-export default {
-  components: {
-    PostersFilterToggle,
-    SlideInAnimation,
-    CenterWrapper,
-    PosterFilterTags,
-  },
+export default defineComponent({
   data() {
     return {
       showSubjects: false,
@@ -114,8 +105,8 @@ export default {
     },
     today() {
       const now = new Date()
-      let month = now.getMonth() + 1
-      let day = now.getDate()
+      let month = now.getMonth() + 1 as Number | String
+      let day = now.getDate() as Number | String
       if (month < 10) month = '0' + month
       if (day < 10) day = '0' + day
       return now.getFullYear() + '-' + month + '-' + day
@@ -145,7 +136,7 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" scoped>
@@ -165,7 +156,8 @@ export default {
   border-bottom: 1px solid var(--color-black);
   flex: 0 0 auto;
   width: 100%;
-  padding: 0 1em;
+  padding-left: 1em;
+  padding-right: 1em;
 
   &:last-child {
     border-bottom: 0;

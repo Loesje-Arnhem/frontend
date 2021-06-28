@@ -1,7 +1,7 @@
 <template>
   <clickable-list-item :url="url" :class="$style['list-item']">
     <h2 :class="$style.title">
-      <router-link :to="url" v-html="post.node.title" />
+      <router-link :to="url" :class="$style.link" v-html="post.node.title" />
     </h2>
     <post-date :date="post.node.date" />
     <div class="text" v-html="post.node.excerpt" />
@@ -11,9 +11,9 @@
   </clickable-list-item>
 </template>
 
-<script>
-import { computed } from '@nuxtjs/composition-api'
-export default {
+<script lang="ts">
+import { computed, defineComponent } from '@nuxtjs/composition-api'
+export default defineComponent({
   props: {
     post: {
       type: Object,
@@ -28,7 +28,7 @@ export default {
       url,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
@@ -39,6 +39,10 @@ export default {
 
 .title {
   margin-bottom: 0;
+}
+
+.link {
+  @mixin link-reset;
 }
 
 .link-wrapper {
