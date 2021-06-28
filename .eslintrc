@@ -4,16 +4,12 @@
     "browser": true,
     "node": true
   },
-  "parserOptions": {
-    "parser": "babel-eslint"
-  },
   "extends": [
-    "@nuxtjs",
-    "prettier",
-    "plugin:prettier/recommended",
-    "plugin:nuxt/recommended"
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:nuxt/recommended",
+    "prettier"
   ],
-  "plugins": ["prettier"],
+  "plugins": [],
   "rules": {
     "vue/component-name-in-template-casing": ["error", "kebab-case"],
     "vue/no-deprecated-slot-scope-attribute": 1,

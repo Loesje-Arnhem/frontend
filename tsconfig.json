@@ -13,6 +13,10 @@
     "sourceMap": true,
     "strict": true,
     "noEmit": true,
+<<<<<<< HEAD
+=======
+    "experimentalDecorators": true,
+>>>>>>> 231e541 (eslint)
     "baseUrl": ".",
     "paths": {
       "~/*": [
@@ -23,11 +27,22 @@
       ]
     },
     "types": [
+<<<<<<< HEAD
       "@types/node",
       "@nuxt/types"
     ]
   },
   "exclude": [
     "node_modules"
+=======
+      "@nuxt/types",
+      "@types/node"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".nuxt",
+    "dist"
+>>>>>>> 231e541 (eslint)
   ]
 }
