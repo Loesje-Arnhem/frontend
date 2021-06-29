@@ -34,11 +34,4 @@ export default {
   plugins,
   pwa,
   server,
-  typescript: {
-    typeCheck: {
-      eslint: {
-        files: './**/*.{ts,js,vue}',
-      },
-    },
-  },
 }
