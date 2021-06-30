@@ -1,7 +1,26 @@
 <template>
   <div v-if="page" class="page">
-    <app-content :title="page.title" :content="page.content" />
-    <form-workshop />
+    <center-wrapper>
+      <div :class="$style.wrapper">
+        <app-content :title="page.title" :content="page.content" />
+        <div>
+          <div class="video" :class="$style.video">
+            <iframe
+              loading="lazy"
+              :class="$style.video"
+              title="Workshop creatief schrijven met Loesje"
+              width="500"
+              height="281"
+              src="https://www.youtube.com/embed/1Pr__G4H4sg?feature=oembed"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            />
+          </div>
+          <form-workshop />
+        </div>
+      </div>
+    </center-wrapper>
     <related-posters-section :related-posters="page.relatedPosters" />
     <related-products-section :related-products="page.relatedProducts" />
   </div>
@@ -30,3 +49,14 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" module>
+.wrapper {
+  @mixin block;
+
+  display: grid;
+  grid-gap: var(--gutter);
+  grid-template-columns: 2fr 1fr;
+}
+</style>
+

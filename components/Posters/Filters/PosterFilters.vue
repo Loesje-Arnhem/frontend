@@ -126,7 +126,7 @@ export default defineComponent({
   // },
 
   methods: {
-    toggleList(type) {
+    toggleList(type: string) {
       if (type === 'subjects') {
         this.showSubjects = !this.showSubjects
         this.showSources = false

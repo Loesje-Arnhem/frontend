@@ -1,12 +1,11 @@
 <template>
-  <div :class="$style.wrapper">
+  <div>
     <app-form
-      :class="$style.form"
       name="workshop"
       :submitted="submitted"
       @submit="submit"
     >
-      <form-fieldset title="Contact">
+      <form-fieldset title="Meld je aan voor de workshop">
         <form-field
           id="name"
           :errors="$v.name.$errors"
@@ -117,17 +116,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" module>
-.form {
-  @mixin block;
-
-  & :global(.fields) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.wrapper {
-  @mixin center;
-}
-</style>

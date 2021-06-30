@@ -1,22 +1,13 @@
 <template>
-  <center-wrapper :class="$style.wrapper" size="md">
-    <article :class="$style.post">
+    <article :class="$style.wrapper">
       <h1>{{ title }}</h1>
       <post-date v-if="date" :date="date" :class="$style.date" />
       <div class="text" v-html="content" />
     </article>
-  </center-wrapper>
 </template>
 
 <script>
-import PostDate from '~/components/Posts/Shared/PostDate.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-
 export default {
-  components: {
-    PostDate,
-    CenterWrapper,
-  },
   props: {
     title: {
       type: String,
@@ -35,9 +26,7 @@ export default {
 </script>
 
 <style lang="postcss" module>
-.post {
-  @mixin block;
-
+.wrapper {
   display: flex;
   flex-direction: column;
 }
