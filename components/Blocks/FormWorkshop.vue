@@ -67,21 +67,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { email, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-import { reactive, toRef } from '@nuxtjs/composition-api'
-import FormFieldset from '~/components/Forms/FormFieldset.vue'
-import FormInputText from '~/components/Forms/FormInputText.vue'
-import AppForm from '~/components/Forms/AppForm.vue'
+import { reactive, toRef, defineComponent } from '@nuxtjs/composition-api'
 import useForm from '~/compositions/form'
 
-export default {
-  components: {
-    FormFieldset,
-    FormInputText,
-    AppForm,
-  },
+export default defineComponent({
   setup() {
     const form = reactive({
       name: 'michiel',
@@ -114,5 +106,5 @@ export default {
 
     return { $v, submit, submitted }
   },
-}
+})
 </script>
