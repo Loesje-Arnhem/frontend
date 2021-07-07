@@ -17,7 +17,7 @@
   display: flex;
   padding: 0.5em 0;
   border-bottom: 2px solid var(--color-black);
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 
   @media (--viewport-md) {
     justify-content: space-between;

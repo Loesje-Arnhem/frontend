@@ -41,5 +41,6 @@ export default {
 .categories {
   position: sticky;
   top: 4.5em;
+  margin-bottom: 1em;
 }
 </style>
