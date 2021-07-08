@@ -9,7 +9,7 @@
         class="image"
       />
     </div>
-    <nuxt-picture
+    <img
       src="/images/electriciteitskastje.png"
       alt=""
       class="background"
