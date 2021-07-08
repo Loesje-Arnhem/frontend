@@ -1,7 +1,6 @@
 <template>
   <nuxt-link :to="uri" :class="$style.link" @click.native="changePage">
-    <span v-if="title" :class="$style.title" class="title" v-html="title" />
-    <span v-else :class="$style.title" class="title">title</span>
+    <span :class="$style.title" class="title" v-html="title" />
   </nuxt-link>
 </template>
 

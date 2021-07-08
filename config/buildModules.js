@@ -7,6 +7,5 @@ export default [
   '@nuxtjs/composition-api/module',
   '@nuxtjs/google-fonts',
   '@nuxt/image',
-  '@nuxt/postcss8',
   '@nuxt/typescript-build',
 ]

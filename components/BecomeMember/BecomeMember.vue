@@ -13,7 +13,7 @@
     </ul>
     <app-button to="/doe-mee/word-donateur">{{ $t('btn') }}</app-button>
     <app-image
-      :class="$style['image']"
+      :class="$style.image"
       width="167"
       height="144"
       :src="require('./images/megaphone.png')"

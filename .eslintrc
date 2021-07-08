@@ -7,9 +7,10 @@
   "extends": [
     "@nuxtjs/eslint-config-typescript",
     "plugin:nuxt/recommended",
+    "plugin:prettier/recommended",
     "prettier"
   ],
-  "plugins": [],
+  "plugins": ["prettier"],
   "rules": {
     "vue/component-name-in-template-casing": ["error", "kebab-case"],
     "vue/no-deprecated-slot-scope-attribute": 1,
