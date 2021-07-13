@@ -1,10 +1,13 @@
 <template>
   <div v-if="post">
-    <app-content
-      :title="post.title"
-      :content="post.content"
-      :date="post.date"
-    />
+    <center-wrapper size="md">
+      <app-content
+        :title="post.title"
+        :content="post.content"
+        :date="post.date"
+        :class="$style.content"
+      />
+    </center-wrapper>
 
     <related-posters-section :related-posters="post.relatedPosters" />
     <related-products-section :related-products="post.relatedProducts" />
@@ -39,3 +42,9 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" module>
+.content {
+  @mixin block;
+}
+</style>

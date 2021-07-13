@@ -2,9 +2,13 @@
   <div v-if="page" class="page">
     <center-wrapper>
       <div :class="$style.wrapper">
-        <app-content :title="page.title" :content="page.content" />
+        <app-content
+          :title="page.title"
+          :content="page.content"
+          :class="$style.content"
+        />
         <div>
-          <div class="video" :class="$style.video">
+          <div :class="$style['video-wrapper']">
             <iframe
               loading="lazy"
               :class="$style.video"
@@ -16,11 +20,12 @@
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             />
+            <img src="/images/television.png" alt="" :class="$style.frame" />
           </div>
-          <form-workshop />
         </div>
       </div>
     </center-wrapper>
+    <form-workshop />
     <related-posters-section :related-posters="page.relatedPosters" />
     <related-products-section :related-products="page.relatedProducts" />
   </div>
@@ -58,5 +63,28 @@ export default {
   grid-gap: var(--gutter);
   grid-template-columns: 2fr 1fr;
 }
-</style>
 
+.video {
+  width: 100%;
+  height: 100%;
+  top: 30%;
+  left: 3%;
+  right: 10%;
+}
+
+.content :global(.video) {
+  display: none;
+}
+
+.video-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+</style>

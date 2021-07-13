@@ -1,7 +1,11 @@
 <template>
   <div v-if="page" class="page">
-    <center-wrapper :class="$style.wrapper" size="md">
-      <app-content :title="page.title" :content="page.content" :class="$style.content" />
+    <center-wrapper size="md">
+      <app-content
+        :title="page.title"
+        :content="page.content"
+        :class="$style.content"
+      />
     </center-wrapper>
     <related-posters-section :related-posters="page.relatedPosters" />
     <related-pages-section
