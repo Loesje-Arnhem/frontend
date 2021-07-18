@@ -1,36 +1,34 @@
 <template>
-  <center-wrapper size="md">
-    <div :class="$style.wrapper">
-      <div :class="$style['video-wrapper']">
-        <iframe
-          v-if="start"
-          :class="$style.video"
-          title="Workshop creatief schrijven met Loesje"
-          width="500"
-          height="281"
-          :src="videoUrl"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        />
-        <img
-          v-else
-          :src="videoThumb"
-          alt=""
-          :class="$style.placeholder"
-          @click="playVideo"
-        />
-      </div>
-      <button :class="$style['btn-video']" @click="playVideo">
-        <img
-          src="/images/btn-video.png"
-          alt="Video afspelen"
-          :class="$style['icon-play']"
-        />
-      </button>
-      <img src="/images/television.png" alt="" :class="$style.image" />
+  <div :class="$style.wrapper">
+    <div :class="$style['video-wrapper']">
+      <iframe
+        v-if="start"
+        :class="$style.video"
+        title="Workshop creatief schrijven met Loesje"
+        width="500"
+        height="281"
+        :src="videoUrl"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
+      <img
+        v-else
+        :src="videoThumb"
+        alt=""
+        :class="$style.image"
+        @click="playVideo"
+      />
     </div>
-  </center-wrapper>
+    <button :class="$style['btn-video']" @click="playVideo">
+      <img
+        src="/images/btn-video.png"
+        alt="Video afspelen"
+        :class="$style['icon-play']"
+      />
+    </button>
+    <img src="/images/television.png" alt="" :class="$style.frame" />
+  </div>
 </template>
 
 <script>
@@ -65,14 +63,14 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" module>
-.placeholder,
+.image,
 .video {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.placeholder {
+.image {
   object-fit: cover;
   filter: sepia(0.75) contrast(0.75) brightness(1.25) saturate(1.4);
   cursor: pointer;
@@ -93,7 +91,7 @@ export default defineComponent({
   aspect-ratio: 4 / 3;
 }
 
-.image {
+.frame {
   position: relative;
   pointer-events: none;
   display: block;

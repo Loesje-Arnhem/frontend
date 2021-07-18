@@ -3,7 +3,7 @@
     <h2 :class="$style.title">
       <router-link :to="url" :class="$style.link" v-html="post.node.title" />
     </h2>
-    <post-date :date="post.node.date" />
+    <post-date :date="post.node.date" :class="$style.date" />
     <div class="text" v-html="post.node.excerpt" />
     <div :class="$style['link-wrapper']" aria-hidden="true">
       <read-more-link class="read-more" :to="url" />
@@ -22,7 +22,7 @@ export default defineComponent({
   },
   setup(props) {
     const url = computed(() => {
-      return '/informatie/nieuws' + props.post.node.uri
+      return '/over-loesje/nieuws' + props.post.node.uri
     })
     return {
       url,
@@ -47,5 +47,9 @@ export default defineComponent({
 
 .link-wrapper {
   margin-top: auto;
+}
+
+.date {
+  order: -1;
 }
 </style>

@@ -1,13 +1,12 @@
 <template>
   <div v-if="post">
-    <center-wrapper size="md">
-      <app-content
-        :title="post.title"
-        :content="post.content"
-        :date="post.date"
-        :class="$style.content"
-      />
-    </center-wrapper>
+    <app-content
+      :image="post.featuredImage"
+      :title="post.title"
+      :content="post.content"
+      :date="post.date"
+      :class="$style.content"
+    />
 
     <related-posters-section :related-posters="post.relatedPosters" />
     <related-products-section :related-products="post.relatedProducts" />
@@ -37,7 +36,7 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      nl: '/informatie/nieuws/:slug',
+      nl: '/over-loesje/nieuws/:slug',
     },
   },
 }

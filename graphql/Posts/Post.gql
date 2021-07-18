@@ -7,6 +7,11 @@ query Post($slug: ID!) {
   post(id: $slug, idType: SLUG) {
     ...postDetails
     content
+    featuredImage {
+      node {
+        image: sourceUrl(size: MEDIUM)
+      }
+    }
     relatedPosters: relatedPostersGroup {
       ...relatedPostersPostGroup
     }

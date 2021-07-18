@@ -31,7 +31,7 @@ export default {
   },
   nuxtI18n: {
     paths: {
-      nl: '/informatie/nieuws',
+      nl: '/over-loesje/nieuws',
     },
   },
 }

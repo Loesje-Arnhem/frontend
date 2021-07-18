@@ -22,6 +22,5 @@ export default {
 .date {
   font-size: 0.9em;
   display: block;
-  order: -1;
 }
 </style>

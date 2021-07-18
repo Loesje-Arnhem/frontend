@@ -1,12 +1,6 @@
 <template>
   <div v-if="page" class="page">
-    <center-wrapper size="md">
-      <app-content
-        :title="page.title"
-        :content="page.content"
-        :class="$style.content"
-      />
-    </center-wrapper>
+    <app-content :title="page.title" :content="page.content" />
     <related-posters-section :related-posters="page.relatedPosters" />
     <related-pages-section
       v-if="parentId"
@@ -51,9 +45,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="postcss" module>
-.content {
-  @mixin block;
-}
-</style>
