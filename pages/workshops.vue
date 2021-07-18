@@ -1,6 +1,5 @@
 <template>
   <div v-if="page" class="page">
-    <form-workshop />
     <center-wrapper>
       <div :class="$style.wrapper">
         <app-content
@@ -8,24 +7,10 @@
           :content="page.content"
           :class="$style.content"
         />
-        <div>
-          <div :class="$style['video-wrapper']">
-            <iframe
-              loading="lazy"
-              :class="$style.video"
-              title="Workshop creatief schrijven met Loesje"
-              width="500"
-              height="281"
-              src="https://www.youtube.com/embed/1Pr__G4H4sg?feature=oembed"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            />
-            <img src="/images/television.png" alt="" :class="$style.frame" />
-          </div>
-        </div>
+        <app-video video="1Pr__G4H4sg" :class="$style.video" />
       </div>
     </center-wrapper>
+    <form-workshop />
     <related-posters-section :related-posters="page.relatedPosters" />
     <related-products-section :related-products="page.relatedProducts" />
   </div>
@@ -61,30 +46,17 @@ export default {
 
   display: grid;
   grid-gap: var(--gutter);
-  grid-template-columns: 2fr 1fr;
-}
 
-.video {
-  width: 100%;
-  height: 100%;
-  top: 30%;
-  left: 3%;
-  right: 10%;
+  @media (--viewport-lg) {
+    grid-template-columns: auto 25em;
+  }
 }
 
 .content :global(.video) {
   display: none;
 }
 
-.video-wrapper {
-  position: relative;
-  aspect-ratio: 4 / 3;
-}
-
-.frame {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: auto;
+.video {
+  margin-top: 2em;
 }
 </style>

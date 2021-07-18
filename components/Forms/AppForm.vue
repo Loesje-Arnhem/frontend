@@ -5,7 +5,6 @@
 
   <form
     v-else
-    :name="name"
     action
     method="post"
     novalidate
@@ -23,10 +22,6 @@ export default defineComponent({
     buttonTitle: {
       type: String,
       default: 'Verzenden',
-    },
-    name: {
-      type: String,
-      required: true,
     },
     submitted: {
       type: Boolean,

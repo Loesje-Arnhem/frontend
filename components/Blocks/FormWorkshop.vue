@@ -1,7 +1,7 @@
 <template>
   <center-wrapper size="md">
     <app-form
-      name="workshop"
+      :class="$style.form"
       :submitted="submitted"
       :loading="loading"
       @submit="submit"
@@ -35,20 +35,25 @@
             maxlength="50"
           />
         </form-field>
-        <form-input-text
-          id="phoneNumber"
-          v-model="$v.phoneNumber.$model"
-          title="Telefoonnummer"
-          type="tel"
-          name="phoneNumber"
-          autocomplete="tel"
-        />
-        <form-input-text
-          id="companyName"
-          v-model="$v.companyName.$model"
-          title="Bedrijfsnaam"
-          name="companyName"
-        />
+        <form-field id="phoneNumber" title="Streefdatum">
+          <input
+            id="phoneNumber"
+            v-model="$v.phoneNumber.$model"
+            title="Telefoonnummer"
+            type="tel"
+            name="phoneNumber"
+            autocomplete="tel"
+          />
+        </form-field>
+        <form-field id="companyName" title="Streefdatum">
+          <input
+            id="companyName"
+            v-model="$v.companyName.$model"
+            type="text"
+            title="Bedrijfsnaam"
+            name="companyName"
+          />
+        </form-field>
         <form-field
           id="totalAttendees"
           :errors="$v.totalAttendees.$errors"
@@ -62,14 +67,11 @@
           />
         </form-field>
 
-        <form-input-text
-          id="date"
-          v-model="$v.date.$model"
-          title="Streefdatum"
-          type="date"
-          name="date"
-        />
+        <form-field id="date" title="Streefdatum">
+          <input id="date" v-model="$v.date.$model" type="date" name="date" />
+        </form-field>
       </form-fieldset>
+      <img src="/images/workshops.png" alt="" :class="$style.image" />
     </app-form>
   </center-wrapper>
 </template>
@@ -140,3 +142,25 @@ export default defineComponent({
   },
 })
 </script>
+
+<style module lang="postcss">
+.form {
+  position: relative;
+
+  @media (--viewport-md) {
+    padding: 0 15em 2em 0;
+  }
+}
+
+.image {
+  display: none;
+
+  @media (--viewport-md) {
+    display: block;
+    bottom: 3em;
+    right: 3em;
+    transform: scaleX(-1);
+    position: absolute;
+  }
+}
+</style>
