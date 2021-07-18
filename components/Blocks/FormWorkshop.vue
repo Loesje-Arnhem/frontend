@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <center-wrapper size="md">
     <app-form
       name="workshop"
       :submitted="submitted"
+      :loading="loading"
       @submit="submit"
     >
       <form-fieldset title="Meld je aan voor de workshop">
@@ -48,13 +49,19 @@
           title="Bedrijfsnaam"
           name="companyName"
         />
-        <form-input-text
+        <form-field
           id="totalAttendees"
-          v-model="$v.totalAttendees.$model"
+          :errors="$v.totalAttendees.$errors"
           title="Aantal mensen"
-          type="number"
-          name="totalAttendees"
-        />
+        >
+          <input
+            id="totalAttendees"
+            v-model.number.lazy="$v.totalAttendees.$model"
+            type="number"
+            name="totalAttendees"
+          />
+        </form-field>
+
         <form-input-text
           id="date"
           v-model="$v.date.$model"
@@ -64,23 +71,27 @@
         />
       </form-fieldset>
     </app-form>
-  </div>
+  </center-wrapper>
 </template>
 
-<script lang="ts">
-import { email, required } from '@vuelidate/validators'
+<script>
+import { email, required, numeric } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-import { reactive, toRef, defineComponent } from '@nuxtjs/composition-api'
-import useForm from '~/compositions/form'
+import { reactive, toRef, defineComponent, ref } from '@nuxtjs/composition-api'
+import { useMutation } from '@vue/apollo-composable/dist'
+import { v4 } from 'uuid'
+import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop.gql'
 
 export default defineComponent({
   setup() {
+    const submitted = ref(false)
+
     const form = reactive({
-      name: 'michiel',
+      name: '',
       email: '',
       phoneNumber: '',
       companyName: '',
-      totalAttendees: '',
+      totalAttendees: null,
       date: '',
     })
 
@@ -89,7 +100,7 @@ export default defineComponent({
       email: { required, email },
       phoneNumber: {},
       companyName: {},
-      totalAttendees: {},
+      totalAttendees: { required, numeric },
       date: {},
     }
 
@@ -102,9 +113,30 @@ export default defineComponent({
       date: toRef(form, 'date'),
     })
 
-    const { submit, submitted } = useForm($v, form, rules)
+    const submit = () => {
+      $v.value.$touch()
+      if ($v.value.$invalid) return
+      requestWorkshop()
+    }
 
-    return { $v, submit, submitted }
+    const {
+      mutate: requestWorkshop,
+      loading,
+      onDone,
+    } = useMutation(RequestWorkshopQuery, () => ({
+      variables: {
+        clientMutationId: v4(),
+        ...form,
+      },
+    }))
+
+    onDone((result) => {
+      if (result.data.requestWorkshop.response === '1') {
+        submitted.value = true
+      }
+    })
+
+    return { $v, submit, loading, submitted }
   },
 })
 </script>

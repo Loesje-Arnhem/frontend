@@ -1,5 +1,6 @@
 <template>
   <div v-if="page" class="page">
+    <form-workshop />
     <center-wrapper>
       <div :class="$style.wrapper">
         <app-content
@@ -25,7 +26,6 @@
         </div>
       </div>
     </center-wrapper>
-    <form-workshop />
     <related-posters-section :related-posters="page.relatedPosters" />
     <related-products-section :related-products="page.relatedProducts" />
   </div>
