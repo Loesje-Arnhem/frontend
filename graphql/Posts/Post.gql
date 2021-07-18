@@ -9,7 +9,7 @@ query Post($slug: ID!) {
     content
     featuredImage {
       node {
-        image: sourceUrl(size: MEDIUM)
+        image: sourceUrl(size: LARGE)
       }
     }
     relatedPosters: relatedPostersGroup {

@@ -74,7 +74,7 @@ export default defineComponent({
   grid-gap: calc(var(--gutter) * 2);
 
   @media (--viewport-lg) {
-    grid-template-columns: auto 25em;
+    grid-template-columns: auto 22em;
   }
 }
 
@@ -82,11 +82,7 @@ export default defineComponent({
   order: -1;
 }
 
-.image {
-  margin-bottom: 2em;
-}
-
 .media {
-  margin-top: 2em;
+  margin-top: 4em;
 }
 </style>

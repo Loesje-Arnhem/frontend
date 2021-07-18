@@ -21,7 +21,7 @@
 
   @media (--viewport-sm) {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
   }
 
   @media (--show-full-navigation) {
@@ -31,7 +31,7 @@
 
 .text {
   @media (--viewport-sm) {
-    padding-left: 2em;
+    padding: 0 0 3em var(--gutter);
   }
 }
 

@@ -66,14 +66,14 @@ export default {
   position: relative;
   max-width: 18em;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto -1em;
 }
 
 .image-wrapper {
   position: absolute;
-  top: 20%;
-  left: 22%;
-  width: 65%;
+  top: 7%;
+  left: 17%;
+  width: 73%;
 
   &::after {
     display: block;

@@ -47,7 +47,7 @@ export default defineComponent({
       start.value = true
     }
     const videoThumb = computed(() => {
-      return `http://i3.ytimg.com/vi/${props.video}/maxresdefault.jpg`
+      return `http://i3.ytimg.com/vi/${props.video}/mqdefault.jpg`
     })
     const videoUrl = computed(() => {
       return `https://www.youtube.com/embed/${props.video}?feature=oembed&autoplay=1&showinfo=0`
