@@ -1,5 +1,6 @@
 <template>
   <center-wrapper size="md">
+    <h2>Aanmelden</h2>
     <app-form
       :class="$style.form"
       :submitted="submitted"
@@ -156,6 +157,7 @@ export default defineComponent({
   display: none;
 
   @media (--viewport-md) {
+    pointer-events: none;
     display: block;
     bottom: 3em;
     right: 3em;

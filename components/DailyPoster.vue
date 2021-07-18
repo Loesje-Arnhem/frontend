@@ -71,9 +71,10 @@ export default {
 
 .image-wrapper {
   position: absolute;
-  top: 7%;
+  top: 9%;
   left: 17%;
-  width: 73%;
+  transform: rotate(-2deg);
+  width: 72%;
 
   &::after {
     display: block;

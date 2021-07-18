@@ -37,8 +37,8 @@ export default defineComponent({
   position: absolute;
   display: block;
   top: 10%;
-  left: 15%;
-  width: 70%;
+  left: 16%;
+  width: 71%;
   height: 80%;
   object-fit: cover;
 }
