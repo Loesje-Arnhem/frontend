@@ -62,7 +62,7 @@
         >
           <input
             id="totalAttendees"
-            v-model.number.lazy="$v.totalAttendees.$model"
+            v-model.lazy="$v.totalAttendees.$model"
             type="number"
             name="totalAttendees"
           />
@@ -80,7 +80,7 @@
 <script>
 import { email, required, numeric } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
-import { reactive, toRef, defineComponent, ref } from '@nuxtjs/composition-api'
+import { reactive, defineComponent, ref } from '@nuxtjs/composition-api'
 import { useMutation } from '@vue/apollo-composable/dist'
 import { v4 } from 'uuid'
 import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop.gql'
@@ -108,12 +108,12 @@ export default defineComponent({
     }
 
     const $v = useVuelidate(rules, {
-      email: toRef(form, 'email'),
-      name: toRef(form, 'name'),
-      phoneNumber: toRef(form, 'phoneNumber'),
-      companyName: toRef(form, 'companyName'),
-      totalAttendees: toRef(form, 'totalAttendees'),
-      date: toRef(form, 'date'),
+      email: form.email,
+      name: form.name,
+      phoneNumber: form.phoneNumber,
+      companyName: form.companyName,
+      totalAttendees: form.totalAttendees,
+      date: form.date,
     })
 
     const submit = () => {
