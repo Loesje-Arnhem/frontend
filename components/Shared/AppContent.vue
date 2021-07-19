@@ -30,8 +30,8 @@ export default defineComponent({
       required: true,
     },
     image: {
-      type: String,
-      default: null,
+      type: Object,
+      default: () => {},
     },
     video: {
       type: String,
@@ -48,7 +48,7 @@ export default defineComponent({
   },
   setup(props) {
     const hasMedia = computed(() => {
-      return props.video !== null || props.image !== null
+      return props.video !== null || props.image?.node
     })
     return {
       hasMedia,
