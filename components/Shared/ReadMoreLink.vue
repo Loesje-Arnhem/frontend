@@ -34,14 +34,7 @@ export default {
 }
 
 .read-more {
-  color: inherit;
-  text-decoration: none;
-  box-shadow: 0 2px 0 0 currentColor;
-  transition: box-shadow 0.2s ease-out;
-
   &:hover {
-    box-shadow: 0 3px 0 0 currentColor;
-
     & .icon {
       margin-left: 0.25em;
     }

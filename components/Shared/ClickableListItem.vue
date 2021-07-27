@@ -58,8 +58,6 @@ export default {
   &:hover,
   &:focus-within {
     & :global(.read-more) {
-      box-shadow: 0 3px 0 0 var(--color-black);
-
       & :global(.icon) {
         margin-left: 0.25em;
       }

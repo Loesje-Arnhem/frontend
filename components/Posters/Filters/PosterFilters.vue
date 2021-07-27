@@ -105,7 +105,7 @@ export default defineComponent({
     },
     today() {
       const now = new Date()
-      let month = now.getMonth() + 1 as Number | String
+      let month = (now.getMonth() + 1) as Number | String
       let day = now.getDate() as Number | String
       if (month < 10) month = '0' + month
       if (day < 10) day = '0' + day
