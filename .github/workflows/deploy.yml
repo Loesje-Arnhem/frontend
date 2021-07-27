@@ -17,7 +17,9 @@ jobs:
 #           key: ${{ secrets.SSH }}
           script: |
             cd ./frontend # we move into our app's folder
+            git reset --hard
             git pull # we pull any changes from git
+            
             npm prune # we remove any unused dependencies
             npm ci # we install any missing dependencies
             npm run build
