@@ -1,7 +1,7 @@
 #import "./Fragments/ProductDetails.gql"
 
-query Products($where: RootQueryToProductConnectionWhereArgs) {
-  products(where: $where, first: 99) {
+query Products($where: RootQueryToProductConnectionWhereArgs, $first: Int) {
+  products(where: $where, first: $first) {
     edges {
       node {
         ...productDetails

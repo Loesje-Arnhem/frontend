@@ -1,7 +1,7 @@
 <template>
   <apollo-query
     :query="require('~/graphql/Products/Products.gql')"
-    :variables="{ where }"
+    :variables="{ where, first: size }"
   >
     <template #default="{ result: { data }, isLoading }">
       <app-loader v-if="isLoading" />
@@ -16,6 +16,10 @@ export default {
     databaseIds: {
       type: Array,
       default: () => [],
+    },
+    size: {
+      type: Number,
+      default: 99,
     },
   },
   computed: {

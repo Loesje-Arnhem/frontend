@@ -6,7 +6,7 @@
   >
     <center-wrapper>
       <h1 id="featured-products">{{ title }}</h1>
-      <products-container :database-ids="databaseIds">
+      <products-container :database-ids="databaseIds" :size="size">
         <template #default="data">
           <product-list v-if="data" :products="data.products" />
         </template>
@@ -36,6 +36,10 @@ export default {
     relatedProducts: {
       type: Object,
       default: () => {},
+    },
+    size: {
+      type: Number,
+      default: 99,
     },
   },
   computed: {

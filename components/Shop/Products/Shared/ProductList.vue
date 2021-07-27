@@ -31,7 +31,9 @@ export default {
   margin: 0 0 1em;
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
+  @media (--viewport-xs) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (--viewport-sm) {
     grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
