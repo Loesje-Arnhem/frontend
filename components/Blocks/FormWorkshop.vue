@@ -8,28 +8,20 @@
       @submit="submit"
     >
       <form-fieldset title="Meld je aan voor de workshop">
-        <form-field
-          id="name"
-          :errors="$v.name.$errors"
-          :title="$t('form.fields.name')"
-        >
+        <form-field id="name" :errors="[]" :title="$t('form.fields.name')">
           <input
             id="name"
-            v-model.lazy="$v.name.$model"
+            v-model.lazy="form.name"
             type="text"
             name="name"
             autocomplete="name"
             maxlength="50"
           />
         </form-field>
-        <form-field
-          id="email"
-          :errors="$v.email.$errors"
-          :title="$t('form.fields.email')"
-        >
+        <form-field id="email" :errors="[]" :title="$t('form.fields.email')">
           <input
             id="email"
-            v-model.lazy="$v.email.$model"
+            v-model.lazy="form.email"
             type="email"
             name="email"
             autocomplete="email"
@@ -39,7 +31,7 @@
         <form-field id="phoneNumber" title="Streefdatum">
           <input
             id="phoneNumber"
-            v-model="$v.phoneNumber.$model"
+            v-model="form.phoneNumber"
             title="Telefoonnummer"
             type="tel"
             name="phoneNumber"
@@ -49,27 +41,23 @@
         <form-field id="companyName" title="Streefdatum">
           <input
             id="companyName"
-            v-model="$v.companyName.$model"
+            v-model="form.companyName"
             type="text"
             title="Bedrijfsnaam"
             name="companyName"
           />
         </form-field>
-        <form-field
-          id="totalAttendees"
-          :errors="$v.totalAttendees.$errors"
-          title="Aantal mensen"
-        >
+        <form-field id="totalAttendees" :errors="[]" title="Aantal mensen">
           <input
             id="totalAttendees"
-            v-model.lazy="$v.totalAttendees.$model"
+            v-model.lazy="form.totalAttendees"
             type="number"
             name="totalAttendees"
           />
         </form-field>
 
         <form-field id="date" title="Streefdatum">
-          <input id="date" v-model="$v.date.$model" type="date" name="date" />
+          <input id="date" v-model="form.date" type="date" name="date" />
         </form-field>
       </form-fieldset>
       <img src="/images/workshops.png" alt="" :class="$style.image" />
@@ -78,8 +66,8 @@
 </template>
 
 <script>
-import { email, required, numeric } from '@vuelidate/validators'
-import { useVuelidate } from '@vuelidate/core'
+// import { email, required, numeric } from '@vuelidate/validators'
+// import { useVuelidate } from '@vuelidate/core'
 import { reactive, defineComponent, ref } from '@nuxtjs/composition-api'
 import { useMutation } from '@vue/apollo-composable/dist'
 import { v4 } from 'uuid'
@@ -98,27 +86,27 @@ export default defineComponent({
       date: '',
     })
 
-    const rules = {
-      name: { required },
-      email: { required, email },
-      phoneNumber: {},
-      companyName: {},
-      totalAttendees: { required, numeric },
-      date: {},
-    }
+    // const rules = {
+    //   name: { required },
+    //   email: { required, email },
+    //   phoneNumber: {},
+    //   companyName: {},
+    //   totalAttendees: { required, numeric },
+    //   date: {},
+    // }
 
-    const $v = useVuelidate(rules, {
-      email: form.email,
-      name: form.name,
-      phoneNumber: form.phoneNumber,
-      companyName: form.companyName,
-      totalAttendees: form.totalAttendees,
-      date: form.date,
-    })
+    // const $v = useVuelidate(rules, {
+    //   email: form.email,
+    //   name: form.name,
+    //   phoneNumber: form.phoneNumber,
+    //   companyName: form.companyName,
+    //   totalAttendees: form.totalAttendees,
+    //   date: form.date,
+    // })
 
     const submit = () => {
-      $v.value.$touch()
-      if ($v.value.$invalid) return
+      // $v.value.$touch()
+      // if ($v.value.$invalid) return
       requestWorkshop()
     }
 
@@ -139,7 +127,13 @@ export default defineComponent({
       }
     })
 
-    return { $v, submit, loading, submitted }
+    return {
+      // $v,
+      form,
+      submit,
+      loading,
+      submitted,
+    }
   },
 })
 </script>
