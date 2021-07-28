@@ -27,6 +27,7 @@
           <input
             id="date-before"
             v-model="dateBefore"
+            type="date"
             name="date-before"
             min="1983-01-01"
             :max="dateAfter ? dateAfter : today"
@@ -38,6 +39,7 @@
           <label for="date-after"> {{ $t('dateAfter') }} </label>
           <input
             id="date-after"
+            v-model="dateAfter"
             type="date"
             name="date-after"
             :min="dateBefore ? dateBefore : '1983-01-01'"

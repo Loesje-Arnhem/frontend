@@ -36,7 +36,6 @@ select {
   background: var(--color-white);
   border-radius: 0;
   width: 100%;
-  height: auto;
   padding: 0.5em 0.25em;
   font-size: 1rem;
   font-family: inherit;
