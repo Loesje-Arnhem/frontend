@@ -3,8 +3,7 @@
     <app-content
       :title="page.title"
       :content="page.content"
-      :class="$style.content"
-      video="1Pr__G4H4sg"
+      :video="page.videoGroup.youtubeId"
     />
     <form-workshop />
     <related-posters-section :related-posters="page.relatedPosters" />
@@ -35,9 +34,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" module>
-.content :global(.video) {
-  display: none;
-}
-</style>

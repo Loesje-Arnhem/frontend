@@ -7,6 +7,9 @@ query Post($slug: ID!) {
   post(id: $slug, idType: SLUG) {
     ...postDetails
     content
+    videoGroup {
+      youtubeId
+    }
     featuredImage {
       node {
         image: sourceUrl(size: LARGE)

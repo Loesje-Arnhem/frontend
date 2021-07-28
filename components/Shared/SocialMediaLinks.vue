@@ -29,20 +29,6 @@
           </span>
         </a>
       </li>
-      <li v-if="pinterest">
-        <a
-          :href="pinterest"
-          :class="$style.link"
-          rel="noopener"
-          target="_blank"
-        >
-          <app-icon icon="pinterest" width="32" height="32" />
-          <span class="sr-only">
-            {{ title }}
-            <span lang="en">Pinterest</span>
-          </span>
-        </a>
-      </li>
       <li v-if="instagram">
         <a
           :href="instagram"

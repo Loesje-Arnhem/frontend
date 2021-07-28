@@ -1,6 +1,10 @@
 <template>
   <div v-if="page" class="page">
-    <app-content :title="page.title" :content="page.content" />
+    <app-content
+      :title="page.title"
+      :content="page.content"
+      :video="page.videoGroup.youtubeId"
+    />
     <related-posters-section :related-posters="page.relatedPosters" />
     <related-pages-section
       v-if="parentId"

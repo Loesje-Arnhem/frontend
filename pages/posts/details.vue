@@ -5,6 +5,7 @@
       :title="post.title"
       :content="post.content"
       :date="post.date"
+      :video="post.videoGroup.youtubeId"
       :class="$style.content"
     />
 
