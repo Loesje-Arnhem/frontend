@@ -199,7 +199,6 @@ export default defineComponent({
 
   & label {
     margin: 0;
-    padding: 0.25em 0;
   }
 
   & input {
