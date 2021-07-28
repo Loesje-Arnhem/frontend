@@ -36,7 +36,7 @@
             maxlength="50"
           />
         </form-field>
-        <form-field id="phoneNumber" title="Streefdatum">
+        <form-field id="phoneNumber" title="Telefoonnummer">
           <input
             id="phoneNumber"
             v-model="$v.phoneNumber.$model"
@@ -46,7 +46,7 @@
             autocomplete="tel"
           />
         </form-field>
-        <form-field id="companyName" title="Streefdatum">
+        <form-field id="companyName" title="Bedrijfsnaam">
           <input
             id="companyName"
             v-model="$v.companyName.$model"
