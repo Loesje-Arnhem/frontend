@@ -17,7 +17,7 @@
           :to="localePath({ name: 'posters-favorites' })"
           class="btn-favorites"
         >
-          {{ favoritesText }}
+          Jouw favorieten
           <app-icon icon="chevron-right" width="12" height="12" />
         </nuxt-link>
       </transition>
