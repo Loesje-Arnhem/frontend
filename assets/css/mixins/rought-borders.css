@@ -8,7 +8,6 @@
     @supports (border-image-source: paint(rough-boxes)) {
       border-image-source: paint(rough-boxes);
       border-image-slice: 0 fill;
-      background: none;
       border-image-outset: $image-outset;
     }
   }
