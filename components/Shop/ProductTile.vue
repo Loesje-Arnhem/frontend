@@ -44,6 +44,15 @@ export default {
   grid-row: span 3;
   grid-gap: 0.25em;
   grid-template-rows: 16em auto 1.5em;
+  font-size: var(--font-size-xs);
+
+  @media (--viewport-xxs) {
+    font-size: var(--font-size-sm);
+  }
+
+  @media (--viewport-xs) {
+    font-size: 1rem;
+  }
 
   @supports (grid-template-rows: subgrid) {
     grid-template-rows: subgrid;
@@ -67,6 +76,15 @@ export default {
 }
 
 .title {
+  font-family: var(--font-family-base);
   margin: 0;
+  font-size: 1em;
+  text-transform: none;
+
+  @media (--viewport-xs) {
+    font-family: var(--font-family-headings);
+    text-transform: uppercase;
+    font-size: var(--font-size-l);
+  }
 }
 </style>

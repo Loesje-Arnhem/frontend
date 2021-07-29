@@ -1,4 +1,5 @@
 @custom-media --dark-mode (prefers-color-scheme: dark);
+@custom-media --viewport-xxs (width >= 375px);
 @custom-media --viewport-xs (width >= 480px);
 @custom-media --viewport-sm (width >= 640px);
 @custom-media --viewport-md (width >= 768px);
