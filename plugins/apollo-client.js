@@ -2,23 +2,29 @@ import { ApolloLink } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
 import {
   InMemoryCache,
-  // IntrospectionFragmentMatcher,
+  IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory'
 import { apiUrl } from '~/data/siteDetails'
 
-// const PARTIAL_SCHEMA = {
-//   __schema: {
-//     types: [],
-//   },
-// }
+const PARTIAL_SCHEMA = {
+  __schema: {
+    types: [],
+  },
+}
 
-// const fragmentMatcher = new IntrospectionFragmentMatcher({
-//   introspectionQueryResultData: PARTIAL_SCHEMA,
-// })
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData: PARTIAL_SCHEMA,
+})
 
-// const config = {
-//   fragmentMatcher,
-// }
+const config = {
+  typePolicies: {
+    GraphQlConfigurationOption: {
+      keyFields: ['id'],
+    },
+  },
+  fragmentMatcher,
+}
+
 const httpLink = new HttpLink({
   uri: `${apiUrl}graphql`,
 })
@@ -36,7 +42,7 @@ export const middleware = new ApolloLink((operation, forward) => {
    */
   const session = localStorage.getItem('woo-session')
   if (session) {
-    operation.setContext(({ headers = {} }) => ({
+    operation.setContext(() => ({
       headers: {
         'woocommerce-session': `Session ${session}`,
       },
@@ -76,7 +82,7 @@ export const afterware = new ApolloLink((operation, forward) => {
 })
 
 export default () => {
-  const cache = new InMemoryCache()
+  const cache = new InMemoryCache(config)
 
   return {
     cache,
