@@ -14,7 +14,7 @@
 <script>
 import { workshopsPageId } from '~/data/pages'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
-// import getSeoMetaData from '~/utils/seo'
+import getSeoMetaData from '~/utils/seo'
 
 export default {
   async asyncData({ app }) {
@@ -29,8 +29,8 @@ export default {
       page: result.data.page,
     }
   },
-  // head() {
-  //   return getSeoMetaData(this.page.seo)
-  // },
+  head() {
+    return getSeoMetaData(this.page.seo)
+  },
 }
 </script>

@@ -2,7 +2,7 @@
   <div :class="$style.page">
     <vue-announcer />
     <header-top :class="$style['header-top']" class="header-top" />
-    <!-- <the-header :class="$style.header" /> -->
+    <the-header :class="$style.header" />
     <main id="content" :class="$style.main" tabindex="-1">
       <nuxt />
     </main>
@@ -12,11 +12,11 @@
 </template>
 
 <script>
-// export default {
-//   head() {
-//     return this.$nuxtI18nHead({ addSeoAttributes: true })
-//   },
-// }
+export default {
+  head() {
+    return this.$nuxtI18nHead({ addSeoAttributes: true })
+  },
+}
 </script>
 
 <style lang="postcss" module>

@@ -55,8 +55,7 @@
 <script>
 import { debounce } from 'throttle-debounce'
 import MainNavigationItem from '~/components/Menu/MainNavigation/MainNavigationItem.vue'
-import MenuQuery from '~/graphql/Menu/Menu.gql'
-import { joinPageId, aboutPageId } from '~/data/pages'
+import pages from '~/data/menu'
 
 export default {
   components: {
@@ -71,25 +70,10 @@ export default {
 
   data() {
     return {
+      pages,
       arrowPosition: 0,
       arrowWidth: 0,
       mounted: false,
-      pages: null,
-    }
-  },
-  async fetch() {
-    const result = await this.$apollo.query({
-      query: MenuQuery,
-      variables: {
-        joinPageId,
-        aboutPageId,
-      },
-    })
-    if (result.data) {
-      this.pages = result.data
-      this.$nextTick(() => {
-        this.setArrowPosition()
-      })
     }
   },
   watch: {
@@ -104,6 +88,9 @@ export default {
       this.mounted = true
     }, 0)
     window.addEventListener('resize', this.updateArrowAfterResize)
+    this.$nextTick(() => {
+      this.setArrowPosition()
+    })
   },
   destroyed() {
     window.removeEventListener('resize', this.updateArrowAfterResize)
