@@ -90,6 +90,11 @@ export default {
   }
 }
 
+,
+image {
+  width: 100%;
+}
+
 .content {
   @media print {
     width: 95%;

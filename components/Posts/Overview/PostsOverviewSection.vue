@@ -3,7 +3,7 @@
     :class="$style['posts-overview']"
     aria-labelledby="posts-overview-title"
   >
-    <center-wrapper>
+    <center-wrapper size="md">
       <h1 id="posts-overview-title">{{ title }}</h1>
       <posts-overview-list
         v-if="posts && posts.edges.length"

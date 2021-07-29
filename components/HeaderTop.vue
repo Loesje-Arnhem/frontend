@@ -3,16 +3,31 @@
     <div :class="$style.wrapper">
       <div :class="$style.text">
         <h1>Blijf plakken</h1>
-        <p>
-          Loesje-posters vind je overal. Op straat, bij de buren, op een kaartje
-          aan het prikbord… De posters geven frisse gedachten, ontlokken ideeën
-          of geven je inspiratie om de wereld een stukje mooier te maken.
-        </p>
+        <p v-if="text">{{ text }}</p>
       </div>
+      {{ pages }}
       <daily-poster :class="$style['daily-poster']" />
     </div>
   </center-wrapper>
 </template>
+
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+import HeaderTextQuery from '~/graphql/Settings/HeaderText.gql'
+export default defineComponent({
+  data() {
+    return {
+      text: null,
+    }
+  },
+  async fetch() {
+    const result = await this.$apollo.query({
+      query: HeaderTextQuery,
+    })
+    this.text = result?.data?.themeGeneralSettings?.textGroup?.headerText
+  },
+})
+</script>
 
 <style lang="postcss" module>
 .wrapper {
