@@ -90,8 +90,7 @@ export default {
   }
 }
 
-,
-image {
+.image {
   width: 100%;
 }
 
