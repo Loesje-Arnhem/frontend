@@ -39,7 +39,7 @@
         <ul v-show="isOpen" :class="$style.submenu" class="tile">
           <li
             v-for="subItem in children.edges"
-            :key="subItem.node.id"
+            :key="subItem.node.uri"
             :class="$style['submenu-item']"
             class="submenu-item"
           >
