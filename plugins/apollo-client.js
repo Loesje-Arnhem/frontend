@@ -16,6 +16,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: PARTIAL_SCHEMA,
 })
 
+/* eslint-disable */
 const config = {
   typePolicies: {
     GraphQlConfigurationOption: {
@@ -82,7 +83,7 @@ export const afterware = new ApolloLink((operation, forward) => {
 })
 
 export default () => {
-  const cache = new InMemoryCache(config)
+  const cache = new InMemoryCache()
 
   return {
     cache,
