@@ -31,7 +31,8 @@ input[type='password'],
 select {
   @mixin tile-border;
 
-  height: 2.25em;
+  height: auto;
+  min-height: 2.25em;
   appearance: none;
   background: var(--color-white);
   border-radius: 0;
