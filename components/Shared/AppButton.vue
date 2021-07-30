@@ -106,11 +106,6 @@ a {
     background: var(--color-black);
     color: var(--color-white);
   }
-
-  &:focus {
-    box-shadow: 0 0 0 1px var(--color-black);
-    outline: none;
-  }
 }
 
 .title {
