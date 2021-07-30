@@ -46,6 +46,7 @@
         <app-button
           v-if="poster.PosterMetaGroup.pdf"
           :is-primary="false"
+          button-tag="a"
           :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
           target="_blank"
         >
