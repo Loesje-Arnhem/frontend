@@ -45,5 +45,10 @@ export default {
   @mixin link-reset;
 
   display: block;
+
+  &:focus {
+    outline-offset: 3px;
+    outline-width: 1px;
+  }
 }
 </style>

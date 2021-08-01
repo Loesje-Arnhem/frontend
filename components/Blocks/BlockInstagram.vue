@@ -20,6 +20,7 @@
       <app-image src="/images/backgrounds/instagram.png" class="background" />
       <div class="button-wrapper">
         <app-button
+          button-tag="a"
           rel="noopener"
           href="https://instagram.com/loesjevdposters"
           target="_blank"

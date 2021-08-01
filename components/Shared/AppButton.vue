@@ -4,7 +4,6 @@
     :type="generatedType"
     :to="to"
     :class="cssClasses"
-    :href="href"
     @click="$emit('click')"
   >
     <span class="title"><slot /></span>
@@ -15,10 +14,6 @@
 export default {
   props: {
     to: {
-      type: String,
-      default: null,
-    },
-    href: {
       type: String,
       default: null,
     },
@@ -56,9 +51,6 @@ export default {
     tag() {
       if (this.to) {
         return 'nuxt-link'
-      }
-      if (this.href) {
-        return 'a'
       }
       return this.buttonTag
     },
@@ -113,11 +105,6 @@ a {
   &.is-active {
     background: var(--color-black);
     color: var(--color-white);
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 1px var(--color-black);
-    outline: none;
   }
 }
 

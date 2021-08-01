@@ -1,36 +1,38 @@
 <template>
   <footer :class="$style.footer">
-    <div :class="$style.wrapper">
-      <quick-links />
+    <center-wrapper>
+      <div :class="$style.wrapper">
+        <quick-links />
 
-      <company-address />
+        <company-address />
 
-      <app-stores />
+        <app-stores />
 
-      <div :class="$style['follow-us']">
-        <social-media-links
-          :title="$t('followMeOn')"
-          :facebook="facebookUrl"
-          :twitter="twitterUrl"
-          :pinterest="pinterestUrl"
-          :instagram="instagramUrl"
-          :linkedin="linkedinUrl"
-        />
+        <div :class="$style['follow-us']">
+          <social-media-links
+            :title="$t('followMeOn')"
+            :facebook="facebookUrl"
+            :twitter="twitterUrl"
+            :pinterest="pinterestUrl"
+            :instagram="instagramUrl"
+            :linkedin="linkedinUrl"
+          />
+        </div>
+        <div :class="$style['mood-wrapper']">
+          <img
+            alt=""
+            width="210"
+            height="240"
+            :class="$style.mood"
+            loading="lazy"
+            src="/images/casette-player.png"
+            quality="80"
+            fit="inside"
+            sizes="sm:50vw md:33vw lg:25vw xl:300 xxl:500"
+          />
+        </div>
       </div>
-      <div :class="$style['mood-wrapper']">
-        <img
-          alt=""
-          width="210"
-          height="240"
-          :class="$style.mood"
-          loading="lazy"
-          src="/images/casette-player.png"
-          quality="80"
-          fit="inside"
-          sizes="sm:50vw md:33vw lg:25vw xl:300 xxl:500"
-        />
-      </div>
-    </div>
+    </center-wrapper>
   </footer>
 </template>
 
@@ -76,8 +78,6 @@ export default {
 }
 
 .wrapper {
-  @mixin center;
-
   display: grid;
   grid-gap: 2em var(--gutter);
 

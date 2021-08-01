@@ -1,4 +1,4 @@
-@define-mixin tile-border $roughness: 1, $stroke-width: 2px, $image-outset: 11px  {
+@define-mixin tile-border $roughness: 1, $stroke-width: 2px, $image-outset: 11px {
   --rough-stroke-width: $stroke-width;
   --rough-roughness: $roughness;
 
@@ -6,9 +6,11 @@
 
   @nest .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
-      border-image-source: paint(rough-boxes);
-      border-image-slice: 0 fill;
-      border-image-outset: $image-outset;
+      &:not(:focus) {
+        border-image-source: paint(rough-boxes);
+        border-image-slice: 0 fill;
+        border-image-outset: $image-outset;
+      }
     }
   }
 }
