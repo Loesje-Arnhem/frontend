@@ -6,7 +6,7 @@
 }
 
 html {
-  font-size: var(--font-size-base);
+  font-size: clamp(16px, 2.75vw, 18px);
 }
 
 body {

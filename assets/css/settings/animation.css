@@ -1,5 +1,5 @@
 :root {
   --transition-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
-  --transition-duration: 0.3s;
+  --transition-duration: 0.25s;
   --animation: var(--transition-timing-function) var(--transition-duration);
 }
