@@ -13,6 +13,18 @@
           sizes="sm:100vw md:75vw lg:500px xL:800"
           loading="lazy"
         />
+        <button :class="$style['btn-action']" @click="action">
+          <img
+            src="/images/arcarde-button.png"
+            width="36"
+            height="34"
+            alt="Play"
+            loading="lazy"
+            quality="80"
+            fit="inside"
+            sizes="sm:36 md:72"
+          />
+        </button>
       </div>
       <div :class="$style.text">
         <h1 id="app-stores-title">Loesje in de App Stores</h1>
@@ -40,18 +52,6 @@
           >.
         </p>
       </div>
-      <button :class="$style['btn-action']" @click="action">
-        <img
-          src="/images/arcarde-button.png"
-          width="36"
-          height="34"
-          alt="Play"
-          loading="lazy"
-          quality="80"
-          fit="inside"
-          sizes="sm:36 md:72"
-        />
-      </button>
     </div>
   </section>
 </template>
@@ -95,6 +95,7 @@ export default {
 
 .image-wrapper {
   margin: 0 auto;
+  position: relative;
 
   @media (--viewport-lg) {
     shape-outside: polygon(85% 0%, 0% 100%, 85% 100%);
@@ -116,12 +117,6 @@ export default {
   width: 2em;
   right: 50%;
   margin-right: 3em;
-  bottom: 12em;
-
-  @media (--viewport-lg) {
-    bottom: auto;
-    right: 15em;
-    top: 20em;
-  }
+  bottom: 30%;
 }
 </style>
