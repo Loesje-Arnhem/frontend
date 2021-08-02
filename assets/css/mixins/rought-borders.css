@@ -1,5 +1,4 @@
-@define-mixin tile-border $roughness: 1, $stroke-width: 2px,
-  $image-outset: 0.75em {
+@define-mixin tile-border $roughness: 1, $stroke-width: 2px, $image-outset: 12px {
   --rough-stroke-width: $stroke-width;
   --rough-roughness: $roughness;
 
