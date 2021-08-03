@@ -2,11 +2,12 @@
   <center-wrapper :top="true">
     <div :class="$style.wrapper">
       <div :class="$style.text">
-        <h1>Blijf plakken</h1>
+        <h1>Wie zegt wat hoort</h1>
         <p>
-          Loesje-posters vind je overal. Op straat, bij de buren, op een kaartje
-          aan het prikbord… De posters geven frisse gedachten, ontlokken ideeën
-          of geven je inspiratie om de wereld een stukje mooier te maken.
+          Loesje's posters vind je overal. Met haar positief-kritische teksten
+          wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan
+          bazen, politici of ouders. Door haar posters op straat en online te
+          verspreiden, geeft Loesje de wereld een zetje in de goede richting.
         </p>
       </div>
       <daily-poster :class="$style['daily-poster']" />
