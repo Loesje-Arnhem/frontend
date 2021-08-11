@@ -12,18 +12,19 @@ export default () => {
   })
   const errors = ref([])
 
-  const { mutate: addToNewsletter, loading, onError } = useMutation(
-    AddToNewsletterQuery,
-    () => ({
-      variables: {
-        clientMutationId: v4(),
-        email: form.email,
-        firstName: form.firstName,
-        lastName: form.lastName,
-        list: form.list,
-      },
-    }),
-  )
+  const {
+    mutate: addToNewsletter,
+    loading,
+    onError,
+  } = useMutation(AddToNewsletterQuery, () => ({
+    variables: {
+      clientMutationId: v4(),
+      email: form.email,
+      firstName: form.firstName,
+      lastName: form.lastName,
+      list: form.list,
+    },
+  }))
   onError(({ graphQLErrors }) => {
     errors.value = graphQLErrors.map((err) => err.message)
   })

@@ -2,8 +2,7 @@ export default {
   edges: [
     {
       node: {
-        uri:
-          'wk-rusland-hier-nederland-kunnen-we-zomer-gelukkig-gewoon-lekker-op-straat-voetballen180523',
+        uri: 'wk-rusland-hier-nederland-kunnen-we-zomer-gelukkig-gewoon-lekker-op-straat-voetballen180523',
         id: 'cG9zdDo1NzIwOA==',
         databaseId: 57208,
         title:
@@ -14,8 +13,7 @@ export default {
     },
     {
       node: {
-        uri:
-          'ek-voetbal-ik-weet-niet-voor-wie-ik-ben-dus-wissel-ik-altijd-bij-de-tweede-helft160615',
+        uri: 'ek-voetbal-ik-weet-niet-voor-wie-ik-ben-dus-wissel-ik-altijd-bij-de-tweede-helft160615',
         id: 'cG9zdDoyOTY3OA==',
         databaseId: 29678,
         title:
@@ -36,8 +34,7 @@ export default {
     },
     {
       node: {
-        uri:
-          'matchfixen-stiekem-al-je-geld-witwassen-door-het-in-je-voetbalbroekje-te-laten-zitten',
+        uri: 'matchfixen-stiekem-al-je-geld-witwassen-door-het-in-je-voetbalbroekje-te-laten-zitten',
         id: 'cG9zdDoyNzc5NA==',
         databaseId: 27794,
         title:
@@ -48,8 +45,7 @@ export default {
     },
     {
       node: {
-        uri:
-          'mijn-digitale-voetafdruk-ik-heb-soms-het-idee-dat-ik-verstoppertje-met-de-overheid-speel',
+        uri: 'mijn-digitale-voetafdruk-ik-heb-soms-het-idee-dat-ik-verstoppertje-met-de-overheid-speel',
         id: 'cG9zdDoyNTkxMg==',
         databaseId: 25912,
         title:
@@ -60,8 +56,7 @@ export default {
     },
     {
       node: {
-        uri:
-          'legofilius-kan-de-temperatuur-berekenen-aan-de-hand-van-het-aantal-blote-voeten-het-park',
+        uri: 'legofilius-kan-de-temperatuur-berekenen-aan-de-hand-van-het-aantal-blote-voeten-het-park',
         id: 'cG9zdDoyNTg3Mg==',
         databaseId: 25872,
         title:
@@ -72,8 +67,7 @@ export default {
     },
     {
       node: {
-        uri:
-          'om-mn-voeten-uit-hun-winterdip-te-halen-heb-ik-alvast-wat-grassprietjes-mn-sokken-gestrooid',
+        uri: 'om-mn-voeten-uit-hun-winterdip-te-halen-heb-ik-alvast-wat-grassprietjes-mn-sokken-gestrooid',
         id: 'cG9zdDoyNTIyMw==',
         databaseId: 25223,
         title:
