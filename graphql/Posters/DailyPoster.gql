@@ -1,8 +1,4 @@
-query DailyPoster(
-  $year: Int,
-  $month: Int,
-  $day: Int
-) {
+query DailyPoster($year: Int, $month: Int, $day: Int) {
   dailyPosters(
     first: 1
     where: { posterDateEquals: { year: $year, month: $month, day: $day } }
@@ -12,7 +8,7 @@ query DailyPoster(
         title
         featuredImage {
           node {
-            medium: sourceUrl(size: MEDIUM)
+            mediaItemUrl
           }
         }
       }

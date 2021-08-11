@@ -7,6 +7,12 @@
         :alt="dailyPoster.title"
         :lazy="false"
         class="image"
+        quality="80"
+        fit="inside"
+        provider="ipx"
+        width="200"
+        height="300"
+        sizes="xs:200px sm:400px"
       />
     </div>
     <nuxt-picture
@@ -54,7 +60,7 @@ export default {
       }
       return {
         title: this.poster.edges[0].node.title,
-        image: this.poster.edges[0].node.featuredImage.node.medium,
+        image: this.poster.edges[0].node.featuredImage.node.mediaItemUrl,
       }
     },
   },

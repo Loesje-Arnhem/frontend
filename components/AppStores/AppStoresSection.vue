@@ -9,7 +9,7 @@
           height="560"
           alt=""
           loading="lazy"
-          sizes="sm:100vw md:75vw lg:500px xL:800"
+          sizes="sm:100vw md:75vw lg:500px xL:1000px"
           quality="80"
           fit="inside"
         />
@@ -20,7 +20,7 @@
             width="36"
             height="34"
             alt="Play"
-            sizes="sm:36 md:72"
+            sizes="xs:36 sm:72"
             quality="80"
             fit="inside"
           />
