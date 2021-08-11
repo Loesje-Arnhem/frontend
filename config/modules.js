@@ -6,5 +6,6 @@ export default [
   '@nuxtjs/pwa',
   '@nuxtjs/axios',
   '@nuxtjs/apollo',
+  '@nuxt/image',
   'nuxt-i18n',
 ]
