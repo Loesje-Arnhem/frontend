@@ -1,7 +1,7 @@
 <template>
   <div class="poster-daily">
     <div class="image-wrapper">
-      <app-image
+      <nuxt-picture
         v-if="dailyPoster"
         :src="dailyPoster.image"
         :alt="dailyPoster.title"

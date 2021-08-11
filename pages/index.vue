@@ -2,15 +2,15 @@
   <div v-if="page">
     <h1 class="sr-only">{{ page.title }}</h1>
     <latest-posts-section :posts="posts" />
-    <related-posters-section :related-posters="page.relatedPosters" />
-    <app-stores-section />
-    <related-products-section
+    <lazy-related-posters-section :related-posters="page.relatedPosters" />
+    <lazy-app-stores-section />
+    <lazy-related-products-section
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
       :size="2"
     />
     <!-- <block-instagram /> -->
-    <groups />
+    <lazy-groups />
   </div>
 </template>
 

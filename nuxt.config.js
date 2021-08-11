@@ -8,6 +8,7 @@ import generate from './config/generate'
 import googleFonts from './config/googleFonts'
 import head from './config/head'
 import i18n from './config/i18n'
+import image from './config/image'
 import loaders from './config/loaders'
 import loading from './config/loading'
 import modern from './config/modern'
@@ -27,6 +28,7 @@ export default {
   googleFonts,
   head,
   i18n,
+  image,
   loaders,
   loading,
   modern,
