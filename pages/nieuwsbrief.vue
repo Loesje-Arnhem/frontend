@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from '@nuxtjs/composition-api'
 
 import useNewsletter from '~/compositions/newsletter'
