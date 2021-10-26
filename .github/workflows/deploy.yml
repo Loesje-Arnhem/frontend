@@ -1,6 +1,11 @@
 name: Node.js CI/CD
 
-on: [push] # tells github to run this on any push to the repository
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
 
 jobs:
  
