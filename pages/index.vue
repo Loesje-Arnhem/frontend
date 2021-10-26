@@ -7,7 +7,6 @@
     <lazy-related-products-section
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
-      :size="2"
     />
     <!-- <block-instagram /> -->
     <lazy-groups />
@@ -15,12 +14,13 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import { homePageId } from '~/data/pages'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
 import getSeoMetaData from '~/utils/seo'
 
-export default {
+export default defineComponent({
   async asyncData({ app }) {
     const { defaultClient } = app.apolloProvider
     const page = await defaultClient.query({
@@ -43,5 +43,5 @@ export default {
   head() {
     return getSeoMetaData(this.page.seo)
   },
-}
+})
 </script>
