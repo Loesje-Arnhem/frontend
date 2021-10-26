@@ -99,7 +99,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 nav {
   display: flex;
   margin: 1em 0;

@@ -38,7 +38,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .alert {
   display: flex;
   margin-bottom: 1em;
