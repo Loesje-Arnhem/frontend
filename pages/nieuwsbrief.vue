@@ -6,9 +6,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
 import useNewsletter from '~/compositions/newsletter'
-export default {
+export default defineComponent({
   setup() {
     const { submit, form, response, error } = useNewsletter()
 
@@ -19,5 +21,5 @@ export default {
       error,
     }
   },
-}
+})
 </script>
