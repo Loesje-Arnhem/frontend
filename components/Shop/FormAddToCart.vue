@@ -94,6 +94,7 @@ export default {
     grid-template-columns: 5em auto;
     align-items: center;
   }
+
   & >>> legend {
     @mixin sr-only;
   }
