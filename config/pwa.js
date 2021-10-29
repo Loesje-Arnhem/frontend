@@ -17,6 +17,9 @@ export default {
     orientation: 'portrait-primary',
     short_name: title,
   },
+  icon: {
+    purpose: 'maskable',
+  },
   meta: {
     appleStatusBarStyle: 'black-translucent',
     mobileApp: true,
