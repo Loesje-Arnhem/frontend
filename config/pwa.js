@@ -31,9 +31,6 @@ export default {
       },
     ],
   },
-  icon: {
-    purpose: 'maskable',
-  },
   meta: {
     appleStatusBarStyle: 'black-translucent',
     mobileApp: true,
