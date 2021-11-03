@@ -31,6 +31,7 @@ export default {
       },
     ],
   },
+  icon: false,
   meta: {
     appleStatusBarStyle: 'black-translucent',
     mobileApp: true,
