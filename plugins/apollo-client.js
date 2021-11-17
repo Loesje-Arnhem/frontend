@@ -1,6 +1,4 @@
-import { InMemoryCache } from '@apollo/client/core'
-import { HttpLink } from 'apollo-link-http'
-// import { InMemoryCache } from 'apollo-cache-inmemory'
+import { InMemoryCache, HttpLink } from '@apollo/client/core'
 import { apiUrl } from '~/data/siteDetails'
 
 const httpLink = new HttpLink({

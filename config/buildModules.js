@@ -8,4 +8,5 @@ export default [
   '@nuxtjs/google-fonts',
   '@nuxt/typescript-build',
   '@nuxtjs/pwa',
+  '@nuxt/postcss8',
 ]
