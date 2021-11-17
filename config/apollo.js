@@ -4,7 +4,7 @@ export default {
   },
   defaultOptions: {
     query: {
-      fetchPolicy: 'no-cache',
+      fetchPolicy: 'cache-and-network',
     },
   },
 }
