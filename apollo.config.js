@@ -1,7 +1,7 @@
 module.exports = {
   client: {
     service: {
-      name: 'carconfigurator',
+      name: 'loesje',
       url: 'https://www.loesje.nl/graphql',
     },
     includes: ['src/**/*.vue', 'src/**/*.js', 'src/**/*.graphql'],
