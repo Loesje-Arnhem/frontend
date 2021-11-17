@@ -2,7 +2,7 @@
   <center-wrapper :top="true">
     <div :class="$style.wrapper">
       <div :class="$style.text">
-        <h1>Wie zegt wat hoort</h1>
+        <h1>Wie zegt wat hoortt</h1>
         <p>
           Loesje's posters vind je overal. Met haar positief-kritische teksten
           wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan
