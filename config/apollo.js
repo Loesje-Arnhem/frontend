@@ -4,7 +4,10 @@ export default {
   },
   defaultOptions: {
     $query: {
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'no-cache',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
     },
   },
 }
