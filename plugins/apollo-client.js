@@ -19,9 +19,11 @@ export default () => {
     tokenName: 'apollo-token',
     persisting: false,
     websocketsOnly: false,
-    defaultOptions: {
-      query: {
-        fetchPolicy: 'cache-and-network',
+    apollo: {
+      defaultOptions: {
+        query: {
+          fetchPolicy: 'cache-and-network',
+        },
       },
     },
   }
