@@ -1,34 +1,24 @@
 <template>
   <div v-if="page">
-    <h1 class="sr-only">{{ page.title }}</h1>
-    <posts-overview-section />
-    <related-posters-section :related-posters="page.relatedPosters" />
-    <related-products-section :related-products="page.relatedProducts" />
+    <h1 class="sra-only">{{ page.title }}</h1>
+    <!-- <posts-overview-section /> -->
+    <!-- <related-posters-section :related-posters="page.relatedPosters" /> -->
+    <!-- <related-products-section :related-products="page.relatedProducts" /> -->
   </div>
 </template>
 
 <script>
 import { blogPageId } from '~/data/pages'
-import PageByIdQuery from '~/graphql/Pages/PageById.gql'
-
+import { usePageById } from '~/compositions/page'
 export default {
-  async asyncData({ app }) {
-    const { defaultClient } = app.apolloProvider
-    const result = await defaultClient.query({
-      query: PageByIdQuery,
-      variables: {
-        id: blogPageId,
-      },
-    })
+  setup() {
+    const { page, loading } = usePageById(blogPageId)
     return {
-      page: result.data.page,
+      page,
+      loading,
     }
   },
-  head() {
-    return {
-      title: this.page.title,
-    }
-  },
+  head() {},
   nuxtI18n: {
     paths: {
       nl: '/over-loesje/nieuws',
