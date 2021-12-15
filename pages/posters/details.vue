@@ -13,10 +13,11 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
 import getSeoMetaData from '~/utils/seo'
 
-export default {
+export default defineComponent({
   async asyncData({ app, params }) {
     const { defaultClient } = app.apolloProvider
     const result = await defaultClient.query({
@@ -50,7 +51,7 @@ export default {
       nl: '/posters/:slug',
     },
   },
-}
+})
 </script>
 
 <i18n>

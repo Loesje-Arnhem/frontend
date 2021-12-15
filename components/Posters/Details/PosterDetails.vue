@@ -65,15 +65,18 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IPoster } from '~/interfaces/IPoster'
+
+export default defineComponent({
   props: {
     poster: {
-      type: Object,
+      type: Object as PropType<IPoster>,
       required: true,
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
