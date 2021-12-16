@@ -6,17 +6,19 @@
       :content="page.content"
       :video="page.videoGroup.youtubeId"
     />
-    <!-- <related-posters-section :related-posters="page.relatedPosters" /> -->
+    <related-posters-section :related-posters="page.relatedPosters" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, useRoute } from '@nuxtjs/composition-api'
 import { usePageByUri } from '~/compositions/page'
 
 export default defineComponent({
   setup() {
-    const { page, loading } = usePageByUri()
+    const route = useRoute()
+
+    const { page, loading } = usePageByUri(route.value.params.pathMatch)
 
     return {
       loading,

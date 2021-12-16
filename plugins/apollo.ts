@@ -1,12 +1,5 @@
-import {
-  provide,
-  onGlobalSetup,
-  defineNuxtPlugin,
-} from '@nuxtjs/composition-api'
-import {
-  DefaultApolloClient,
-  provideApolloClient,
-} from '@vue/apollo-composable'
+import { onGlobalSetup, defineNuxtPlugin } from '@nuxtjs/composition-api'
+import { provideApolloClient } from '@vue/apollo-composable'
 import { Context } from '@nuxt/types'
 
 /**
@@ -14,7 +7,6 @@ import { Context } from '@nuxt/types'
  */
 export default defineNuxtPlugin(({ app }: Context) => {
   onGlobalSetup(() => {
-    provide(DefaultApolloClient, app.apolloProvider?.defaultClient)
     provideApolloClient(app.apolloProvider?.defaultClient)
   })
 })

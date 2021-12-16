@@ -1,5 +1,6 @@
 <template>
-  <div v-if="post">
+  <app-loader v-if="loading" />
+  <div v-else-if="post">
     <app-content
       :image="post.featuredImage"
       :title="post.title"
@@ -15,32 +16,30 @@
   </div>
 </template>
 
-<script>
-import PostQuery from '~/graphql/Posts/Post.gql'
-import getSeoMetaData from '~/utils/seo'
+<script lang="ts">
+import { defineComponent, useRoute, useContext } from '@nuxtjs/composition-api'
+import { provideApolloClient } from '@vue/apollo-composable/dist'
+import { usePost } from '~/compositions/posts'
 
-export default {
-  async asyncData({ app, params }) {
-    const { defaultClient } = app.apolloProvider
-    const result = await defaultClient.query({
-      query: PostQuery,
-      variables: {
-        slug: params.slug,
-      },
-    })
+export default defineComponent({
+  setup() {
+    const { app } = useContext()
+    provideApolloClient(app.apolloProvider?.defaultClient)
+
+    const route = useRoute()
+    const { post, loading } = usePost(route.value.params.slug)
     return {
-      post: result.data.post,
+      post,
+      loading,
     }
   },
-  head() {
-    return getSeoMetaData(this.post.seo)
-  },
+  head: {},
   nuxtI18n: {
     paths: {
       nl: '/over-loesje/nieuws/:slug',
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

@@ -6,8 +6,9 @@
       v-if="page"
       :related-posters="page.relatedPosters"
     />
-    <!-- <lazy-app-stores-section />
+    <lazy-app-stores-section />
     <lazy-related-products-section
+      v-if="page"
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
     />

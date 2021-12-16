@@ -1,5 +1,6 @@
 <template>
-  <div v-if="page" class="page">
+  <app-loader v-if="loading" />
+  <div v-else-if="page" class="page">
     <app-content
       :title="page.title"
       :content="page.content"
@@ -11,26 +12,25 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 import { workshopsPageId } from '~/data/pages'
-import PageByIdQuery from '~/graphql/Pages/PageById.gql'
-import getSeoMetaData from '~/utils/seo'
+import { usePageById } from '~/compositions/page'
 
-export default {
-  async asyncData({ app }) {
-    const { defaultClient } = app.apolloProvider
-    const result = await defaultClient.query({
-      query: PageByIdQuery,
-      variables: {
-        id: workshopsPageId,
-      },
-    })
+export default defineComponent({
+  setup() {
+    const { page, loading } = usePageById(workshopsPageId)
     return {
-      page: result.data.page,
+      page,
+      loading,
     }
   },
-  head() {
-    return getSeoMetaData(this.page.seo)
+
+  head: {},
+  nuxtI18n: {
+    paths: {
+      nl: '/workshops',
+    },
   },
-}
+})
 </script>

@@ -2,6 +2,7 @@ import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import { computed } from '@nuxtjs/composition-api'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
 import PostQuery from '~/graphql/Posts/Post.gql'
+import useMeta from '~/compositions/useMeta'
 
 export default ({ first = 12, notIn = null } = {}) => {
   const { result, error, loading, fetchMore } = useQuery(
@@ -54,11 +55,16 @@ export default ({ first = 12, notIn = null } = {}) => {
 }
 
 export const usePost = (slug) => {
-  const { result, error, loading } = useQuery(PostQuery, {
+  const { setSEO } = useMeta()
+  const { result, error, loading, onResult } = useQuery(PostQuery, {
     slug,
   })
 
   const post = useResult(result)
+
+  onResult((queryResult) => {
+    setSEO(queryResult.data.post.seo)
+  })
 
   return {
     post,

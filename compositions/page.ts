@@ -3,7 +3,7 @@ import {
   useResult,
   provideApolloClient,
 } from '@vue/apollo-composable/dist'
-import { useContext, useRoute } from '@nuxtjs/composition-api'
+import { useContext } from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
@@ -45,15 +45,13 @@ export const usePageById = (id: number) => {
   }
 }
 
-export const usePageByUri = () => {
+export const usePageByUri = (uri: string) => {
   const { app } = useContext()
   provideApolloClient(app.apolloProvider?.defaultClient)
 
-  const route = useRoute()
-
   const { setSEO } = useMeta()
   const { result, onResult, loading } = useQuery(PageByUriQuery, {
-    uri: route.value.params.pathMatch,
+    uri,
   })
   const page = useResult(result)
 
