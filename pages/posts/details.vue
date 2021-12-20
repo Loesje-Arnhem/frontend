@@ -17,15 +17,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useRoute, useContext } from '@nuxtjs/composition-api'
-import { provideApolloClient } from '@vue/apollo-composable/dist'
+import { defineComponent, useRoute } from '@nuxtjs/composition-api'
 import { usePost } from '~/composables/posts'
 
 export default defineComponent({
   setup() {
-    const { app } = useContext()
-    provideApolloClient(app.apolloProvider?.defaultClient)
-
     const route = useRoute()
     const { post, loading } = usePost(route.value.params.slug)
     return {

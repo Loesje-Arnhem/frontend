@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { homePageId } from '~/data/pages'
 import { usePageById } from '~/composables/usePage'
@@ -31,6 +31,6 @@ export default defineComponent({
     }
   },
 
-  head() {},
+  head: {},
 })
 </script>
