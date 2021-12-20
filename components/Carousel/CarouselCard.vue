@@ -11,7 +11,7 @@
 
 <script>
 import { ref, onMounted, onUnmounted } from '@nuxtjs/composition-api'
-import useCarousel from '~/compositions/carousel'
+import useCarousel from '~/composables/carousel'
 
 export default {
   props: {

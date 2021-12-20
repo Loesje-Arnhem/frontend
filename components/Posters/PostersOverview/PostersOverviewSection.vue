@@ -22,7 +22,7 @@
 import { computed } from '@nuxtjs/composition-api'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import PosterList from '~/components/Posters/Shared/PosterList.vue'
-import { usePosters } from '~/compositions/posters'
+import { usePosters } from '~/composables/posters'
 import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
 
 export default {

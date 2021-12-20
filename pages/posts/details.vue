@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent, useRoute, useContext } from '@nuxtjs/composition-api'
 import { provideApolloClient } from '@vue/apollo-composable/dist'
-import { usePost } from '~/compositions/posts'
+import { usePost } from '~/composables/posts'
 
 export default defineComponent({
   setup() {

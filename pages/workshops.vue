@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { workshopsPageId } from '~/data/pages'
-import { usePageById } from '~/compositions/page'
+import { usePageById } from '~/composables/usePage'
 
 export default defineComponent({
   setup() {

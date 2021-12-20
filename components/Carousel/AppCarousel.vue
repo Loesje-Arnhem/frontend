@@ -22,7 +22,7 @@ import {
 } from '@nuxtjs/composition-api'
 import smoothscroll from 'smoothscroll-polyfill'
 import CarouselThumbs from './CarouselThumbs.vue'
-import useCarousel from '~/compositions/carousel'
+import useCarousel from '~/composables/carousel'
 export default {
   components: { CarouselThumbs },
   props: {

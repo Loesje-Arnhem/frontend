@@ -2,7 +2,7 @@ import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import { computed } from '@nuxtjs/composition-api'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
 import PostQuery from '~/graphql/Posts/Post.gql'
-import useMeta from '~/compositions/useMeta'
+import useMeta from '~/composables/useMeta'
 
 export default ({ first = 12, notIn = null } = {}) => {
   const { result, error, loading, fetchMore } = useQuery(

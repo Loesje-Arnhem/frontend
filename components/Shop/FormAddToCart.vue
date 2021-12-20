@@ -50,7 +50,7 @@
 
 <script>
 import { useRouter, useContext, ref } from '@nuxtjs/composition-api'
-import { useAddToCart } from '~/compositions/cart'
+import { useAddToCart } from '~/composables/cart'
 
 export default {
   props: {

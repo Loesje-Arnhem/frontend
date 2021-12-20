@@ -7,7 +7,7 @@ import { useContext } from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
-import useMeta from '~/compositions/useMeta'
+import useMeta from '~/composables/useMeta'
 
 export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
   const { result, error, loading, onError } = useQuery(RelatedPagesQuery, {

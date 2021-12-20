@@ -43,7 +43,7 @@ import ProductPrices from '../Products/ProductPrices.vue'
 import {
   useUpdateItemQuantities,
   useRemoveItemsFromCart,
-} from '~/compositions/cart'
+} from '~/composables/cart'
 
 export default {
   components: { ProductPrices },

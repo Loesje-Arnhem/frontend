@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { useRemoveCoupon } from '~/compositions/coupon'
+import { useRemoveCoupon } from '~/composables/coupon'
 
 export default {
   props: {

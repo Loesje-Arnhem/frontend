@@ -1,7 +1,7 @@
 import { useMutation } from '@vue/apollo-composable/dist'
 import { ref } from '@nuxtjs/composition-api'
 import { v4 } from 'uuid'
-import { updateCartCache } from '~/compositions/cart'
+import { updateCartCache } from '~/composables/cart'
 import ApplyCouponQuery from '~/graphql/Shop/Coupons/ApplyCoupon.gql'
 import RemoveCouponsQuery from '~/graphql/Shop/Coupons/RemoveCoupons.gql'
 

@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, useRoute } from '@nuxtjs/composition-api'
-import { usePageByUri } from '~/compositions/page'
+import { usePageByUri } from '~/composables/usePage'
 
 export default defineComponent({
   setup() {

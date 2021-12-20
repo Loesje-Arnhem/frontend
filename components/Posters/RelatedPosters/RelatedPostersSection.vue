@@ -27,7 +27,7 @@
 import AppButton from '~/components/Shared/AppButton.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
 import RelatedPostersList from '~/components/Posters/RelatedPosters/RelatedPostersList.vue'
-import { usePosters } from '~/compositions/posters'
+import { usePosters } from '~/composables/posters'
 
 export default {
   components: {

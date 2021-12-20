@@ -1,4 +1,5 @@
 import { useMeta } from '@nuxtjs/composition-api'
+import { ISEO } from '~/interfaces/ISEO'
 
 const getMetaTitle = (seo: any, key: string) => {
   if (seo[key]) {
@@ -31,7 +32,7 @@ const getMetaImage = (seo: any, key: string) => {
 export default () => {
   const { title, meta } = useMeta()
 
-  const setSEO = (seo: any) => {
+  const setSEO = (seo: ISEO) => {
     title.value = seo.title
     meta.value = [
       {

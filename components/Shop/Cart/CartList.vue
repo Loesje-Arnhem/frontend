@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { useCart } from '~/compositions/cart'
+import { useCart } from '~/composables/cart'
 
 export default {
   setup() {

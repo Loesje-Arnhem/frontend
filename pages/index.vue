@@ -20,7 +20,7 @@
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
 import { homePageId } from '~/data/pages'
-import { usePageById } from '~/compositions/page'
+import { usePageById } from '~/composables/usePage'
 
 export default defineComponent({
   setup() {

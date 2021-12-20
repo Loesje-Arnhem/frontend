@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { useRelatedPages } from '~/compositions/page'
+import { useRelatedPages } from '~/composables/usePage'
 
 export default {
   props: {
