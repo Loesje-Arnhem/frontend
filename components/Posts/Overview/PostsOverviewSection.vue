@@ -22,7 +22,7 @@
 <script>
 import PostsOverviewList from '~/components/Posts/Overview/PostsOverviewList.vue'
 import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import usePosts from '~/compositions/posts'
+import usePosts from '~/composables/posts'
 import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
 
 export default {

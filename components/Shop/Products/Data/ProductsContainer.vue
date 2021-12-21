@@ -1,17 +1,14 @@
 <template>
-  <apollo-query
-    :query="require('~/graphql/Products/Products.gql')"
-    :variables="{ where, first: size }"
-  >
-    <template #default="{ result: { data }, isLoading }">
-      <app-loader v-if="isLoading" />
-      <slot v-else-if="data" :products="data.products.edges" />
-    </template>
-  </apollo-query>
+  <div>
+    <app-loader v-if="loading" />
+    <product-list v-if="products" :products="products.edges" />
+  </div>
 </template>
 
 <script>
-export default {
+import { defineComponent } from '@nuxtjs/composition-api'
+import useProducts from '~/composables/products'
+export default defineComponent({
   props: {
     databaseIds: {
       type: Array,
@@ -22,24 +19,12 @@ export default {
       default: 99,
     },
   },
-  computed: {
-    where() {
-      const inStock = {
-        stockStatus: 'IN_STOCK',
-      }
-
-      if (this.databaseIds.length) {
-        return {
-          ...inStock,
-          include: this.databaseIds,
-        }
-      }
-
-      return {
-        ...inStock,
-        featured: true,
-      }
-    },
+  setup(props) {
+    const { products, loading } = useProducts(props.databaseIds, props.size)
+    return {
+      loading,
+      products,
+    }
   },
-}
+})
 </script>

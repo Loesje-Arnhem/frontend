@@ -6,11 +6,7 @@
   >
     <center-wrapper>
       <h1 id="featured-products">{{ title }}</h1>
-      <products-container :database-ids="databaseIds" :size="size">
-        <template #default="data">
-          <product-list v-if="data" :products="data.products" />
-        </template>
-      </products-container>
+      <products-container :database-ids="databaseIds" :size="size" />
 
       <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
@@ -20,18 +16,9 @@
 </template>
 
 <script>
-import AppButton from '~/components/Shared/AppButton.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import ProductList from '~/components/Shop/Products/Shared/ProductList.vue'
-import ProductsContainer from '~/components/Shop/Products/Data/ProductsContainer.vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
-  components: {
-    AppButton,
-    CenterWrapper,
-    ProductsContainer,
-    ProductList,
-  },
+export default defineComponent({
   props: {
     relatedProducts: {
       type: Object,
@@ -55,7 +42,7 @@ export default {
       return []
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

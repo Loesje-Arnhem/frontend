@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import useCarousel from '~/compositions/carousel'
+import useCarousel from '~/composables/carousel'
 
 export default {
   setup() {

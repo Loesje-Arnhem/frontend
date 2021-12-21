@@ -1,38 +1,30 @@
 <template>
-  <div v-if="page">
-    <h1 class="sr-only">{{ page.title }}</h1>
+  <div>
+    <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
     <posts-overview-section />
-    <related-posters-section :related-posters="page.relatedPosters" />
-    <related-products-section :related-products="page.relatedProducts" />
+    <!-- <related-posters-section :related-posters="page.relatedPosters" /> -->
+    <!-- <related-products-section :related-products="page.relatedProducts" /> -->
   </div>
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import { blogPageId } from '~/data/pages'
-import PageByIdQuery from '~/graphql/Pages/PageById.gql'
+import { usePageById } from '~/composables/usePage'
 
-export default {
-  async asyncData({ app }) {
-    const { defaultClient } = app.apolloProvider
-    const result = await defaultClient.query({
-      query: PageByIdQuery,
-      variables: {
-        id: blogPageId,
-      },
-    })
+export default defineComponent({
+  setup() {
+    const { page, loading } = usePageById(blogPageId)
     return {
-      page: result.data.page,
+      page,
+      loading,
     }
   },
-  head() {
-    return {
-      title: this.page.title,
-    }
-  },
+  head: {},
   nuxtI18n: {
     paths: {
       nl: '/over-loesje/nieuws',
     },
   },
-}
+})
 </script>

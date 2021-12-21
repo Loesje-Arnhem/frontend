@@ -43,7 +43,7 @@
 
 <script>
 import PaymentGatewaysQuery from '~/graphql/Shop/PaymentGateways.gql'
-import { useCheckout } from '~/compositions/checkout'
+import { useCheckout } from '~/composables/checkout'
 import { checkoutPageId } from '~/data/pages'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import getSeoMetaData from '~/utils/seo'

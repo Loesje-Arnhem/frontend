@@ -1,47 +1,36 @@
 <template>
   <div v-if="page">
     <h1 class="sr-only">{{ page.title }}</h1>
-    <latest-posts-section :posts="posts" />
-    <lazy-related-posters-section :related-posters="page.relatedPosters" />
-    <lazy-app-stores-section />
     <lazy-related-products-section
+      v-if="page"
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
     />
-    <!-- <block-instagram /> -->
+    <latest-posts-section />
+    <lazy-related-posters-section
+      v-if="page"
+      :related-posters="page.relatedPosters"
+    />
+    <lazy-app-stores-section />
+    <block-instagram />
     <lazy-groups />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { homePageId } from '~/data/pages'
-import PageByIdQuery from '~/graphql/Pages/PageById.gql'
-import PostsQuery from '~/graphql/Posts/Posts.gql'
-import getSeoMetaData from '~/utils/seo'
+import { usePageById } from '~/composables/usePage'
 
 export default defineComponent({
-  async asyncData({ app }) {
-    const { defaultClient } = app.apolloProvider
-    const page = await defaultClient.query({
-      query: PageByIdQuery,
-      variables: {
-        id: homePageId,
-      },
-    })
-    const posts = await defaultClient.query({
-      query: PostsQuery,
-      variables: {
-        first: 3,
-      },
-    })
+  setup() {
+    const { page, loading } = usePageById(homePageId)
     return {
-      page: page.data.page,
-      posts: posts.data.posts,
+      page,
+      loading,
     }
   },
-  head() {
-    return getSeoMetaData(this.page.seo)
-  },
+
+  head: {},
 })
 </script>

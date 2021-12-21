@@ -1,23 +1,14 @@
 <template>
   <section aria-labelledby="featured-products">
     <h1 id="featured-products">Gerelateerde producten</h1>
-    <products-container :category="category" :database-ids="databaseIds">
-      <template #default="data">
-        <product-list v-if="data" :products="data.products" />
-      </template>
-    </products-container>
+    <products-container :category="category" :database-ids="databaseIds" />
   </section>
 </template>
 
 <script>
-import ProductsContainer from '~/components/Shop/Products/Data/ProductsContainer.vue'
-import ProductList from '~/components/Shop/Products/Shared/ProductList.vue'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
-export default {
-  components: {
-    ProductsContainer,
-    ProductList,
-  },
+export default defineComponent({
   props: {
     category: {
       type: Number,
@@ -28,13 +19,16 @@ export default {
       default: () => [],
     },
   },
-  computed: {
-    databaseIds() {
-      if (this.relatedProducts.length) {
-        return this.relatedProducts.map((product) => product.node.databaseId)
+  setup(props) {
+    const databaseIds = computed(() => {
+      if (props.relatedProducts.length) {
+        return props.relatedProducts.map((product) => product.node.databaseId)
       }
       return []
-    },
+    })
+    return {
+      databaseIds,
+    }
   },
-}
+})
 </script>

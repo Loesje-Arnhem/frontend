@@ -1,11 +1,28 @@
-#import "./Fragments/ProductDetails.gql"
-
 query Products($where: RootQueryToProductConnectionWhereArgs, $first: Int) {
   products(where: $where, first: $first) {
     edges {
       node {
-        ...productDetails
         slug
+        id
+        databaseId
+        name
+        image {
+          id
+          altText
+          thumbnail: sourceUrl(size: THUMBNAIL)
+          medium: sourceUrl(size: MEDIUM)
+          mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+        }
+        ... on SimpleProduct {
+          regularPrice
+          price
+          salePrice
+        }
+        ... on VariableProduct {
+          regularPrice
+          price
+          salePrice
+        }
       }
     }
   }

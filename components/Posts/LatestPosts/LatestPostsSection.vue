@@ -8,37 +8,39 @@
       <div :class="$style.wrapper">
         <div :class="$style.list">
           <h1 id="latest-posts-title">{{ $t('title') }}</h1>
-          <latest-posts-list v-if="posts" :posts="posts.edges" />
-          <app-button :to="localePath({ name: 'posts' })">
-            {{ $t('btnMore') }}
-          </app-button>
+          <app-loader v-if="loading" />
+          <template v-else>
+            <latest-posts-list v-if="posts" :posts="posts.edges" />
+            <app-button :to="localePath({ name: 'posts' })">
+              {{ $t('btnMore') }}
+            </app-button>
+          </template>
         </div>
         <become-member :class="$style['become-member']" />
-        <balloon :class="$style.balloon" />
+        <latest-post-balloon :class="$style.balloon" />
       </div>
     </center-wrapper>
   </section>
 </template>
 
-<script>
-import Balloon from '~/components/Posts/LatestPosts/LatestPostBalloon.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import LatestPostsList from '~/components/Posts/LatestPosts/LatestPostsList.vue'
+<script lang="ts">
+import { useQuery, useResult } from '@vue/apollo-composable'
+import { defineComponent } from '@nuxtjs/composition-api'
+import PostsQuery from '~/graphql/Posts/Posts.gql'
 
-export default {
-  components: {
-    Balloon,
-    CenterWrapper,
-    LatestPostsList,
-  },
+export default defineComponent({
+  setup() {
+    const { result, loading } = useQuery(PostsQuery, {
+      first: 3,
+    })
+    const posts = useResult(result)
 
-  props: {
-    posts: {
-      type: Object,
-      default: () => {},
-    },
+    return {
+      loading,
+      posts,
+    }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

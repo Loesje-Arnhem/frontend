@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { useApplyCoupon } from '~/compositions/coupon'
+import { useApplyCoupon } from '~/composables/coupon'
 
 export default {
   setup() {

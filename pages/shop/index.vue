@@ -1,29 +1,23 @@
 <template>
   <shop-wrapper>
-    <h1>{{ page.title }}</h1>
-    <p v-if="page.content" v-html="page.content" />
-    <product-list v-if="products.edges.length" :products="products.edges" />
+    <template v-if="page">
+      <h1>{{ page.title }}</h1>
+      <p v-if="page.content" v-html="page.content" />
+    </template>
+    <products-container />
   </shop-wrapper>
 </template>
 
 <script>
 import { shopPageId } from '~/data/pages'
-import ShopPageQuery from '~/graphql/Shop/ShopPage.gql'
-import getSeoMetaData from '~/utils/seo'
+import { usePageById } from '~/composables/usePage'
 
 export default {
-  async asyncData({ app }) {
-    const { defaultClient } = app.apolloProvider
-    const page = await defaultClient.query({
-      query: ShopPageQuery,
-      variables: {
-        id: shopPageId,
-      },
-    })
-
+  setup() {
+    const { page, loading } = usePageById(shopPageId)
     return {
-      page: page.data.page,
-      products: page.data.products,
+      page,
+      loading,
     }
   },
   nuxtI18n: {
@@ -31,8 +25,6 @@ export default {
       nl: '/winkeltje/',
     },
   },
-  head() {
-    return getSeoMetaData(this.page.seo)
-  },
+  head: {},
 }
 </script>

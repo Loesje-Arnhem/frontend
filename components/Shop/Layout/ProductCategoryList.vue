@@ -45,13 +45,6 @@ export default {
       query: ProductCategoriesQuery,
     })
     if (result.data) {
-      result.data.productCategories.edges.sort((a, b) =>
-        a.node.menuOrder > b.node.menuOrder
-          ? 1
-          : b.node.menuOrder > a.node.menuOrder
-          ? -1
-          : 0,
-      )
       this.productCategories = result.data.productCategories
     }
   },

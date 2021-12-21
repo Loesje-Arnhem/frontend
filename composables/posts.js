@@ -1,7 +1,12 @@
-import { useQuery, useResult } from '@vue/apollo-composable/dist'
-import { computed } from '@nuxtjs/composition-api'
+import {
+  useQuery,
+  useResult,
+  provideApolloClient,
+} from '@vue/apollo-composable/dist'
+import { computed, useContext } from '@nuxtjs/composition-api'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
 import PostQuery from '~/graphql/Posts/Post.gql'
+import useMeta from '~/composables/useMeta'
 
 export default ({ first = 12, notIn = null } = {}) => {
   const { result, error, loading, fetchMore } = useQuery(
@@ -54,11 +59,18 @@ export default ({ first = 12, notIn = null } = {}) => {
 }
 
 export const usePost = (slug) => {
-  const { result, error, loading } = useQuery(PostQuery, {
+  const { app } = useContext()
+  provideApolloClient(app.apolloProvider?.defaultClient)
+  const { setSEO } = useMeta()
+  const { result, error, loading, onResult } = useQuery(PostQuery, {
     slug,
   })
 
   const post = useResult(result)
+
+  onResult((queryResult) => {
+    setSEO(queryResult.data.post.seo)
+  })
 
   return {
     post,

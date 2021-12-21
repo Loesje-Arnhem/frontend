@@ -9,7 +9,7 @@
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
 
-import useNewsletter from '~/compositions/newsletter'
+import useNewsletter from '~/composables/newsletter'
 export default defineComponent({
   layout: 'none',
   setup() {

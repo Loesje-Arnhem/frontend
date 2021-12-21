@@ -1,11 +1,9 @@
 fragment relatedProductsPageGroup on Page_Relatedproductsgroup {
   title: relatedProductsTitle
   relatedProductsProducts {
-    ... on Page_Relatedproductsgroup_relatedProductsProducts {
-      product {
-        ... on Product {
-          databaseId
-        }
+    product {
+      ... on SimpleProduct {
+        databaseId
       }
     }
   }
