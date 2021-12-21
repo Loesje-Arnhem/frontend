@@ -7,6 +7,10 @@
       :video="page.videoGroup.youtubeId"
     />
     <related-posters-section :related-posters="page.relatedPosters" />
+    <lazy-related-products-section
+      :related-products="page.relatedProducts"
+      :title="page.relatedPosters.title"
+    />
   </div>
 </template>
 

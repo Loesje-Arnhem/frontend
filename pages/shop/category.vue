@@ -12,9 +12,8 @@
 </template>
 
 <script>
-import { computed, defineComponent, useRoute } from '@nuxtjs/composition-api'
-import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
-import getSeoMetaData from '~/utils/seo'
+import { defineComponent, useRoute, computed } from '@nuxtjs/composition-api'
+import { useProductCategory } from '~/composables/useProductCategory'
 
 export default defineComponent({
   setup() {
@@ -22,34 +21,20 @@ export default defineComponent({
     const slug = computed(() => {
       return route.value.params.subcategory || route.value.params.category
     })
+    const { productCategory, loading } = useProductCategory(slug.value)
+
     return {
       slug,
+      productCategory,
+      loading,
     }
   },
-  async asyncData({ app, params }) {
-    const { defaultClient } = app.apolloProvider
 
-    const slug = params.subcategory ? params.subcategory : params.category
-
-    const productCategory = await defaultClient.query({
-      query: ProductCategoryQuery,
-      variables: {
-        slug,
-      },
-    })
-
-    return {
-      productCategory: productCategory.data.productCategory,
-    }
-  },
   nuxtI18n: {
     paths: {
       nl: '/winkeltje/categorie/:category/:subcategory?',
     },
   },
-
-  head() {
-    return getSeoMetaData(this.productCategory.seo)
-  },
+  head: {},
 })
 </script>

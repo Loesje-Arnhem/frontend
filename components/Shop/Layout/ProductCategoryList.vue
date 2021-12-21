@@ -32,23 +32,17 @@
 </template>
 
 <script>
-import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories.gql'
-export default {
-  data() {
-    return {
-      productCategories: {},
-    }
-  },
+import { defineComponent } from '@nuxtjs/composition-api'
+import useProductCategories from '~/composables/useProductCategory'
 
-  async fetch() {
-    const result = await this.$apollo.query({
-      query: ProductCategoriesQuery,
-    })
-    if (result.data) {
-      this.productCategories = result.data.productCategories
+export default defineComponent({
+  setup() {
+    const { productCategories } = useProductCategories()
+    return {
+      productCategories,
     }
   },
-}
+})
 </script>
 
 <style scoped lang="postcss">

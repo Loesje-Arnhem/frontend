@@ -9,7 +9,7 @@
         v-if="posts && posts.edges.length"
         :posts="posts.edges"
       />
-      <load-more
+      <load-more-by-click
         v-if="hasNextPage"
         :loading="loading"
         :title="$t('btnMore')"
@@ -20,17 +20,10 @@
 </template>
 
 <script>
-import PostsOverviewList from '~/components/Posts/Overview/PostsOverviewList.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 import usePosts from '~/composables/posts'
-import LoadMore from '~/components/LoadMore/LoadMoreByClick.vue'
 
-export default {
-  components: {
-    PostsOverviewList,
-    CenterWrapper,
-    LoadMore,
-  },
+export default defineComponent({
   props: {
     notIn: {
       type: Number,
@@ -39,14 +32,13 @@ export default {
   },
   setup(props) {
     const { notIn } = props
-    const { posts, loading, error, loadMore, hasNextPage } = usePosts({
+    const { posts, loading, loadMore, hasNextPage } = usePosts({
       notIn,
     })
 
     return {
       posts,
       loading,
-      error,
       loadMore,
       hasNextPage,
     }
@@ -59,7 +51,7 @@ export default {
       return this.$t('title')
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

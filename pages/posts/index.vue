@@ -2,8 +2,10 @@
   <div>
     <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
     <posts-overview-section />
-    <!-- <related-posters-section :related-posters="page.relatedPosters" /> -->
-    <!-- <related-products-section :related-products="page.relatedProducts" /> -->
+    <template v-if="page">
+      <related-posters-section :related-posters="page.relatedPosters" />
+      <related-products-section :related-products="page.relatedProducts" />
+    </template>
   </div>
 </template>
 

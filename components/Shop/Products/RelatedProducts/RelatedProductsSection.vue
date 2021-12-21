@@ -1,11 +1,12 @@
 <template>
   <section
+    v-if="databaseIds.length"
     aria-labelledby="featured-products"
     :class="$style['featured-products']"
   >
     <center-wrapper>
       <h1 id="featured-products">{{ title }}</h1>
-      <product-list :where="where" :size="size" />
+      <product-list :where="{ include: databaseIds }" :size="size" />
 
       <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
@@ -41,14 +42,9 @@ export default defineComponent({
       return []
     })
 
-    const where = computed(() => {
-      return {
-        include: databaseIds.value,
-      }
-    })
     return {
+      databaseIds,
       title,
-      where,
     }
   },
 })
