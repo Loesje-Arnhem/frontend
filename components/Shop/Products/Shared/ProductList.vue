@@ -1,7 +1,8 @@
 <template>
-  <ul v-if="products.length" :class="$style.list">
+  <app-loader v-if="loading" />
+  <ul v-else-if="products" :class="$style.list">
     <product-tile
-      v-for="product in products"
+      v-for="product in products.edges"
       :key="product.node.id"
       :product="product.node"
     />
@@ -9,19 +10,28 @@
 </template>
 
 <script>
-import ProductTile from '~/components/Shop/ProductTile.vue'
+import { defineComponent } from '@nuxtjs/composition-api'
+import useProducts from '~/composables/useProduct'
 
-export default {
-  components: {
-    ProductTile,
-  },
+export default defineComponent({
   props: {
-    products: {
-      type: Array,
-      default: () => [],
+    where: {
+      type: Object,
+      default: () => {},
+    },
+    size: {
+      type: Number,
+      default: 99,
     },
   },
-}
+  setup(props) {
+    const { products, loading } = useProducts(props.where, props.size)
+    return {
+      products,
+      loading,
+    }
+  },
+})
 </script>
 
 <style module lang="postcss">

@@ -1,10 +1,11 @@
 <template>
   <shop-wrapper>
+    <app-loader v-if="loading" />
     <template v-if="page">
       <h1>{{ page.title }}</h1>
       <p v-if="page.content" v-html="page.content" />
     </template>
-    <products-container />
+    <product-list :where="{ featured: true }" />
   </shop-wrapper>
 </template>
 

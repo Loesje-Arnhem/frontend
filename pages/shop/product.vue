@@ -1,43 +1,30 @@
 <template>
   <shop-wrapper>
-    <product-details :product="product" />
-
-    <product-list-section :related-products="product.related.edges" />
+    <app-loader v-if="loading" />
+    <product-details v-if="product" :product="product" />
   </shop-wrapper>
 </template>
 
 <script>
-import ProductDetails from '~/components/Shop/Products/ProductDetails/ProductDetails.vue'
-import ProductListSection from '~/components/Shop/Products/ProductList/ProductListSection.vue'
-import ProductQuery from '~/graphql/Products/Product.gql'
-import ShopWrapper from '~/components/Shop/Layout/ShopWrapper.vue'
+import { defineComponent, useRoute } from '@nuxtjs/composition-api'
+import { useProduct } from '~/composables/useProduct'
 
-export default {
-  components: {
-    ShopWrapper,
-    ProductDetails,
-    ProductListSection,
-  },
-  async asyncData({ app, params }) {
-    const product = await app.apolloProvider.defaultClient.query({
-      query: ProductQuery,
-      variables: {
-        slug: params.slug,
-      },
-    })
+export default defineComponent({
+  setup() {
+    const route = useRoute()
+    const { product, loading } = useProduct(route.value.params.slug)
+
     return {
-      product: product.data.product,
+      product,
+      loading,
     }
   },
+
   nuxtI18n: {
     paths: {
       nl: '/winkeltje/:slug',
     },
   },
-  head() {
-    return {
-      title: this.product.name,
-    }
-  },
-}
+  head: {},
+})
 </script>

@@ -1,12 +1,11 @@
 <template>
   <section
-    v-if="databaseIds.length"
     aria-labelledby="featured-products"
     :class="$style['featured-products']"
   >
     <center-wrapper>
       <h1 id="featured-products">{{ title }}</h1>
-      <products-container :database-ids="databaseIds" :size="size" />
+      <product-list :where="where" :size="size" />
 
       <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
@@ -16,7 +15,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, computed } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   props: {
@@ -29,18 +28,28 @@ export default defineComponent({
       default: 99,
     },
   },
-  computed: {
-    title() {
-      return this.relatedProducts.title || this.$t('title')
-    },
-    databaseIds() {
-      if (this.relatedProducts.relatedProductsProducts) {
-        return this.relatedProducts.relatedProductsProducts.map(
+  setup(props, { root }) {
+    const title = computed(() => {
+      return props.relatedProducts.title || root.$t('title')
+    })
+    const databaseIds = computed(() => {
+      if (props.relatedProducts.relatedProductsProducts) {
+        return props.relatedProducts.relatedProductsProducts.map(
           (product) => product.product.databaseId,
         )
       }
       return []
-    },
+    })
+
+    const where = computed(() => {
+      return {
+        include: databaseIds.value,
+      }
+    })
+    return {
+      title,
+      where,
+    }
   },
 })
 </script>

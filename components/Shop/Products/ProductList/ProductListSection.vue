@@ -1,7 +1,7 @@
 <template>
   <section aria-labelledby="featured-products">
     <h1 id="featured-products">Gerelateerde producten</h1>
-    <products-container :category="category" :database-ids="databaseIds" />
+    <product-list :where="where" />
   </section>
 </template>
 
@@ -26,8 +26,13 @@ export default defineComponent({
       }
       return []
     })
+    const where = computed(() => {
+      return {
+        include: databaseIds.value,
+      }
+    })
     return {
-      databaseIds,
+      where,
     }
   },
 })

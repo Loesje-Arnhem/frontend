@@ -1,3 +1,5 @@
+#import "./../Fragments/Seo.gql"
+
 query GetProduct($slug: ID!) {
   product(id: $slug, idType: SLUG) {
     id
@@ -15,12 +17,14 @@ query GetProduct($slug: ID!) {
       regularPrice
       price
       salePrice
+      stockStatus
     }
     ... on VariableProduct {
       id
       regularPrice
       price
       salePrice
+      stockStatus
     }
 
     shortDescription
@@ -62,11 +66,8 @@ query GetProduct($slug: ID!) {
         }
       }
     }
-    ... on SimpleProduct {
-      stockStatus
-    }
-    ... on VariableProduct {
-      stockStatus
+    seo {
+      ...seo
     }
   }
 }

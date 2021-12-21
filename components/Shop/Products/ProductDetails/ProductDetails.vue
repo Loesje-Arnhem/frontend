@@ -1,15 +1,18 @@
 <template>
-  <div class="product-wrapper">
-    <div class="product-details">
-      <product-gallery :images="gallery" />
-      <div class="content">
-        <h1>{{ product.name }}</h1>
-        <div v-html="product.shortDescription"></div>
-        <form-add-to-cart :product="product" />
+  <div>
+    <div class="product-wrapper">
+      <div class="product-details">
+        <product-gallery :images="gallery" />
+        <div class="content">
+          <h1>{{ product.name }}</h1>
+          <div v-html="product.shortDescription"></div>
+          <form-add-to-cart :product="product" />
+        </div>
       </div>
+      <h2>Beschrijving</h2>
+      <div class="description" v-html="product.description"></div>
     </div>
-    <h2>Beschrijving</h2>
-    <div class="description" v-html="product.description"></div>
+    <product-list-section :related-products="product.related.edges" />
   </div>
 </template>
 
