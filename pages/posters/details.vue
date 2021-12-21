@@ -1,5 +1,6 @@
 <template>
-  <div v-if="poster">
+  <app-loader v-if="loading" />
+  <div v-else-if="poster">
     <center-wrapper>
       <poster-details :poster="poster" />
     </center-wrapper>
@@ -13,39 +14,35 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
-import PosterQuery from '~/graphql/Posters/Poster.gql'
-import getSeoMetaData from '~/utils/seo'
+import { defineComponent, useRoute, computed } from '@nuxtjs/composition-api'
+import { usePoster } from '~/composables/posters'
 
 export default defineComponent({
-  async asyncData({ app, params }) {
-    const { defaultClient } = app.apolloProvider
-    const result = await defaultClient.query({
-      query: PosterQuery,
-      variables: {
-        slug: params.slug,
-      },
-    })
-    return {
-      poster: result.data.poster,
-    }
-  },
-  head() {
-    return getSeoMetaData(this.poster.seo)
-  },
-  computed: {
-    subjects() {
-      if (!this.poster) {
+  setup() {
+    const route = useRoute()
+
+    const { poster, loading } = usePoster(route.value.params.slug)
+
+    const subjects = computed(() => {
+      if (!poster.value) {
         return []
       }
-      if (this.poster.subjects.edges.length) {
-        return this.poster.subjects.edges.map(
+      if (poster.value.subjects.edges.length) {
+        return poster.value.subjects.edges.map(
           (subject) => subject.node.databaseId,
         )
       }
       return []
-    },
+    })
+
+    return {
+      subjects,
+      loading,
+      poster,
+    }
   },
+
+  head: {},
   nuxtI18n: {
     paths: {
       nl: '/posters/:slug',
