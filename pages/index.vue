@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
+  <div v-if="page">
+    <h1 class="sr-only">{{ page.title }}</h1>
+    <lazy-related-products-section
+      v-if="page"
+      :related-products="page.relatedProducts"
+      :title="page.relatedPosters.title"
+    />
     <latest-posts-section />
     <lazy-related-posters-section
       v-if="page"
       :related-posters="page.relatedPosters"
     />
     <lazy-app-stores-section />
-    <lazy-related-products-section
-      v-if="page"
-      :related-products="page.relatedProducts"
-      :title="page.relatedPosters.title"
-    />
-    <block-instagram /> -->
+    <block-instagram />
     <lazy-groups />
   </div>
 </template>

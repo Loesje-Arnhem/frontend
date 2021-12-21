@@ -6,11 +6,7 @@
   >
     <center-wrapper>
       <h1 id="featured-products">{{ title }}</h1>
-      <products-container :database-ids="databaseIds" :size="size">
-        <template #default="data">
-          <product-list v-if="data" :products="data.products" />
-        </template>
-      </products-container>
+      <products-container :database-ids="databaseIds" :size="size" />
 
       <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}

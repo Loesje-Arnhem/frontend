@@ -26,6 +26,7 @@
     "core-js": "^3.19.1",
     "css-paint-polyfill": "^3.3.0",
     "graphql-tag": "^2.12.6",
+    "jwt-decode": "^3.1.2",
     "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.27.2",
     "smoothscroll-polyfill": "^0.4.4",

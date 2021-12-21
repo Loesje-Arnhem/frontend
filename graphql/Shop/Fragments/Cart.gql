@@ -1,12 +1,31 @@
-#import "./../../Products/Fragments/ProductDetails.gql"
-
 fragment cart on Cart {
   contents {
     nodes {
       key
       product {
         node {
-          ...productDetails
+          id
+          databaseId
+          name
+          image {
+            id
+            altText
+            thumbnail: sourceUrl(size: THUMBNAIL)
+            medium: sourceUrl(size: MEDIUM)
+            mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+          }
+          ... on SimpleProduct {
+            id
+            regularPrice
+            price
+            salePrice
+          }
+          ... on VariableProduct {
+            id
+            regularPrice
+            price
+            salePrice
+          }
         }
       }
       variation {

@@ -1,8 +1,28 @@
-#import "./Fragments/ProductDetails.gql"
-
-query Product($slug: ID!) {
+query GetProduct($slug: ID!) {
   product(id: $slug, idType: SLUG) {
-    ...productDetails
+    id
+    databaseId
+    name
+    image {
+      id
+      altText
+      thumbnail: sourceUrl(size: THUMBNAIL)
+      medium: sourceUrl(size: MEDIUM)
+      mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+    }
+    ... on SimpleProduct {
+      id
+      regularPrice
+      price
+      salePrice
+    }
+    ... on VariableProduct {
+      id
+      regularPrice
+      price
+      salePrice
+    }
+
     shortDescription
     description
     globalAttributes {
