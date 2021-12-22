@@ -21,7 +21,7 @@
 
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
-import usePosts from '~/composables/posts'
+import usePosts from '~/composables/usePost'
 
 export default defineComponent({
   props: {

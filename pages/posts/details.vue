@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, useRoute } from '@nuxtjs/composition-api'
-import { usePost } from '~/composables/posts'
+import { usePost } from '~/composables/usePost'
 
 export default defineComponent({
   setup() {

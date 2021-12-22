@@ -24,16 +24,13 @@
 </template>
 
 <script lang="ts">
-import { useQuery, useResult } from '@vue/apollo-composable'
 import { defineComponent } from '@nuxtjs/composition-api'
-import PostsQuery from '~/graphql/Posts/Posts.gql'
-
+import usePosts from '~/composables/usePost'
 export default defineComponent({
   setup() {
-    const { result, loading } = useQuery(PostsQuery, {
+    const { posts, loading } = usePosts({
       first: 3,
     })
-    const posts = useResult(result)
 
     return {
       loading,

@@ -26,6 +26,7 @@ export default ({ first = 12, notIn = null } = {}) => {
     const { endCursor } = posts.value.pageInfo
     await fetchMore({
       variables: {
+        // @ts-ignore
         after: endCursor,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
@@ -58,7 +59,7 @@ export default ({ first = 12, notIn = null } = {}) => {
   }
 }
 
-export const usePost = (slug) => {
+export const usePost = (slug: string) => {
   const { app } = useContext()
   provideApolloClient(app.apolloProvider?.defaultClient)
   const { setSEO } = useMeta()

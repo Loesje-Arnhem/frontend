@@ -6,7 +6,7 @@
   >
     <center-wrapper>
       <h1 id="featured-products">{{ title }}</h1>
-      <product-list :where="{ include: databaseIds }" :size="size" />
+      <product-list :where="{ include: databaseIds }" :first="first" />
 
       <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
@@ -24,7 +24,7 @@ export default defineComponent({
       type: Object,
       default: () => {},
     },
-    size: {
+    first: {
       type: Number,
       default: 99,
     },
