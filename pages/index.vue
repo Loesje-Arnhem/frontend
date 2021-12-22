@@ -1,6 +1,6 @@
 <template>
-  <div v-if="page">
-    <h1 class="sr-only">{{ page.title }}</h1>
+  <div>
+    <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
     <latest-posts-section />
     <lazy-related-posters-section
       v-if="page"

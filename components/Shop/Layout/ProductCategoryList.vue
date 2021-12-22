@@ -1,6 +1,7 @@
 <template>
   <nav aria-labelledby="categories-title" class="categories tile">
     <h2 id="categories-title" class="sr-only">Categorien</h2>
+    <app-loader v-if="loading" />
     <ul v-if="productCategories" class="category-list">
       <template v-for="productCategory in productCategories.edges">
         <li
@@ -37,9 +38,10 @@ import useProductCategories from '~/composables/useProductCategory'
 
 export default defineComponent({
   setup() {
-    const { productCategories } = useProductCategories()
+    const { productCategories, loading } = useProductCategories()
     return {
       productCategories,
+      loading,
     }
   },
 })
