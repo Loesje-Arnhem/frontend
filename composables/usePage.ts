@@ -8,7 +8,8 @@ import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
 import useMeta from '~/composables/useMeta'
-import { IPageDetail, IPages } from '~/interfaces/IPage'
+import { IPages } from '~/interfaces/IPages'
+import { IPageDetail } from '~/interfaces/IPageDetail'
 
 export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
   const { result, error, loading, onError } = useQuery(RelatedPagesQuery, {

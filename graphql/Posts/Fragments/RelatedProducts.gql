@@ -1,6 +1,6 @@
 fragment relatedProductsPostGroup on Post_Relatedproductsgroup {
   title: relatedProductsTitle
-  relatedProductsProducts {
+  products: relatedProductsProducts {
     ... on Post_Relatedproductsgroup_relatedProductsProducts {
       product {
         ... on Product {

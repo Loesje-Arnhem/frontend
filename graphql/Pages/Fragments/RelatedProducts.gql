@@ -1,6 +1,6 @@
 fragment relatedProductsPageGroup on Page_Relatedproductsgroup {
   title: relatedProductsTitle
-  relatedProductsProducts {
+  products: relatedProductsProducts {
     product {
       ... on SimpleProduct {
         databaseId

@@ -11,11 +11,15 @@
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
     />
+    <lazy-related-pages-section
+      :not-in="page.databaseId"
+      :parent-page-id="parentPageId"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, useRoute } from '@nuxtjs/composition-api'
+import { computed, defineComponent, useRoute } from '@nuxtjs/composition-api'
 import { usePageByUri } from '~/composables/usePage'
 
 export default defineComponent({
@@ -24,7 +28,12 @@ export default defineComponent({
 
     const { page, loading } = usePageByUri(route.value.params.pathMatch)
 
+    const parentPageId = computed(
+      () => page.value.parentDatabaseId || page.value.databaseId,
+    )
+
     return {
+      parentPageId,
       loading,
       page,
     }

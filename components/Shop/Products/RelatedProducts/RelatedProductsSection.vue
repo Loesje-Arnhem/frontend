@@ -15,13 +15,14 @@
   </section>
 </template>
 
-<script>
-import { defineComponent, computed } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
+import { IRelatedProducts } from '~/interfaces/IRelatedProducts'
 
 export default defineComponent({
   props: {
     relatedProducts: {
-      type: Object,
+      type: Object as PropType<IRelatedProducts>,
       default: () => {},
     },
     first: {
@@ -31,11 +32,12 @@ export default defineComponent({
   },
   setup(props, { root }) {
     const title = computed(() => {
+      // @ts-ignore
       return props.relatedProducts.title || root.$t('title')
     })
     const databaseIds = computed(() => {
-      if (props.relatedProducts.relatedProductsProducts) {
-        return props.relatedProducts.relatedProductsProducts.map(
+      if (props.relatedProducts.products) {
+        return props.relatedProducts.products.map(
           (product) => product.product.databaseId,
         )
       }
