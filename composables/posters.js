@@ -15,8 +15,8 @@ export const usePosters = ({
   dateAfter = null,
   notIn = 0,
   posterIds = [],
-  subjects = [],
-  sources = [],
+  subjects = { value: [] },
+  sources = { value: [] },
 } = {}) => {
   const where = computed(() => {
     const subjectList = subjects.value ? subjects.value : subjects

@@ -3,3 +3,8 @@ export interface IContent {
   databaseId: string
   title: string
 }
+
+export interface IRelatedContent extends IContent {
+  excerpt: string
+  uri: string
+}

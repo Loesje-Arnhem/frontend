@@ -10,7 +10,11 @@
       :posters="posters.edges"
     />
     <center-wrapper>
-      <load-more v-if="hasNextPage" :loading="loading" @load-more="loadMore" />
+      <load-more-by-scroll
+        v-if="hasNextPage"
+        :loading="loading"
+        @load-more="loadMore"
+      />
       <p v-if="posters && posters.edges.length === 0 && !loading">
         Geen posters gevonden
       </p>
@@ -19,18 +23,10 @@
 </template>
 
 <script>
-import { computed } from '@nuxtjs/composition-api'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-import PosterList from '~/components/Posters/Shared/PosterList.vue'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 import { usePosters } from '~/composables/posters'
-import LoadMore from '~/components/LoadMore/LoadMoreByScroll.vue'
 
-export default {
-  components: {
-    LoadMore,
-    PosterList,
-    CenterWrapper,
-  },
+export default defineComponent({
   props: {
     search: {
       type: String,
@@ -86,7 +82,7 @@ export default {
       hasNextPage,
     }
   },
-}
+})
 </script>
 
 <i18n>

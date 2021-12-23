@@ -3,11 +3,12 @@ import {
   useResult,
   provideApolloClient,
 } from '@vue/apollo-composable/dist'
-import { useContext } from '@nuxtjs/composition-api'
+import { useContext, Ref } from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
 import useMeta from '~/composables/useMeta'
+import { IPageDetail, IPages } from '~/interfaces/IPage'
 
 export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
   const { result, error, loading, onError } = useQuery(RelatedPagesQuery, {
@@ -15,7 +16,7 @@ export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
     parentPageId: parentPageId.toString(),
   })
 
-  const relatedPages = useResult(result)
+  const relatedPages = useResult(result) as Ref<IPages>
 
   return {
     relatedPages,
@@ -33,7 +34,7 @@ export const usePageById = (id: number) => {
   const { result, onResult, loading } = useQuery(PageByIdQuery, {
     id,
   })
-  const page = useResult(result)
+  const page = useResult(result) as Ref<IPageDetail>
 
   onResult((queryResult) => {
     setSEO(queryResult.data.page.seo)
@@ -53,7 +54,7 @@ export const usePageByUri = (uri: string) => {
   const { result, onResult, loading } = useQuery(PageByUriQuery, {
     uri,
   })
-  const page = useResult(result)
+  const page = useResult(result) as Ref<IPageDetail>
 
   onResult((queryResult) => {
     setSEO(queryResult.data.page.seo)

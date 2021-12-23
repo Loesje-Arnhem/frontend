@@ -4,18 +4,16 @@
   </li>
 </template>
 
-<script>
-import PosterTile from '~/components/Posters/Shared/PosterTile.vue'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IPosterNode } from '~/interfaces/IPoster'
 
-export default {
-  components: {
-    PosterTile,
-  },
+export default defineComponent({
   props: {
     poster: {
-      type: Object,
+      type: Object as PropType<IPosterNode>,
       default: () => {},
     },
   },
-}
+})
 </script>

@@ -1,6 +1,6 @@
 export interface ISEO {
   canonical: string
-  cornerstone: string
+  cornerstone: boolean
   metaDesc: string
   opengraphAuthor: string
   opengraphDescription: string
