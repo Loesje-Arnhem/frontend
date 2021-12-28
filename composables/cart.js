@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useQuery, useResult, useMutation } from '@vue/apollo-composable/dist'
 import { ref, computed } from '@nuxtjs/composition-api'
 import { v4 } from 'uuid'
@@ -39,7 +38,7 @@ export const useCart = () => {
     return cart.value.contents.nodes.reduce((num, item) => {
       return num + item.quantity
     }, 0)
-  });
+  })
 
   return {
     totalProducts,
@@ -54,19 +53,21 @@ export const useAddToCart = (productId) => {
   const errors = ref([])
   const quantity = ref(1)
 
-  const { mutate: addToCart, loading, onError, onDone } = useMutation(
-    AddToCartQuery,
-    () => ({
-      variables: {
-        clientMutationId: v4(),
-        productId,
-        quantity: parseInt(quantity.value),
-      },
-      update(cache, { data }) {
-        updateCartCache(cache, data?.addToCart)
-      },
-    }),
-  )
+  const {
+    mutate: addToCart,
+    loading,
+    onError,
+    onDone,
+  } = useMutation(AddToCartQuery, () => ({
+    variables: {
+      clientMutationId: v4(),
+      productId,
+      quantity: parseInt(quantity.value),
+    },
+    update(cache, { data }) {
+      updateCartCache(cache, data?.addToCart)
+    },
+  }))
 
   onError(({ graphQLErrors }) => {
     errors.value = graphQLErrors.map((err) => err.message)
@@ -130,18 +131,19 @@ export const useApplyCoupon = () => {
   const code = ref('faag9a3u')
   const errors = ref([])
 
-  const { mutate: applyCoupon, loading, onError } = useMutation(
-    ApplyCouponQuery,
-    () => ({
-      variables: {
-        clientMutationId: v4(),
-        code: code.value,
-      },
-      update(cache, { data }) {
-        updateCartCache(cache, data?.applyCoupon)
-      },
-    }),
-  )
+  const {
+    mutate: applyCoupon,
+    loading,
+    onError,
+  } = useMutation(ApplyCouponQuery, () => ({
+    variables: {
+      clientMutationId: v4(),
+      code: code.value,
+    },
+    update(cache, { data }) {
+      updateCartCache(cache, data?.applyCoupon)
+    },
+  }))
   onError(({ graphQLErrors }) => {
     errors.value = graphQLErrors.map((err) => err.message)
   })
@@ -156,18 +158,19 @@ export const useApplyCoupon = () => {
 export const useRemoveCoupon = (code) => {
   const errors = ref([])
 
-  const { mutate: removeCoupon, loading, onError } = useMutation(
-    RemoveCouponsQuery,
-    () => ({
-      variables: {
-        clientMutationId: v4(),
-        codes: [code],
-      },
-      update(cache, { data }) {
-        updateCartCache(cache, data?.removeCoupons)
-      },
-    }),
-  )
+  const {
+    mutate: removeCoupon,
+    loading,
+    onError,
+  } = useMutation(RemoveCouponsQuery, () => ({
+    variables: {
+      clientMutationId: v4(),
+      codes: [code],
+    },
+    update(cache, { data }) {
+      updateCartCache(cache, data?.removeCoupons)
+    },
+  }))
   onError(({ graphQLErrors }) => {
     errors.value = graphQLErrors.map((err) => err.message)
   })

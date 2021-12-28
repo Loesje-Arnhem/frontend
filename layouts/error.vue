@@ -3,12 +3,8 @@
 </template>
 
 <script>
-import AppContent from '~/components/Shared/AppContent.vue'
-
-export default {
-  components: {
-    AppContent,
-  },
+import { defineComponent } from '@nuxtjs/composition-api'
+export default defineComponent({
   props: {
     error: {
       type: Object,
@@ -29,7 +25,7 @@ export default {
       return this.$t('title500')
     },
   },
-}
+})
 </script>
 
 <i18n>
