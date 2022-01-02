@@ -12,18 +12,6 @@
   </center-wrapper>
 </template>
 
-<script>
-import ProductCategoryList from '~/components/Shop/Layout/ProductCategoryList.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
-
-export default {
-  components: {
-    ProductCategoryList,
-    CenterWrapper,
-  },
-}
-</script>
-
 <style lang="postcss" module>
 .wrapper {
   display: grid;

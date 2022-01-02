@@ -1,19 +1,28 @@
 <template>
   <div>
-    <form-account />
+    {{ customer }}
   </div>
 </template>
 
 <script>
-import FormAccount from '~/components/Blocks/FormAccount.vue'
-export default {
-  components: {
-    FormAccount,
+import { defineComponent, useContext } from '@nuxtjs/composition-api'
+import { provideApolloClient } from '@vue/apollo-composable/dist'
+import useCustomer from '~/composables/useCustomer'
+
+export default defineComponent({
+  middleware: ['isAuth'],
+  setup() {
+    const { app } = useContext()
+    provideApolloClient(app.apolloProvider?.defaultClient)
+    const { customer } = useCustomer()
+    return {
+      customer,
+    }
   },
   nuxtI18n: {
     paths: {
       nl: '/winkeltje/account',
     },
   },
-}
+})
 </script>

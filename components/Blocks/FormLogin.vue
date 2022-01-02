@@ -4,12 +4,12 @@
       <div class="wrapper">
         <form-fieldset title="Factuurgegevens">
           <form-input-text
-            id="userName"
-            v-model="userName"
+            id="username"
+            v-model="username"
             title="Gebruikersnaam of e-mailadres"
             type="text"
-            class="userName"
-            name="userName"
+            class="username"
+            name="username"
           />
           <form-input-text
             id="password"
@@ -21,94 +21,66 @@
           />
         </form-fieldset>
         <app-button type="submit">Inloggen</app-button>
-        <p>{{ error }}</p>
-        <p>{{ user }}</p>
-      </div>
-    </form>
-    <form v-if="loggedIn" class="form" @submit.prevent="update">
-      <div class="wrapper">
-        <button @click="logout">Uitloggen</button>
+        <p>{{ errors }}</p>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import { v4 } from 'uuid'
-import FormFieldset from '~/components/Forms/FormFieldset.vue'
-import FormInputText from '~/components/Forms/FormInputText.vue'
-import AppButton from '~/components/Shared/AppButton.vue'
+import {
+  useContext,
+  ref,
+  defineComponent,
+  useRouter,
+} from '@nuxtjs/composition-api'
+import { useMutation } from '@vue/apollo-composable/dist'
 import LoginQuery from '~/graphql/Customer/Login.gql'
-import UpdateCustomerMutation from '~/graphql/Customer/Update.gql'
 
-export default {
-  components: {
-    AppButton,
-    FormFieldset,
-    FormInputText,
-  },
-  data() {
+export default defineComponent({
+  setup() {
+    const { $apolloHelpers } = useContext()
+    const errors = ref([])
+    const username = ref('')
+    const password = ref('')
+    const router = useRouter()
+
+    const {
+      mutate: login,
+      loading,
+      onError,
+      onDone,
+    } = useMutation(LoginQuery, () => ({
+      variables: {
+        input: {
+          clientMutationId: v4(),
+          username: username.value,
+          password: password.value,
+        },
+      },
+    }))
+
+    onError(({ graphQLErrors }) => {
+      errors.value = graphQLErrors.map((err) => err.message)
+    })
+
+    onDone(async ({ data }) => {
+      await $apolloHelpers.onLogin(data.login.authToken)
+      router.push('/winkeltje/account')
+    })
+
     return {
-      userName: 'michiel',
-      password: '8GJYBIMBqF9s*2D#rS',
-      error: null,
-      user: null,
+      errors,
+      login,
+      loading,
+      onError,
+      onDone,
+      username,
+      password,
     }
   },
-  computed: {
-    loggedIn() {
-      return !!this.$apolloHelpers.getToken()
-    },
-  },
-  methods: {
-    ...mapActions({
-      add: 'customer/add',
-    }),
-    async login() {
-      try {
-        const res = await this.$apollo.mutate({
-          mutation: LoginQuery,
-          variables: {
-            input: {
-              username: this.userName,
-              password: this.password,
-              clientMutationId: v4(),
-            },
-          },
-        })
-        await this.$apolloHelpers.onLogin(res.data.login.authToken)
-        // const customer = { ...res.data.login.customer }
-        // this.add(customer)
-        // this.user = res.data.login.customer
-      } catch (error) {
-        this.error = error
-      }
-    },
-    async logout() {
-      await this.$apolloHelpers.onLogout()
-    },
-    async update() {
-      try {
-        const res = await this.$apollo.mutate({
-          mutation: UpdateCustomerMutation,
-          variables: {
-            input: {
-              firstName: this.user.firstName,
-              lastName: this.user.lastName,
-              username: this.user.userName,
-              id: this.user.id,
-              clientMutationId: 'update',
-            },
-          },
-        })
-        this.user = res.data.updateCustomer.customer
-      } catch (error) {
-        this.error = error
-      }
-    },
-  },
-}
+})
 </script>
 
 <style lang="postcss" scoped>

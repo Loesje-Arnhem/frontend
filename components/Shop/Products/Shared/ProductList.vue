@@ -1,12 +1,15 @@
 <template>
   <app-loader v-if="loading" />
-  <ul v-else-if="products" :class="$style.list">
-    <product-tile
-      v-for="product in products.edges"
-      :key="product.node.id"
-      :product="product.node"
-    />
-  </ul>
+  <div v-else-if="products">
+    <ul v-if="products.edges.length" :class="$style.list">
+      <product-tile
+        v-for="product in products.edges"
+        :key="product.node.id"
+        :product="product.node"
+      />
+    </ul>
+    <p v-else>Geen producten gevonden</p>
+  </div>
 </template>
 
 <script>

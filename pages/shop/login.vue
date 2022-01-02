@@ -1,19 +1,19 @@
 <template>
-  <shop-wrapper>
-    <form-login />
-  </shop-wrapper>
+  <form-login />
 </template>
 
 <script>
-import FormLogin from '~/components/Blocks/FormLogin.vue'
-export default {
-  components: {
-    FormLogin,
+import { useContext, defineComponent } from '@nuxtjs/composition-api'
+import { provideApolloClient } from '@vue/apollo-composable/dist'
+export default defineComponent({
+  setup() {
+    const { app } = useContext()
+    provideApolloClient(app.apolloProvider?.defaultClient)
   },
   nuxtI18n: {
     paths: {
       nl: '/winkeltje/inloggen',
     },
   },
-}
+})
 </script>

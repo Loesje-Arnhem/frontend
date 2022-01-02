@@ -2,7 +2,7 @@
   <nav :class="$style.nav">
     <ul :class="$style.list">
       <li>
-        <nuxt-link :to="localePath({ name: 'shop-cart' })">
+        <nuxt-link :to="localePath({ name: 'shop-account' })">
           Mijn account
         </nuxt-link>
       </li>

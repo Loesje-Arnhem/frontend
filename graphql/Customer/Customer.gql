@@ -1,0 +1,7 @@
+#import "./Fragments/Customer.gql"
+
+query GetCustomer {
+  customer {
+    ...customer
+  }
+}
