@@ -1,21 +1,35 @@
 <template>
-  <div>
-    {{ customer }}
-  </div>
+  <center-wrapper>
+    <app-loader v-if="loading" />
+    <address-fields v-else-if="customer" :user="customer.shipping" />
+
+    <app-button @click="logout">logout</app-button>
+  </center-wrapper>
 </template>
 
 <script>
-import { defineComponent, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, useContext, useRouter } from '@nuxtjs/composition-api'
 import { provideApolloClient } from '@vue/apollo-composable/dist'
 import useCustomer from '~/composables/useCustomer'
 
 export default defineComponent({
   middleware: ['isAuth'],
   setup() {
-    const { app } = useContext()
+    const { app, $apolloHelpers } = useContext()
     provideApolloClient(app.apolloProvider?.defaultClient)
-    const { customer } = useCustomer()
+
+    const router = useRouter()
+
+    const { customer, loading } = useCustomer()
+
+    const logout = async () => {
+      await $apolloHelpers.onLogout()
+      router.push('/winkeltje/inloggen')
+    }
+
     return {
+      loading,
+      logout,
       customer,
     }
   },

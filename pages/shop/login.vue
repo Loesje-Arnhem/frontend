@@ -2,7 +2,7 @@
   <form-login />
 </template>
 
-<script>
+<script lang="ts">
 import { useContext, defineComponent } from '@nuxtjs/composition-api'
 import { provideApolloClient } from '@vue/apollo-composable/dist'
 export default defineComponent({
