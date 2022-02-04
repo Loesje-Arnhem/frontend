@@ -6,5 +6,5 @@ export default [
   '@nuxtjs/axios',
   '@nuxtjs/apollo',
   '@nuxt/image',
-  'nuxt-i18n',
+  '@nuxtjs/i18n',
 ]
