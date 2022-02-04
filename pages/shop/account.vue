@@ -1,10 +1,25 @@
 <template>
-  <center-wrapper>
+  <page-with-sidebar>
+    <template #sidebar>
+      <ul>
+        <li>Dashboard</li>
+        <li>
+          <nuxt-link :to="localePath({ name: 'shop-orders' })"
+            >Bestellingen</nuxt-link
+          >
+        </li>
+        <li>Adres</li>
+        <li>
+          <nuxt-link :to="localePath({ name: 'shop-account' })"
+            >Accountgegevens</nuxt-link
+          >
+        </li>
+        <li><app-button @click="logout">logout</app-button></li>
+      </ul>
+    </template>
     <app-loader v-if="loading" />
     <address-fields v-else-if="customer" :user="customer.shipping" />
-
-    <app-button @click="logout">logout</app-button>
-  </center-wrapper>
+  </page-with-sidebar>
 </template>
 
 <script>
@@ -24,7 +39,7 @@ export default defineComponent({
 
     const logout = async () => {
       await $apolloHelpers.onLogout()
-      router.push('/winkeltje/inloggen')
+      router.push(app.localePath({ name: 'shop-login' }))
     }
 
     return {

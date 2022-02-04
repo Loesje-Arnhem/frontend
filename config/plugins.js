@@ -2,7 +2,7 @@
  ** Plugins to load before mounting the App
  */
 export default [
-  '~/plugins/axios',
+  // '~/plugins/axios',
   '~/plugins/apollo',
   { src: '~/plugins/houdini', mode: 'client' },
   { src: '~/plugins/vuex-persist', mode: 'client' },

@@ -1,5 +1,5 @@
 <template>
-  <nav aria-labelledby="categories-title" class="categories tile">
+  <nav aria-labelledby="categories-title" class="categories">
     <h2 id="categories-title" class="sr-only">Categorien</h2>
     <app-loader v-if="loading" />
     <ul v-if="productCategories" class="category-list">
@@ -48,10 +48,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="postcss">
-.categories {
-  padding: var(--spacing-s);
-}
-
 .category-list {
   @mixin list-reset;
 

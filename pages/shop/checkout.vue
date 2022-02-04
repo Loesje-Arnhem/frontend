@@ -45,20 +45,20 @@
 import PaymentGatewaysQuery from '~/graphql/Shop/PaymentGateways.gql'
 import { useCheckout } from '~/composables/checkout'
 import { checkoutPageId } from '~/data/pages'
-import PageByIdQuery from '~/graphql/Pages/PageById.gql'
-import getSeoMetaData from '~/utils/seo'
+import { usePageById } from '~/composables/usePage'
 
 export default {
   setup() {
     const {
       checkout,
-      loading,
       paymentMethod,
       billing,
       shipping,
       shipToDifferentAddress,
       addToNewsletter,
     } = useCheckout()
+
+    const { page, loading } = usePageById(checkoutPageId)
     const updateBillingField = (key, value) => {
       billing[key] = value
     }
@@ -67,10 +67,11 @@ export default {
     }
 
     return {
+      page,
+      loading,
       shipToDifferentAddress,
       updateBillingField,
       updateShippingField,
-      loading,
       checkout,
       paymentMethod,
       billing,
@@ -81,23 +82,14 @@ export default {
   async asyncData({ app }) {
     const { defaultClient } = app.apolloProvider
 
-    const page = await defaultClient.query({
-      query: PageByIdQuery,
-      variables: {
-        id: checkoutPageId,
-      },
-    })
     const result = await defaultClient.query({
       query: PaymentGatewaysQuery,
     })
     return {
       paymentGateways: result.data.paymentGateways,
-      page: page.data.page,
     }
   },
-  head() {
-    return getSeoMetaData(this.page.seo)
-  },
+  head() {},
   nuxtI18n: {
     paths: {
       nl: '/winkeltje/afrekenen',

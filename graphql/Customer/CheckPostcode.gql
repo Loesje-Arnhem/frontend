@@ -1,0 +1,5 @@
+mutation CheckPostcode($houseNumber: Int, $postcode: String) {
+  checkPostcode(input: { houseNumber: $houseNumber, postcode: $postcode }) {
+    response
+  }
+}

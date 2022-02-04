@@ -40,7 +40,7 @@ import LoginQuery from '~/graphql/Customer/Login.gql'
 
 export default defineComponent({
   setup() {
-    const { $apolloHelpers } = useContext()
+    const { app, $apolloHelpers } = useContext()
     const errors = ref([])
     const username = ref('')
     const password = ref('')
@@ -67,7 +67,7 @@ export default defineComponent({
 
     onDone(async ({ data }) => {
       await $apolloHelpers.onLogin(data.login.authToken)
-      router.push('/winkeltje/account')
+      router.push(app.localePath({ name: 'shop-account' }))
     })
 
     return {

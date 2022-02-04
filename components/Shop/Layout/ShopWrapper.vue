@@ -1,34 +1,13 @@
 <template>
-  <center-wrapper>
-    <shop-header />
-    <div :class="$style.wrapper">
-      <div :class="$style['categories-column']">
-        <product-category-list :class="$style.categories" />
-      </div>
-      <div>
-        <slot />
-      </div>
-    </div>
-  </center-wrapper>
+  <div>
+    <center-wrapper>
+      <shop-header />
+    </center-wrapper>
+    <page-with-sidebar>
+      <template #sidebar>
+        <product-category-list />
+      </template>
+      <slot />
+    </page-with-sidebar>
+  </div>
 </template>
-
-<style lang="postcss" module>
-.wrapper {
-  display: grid;
-  grid-gap: 1rem;
-
-  @media (--viewport-lg) {
-    grid-template-columns: 1fr 3fr;
-  }
-}
-
-.categories-column {
-  position: relative;
-}
-
-.categories {
-  position: sticky;
-  top: 4.5em;
-  margin-bottom: 1em;
-}
-</style>

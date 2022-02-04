@@ -28,8 +28,8 @@ export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
 }
 
 export const usePageById = (id: number) => {
-  const { app } = useContext()
-  provideApolloClient(app.apolloProvider?.defaultClient)
+  // const { app } = useContext()
+  // provideApolloClient(app.apolloProvider?.defaultClient)
 
   const { setSEO } = useMeta()
   const { result, onResult, loading } = useQuery(PageByIdQuery, {

@@ -10,6 +10,7 @@ export default [
   '~/components/Carousel',
   '~/components/Footer',
   '~/components/Forms',
+  '~/components/Forms/Fields',
   '~/components/Layout',
   '~/components/LoadMore',
   '~/components/Menu',
