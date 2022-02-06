@@ -1,9 +1,5 @@
-import {
-  useQuery,
-  useResult,
-  provideApolloClient,
-} from '@vue/apollo-composable/dist'
-import { useContext, Ref } from '@nuxtjs/composition-api'
+import { useQuery, useResult } from '@vue/apollo-composable/dist'
+import { Ref } from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
@@ -28,9 +24,6 @@ export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
 }
 
 export const usePageById = (id: number) => {
-  const { app } = useContext()
-  provideApolloClient(app.apolloProvider?.defaultClient)
-
   const { setSEO } = useMeta()
   const { result, onResult, loading } = useQuery(PageByIdQuery, {
     id,
@@ -48,9 +41,6 @@ export const usePageById = (id: number) => {
 }
 
 export const usePageByUri = (uri: string) => {
-  const { app } = useContext()
-  provideApolloClient(app.apolloProvider?.defaultClient)
-
   const { setSEO } = useMeta()
   const { result, onResult, loading } = useQuery(PageByUriQuery, {
     uri,

@@ -1,9 +1,5 @@
-import { computed, useContext } from '@nuxtjs/composition-api'
-import {
-  useQuery,
-  useResult,
-  provideApolloClient,
-} from '@vue/apollo-composable/dist'
+import { computed } from '@nuxtjs/composition-api'
+import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import PostersQuery from '~/graphql/Posters/Posters.gql'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
 import useMeta from '~/composables/useMeta'
@@ -121,8 +117,6 @@ export const usePosters = ({
 }
 
 export const usePoster = (slug) => {
-  const { app } = useContext()
-  provideApolloClient(app.apolloProvider?.defaultClient)
   const { setSEO } = useMeta()
   const { result, error, loading, onResult } = useQuery(PosterQuery, {
     slug,

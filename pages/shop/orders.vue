@@ -30,19 +30,12 @@
 </template>
 
 <script>
-import { defineComponent, useContext } from '@nuxtjs/composition-api'
-import {
-  provideApolloClient,
-  useQuery,
-  useResult,
-} from '@vue/apollo-composable/dist'
+import { defineComponent } from '@nuxtjs/composition-api'
+import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import CustomerQuery from '~/graphql/Customer/Orders.gql'
 
 export default defineComponent({
   setup() {
-    const { app } = useContext()
-    provideApolloClient(app.apolloProvider?.defaultClient)
-
     const { error, loading, onError, onResult, result } =
       useQuery(CustomerQuery)
     const customer = useResult(result)

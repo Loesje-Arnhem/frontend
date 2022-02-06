@@ -23,16 +23,12 @@
 </template>
 
 <script>
-import { defineComponent, useContext, useRouter } from '@nuxtjs/composition-api'
-import { provideApolloClient } from '@vue/apollo-composable/dist'
+import { defineComponent, useRouter } from '@nuxtjs/composition-api'
 import useCustomer from '~/composables/useCustomer'
 
 export default defineComponent({
   middleware: ['isAuth'],
   setup() {
-    const { app, $apolloHelpers } = useContext()
-    provideApolloClient(app.apolloProvider?.defaultClient)
-
     const router = useRouter()
 
     const { customer, loading } = useCustomer()

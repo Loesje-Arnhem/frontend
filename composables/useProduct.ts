@@ -1,17 +1,9 @@
-import {
-  useQuery,
-  useResult,
-  provideApolloClient,
-} from '@vue/apollo-composable/dist'
-import { useContext } from '@nuxtjs/composition-api'
+import { useQuery, useResult } from '@vue/apollo-composable/dist'
 import ProductsQuery from '~/graphql/Products/Products.gql'
 import ProductQuery from '~/graphql/Products/Product.gql'
 import useMeta from '~/composables/useMeta'
 
 export default (where = {}, size = 99) => {
-  const { app } = useContext()
-  provideApolloClient(app.apolloProvider?.defaultClient)
-
   const { result, error, loading } = useQuery(ProductsQuery, {
     where: {
       stockStatus: 'IN_STOCK',
@@ -30,9 +22,6 @@ export default (where = {}, size = 99) => {
 }
 
 export const useProduct = (slug: string) => {
-  const { app } = useContext()
-  provideApolloClient(app.apolloProvider?.defaultClient)
-
   const { setSEO } = useMeta()
   const { result, error, loading, onResult } = useQuery(ProductQuery, {
     slug,

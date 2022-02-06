@@ -3,13 +3,8 @@
 </template>
 
 <script lang="ts">
-import { useContext, defineComponent } from '@nuxtjs/composition-api'
-import { provideApolloClient } from '@vue/apollo-composable/dist'
+import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
-  setup() {
-    const { app } = useContext()
-    provideApolloClient(app.apolloProvider?.defaultClient)
-  },
   nuxtI18n: {
     paths: {
       nl: '/winkeltje/inloggen',
