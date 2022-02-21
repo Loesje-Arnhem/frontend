@@ -26,8 +26,7 @@
             :class="$style.mood"
             loading="lazy"
             src="/images/casette-player.png"
-            quality="80"
-            fit="inside"
+            preset="base"
             sizes="sm:50vw md:33vw lg:25vw xl:300 xxl:500"
           />
         </div>

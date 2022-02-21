@@ -6,9 +6,8 @@
         :src="dailyPoster.image"
         :alt="dailyPoster.title"
         :lazy="false"
+        preset="base"
         class="image"
-        quality="80"
-        fit="inside"
         provider="ipx"
         width="200"
         height="300"
@@ -21,8 +20,7 @@
       class="background"
       width="339"
       height="390"
-      quality="80"
-      fit="inside"
+      preset="base"
       sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
     />
   </div>

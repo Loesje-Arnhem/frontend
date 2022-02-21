@@ -8,11 +8,9 @@
           width="500"
           height="560"
           alt=""
-          format="avif"
           loading="lazy"
           sizes="sm:100vw md:75vw lg:500px xL:1000px"
-          quality="80"
-          fit="inside"
+          preset="base"
         />
 
         <button :class="$style['btn-action']" @click="action">
@@ -22,8 +20,7 @@
             height="34"
             alt="Play"
             sizes="xs:36 sm:72"
-            quality="80"
-            fit="inside"
+            preset="base"
           />
         </button>
       </div>
