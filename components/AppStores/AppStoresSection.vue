@@ -8,6 +8,7 @@
           width="500"
           height="560"
           alt=""
+          format="avif"
           loading="lazy"
           sizes="sm:100vw md:75vw lg:500px xL:1000px"
           quality="80"

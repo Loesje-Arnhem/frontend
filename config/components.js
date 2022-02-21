@@ -36,7 +36,6 @@ export default [
   '~/components/Shop/Checkout',
   '~/components/Shop/Layout',
   '~/components/Shop/Products',
-  '~/components/Shop/Products/Data',
   '~/components/Shop/Products/ProductDetails',
   '~/components/Shop/Products/ProductList',
   '~/components/Shop/Products/RelatedProducts',
