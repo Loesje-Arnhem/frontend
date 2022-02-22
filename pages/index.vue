@@ -12,7 +12,7 @@
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
     />
-    <block-instagram />
+    <!-- <block-instagram /> -->
     <lazy-groups />
   </div>
 </template>
