@@ -11,7 +11,6 @@
           loading="lazy"
           sizes="sm:100vw md:75vw lg:500px xL:1000px"
           preset="base"
-          format="avif"
         />
 
         <button :class="$style['btn-action']" @click="action">
