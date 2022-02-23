@@ -1,4 +1,4 @@
-import { useQuery, useResult, useMutation } from '@vue/apollo-composable/dist'
+import { useQuery, useResult, useMutation } from '@vue/apollo-composable'
 import { ref, computed } from '@nuxtjs/composition-api'
 import { v4 } from 'uuid'
 import CartQuery from '~/graphql/Shop/Cart/Cart.gql'

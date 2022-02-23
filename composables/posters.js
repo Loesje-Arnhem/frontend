@@ -1,5 +1,5 @@
 import { computed } from '@nuxtjs/composition-api'
-import { useQuery, useResult } from '@vue/apollo-composable/dist'
+import { useQuery, useResult } from '@vue/apollo-composable'
 import PostersQuery from '~/graphql/Posters/Posters.gql'
 import PosterQuery from '~/graphql/Posters/Poster.gql'
 import useMeta from '~/composables/useMeta'

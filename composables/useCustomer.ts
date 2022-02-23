@@ -1,4 +1,4 @@
-import { useQuery, useResult } from '@vue/apollo-composable/dist'
+import { useQuery, useResult } from '@vue/apollo-composable'
 import CustomerQuery from '~/graphql/Customer/Customer.gql'
 
 export default () => {

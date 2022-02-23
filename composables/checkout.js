@@ -1,4 +1,4 @@
-import { useMutation } from '@vue/apollo-composable/dist'
+import { useMutation } from '@vue/apollo-composable'
 import { ref, reactive } from '@nuxtjs/composition-api'
 import { v4 } from 'uuid'
 import CheckoutQuery from '~/graphql/Shop/Checkout/Checkout.gql'

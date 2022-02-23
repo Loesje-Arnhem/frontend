@@ -1,4 +1,4 @@
-import { useQuery, useResult } from '@vue/apollo-composable/dist'
+import { useQuery, useResult } from '@vue/apollo-composable'
 import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories.gql'
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
 import useMeta from '~/composables/useMeta'

@@ -1,6 +1,6 @@
 import { reactive, ref } from '@nuxtjs/composition-api'
 import { v4 } from 'uuid'
-import { useMutation } from '@vue/apollo-composable/dist'
+import { useMutation } from '@vue/apollo-composable'
 import CheckPostcodeMutation from '~/graphql/Customer/CheckPostcode.gql'
 
 export default () => {

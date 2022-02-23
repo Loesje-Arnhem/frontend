@@ -31,7 +31,7 @@
 
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
-import { useQuery, useResult } from '@vue/apollo-composable/dist'
+import { useQuery, useResult } from '@vue/apollo-composable'
 import CustomerQuery from '~/graphql/Customer/Orders.gql'
 
 export default defineComponent({

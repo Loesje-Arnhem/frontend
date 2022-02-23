@@ -81,7 +81,7 @@
 import { email, required, numeric } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 import { reactive, defineComponent, ref } from '@nuxtjs/composition-api'
-import { useMutation } from '@vue/apollo-composable/dist'
+import { useMutation } from '@vue/apollo-composable'
 import { v4 } from 'uuid'
 import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop.gql'
 

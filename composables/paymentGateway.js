@@ -1,4 +1,4 @@
-import { useQuery, useResult } from '@vue/apollo-composable/dist'
+import { useQuery, useResult } from '@vue/apollo-composable'
 import PaymentGatewaysQuery from '~/graphql/Shop/PaymentGateways.gql'
 
 export const usePaymentGateways = () => {

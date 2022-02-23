@@ -35,7 +35,7 @@ import {
   defineComponent,
   useRouter,
 } from '@nuxtjs/composition-api'
-import { useMutation } from '@vue/apollo-composable/dist'
+import { useMutation } from '@vue/apollo-composable'
 import LoginQuery from '~/graphql/Customer/Login.gql'
 
 export default defineComponent({

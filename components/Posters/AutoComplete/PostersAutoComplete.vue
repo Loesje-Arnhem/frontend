@@ -10,7 +10,7 @@
 
 <script>
 import { useContext, computed, ref } from '@nuxtjs/composition-api'
-import { useQuery, useResult } from '@vue/apollo-composable/dist'
+import { useQuery, useResult } from '@vue/apollo-composable'
 import SearchQuery from '~/graphql/Posters/Search.gql'
 
 export default {

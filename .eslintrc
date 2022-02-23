@@ -16,5 +16,13 @@
     "vue/no-deprecated-slot-scope-attribute": 1,
     "vue/no-v-html": 0,
     "vue/no-v-model-argument": 0
-  }
+  },
+  "overrides": [
+    {
+      "files": ["layouts/default.vue", "pages/**/*"],
+      "rules": {
+        "vue/multi-word-component-names": 0
+      }
+    }
+  ]
 }
