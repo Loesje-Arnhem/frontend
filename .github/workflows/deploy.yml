@@ -41,3 +41,5 @@ jobs:
             https://test.loesje.nl
           # Path to a Lighthouse budgets.json file
           uploadArtifacts: true
+          temporaryPublicStorage: true
+          runs: 3
