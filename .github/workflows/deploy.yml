@@ -27,3 +27,13 @@ jobs:
             npm ci # we install any missing dependencies
             npm run build
             pm2 reload all # we reload the app via PM2
+
+      - name: Lighthouse CI Action
+        # You may pin to the exact commit or the version.
+        # uses: treosh/lighthouse-ci-action@b4dfae3eb959c5226e2c5c6afd563d493188bfaf
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          # List of URL(s) to analyze
+          urls: |
+            https://test.loesje.nl
+          # Path to a Lighthouse budgets.json file
