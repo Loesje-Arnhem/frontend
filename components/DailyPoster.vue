@@ -17,6 +17,7 @@
     <nuxt-picture
       src="/images/electriciteitskastje.png"
       alt=""
+      format="avif"
       class="background"
       width="339"
       height="390"
