@@ -27,7 +27,10 @@ jobs:
             npm ci # we install any missing dependencies
             npm run build
             pm2 reload all # we reload the app via PM2
-
+  lighthouse:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' # we tell Github to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
+    steps:
       - name: Lighthouse CI Action
         # You may pin to the exact commit or the version.
         # uses: treosh/lighthouse-ci-action@b4dfae3eb959c5226e2c5c6afd563d493188bfaf
