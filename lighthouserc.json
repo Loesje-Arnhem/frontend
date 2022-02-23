@@ -1,0 +1,21 @@
+{
+    "ci": {
+      "collect": {
+        "numberOfRuns": 3,
+        "disableStorageReset": true,
+        "url": "https://test.loesje.nl"
+      },
+      "assert": {
+        // assert options here
+      },
+      "upload": {
+        // upload options here
+      },
+      "server": {
+        // server options here
+      },
+      "wizard": {
+        // wizard options here
+      }
+    }
+  }
