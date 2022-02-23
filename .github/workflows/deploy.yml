@@ -37,9 +37,10 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           # List of URL(s) to analyze
-          urls: |
-            https://test.loesje.nl
-          # Path to a Lighthouse budgets.json file
+          configPath: ./lighthouserc.json          
+#           urls: |
+#             https://test.loesje.nl
+#           # Path to a Lighthouse budgets.json file
           uploadArtifacts: true
           temporaryPublicStorage: true
-          runs: 3
+#           runs: 3
