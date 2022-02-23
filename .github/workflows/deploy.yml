@@ -40,3 +40,4 @@ jobs:
           urls: |
             https://test.loesje.nl
           # Path to a Lighthouse budgets.json file
+          uploadArtifacts: true
