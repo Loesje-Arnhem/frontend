@@ -38,7 +38,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           # List of URL(s) to analyze
-          configPath: ${{ env.GITHUB_WORKSPACE }}lighthouserc.json
+          configPath: ./lighthouserc.json
 #           urls: |
 #             https://test.loesje.nl
 #           # Path to a Lighthouse budgets.json file
