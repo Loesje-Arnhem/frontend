@@ -25,15 +25,9 @@ export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
 
 export const usePageById = (id: number) => {
   const { setSEO } = useMeta()
-  const { result, onResult, loading } = useQuery(
-    PageByIdQuery,
-    {
-      id,
-    },
-    {
-      prefetch: true,
-    },
-  )
+  const { result, onResult, loading } = useQuery(PageByIdQuery, {
+    id,
+  })
   const page = useResult(result) as Ref<IPageDetail>
 
   onResult((queryResult) => {
@@ -48,15 +42,9 @@ export const usePageById = (id: number) => {
 
 export const usePageByUri = (uri: string) => {
   const { setSEO } = useMeta()
-  const { result, onResult, loading } = useQuery(
-    PageByUriQuery,
-    {
-      uri,
-    },
-    {
-      prefetch: true,
-    },
-  )
+  const { result, onResult, loading } = useQuery(PageByUriQuery, {
+    uri,
+  })
   const page = useResult(result) as Ref<IPageDetail>
 
   onResult((queryResult) => {

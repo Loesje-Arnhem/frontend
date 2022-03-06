@@ -105,7 +105,7 @@ export default {
   font-size: 1.1em;
   margin-bottom: 0.5em;
   padding-bottom: 0.5em;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--color-black);
 }
 
 .wrapper {
