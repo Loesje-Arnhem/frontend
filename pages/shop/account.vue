@@ -23,13 +23,14 @@
 </template>
 
 <script>
-import { defineComponent, useRouter } from '@nuxtjs/composition-api'
+import { defineComponent, useRouter, useContext } from '@nuxtjs/composition-api'
 import useCustomer from '~/composables/useCustomer'
 
 export default defineComponent({
   middleware: ['isAuth'],
   setup() {
     const router = useRouter()
+    const { $apolloHelpers } = useContext()
 
     const { customer, loading } = useCustomer()
 
