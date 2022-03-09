@@ -9,6 +9,7 @@
         preload
         class="image"
         provider="ipx"
+        format="avif"
         width="188"
         height="300"
         sizes="xs:200px sm:400px"
@@ -21,6 +22,7 @@
       class="background"
       width="270"
       height="362"
+      format="avif"
       preset="base"
       sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
     />
