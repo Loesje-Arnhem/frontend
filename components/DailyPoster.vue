@@ -7,6 +7,7 @@
         :alt="dailyPoster.title"
         :lazy="false"
         preset="base"
+        preload
         class="image"
         provider="ipx"
         width="200"
@@ -17,6 +18,7 @@
     <nuxt-picture
       src="/images/electriciteitskastje.png"
       alt=""
+      preload
       format="avif"
       class="background"
       width="339"
