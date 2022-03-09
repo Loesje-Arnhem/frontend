@@ -1,3 +1,4 @@
+import pkg from './package.json'
 import apollo from './config/apollo'
 import build from './config/build'
 import buildModules from './config/buildModules'
