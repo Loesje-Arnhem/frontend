@@ -7,5 +7,6 @@ export default [
   '@nuxtjs/apollo',
   '@nuxt/image',
   '@nuxtjs/i18n',
+  'nuxt-precompress',
   'nuxt-ssr-cache',
 ]

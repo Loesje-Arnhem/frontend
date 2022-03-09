@@ -9,5 +9,4 @@ export default [
   '@nuxt/typescript-build',
   '@nuxtjs/pwa',
   '@nuxt/postcss8',
-  'nuxt-compress',
 ]
