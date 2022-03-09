@@ -42,6 +42,5 @@ export default {
     static: {
       maxAge: 60 * 60 * 24 * 365 * 1000,
     },
-    asyncScripts: true,
   },
 }
