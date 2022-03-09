@@ -43,4 +43,18 @@ export default {
       maxAge: 60 * 60 * 24 * 365 * 1000,
     },
   },
+  cache: {
+    pages: [/^\/$/],
+    store: {
+      type: 'memory',
+
+      // maximum number of pages to store in memory
+      // if limit is reached, least recently used page
+      // is removed.
+      max: 100,
+
+      // number of seconds to store this page in cache
+      ttl: 60,
+    },
+  },
 }

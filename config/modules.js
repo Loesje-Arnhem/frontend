@@ -8,4 +8,5 @@ export default [
   '@nuxt/image',
   '@nuxtjs/i18n',
   'nuxt-precompress',
+  'nuxt-ssr-cache',
 ]
