@@ -8,7 +8,6 @@
         preset="base"
         preload
         class="image"
-        provider="ipx"
         format="avif"
         width="188"
         height="300"
