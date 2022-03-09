@@ -44,4 +44,9 @@ export default {
     },
     asyncScripts: true,
   },
+  'nuxt-compress': {
+    brotli: {
+      threshold: 8192,
+    },
+  },
 }
