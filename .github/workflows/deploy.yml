@@ -33,24 +33,13 @@ jobs:
     if: github.ref == 'refs/heads/master' # we tell Github to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
     steps:
 
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build and start the project
-        run: npm run build && npm start
-
       - uses: actions/checkout@v2
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v9
         with:
           # List of URL(s) to analyze
 #        configPath: './lighthouserc.json'
-          urls: http://localhost:5000
+          urls: https://test.loesje.nl
           # Path to a Lighthouse budgets.json file
           uploadArtifacts: true
           temporaryPublicStorage: true
