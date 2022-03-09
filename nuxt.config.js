@@ -60,4 +60,7 @@ export default {
     },
   },
   version: pkg.version,
+  serverMiddleware: {
+    '/_ipx': '~/server/middleware/ipx.js',
+  },
 }
