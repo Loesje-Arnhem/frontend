@@ -30,6 +30,7 @@
     "jwt-decode": "^3.1.2",
     "nuxt": "^2.15.8",
     "nuxt-compress": "^5.0.0",
+    "nuxt-precompress": "^0.5.9",
     "sharp": "^0.30.2",
     "smoothscroll-polyfill": "^0.4.4",
     "throttle-debounce": "^3.0.1",
