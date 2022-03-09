@@ -28,7 +28,7 @@ jobs:
             npm run build
             pm2 reload all # we reload the app via PM2
   lighthouse:
-#    needs: deploy
+    needs: deploy
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' # we tell Github to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
     steps:
