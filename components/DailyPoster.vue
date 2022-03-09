@@ -5,7 +5,6 @@
         v-if="dailyPoster"
         :src="dailyPoster.image"
         :alt="dailyPoster.title"
-        :lazy="false"
         preset="base"
         preload
         class="image"
@@ -19,7 +18,6 @@
       src="/images/electriciteitskastje.png"
       alt=""
       preload
-      format="avif"
       class="background"
       width="339"
       height="390"

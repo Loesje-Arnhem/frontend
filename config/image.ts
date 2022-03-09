@@ -5,7 +5,7 @@ export default {
       modifiers: {
         quality: 80,
         fit: 'inside',
-        // format: 'avif',
+        format: 'avif',
       },
     },
   },
