@@ -43,6 +43,7 @@ export default {
       maxAge: 60 * 60 * 24 * 365 * 1000,
     },
   },
+
   cache: {
     pages: [/^\/$/],
     store: {
@@ -65,4 +66,5 @@ export default {
       threshold: 8192,
     },
   },
+  version: pkg.version,
 }
