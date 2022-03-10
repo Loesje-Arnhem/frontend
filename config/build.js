@@ -2,6 +2,7 @@
  ** Build configuration
  */
 export default {
+  hardSource: true,
   babel: {
     plugins: ['@babel/plugin-proposal-optional-chaining'],
     presets({ isServer }) {
