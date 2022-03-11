@@ -48,15 +48,15 @@ export default {
   cache: {
     pages: [/^\/$/],
     store: {
-      type: 'memory',
-
-      // maximum number of pages to store in memory
-      // if limit is reached, least recently used page
-      // is removed.
-      max: 100,
-
-      // number of seconds to store this page in cache
-      ttl: 60,
+      type: 'redis',
+      host: 'localhost',
+      ttl: 10 * 60,
+      configure: [
+        // these values are configured
+        // on redis upon initialization
+        ['maxmemory', '200mb'],
+        ['maxmemory-policy', 'allkeys-lru'],
+      ],
     },
   },
   version: pkg.version,
