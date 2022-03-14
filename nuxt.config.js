@@ -46,7 +46,7 @@ export default {
   },
 
   cache: {
-    pages: [/^\/$/],
+    pages: ['/'],
     store: {
       type: 'memory',
 
