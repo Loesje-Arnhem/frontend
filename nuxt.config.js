@@ -46,16 +46,19 @@ export default {
   },
 
   cache: {
+    useHostPrefix: true,
     pages: ['/'],
+    key(route) {
+      if (route === '/') {
+        return 'page:home:string'
+      }
+      let page = route.substr(1).split('/')
+      page = page.join('.')
+      return `page:${page}:string`
+    },
     store: {
       type: 'memory',
-
-      // maximum number of pages to store in memory
-      // if limit is reached, least recently used page
-      // is removed.
       max: 100,
-
-      // number of seconds to store this page in cache
       ttl: 60 * 10,
     },
   },
