@@ -8,7 +8,8 @@ query DailyPoster($year: Int, $month: Int, $day: Int) {
         title
         featuredImage {
           node {
-            mediaItemUrl
+            id
+            medium: sourceUrl(size: MEDIUM)
           }
         }
       }

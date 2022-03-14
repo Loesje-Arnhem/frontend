@@ -1,7 +1,7 @@
 <template>
   <div class="poster-daily">
     <div class="image-wrapper">
-      <nuxt-picture
+      <img
         v-if="dailyPoster"
         :src="dailyPoster.image"
         :alt="dailyPoster.title"
@@ -14,7 +14,7 @@
         sizes="xs:200px sm:400px"
       />
     </div>
-    <!-- <nuxt-picture
+    <img
       src="/images/electriciteitskastje.png"
       alt=""
       preload
@@ -24,7 +24,7 @@
       format="avif"
       preset="base"
       sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
-    /> -->
+    />
   </div>
 </template>
 
@@ -60,7 +60,7 @@ export default {
       }
       return {
         title: this.poster.edges[0].node.title,
-        image: this.poster.edges[0].node.featuredImage.node.mediaItemUrl,
+        image: this.poster.edges[0].node.featuredImage.node.medium,
       }
     },
   },
