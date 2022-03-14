@@ -1,6 +1,5 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page" class="page">
+  <div v-if="page" class="page">
     <app-content
       :title="page.title"
       :content="page.content"
@@ -19,22 +18,22 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useRoute } from '@nuxtjs/composition-api'
-import { usePageByUri } from '~/composables/usePage'
+import { defineComponent } from '@nuxtjs/composition-api'
+import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
 
 export default defineComponent({
-  setup() {
-    const route = useRoute()
+  async asyncData({ app, route }) {
+    const { data } = await app.apolloProvider.defaultClient.query({
+      query: PageByUriQuery,
+      variables: {
+        uri: route.params.pathMatch,
+      },
+    })
+    const page = data.page
 
-    const { page, loading } = usePageByUri(route.value.params.pathMatch)
-
-    const parentPageId = computed(
-      () => page.value.parentDatabaseId || page.value.databaseId,
-    )
-
+    const parentPageId = page.parentDatabaseId || page.databaseId
     return {
       parentPageId,
-      loading,
       page,
     }
   },
