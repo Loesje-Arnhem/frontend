@@ -6,8 +6,5 @@ export default {
     $query: {
       fetchPolicy: 'cache',
     },
-    query: {
-      fetchPolicy: 'cache',
-    },
   },
 }
