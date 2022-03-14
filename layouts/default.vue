@@ -1,7 +1,10 @@
 <template>
   <div :class="$style.page">
     <vue-announcer />
-    <header-top :class="$style['header-top']" class="header-top" />
+
+    <lazy-hydrate never>
+      <header-top :class="$style['header-top']" class="header-top" />
+    </lazy-hydrate>
     <the-header :class="$style.header" />
     <main id="content" :class="$style.main" tabindex="-1">
       <nuxt />
@@ -12,7 +15,13 @@
 </template>
 
 <script>
+import LazyHydrate from 'vue-lazy-hydration'
+
 export default {
+  components: {
+    LazyHydrate,
+    HeaderTop: () => import('~/components/HeaderTop.vue'),
+  },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
   },
