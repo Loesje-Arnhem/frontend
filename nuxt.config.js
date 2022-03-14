@@ -56,7 +56,7 @@ export default {
       max: 100,
 
       // number of seconds to store this page in cache
-      ttl: 60,
+      ttl: 60 * 10,
     },
   },
   version: pkg.version,
