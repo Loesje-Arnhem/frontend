@@ -92,7 +92,7 @@ export default () => {
       credentials: 'include',
     },
     wsEndpoint: null,
-    persisting: true,
+    persisting: false,
     websocketsOnly: false,
   }
 }
