@@ -1,11 +1,34 @@
-import { InMemoryCache, HttpLink, ApolloLink } from '@apollo/client/core'
+import { HttpLink, ApolloLink } from '@apollo/client/core'
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from 'apollo-cache-inmemory'
 import { apiUrl } from '~/data/siteDetails'
 
 const httpLink = new HttpLink({
   uri: `${apiUrl}graphql`,
 })
 
-const cache = new InMemoryCache()
+const PARTIAL_SCHEMA = {
+  __schema: {
+    types: [],
+  },
+}
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData: PARTIAL_SCHEMA,
+})
+
+const config = {
+  typePolicies: {
+    GraphQlConfigurationOption: {
+      keyFields: ['id'],
+    },
+  },
+  fragmentMatcher,
+}
+
+const cache = new InMemoryCache(config)
 
 /**
  * Middleware operation
@@ -69,7 +92,7 @@ export default () => {
       credentials: 'include',
     },
     wsEndpoint: null,
-    persisting: true,
+    persisting: false,
     websocketsOnly: false,
   }
 }
