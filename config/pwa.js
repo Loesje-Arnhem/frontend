@@ -45,7 +45,7 @@ export default {
   },
   icon: false,
   meta: {
-    appleStatusBarStyle: 'black-translucent',
+    appleStatusBarStyle: 'black',
     mobileApp: true,
     mobileAppIOS: true,
     twitterCard: 'summary',
