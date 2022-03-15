@@ -41,5 +41,12 @@ export default {
       href: `${apiUrl}feed/?post_type=poster&source=landelijke-serie`,
       title: 'Posters - Loesje',
     },
+    {
+      hid: 'search',
+      type: 'application/opensearchdescription+xml',
+      rel: 'search',
+      href: '/opensearch.xml',
+      title: 'Loesje',
+    },
   ],
 }
