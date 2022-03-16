@@ -14,7 +14,7 @@
         sizes="xs:200px sm:400px"
       />
     </div>
-    <img
+    <nuxt-picture
       src="/images/electriciteitskastje.png"
       alt=""
       preload
@@ -23,6 +23,7 @@
       height="362"
       format="avif"
       preset="base"
+      provider="static"
       sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
     />
   </div>

@@ -1,6 +1,5 @@
 export default {
-  domains: ['www.loesje.nl', 'test.loesje.nl', 'localhost:5000'],
-  // provider: 'ipx',
+  domains: ['www.loesje.nl'],
   presets: {
     base: {
       modifiers: {
