@@ -1,6 +1,5 @@
 export const state = () => ({
   selectedTags: [],
-  search: '',
   dateBefore: null,
   dateAfter: null,
 })
@@ -26,9 +25,6 @@ export const getters = {
 }
 
 export const mutations = {
-  search: (state, payload) => {
-    state.search = payload
-  },
   updateDateBefore: (state, payload) => {
     state.dateBefore = payload
   },
@@ -47,9 +43,6 @@ export const mutations = {
 }
 
 export const actions = {
-  search: ({ commit }, payload) => {
-    commit('search', payload)
-  },
   updatedateBefore: ({ commit }, payload) => {
     commit('updateDateBefore', payload)
   },
