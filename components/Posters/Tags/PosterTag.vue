@@ -10,36 +10,49 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import AppButton from '~/components/Shared/AppButton.vue'
-export default {
-  components: {
-    AppButton,
-  },
+import { computed, defineComponent } from '@nuxtjs/composition-api'
+import useTags from '~/composables/useTags'
+export default defineComponent({
   props: {
     tag: {
       type: Object,
       required: true,
     },
   },
-  computed: {
-    isSelected() {
-      return this.$store.getters['tags/isSelected'](this.tag.node.databaseId)
-    },
-  },
-  methods: {
-    ...mapActions('tags', ['add', 'remove']),
-    toggleTag() {
-      const tag = { ...this.tag }
-      if (this.isSelected) {
-        this.remove(tag.node.databaseId)
+  setup(props) {
+    const { selectedTags } = useTags()
+
+    const isSelected = computed(() => {
+      return selectedTags.value.find(
+        (selectedTag) =>
+          selectedTag.node.databaseId === props.tag.node.databaseId,
+      )
+    })
+
+    const add = () => {
+      selectedTags.value.push(props.tag)
+    }
+    const remove = () => {
+      const tags = [...selectedTags.value]
+
+      selectedTags.value = tags.filter(
+        (selectedTag) =>
+          selectedTag.node.databaseId !== props.tag.node.databaseId,
+      )
+    }
+
+    const toggleTag = () => {
+      if (isSelected.value) {
+        remove()
       } else {
-        this.add(tag)
-        this.$router.push({
-          path: '/posters',
-        })
+        add()
       }
-    },
+    }
+
+    return {
+      isSelected,
+      toggleTag,
+    }
   },
-}
+})
 </script>

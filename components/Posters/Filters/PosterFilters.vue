@@ -67,10 +67,17 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import { mapGetters } from 'vuex'
+import useTags from '~/composables/useTags'
 import TagsQuery from '~/graphql/Posters/Tags.gql'
 
 export default defineComponent({
+  setup() {
+    const { selectedSourceIds, selectedSubjectIds } = useTags()
+    return {
+      selectedSourceIds,
+      selectedSubjectIds,
+    }
+  },
   data() {
     return {
       showSubjects: false,
@@ -86,7 +93,6 @@ export default defineComponent({
     this.subjects = subjects.edges
   },
   computed: {
-    ...mapGetters('tags', ['selectedSourceIds', 'selectedSubjectIds']),
     dateBefore: {
       get() {
         return this.$store.state.tags.dateBefore
