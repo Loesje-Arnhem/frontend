@@ -2,9 +2,9 @@
   <div class="filter">
     <div class="buttons">
       <poster-filter-toggle
-        :is-active="showSources"
+        :is-active="activeOverlays.sources"
         class="filter-item"
-        @toggle="toggleList('sources')"
+        @toggle="toggleOverlay('sources')"
       >
         {{ $t('sources') }}
         <template v-if="selectedSourceIds.length">
@@ -12,9 +12,9 @@
         </template>
       </poster-filter-toggle>
       <poster-filter-toggle
-        :is-active="showSubjects"
+        :is-active="activeOverlays.subjects"
         class="filter-item"
-        @toggle="toggleList('subjects')"
+        @toggle="toggleOverlay('subjects')"
       >
         {{ $t('subjects') }}
         <template v-if="selectedSubjectIds.length">
@@ -30,7 +30,7 @@
             type="date"
             name="date-before"
             min="1983-01-01"
-            :max="dateAfter ? dateAfter : today"
+            :max="dateAfter ? dateAfter : today()"
           />
         </div>
       </div>
@@ -43,22 +43,32 @@
             type="date"
             name="date-after"
             :min="dateBefore ? dateBefore : '1983-01-01'"
-            :max="today"
+            :max="today()"
           />
         </div>
       </div>
     </div>
 
     <slide-in-animation mode="out-in">
-      <div v-if="showSources" key="sources" class="tags" tabindex="-1">
-        <center-wrapper>
-          <poster-tags-list :list="sources" />
+      <div
+        v-if="activeOverlays.sources"
+        key="sources"
+        class="tags"
+        tabindex="-1"
+      >
+        <center-wrapper v-if="tags">
+          <poster-tags-list :list="tags.sources.edges" />
         </center-wrapper>
       </div>
 
-      <div v-if="showSubjects" key="subjects" class="tags" tabindex="-1">
-        <center-wrapper>
-          <poster-tags-list :list="subjects" />
+      <div
+        v-if="activeOverlays.subjects"
+        key="subjects"
+        class="tags"
+        tabindex="-1"
+      >
+        <center-wrapper v-if="tags">
+          <poster-tags-list :list="tags.subjects.edges" />
         </center-wrapper>
       </div>
     </slide-in-animation>
@@ -66,81 +76,50 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, reactive } from '@nuxtjs/composition-api'
+import { useQuery } from '@vue/apollo-composable'
 import useTags from '~/composables/useTags'
 import TagsQuery from '~/graphql/Posters/Tags.gql'
 
 export default defineComponent({
   setup() {
-    const { selectedSourceIds, selectedSubjectIds } = useTags()
-    return {
-      selectedSourceIds,
-      selectedSubjectIds,
+    const { selectedSourceIds, selectedSubjectIds, dateBefore, dateAfter } =
+      useTags()
+    const activeOverlays = reactive({
+      sources: false,
+      subjects: false,
+    })
+
+    const toggleOverlay = (type: string) => {
+      if (type === 'subjects') {
+        activeOverlays.subjects = !activeOverlays.subjects
+        activeOverlays.sources = false
+      } else {
+        activeOverlays.sources = !activeOverlays.sources
+        activeOverlays.subjects = false
+      }
     }
-  },
-  data() {
-    return {
-      showSubjects: false,
-      showSources: false,
-      sources: [],
-      subjects: [],
-    }
-  },
-  async fetch() {
-    const result = await this.$apollo.query({ query: TagsQuery })
-    const { sources, subjects } = result.data
-    this.sources = sources.edges
-    this.subjects = subjects.edges
-  },
-  computed: {
-    dateBefore: {
-      get() {
-        return this.$store.state.tags.dateBefore
-      },
-      set(value) {
-        this.$store.commit('tags/updateDateBefore', value)
-      },
-    },
-    dateAfter: {
-      get() {
-        return this.$store.state.tags.dateAfter
-      },
-      set(value) {
-        this.$store.commit('tags/updateDateAfter', value)
-      },
-    },
-    today() {
+
+    const { result } = useQuery(TagsQuery)
+
+    const today = () => {
       const now = new Date()
       let month = (now.getMonth() + 1) as Number | String
       let day = now.getDate() as Number | String
       if (month < 10) month = '0' + month
       if (day < 10) day = '0' + day
       return now.getFullYear() + '-' + month + '-' + day
-    },
-  },
-
-  // watch: {
-  //   sources(value) {
-  //     if (value) {
-  //       // select national series as default
-  //       const nationalSeries = value.find(
-  //         (source) => source.node.databaseId === 28,
-  //       )
-  //       this.$store.commit('tags/add', nationalSeries)
-  //     }
-  //   },
-  // },
-
-  methods: {
-    toggleList(type: string) {
-      if (type === 'subjects') {
-        this.showSubjects = !this.showSubjects
-        this.showSources = false
-      } else {
-        this.showSources = !this.showSources
-        this.showSubjects = false
-      }
-    },
+    }
+    return {
+      today,
+      tags: result,
+      toggleOverlay,
+      activeOverlays,
+      selectedSourceIds,
+      selectedSubjectIds,
+      dateBefore,
+      dateAfter,
+    }
   },
 })
 </script>

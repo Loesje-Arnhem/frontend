@@ -16,25 +16,29 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import useTags from '~/composables/useTags'
 
 export default {
   setup() {
-    const { search, selectedSourceIds, selectedSubjectIds, selectedTags } =
-      useTags()
+    const {
+      search,
+      selectedSourceIds,
+      selectedSubjectIds,
+      selectedTags,
+      dateBefore,
+      dateAfter,
+    } = useTags()
     return {
       search,
       selectedSourceIds,
       selectedSubjectIds,
       selectedTags,
+      dateBefore,
+      dateAfter,
     }
   },
   head: {
     title: 'Posters',
-  },
-  computed: {
-    ...mapState('tags', ['dateBefore', 'dateAfter']),
   },
   nuxtI18n: {
     paths: {

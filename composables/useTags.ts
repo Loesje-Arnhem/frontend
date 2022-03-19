@@ -1,4 +1,5 @@
 import { computed, ref } from '@nuxtjs/composition-api'
+import { Taxonomy } from '~/enums/taxonomy'
 
 const search = ref('')
 const selectedTags = ref([])
@@ -9,7 +10,7 @@ export default () => {
   const selectedSourceIds = computed(() => {
     const sources = selectedTags.value.filter(
       // @ts-ignore
-      (tag) => tag.node.taxonomy.node.name === 'source',
+      (tag) => tag.node.taxonomy.node.name === Taxonomy.Source,
     )
     // @ts-ignore
     return sources.map((subject) => subject.node.databaseId)
@@ -18,7 +19,7 @@ export default () => {
   const selectedSubjectIds = computed(() => {
     const subjects = selectedTags.value.filter(
       // @ts-ignore
-      (tag) => tag.node.taxonomy.node.name === 'subject',
+      (tag) => tag.node.taxonomy.node.name === Taxonomy.Subject,
     )
     // @ts-ignore
     return subjects.map((subject) => subject.node.databaseId)
