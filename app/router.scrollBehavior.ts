@@ -1,5 +1,13 @@
 export default () => {
-  const dailyPostersHeight = document.querySelector('.header-top').offsetHeight
+  const dailyPosters: HTMLElement | null = document.querySelector('.header-top')
+  if (!dailyPosters) {
+    return {
+      x: 0,
+      y: 0,
+    }
+  }
+
+  const dailyPostersHeight = dailyPosters.offsetHeight
   const scrollPosition = document.documentElement.scrollTop
 
   let scrollTo

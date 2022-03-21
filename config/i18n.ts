@@ -1,4 +1,4 @@
-import { baseUrl } from './../data/siteDetails'
+import { baseUrl } from '../data/siteDetails'
 
 export default {
   baseUrl,

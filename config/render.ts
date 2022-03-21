@@ -5,7 +5,7 @@ export default {
     maxAge: 60 * 60 * 24 * 365 * 1000,
   },
   bundleRenderer: {
-    shouldPreload: (_, type) => {
+    shouldPreload: (_: string, type: string) => {
       return ['script', 'style', 'font'].includes(type)
     },
   },

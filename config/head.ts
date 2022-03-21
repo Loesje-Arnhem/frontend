@@ -1,5 +1,5 @@
 // Global page headers: https://go.nuxtjs.dev/config-head
-import { facebook, apiUrl } from './../data/siteDetails'
+import { facebook, apiUrl } from '../data/siteDetails'
 import splashscreens from './splashscreens'
 
 /*

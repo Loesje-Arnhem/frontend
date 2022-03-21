@@ -4,7 +4,7 @@
 export default {
   babel: {
     plugins: ['@babel/plugin-proposal-optional-chaining'],
-    presets({ isServer }) {
+    presets({ isServer }: { isServer: boolean }) {
       return [
         [
           '@nuxt/babel-preset-app',

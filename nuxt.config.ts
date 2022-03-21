@@ -4,8 +4,6 @@ import buildModules from './config/buildModules'
 import cache from './config/cache'
 import components from './config/components'
 import css from './config/css'
-import env from './config/env'
-import generate from './config/generate'
 import googleFonts from './config/googleFonts'
 import head from './config/head'
 import i18n from './config/i18n'
@@ -27,8 +25,6 @@ export default {
   cache,
   components,
   css,
-  env,
-  generate,
   googleFonts,
   head,
   i18n,

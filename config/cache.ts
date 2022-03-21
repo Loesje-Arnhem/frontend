@@ -1,13 +1,13 @@
 export default {
   useHostPrefix: true,
   pages: ['/'],
-  key(route) {
+  key(route: string) {
     if (route === '/') {
       return 'page:home:string'
     }
-    let page = route.substr(1).split('/')
-    page = page.join('.')
-    return `page:${page}:string`
+    const page = route.substr(1).split('/')
+    const pageKey = page.join('.')
+    return `page:${pageKey}:string`
   },
   store: {
     type: 'memory',
