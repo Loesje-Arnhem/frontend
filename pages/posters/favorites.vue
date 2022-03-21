@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <center-wrapper>
-      <h1>Favorieten</h1>
-    </center-wrapper>
-    <poster-list :posters="favorites" />
-  </div>
+  <client-only>
+    <posters-overview-section
+      v-if="favorites.length"
+      :poster-ids="favorites"
+      :title="$t('title')"
+    />
+  </client-only>
 </template>
 
 <script lang="ts">
@@ -29,3 +30,11 @@ export default defineComponent({
   },
 })
 </script>
+
+<i18n>
+{
+  "nl": {
+    "title": "Favorieten"
+  }
+}
+</i18n>

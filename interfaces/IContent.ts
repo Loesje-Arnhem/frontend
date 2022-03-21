@@ -1,6 +1,6 @@
 export interface IContent {
   id: string
-  databaseId: string
+  databaseId: number
   title: string
 }
 

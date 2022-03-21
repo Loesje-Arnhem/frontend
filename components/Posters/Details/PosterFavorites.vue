@@ -11,59 +11,50 @@
         width="20"
         height="20"
       />
-      {{ title }}
+      <template v-if="isInFavorites">
+        {{ $t('remove') }}
+      </template>
+      <template v-else>
+        {{ $t('add') }}
+      </template>
       <span class="sr-only">: {{ poster.title }}</span>
     </app-button>
   </div>
 </template>
 
-<script>
-import { computed, defineComponent } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
 import useFavorites from '~/composables/useFavorites'
+import { IPoster } from '~/interfaces/IPoster'
 
 export default defineComponent({
   props: {
     poster: {
-      type: Object,
+      type: Object as PropType<IPoster>,
       required: true,
     },
   },
   setup(props) {
-    const { favorites } = useFavorites()
+    const { favorites, add, remove } = useFavorites()
 
     const isInFavorites = computed(() => {
-      return favorites.value.includes(props.poster.node.databaseId)
+      return favorites.value.includes(props.poster.databaseId)
     })
 
     const toggleFavorite = () => {
       if (isInFavorites.value) {
-        favorites.value.filter(
-          (databaseId) => databaseId !== props.poster.node.databaseId,
-        )
+        remove(props.poster.databaseId)
       } else {
-        favorites.value.push(props.poster.node.databaseId)
+        add(props.poster.databaseId)
       }
     }
-
-    const title = computed(() => {
-      return 'add'
-    })
 
     return {
       toggleFavorite,
       isInFavorites,
       favorites,
-      title,
     }
   },
-  // computed: {
-  //   title() {
-  //     if (this.isInFavorites) {
-  //       return this.$t('remove')
-  //     }
-  //     return this.$t('add')
-  //   },
-  // },
 })
 </script>
 

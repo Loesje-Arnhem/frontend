@@ -52,6 +52,10 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
+    posterIds: {
+      type: Array,
+      default: () => [],
+    },
     title: {
       type: String,
       default() {
@@ -65,12 +69,14 @@ export default defineComponent({
     const dateBefore = computed(() => props.dateBefore)
     const dateAfter = computed(() => props.dateAfter)
     const subjects = computed(() => props.subjects)
+    const posterIds = computed(() => props.posterIds)
     const { posters, loading, error, loadMore, hasNextPage } = usePosters({
       search,
       subjects,
       sources,
       dateBefore,
       dateAfter,
+      posterIds: posterIds.value,
       notIn: props.notIn,
     })
 

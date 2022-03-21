@@ -15,17 +15,23 @@
 </template>
 
 <script>
+import { defineComponent, onMounted } from '@nuxtjs/composition-api'
 import LazyHydrate from 'vue-lazy-hydration'
+import useFavorites from '~/composables/useFavorites'
 
-export default {
+export default defineComponent({
   components: {
     LazyHydrate,
     HeaderTop: () => import('~/components/HeaderTop.vue'),
   },
+  setup() {
+    const { getFromStorage } = useFavorites()
+    onMounted(() => getFromStorage())
+  },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
