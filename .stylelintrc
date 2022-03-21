@@ -1,21 +1,16 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+  "extends": ["stylelint-config-recommended-vue"],
   "rules": {
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": [
-          "mixin",
-          "define-mixin"
-        ]
+        "ignoreAtRules": ["mixin", "define-mixin"]
       }
     ],
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": [
-          "global"
-        ]
+        "ignorePseudoClasses": ["global", "readonly"]
       }
     ]
   }
