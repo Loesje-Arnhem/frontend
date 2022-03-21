@@ -1,5 +1,5 @@
 class RoughDrawable {
-  constructor(propertyNames) {
+  constructor() {
     this._fields = {}
     this._dirty = false
     this._canvas = null

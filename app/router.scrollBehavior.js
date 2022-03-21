@@ -1,4 +1,4 @@
-export default function (to, from, savedPosition) {
+export default () => {
   const dailyPostersHeight = document.querySelector('.header-top').offsetHeight
   const scrollPosition = document.documentElement.scrollTop
 
