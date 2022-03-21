@@ -67,12 +67,12 @@ export default (seo) => {
         content: getMetaTitle(seo, 'twitterTitle'),
       },
       {
-        hide: 'twitter:description',
+        hid: 'twitter:description',
         name: 'twitter:description',
         content: getMetaDescripion(seo, seo.metaDesc),
       },
       {
-        hide: 'twitter:image',
+        hid: 'twitter:image',
         name: 'twitter:image',
         content: getMetaImage(seo, 'twitterImage'),
       },
