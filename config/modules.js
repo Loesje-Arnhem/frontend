@@ -3,7 +3,6 @@
  */
 export default [
   '@nuxtjs/svg-sprite',
-  '@nuxtjs/axios',
   '@nuxtjs/apollo',
   '@nuxt/image',
   '@nuxtjs/i18n',

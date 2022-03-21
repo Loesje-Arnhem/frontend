@@ -10,7 +10,6 @@
       <nuxt />
     </main>
     <the-footer />
-    <error-handler />
   </div>
 </template>
 
