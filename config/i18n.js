@@ -3,6 +3,7 @@ import { baseUrl } from './../data/siteDetails'
 export default {
   baseUrl,
   defaultLocale: 'nl',
+  vuex: false,
   lazy: true,
   seo: false,
   langDir: 'locales/',
