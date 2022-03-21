@@ -3,25 +3,29 @@
     <center-wrapper>
       <h1>Favorieten</h1>
     </center-wrapper>
-    <poster-list :posters="list" />
+    <poster-list :posters="favorites" />
   </div>
 </template>
 
-<script>
-import { mapState } from 'vuex'
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+import useFavorites from '~/composables/useFavorites'
 
-export default {
+export default defineComponent({
+  setup() {
+    const { favorites } = useFavorites()
+    return {
+      favorites,
+    }
+  },
   head: {
     title: 'Favorieten',
   },
 
-  computed: {
-    ...mapState('favorites', ['list']),
-  },
   nuxtI18n: {
     paths: {
       nl: '/posters/favorieten',
     },
   },
-}
+})
 </script>

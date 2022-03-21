@@ -18,52 +18,53 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
+import useFavorites from '~/composables/useFavorites'
 
-export default {
+export default defineComponent({
   props: {
     poster: {
       type: Object,
       required: true,
     },
   },
-  computed: {
-    ...mapState('favorites', ['list']),
+  setup(props) {
+    const { favorites } = useFavorites()
 
-    isInFavorites() {
-      return this.$store.getters['favorites/isInFavorites'](this.poster.id)
-    },
-    title() {
-      if (this.isInFavorites) {
-        return this.$t('remove')
-      }
-      return this.$t('add')
-    },
-  },
-  methods: {
-    ...mapActions('favorites', ['add', 'remove']),
-    toggleFavorite() {
-      if (this.isInFavorites) {
-        this.remove(this.poster.id)
+    const isInFavorites = computed(() => {
+      return favorites.value.includes(props.poster.node.databaseId)
+    })
+
+    const toggleFavorite = () => {
+      if (isInFavorites.value) {
+        favorites.value.filter(
+          (databaseId) => databaseId !== props.poster.node.databaseId,
+        )
       } else {
-        const { id, uri, featuredImage } = this.poster
-
-        const poster = {
-          node: {
-            id,
-            uri,
-            featuredImage: {
-              node: {
-                medium: featuredImage.node.medium,
-              },
-            },
-          },
-        }
-        this.add(poster)
+        favorites.value.push(props.poster.node.databaseId)
       }
-    },
+    }
+
+    const title = computed(() => {
+      return 'add'
+    })
+
+    return {
+      toggleFavorite,
+      isInFavorites,
+      favorites,
+      title,
+    }
   },
-}
+  // computed: {
+  //   title() {
+  //     if (this.isInFavorites) {
+  //       return this.$t('remove')
+  //     }
+  //     return this.$t('add')
+  //   },
+  // },
+})
 </script>
 
 <style lang="postcss" module>
