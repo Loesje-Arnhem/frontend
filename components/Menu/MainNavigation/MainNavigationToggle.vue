@@ -5,9 +5,7 @@
     @click="$emit('toggle-menu')"
   >
     <app-icon :icon="icon" width="24" height="24" :class="$style.icon" />
-    <span :class="$style.title">
-      {{ title }}
-    </span>
+    <span :class="$style.title">{{ title }}</span>
   </button>
 </template>
 

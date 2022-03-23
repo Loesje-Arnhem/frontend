@@ -10,8 +10,10 @@
   </component>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { computed, defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     to: {
       type: String,
@@ -20,7 +22,7 @@ export default {
     buttonTag: {
       type: String,
       default: 'button',
-      validator(value) {
+      validator: (value: string) => {
         return ['nuxt-link', 'a', 'button'].includes(value)
       },
     },
@@ -33,13 +35,20 @@ export default {
       default: true,
     },
   },
-  computed: {
-    cssClasses() {
+  setup(props) {
+    const tag = computed(() => {
+      if (props.to) {
+        return 'nuxt-link'
+      }
+      return props.buttonTag
+    })
+
+    const cssClasses = computed(() => {
       const classes = []
-      if (this.isPrimary) {
+      if (props.isPrimary) {
         classes.push('btn')
 
-        if (this.tag !== 'nuxt-link') {
+        if (tag.value !== 'nuxt-link') {
           classes.push('rough-border')
         }
       } else {
@@ -47,21 +56,21 @@ export default {
       }
 
       return classes
-    },
-    tag() {
-      if (this.to) {
-        return 'nuxt-link'
-      }
-      return this.buttonTag
-    },
-    generatedType() {
-      if (this.tag === 'button') {
-        return this.type
+    })
+
+    const generatedType = computed(() => {
+      if (tag.value === 'button') {
+        return props.type
       }
       return null
-    },
+    })
+    return {
+      cssClasses,
+      generatedType,
+      tag,
+    }
   },
-}
+})
 </script>
 
 <style lang="postcss" scoped>

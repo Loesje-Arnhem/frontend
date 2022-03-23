@@ -90,7 +90,7 @@ export default {
     right: 0;
     bottom: 0;
     top: 0;
-    box-shadow: inset 0 0 0 1px #fff;
+    box-shadow: inset 0 0 0 1px var(--color-white);
   }
 }
 
