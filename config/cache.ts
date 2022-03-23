@@ -1,5 +1,6 @@
 export default {
   useHostPrefix: true,
+  pages: ['/'],
   key(route: string) {
     if (route === '/') {
       return 'page:home:string'
