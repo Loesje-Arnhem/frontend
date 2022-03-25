@@ -31,18 +31,6 @@
   </div>
 </template>
 
-<script>
-import AppImage from '~/components/Shared/AppImage.vue'
-import AppButton from '~/components/Shared/AppButton.vue'
-
-export default {
-  components: {
-    AppImage,
-    AppButton,
-  },
-}
-</script>
-
 <style lang="postcss" scoped>
 .instagram {
   @mixin clearfix;

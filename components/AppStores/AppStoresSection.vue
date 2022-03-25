@@ -2,7 +2,7 @@
   <section :class="$style['app-stores']" aria-labelledby="app-stores-title">
     <div :class="$style.wrapper">
       <div :class="$style['image-wrapper']">
-        <nuxt-picture
+        <img
           :class="$style.mood"
           src="/images/arcarde.png"
           width="500"
@@ -14,7 +14,7 @@
         />
 
         <button :class="$style['btn-action']" @click="action">
-          <nuxt-picture
+          <img
             src="/images/arcarde-button.png"
             width="36"
             height="34"
@@ -54,23 +54,21 @@
   </section>
 </template>
 
-<script>
-export default {
-  data() {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
+  setup() {
+    let themeColor = '#000'
+    const action = () => {
+      themeColor = themeColor === '#000' ? '#f0f' : '#000'
+      document.documentElement.style.setProperty('--color-black', themeColor)
+    }
     return {
-      themeColor: '#000',
+      action,
     }
   },
-  methods: {
-    action() {
-      this.themeColor = this.themeColor === '#000' ? '#f0f' : '#000'
-      document.documentElement.style.setProperty(
-        '--color-black',
-        this.themeColor,
-      )
-    },
-  },
-}
+})
 </script>
 
 <style lang="postcss" module>

@@ -5,15 +5,6 @@
   </div>
 </template>
 
-<script>
-import AppButton from '~/components/Shared/AppButton.vue'
-export default {
-  components: {
-    AppButton,
-  },
-}
-</script>
-
 <style lang="postcss" scoped>
 .btn {
   &:not(:focus) {

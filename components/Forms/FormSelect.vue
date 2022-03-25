@@ -20,8 +20,9 @@
   </form-field>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+export default defineComponent({
   inheritAttrs: false,
   props: {
     title: {
@@ -38,11 +39,10 @@ export default {
     },
     errorMessage: {
       type: String,
-      required: false,
       default: '',
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" scoped>

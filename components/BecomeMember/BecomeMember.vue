@@ -6,7 +6,7 @@
           :class="$style['check']"
           width="27"
           height="27"
-          :src="require('./images/check.png')"
+          src="/images/check.png"
         />
         {{ usp }}
       </li>
@@ -16,7 +16,7 @@
       :class="$style.image"
       width="167"
       height="144"
-      :src="require('./images/megaphone.png')"
+      src="/images/megaphone.png"
     />
   </box-wrapper>
 </template>

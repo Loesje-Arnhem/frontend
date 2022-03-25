@@ -25,12 +25,13 @@
   </address>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 import { title } from '~/data/siteDetails'
 import { street, zipcode, city, email, kvk } from '~/data/address'
 
-export default {
-  data() {
+export default defineComponent({
+  setup() {
     return {
       title,
       street,
@@ -40,5 +41,5 @@ export default {
       kvk,
     }
   },
-}
+})
 </script>

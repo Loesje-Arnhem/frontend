@@ -9,10 +9,11 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 import { useRelatedPages } from '~/composables/usePage'
 
-export default {
+export default defineComponent({
   props: {
     notIn: {
       type: Number,
@@ -35,7 +36,7 @@ export default {
       error,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

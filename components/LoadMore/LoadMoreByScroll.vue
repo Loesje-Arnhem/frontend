@@ -6,9 +6,13 @@
 </template>
 
 <script>
-import { onMounted, onUnmounted } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  onMounted,
+  onUnmounted,
+} from '@nuxtjs/composition-api'
 
-export default {
+export default defineComponent({
   props: {
     loading: {
       type: Boolean,
@@ -35,7 +39,7 @@ export default {
       observer.unobserve(wrapper)
     })
   },
-}
+})
 </script>
 
 <i18n>

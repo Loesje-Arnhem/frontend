@@ -3,7 +3,7 @@
     <div class="center">
       <div class="wrapper">
         <div class="image-wrapper">
-          <nuxt-picture
+          <app-image
             src="/images/nederland.png"
             width="565"
             height="600"

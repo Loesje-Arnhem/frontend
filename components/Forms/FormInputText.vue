@@ -15,12 +15,9 @@
   </form-field>
 </template>
 
-<script>
-import FormField from '~/components/Forms/FormField.vue'
-export default {
-  components: {
-    FormField,
-  },
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+export default defineComponent({
   inheritAttrs: false,
   props: {
     title: {
@@ -48,5 +45,5 @@ export default {
       default: () => [],
     },
   },
-}
+})
 </script>

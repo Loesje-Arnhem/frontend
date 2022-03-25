@@ -36,11 +36,7 @@
 </template>
 
 <script>
-import SocialMediaLinks from '~/components/Shared/SocialMediaLinks.vue'
-import AppStores from '~/components/Footer/AppStores.vue'
-import CompanyAddress from '~/components/Footer/CompanyAddress.vue'
-import QuickLinks from '~/components/Footer/QuickLinks.vue'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import {
   facebookUrl,
   twitterUrl,
@@ -49,14 +45,8 @@ import {
   linkedinUrl,
 } from '~/data/socialMedia'
 
-export default {
-  components: {
-    QuickLinks,
-    SocialMediaLinks,
-    AppStores,
-    CompanyAddress,
-  },
-  data() {
+export default defineComponent({
+  setup() {
     return {
       facebookUrl,
       twitterUrl,
@@ -65,7 +55,7 @@ export default {
       linkedinUrl,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

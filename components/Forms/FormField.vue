@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import { computed } from '@nuxtjs/composition-api'
+import { defineComponent, computed } from '@nuxtjs/composition-api'
 
-export default {
+export default defineComponent({
   props: {
     title: {
       type: String,
@@ -32,7 +32,7 @@ export default {
       errorMessage,
     }
   },
-}
+})
 </script>
 
 <i18n>

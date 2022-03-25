@@ -13,7 +13,7 @@
       :title="page.relatedPosters.title"
     />
     <!-- <block-instagram /> -->
-    <lazy-groups />
+    <lazy-block-groups />
   </div>
 </template>
 

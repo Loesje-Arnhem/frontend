@@ -7,13 +7,10 @@
   </div>
 </template>
 
-<script>
-import AppButton from '~/components/Shared/AppButton.vue'
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
-  components: {
-    AppButton,
-  },
+export default defineComponent({
   props: {
     title: {
       type: String,
@@ -26,7 +23,7 @@ export default {
       default: false,
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
