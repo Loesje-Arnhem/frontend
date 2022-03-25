@@ -3,7 +3,7 @@
     <article :class="$style.content">
       <h1 class="sr-only">{{ poster.title }}</h1>
       <div class="tile">
-        <fade-animation mode="out-in">
+        <fade-animation>
           <app-image
             v-if="poster.featuredImage"
             :key="poster.featuredImage.node.large"

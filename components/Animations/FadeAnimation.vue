@@ -1,19 +1,8 @@
 <template>
-  <transition name="fade" :mode="mode">
+  <transition name="fade" mode="out-in">
     <slot />
   </transition>
 </template>
-
-<script>
-export default {
-  props: {
-    mode: {
-      type: String,
-      default: null,
-    },
-  },
-}
-</script>
 
 <style lang="postcss" scoped>
 .fade-enter-active,
