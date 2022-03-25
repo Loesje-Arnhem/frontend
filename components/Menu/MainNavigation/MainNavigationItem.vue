@@ -35,7 +35,7 @@
       </span>
     </button>
     <template v-if="hasChildren">
-      <animation-slide-in>
+      <slide-in-animation>
         <ul v-show="isOpen" :class="$style.submenu" class="tile">
           <li
             v-for="subItem in children.edges"
@@ -51,21 +51,22 @@
             />
           </li>
         </ul>
-      </animation-slide-in>
+      </slide-in-animation>
     </template>
   </li>
 </template>
 
-<script>
-import AnimationSlideIn from '~/components/Animations/SlideInAnimation.vue'
-import EventBusUtil from '~/utils/eventBusUtil'
-import MainNavigationLink from '~/components/Menu/MainNavigation/MainNavigationLink.vue'
+<script lang="ts">
+import {
+  defineComponent,
+  ref,
+  computed,
+  watch,
+  ComponentPublicInstance,
+} from '@nuxtjs/composition-api'
+import useLayout from '~/composables/useLayout'
 
-export default {
-  components: {
-    AnimationSlideIn,
-    MainNavigationLink,
-  },
+export default defineComponent({
   props: {
     uri: {
       type: String,
@@ -79,58 +80,70 @@ export default {
       type: Object,
       default: () => {},
     },
-    resetSubmenu: {
-      type: Boolean,
-      default: false,
-    },
   },
-  data() {
+
+  setup(props) {
+    const { openMenus, add, remove, mobileMenuIsOpen } = useLayout()
+    let timer = null as number | null
+    const link = ref<ComponentPublicInstance<HTMLAnchorElement> | null>(null)
+
+    const isOpen = computed(() => openMenus.value.includes(props.title))
+
+    const toggleMenu = () => {
+      if (isOpen.value) {
+        remove(props.title)
+      } else {
+        add(props.title)
+      }
+    }
+
+    const setActiveSubmenu = () => {
+      if (!isSmallScreen()) return
+      if (!link.value) return
+      if (!link.value.$el.classList.contains('nuxt-link-active')) {
+        return
+      }
+      add(props.title)
+    }
+
+    watch(mobileMenuIsOpen, () => {
+      if (mobileMenuIsOpen.value) {
+        setActiveSubmenu()
+      }
+    })
+
+    const hasChildren = computed(() => {
+      return props.children?.edges?.length > 0
+    })
+
+    const mouseover = () => {
+      if (isSmallScreen()) return
+      if (!hasChildren.value) return
+      if (!timer) return
+      add(props.title)
+      clearTimeout(timer)
+    }
+
+    const mouseout = () => {
+      if (isSmallScreen()) return
+      timer = window.setTimeout(() => {
+        remove(props.title)
+      }, 150)
+    }
+    const isSmallScreen = () => {
+      return window.innerWidth < 768
+    }
+
     return {
-      isOpen: false,
-      timer: null,
+      link,
+      toggleMenu,
+      mouseover,
+      mouseout,
+      isOpen,
+      hasChildren,
     }
   },
-  computed: {
-    hasChildren() {
-      return this.children?.edges?.length > 0
-    },
-  },
-  watch: {
-    resetSubmenu(value) {
-      if (value) {
-        this.setActiveSubmenu()
-      }
-    },
-  },
-  mounted() {
-    EventBusUtil.$on('change-page', () => (this.isOpen = false))
-  },
-  methods: {
-    toggleMenu() {
-      this.isOpen = !this.isOpen
-    },
-
-    setActiveSubmenu() {
-      if (!this.isSmallScreen) return
-      const { link } = this.$refs
-      this.isOpen = link.$el.classList.contains('nuxt-link-active')
-    },
-    mouseover() {
-      if (this.isSmallScreen()) return
-      this.isOpen = true
-      clearTimeout(this.timer)
-    },
-    mouseout() {
-      if (this.isSmallScreen()) return
-      this.timer = setTimeout(() => {
-        this.isOpen = false
-      }, 250)
-    },
-    isSmallScreen() {
-      return window.innerWidth < 768
-    },
-  },
-}
+})
 </script>
 
 <style lang="postcss" module>

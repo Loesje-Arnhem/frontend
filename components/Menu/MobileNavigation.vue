@@ -13,40 +13,22 @@
           :title="title"
         />
       </nuxt-link>
-      <main-navigation-toggle @toggle-menu="toggleMenu(true)" />
+      <main-navigation-toggle @toggle-menu="openMobileMenu" />
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import useLayout from '~/composables/useLayout'
 import { title } from '~/data/siteDetails'
-import EventBusUtil from '~/utils/eventBusUtil'
-import MainNavigationToggle from '~/components/Menu/MainNavigation/MainNavigationToggle.vue'
 
 export default {
-  components: {
-    MainNavigationToggle,
-  },
-  props: {
-    showMenu: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  data() {
+  setup() {
+    const { openMobileMenu } = useLayout()
     return {
       title,
-      menuIsExpanded: false,
+      openMobileMenu,
     }
-  },
-  mounted() {
-    EventBusUtil.$on('change-page', () => this.toggleMenu(false))
-  },
-  methods: {
-    toggleMenu(status) {
-      this.menuIsExpanded = status
-      this.$emit('toggle-menu', status)
-    },
   },
 }
 </script>

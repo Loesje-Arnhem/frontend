@@ -1,13 +1,14 @@
 <template>
-  <nuxt-link :to="uri" :class="$style.link" @click.native="changePage">
+  <nuxt-link :to="uri" :class="$style.link" @click.native="clear">
     <span :class="$style.title" class="title" v-html="title" />
   </nuxt-link>
 </template>
 
-<script>
-import EventBusUtil from '~/utils/eventBusUtil'
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+import useLayout from '~/composables/useLayout'
 
-export default {
+export default defineComponent({
   props: {
     uri: {
       type: String,
@@ -18,12 +19,13 @@ export default {
       required: true,
     },
   },
-  methods: {
-    changePage() {
-      EventBusUtil.$emit('change-page')
-    },
+  setup() {
+    const { clear } = useLayout()
+    return {
+      clear,
+    }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

@@ -2,7 +2,7 @@
   <button
     :class="[$style.btn, { [$style['is-active']]: isActive }]"
     type="button"
-    :aria-expanded="isActive"
+    :aria-expanded="isActive ? 'true' : 'false'"
     @click="$emit('toggle')"
   >
     <span :class="$style['sr-only']">{{ $t('viewAll') }}</span>

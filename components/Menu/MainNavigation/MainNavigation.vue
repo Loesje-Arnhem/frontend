@@ -20,14 +20,12 @@
           :title="pages.aboutPage.title"
           :uri="pages.aboutPage.uri"
           :children="pages.aboutPageChildren"
-          :reset-submenu="menuIsOpen"
         />
         <main-navigation-item
           class="page"
           :title="pages.joinPage.title"
           :uri="pages.joinPage.uri"
           :children="pages.joinPageChildren"
-          :reset-submenu="menuIsOpen"
         />
         <main-navigation-item
           class="page"
@@ -39,7 +37,6 @@
           v-if="pages.productCategories.edges.length"
           class="page"
           :title="$t('pages.shop')"
-          :reset-submenu="menuIsOpen"
           :uri="localePath({ name: 'shop' })"
           :children="pages.productCategories"
         />
@@ -60,12 +57,6 @@ import pages from '~/data/menu'
 export default {
   components: {
     MainNavigationItem,
-  },
-  props: {
-    menuIsOpen: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   data() {

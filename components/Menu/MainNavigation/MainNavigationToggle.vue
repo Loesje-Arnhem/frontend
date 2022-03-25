@@ -1,6 +1,6 @@
 <template>
   <button
-    :aria-expanded="expanded ? 'true' : 'false'"
+    :aria-expanded="mobileMenuIsOpen ? 'true' : 'false'"
     :class="$style.btn"
     @click="$emit('toggle-menu')"
   >
@@ -10,16 +10,19 @@
 </template>
 
 <script>
+import useLayout from '~/composables/useLayout'
 export default {
   props: {
-    expanded: {
-      type: Boolean,
-      default: false,
-    },
     close: {
       type: Boolean,
       default: false,
     },
+  },
+  setup() {
+    const { mobileMenuIsOpen } = useLayout()
+    return {
+      mobileMenuIsOpen,
+    }
   },
   computed: {
     icon() {

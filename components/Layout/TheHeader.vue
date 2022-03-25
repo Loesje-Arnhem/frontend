@@ -2,26 +2,26 @@
   <header :class="$style.header">
     <center-wrapper>
       <skip-links />
-      <mobile-navigation :expanded="showMenu" @toggle-menu="toggleMenu" />
+      <mobile-navigation />
 
       <transition
         name="slide"
         @after-enter="afterEnter"
         @after-leave="afterLeave"
       >
-        <div v-show="showMenu" :class="$style.background">
+        <div v-show="mobileMenuIsOpen" :class="$style.background">
           <transition name="fade">
-            <div v-show="showMenu" ref="content" :class="$style.content">
+            <div
+              v-show="mobileMenuIsOpen"
+              ref="content"
+              :class="$style.content"
+            >
               <main-navigation-toggle
                 :close="true"
                 :class="$style.toggle"
-                :expanded="showMenu"
-                @toggle-menu="toggleMenu(false)"
+                @toggle-menu="closeMobileMenu"
               />
-              <main-navigation
-                :class="$style['main-navigation']"
-                :menu-is-open="showMenu"
-              />
+              <main-navigation :class="$style['main-navigation']" />
             </div>
           </transition>
         </div>
@@ -30,47 +30,42 @@
   </header>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, Ref, ref } from '@nuxtjs/composition-api'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
-import SkipLinks from '~/components/Menu/SkipLinks.vue'
-import MainNavigationToggle from '~/components/Menu/MainNavigation/MainNavigationToggle.vue'
-import MobileNavigation from '~/components/Menu/MobileNavigation.vue'
-import MainNavigation from '~/components/Menu/MainNavigation/MainNavigation.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+import useLayout from '~/composables/useLayout'
 
-export default {
-  components: {
-    SkipLinks,
-    MobileNavigation,
-    MainNavigation,
-    CenterWrapper,
-    MainNavigationToggle,
-  },
-  data() {
+export default defineComponent({
+  setup() {
+    const { closeMobileMenu, mobileMenuIsOpen } = useLayout()
+    const content: Ref<HTMLDivElement | null> = ref(null)
+
+    const afterEnter = () => {
+      lockBodyScoll(true)
+    }
+    const afterLeave = () => {
+      lockBodyScoll(false)
+    }
+    const lockBodyScoll = (isOpen: boolean) => {
+      if (!content.value) {
+        return
+      }
+      if (isOpen) {
+        disableBodyScroll(content.value)
+      } else {
+        enableBodyScroll(content.value)
+      }
+    }
+
     return {
-      showMenu: false,
+      content,
+      mobileMenuIsOpen,
+      afterEnter,
+      afterLeave,
+      closeMobileMenu,
     }
   },
-  methods: {
-    toggleMenu(status) {
-      this.showMenu = status
-    },
-    afterEnter() {
-      this.lockBodyScoll(true)
-    },
-    afterLeave() {
-      this.lockBodyScoll(false)
-    },
-    lockBodyScoll(isOpen) {
-      const { content } = this.$refs
-      if (isOpen) {
-        disableBodyScroll(content)
-      } else {
-        enableBodyScroll(content)
-      }
-    },
-  },
-}
+})
 </script>
 
 <style lang="postcss" scoped>
