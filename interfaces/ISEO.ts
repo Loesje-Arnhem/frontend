@@ -1,12 +1,14 @@
+export interface ISEOImage {
+  archive: string
+}
+
 export interface ISEO {
   canonical: string
   cornerstone: boolean
   metaDesc: string
   opengraphAuthor: string
   opengraphDescription: string
-  opengraphImage: {
-    archive: string
-  }
+  opengraphImage: ISEOImage
   opengraphModifiedTime: string
   opengraphPublishedTime: string
   opengraphPublisher: string
@@ -15,8 +17,6 @@ export interface ISEO {
   opengraphUrl: string
   title: string
   twitterDescription: string
-  twitterImage: {
-    archive: string
-  }
+  twitterImage: ISEOImage
   twitterTitle: string
 }

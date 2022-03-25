@@ -1,4 +1,6 @@
-const getMetaTitle = (seo, key) => {
+import { ISEO } from '~/interfaces/ISEO'
+
+const getMetaTitle = (seo: ISEO, key: keyof ISEO) => {
   if (seo[key]) {
     return seo[key]
   } else if (seo.title) {
@@ -8,7 +10,7 @@ const getMetaTitle = (seo, key) => {
   return null
 }
 
-const getMetaDescripion = (seo, key) => {
+const getMetaDescripion = (seo: ISEO, key: keyof ISEO) => {
   if (seo[key]) {
     return seo[key]
   } else if (seo.metaDesc) {
@@ -17,8 +19,10 @@ const getMetaDescripion = (seo, key) => {
   return null
 }
 
-const getMetaImage = (seo, key) => {
+const getMetaImage = (seo: ISEO, key: keyof ISEO) => {
+  // @ts-ignore
   if (seo[key] && seo[key].archive) {
+    // @ts-ignore
     return seo[key].archive
   } else if (seo.opengraphImage) {
     return seo.opengraphImage.archive
@@ -26,7 +30,7 @@ const getMetaImage = (seo, key) => {
   return null
 }
 
-export default (seo) => {
+export default (seo: ISEO) => {
   return {
     title: seo.title,
     meta: [
@@ -69,7 +73,7 @@ export default (seo) => {
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content: getMetaDescripion(seo, seo.metaDesc),
+        content: getMetaDescripion(seo, 'twitterDescription'),
       },
       {
         hid: 'twitter:image',
