@@ -25,7 +25,7 @@ jobs:
             git pull # we pull any changes from git
             npm prune # we remove any unused dependencies
             npm ci # we install any missing dependencies
-            npm run build
+            npm run generate
             pm2 reload all # we reload the app via PM2
   lighthouse:
     needs: deploy
