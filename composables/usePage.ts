@@ -43,21 +43,20 @@ export const usePageById = (id: number) => {
 export const usePageByUri = () => {
   const route = useRoute()
   const { slug, slug2 } = route.value.params
+  const { setSEO } = useMeta()
 
   let uri = slug
   if (slug2) {
     uri = `${slug}/${slug2}`
   }
-  // const route = useRoute()
-  // const { setSEO } = useMeta()
-  const { result, loading } = useQuery(PageByUriQuery, {
+  const { result, loading, onResult } = useQuery(PageByUriQuery, {
     uri,
   })
   const page = useResult(result) as Ref<IPageDetail>
 
-  // onResult((queryResult) => {
-  //   setSEO(queryResult.data.page.seo)
-  // })
+  onResult((queryResult) => {
+    setSEO(queryResult.data.page?.seo)
+  })
 
   return {
     loading,

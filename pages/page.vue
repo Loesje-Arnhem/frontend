@@ -11,7 +11,7 @@
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
     />
-    <lazy-related-pages-section
+    <related-pages-section
       :not-in="page.databaseId"
       :parent-page-id="parentPageId"
     />
