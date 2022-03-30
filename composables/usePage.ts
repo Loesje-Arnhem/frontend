@@ -41,15 +41,15 @@ export const usePageById = (id: number) => {
 }
 
 export const usePageByUri = (uri: string) => {
-  const { setSEO } = useMeta()
-  const { result, onResult, loading } = useQuery(PageByUriQuery, {
+  // const { setSEO } = useMeta()
+  const { result, loading } = useQuery(PageByUriQuery, {
     uri,
   })
   const page = useResult(result) as Ref<IPageDetail>
 
-  onResult((queryResult) => {
-    setSEO(queryResult.data.page.seo)
-  })
+  // onResult((queryResult) => {
+  //   setSEO(queryResult.data.page.seo)
+  // })
 
   return {
     loading,

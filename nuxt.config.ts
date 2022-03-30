@@ -37,8 +37,36 @@ export default {
   pwa,
   render,
   server,
+  target: 'static',
+  generate: {
+    concurrency: 20,
+    interval: 10000,
+    exclude: [
+      /^\/mijn-account/, // path starts with /admin
+      /^\/winkeltje/, // path starts with /admin
+      /^\/shop/, // path starts with /admin
+      /^\/account/, // path starts with /admin
+      /^\/posters/, // path starts with /admin
+      /^\/posts/, // path starts with /admin
+      /^\/over-loesje/, // path starts with /admin
+    ],
+  },
   version,
   // serverMiddleware: {
   //   '/_ipx': '~/server/middleware/ipx.js',
   // },
+
+  auth: {
+    strategies: {
+      graphql: {
+        scheme: '~/schemes/graphqlSchemes.js',
+      },
+    },
+    redirect: {
+      login: '/winkeltje/inloggen',
+      logout: '/winkeltje/inloggen?logout=true',
+      callback: false,
+      home: '/winkeltje/mijn-account',
+    },
+  },
 }
