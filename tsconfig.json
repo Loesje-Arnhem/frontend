@@ -20,7 +20,9 @@
       "@nuxt/image",
       "@types/node",
       "@nuxtjs/i18n",
-      "@types/body-scroll-lock"
+      "@types/body-scroll-lock",
+      "@nuxtjs/axios",
+      "@nuxtjs/auth-next"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
