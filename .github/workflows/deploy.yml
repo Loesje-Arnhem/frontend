@@ -26,7 +26,8 @@ jobs:
             npm prune # we remove any unused dependencies
             npm ci # we install any missing dependencies
             npm run generate
-            pm2 reload all # we reload the app via PM2
+          #npm run generate
+          #pm2 reload all # we reload the app via PM2
   lighthouse:
     needs: deploy
     runs-on: ubuntu-latest
