@@ -1,5 +1,5 @@
 import { useQuery, useResult } from '@vue/apollo-composable'
-import { Ref } from '@nuxtjs/composition-api'
+import { Ref, useRoute } from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
@@ -40,7 +40,15 @@ export const usePageById = (id: number) => {
   }
 }
 
-export const usePageByUri = (uri: string) => {
+export const usePageByUri = () => {
+  const route = useRoute()
+  const { slug, slug2 } = route.value.params
+
+  let uri = slug
+  if (slug2) {
+    uri = `${slug}/${slug2}`
+  }
+  // const route = useRoute()
   // const { setSEO } = useMeta()
   const { result, loading } = useQuery(PageByUriQuery, {
     uri,

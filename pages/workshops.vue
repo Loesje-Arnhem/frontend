@@ -8,7 +8,10 @@
     />
     <form-workshop />
     <related-posters-section :related-posters="page.relatedPosters" />
-    <related-products-section :related-products="page.relatedProducts" />
+    <related-products-section
+      :related-products="page.relatedProducts"
+      :title="page.relatedPosters.title"
+    />
   </div>
 </template>
 
