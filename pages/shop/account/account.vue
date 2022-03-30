@@ -11,6 +11,8 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import useCustomer from '~/composables/useCustomer'
 
 export default defineComponent({
+  middleware: ['auth'],
+
   setup() {
     const { customer, loading } = useCustomer()
 

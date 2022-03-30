@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="form" @submit.prevent="login">
+    <form class="form" method="post" @submit.prevent="login">
       <div class="wrapper">
         <form-fieldset title="Factuurgegevens">
           <form-input-text
@@ -29,53 +29,48 @@
 
 <script>
 import { v4 } from 'uuid'
-import {
-  useContext,
-  ref,
-  defineComponent,
-  useRouter,
-} from '@nuxtjs/composition-api'
-import { useMutation } from '@vue/apollo-composable'
-import LoginQuery from '~/graphql/Customer/Login.gql'
+import { useContext, ref, defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
-    const { app, $apolloHelpers } = useContext()
-    const errors = ref([])
+    const { $auth } = useContext()
+    const loading = ref(false)
+    const errors = ref(null)
     const username = ref('')
     const password = ref('')
-    const router = useRouter()
+    // const router = useRouter()
 
-    const {
-      mutate: login,
-      loading,
-      onError,
-      onDone,
-    } = useMutation(LoginQuery, () => ({
-      variables: {
-        input: {
-          clientMutationId: v4(),
-          username: username.value,
-          password: password.value,
-        },
-      },
-    }))
+    const login = async () => {
+      loading.value = true
+      try {
+        await $auth.loginWith('graphql', {
+          input: {
+            clientMutationId: v4(),
+            username: username.value,
+            password: password.value,
+          },
+        })
+      } catch (err) {
+        console.log(err)
+        errors.value = err
+      } finally {
+        loading.value = false
+      }
+    }
 
-    onError(({ graphQLErrors }) => {
-      errors.value = graphQLErrors.map((err) => err.message)
-    })
+    // onError(({ graphQLErrors }) => {
+    //   errors.value = graphQLErrors.map((err) => err.message)
+    // })
 
-    onDone(async ({ data }) => {
-      await $apolloHelpers.onLogin(data.login.authToken)
-      router.push(app.localePath({ name: 'shop-account' }))
-    })
+    // onDone(async ({ data }) => {
+    //   await $apolloHelpers.onLogin(data.login.authToken)
+    //   router.push(app.localePath({ name: 'shop-account' }))
+    // })
 
     return {
+      loading,
       errors,
       login,
-      loading,
-      onError,
-      onDone,
       username,
       password,
     }

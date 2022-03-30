@@ -25,17 +25,15 @@
 </template>
 
 <script>
-import { defineComponent, useRouter, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, useContext } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  middleware: ['isAuth'],
+  middleware: ['auth'],
   setup() {
-    const router = useRouter()
-    const { $apolloHelpers, app } = useContext()
+    const { $auth } = useContext()
 
     const logout = async () => {
-      await $apolloHelpers.onLogout()
-      router.push(app.localePath({ name: 'shop-login' }))
+      await $auth.logout()
     }
 
     return {

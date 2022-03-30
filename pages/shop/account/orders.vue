@@ -56,7 +56,7 @@ import { useQuery, useResult } from '@vue/apollo-composable'
 import OrdersQuery from '~/graphql/Customer/Orders.gql'
 
 export default defineComponent({
-  middleware: ['isAuth'],
+  middleware: ['auth'],
 
   setup() {
     const { error, loading, onError, onResult, result, fetchMore } =

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  middleware: 'isAuth',
+  middleware: ['auth'],
   nuxtI18n: {
     paths: {
       nl: '/winkeltje/registreren',
