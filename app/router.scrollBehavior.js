@@ -1,5 +1,5 @@
 export default () => {
-  const dailyPosters: HTMLElement | null = document.querySelector('.header-top')
+  const dailyPosters = document.querySelector('.header-top')
   if (!dailyPosters) {
     return {
       x: 0,

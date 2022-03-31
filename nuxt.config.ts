@@ -47,8 +47,6 @@ export default {
       /^\/shop/, // path starts with /admin
       /^\/account/, // path starts with /admin
       /^\/posters/, // path starts with /admin
-      /^\/posts/, // path starts with /admin
-      /^\/over-loesje\/nieuws/, // path starts with /admin
     ],
   },
   version,
