@@ -7,11 +7,11 @@
       :video="page.videoGroup.youtubeId"
     />
     <related-posters-section :related-posters="page.relatedPosters" />
-    <lazy-related-products-section
+    <related-products-section
       :related-products="page.relatedProducts"
       :title="page.relatedPosters.title"
     />
-    <lazy-related-pages-section
+    <related-pages-section
       :not-in="page.databaseId"
       :parent-page-id="parentPageId"
     />
@@ -19,22 +19,19 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useRoute } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 import { usePageByUri } from '~/composables/usePage'
 
 export default defineComponent({
   setup() {
-    const route = useRoute()
-
-    const { page, loading } = usePageByUri(route.value.params.pathMatch)
-
+    const { page, loading } = usePageByUri()
     const parentPageId = computed(
       () => page.value.parentDatabaseId || page.value.databaseId,
     )
 
     return {
-      parentPageId,
       loading,
+      parentPageId,
       page,
     }
   },
@@ -42,7 +39,7 @@ export default defineComponent({
 
   nuxtI18n: {
     paths: {
-      nl: '/*',
+      nl: '/:slug/:slug2?',
     },
   },
 })

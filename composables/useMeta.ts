@@ -32,7 +32,10 @@ const getMetaImage = (seo: any, key: string) => {
 export default () => {
   const { title, meta } = useMeta()
 
-  const setSEO = (seo: ISEO) => {
+  const setSEO = (seo: ISEO | undefined) => {
+    if (!seo) {
+      return
+    }
     title.value = seo.title
     meta.value = [
       {

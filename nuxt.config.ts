@@ -1,7 +1,7 @@
 import apollo from './config/apollo'
 import build from './config/build'
 import buildModules from './config/buildModules'
-import cache from './config/cache'
+// import cache from './config/cache'
 import components from './config/components'
 import css from './config/css'
 import googleFonts from './config/googleFonts'
@@ -22,7 +22,7 @@ export default {
   apollo,
   build,
   buildModules,
-  cache,
+  // cache,
   components,
   css,
   googleFonts,
@@ -47,8 +47,6 @@ export default {
       /^\/shop/, // path starts with /admin
       /^\/account/, // path starts with /admin
       /^\/posters/, // path starts with /admin
-      /^\/posts/, // path starts with /admin
-      /^\/over-loesje/, // path starts with /admin
     ],
   },
   version,
