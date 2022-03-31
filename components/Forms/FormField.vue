@@ -2,7 +2,7 @@
   <div class="field">
     <label :for="id" class="label">{{ title }}</label>
     <slot />
-    <span aria-live="assertive">{{ $t(errorMessage) }}</span>
+    <form-error-message :error="errorMessage" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default defineComponent({
   },
   setup(props) {
     const errorMessage = computed(() =>
-      props.errors.map((error) => error.$validator).join(''),
+      props.errors.map((error) => error.$message).join(', '),
     )
     return {
       errorMessage,

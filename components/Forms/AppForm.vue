@@ -11,7 +11,8 @@
     @submit.prevent="$emit('submit')"
   >
     <slot />
-    <app-button type="submit" :disabled="loading">{{ buttonTitle }}</app-button>
+    <app-button type="submit" :loading="loading">{{ buttonTitle }}</app-button>
+    <p><form-error-message :error="error" /></p>
   </form>
 </template>
 
@@ -30,6 +31,10 @@ export default defineComponent({
     loading: {
       type: Boolean,
       default: false,
+    },
+    error: {
+      type: String,
+      default: null,
     },
   },
 })

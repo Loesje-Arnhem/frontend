@@ -8,69 +8,57 @@
       @submit="submit"
     >
       <form-fieldset title="Meld je aan voor de workshop">
-        <form-field
+        <form-input-text
           id="name"
-          :errors="$v.name.$errors"
+          v-model="form.name"
+          :errors="v$.name.$errors"
           :title="$t('form.fields.name')"
-        >
-          <input
-            id="name"
-            v-model.lazy="$v.name.$model"
-            type="text"
-            name="name"
-            autocomplete="name"
-            maxlength="50"
-          />
-        </form-field>
-        <form-field
+          type="text"
+          name="name"
+          autocomplete="name"
+          :maxlength="50"
+        />
+        <form-input-text
           id="email"
-          :errors="$v.email.$errors"
+          v-model="form.email"
+          :errors="v$.email.$errors"
           :title="$t('form.fields.email')"
-        >
-          <input
-            id="email"
-            v-model.lazy="$v.email.$model"
-            type="email"
-            name="email"
-            autocomplete="email"
-            maxlength="50"
-          />
-        </form-field>
-        <form-field id="phoneNumber" title="Telefoonnummer">
-          <input
-            id="phoneNumber"
-            v-model="$v.phoneNumber.$model"
-            title="Telefoonnummer"
-            type="tel"
-            name="phoneNumber"
-            autocomplete="tel"
-          />
-        </form-field>
-        <form-field id="companyName" title="Bedrijfsnaam">
-          <input
-            id="companyName"
-            v-model="$v.companyName.$model"
-            type="text"
-            title="Bedrijfsnaam"
-            name="companyName"
-          />
-        </form-field>
-        <form-field
+          type="email"
+          name="email"
+          autocomplete="email"
+          :maxlength="50"
+        />
+        <form-input-text
+          id="phoneNumber"
+          v-model="form.phoneNumber"
+          title="Telefoonnummer"
+          type="tel"
+          name="phoneNumber"
+          autocomplete="tel"
+        />
+        <form-input-text
+          id="companyName"
+          v-model="form.companyName"
+          type="text"
+          title="Bedrijfsnaam"
+          name="companyName"
+        />
+        <form-input-text
           id="totalAttendees"
-          :errors="$v.totalAttendees.$errors"
+          v-model="form.totalAttendees"
+          type="number"
+          :errors="v$.totalAttendees.$errors"
           title="Aantal mensen"
-        >
-          <input
-            id="totalAttendees"
-            v-model.lazy="$v.totalAttendees.$model"
-            type="number"
-            name="totalAttendees"
-          />
-        </form-field>
+          name="totalAttendees"
+        />
 
-        <form-field id="date" title="Streefdatum">
-          <input id="date" v-model="$v.date.$model" type="date" name="date" />
-        </form-field>
+        <form-input-text
+          id="date"
+          v-model="form.date"
+          title="Streefdatum"
+          type="date"
+          name="date"
+        />
       </form-fieldset>
       <img src="/images/workshops.png" alt="" :class="$style.image" />
     </app-form>
@@ -79,7 +67,7 @@
 
 <script>
 import { email, required, numeric } from '@vuelidate/validators'
-import { useVuelidate } from '@vuelidate/core'
+import useVuelidate from '@vuelidate/core'
 import { reactive, defineComponent, ref } from '@nuxtjs/composition-api'
 import { useMutation } from '@vue/apollo-composable'
 import { v4 } from 'uuid'
@@ -107,18 +95,12 @@ export default defineComponent({
       date: {},
     }
 
-    const $v = useVuelidate(rules, {
-      email: form.email,
-      name: form.name,
-      phoneNumber: form.phoneNumber,
-      companyName: form.companyName,
-      totalAttendees: form.totalAttendees,
-      date: form.date,
-    })
+    const v$ = useVuelidate(rules, form)
 
-    const submit = () => {
-      $v.value.$touch()
-      if ($v.value.$invalid) return
+    const submit = async () => {
+      const isFormCorrect = await v$.value.$validate()
+      if (!isFormCorrect) return
+
       requestWorkshop()
     }
 
@@ -140,10 +122,11 @@ export default defineComponent({
     })
 
     return {
-      $v,
+      v$,
       submit,
       loading,
       submitted,
+      form,
     }
   },
 })

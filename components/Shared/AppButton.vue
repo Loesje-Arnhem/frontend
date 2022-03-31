@@ -4,8 +4,10 @@
     :type="generatedType"
     :to="to"
     :class="cssClasses"
+    :disabled="loading"
     @click="$emit('click')"
   >
+    <app-loader v-if="loading" class="loader" />
     <span class="title"><slot /></span>
   </component>
 </template>
@@ -33,6 +35,10 @@ export default defineComponent({
     isPrimary: {
       type: Boolean,
       default: true,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {
@@ -127,5 +133,9 @@ a {
   @nest .btn-outline:hover & {
     box-shadow: 0 2px 0 0 currentColor;
   }
+}
+
+.loader {
+  transform: scale(0.5);
 }
 </style>

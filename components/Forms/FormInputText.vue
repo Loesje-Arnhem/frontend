@@ -6,7 +6,7 @@
       :value="value"
       :type="type"
       class="input"
-      :maxlength="maxlength"
+      :maxlength="250"
       @keyup.down="$emit('keyup-down')"
       @keyup.up="$emit('keyup-up')"
       @input="$emit('input', $event.target.value)"
