@@ -45,9 +45,9 @@
   </form>
 </template>
 
-<script>
-import { computed } from '@nuxtjs/composition-api'
-export default {
+<script lang="ts">
+import { computed, defineComponent } from '@nuxtjs/composition-api'
+export default defineComponent({
   props: {
     user: {
       type: Object,
@@ -66,7 +66,7 @@ export default {
       id,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" scoped>

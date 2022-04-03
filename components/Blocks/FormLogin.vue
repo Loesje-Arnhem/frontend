@@ -14,6 +14,7 @@
           title="Gebruikersnaam of e-mailadres"
           name="username"
           :errors="v$.username.$errors"
+          autocomplete="username"
         />
         <form-input-text
           id="password"
@@ -22,6 +23,7 @@
           type="password"
           name="password"
           :errors="v$.password.$errors"
+          autocomplete="current-password"
         />
       </form-fieldset>
     </app-form>

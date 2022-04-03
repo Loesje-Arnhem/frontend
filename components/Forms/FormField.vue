@@ -34,12 +34,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<i18n>
-{
-  "nl": {
-    "email": "Vul een geldig e-mailadres in",
-    "required": "Dit veld is verplicht"
-  }
-}
-</i18n>
