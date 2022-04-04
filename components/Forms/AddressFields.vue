@@ -3,13 +3,15 @@
     <form-fieldset title="Factuurgegevens" class="fields">
       <form-input-text
         :id="`${id}-firstName`"
-        :value="user.firstName"
+        v-model="v$.firstName.$model"
         title="Voornaam"
         class="firstName"
         name="firstName"
         autocomplete="given-name"
-        @input="$emit('input', 'firstName', $event)"
+        :errors="v$.firstName.$errors"
       />
+      {{ firstName }}
+      {{ v$.firstName.$errors }}
       <form-input-text
         :id="`${id}-lastName`"
         :value="user.lastName"
@@ -45,14 +47,18 @@
   </form>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api'
+<script>
+import { computed, defineComponent, ref } from '@nuxtjs/composition-api'
+import { required } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
+
 export default defineComponent({
   props: {
     user: {
       type: Object,
       default: () => {},
     },
+
     isShipping: {
       type: Boolean,
       default: false,
@@ -62,8 +68,21 @@ export default defineComponent({
     const id = computed(() => {
       return props.isShipping ? `shipping` : 'user'
     })
+
+    const firstName = ref('')
+
+    const rules = {
+      firstName: { required },
+    }
+
+    const v$ = useVuelidate(rules, {
+      firstName,
+    })
+
     return {
+      firstName,
       id,
+      v$,
     }
   },
 })

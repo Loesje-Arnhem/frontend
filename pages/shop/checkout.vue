@@ -1,17 +1,23 @@
 <template>
   <center-wrapper>
-    <form class="form" @submit.prevent="checkout">
+    <app-form
+      class="form"
+      button-title="Bestelling plaatsen"
+      :loading="loading"
+      :error="errors.join('')"
+      @submit="checkout"
+    >
       <h1 v-if="page">{{ page.title }}</h1>
       <div class="checkout">
         <div>
           <address-fields :user="billing" @input="updateBillingField" />
-
+          <!-- 
           <input
             id="shipToDifferentAddress"
             v-model="shipToDifferentAddress"
             type="checkbox"
-          />
-          <label for="shipToDifferentAddress">
+          /> -->
+          <!-- <label for="shipToDifferentAddress">
             Verzenden naar een ander adres?
           </label>
           <slide-in-animation>
@@ -25,29 +31,34 @@
         </div>
         <client-only>
           <mini-cart />
-        </client-only>
+        </client-only> -->
+        </div>
       </div>
-      <input id="addToNewsletter" v-model="addToNewsletter" type="checkbox" />
+      <!-- <input id="addToNewsletter" v-model="addToNewsletter" type="checkbox" />
       <label for="addToNewsletter"> Toevoegen aan niewsbrief </label>
       <payment-gateways
         v-if="paymentGateways.edges.length"
         v-model="paymentMethod"
         :payment-gateways="paymentGateways.edges"
-      />
-      <app-button type="submit" :disabled="loading">
-        Bestelling plaatsen
-      </app-button>
-    </form>
+      /> -->
+
+      <!-- this will contain all $errors and $silentErrors from both <CompA> and <CompB>-->
+      <p v-for="error of v$.$errors" :key="error.$uid">
+        {{ error.$message }}
+      </p>
+    </app-form>
   </center-wrapper>
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
+import { useVuelidate } from '@vuelidate/core'
 import PaymentGatewaysQuery from '~/graphql/Shop/PaymentGateways.gql'
 import { useCheckout } from '~/composables/checkout'
 import { checkoutPageId } from '~/data/pages'
 import { usePageById } from '~/composables/usePage'
 
-export default {
+export default defineComponent({
   setup() {
     const {
       checkout,
@@ -56,6 +67,7 @@ export default {
       shipping,
       shipToDifferentAddress,
       addToNewsletter,
+      errors,
     } = useCheckout()
 
     const { page, loading } = usePageById(checkoutPageId)
@@ -65,8 +77,11 @@ export default {
     const updateShippingField = (key, value) => {
       shipping[key] = value
     }
+    // this will collect all nested component’s validation results
+    const v$ = useVuelidate()
 
     return {
+      v$,
       page,
       loading,
       shipToDifferentAddress,
@@ -77,6 +92,7 @@ export default {
       billing,
       shipping,
       addToNewsletter,
+      errors,
     }
   },
   async asyncData({ app }) {
@@ -95,7 +111,7 @@ export default {
       nl: '/winkeltje/afrekenen',
     },
   },
-}
+})
 </script>
 
 <style scoped lang="postcss">
