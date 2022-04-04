@@ -8,8 +8,8 @@ import useNewsletter from '~/composables/newsletter'
 export const useCheckout = () => {
   const errors = ref([])
   const paymentMethod = ref('cod')
-  const shipToDifferentAddress = ref(true)
-  const addToNewsletter = ref(true)
+  const shipToDifferentAddress = ref(false)
+  const addToNewsletter = ref(false)
   const { addToNewsletter: submitToNewsletter, form: newsletterForm } =
     useNewsletter()
   const billing = reactive({

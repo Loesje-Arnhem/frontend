@@ -3,15 +3,15 @@
     <form-fieldset title="Factuurgegevens" class="fields">
       <form-input-text
         :id="`${id}-firstName`"
-        v-model="v$.firstName.$model"
+        :value="firstName"
         title="Voornaam"
         class="firstName"
         name="firstName"
         autocomplete="given-name"
         :errors="v$.firstName.$errors"
+        @input="$emit('input', 'firstName', $event)"
+        @change="$emit('input', 'firstName', $event)"
       />
-      {{ firstName }}
-      {{ v$.firstName.$errors }}
       <form-input-text
         :id="`${id}-lastName`"
         :value="user.lastName"
@@ -19,7 +19,9 @@
         class="lastName"
         name="lastName"
         autocomplete="family-name"
+        :errors="v$.lastName.$errors"
         @input="$emit('input', 'lastName', $event)"
+        @change="$emit('input', 'lastName', $event)"
       />
       <form-input-text
         :id="`${id}-companyName`"
@@ -31,15 +33,15 @@
       />
     </form-fieldset>
     <user-address-fields :user="user" />
-    <form-fieldset title="Factuurgegevens">
+    <form-fieldset v-if="!isShipping" title="Factuurgegevens">
       <form-input-text
-        v-if="!isShipping"
         :id="`${id}-email`"
         :value="user.email"
         title="E-mailadres"
         type="email"
         class="email"
         name="email"
+        :errors="v$.email.$errors"
         autocomplete="email"
         @input="$emit('input', 'email', $event)"
       />
@@ -48,8 +50,8 @@
 </template>
 
 <script>
-import { computed, defineComponent, ref } from '@nuxtjs/composition-api'
-import { required } from '@vuelidate/validators'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
+import { required, email } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 
 export default defineComponent({
@@ -63,24 +65,27 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    firstName: {
+      type: String,
+      default: '',
+    },
   },
   setup(props) {
     const id = computed(() => {
       return props.isShipping ? `shipping` : 'user'
     })
 
-    const firstName = ref('')
+    const form = computed(() => props.user)
 
     const rules = {
       firstName: { required },
+      lastName: { required },
+      email: { required, email },
     }
 
-    const v$ = useVuelidate(rules, {
-      firstName,
-    })
+    const v$ = useVuelidate(rules, form)
 
     return {
-      firstName,
       id,
       v$,
     }

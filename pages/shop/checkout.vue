@@ -5,19 +5,22 @@
       button-title="Bestelling plaatsen"
       :loading="loading"
       :error="errors.join('')"
-      @submit="checkout"
+      @submit="submit"
     >
       <h1 v-if="page">{{ page.title }}</h1>
       <div class="checkout">
         <div>
-          <address-fields :user="billing" @input="updateBillingField" />
-          <!-- 
+          <address-fields
+            :user="billing"
+            @input="(key, value) => (billing[key] = value)"
+          />
+
           <input
             id="shipToDifferentAddress"
             v-model="shipToDifferentAddress"
             type="checkbox"
-          /> -->
-          <!-- <label for="shipToDifferentAddress">
+          />
+          <label for="shipToDifferentAddress">
             Verzenden naar een ander adres?
           </label>
           <slide-in-animation>
@@ -25,27 +28,21 @@
               v-if="shipToDifferentAddress"
               :is-shipping="true"
               :user="shipping"
-              @input="updateShippingField"
+              @input="(key, value) => (shipping[key] = value)"
             />
           </slide-in-animation>
         </div>
         <client-only>
           <mini-cart />
-        </client-only> -->
-        </div>
+        </client-only>
       </div>
-      <!-- <input id="addToNewsletter" v-model="addToNewsletter" type="checkbox" />
+      <input id="addToNewsletter" v-model="addToNewsletter" type="checkbox" />
       <label for="addToNewsletter"> Toevoegen aan niewsbrief </label>
       <payment-gateways
         v-if="paymentGateways.edges.length"
         v-model="paymentMethod"
         :payment-gateways="paymentGateways.edges"
-      /> -->
-
-      <!-- this will contain all $errors and $silentErrors from both <CompA> and <CompB>-->
-      <p v-for="error of v$.$errors" :key="error.$uid">
-        {{ error.$message }}
-      </p>
+      />
     </app-form>
   </center-wrapper>
 </template>
@@ -71,23 +68,22 @@ export default defineComponent({
     } = useCheckout()
 
     const { page, loading } = usePageById(checkoutPageId)
-    const updateBillingField = (key, value) => {
-      billing[key] = value
-    }
-    const updateShippingField = (key, value) => {
-      shipping[key] = value
-    }
+
     // this will collect all nested component’s validation results
     const v$ = useVuelidate()
 
+    const submit = async () => {
+      const isFormCorrect = await v$.value.$validate()
+      if (!isFormCorrect) return
+      checkout()
+    }
+
     return {
+      submit,
       v$,
       page,
       loading,
       shipToDifferentAddress,
-      updateBillingField,
-      updateShippingField,
-      checkout,
       paymentMethod,
       billing,
       shipping,
