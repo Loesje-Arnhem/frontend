@@ -16,6 +16,7 @@ export default {
       ]
     },
   },
+  friendlyErrors: false,
   loaders: {
     cssModules: {
       modules: {
