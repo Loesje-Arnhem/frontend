@@ -1,10 +1,5 @@
 <template>
-  <form-field
-    :id="id"
-    :error-message="errorMessage"
-    :title="title"
-    class="field"
-  >
+  <form-field :id="id" :errors="errors" :title="title" class="field">
     <div class="form-select">
       <select
         :id="id"
@@ -14,6 +9,13 @@
         @change="$emit('change')"
       >
         <slot />
+        <option
+          v-for="option in options"
+          :key="option.value"
+          :value="option.value"
+        >
+          {{ option.title }}
+        </option>
       </select>
       <app-icon icon="chevron-down" class="icon" width="24" height="24" />
     </div>
@@ -21,7 +23,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IOption } from '~/interfaces/IOption'
 export default defineComponent({
   inheritAttrs: false,
   props: {
@@ -34,12 +37,16 @@ export default defineComponent({
       required: true,
     },
     value: {
-      type: String,
-      required: true,
-    },
-    errorMessage: {
-      type: String,
+      type: String || Number,
       default: '',
+    },
+    errors: {
+      type: Array,
+      default: () => [],
+    },
+    options: {
+      type: Array as PropType<IOption[]>,
+      default: () => [],
     },
   },
 })

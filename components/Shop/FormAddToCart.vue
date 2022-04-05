@@ -28,15 +28,12 @@
               v-model="selectedAttribute"
               :name="attribute.slug"
               :title="attribute.name"
-            >
-              <option
-                v-for="option in attribute.terms.nodes"
-                :key="option.databaseId"
-                :value="option.databaseId"
-              >
-                {{ option.name }}
-              </option>
-            </form-select>
+              :options="
+                attribute.terms.nodes.map((o) => {
+                  return { value: o.databaseId, title: o.name }
+                })
+              "
+            />
           </div>
         </div>
       </form-fieldset>

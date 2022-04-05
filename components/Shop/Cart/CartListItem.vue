@@ -26,26 +26,25 @@
         v-model="quantity"
         :class="$style.select"
         :name="`quantity-${item.product.node.databaseId}`"
+        :options="options"
         title="Aantal"
         @change="updateItemQuantities"
-      >
-        <option v-for="index in 9" :key="index" :value="index">
-          {{ index }}
-        </option>
-      </form-select>
+      />
     </td>
     <td :class="$style.price">{{ item.total }}</td>
   </tr>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 import ProductPrices from '../Products/ProductPrices.vue'
 import {
   useUpdateItemQuantities,
   useRemoveItemsFromCart,
 } from '~/composables/cart'
+import { IOption } from '~/interfaces/IOption'
 
-export default {
+export default defineComponent({
   components: { ProductPrices },
   props: {
     item: {
@@ -59,14 +58,23 @@ export default {
     )
     const { removeItemsFromCart } = useRemoveItemsFromCart(props.item)
 
+    const options: IOption[] = [...Array(9).keys()].map((index) => {
+      const amount = index + 1
+      return {
+        value: amount,
+        title: amount.toString(),
+      }
+    })
+
     return {
+      options,
       loading,
       updateItemQuantities,
       quantity,
       removeItemsFromCart,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

@@ -1,14 +1,17 @@
 <template>
   <form-fieldset title="Adresgegevens" class="fields">
-    <form-input-text
+    <form-select
       :id="`${id}-country`"
       :value="form.country"
       title="Land"
-      class="country"
       name="country"
+      class="country"
       autocomplete="country"
+      :options="countries"
       @input="$emit('input', 'country', $event)"
+      @change="$emit('change', 'country', $event)"
     />
+
     <form-input-text
       :id="`${id}-postcode`"
       :value="form.postcode"
@@ -48,15 +51,16 @@
       name="city"
       @input="$emit('input', 'city', $event)"
     />
-    <div class="button" @click="test">test</div>
+    <div class="button" @click="test">Haal gegevens op</div>
   </form-fieldset>
 </template>
 
 <script>
-import { computed } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 import usePostcode from '~/composables/usePostcode'
+import countries from '~/data/countries'
 
-export default {
+export default defineComponent({
   props: {
     isShipping: {
       type: Boolean,
@@ -73,6 +77,7 @@ export default {
       checkPostcode()
     }
     return {
+      countries,
       form,
       id,
       checkPostcode,
@@ -80,7 +85,7 @@ export default {
       test,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" scoped>

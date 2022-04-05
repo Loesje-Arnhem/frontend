@@ -19,10 +19,11 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 import useLayout from '~/composables/useLayout'
 import { title } from '~/data/siteDetails'
 
-export default {
+export default defineComponent({
   setup() {
     const { openMobileMenu } = useLayout()
     return {
@@ -30,7 +31,7 @@ export default {
       openMobileMenu,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
