@@ -1,5 +1,12 @@
 import { useQuery, useResult } from '@vue/apollo-composable'
-import { Ref, useRoute } from '@nuxtjs/composition-api'
+import {
+  computed,
+  ref,
+  Ref,
+  useContext,
+  useRoute,
+  useStatic,
+} from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
@@ -43,23 +50,52 @@ export const usePageById = (id: number) => {
 export const usePageByUri = () => {
   const route = useRoute()
   const { slug, slug2 } = route.value.params
-  const { setSEO } = useMeta()
-
-  let uri = slug
-  if (slug2) {
-    uri = `${slug}/${slug2}`
-  }
-  const { result, loading, onResult } = useQuery(PageByUriQuery, {
-    uri,
+  const { app } = useContext()
+  const key2 = computed(() => {
+    if (slug2) {
+      return `${slug}--${slug2}`
+    }
+    return slug
   })
-  const page = useResult(result) as Ref<IPageDetail>
+  // const { setSEO } = useMeta()
+  const loading = ref(false)
+  const page2 = ref(null)
 
-  onResult((queryResult) => {
-    setSEO(queryResult.data.page?.seo)
-  })
+  const page = useStatic(
+    async (key2) => {
+      loading.value = true
+      try {
+        const { data } = await app.apolloProvider.defaultClient.query({
+          query: PageByUriQuery,
+          variables: {
+            uri: key2.replace('--', '/'),
+          },
+        })
+        return data.page
+      } finally {
+        loading.value = false
+      }
+    },
+    key2,
+    'page',
+  )
+
+  // let uri = slug
+  // if (slug2) {
+  //   uri = `${slug}/${slug2}`
+  // }
+  // const { result, loading, onResult } = useQuery(PageByUriQuery, {
+  //   uri,
+  // })
+  // const page = useResult(result) as Ref<IPageDetail>
+
+  // onResult((queryResult) => {
+  //   setSEO(queryResult.data.page?.seo)
+  // })
 
   return {
     loading,
     page,
+    page2,
   }
 }
