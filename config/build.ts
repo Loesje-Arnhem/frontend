@@ -16,7 +16,12 @@ export default {
       ]
     },
   },
+  // postcss is generating an error, imporFrom is deprecaded. these properties can be removed when postcss has been updated
   friendlyErrors: false,
+  stats: {
+    warnings: false,
+  },
+  // end
   loaders: {
     cssModules: {
       modules: {
