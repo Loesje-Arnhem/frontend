@@ -60,6 +60,7 @@ export default defineComponent({
       'list list'
       'become-member balloon';
   }
+
   @media (--viewport-lg) {
     grid-template-areas:
       'list become-member'

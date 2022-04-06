@@ -53,46 +53,46 @@ export default {
 <style lang="postcss" module>
 .balloon {
   &.animate {
-    animation: balloonX 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
+    animation: balloon-x 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
 
     @media (--viewport-md) {
-      animation-name: balloonXLarge;
+      animation-name: balloon-x-large;
     }
   }
 }
 
 .balloon-image {
   @nest .balloon.animate & {
-    animation: balloonY 20s infinite cubic-bezier(0.3, 0.27, 0.07, 1.64);
+    animation: balloon-y 20s infinite cubic-bezier(0.3, 0.27, 0.07, 1.64);
 
     @media (--viewport-md) {
-      animation-name: balloonYLarge;
+      animation-name: balloon-y-large;
     }
   }
 }
 
-@keyframes balloonY {
+@keyframes balloon-y {
   50% {
     animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
     transform: translateX(5rem);
   }
 }
 
-@keyframes balloonX {
+@keyframes balloon-x {
   50% {
     animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
     transform: translateY(2rem);
   }
 }
 
-@keyframes balloonYLarge {
+@keyframes balloon-y-large {
   50% {
     animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
     transform: translateY(-8rem);
   }
 }
 
-@keyframes balloonXLarge {
+@keyframes balloon-x-large {
   50% {
     animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
     transform: translateX(-2rem);

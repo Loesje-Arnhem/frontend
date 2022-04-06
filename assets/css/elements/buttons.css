@@ -10,7 +10,7 @@ button {
   line-height: normal;
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
-  -webkit-appearance: none;
+  appearance: none;
   text-decoration: none;
   cursor: pointer;
 
@@ -21,7 +21,7 @@ button {
 }
 
 a {
-  color: currentColor;
+  color: currentcolor;
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-decoration-style: solid;

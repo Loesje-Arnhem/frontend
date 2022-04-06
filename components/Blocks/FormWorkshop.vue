@@ -67,7 +67,7 @@
 
 <script>
 import { email, required, numeric } from '@vuelidate/validators'
-import useVuelidate from '@vuelidate/core'
+import { useVuelidate } from '@vuelidate/core'
 import { reactive, defineComponent, ref } from '@nuxtjs/composition-api'
 import { useMutation } from '@vue/apollo-composable'
 import { v4 } from 'uuid'

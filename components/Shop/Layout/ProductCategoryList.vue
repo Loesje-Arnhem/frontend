@@ -74,7 +74,7 @@ export default defineComponent({
   &.nuxt-link-exact-active,
   &:focus,
   &:hover {
-    box-shadow: 0 2px 0 0 currentColor;
+    box-shadow: 0 2px 0 0 currentcolor;
   }
 }
 </style>

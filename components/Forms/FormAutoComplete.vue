@@ -172,7 +172,7 @@ export default {
 
 .autocomplete {
   position: absolute;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgb(255 255 255 / 90%);
   z-index: var(--z-autocomplete);
   left: 0;
   right: 0;

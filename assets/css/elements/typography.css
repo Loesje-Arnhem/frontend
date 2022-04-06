@@ -1,7 +1,8 @@
 @font-face {
-  font-family: 'Franklin';
-  src: url('./../../fonts/franklin-gothic.woff2') format('woff2'),
-    url('./../../fonts/franklin-gothic.woff') format('woff');
+  font-family: Franklin;
+  src:
+    url("./../../fonts/franklin-gothic.woff2") format("woff2"),
+    url("./../../fonts/franklin-gothic.woff") format("woff");
   font-display: swap;
 }
 
@@ -10,8 +11,7 @@ html {
 }
 
 body {
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-normal);
   color: var(--color-black);

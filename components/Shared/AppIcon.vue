@@ -35,7 +35,7 @@ export default {
 <style module lang="postcss">
 .icon {
   display: inline-block;
-  fill: currentColor;
+  fill: currentcolor;
   position: relative;
 }
 </style>

@@ -95,7 +95,7 @@ export default defineComponent({
 
   @media (--viewport-lg) {
     shape-outside: polygon(85% 0%, 0% 100%, 85% 100%);
-    shape-image-threshold: 0.1;
+    shape-image-threshold: 10%;
     shape-margin: 8em;
     margin-bottom: 2em;
     float: right;

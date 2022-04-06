@@ -176,7 +176,7 @@ export default defineComponent({
   right: 0;
   top: 100%;
   padding: 1em 0 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgb(255 255 255 / 80%);
   z-index: 1;
 }
 

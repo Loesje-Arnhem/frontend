@@ -62,7 +62,7 @@ export default {
 
 .icon {
   margin-right: var(--spacing-xxs);
-  fill: currentColor;
+  fill: currentcolor;
 }
 </style>
 

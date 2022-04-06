@@ -74,6 +74,7 @@ export default defineComponent({
     grid-template-columns: repeat(2, 1fr);
     padding-bottom: 8em;
   }
+
   @media (--viewport-lg) {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -81,6 +82,7 @@ export default defineComponent({
 
 .mood-wrapper {
   transform: rotate(3deg);
+
   @media (--viewport-sm) {
     position: absolute;
     bottom: var(--gutter);

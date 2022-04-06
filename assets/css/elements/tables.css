@@ -27,6 +27,7 @@ td {
     padding-bottom: 0.75em;
     border-top: 2px solid #000;
   }
+
   & tr:last-child td {
     border-bottom: 2px solid #000;
   }

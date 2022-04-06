@@ -26,14 +26,14 @@
       :value="form.houseNumber"
       title="Nr"
       type="number"
-      class="houseNumber"
+      class="house-number"
       name="houseNumber"
     />
     <form-input-text
       :id="`${id}-houseNumberAddition`"
       :value="form.houseNumberAddition"
       title="Toev"
-      class="houseNumberAddition"
+      class="house-number-addition"
       name="houseNumberAddition"
     />
     <form-input-text
@@ -89,17 +89,12 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.firstName,
-.lastName,
-.postcode,
 .street,
 .city {
   grid-column: span 2;
 }
 
-.email,
-.country,
-.companyName {
+.country {
   grid-column: span 4;
 }
 </style>

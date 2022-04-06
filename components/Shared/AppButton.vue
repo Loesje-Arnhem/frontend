@@ -127,11 +127,11 @@ a {
   transition: box-shadow 0.2s ease-out;
 
   @nest .btn:hover & {
-    box-shadow: 0 3px 0 0 currentColor;
+    box-shadow: 0 3px 0 0 currentcolor;
   }
 
   @nest .btn-outline:hover & {
-    box-shadow: 0 2px 0 0 currentColor;
+    box-shadow: 0 2px 0 0 currentcolor;
   }
 }
 

@@ -89,6 +89,7 @@ export default defineComponent({
       shipping,
       addToNewsletter,
       errors,
+      checkout,
     }
   },
   async asyncData({ app }) {
@@ -114,6 +115,7 @@ export default defineComponent({
 .checkout {
   display: grid;
   grid-gap: 1em;
+
   @media (--viewport-lg) {
     grid-template-columns: repeat(2, 1fr);
   }

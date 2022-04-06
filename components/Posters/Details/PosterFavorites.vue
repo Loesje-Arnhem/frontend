@@ -64,7 +64,7 @@ export default defineComponent({
   height: 1em;
   width: auto;
   transform: translateY(0.1em);
-  color: currentColor;
+  color: currentcolor;
 }
 </style>
 

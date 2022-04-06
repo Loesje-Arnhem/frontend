@@ -5,7 +5,8 @@
         :id="`${id}-firstName`"
         :value="firstName"
         title="Voornaam"
-        class="firstName"
+        class="first-name"
+        :errors="v$.firstName.$errors"
         name="firstName"
         autocomplete="given-name"
         :errors="v$.firstName.$errors"
@@ -16,7 +17,7 @@
         :id="`${id}-lastName`"
         :value="user.lastName"
         title="Achternaam"
-        class="lastName"
+        class="last-name"
         name="lastName"
         autocomplete="family-name"
         :errors="v$.lastName.$errors"
@@ -26,7 +27,7 @@
       <form-input-text
         :id="`${id}-companyName`"
         :value="user.company"
-        class="companyName"
+        class="company-name"
         title="Bedrijfsnaam"
         name="companyName"
         @input="$emit('input', 'company', $event)"
@@ -60,14 +61,13 @@ export default defineComponent({
       type: Object,
       default: () => {},
     },
-
-    isShipping: {
-      type: Boolean,
-      default: false,
-    },
     firstName: {
       type: String,
       default: '',
+    },
+    isShipping: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {
@@ -98,8 +98,8 @@ export default defineComponent({
   @mixin block;
 }
 
-.firstName,
-.lastName,
+.first-name,
+.last-name,
 .postcode,
 .street,
 .city {
@@ -108,7 +108,7 @@ export default defineComponent({
 
 .email,
 .country,
-.companyName {
+.company-name {
   grid-column: span 4;
 }
 </style>
