@@ -9,7 +9,6 @@
         :errors="v$.firstName.$errors"
         name="firstName"
         autocomplete="given-name"
-        :errors="v$.firstName.$errors"
         @input="$emit('input', 'firstName', $event)"
         @change="$emit('input', 'firstName', $event)"
       />
