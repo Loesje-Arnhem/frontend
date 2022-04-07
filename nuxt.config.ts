@@ -17,6 +17,7 @@ import pwa from './config/pwa'
 import render from './config/render'
 import server from './config/server'
 import version from './config/version'
+import generate from './config/generate'
 
 export default {
   apollo,
@@ -38,17 +39,7 @@ export default {
   render,
   server,
   target: 'static',
-  generate: {
-    concurrency: 20,
-    interval: 10000,
-    exclude: [
-      /^\/mijn-account/, // path starts with /admin
-      /^\/winkeltje/, // path starts with /admin
-      /^\/shop/, // path starts with /admin
-      /^\/account/, // path starts with /admin
-      /^\/posters/, // path starts with /admin
-    ],
-  },
+  generate,
   version,
   // serverMiddleware: {
   //   '/_ipx': '~/server/middleware/ipx.js',

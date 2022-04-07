@@ -1,0 +1,11 @@
+#import "./Fragments/PageContent.gql"
+
+query Pages {
+  pages {
+    edges {
+      node {
+        ...pageContent
+      }
+    }
+  }
+}

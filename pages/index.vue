@@ -18,14 +18,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, useRoute } from '@nuxtjs/composition-api'
 import { homePageId } from '~/data/pages'
 import { usePageById } from '~/composables/usePage'
 
 export default defineComponent({
   setup() {
     const { page, loading } = usePageById(homePageId)
+    const route = useRoute()
+
     return {
+      route,
       page,
       loading,
     }
