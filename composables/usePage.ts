@@ -5,28 +5,46 @@ import {
   Ref,
   useContext,
   useRoute,
+  watch,
   useStatic,
 } from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByIdQuery from '~/graphql/Pages/PageById.gql'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
 import useMeta from '~/composables/useMeta'
-import { IPages } from '~/interfaces/IPages'
 import { IPageDetail } from '~/interfaces/IPageDetail'
 
 export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
-  const { result, error, loading, onError } = useQuery(RelatedPagesQuery, {
-    notIn,
-    parentPageId: parentPageId.toString(),
-  })
+  const { app } = useContext()
+  const loading = ref(false)
 
-  const relatedPages = useResult(result) as Ref<IPages>
+  const route = useRoute()
+
+  const pageKey = computed(() => route.value.fullPath.replaceAll('/', '-'))
+
+  const relatedPages = useStatic(
+    async () => {
+      loading.value = true
+      try {
+        const { data } = await app.apolloProvider.defaultClient.query({
+          query: RelatedPagesQuery,
+          variables: {
+            notIn,
+            parentPageId: parentPageId.toString(),
+          },
+        })
+        return data.pages
+      } finally {
+        loading.value = false
+      }
+    },
+    pageKey,
+    'related-pages',
+  )
 
   return {
     relatedPages,
-    error,
     loading,
-    onError,
   }
 }
 
@@ -48,27 +66,28 @@ export const usePageById = (id: number) => {
 }
 
 export const usePageByUri = () => {
+  const { setSEO } = useMeta()
+  const { app } = useContext()
+
+  const loading = ref(false)
+
   const route = useRoute()
   const { slug, slug2 } = route.value.params
-  const { app } = useContext()
-  const key2 = computed(() => {
+  const pageKey = computed(() => {
     if (slug2) {
       return `${slug}--${slug2}`
     }
     return slug
   })
-  // const { setSEO } = useMeta()
-  const loading = ref(false)
-  const page2 = ref(null)
 
   const page = useStatic(
-    async (key2) => {
+    async (pageKey) => {
       loading.value = true
       try {
         const { data } = await app.apolloProvider.defaultClient.query({
           query: PageByUriQuery,
           variables: {
-            uri: key2.replace('--', '/'),
+            uri: pageKey.replace('--', '/'),
           },
         })
         return data.page
@@ -76,26 +95,18 @@ export const usePageByUri = () => {
         loading.value = false
       }
     },
-    key2,
+    pageKey,
     'page',
   )
 
-  // let uri = slug
-  // if (slug2) {
-  //   uri = `${slug}/${slug2}`
-  // }
-  // const { result, loading, onResult } = useQuery(PageByUriQuery, {
-  //   uri,
-  // })
-  // const page = useResult(result) as Ref<IPageDetail>
-
-  // onResult((queryResult) => {
-  //   setSEO(queryResult.data.page?.seo)
-  // })
+  watch(page, () => {
+    if (page.value) {
+      setSEO(page.value.seo)
+    }
+  })
 
   return {
     loading,
     page,
-    page2,
   }
 }

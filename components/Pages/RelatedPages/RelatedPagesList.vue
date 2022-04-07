@@ -15,7 +15,7 @@ export default defineComponent({
   props: {
     pages: {
       type: Array,
-      default: () => {},
+      default: () => [],
     },
   },
 })

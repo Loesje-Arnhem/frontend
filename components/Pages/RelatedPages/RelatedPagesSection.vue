@@ -25,7 +25,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { relatedPages, loading, error } = useRelatedPages(
+    const { relatedPages, loading } = useRelatedPages(
       props.parentPageId,
       props.notIn,
     )
@@ -33,7 +33,6 @@ export default defineComponent({
     return {
       relatedPages,
       loading,
-      error,
     }
   },
 })
