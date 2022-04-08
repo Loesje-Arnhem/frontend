@@ -7,7 +7,7 @@ import {
   useStatic,
 } from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
-import PageByIdQuery from '~/graphql/Pages/PageById.gql'
+import { GetPageById } from '~/graphql/Pages/Pages'
 import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
 import useMeta from '~/composables/useMeta'
 
@@ -23,7 +23,7 @@ export const usePageById = (id: number) => {
       loading.value = true
       try {
         const { data } = await app.apolloProvider.defaultClient.query({
-          query: PageByIdQuery,
+          query: GetPageById,
           variables: {
             id,
           },

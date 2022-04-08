@@ -1,37 +1,59 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page" class="page">
-    <app-content
-      :title="page.title"
-      :content="page.content"
-      :video="page.videoGroup.youtubeId"
-    />
-    <related-posters-section :related-posters="page.relatedPosters" />
-    <related-products-section
-      :related-products="page.relatedProducts"
-      :title="page.relatedPosters.title"
-    />
-    <related-pages-section
-      :not-in="page.databaseId"
-      :parent-page-id="parentPageId"
-    />
+  <app-loader v-if="!page" />
+  <div v-else>
+    <app-content :title="page.title" :content="page.content" />
+    <related-products-section :related-products="page.relatedProducts" />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api'
-import { usePageByUri } from '~/composables/usePage'
+import {
+  computed,
+  defineComponent,
+  useContext,
+  useRoute,
+  useStatic,
+} from '@nuxtjs/composition-api'
+import GetPage from '~/graphql/Pages/Pages'
 
 export default defineComponent({
   setup() {
-    const { page, loading } = usePageByUri()
-    const parentPageId = computed(
-      () => page.value.parentDatabaseId || page.value.databaseId,
+    const { app, payload } = useContext()
+
+    const route = useRoute()
+    const { slug, slug2 } = route.value.params
+    const pageKey = computed(() => {
+      if (slug2) {
+        return `${slug}--${slug2}`
+      }
+      return slug
+    })
+
+    const uri = computed(() => {
+      if (slug2) {
+        return `${slug}/${slug2}`
+      }
+      return slug
+    })
+
+    const page = useStatic(
+      async () => {
+        if (payload) {
+          return payload
+        }
+        const { data } = await app.apolloProvider.defaultClient.query({
+          query: GetPage,
+          variables: {
+            uri: uri.value,
+          },
+        })
+        return data.page
+      },
+      pageKey,
+      'page',
     )
 
     return {
-      loading,
-      parentPageId,
       page,
     }
   },

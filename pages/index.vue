@@ -2,16 +2,12 @@
   <div>
     <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
     <latest-posts-section />
-    <lazy-related-posters-section
+    <!-- <lazy-related-posters-section
       v-if="page"
       :related-posters="page.relatedPosters"
-    />
+    /> -->
     <lazy-app-stores-section />
-    <lazy-related-products-section
-      v-if="page"
-      :related-products="page.relatedProducts"
-      :title="page.relatedPosters.title"
-    />
+    <related-products-section :related-products="page.relatedProducts" />
     <!-- <block-instagram /> -->
     <lazy-block-groups />
   </div>

@@ -7,11 +7,8 @@
       :video="page.videoGroup.youtubeId"
     />
     <form-workshop />
-    <related-posters-section :related-posters="page.relatedPosters" />
-    <related-products-section
-      :related-products="page.relatedProducts"
-      :title="page.relatedPosters.title"
-    />
+    <!-- <related-posters-section :related-posters="page.relatedPosters" /> -->
+    <related-products-section :related-products="page.relatedProducts" />
   </div>
 </template>
 

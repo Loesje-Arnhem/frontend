@@ -10,7 +10,7 @@
       :class="$style.content"
     />
 
-    <related-posters-section :related-posters="post.relatedPosters" />
+    <!-- <related-posters-section :related-posters="post.relatedPosters" /> -->
     <related-products-section :related-products="post.relatedProducts" />
     <posts-overview-section :not-in="post.databaseId" />
   </div>

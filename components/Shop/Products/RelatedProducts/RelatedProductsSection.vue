@@ -1,13 +1,12 @@
 <template>
   <section
-    v-if="databaseIds.length"
+    v-if="products.length"
     aria-labelledby="featured-products"
     :class="$style['featured-products']"
   >
     <center-wrapper>
       <h1 id="featured-products">{{ title }}</h1>
-      <product-list :where="{ include: databaseIds }" :first="first" />
-
+      <product-list :products="products" />
       <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
       </app-button>
@@ -16,18 +15,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
-import { IRelatedProducts } from '~/interfaces/IRelatedProducts'
+import { defineComponent, computed } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   props: {
     relatedProducts: {
-      type: Object as PropType<IRelatedProducts>,
+      type: Object,
       default: () => {},
-    },
-    first: {
-      type: Number,
-      default: 99,
     },
   },
   setup(props, { root }) {
@@ -35,17 +29,21 @@ export default defineComponent({
       // @ts-ignore
       return props.relatedProducts.title || root.$t('title')
     })
-    const databaseIds = computed(() => {
-      if (props.relatedProducts.products) {
-        return props.relatedProducts.products.map(
-          (product) => product.product.databaseId,
-        )
+
+    const products = computed(() => {
+      if (!props.relatedProducts.products) {
+        return []
       }
-      return []
+      // @ts-ignore
+      return props.relatedProducts.products.map((product) => {
+        return {
+          ...product.product,
+        }
+      })
     })
 
     return {
-      databaseIds,
+      products,
       title,
     }
   },
