@@ -1,8 +1,13 @@
-import { useQuery, useResult } from '@vue/apollo-composable'
-import { useContext, useStatic, ref } from '@nuxtjs/composition-api'
+import {
+  useMeta,
+  useContext,
+  useStatic,
+  ref,
+  useRoute,
+  computed,
+} from '@nuxtjs/composition-api'
 import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories.gql'
-import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory.gql'
-import useMeta from '~/composables/useMeta'
+import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory'
 
 export default () => {
   const { app } = useContext()
@@ -15,7 +20,7 @@ export default () => {
         const { data } = await app.apolloProvider.defaultClient.query({
           query: ProductCategoriesQuery,
         })
-        return data.page
+        return data.productCategories
       } finally {
         loading.value = false
       }
@@ -30,21 +35,53 @@ export default () => {
   }
 }
 
-export const useProductCategory = (slug: string) => {
-  const { setSEO } = useMeta()
-  const { result, error, loading, onResult } = useQuery(ProductCategoryQuery, {
+export const useProductCategory = () => {
+  const { app } = useContext()
+  const loading = ref(false)
+
+  const route = useRoute()
+
+  const slug = computed(() => {
+    return route.value.params.subcategory || route.value.params.category
+  })
+
+  const productCategory = useStatic(
+    async () => {
+      loading.value = true
+      try {
+        const { data } = await app.apolloProvider.defaultClient.query({
+          query: ProductCategoryQuery,
+          variables: {
+            slug: slug.value,
+          },
+        })
+        return data.productCategory
+      } finally {
+        loading.value = false
+      }
+    },
     slug,
+    'product-category',
+  )
+
+  const products = computed(() => {
+    if (!productCategory.value) {
+      return []
+    }
+
+    // @ts-ignore
+    return productCategory.value.products.edges.map((product) => {
+      return {
+        ...product.node,
+      }
+    })
   })
 
-  const productCategory = useResult(result)
-
-  onResult((queryResult) => {
-    setSEO(queryResult.data.productCategory.seo)
-  })
+  useMeta(() => ({ title: productCategory.value?.name }))
 
   return {
     productCategory,
-    error,
     loading,
+    products,
   }
 }
