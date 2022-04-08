@@ -15,14 +15,9 @@
 </template>
 
 <script>
-import AppImage from '~/components/Shared/AppImage.vue'
-import ClickableListItem from '~/components/Shared/ClickableListItem.vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
-  components: {
-    AppImage,
-    ClickableListItem,
-  },
+export default defineComponent({
   props: {
     product: {
       type: Object,
@@ -34,7 +29,7 @@ export default {
       return `/winkeltje/${this.product.slug}`
     },
   },
-}
+})
 </script>
 
 <style module lang="postcss">

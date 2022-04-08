@@ -7,8 +7,12 @@ import {
   useMeta,
 } from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
-import PageByUri, { GetPageById, GetPageByHome } from '~/graphql/Pages/Pages'
-import { homePageId } from '~/data/pages'
+import PageByUri, {
+  GetPageById,
+  GetPageByHome,
+  GetPageByShop,
+} from '~/graphql/Pages/Pages'
+import { homePageId, shopPageId } from '~/data/pages'
 
 export const usePageById = (id: number) => {
   const { app } = useContext()
@@ -124,6 +128,52 @@ export const usePageHome = () => {
 
   return {
     posts,
+    loading,
+    page,
+  }
+}
+
+export const usePageShop = () => {
+  const { app } = useContext()
+  const loading = ref(false)
+
+  const result = useStatic(
+    async () => {
+      loading.value = true
+      try {
+        const { data } = await app.apolloProvider.defaultClient.query({
+          query: GetPageByShop,
+          variables: {
+            id: shopPageId,
+          },
+        })
+        return data
+      } finally {
+        loading.value = false
+      }
+    },
+    undefined,
+    'page-shop',
+  )
+
+  const page = computed(() => result.value?.page)
+
+  const products = computed(() => {
+    if (!result.value) {
+      return []
+    }
+
+    // @ts-ignore
+    return result.value.products.edges.map((product) => {
+      return {
+        ...product.node,
+      }
+    })
+  })
+  useMeta(() => ({ title: page.value?.title }))
+
+  return {
+    products,
     loading,
     page,
   }

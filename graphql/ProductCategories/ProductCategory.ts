@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client/core'
+import product from './../Products/Fragments/ProductListItem'
 
 const productCategory = gql`
   fragment productCategory on ProductCategory {
@@ -6,26 +7,15 @@ const productCategory = gql`
     databaseId
     name
     description
-    products {
+    products(first: 99) {
       edges {
         node {
-          ... on SimpleProduct {
-            slug
-            id
-            databaseId
-            name
-            image {
-              id
-              altText
-              thumbnail: sourceUrl(size: THUMBNAIL)
-              medium: sourceUrl(size: MEDIUM)
-              mediumLarge: sourceUrl(size: MEDIUM_LARGE)
-            }
-          }
+          ...product
         }
       }
     }
   }
+  ${product}
 `
 
 export default gql`
@@ -38,11 +28,20 @@ export default gql`
 `
 
 export const GetProductCategories = gql`
-  query ProductCategories($slug: ID!) {
-    productCategories {
+  query ProductCategories {
+    productCategories(where: { hideEmpty: true }, first: 99) {
       edges {
         node {
           ...productCategory
+          uri
+          children {
+            edges {
+              node {
+                ...productCategory
+                uri
+              }
+            }
+          }
         }
       }
     }

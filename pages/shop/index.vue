@@ -1,24 +1,24 @@
 <template>
   <shop-wrapper>
     <app-loader v-if="loading" />
-    <template v-if="page">
+    <template v-else-if="page">
       <h1>{{ page.title }}</h1>
       <p v-if="page.content" v-html="page.content" />
+      <product-list :products="products" />
     </template>
-    <product-list :where="{ featured: true }" />
   </shop-wrapper>
 </template>
 
 <script>
-import { shopPageId } from '~/data/pages'
-import { usePageById } from '~/composables/usePage'
+import { usePageShop } from '~/composables/usePage'
 
 export default {
   setup() {
-    const { page, loading } = usePageById(shopPageId)
+    const { page, loading, products } = usePageShop()
     return {
       page,
       loading,
+      products,
     }
   },
   nuxtI18n: {

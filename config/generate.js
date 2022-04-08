@@ -15,29 +15,39 @@ const client = new ApolloClient({
 })
 
 const getPages = async () => {
-  const { data } = await client.query({
-    query: GetPages,
-  })
-
-  return data.pages.edges.map((item) => {
-    return {
-      route: item.node.uri,
-      payload: item.node,
-    }
-  })
+  try {
+    const { data } = await client.query({
+      query: GetPages,
+    })
+    return data.pages.edges.map((item) => {
+      console.log(item.node.uri)
+      return {
+        route: item.node.uri,
+        payload: item.node,
+      }
+    })
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 const getProductCategories = async () => {
-  const { data } = await client.query({
-    query: GetProductCategories,
-  })
+  try {
+    const { data } = await client.query({
+      query: GetProductCategories,
+    })
 
-  return data.productCategories.edges.map((item) => {
-    return {
-      route: item.node.uri,
-      payload: item.node,
-    }
-  })
+    return data.productCategories.edges.map((item) => {
+      console.log(item.node.uri)
+
+      return {
+        route: item.node.uri,
+        payload: item.node,
+      }
+    })
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 export default {
@@ -50,10 +60,11 @@ export default {
     /^\/account/, // path starts with /admin
     /^\/posters/, // path starts with /admin
     /^\/over-loesje/, // path starts with /admin
+    /^\/shop/, // path starts with /admin
   ],
   routes: async () => {
     const pages = await getPages()
-    const productCategories = getProductCategories()
+    const productCategories = await getProductCategories()
 
     return [...pages, ...productCategories]
   },

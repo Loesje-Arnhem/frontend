@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client/core'
 import pageContent from './Fragments/PageContent'
-import { homePageId } from './../../data/pages'
+import { homePageId, shopPageId } from './../../data/pages'
+import product from './../Products/Fragments/ProductListItem'
 
 export default gql`
   query PageByUri($uri: ID!) {
@@ -39,6 +40,23 @@ export const GetPageByHome = gql`
     }
   }
   ${pageContent}
+`
+
+export const GetPageByShop = gql`
+  query GetPageByShop {
+    page(id: ${shopPageId}, idType: DATABASE_ID) {
+      ...pageContent
+    }
+    products(where: {featured: true}, first: 99) {
+      edges {
+        node { 
+          ...product
+        }
+      }
+    }
+  }
+  ${pageContent}
+  ${product}
 `
 
 export const GetPages = gql`
