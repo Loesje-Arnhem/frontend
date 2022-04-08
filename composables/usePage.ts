@@ -3,16 +3,14 @@ import {
   ref,
   useContext,
   useRoute,
-  watch,
   useStatic,
+  useMeta,
 } from '@nuxtjs/composition-api'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
-import { GetPageById } from '~/graphql/Pages/Pages'
-import PageByUriQuery from '~/graphql/Pages/PageByUri.gql'
-import useMeta from '~/composables/useMeta'
+import PageByUri, { GetPageById, GetPageByHome } from '~/graphql/Pages/Pages'
+import { homePageId } from '~/data/pages'
 
 export const usePageById = (id: number) => {
-  const { setSEO } = useMeta()
   const { app } = useContext()
   const loading = ref(false)
 
@@ -37,11 +35,7 @@ export const usePageById = (id: number) => {
     'page',
   )
 
-  watch(page, () => {
-    if (page.value) {
-      setSEO(page.value.seo)
-    }
-  })
+  useMeta(() => ({ title: page.value?.title }))
 
   return {
     loading,
@@ -50,8 +44,7 @@ export const usePageById = (id: number) => {
 }
 
 export const usePageByUri = () => {
-  const { setSEO } = useMeta()
-  const { app } = useContext()
+  const { app, payload } = useContext()
 
   const loading = ref(false)
 
@@ -73,10 +66,13 @@ export const usePageByUri = () => {
 
   const page = useStatic(
     async () => {
-      loading.value = true
       try {
+        if (payload) {
+          return payload
+        }
+        loading.value = true
         const { data } = await app.apolloProvider.defaultClient.query({
-          query: PageByUriQuery,
+          query: PageByUri,
           variables: {
             uri: uri.value,
           },
@@ -90,13 +86,44 @@ export const usePageByUri = () => {
     'page',
   )
 
-  watch(page, () => {
-    if (page.value) {
-      setSEO(page.value.seo)
-    }
-  })
+  useMeta(() => ({ title: page.value?.title }))
 
   return {
+    page,
+    loading,
+  }
+}
+
+export const usePageHome = () => {
+  const { app } = useContext()
+  const loading = ref(false)
+
+  const result = useStatic(
+    async () => {
+      loading.value = true
+      try {
+        const { data } = await app.apolloProvider.defaultClient.query({
+          query: GetPageByHome,
+          variables: {
+            id: homePageId,
+          },
+        })
+        return data
+      } finally {
+        loading.value = false
+      }
+    },
+    undefined,
+    'page-home',
+  )
+
+  const page = computed(() => result.value?.page)
+  const posts = computed(() => result.value?.posts)
+
+  useMeta(() => ({ title: page.value?.title }))
+
+  return {
+    posts,
     loading,
     page,
   }

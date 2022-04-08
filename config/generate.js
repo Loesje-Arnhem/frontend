@@ -14,7 +14,6 @@ export default {
     /^\/account/, // path starts with /admin
     /^\/posters/, // path starts with /admin
     /^\/over-loesje/, // path starts with /admin
-    /^\/doe-mee/, // path starts with /admin
   ],
   routes: async () => {
     const link = new HttpLink({

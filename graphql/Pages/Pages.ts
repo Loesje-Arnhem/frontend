@@ -1,8 +1,9 @@
 import { gql } from '@apollo/client/core'
 import pageContent from './Fragments/PageContent'
+import { homePageId } from './../../data/pages'
 
 export default gql`
-  query Page($uri: ID!) {
+  query PageByUri($uri: ID!) {
     page(id: $uri, idType: URI) {
       ...pageContent
     }
@@ -11,9 +12,30 @@ export default gql`
 `
 
 export const GetPageById = gql`
-  query Page($id: ID!) {
+  query GetPageById($id: ID!) {
     page(id: $id, idType: DATABASE_ID) {
       ...pageContent
+    }
+  }
+  ${pageContent}
+`
+
+export const GetPageByHome = gql`
+  query GetPageByHome {
+    page(id: ${homePageId}, idType: DATABASE_ID) {
+      ...pageContent
+    }
+    posts(first: 3) {
+      edges {
+        node {
+          id
+          title
+          databaseId
+          date
+          excerpt
+          uri
+        }
+      }
     }
   }
   ${pageContent}

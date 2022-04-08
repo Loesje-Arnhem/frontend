@@ -1,6 +1,6 @@
 <template>
   <section
-    if="posts"
+    v-if="posts.length"
     :class="$style['latest-posts']"
     aria-labelledby="latest-posts-title"
   >
@@ -8,13 +8,10 @@
       <div :class="$style.wrapper">
         <div :class="$style.list">
           <h1 id="latest-posts-title">{{ $t('title') }}</h1>
-          <app-loader v-if="loading" />
-          <template v-else>
-            <latest-posts-list v-if="posts" :posts="posts.edges" />
-            <app-button :to="localePath({ name: 'posts' })">
-              {{ $t('btnMore') }}
-            </app-button>
-          </template>
+          <latest-posts-list :posts="posts" />
+          <app-button :to="localePath({ name: 'posts' })">
+            {{ $t('btnMore') }}
+          </app-button>
         </div>
         <become-member :class="$style['become-member']" />
         <latest-post-balloon :class="$style.balloon" />
@@ -25,17 +22,12 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import usePosts from '~/composables/usePost'
 export default defineComponent({
-  setup() {
-    const { posts, loading } = usePosts({
-      first: 3,
-    })
-
-    return {
-      loading,
-      posts,
-    }
+  props: {
+    posts: {
+      type: Array,
+      default: () => [],
+    },
   },
 })
 </script>
