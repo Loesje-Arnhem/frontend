@@ -20,7 +20,6 @@ const getPages = async () => {
       query: GetPages,
     })
     return data.pages.edges.map((item) => {
-      console.log(item.node.uri)
       return {
         route: item.node.uri,
         payload: item.node,
@@ -38,8 +37,6 @@ const getProductCategories = async () => {
     })
 
     return data.productCategories.edges.map((item) => {
-      console.log(item.node.uri)
-
       return {
         route: item.node.uri,
         payload: item.node,
@@ -58,8 +55,6 @@ export default {
     /^\/mijn-account/, // path starts with /admin
     /^\/shop/, // path starts with /admin
     /^\/account/, // path starts with /admin
-    /^\/posters/, // path starts with /admin
-    /^\/over-loesje/, // path starts with /admin
     /^\/shop/, // path starts with /admin
   ],
   routes: async () => {

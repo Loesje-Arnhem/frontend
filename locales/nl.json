@@ -54,5 +54,10 @@
   "tour": "Tour",
   "videos": "Videos",
   "view": "view",
-  "viewNordgardenOn": "View Nordgarden on"
+  "viewNordgardenOn": "View Nordgarden on",
+  "validations": {
+    "required": "The field {property} is required!!!.",
+    "minLength": "The {property} field has a value of '{model}', but it must have a min length of {min}.",
+    "maxLength": "The {property} field has a value of '{model}', but it must have a min length of {min}."
+  }
 }

@@ -1,11 +1,9 @@
 <template>
-  <client-only>
-    <posters-overview-section
-      v-if="favorites.length"
-      :poster-ids="favorites"
-      :title="$t('title')"
-    />
-  </client-only>
+  <posters-overview-section
+    v-if="favorites.length"
+    :poster-ids="favorites"
+    :title="$t('title')"
+  />
 </template>
 
 <script lang="ts">
