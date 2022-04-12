@@ -19,7 +19,7 @@
           />
         </div>
         <div :class="$style['mood-wrapper']">
-          <img
+          <nuxt-picture
             alt=""
             width="210"
             height="240"

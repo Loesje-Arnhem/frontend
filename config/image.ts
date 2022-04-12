@@ -3,6 +3,7 @@ export default {
   presets: {
     base: {
       modifiers: {
+        format: 'avif',
         quality: 80,
         fit: 'inside',
       },
