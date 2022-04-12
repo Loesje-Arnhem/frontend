@@ -1,10 +1,10 @@
 <template>
   <center-wrapper size="md">
-    <h2>Aanmelden</h2>
     <app-form
       :class="$style.form"
       :submitted="submitted"
       :loading="loading"
+      :error="error"
       @submit="submit"
     >
       <form-fieldset title="Meld je aan voor de workshop">
@@ -29,27 +29,27 @@
           :maxlength="50"
         />
         <form-input-text
-          id="phoneNumber"
+          id="phone-number"
           v-model="form.phoneNumber"
           title="Telefoonnummer"
           type="tel"
-          name="phoneNumber"
+          name="phone-number"
           autocomplete="tel"
         />
         <form-input-text
-          id="companyName"
+          id="company-name"
           v-model="form.companyName"
           type="text"
           title="Bedrijfsnaam"
-          name="companyName"
+          name="company-name"
         />
         <form-input-text
-          id="totalAttendees"
+          id="total-attendees"
           v-model="form.totalAttendees"
           type="number"
           :errors="v$.totalAttendees.$errors"
           title="Aantal mensen"
-          name="totalAttendees"
+          name="total-attendees"
         />
 
         <form-input-text
@@ -65,9 +65,14 @@
   </center-wrapper>
 </template>
 
-<script>
+<script lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { reactive, defineComponent, ref } from '@nuxtjs/composition-api'
+import {
+  reactive,
+  defineComponent,
+  ref,
+  computed,
+} from '@nuxtjs/composition-api'
 import { useMutation } from '@vue/apollo-composable'
 import { v4 } from 'uuid'
 import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop.gql'
@@ -98,6 +103,15 @@ export default defineComponent({
 
     const v$ = useVuelidate(rules, form)
 
+    const error = computed(() => {
+      if (apiError.value) {
+        return apiError.value
+      } else if (v$.value.$dirty && v$.value.$invalid) {
+        return 'validations.form'
+      }
+      return null
+    })
+
     const submit = async () => {
       const isFormCorrect = await v$.value.$validate()
       if (!isFormCorrect) return
@@ -109,6 +123,7 @@ export default defineComponent({
       mutate: requestWorkshop,
       loading,
       onDone,
+      error: apiError,
     } = useMutation(RequestWorkshopQuery, () => ({
       variables: {
         clientMutationId: v4(),
@@ -123,6 +138,7 @@ export default defineComponent({
     })
 
     return {
+      error,
       v$,
       submit,
       loading,

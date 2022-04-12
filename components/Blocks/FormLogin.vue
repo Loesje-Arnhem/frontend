@@ -30,22 +30,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { v4 } from 'uuid'
 import {
   useContext,
   ref,
   defineComponent,
   reactive,
+  computed,
 } from '@nuxtjs/composition-api'
-import { required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
+import useValidators from '~/composables/useValidators'
 
 export default defineComponent({
   setup() {
     const { $auth } = useContext()
+    const { required } = useValidators()
     const loading = ref(false)
-    const error = ref(null)
+    const apiError = ref(null as string | null)
     const form = reactive({
       username: '',
       password: '',
@@ -58,8 +60,18 @@ export default defineComponent({
 
     const v$ = useVuelidate(rules, form)
 
+    const error = computed(() => {
+      if (apiError.value) {
+        return apiError.value
+      } else if (v$.value.$dirty && v$.value.$invalid) {
+        return 'validations.form'
+      }
+      return null
+    })
+
     const submit = async () => {
       const isFormCorrect = await v$.value.$validate()
+      apiError.value = null
       if (!isFormCorrect) return
 
       loading.value = true
@@ -70,8 +82,8 @@ export default defineComponent({
             ...form,
           },
         })
-      } catch (err) {
-        error.value = err.message
+      } catch (err: any) {
+        apiError.value = 'validations.submit'
       } finally {
         loading.value = false
       }
