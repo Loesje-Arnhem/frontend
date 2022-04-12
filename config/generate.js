@@ -48,7 +48,7 @@ const getProductCategories = async () => {
 }
 
 export default {
-  // concurrency: 20,
+  // concurrency: 1,
   // interval: 3000,
   crawler: false,
   exclude: [
@@ -59,6 +59,9 @@ export default {
   ],
   routes: async () => {
     const pages = await getPages()
+    await new Promise((resolve) => {
+      setTimeout(resolve, 4000)
+    })
     const productCategories = await getProductCategories()
 
     return [...pages, ...productCategories]
