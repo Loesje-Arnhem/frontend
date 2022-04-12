@@ -30,6 +30,12 @@ const getPages = async () => {
   }
 }
 
+const pauseFetching = () => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 4000)
+  })
+}
+
 const getProductCategories = async () => {
   try {
     const { data } = await client.query({
@@ -59,9 +65,7 @@ export default {
   ],
   routes: async () => {
     const pages = await getPages()
-    await new Promise((resolve) => {
-      setTimeout(resolve, 4000)
-    })
+    await pauseFetching()
     const productCategories = await getProductCategories()
 
     return [...pages, ...productCategories]

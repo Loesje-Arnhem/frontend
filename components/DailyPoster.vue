@@ -1,11 +1,12 @@
 <template>
   <div class="poster-daily">
     <div class="image-wrapper">
-      <img
+      <nuxt-picture
         v-if="dailyPoster"
         :src="dailyPoster.image"
         :alt="dailyPoster.title"
         preset="base"
+        format="avif"
         preload
         class="image"
         width="188"
@@ -21,6 +22,7 @@
       width="270"
       height="362"
       preset="base"
+      format="avif"
       sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
     />
   </div>

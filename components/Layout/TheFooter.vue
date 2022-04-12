@@ -27,6 +27,7 @@
             loading="lazy"
             src="/images/casette-player.png"
             preset="base"
+            format="avif"
             sizes="sm:50vw md:33vw lg:25vw xl:300 xxl:500"
           />
         </div>

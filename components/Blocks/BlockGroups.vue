@@ -9,6 +9,7 @@
             height="600"
             class="mood"
             preset="base"
+            format="avif"
             alt=""
             loading="lazy"
             sizes="sm:100vw md:80vw lg:565 xl:800"
