@@ -52,12 +52,14 @@
   "shop": "Winkeltje",
   "socialMediaLinks": "Social media links",
   "tour": "Tour",
+  "validations": {
+    "email": "Value is not a valid email address",
+    "maxLength": "The maximum value is {max}",
+    "minLength": "This field should be at least {min} long",
+    "numeric": "Value must be numeric",
+    "required": "Dit veld is verplicht"
+  },
   "videos": "Videos",
   "view": "view",
-  "viewNordgardenOn": "View Nordgarden on",
-  "validations": {
-    "required": "The field {property} is required!!!.",
-    "minLength": "The {property} field has a value of '{model}', but it must have a min length of {min}.",
-    "maxLength": "The {property} field has a value of '{model}', but it must have a min length of {min}."
-  }
+  "viewNordgardenOn": "View Nordgarden on"
 }

@@ -66,18 +66,17 @@
 </template>
 
 <script>
-import { numeric, email, required } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 import { reactive, defineComponent, ref } from '@nuxtjs/composition-api'
 import { useMutation } from '@vue/apollo-composable'
 import { v4 } from 'uuid'
 import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop.gql'
+import useValidators from '~/composables/useValidators'
 
 export default defineComponent({
   setup() {
     const submitted = ref(false)
-    const { maxLength } = useVuelidate()
-    console.log(maxLength)
+    const { required, numeric, email } = useValidators()
 
     const form = reactive({
       name: '',
