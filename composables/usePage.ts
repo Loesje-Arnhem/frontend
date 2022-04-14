@@ -13,21 +13,25 @@ import PageByUri, {
   GetPageByHome,
   GetPageByShop,
 } from '~/graphql/Pages/Pages'
-import { homePageId, shopPageId } from '~/data/pages'
 
 export const usePageById = (id: number) => {
   const pageKey = ref(id.toString())
-
-  const { result, loading } = useFetch({
-    query: GetPageById,
-    variables: {
-      id: shopPageId,
+  const loading = ref(false)
+  const { fetch } = useFetch()
+  const result = useStatic(
+    async () => {
+      return await fetch({
+        query: GetPageById,
+        variables: {
+          id,
+        },
+      })
     },
-    param: pageKey,
-    pageKey: 'page',
-  })
+    pageKey,
+    'page',
+  )
 
-  const page = computed(() => result.value.page)
+  const page = computed(() => result.value?.data.page)
 
   useMeta(() => ({ title: page.value?.title }))
 
@@ -39,6 +43,7 @@ export const usePageById = (id: number) => {
 
 export const usePageByUri = () => {
   const route = useRoute()
+  const loading = ref(false)
   const { slug, slug2 } = route.value.params
   const pageKey = computed(() => {
     if (slug2) {
@@ -54,16 +59,21 @@ export const usePageByUri = () => {
     return slug
   })
 
-  const { result, loading } = useFetch({
-    query: PageByUri,
-    variables: {
-      uri: uri.value,
+  const { fetch } = useFetch()
+  const result = useStatic(
+    async () => {
+      return await fetch({
+        query: PageByUri,
+        variables: {
+          uri: uri.value,
+        },
+      })
     },
-    pageKey: 'page',
-    param: pageKey,
-  })
+    pageKey,
+    'page',
+  )
 
-  const page = computed(() => result.value.page)
+  const page = computed(() => result.value?.data.page)
 
   useMeta(() => ({ title: page.value?.title }))
 
@@ -74,36 +84,44 @@ export const usePageByUri = () => {
 }
 
 export const usePageHome = () => {
-  const { result, loading } = useFetch({
-    query: GetPageByHome,
-    variables: {
-      id: homePageId,
+  const loading = ref(false)
+  const { fetch } = useFetch()
+  const result = useStatic(
+    async () => {
+      return await fetch({
+        query: GetPageByHome,
+      })
     },
-    pageKey: 'page-home',
-  })
-
-  const page = computed(() => result.value.page)
-  const posts = computed(() => result.value?.posts)
+    undefined,
+    'page-home',
+  )
+  const page = computed(() => result.value?.data.page)
+  const posts = computed(() => result.value?.data.posts)
 
   useMeta(() => ({ title: page.value?.title }))
 
   return {
-    posts,
     loading,
+    posts,
     page,
   }
 }
 
 export const usePageShop = () => {
-  const { result, loading } = useFetch({
-    query: GetPageByShop,
-    variables: {
-      id: shopPageId,
-    },
-    pageKey: 'page-shop',
-  })
+  const loading = ref(false)
 
-  const page = computed(() => result.value?.page)
+  const { fetch } = useFetch()
+  const result = useStatic(
+    async () => {
+      return await fetch({
+        query: GetPageByShop,
+      })
+    },
+    undefined,
+    'page-shop',
+  )
+
+  const page = computed(() => result.value?.data.page)
 
   const products = computed(() => {
     if (!result.value) {
@@ -111,7 +129,7 @@ export const usePageShop = () => {
     }
 
     // @ts-ignore
-    return result.value.products.edges.map((product) => {
+    return result.value?.data.products.edges.map((product) => {
       return {
         ...product.node,
       }
