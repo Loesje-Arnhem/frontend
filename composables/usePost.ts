@@ -1,8 +1,8 @@
 import { useQuery, useResult } from '@vue/apollo-composable'
-import { computed } from '@nuxtjs/composition-api'
+import { computed, useRoute, useMeta } from '@nuxtjs/composition-api'
+import useFetch from './useFetch'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
 import PostQuery from '~/graphql/Posts/Post.gql'
-import useMeta from '~/composables/useMeta'
 
 export default ({ first = 12, notIn = null } = {}) => {
   const { result, error, loading, fetchMore } = useQuery(
@@ -55,21 +55,27 @@ export default ({ first = 12, notIn = null } = {}) => {
   }
 }
 
-export const usePost = (slug: string) => {
-  const { setSEO } = useMeta()
-  const { result, error, loading, onResult } = useQuery(PostQuery, {
-    slug,
+export const usePost = () => {
+  const route = useRoute()
+  const { slug } = route.value.params
+
+  const param = computed(() => slug)
+
+  const { result, loading } = useFetch({
+    param,
+    pageKey: 'post',
+    query: PostQuery,
+    variables: {
+      slug,
+    },
   })
 
-  const post = useResult(result)
+  const post = computed(() => result.value.post)
 
-  onResult((queryResult) => {
-    setSEO(queryResult.data.post.seo)
-  })
+  useMeta(() => ({ title: post.value?.title }))
 
   return {
-    post,
-    error,
     loading,
+    post,
   }
 }

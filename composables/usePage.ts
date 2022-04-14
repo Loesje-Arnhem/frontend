@@ -6,6 +6,7 @@ import {
   useStatic,
   useMeta,
 } from '@nuxtjs/composition-api'
+import useFetch from '~/composables/useFetch'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByUri, {
   GetPageById,
@@ -15,29 +16,18 @@ import PageByUri, {
 import { homePageId, shopPageId } from '~/data/pages'
 
 export const usePageById = (id: number) => {
-  const { app } = useContext()
-  const loading = ref(false)
-
   const pageKey = ref(id.toString())
 
-  const page = useStatic(
-    async () => {
-      loading.value = true
-      try {
-        const { data } = await app.apolloProvider.defaultClient.query({
-          query: GetPageById,
-          variables: {
-            id,
-          },
-        })
-        return data.page
-      } finally {
-        loading.value = false
-      }
+  const { result, loading } = useFetch({
+    query: GetPageById,
+    variables: {
+      id: shopPageId,
     },
-    pageKey,
-    'page',
-  )
+    param: pageKey,
+    pageKey: 'page',
+  })
+
+  const page = computed(() => result.value.page)
 
   useMeta(() => ({ title: page.value?.title }))
 
@@ -48,10 +38,6 @@ export const usePageById = (id: number) => {
 }
 
 export const usePageByUri = () => {
-  const { app, payload } = useContext()
-
-  const loading = ref(false)
-
   const route = useRoute()
   const { slug, slug2 } = route.value.params
   const pageKey = computed(() => {
@@ -68,27 +54,16 @@ export const usePageByUri = () => {
     return slug
   })
 
-  const page = useStatic(
-    async () => {
-      try {
-        if (payload) {
-          return payload
-        }
-        loading.value = true
-        const { data } = await app.apolloProvider.defaultClient.query({
-          query: PageByUri,
-          variables: {
-            uri: uri.value,
-          },
-        })
-        return data.page
-      } finally {
-        loading.value = false
-      }
+  const { result, loading } = useFetch({
+    query: PageByUri,
+    variables: {
+      uri: uri.value,
     },
-    pageKey,
-    'page',
-  )
+    pageKey: 'page',
+    param: pageKey,
+  })
+
+  const page = computed(() => result.value.page)
 
   useMeta(() => ({ title: page.value?.title }))
 
@@ -99,29 +74,15 @@ export const usePageByUri = () => {
 }
 
 export const usePageHome = () => {
-  const { app } = useContext()
-  const loading = ref(false)
-
-  const result = useStatic(
-    async () => {
-      loading.value = true
-      try {
-        const { data } = await app.apolloProvider.defaultClient.query({
-          query: GetPageByHome,
-          variables: {
-            id: homePageId,
-          },
-        })
-        return data
-      } finally {
-        loading.value = false
-      }
+  const { result, loading } = useFetch({
+    query: GetPageByHome,
+    variables: {
+      id: homePageId,
     },
-    undefined,
-    'page-home',
-  )
+    pageKey: 'page-home',
+  })
 
-  const page = computed(() => result.value?.page)
+  const page = computed(() => result.value.page)
   const posts = computed(() => result.value?.posts)
 
   useMeta(() => ({ title: page.value?.title }))
@@ -134,27 +95,13 @@ export const usePageHome = () => {
 }
 
 export const usePageShop = () => {
-  const { app } = useContext()
-  const loading = ref(false)
-
-  const result = useStatic(
-    async () => {
-      loading.value = true
-      try {
-        const { data } = await app.apolloProvider.defaultClient.query({
-          query: GetPageByShop,
-          variables: {
-            id: shopPageId,
-          },
-        })
-        return data
-      } finally {
-        loading.value = false
-      }
+  const { result, loading } = useFetch({
+    query: GetPageByShop,
+    variables: {
+      id: shopPageId,
     },
-    undefined,
-    'page-shop',
-  )
+    pageKey: 'page-shop',
+  })
 
   const page = computed(() => result.value?.page)
 
