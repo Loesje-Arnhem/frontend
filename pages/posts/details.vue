@@ -17,13 +17,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useRoute } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import { usePost } from '~/composables/usePost'
 
 export default defineComponent({
   setup() {
-    const route = useRoute()
-    const { post, loading } = usePost(route.value.params.slug)
+    const { post, loading } = usePost()
     return {
       post,
       loading,

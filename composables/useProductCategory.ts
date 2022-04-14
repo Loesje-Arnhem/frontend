@@ -36,7 +36,7 @@ export default () => {
 }
 
 export const useProductCategory = () => {
-  const { app } = useContext()
+  const { app, payload } = useContext()
   const loading = ref(false)
 
   const route = useRoute()
@@ -47,6 +47,9 @@ export const useProductCategory = () => {
 
   const productCategory = useStatic(
     async () => {
+      if (payload) {
+        return payload
+      }
       loading.value = true
       try {
         const { data } = await app.apolloProvider.defaultClient.query({
