@@ -66,8 +66,8 @@ export default {
   routes: async () => {
     const pages = await getPages()
     await pauseFetching()
-    const productCategories = await getProductCategories()
+    // const productCategories = await getProductCategories()
 
-    return [...pages, ...productCategories]
+    return [...pages]
   },
 }
