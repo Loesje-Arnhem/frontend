@@ -3,21 +3,29 @@ import { DocumentNode } from 'graphql'
 
 export default () => {
   const { app, payload } = useContext()
+  // const { app } = useContext()
 
   const fetch = async ({
     query,
     variables,
+    usePayload = false,
   }: {
     query: DocumentNode
     variables?: Object
+    usePayload?: Boolean
   }) => {
-    if (payload) {
+    if (payload && usePayload) {
       return payload
     }
-    return await app.apolloProvider.defaultClient.query({
-      query,
-      variables,
-    })
+    try {
+      const { data } = await app.apolloProvider.defaultClient.query({
+        query,
+        variables,
+      })
+      return data
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return {

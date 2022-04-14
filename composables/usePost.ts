@@ -82,7 +82,7 @@ export const usePost = () => {
     'post',
   )
 
-  const post = computed(() => result.value?.post)
+  const post = computed(() => result.value?.data.post)
 
   useMeta(() => ({ title: post.value?.title }))
 

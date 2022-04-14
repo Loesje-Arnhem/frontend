@@ -14,33 +14,6 @@ import PageByUri, {
   GetPageByShop,
 } from '~/graphql/Pages/Pages'
 
-export const usePageById = (id: number) => {
-  const pageKey = ref(id.toString())
-  const loading = ref(false)
-  const { fetch } = useFetch()
-  const result = useStatic(
-    async () => {
-      return await fetch({
-        query: GetPageById,
-        variables: {
-          id,
-        },
-      })
-    },
-    pageKey,
-    'page',
-  )
-
-  const page = computed(() => result.value?.data.page)
-
-  useMeta(() => ({ title: page.value?.title }))
-
-  return {
-    loading,
-    page,
-  }
-}
-
 export const usePageByUri = () => {
   const route = useRoute()
   const loading = ref(false)
@@ -62,18 +35,20 @@ export const usePageByUri = () => {
   const { fetch } = useFetch()
   const result = useStatic(
     async () => {
-      return await fetch({
+      const data = await fetch({
         query: PageByUri,
+        usePayload: true,
         variables: {
           uri: uri.value,
         },
       })
+      return data
     },
     pageKey,
     'page',
   )
 
-  const page = computed(() => result.value?.data.page)
+  const page = computed(() => result.value?.page)
 
   useMeta(() => ({ title: page.value?.title }))
 
@@ -83,20 +58,49 @@ export const usePageByUri = () => {
   }
 }
 
+export const usePageById = (id: number) => {
+  const pageKey = ref(id.toString())
+  const loading = ref(false)
+  const { fetch } = useFetch()
+  const result = useStatic(
+    async () => {
+      const data = await fetch({
+        query: GetPageById,
+        variables: {
+          id,
+        },
+      })
+      return data
+    },
+    pageKey,
+    'page',
+  )
+
+  const page = computed(() => result.value?.page)
+
+  useMeta(() => ({ title: page.value?.title }))
+
+  return {
+    loading,
+    page,
+  }
+}
+
 export const usePageHome = () => {
   const loading = ref(false)
   const { fetch } = useFetch()
   const result = useStatic(
     async () => {
-      return await fetch({
+      const data = await fetch({
         query: GetPageByHome,
       })
+      return data
     },
     undefined,
     'page-home',
   )
-  const page = computed(() => result.value?.data.page)
-  const posts = computed(() => result.value?.data.posts)
+  const page = computed(() => result.value?.page)
+  const posts = computed(() => result.value?.posts)
 
   useMeta(() => ({ title: page.value?.title }))
 
@@ -121,7 +125,7 @@ export const usePageShop = () => {
     'page-shop',
   )
 
-  const page = computed(() => result.value?.data.page)
+  const page = computed(() => result.value?.page)
 
   const products = computed(() => {
     if (!result.value) {
@@ -129,7 +133,7 @@ export const usePageShop = () => {
     }
 
     // @ts-ignore
-    return result.value?.data.products.edges.map((product) => {
+    return result.value?.products.edges.map((product) => {
       return {
         ...product.node,
       }

@@ -30,7 +30,11 @@ export default defineComponent({
       loading,
     }
   },
-
+  nuxtI18n: {
+    paths: {
+      nl: '/',
+    },
+  },
   head: {},
 })
 </script>

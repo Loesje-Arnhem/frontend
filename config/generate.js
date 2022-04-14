@@ -22,7 +22,9 @@ const getPages = async () => {
     return data.pages.edges.map((item) => {
       return {
         route: item.node.uri,
-        payload: item.node,
+        payload: {
+          page: item.node,
+        },
       }
     })
   } catch (error) {
