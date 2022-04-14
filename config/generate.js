@@ -47,7 +47,9 @@ const getProductCategories = async () => {
     return data.productCategories.edges.map((item) => {
       return {
         route: item.node.uri,
-        payload: item.node,
+        payload: {
+          productCategory: item.node,
+        },
       }
     })
   } catch (error) {
@@ -68,8 +70,8 @@ export default {
   routes: async () => {
     const pages = await getPages()
     await pauseFetching()
-    // const productCategories = await getProductCategories()
+    const productCategories = await getProductCategories()
 
-    return [...pages]
+    return [...pages, ...productCategories]
   },
 }

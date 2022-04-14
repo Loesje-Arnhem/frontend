@@ -34,14 +34,6 @@ export const GetProductCategories = gql`
         node {
           ...productCategory
           uri
-          children {
-            edges {
-              node {
-                ...productCategory
-                uri
-              }
-            }
-          }
         }
       }
     }

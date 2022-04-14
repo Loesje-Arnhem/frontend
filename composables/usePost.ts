@@ -1,11 +1,5 @@
 import { useQuery, useResult } from '@vue/apollo-composable'
-import {
-  computed,
-  useRoute,
-  useMeta,
-  useStatic,
-  ref,
-} from '@nuxtjs/composition-api'
+import { computed, useRoute, useMeta, ref } from '@nuxtjs/composition-api'
 import useFetch from '~/composables/useFetch'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
 import PostQuery from '~/graphql/Posts/Post.gql'
@@ -68,21 +62,18 @@ export const usePost = () => {
   const param = computed(() => slug)
 
   const loading = ref(false)
-  const { fetch } = useFetch()
-  const result = useStatic(
-    async () => {
-      return await fetch({
-        query: PostQuery,
-        variables: {
-          slug,
-        },
-      })
-    },
-    param,
-    'post',
-  )
 
-  const post = computed(() => result.value?.data.post)
+  const { result } = useFetch({
+    query: PostQuery,
+    usePayload: true,
+    variables: {
+      slug,
+    },
+    params: param,
+    pageKey: 'post',
+  })
+
+  const post = computed(() => result.value?.post)
 
   useMeta(() => ({ title: post.value?.title }))
 

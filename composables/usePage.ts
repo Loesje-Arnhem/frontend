@@ -32,21 +32,15 @@ export const usePageByUri = () => {
     return slug
   })
 
-  const { fetch } = useFetch()
-  const result = useStatic(
-    async () => {
-      const data = await fetch({
-        query: PageByUri,
-        usePayload: true,
-        variables: {
-          uri: uri.value,
-        },
-      })
-      return data
+  const { result } = useFetch({
+    query: PageByUri,
+    usePayload: true,
+    variables: {
+      uri: uri.value,
     },
-    pageKey,
-    'page',
-  )
+    params: pageKey,
+    pageKey: 'page',
+  })
 
   const page = computed(() => result.value?.page)
 
@@ -61,20 +55,15 @@ export const usePageByUri = () => {
 export const usePageById = (id: number) => {
   const pageKey = ref(id.toString())
   const loading = ref(false)
-  const { fetch } = useFetch()
-  const result = useStatic(
-    async () => {
-      const data = await fetch({
-        query: GetPageById,
-        variables: {
-          id,
-        },
-      })
-      return data
+
+  const { result } = useFetch({
+    query: GetPageById,
+    variables: {
+      id,
     },
-    pageKey,
-    'page',
-  )
+    params: pageKey,
+    pageKey: 'page',
+  })
 
   const page = computed(() => result.value?.page)
 
@@ -88,17 +77,12 @@ export const usePageById = (id: number) => {
 
 export const usePageHome = () => {
   const loading = ref(false)
-  const { fetch } = useFetch()
-  const result = useStatic(
-    async () => {
-      const data = await fetch({
-        query: GetPageByHome,
-      })
-      return data
-    },
-    undefined,
-    'page-home',
-  )
+
+  const { result } = useFetch({
+    query: GetPageByHome,
+    pageKey: 'page-home',
+  })
+
   const page = computed(() => result.value?.page)
   const posts = computed(() => result.value?.posts)
 
@@ -114,16 +98,10 @@ export const usePageHome = () => {
 export const usePageShop = () => {
   const loading = ref(false)
 
-  const { fetch } = useFetch()
-  const result = useStatic(
-    async () => {
-      return await fetch({
-        query: GetPageByShop,
-      })
-    },
-    undefined,
-    'page-shop',
-  )
+  const { result } = useFetch({
+    query: GetPageByShop,
+    pageKey: 'page-shop',
+  })
 
   const page = computed(() => result.value?.page)
 
