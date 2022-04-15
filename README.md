@@ -15,6 +15,7 @@ $ npm run dev
 $ npm run build
 $ npm start
 
+
 # generate static project
 $ npm run generate
 ```
@@ -22,6 +23,7 @@ $ npm run generate
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
 # generate icons
+
 ```
 pwa-asset-generator  static/icons/logo.svg static/icons
 ```
