@@ -5,7 +5,6 @@ export default [
   '~/components/AppStores',
   '~/components/AppStores/images',
   '~/components/BecomeMember',
-  '~/components/BecomeMember/images',
   '~/components/Blocks',
   '~/components/Carousel',
   '~/components/Footer',

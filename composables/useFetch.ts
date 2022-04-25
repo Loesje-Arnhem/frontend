@@ -1,4 +1,4 @@
-import { useContext, useStatic, Ref } from '@nuxtjs/composition-api'
+import { useContext, useStatic, Ref, ref } from '@nuxtjs/composition-api'
 import { DocumentNode } from 'graphql'
 
 export default ({
@@ -15,23 +15,29 @@ export default ({
   usePayload?: Boolean
 }) => {
   const { app, payload } = useContext()
-
+  const loading = ref(false)
   const result = useStatic(
     async () => {
-      if (payload && usePayload) {
-        return payload
+      loading.value = true
+      try {
+        if (payload && usePayload) {
+          return payload
+        }
+        const { data } = await app.apolloProvider.defaultClient.query({
+          query,
+          variables,
+        })
+        return data
+      } finally {
+        loading.value = false
       }
-      const { data } = await app.apolloProvider.defaultClient.query({
-        query,
-        variables,
-      })
-      return data
     },
     params,
     pageKey,
   )
 
   return {
+    loading,
     result,
   }
 }

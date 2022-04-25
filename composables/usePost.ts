@@ -2,7 +2,7 @@ import { useQuery, useResult } from '@vue/apollo-composable'
 import { computed, useRoute, useMeta, ref } from '@nuxtjs/composition-api'
 import useFetch from '~/composables/useFetch'
 import PostsQuery from '~/graphql/Posts/Posts.gql'
-import PostQuery from '~/graphql/Posts/Post.gql'
+import { getPost } from '~/graphql/Posts/Posts'
 
 export default ({ first = 12, notIn = null } = {}) => {
   const { result, error, loading, fetchMore } = useQuery(
@@ -64,7 +64,7 @@ export const usePost = () => {
   const loading = ref(false)
 
   const { result } = useFetch({
-    query: PostQuery,
+    query: getPost,
     usePayload: true,
     variables: {
       slug,

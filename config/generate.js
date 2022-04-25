@@ -1,61 +1,10 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client/core'
 import fetch from 'node-fetch'
 import { apiUrl } from '../data/siteDetails'
-import { GetPages } from './../graphql/Pages/Pages'
-import { GetProductCategories } from './../graphql/ProductCategories/ProductCategory'
-
-const link = new HttpLink({
-  uri: `${apiUrl}graphql`,
-  fetch,
-})
-
-const client = new ApolloClient({
-  link,
-  cache: new InMemoryCache(),
-})
-
-const getPages = async () => {
-  try {
-    const { data } = await client.query({
-      query: GetPages,
-    })
-    return data.pages.edges.map((item) => {
-      return {
-        route: item.node.uri,
-        payload: {
-          page: item.node,
-        },
-      }
-    })
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-const pauseFetching = () => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 4000)
-  })
-}
-
-const getProductCategories = async () => {
-  try {
-    const { data } = await client.query({
-      query: GetProductCategories,
-    })
-
-    return data.productCategories.edges.map((item) => {
-      return {
-        route: item.node.uri,
-        payload: {
-          productCategory: item.node,
-        },
-      }
-    })
-  } catch (error) {
-    console.error(error)
-  }
-}
+import fetchPages from './generate/fetchPages'
+import fetchPosts from './generate/fetchPosts'
+import fetchProductCategories from './generate/fetchProductCategories'
+import pauseFetching from './generate/pauseFetching'
 
 export default {
   // concurrency: 1,
@@ -68,10 +17,22 @@ export default {
     /^\/shop/, // path starts with /admin
   ],
   routes: async () => {
-    const pages = await getPages()
-    await pauseFetching()
-    const productCategories = await getProductCategories()
+    const link = new HttpLink({
+      uri: `${apiUrl}graphql`,
+      fetch,
+    })
 
-    return [...pages, ...productCategories]
+    const client = new ApolloClient({
+      link,
+      cache: new InMemoryCache(),
+    })
+
+    const pages = await fetchPages(client)
+    await pauseFetching()
+    //const productCategories = await fetchProductCategories(client)
+    // await pauseFetching()
+    const posts = await fetchPosts(client)
+
+    return [...pages, ...posts]
   },
 }

@@ -21,27 +21,13 @@
 
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
-import usePosts from '~/composables/usePost'
 
 export default defineComponent({
   props: {
-    notIn: {
-      type: Number,
-      default: 0,
+    posts: {
+      type: Object,
+      default: () => {},
     },
-  },
-  setup(props) {
-    const { notIn } = props
-    const { posts, loading, loadMore, hasNextPage } = usePosts({
-      notIn,
-    })
-
-    return {
-      posts,
-      loading,
-      loadMore,
-      hasNextPage,
-    }
   },
   computed: {
     title() {

@@ -10,7 +10,7 @@ query Posts($first: Int, $after: String, $notIn: ID) {
     }
     edges {
       node {
-        ...postDetails
+        ...postDetails2
         excerpt
         uri
       }

@@ -12,7 +12,7 @@
 
     <!-- <related-posters-section :related-posters="post.relatedPosters" /> -->
     <related-products-section :related-products="post.relatedProducts" />
-    <posts-overview-section :not-in="post.databaseId" />
+    <posts-overview-section :posts="post.relatedPosts" />
   </div>
 </template>
 

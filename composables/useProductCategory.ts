@@ -1,34 +1,15 @@
-import {
-  useMeta,
-  useContext,
-  useStatic,
-  ref,
-  useRoute,
-  computed,
-} from '@nuxtjs/composition-api'
+import { useMeta, useRoute, computed } from '@nuxtjs/composition-api'
 import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories.gql'
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory'
 import useFetch from '~/composables/useFetch'
 
 export default () => {
-  const { app } = useContext()
-  const loading = ref(false)
+  const { result, loading } = useFetch({
+    query: ProductCategoriesQuery,
+    pageKey: 'product-categories',
+  })
 
-  const productCategories = useStatic(
-    async () => {
-      loading.value = true
-      try {
-        const { data } = await app.apolloProvider.defaultClient.query({
-          query: ProductCategoriesQuery,
-        })
-        return data.productCategories
-      } finally {
-        loading.value = false
-      }
-    },
-    undefined,
-    'product-categories',
-  )
+  const productCategories = computed(() => result.value?.productCategories)
 
   return {
     productCategories,
@@ -37,15 +18,13 @@ export default () => {
 }
 
 export const useProductCategory = () => {
-  const loading = ref(false)
-
   const route = useRoute()
 
   const slug = computed(() => {
     return route.value.params.subcategory || route.value.params.category
   })
 
-  const { result } = useFetch({
+  const { result, loading } = useFetch({
     query: ProductCategoryQuery,
     usePayload: true,
     variables: {

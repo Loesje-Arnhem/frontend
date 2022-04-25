@@ -2,6 +2,7 @@ import { gql } from '@apollo/client/core'
 import pageContent from './Fragments/PageContent'
 import { homePageId, shopPageId } from './../../data/pages'
 import product from './../Products/Fragments/ProductListItem'
+import { TOTAL_PAGES } from './../../data/generate'
 
 export default gql`
   query PageByUri($uri: ID!) {
@@ -59,9 +60,13 @@ export const GetPageByShop = gql`
   ${product}
 `
 
-export const GetPages = gql`
-  query Pages {
-    pages(first: 99) {
+export const GetAllPages = gql`
+  query Pages($after: String) {
+    pages(first: ${TOTAL_PAGES}, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           ...pageContent

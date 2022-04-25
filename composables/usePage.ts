@@ -16,7 +16,6 @@ import PageByUri, {
 
 export const usePageByUri = () => {
   const route = useRoute()
-  const loading = ref(false)
   const { slug, slug2 } = route.value.params
   const pageKey = computed(() => {
     if (slug2) {
@@ -32,7 +31,7 @@ export const usePageByUri = () => {
     return slug
   })
 
-  const { result } = useFetch({
+  const { result, loading } = useFetch({
     query: PageByUri,
     usePayload: true,
     variables: {
@@ -54,9 +53,8 @@ export const usePageByUri = () => {
 
 export const usePageById = (id: number) => {
   const pageKey = ref(id.toString())
-  const loading = ref(false)
 
-  const { result } = useFetch({
+  const { result, loading } = useFetch({
     query: GetPageById,
     variables: {
       id,

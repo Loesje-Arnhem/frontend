@@ -27,7 +27,7 @@ export default gql`
   ${productCategory}
 `
 
-export const GetProductCategories = gql`
+export const GetAllProductCategories = gql`
   query ProductCategories {
     productCategories(where: { hideEmpty: true }, first: 99) {
       edges {

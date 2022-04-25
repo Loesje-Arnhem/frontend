@@ -39,7 +39,7 @@
       <input id="addToNewsletter" v-model="addToNewsletter" type="checkbox" />
       <label for="addToNewsletter"> Toevoegen aan niewsbrief </label>
       <payment-gateways
-        v-if="paymentGateways.edges.length"
+        v-if="paymentGateways"
         v-model="paymentMethod"
         :payment-gateways="paymentGateways.edges"
       />
