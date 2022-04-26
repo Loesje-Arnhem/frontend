@@ -2,6 +2,7 @@
   <app-loader v-if="loading" />
   <div v-else-if="page">
     <app-content :title="page.title" :content="page.content" />
+    <related-posters-section :posters="page.relatedPosters" />
     <related-products-section :related-products="page.relatedProducts" />
   </div>
 </template>

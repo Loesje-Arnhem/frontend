@@ -2,10 +2,7 @@
   <div>
     <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
     <latest-posts-section v-if="posts" :posts="posts.edges" />
-    <!-- <lazy-related-posters-section
-      v-if="page"
-      :related-posters="page.relatedPosters"
-    /> -->
+    <related-posters-section v-if="page" :posters="page.relatedPosters" />
     <lazy-app-stores-section />
     <related-products-section
       v-if="page"

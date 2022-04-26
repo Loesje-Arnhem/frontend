@@ -1,6 +1,8 @@
 import { gql } from '@apollo/client/core'
+import { PAGE_SIZE_PAGE_RELATED_POSTERS } from './../../../data/pageSizes'
 import page from './Page'
-import relatedProductsPageGroup from './RelatedProducts'
+import relatedProducts from './RelatedProducts'
+import relatedPosters from './../../Posters/Fragments/RelatedPosters'
 
 export default gql`
   fragment pageContent on Page {
@@ -10,9 +12,13 @@ export default gql`
       youtubeId
     }
     relatedProducts: relatedProductsGroup {
-      ...relatedProductsPageGroup
+      ...relatedProducts
+    }
+    relatedPosters(first: ${PAGE_SIZE_PAGE_RELATED_POSTERS}) {
+      ...relatedPosters
     }
   }
   ${page}
-  ${relatedProductsPageGroup}
+  ${relatedProducts}
+  ${relatedPosters}
 `

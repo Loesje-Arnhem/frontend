@@ -5,6 +5,7 @@ import {
   useRoute,
   useStatic,
   useMeta,
+  Ref,
 } from '@nuxtjs/composition-api'
 import useFetch from '~/composables/useFetch'
 import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
@@ -12,7 +13,9 @@ import PageByUri, {
   GetPageById,
   GetPageByHome,
   GetPageByShop,
+  GetPageByPosts,
 } from '~/graphql/Pages/Pages'
+import { IPage } from '~/interfaces/IPages'
 
 export const usePageByUri = () => {
   const route = useRoute()
@@ -41,7 +44,7 @@ export const usePageByUri = () => {
     pageKey: 'page',
   })
 
-  const page = computed(() => result.value?.page)
+  const page: Ref<IPage> = computed(() => result.value?.page)
 
   useMeta(() => ({ title: page.value?.title }))
 
@@ -63,7 +66,7 @@ export const usePageById = (id: number) => {
     pageKey: 'page',
   })
 
-  const page = computed(() => result.value?.page)
+  const page: Ref<IPage> = computed(() => result.value?.page)
 
   useMeta(() => ({ title: page.value?.title }))
 
@@ -81,7 +84,27 @@ export const usePageHome = () => {
     pageKey: 'page-home',
   })
 
-  const page = computed(() => result.value?.page)
+  const page: Ref<IPage> = computed(() => result.value?.page)
+  const posts = computed(() => result.value?.posts)
+
+  useMeta(() => ({ title: page.value?.title }))
+
+  return {
+    loading,
+    posts,
+    page,
+  }
+}
+
+export const usePagePosts = () => {
+  const loading = ref(false)
+
+  const { result } = useFetch({
+    query: GetPageByPosts,
+    pageKey: 'page-posts',
+  })
+
+  const page: Ref<IPage> = computed(() => result.value?.page)
   const posts = computed(() => result.value?.posts)
 
   useMeta(() => ({ title: page.value?.title }))
@@ -101,7 +124,7 @@ export const usePageShop = () => {
     pageKey: 'page-shop',
   })
 
-  const page = computed(() => result.value?.page)
+  const page: Ref<IPage> = computed(() => result.value?.page)
 
   const products = computed(() => {
     if (!result.value) {

@@ -4,12 +4,17 @@
       <h1 class="sr-only">{{ poster.title }}</h1>
       <div class="tile">
         <fade-animation>
-          <app-image
+          <nuxt-picture
             v-if="poster.featuredImage"
             :key="poster.featuredImage.node.large"
             :alt="poster.title"
             :src="poster.featuredImage.node.large"
             :class="$style.image"
+            width="270"
+            height="362"
+            preset="base"
+            format="avif"
+            sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
           />
         </fade-animation>
       </div>

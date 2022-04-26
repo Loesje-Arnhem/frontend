@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.tile" class="tile">
+  <div v-if="image" :class="$style.tile" class="tile">
     <router-link :to="poster.uri" :class="$style.link">
       <app-image
         :alt="poster.title"
@@ -12,27 +12,26 @@
   </div>
 </template>
 
-<script>
-import AppImage from '~/components/Shared/AppImage.vue'
-export default {
-  components: {
-    AppImage,
-  },
+<script lang="ts">
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedPoster } from '~/interfaces/IPoster'
+
+export default defineComponent({
   props: {
     poster: {
-      type: Object,
+      type: Object as PropType<IRelatedPoster>,
       default: () => {},
     },
   },
-  computed: {
-    image() {
-      if (this.poster.featuredImage) {
-        return this.poster.featuredImage.node.medium
-      }
-      return 'https://www.loesje.nl/wp-content/uploads/2019/06/190626-zomer-212x300.jpg'
-    },
+  setup(props) {
+    const image = computed(() => {
+      return props.poster.featuredImage?.node.medium
+    })
+    return {
+      image,
+    }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

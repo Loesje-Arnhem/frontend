@@ -2,9 +2,9 @@ import { ISEO } from './ISEO'
 import { IVideoGroup } from './IVideo'
 import { IRelatedPosters } from './IRelatedPosters'
 import { IRelatedProducts } from './IRelatedProducts'
-import { IContent } from '~/interfaces/IContent'
+import { INodeWithTitle } from '~/interfaces/INode'
 
-export interface IPageDetail extends IContent {
+export interface IPageDetail extends INodeWithTitle {
   content: string
   seo: ISEO
   videoGroup: IVideoGroup

@@ -1,8 +1,10 @@
 import { gql } from '@apollo/client/core'
 import pageContent from './Fragments/PageContent'
-import { homePageId, shopPageId } from './../../data/pages'
+import { postsPageId, homePageId, shopPageId } from './../../data/pages'
 import product from './../Products/Fragments/ProductListItem'
 import { TOTAL_PAGES } from './../../data/generate'
+import postListItem from './../Posts/Fragments/PostListItem'
+import { PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
 
 export default gql`
   query PageByUri($uri: ID!) {
@@ -27,20 +29,16 @@ export const GetPageByHome = gql`
     page(id: ${homePageId}, idType: DATABASE_ID) {
       ...pageContent
     }
-    posts(first: 3) {
+    posts(first: ${PAGE_SIZE_POSTS_HOME}) {
       edges {
         node {
-          id
-          title
-          databaseId
-          date
-          excerpt
-          uri
+        ...postListItem
         }
       }
     }
   }
   ${pageContent}
+  ${postListItem}
 `
 
 export const GetPageByShop = gql`
@@ -56,6 +54,35 @@ export const GetPageByShop = gql`
       }
     }
   }
+  ${pageContent}
+  ${product}
+`
+
+export const GetPageByPosts = gql`
+  query GetPageByPosts {
+    page(id: ${postsPageId}, idType: DATABASE_ID) {
+      ...pageContent
+    }
+    products(where: {featured: true}, first: 99) {
+      edges {
+        node { 
+          ...product
+        }
+      }
+    }
+    posts(first: 20) {
+      pageInfo {
+        endCursor
+       hasNextPage
+    }      
+      edges {
+        node {
+        ...postListItem
+        }
+      }
+    }
+  }
+  ${postListItem}
   ${pageContent}
   ${product}
 `

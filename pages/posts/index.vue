@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
-    <posts-overview-section />
+    <posts-overview-section v-if="posts" :posts="posts" />
     <template v-if="page">
-      <!-- <related-posters-section :related-posters="page.relatedPosters" /> -->
+      <related-posters-section :posters="page.relatedPosters" />
       <related-products-section :related-products="page.relatedProducts" />
     </template>
   </div>
@@ -11,13 +11,13 @@
 
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
-import { blogPageId } from '~/data/pages'
-import { usePageById } from '~/composables/usePage'
+import { usePagePosts } from '~/composables/usePage'
 
 export default defineComponent({
   setup() {
-    const { page, loading } = usePageById(blogPageId)
+    const { page, loading, posts } = usePagePosts()
     return {
+      posts,
       page,
       loading,
     }

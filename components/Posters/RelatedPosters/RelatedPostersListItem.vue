@@ -1,16 +1,11 @@
 <template>
   <li :class="$style['list-item']" :style="{ transform }">
-    <poster-tile :poster="poster.node" />
+    <poster-tile :poster="poster" />
   </li>
 </template>
 
 <script>
-import PosterTile from '~/components/Posters/Shared/PosterTile.vue'
-
 export default {
-  components: {
-    PosterTile,
-  },
   props: {
     poster: {
       type: Object,

@@ -1,12 +1,12 @@
-import { IContent } from '~/interfaces/IContent'
+import { IDetailsContent, IRelatedContent } from './INode'
 
-export interface IPage extends IContent {
-  excerpt: string
-  uri: string
+export interface IRelatedPages {
+  edges: {
+    nodes: IRelatedContent[]
+  }
 }
 
-export interface IPages {
-  edges: {
-    nodes: IPage[]
-  }
+export interface IPage extends IDetailsContent {
+  content: string
+  relatedPages: IRelatedPages
 }

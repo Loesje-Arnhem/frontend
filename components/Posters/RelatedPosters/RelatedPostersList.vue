@@ -3,25 +3,23 @@
     <related-posters-list-item
       v-for="poster in posters"
       :key="poster.node.id"
-      :poster="poster"
+      :poster="poster.node"
     />
   </ul>
 </template>
 
-<script>
-import RelatedPostersListItem from '~/components/Posters/RelatedPosters/RelatedPostersListItem.vue'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedPoster } from '~/interfaces/IPoster'
 
-export default {
-  components: {
-    RelatedPostersListItem,
-  },
+export default defineComponent({
   props: {
     posters: {
-      type: Array,
+      type: Array as PropType<IRelatedPoster[]>,
       required: true,
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

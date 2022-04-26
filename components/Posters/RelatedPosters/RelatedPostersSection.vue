@@ -1,80 +1,51 @@
 <template>
   <section
+    v-if="posters.edges.length"
     :class="$style['related-posters']"
     aria-labelledby="related-posters-title"
   >
     <center-wrapper>
       <h1 id="related-posters-title" :class="$style.title">
-        {{ title }}
+        {{ $t('title') }}
       </h1>
     </center-wrapper>
+
     <center-wrapper size="full">
-      <app-loader v-if="loading" />
-      <related-posters-list
-        v-if="posters && posters.edges.length"
-        :posters="posters.edges"
-      />
+      <related-posters-list :posters="posters.edges" />
     </center-wrapper>
     <center-wrapper :class="$style['btn-wrapper']">
       <app-button :to="localePath({ name: 'posters' })">
-        {{ btnText }}
+        {{ $t('btnText') }}
       </app-button>
     </center-wrapper>
   </section>
 </template>
 
-<script>
-import { usePosters } from '~/composables/posters'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedPosters } from '~/interfaces/IPoster'
 
-export default {
+export default defineComponent({
   props: {
-    relatedPosters: {
-      type: Object,
+    posters: {
+      type: Object as PropType<IRelatedPosters>,
       default: () => {},
     },
   },
-  setup(props) {
-    let subjects = []
-    if (props.relatedPosters.subjects?.length) {
-      subjects = props.relatedPosters.subjects.map(
-        (subject) => subject.databaseId,
-      )
-    }
-
-    let posterIds = []
-    if (props.relatedPosters.posters) {
-      posterIds = props.relatedPosters.posters.map(
-        (poster) => poster.poster.databaseId,
-      )
-    }
-
-    const { posters, loading, error } = usePosters({
-      first: 5,
-      search: props.relatedPosters.search,
-      subjects,
-      posterIds,
-    })
-
-    return {
-      posters,
-      loading,
-      error,
-    }
-  },
-  computed: {
-    title() {
-      return this.relatedPosters.title || this.$t('title')
-    },
-    btnText() {
-      let text = this.$t('btnText')
-      if (this.relatedPosters.subjects?.length === 1) {
-        const { name } = this.relatedPosters.subjects[0]
-        text += this.$t('aboutSubject', { subject: name })
-      }
-      return text
-    },
-  },
-}
+  // computed: {
+  //   title() {
+  //     return this.$t('title')
+  //   },
+  //   btnText() {
+  //     const text = this.$t('btnText')
+  //     if (this.posters.subjects?.length === 1) {
+  //       const { name } = this.relatedPosters.subjects[0]
+  //       text += this.$t('aboutSubject', { subject: name })
+  //     }
+  //     return text
+  //   },
+  // },
+})
 </script>
 
 <style lang="postcss" module>

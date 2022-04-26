@@ -1,41 +1,25 @@
-import { ISEO } from './ISEO'
-import { IContent } from '~/interfaces/IContent'
-import { IFeaturedImageBase } from '~/interfaces/IFeaturedImageBase'
+import { IBaseContent, IFeaturedImage, INodeWithUri } from '~/interfaces/INode'
 
-interface IPosterBase extends IContent {
-  uri: string
+export interface IPosterDetailFeaturedImage {
+  node: {
+    id: string
+    large: string
+    medium: string
+  }
 }
 
-export interface IPosterFeaturedImage extends IFeaturedImageBase {
-  medium: string
+export interface IRelatedPoster extends INodeWithUri {
+  featuredImage: IFeaturedImage | null
 }
 
-export interface IPosterDetailFeaturedImage extends IFeaturedImageBase {
-  large: string
-  medium: string
-}
-
-export interface IPosterFeaturedImageNode {
-  node: IPosterFeaturedImage
-}
-
-export interface IPoster extends IPosterBase {
-  featuredImage: IPosterFeaturedImageNode | null
-}
-
-export interface IPosterNode {
-  node: IPoster
-}
-
-export interface IPosterDetails extends IPosterBase {
+export interface IPoster extends IBaseContent {
   date: string
   link: string
   featuredImage: IPosterDetailFeaturedImage | null
-  seo: ISEO
 }
 
-export interface IPosters {
+export interface IRelatedPosters {
   edges: {
-    nodes: IPoster[]
+    node: IRelatedPoster[]
   }
 }

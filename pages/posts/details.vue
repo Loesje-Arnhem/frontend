@@ -10,9 +10,12 @@
       :class="$style.content"
     />
 
-    <!-- <related-posters-section :related-posters="post.relatedPosters" /> -->
+    <related-posters-section :posters="post.relatedPosters" />
     <related-products-section :related-products="post.relatedProducts" />
-    <posts-overview-section :posts="post.relatedPosts" />
+    <posts-overview-section
+      :posts="post.relatedPosts"
+      :not-in="post.databaseId"
+    />
   </div>
 </template>
 

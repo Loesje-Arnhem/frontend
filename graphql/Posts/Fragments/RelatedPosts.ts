@@ -1,18 +1,17 @@
 import { gql } from '@apollo/client/core'
+import postListItem from './PostListItem'
 
 export default gql`
-  fragment relatedPosts on Post {
-    relatedPosts {
-      edges {
-        node {
-          id
-          title
-          databaseId
-          date
-          excerpt
-          uri
-        }
+  fragment relatedPosts on PostToPostConnection {
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        ...postListItem
       }
     }
   }
+  ${postListItem}
 `

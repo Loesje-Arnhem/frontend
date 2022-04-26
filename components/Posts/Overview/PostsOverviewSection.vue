@@ -1,16 +1,20 @@
 <template>
   <section
+    v-if="relatedPosts"
     :class="$style['posts-overview']"
     aria-labelledby="posts-overview-title"
   >
     <center-wrapper size="md">
-      <h1 id="posts-overview-title">{{ title }}</h1>
+      <h1 id="posts-overview-title">
+        <template v-if="notIn">{{ $t('relatedTitle') }}</template>
+        <template v-else>{{ $t('title') }}</template>
+      </h1>
       <posts-overview-list
-        v-if="posts && posts.edges.length"
-        :posts="posts.edges"
+        v-if="relatedPosts.edges.length"
+        :posts="relatedPosts.edges"
       />
       <load-more-by-click
-        v-if="hasNextPage"
+        v-if="relatedPosts.pageInfo.hasNextPage"
         :loading="loading"
         :title="$t('btnMore')"
         @load-more="loadMore"
@@ -19,8 +23,10 @@
   </section>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { defineComponent, ref } from '@nuxtjs/composition-api'
+import { getRelatedPosts } from '~/graphql/Posts/Posts'
+import { useFetchMore } from '~/composables/useFetch'
 
 export default defineComponent({
   props: {
@@ -28,14 +34,31 @@ export default defineComponent({
       type: Object,
       default: () => {},
     },
-  },
-  computed: {
-    title() {
-      if (this.notIn) {
-        return this.$t('relatedTitle')
-      }
-      return this.$t('title')
+    notIn: {
+      type: Number,
+      default: 0,
     },
+  },
+  setup(props) {
+    const relatedPosts = ref(props.posts)
+
+    const { fetchMore, loading } = useFetchMore()
+
+    const loadMore = async () => {
+      relatedPosts.value = await fetchMore({
+        items: relatedPosts,
+        query: getRelatedPosts,
+        variables: {
+          notIn: props.notIn,
+        },
+      })
+    }
+
+    return {
+      loadMore,
+      loading,
+      relatedPosts,
+    }
   },
 })
 </script>

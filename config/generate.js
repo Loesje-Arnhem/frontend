@@ -29,7 +29,7 @@ export default {
 
     const pages = await fetchPages(client)
     await pauseFetching()
-    //const productCategories = await fetchProductCategories(client)
+    // const productCategories = await fetchProductCategories(client)
     // await pauseFetching()
     const posts = await fetchPosts(client)
 
