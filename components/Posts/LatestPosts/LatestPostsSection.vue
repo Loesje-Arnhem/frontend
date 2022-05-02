@@ -21,11 +21,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedPostNode } from '~/interfaces/IPost'
+
 export default defineComponent({
   props: {
     posts: {
-      type: Array,
+      type: Array as PropType<IRelatedPostNode[]>,
       default: () => [],
     },
   },

@@ -4,11 +4,16 @@ export interface IRelatedPost extends IRelatedContent {
   date: string
 }
 
-export interface IPosts {
+export interface IRelatedPostNode {
+  node: IRelatedPost
+}
+
+export interface IPostsBase {
+  edges: IRelatedPostNode[]
+}
+
+export interface IPosts extends IPostsBase {
   pageInfo: IPageInfo
-  edges: {
-    nodes: IRelatedPost[]
-  }
 }
 
 export interface IPost extends IDetailsContent {

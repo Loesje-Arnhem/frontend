@@ -64,11 +64,7 @@ export const useFetchMore = () => {
           after: endCursor,
         },
       })
-
-      return {
-        pageInfo: data.posts.pageInfo,
-        edges: [...items.value.edges, ...data.posts.edges],
-      }
+      return data
     } finally {
       loading.value = false
     }

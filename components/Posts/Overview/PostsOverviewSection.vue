@@ -24,14 +24,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
+import { defineComponent, ref, PropType } from '@nuxtjs/composition-api'
 import { getRelatedPosts } from '~/graphql/Posts/Posts'
 import { useFetchMore } from '~/composables/useFetch'
+import { IPosts } from '~/interfaces/IPost'
 
 export default defineComponent({
   props: {
     posts: {
-      type: Object,
+      type: Object as PropType<IPosts>,
       default: () => {},
     },
     notIn: {
@@ -45,13 +46,18 @@ export default defineComponent({
     const { fetchMore, loading } = useFetchMore()
 
     const loadMore = async () => {
-      relatedPosts.value = await fetchMore({
+      const { posts }: { posts: IPosts } = await fetchMore({
         items: relatedPosts,
         query: getRelatedPosts,
         variables: {
           notIn: props.notIn,
         },
       })
+
+      relatedPosts.value = {
+        pageInfo: posts.pageInfo,
+        edges: [...relatedPosts.value.edges, ...posts.edges],
+      }
     }
 
     return {

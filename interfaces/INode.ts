@@ -1,6 +1,6 @@
 import { ISEO } from './ISEO'
 import { IVideoGroup } from './IVideo'
-import { IRelatedPosters } from './IRelatedPosters'
+import { IRelatedPosters } from './IPoster'
 import { IRelatedProducts } from './IRelatedProducts'
 
 export interface INodeBase {

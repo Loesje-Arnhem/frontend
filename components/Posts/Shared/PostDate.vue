@@ -2,20 +2,17 @@
   <app-date :date="date" :class="$style.date" />
 </template>
 
-<script>
-import AppDate from '~/components/Shared/AppDate.vue'
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
-  components: {
-    AppDate,
-  },
+export default defineComponent({
   props: {
     date: {
       type: String,
       required: true,
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
