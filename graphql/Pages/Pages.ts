@@ -5,14 +5,25 @@ import product from './../Products/Fragments/ProductListItem'
 import { TOTAL_PAGES } from './../../data/generate'
 import postListItem from './../Posts/Fragments/PostListItem'
 import { PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
+import page from './Fragments/Page'
 
 export default gql`
   query PageByUri($uri: ID!) {
     page(id: $uri, idType: URI) {
       ...pageContent
+      relatedPages {
+        edges {
+          node {
+            ...page
+            excerpt
+            uri
+          }
+        }
+      }
     }
   }
   ${pageContent}
+  ${page}
 `
 
 export const GetPageById = gql`

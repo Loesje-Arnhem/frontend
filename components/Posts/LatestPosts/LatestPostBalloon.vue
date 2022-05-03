@@ -2,9 +2,10 @@
   <div ref="balloon" :class="[$style.balloon, { [$style.animate]: animate }]">
     <app-image
       :class="$style['balloon-image']"
+      alt=""
       width="159"
       height="243"
-      :src="require('~/assets/images/air-balloon.png')"
+      src="/images/air-balloon.png"
     />
   </div>
 </template>

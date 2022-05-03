@@ -14,20 +14,24 @@
   </clickable-list-item>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedProduct } from '~/interfaces/IRelatedProducts'
 
 export default defineComponent({
   props: {
     product: {
-      type: Object,
+      type: Object as PropType<IRelatedProduct>,
       required: true,
     },
   },
-  computed: {
-    url() {
-      return `/winkeltje/${this.product.slug}`
-    },
+  setup(props) {
+    const url = computed(() => {
+      return `/winkeltje/${props.product.slug}`
+    })
+    return {
+      url,
+    }
   },
 })
 </script>

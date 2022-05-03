@@ -4,6 +4,7 @@
     <app-content :title="page.title" :content="page.content" />
     <related-posters-section :posters="page.relatedPosters" />
     <related-products-section :related-products="page.relatedProducts" />
+    <related-pages-section :pages="page.relatedPages" />
   </div>
 </template>
 

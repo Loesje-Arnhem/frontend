@@ -20,7 +20,6 @@ import { usePageHome } from '~/composables/usePage'
 export default defineComponent({
   setup() {
     const { page, loading, posts } = usePageHome()
-
     return {
       posts,
       page,

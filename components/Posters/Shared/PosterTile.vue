@@ -1,12 +1,15 @@
 <template>
   <div v-if="image" :class="$style.tile" class="tile">
     <router-link :to="poster.uri" :class="$style.link">
-      <app-image
+      <nuxt-picture
         :alt="poster.title"
         :src="image"
         :class="$style.poster"
         width="200"
         height="500"
+        preset="base"
+        format="avif"
+        sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
       />
     </router-link>
   </div>

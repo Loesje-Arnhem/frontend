@@ -5,7 +5,14 @@
     :class="$style['featured-products']"
   >
     <center-wrapper>
-      <h1 id="featured-products">{{ title }}</h1>
+      <h1 id="featured-products">
+        <template v-if="relatedProducts.title">
+          {{ relatedProducts.title }}
+        </template>
+        <template v-else>
+          {{ $t('title') }}
+        </template>
+      </h1>
       <product-list :products="products" />
       <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
@@ -15,26 +22,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@nuxtjs/composition-api'
+import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
+import { IRelatedProducts } from '~/interfaces/IRelatedProducts'
 
 export default defineComponent({
   props: {
     relatedProducts: {
-      type: Object,
+      type: Object as PropType<IRelatedProducts>,
       default: () => {},
     },
   },
-  setup(props, { root }) {
-    const title = computed(() => {
-      // @ts-ignore
-      return props.relatedProducts.title || root.$t('title')
-    })
-
+  setup(props) {
     const products = computed(() => {
       if (!props.relatedProducts.products) {
         return []
       }
-      // @ts-ignore
       return props.relatedProducts.products.map((product) => {
         return {
           ...product.product,
@@ -44,7 +46,6 @@ export default defineComponent({
 
     return {
       products,
-      title,
     }
   },
 })

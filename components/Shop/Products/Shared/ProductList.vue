@@ -8,13 +8,14 @@
   </ul>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedProduct } from '~/interfaces/IRelatedProducts'
 
 export default defineComponent({
   props: {
     products: {
-      type: Array,
+      type: Array as PropType<IRelatedProduct[]>,
       default: () => [],
     },
   },
