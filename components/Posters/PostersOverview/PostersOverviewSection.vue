@@ -50,7 +50,7 @@ export default defineComponent({
   props: {
     posters: {
       type: Object as PropType<IRelatedPosters>,
-      default: () => {},
+      required: true,
     },
     title: {
       type: String,

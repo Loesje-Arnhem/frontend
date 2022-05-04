@@ -5,6 +5,9 @@
     :poster-ids="favorites"
     :title="$t('title')"
   />
+  <center-wrapper v-else>
+    <p>Geen favorieten</p>
+  </center-wrapper>
 </template>
 
 <script lang="ts">

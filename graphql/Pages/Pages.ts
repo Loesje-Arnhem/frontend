@@ -129,8 +129,18 @@ export const GetAllPages = gql`
         node {
           ...pageContent
           uri
+          relatedPages {
+            edges {
+              node {
+                ...page
+                excerpt
+                uri
+              }
+            }
+          }
         }
       }
+      
     }
   }
   ${pageContent}
