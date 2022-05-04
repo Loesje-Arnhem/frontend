@@ -2,8 +2,8 @@
   <section v-if="relatedPosters" aria-labelledby="posters-overview-title">
     <center-wrapper>
       <h1 id="posters-overview-title">
-        <template v-if="notIn">
-          {{ $t('relatedTitle') }}
+        <template v-if="title">
+          {{ title }}
         </template>
         <template v-else>
           {{ $t('title') }}
@@ -33,6 +33,7 @@ import {
   ref,
   PropType,
   computed,
+  watch,
 } from '@nuxtjs/composition-api'
 import { useFetchMore } from '~/composables/useFetch'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
@@ -51,6 +52,10 @@ export default defineComponent({
       type: Object as PropType<IRelatedPosters>,
       default: () => {},
     },
+    title: {
+      type: String,
+      default: null,
+    },
     search: {
       type: String,
       default: null,
@@ -67,17 +72,13 @@ export default defineComponent({
       type: Array as PropType<number[]>,
       default: () => [],
     },
-    sources: {
+    sourceIds: {
       type: Array as PropType<number[]>,
       default: () => [],
     },
     posterIds: {
       type: Array as PropType<number[]>,
       default: () => [],
-    },
-    title: {
-      type: String,
-      default: null,
     },
     notIn: {
       type: Number,
@@ -89,10 +90,15 @@ export default defineComponent({
 
     const { fetchMore, loading } = useFetchMore()
 
-    const where = computed(() => {
-      const subjectList = props.subjectIds
-      const sourcesList = props.sources
+    const createTaxArray = (ids: number[], key: string) => {
+      return {
+        terms: ids.map(String),
+        taxonomy: key,
+        operator: 'IN',
+      }
+    }
 
+    const where = computed(() => {
       if (props.posterIds.length) {
         return {
           in: props.posterIds,
@@ -101,19 +107,13 @@ export default defineComponent({
       const taxQuery: { taxArray: ITaxQuery[] } = {
         taxArray: [],
       }
-      if (subjectList.length) {
-        taxQuery.taxArray.push({
-          terms: subjectList.map(String),
-          taxonomy: 'SUBJECT',
-          operator: 'IN',
-        })
+      if (props.subjectIds.length) {
+        const taxArray = createTaxArray(props.subjectIds, 'SUBJECT')
+        taxQuery.taxArray.push(taxArray)
       }
-      if (sourcesList.length) {
-        taxQuery.taxArray.push({
-          terms: sourcesList.map(String),
-          taxonomy: 'SOURCE',
-          operator: 'IN',
-        })
+      if (props.sourceIds.length) {
+        const taxArray = createTaxArray(props.sourceIds, 'SOURCE')
+        taxQuery.taxArray.push(taxArray)
       }
       let posterDateAfter = null
       if (props.dateAfter) {
@@ -140,6 +140,17 @@ export default defineComponent({
         posterDateBefore,
         posterDateAfter,
       }
+    })
+
+    watch(where, () => {
+      relatedPosters.value = {
+        pageInfo: {
+          endCursor: '',
+          hasNextPage: true,
+        },
+        edges: [],
+      }
+      loadMore()
     })
 
     const loadMore = async () => {
@@ -170,8 +181,7 @@ export default defineComponent({
 <i18n>
 {
   "nl": {
-    "title": "Posters",
-    "relatedTitle": "Gerelateerde posters"
+    "title": "Posters"
   }
 }
 </i18n>

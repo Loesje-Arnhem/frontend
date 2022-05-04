@@ -1,6 +1,7 @@
 <template>
   <posters-overview-section
     v-if="favorites.length"
+    :posters="posters"
     :poster-ids="favorites"
     :title="$t('title')"
   />
@@ -13,7 +14,15 @@ import useFavorites from '~/composables/useFavorites'
 export default defineComponent({
   setup() {
     const { favorites } = useFavorites()
+    const posters = {
+      pageInfo: {
+        endCursor: '',
+        hasNextPage: true,
+      },
+      edges: [],
+    }
     return {
+      posters,
       favorites,
     }
   },

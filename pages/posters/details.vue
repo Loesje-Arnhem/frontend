@@ -9,6 +9,7 @@
       :not-in="poster.databaseId"
       :posters="poster.relatedPosters"
       :subject-ids="subjects"
+      :title="$t('relatedTitle')"
     />
   </div>
 </template>

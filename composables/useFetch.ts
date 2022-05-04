@@ -56,7 +56,7 @@ export const useFetchMore = () => {
   }) => {
     try {
       loading.value = true
-      const { endCursor } = items.value.pageInfo
+      const endCursor = items.value?.pageInfo?.endCursor || null
       const { data } = await app.apolloProvider.defaultClient.query({
         query,
         variables: {

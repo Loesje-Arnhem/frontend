@@ -4,7 +4,7 @@ import { postsPageId, homePageId, shopPageId } from './../../data/pages'
 import product from './../Products/Fragments/ProductListItem'
 import { TOTAL_PAGES } from './../../data/generate'
 import postListItem from './../Posts/Fragments/PostListItem'
-import { PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
+import { PAGE_SIZE_POSTERS, PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
 import page from './Fragments/Page'
 
 export default gql`
@@ -74,14 +74,9 @@ export const GetPageByPosts = gql`
     page(id: ${postsPageId}, idType: DATABASE_ID) {
       ...pageContent
     }
-    products(where: {featured: true}, first: 99) {
-      edges {
-        node { 
-          ...product
-        }
-      }
-    }
-    posts(first: 20) {
+ 
+
+   posts(first: 20) {
       pageInfo {
         endCursor
        hasNextPage
@@ -96,6 +91,31 @@ export const GetPageByPosts = gql`
   ${postListItem}
   ${pageContent}
   ${product}
+`
+
+export const GetPageByPosters = gql`
+  query GetPageByPosters {
+    posters(first: ${PAGE_SIZE_POSTERS}) {
+      pageInfo {
+        endCursor
+         hasNextPage
+      }      
+      edges {
+        node {
+          id
+          databaseId
+          title
+          uri
+          featuredImage {
+            node {
+              id
+              medium: sourceUrl(size: MEDIUM)
+            }
+          }
+        }
+      }
+    }
+  }
 `
 
 export const GetAllPages = gql`
