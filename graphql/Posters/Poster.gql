@@ -4,6 +4,27 @@
 #import "./Fragments/RelatedProducts.gql"
 #import "./../Fragments/Seo.gql"
 
+fragment relatedPosters on ContentNodeToPosterConnection {
+  pageInfo {
+    hasNextPage
+    endCursor
+  }
+  edges {
+    node {
+      id
+      databaseId
+      title
+      uri
+      featuredImage {
+        node {
+          id
+          medium: sourceUrl(size: MEDIUM)
+        }
+      }
+    }
+  }
+}
+
 query Poster($slug: ID!) {
   poster(id: $slug, idType: SLUG) {
     ...posterDetails
@@ -42,6 +63,9 @@ query Poster($slug: ID!) {
     }
     seo {
       ...seo
+    }
+    relatedPosters(first: 10) {
+      ...relatedPosters
     }
   }
 }

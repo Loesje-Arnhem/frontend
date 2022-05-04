@@ -1,33 +1,56 @@
 <template>
-  <section aria-labelledby="posters-overview-title">
+  <section v-if="relatedPosters" aria-labelledby="posters-overview-title">
     <center-wrapper>
       <h1 id="posters-overview-title">
-        {{ title }}
+        <template v-if="notIn">
+          {{ $t('relatedTitle') }}
+        </template>
+        <template v-else>
+          {{ $t('title') }}
+        </template>
       </h1>
     </center-wrapper>
     <poster-list
-      v-if="posters && posters.edges.length"
-      :posters="posters.edges"
+      v-if="relatedPosters && relatedPosters.edges.length"
+      :posters="relatedPosters.edges"
     />
     <center-wrapper>
       <load-more-by-scroll
-        v-if="hasNextPage"
+        v-if="relatedPosters.pageInfo.hasNextPage"
         :loading="loading"
         @load-more="loadMore"
       />
-      <p v-if="posters && posters.edges.length === 0 && !loading">
+      <p v-if="relatedPosters.edges.length === 0 && !loading">
         Geen posters gevonden
       </p>
     </center-wrapper>
   </section>
 </template>
 
-<script>
-import { computed, defineComponent } from '@nuxtjs/composition-api'
-import { usePosters } from '~/composables/posters'
+<script lang="ts">
+import {
+  defineComponent,
+  ref,
+  PropType,
+  computed,
+} from '@nuxtjs/composition-api'
+import { useFetchMore } from '~/composables/useFetch'
+import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
+import PostersQuery from '~/graphql/Posters/Posters.gql'
+import { IRelatedPosters } from '~/interfaces/IPoster'
+
+interface ITaxQuery {
+  terms: string[]
+  taxonomy: string
+  operator: string
+}
 
 export default defineComponent({
   props: {
+    posters: {
+      type: Object as PropType<IRelatedPosters>,
+      default: () => {},
+    },
     search: {
       type: String,
       default: null,
@@ -40,52 +63,105 @@ export default defineComponent({
       type: String,
       default: null,
     },
-    notIn: {
-      type: Number,
-      default: 0,
-    },
-    subjects: {
-      type: Array,
+    subjectIds: {
+      type: Array as PropType<number[]>,
       default: () => [],
     },
     sources: {
-      type: Array,
+      type: Array as PropType<number[]>,
       default: () => [],
     },
     posterIds: {
-      type: Array,
+      type: Array as PropType<number[]>,
       default: () => [],
     },
     title: {
       type: String,
-      default() {
-        return this.$t('title')
-      },
+      default: null,
+    },
+    notIn: {
+      type: Number,
+      default: 0,
     },
   },
   setup(props) {
-    const sources = computed(() => props.sources)
-    const search = computed(() => props.search)
-    const dateBefore = computed(() => props.dateBefore)
-    const dateAfter = computed(() => props.dateAfter)
-    const subjects = computed(() => props.subjects)
-    const posterIds = computed(() => props.posterIds)
-    const { posters, loading, error, loadMore, hasNextPage } = usePosters({
-      search,
-      subjects,
-      sources,
-      dateBefore,
-      dateAfter,
-      posterIds: posterIds.value,
-      notIn: props.notIn,
+    const relatedPosters = ref(props.posters)
+
+    const { fetchMore, loading } = useFetchMore()
+
+    const where = computed(() => {
+      const subjectList = props.subjectIds
+      const sourcesList = props.sources
+
+      if (props.posterIds.length) {
+        return {
+          in: props.posterIds,
+        }
+      }
+      const taxQuery: { taxArray: ITaxQuery[] } = {
+        taxArray: [],
+      }
+      if (subjectList.length) {
+        taxQuery.taxArray.push({
+          terms: subjectList.map(String),
+          taxonomy: 'SUBJECT',
+          operator: 'IN',
+        })
+      }
+      if (sourcesList.length) {
+        taxQuery.taxArray.push({
+          terms: sourcesList.map(String),
+          taxonomy: 'SOURCE',
+          operator: 'IN',
+        })
+      }
+      let posterDateAfter = null
+      if (props.dateAfter) {
+        const splittedDate = props.dateAfter.split('-')
+        posterDateAfter = {
+          year: parseInt(splittedDate[0], 10),
+          month: parseInt(splittedDate[1], 10),
+          day: parseInt(splittedDate[2], 10),
+        }
+      }
+      let posterDateBefore = null
+      if (props.dateBefore) {
+        const splittedDate = props.dateBefore.split('-')
+        posterDateBefore = {
+          year: parseInt(splittedDate[0], 10),
+          month: parseInt(splittedDate[1], 10),
+          day: parseInt(splittedDate[2], 10),
+        }
+      }
+      return {
+        notIn: props.notIn,
+        search: props.search,
+        taxQuery: taxQuery.taxArray.length ? taxQuery : null,
+        posterDateBefore,
+        posterDateAfter,
+      }
     })
 
+    const loadMore = async () => {
+      const { posters } = await fetchMore({
+        items: relatedPosters,
+        query: PostersQuery,
+        variables: {
+          where: where.value,
+          first: PAGE_SIZE_POSTERS,
+        },
+      })
+
+      relatedPosters.value = {
+        pageInfo: posters.pageInfo,
+        edges: [...relatedPosters.value.edges, ...posters.edges],
+      }
+    }
+
     return {
-      posters,
-      loading,
-      error,
       loadMore,
-      hasNextPage,
+      loading,
+      relatedPosters,
     }
   },
 })
@@ -94,7 +170,8 @@ export default defineComponent({
 <i18n>
 {
   "nl": {
-    "title": "Posters"
+    "title": "Posters",
+    "relatedTitle": "Gerelateerde posters"
   }
 }
 </i18n>

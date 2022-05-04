@@ -1,37 +1,22 @@
 <template>
-  <div class="poster-daily">
-    <div class="image-wrapper">
-      <nuxt-picture
-        v-if="dailyPoster"
-        :src="dailyPoster.image"
-        :alt="dailyPoster.title"
-        preset="base"
-        format="avif"
-        preload
-        class="image"
-        width="188"
-        height="300"
-        sizes="xs:200px sm:400px"
-      />
-    </div>
-    <nuxt-picture
-      src="/images/electriciteitskastje.png"
-      alt=""
-      preload
-      class="background"
-      width="270"
-      height="362"
-      preset="base"
-      format="avif"
-      sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
-    />
-  </div>
+  <nuxt-picture
+    v-if="dailyPoster"
+    :src="dailyPoster.image"
+    :alt="dailyPoster.title"
+    preset="base"
+    format="avif"
+    preload
+    width="188"
+    height="300"
+    sizes="xs:200px sm:400px"
+  />
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import DailyPostersQuery from '~/graphql/Posters/DailyPoster.gql'
 
-export default {
+export default defineComponent({
   data() {
     return {
       poster: {
@@ -64,42 +49,5 @@ export default {
       }
     },
   },
-}
+})
 </script>
-
-<style lang="postcss" scoped>
-.poster-daily {
-  position: relative;
-  max-width: 18em;
-  width: 100%;
-  margin: 0 auto -1em;
-}
-
-.image-wrapper {
-  position: absolute;
-  top: 9%;
-  left: 17%;
-  transform: rotate(-2deg);
-  width: 72%;
-
-  &::after {
-    display: block;
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    box-shadow: inset 0 0 0 1px var(--color-white);
-  }
-}
-
-.image {
-  display: block;
-}
-
-.background {
-  width: 100%;
-  display: block;
-}
-</style>

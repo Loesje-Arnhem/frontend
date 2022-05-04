@@ -1,4 +1,11 @@
-import { IBaseContent, IFeaturedImage, INodeWithUri } from '~/interfaces/INode'
+import { IRelatedProducts } from './IRelatedProducts'
+import { ITaxanomies } from './ITaxonomy'
+import {
+  IBaseContent,
+  IFeaturedImage,
+  INodeWithUri,
+  IPageInfo,
+} from '~/interfaces/INode'
 
 export interface IPosterDetailFeaturedImage {
   node: {
@@ -12,14 +19,24 @@ export interface IRelatedPoster extends INodeWithUri {
   featuredImage: IFeaturedImage | null
 }
 
+export interface IRelatedPosterNode {
+  node: IRelatedPoster
+}
+
+export interface IRelatedPostersBase {
+  edges: IRelatedPosterNode[]
+}
+
+export interface IRelatedPosters extends IRelatedPostersBase {
+  pageInfo: IPageInfo
+}
+
 export interface IPoster extends IBaseContent {
   date: string
   link: string
   featuredImage: IPosterDetailFeaturedImage | null
-}
-
-export interface IRelatedPosters {
-  edges: {
-    node: IRelatedPoster[]
-  }
+  relatedPosters: IRelatedPoster
+  relatedProducts: IRelatedProducts
+  sources: ITaxanomies
+  subjects: ITaxanomies
 }

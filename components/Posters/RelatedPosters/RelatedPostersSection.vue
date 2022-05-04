@@ -23,12 +23,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPosters } from '~/interfaces/IPoster'
+import { IRelatedPostersBase } from '~/interfaces/IPoster'
 
 export default defineComponent({
   props: {
     posters: {
-      type: Object as PropType<IRelatedPosters>,
+      type: Object as PropType<IRelatedPostersBase>,
       default: () => {},
     },
   },

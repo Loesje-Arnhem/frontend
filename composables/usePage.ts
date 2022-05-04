@@ -1,14 +1,5 @@
-import {
-  computed,
-  ref,
-  useContext,
-  useRoute,
-  useStatic,
-  useMeta,
-  Ref,
-} from '@nuxtjs/composition-api'
+import { computed, ref, useRoute, useMeta, Ref } from '@nuxtjs/composition-api'
 import useFetch from '~/composables/useFetch'
-import RelatedPagesQuery from '~/graphql/Pages/RelatedPages.gql'
 import PageByUri, {
   GetPageById,
   GetPageByHome,
@@ -145,37 +136,5 @@ export const usePageShop = () => {
     products,
     loading,
     page,
-  }
-}
-
-export const useRelatedPages = (parentPageId: Number, notIn: Number) => {
-  const { app } = useContext()
-  const loading = ref(false)
-
-  const pageKey = ref(`${parentPageId}-${notIn}`)
-
-  const relatedPages = useStatic(
-    async () => {
-      loading.value = true
-      try {
-        const { data } = await app.apolloProvider.defaultClient.query({
-          query: RelatedPagesQuery,
-          variables: {
-            notIn,
-            parentPageId: parentPageId.toString(),
-          },
-        })
-        return data.pages
-      } finally {
-        loading.value = false
-      }
-    },
-    pageKey,
-    'related-pages',
-  )
-
-  return {
-    relatedPages,
-    loading,
   }
 }
