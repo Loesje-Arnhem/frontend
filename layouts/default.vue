@@ -39,6 +39,9 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  @supports (min-height: 100dvh) {
+    min-height: 100dvh;
+  }
 }
 
 .header {
