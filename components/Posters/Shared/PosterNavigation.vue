@@ -3,7 +3,7 @@
     <nav>
       <transition name="slide">
         <nuxt-link
-          v-if="!isSearch"
+          v-if="!isOverview"
           :to="localePath({ name: 'posters' })"
           class="btn-search"
         >
@@ -13,7 +13,7 @@
       </transition>
       <transition name="slide">
         <nuxt-link
-          v-if="favorites.length && !isFavorites"
+          v-if="!isFavorites"
           :to="localePath({ name: 'posters-favorites' })"
           class="btn-favorites"
         >
@@ -25,24 +25,34 @@
   </center-wrapper>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
+<script lang="ts">
+import {
+  computed,
+  defineComponent,
+  useContext,
+  useRoute,
+} from '@nuxtjs/composition-api'
 import useFavorites from '~/composables/useFavorites'
 
 export default defineComponent({
   setup() {
     const { favorites } = useFavorites()
+    const { app } = useContext()
+    const route = useRoute()
+
+    const isFavorites = computed(() => {
+      const path = app.localeRoute({ name: 'posters-favorites' })
+      return favorites.value.length > -1 && route.value.name === path?.name
+    })
+
+    const isOverview = computed(() => {
+      const path = app.localeRoute({ name: 'posters' })
+      return route.value.name === path?.name
+    })
     return {
-      favorites,
+      isOverview,
+      isFavorites,
     }
-  },
-  computed: {
-    isSearch() {
-      return this.$route.path === this.localePath({ name: 'posters' })
-    },
-    isFavorites() {
-      return this.localePath({ name: 'posters-favorites' }) === this.$route.path
-    },
   },
 })
 </script>
