@@ -2,13 +2,11 @@ import { gql } from '@apollo/client/core'
 import product from './../../Products/Fragments/ProductListItem'
 
 export default gql`
-  fragment relatedProducts on Page_Relatedproductsgroup {
+  fragment relatedProducts on Poster_Relatedproductsgroup {
     title: relatedProductsTitle
     products: relatedProductsProducts {
-      ... on Page_Relatedproductsgroup_relatedProductsProducts {
-        product {
-          ...product
-        }
+      product {
+        ...product
       }
     }
   }

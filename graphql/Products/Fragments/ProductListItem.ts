@@ -6,6 +6,9 @@ export default gql`
     id
     databaseId
     name
+    regularPrice
+    price
+    salePrice
     image {
       id
       altText

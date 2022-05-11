@@ -3,13 +3,13 @@
     <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
     <latest-posts-section v-if="posts" :posts="posts.edges" />
     <related-posters-section v-if="page" :posters="page.relatedPosters" />
-    <lazy-app-stores-section />
+    <app-stores-section />
     <related-products-section
       v-if="page"
       :related-products="page.relatedProducts"
     />
     <!-- <block-instagram /> -->
-    <lazy-block-groups />
+    <block-groups />
   </div>
 </template>
 
