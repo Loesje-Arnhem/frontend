@@ -23,7 +23,7 @@ import {
 } from '@nuxtjs/composition-api'
 import useFetch from '~/composables/useFetch'
 import { IPoster } from '~/interfaces/IPoster'
-import PosterQuery from '~/graphql/Posters/Poster.gql'
+import PosterQuery from '~/graphql/Posters/Poster'
 
 export default defineComponent({
   setup() {

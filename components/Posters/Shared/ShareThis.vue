@@ -13,10 +13,15 @@
   </div>
 </template>
 
-<script>
-import { onMounted, computed, ref } from '@nuxtjs/composition-api'
+<script lang="ts">
+import {
+  onMounted,
+  computed,
+  ref,
+  defineComponent,
+} from '@nuxtjs/composition-api'
 
-export default {
+export default defineComponent({
   props: {
     title: {
       type: String,
@@ -36,6 +41,7 @@ export default {
     const supportsShareAPI = ref(false)
 
     onMounted(() => {
+      /* @ts-ignore:next-line */
       supportsShareAPI.value = process.client && window?.navigator?.canShare
     })
     const twitter = computed(() => {
@@ -75,7 +81,7 @@ export default {
       share,
     }
   },
-}
+})
 </script>
 
 <i18n>

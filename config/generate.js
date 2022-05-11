@@ -3,6 +3,7 @@ import fetch from 'node-fetch'
 import { apiUrl } from '../data/siteDetails'
 import fetchPages from './generate/fetchPages'
 import fetchPosts from './generate/fetchPosts'
+import fetchPosters from './generate/fetchPosters'
 import fetchProductCategories from './generate/fetchProductCategories'
 import pauseFetching from './generate/pauseFetching'
 
@@ -27,12 +28,15 @@ export default {
       cache: new InMemoryCache(),
     })
 
-    const pages = await fetchPages(client)
-    await pauseFetching()
+    const posters = await fetchPosters(client)
+    // await pauseFetching()
+    // const pages = await fetchPages(client)
+    // await pauseFetching()
     // const productCategories = await fetchProductCategories(client)
     // await pauseFetching()
-    const posts = await fetchPosts(client)
+    // const posts = await fetchPosts(client)
+    return [...posters]
 
-    return [...pages, ...posts]
+    // return [...posters, pages, productCategories, posts]
   },
 }

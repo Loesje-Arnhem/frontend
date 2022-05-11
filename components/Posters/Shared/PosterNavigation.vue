@@ -3,7 +3,7 @@
     <nav>
       <transition name="slide">
         <nuxt-link
-          v-if="!isOverview"
+          v-if="showOverview"
           :to="localePath({ name: 'posters' })"
           class="btn-search"
         >
@@ -13,7 +13,7 @@
       </transition>
       <transition name="slide">
         <nuxt-link
-          v-if="!isFavorites"
+          v-if="showFavorites"
           :to="localePath({ name: 'posters-favorites' })"
           class="btn-favorites"
         >
@@ -40,18 +40,22 @@ export default defineComponent({
     const { app } = useContext()
     const route = useRoute()
 
-    const isFavorites = computed(() => {
+    const showFavorites = computed(() => {
+      if (!process.client) {
+        return false
+      }
+
       const path = app.localeRoute({ name: 'posters-favorites' })
-      return favorites.value.length > -1 && route.value.name === path?.name
+      return favorites.value.length && route.value.name !== path?.name
     })
 
-    const isOverview = computed(() => {
+    const showOverview = computed(() => {
       const path = app.localeRoute({ name: 'posters' })
-      return route.value.name === path?.name
+      return route.value.name !== path?.name
     })
     return {
-      isOverview,
-      isFavorites,
+      showOverview,
+      showFavorites,
     }
   },
 })

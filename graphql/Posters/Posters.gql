@@ -14,7 +14,7 @@ query Posters(
     }
     edges {
       node {
-        ...posterDetails
+        ...posterDetails2
         uri
         featuredImage {
           node {

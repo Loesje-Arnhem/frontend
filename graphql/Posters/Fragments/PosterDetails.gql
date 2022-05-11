@@ -1,4 +1,4 @@
-fragment posterDetails on Poster {
+fragment posterDetails2 on Poster {
   id
   databaseId
   title
