@@ -1,53 +1,39 @@
 <template>
-  <nuxt-picture
-    v-if="dailyPoster"
+  <app-loader v-if="loading" />
+  <img
+    v-else-if="dailyPoster"
     :src="dailyPoster.image"
     :alt="dailyPoster.title"
-    preset="base"
-    format="avif"
-    preload
     width="188"
     height="300"
-    sizes="xs:200px sm:400px"
   />
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { useQuery, useResult } from '@vue/apollo-composable'
 import DailyPostersQuery from '~/graphql/Posters/DailyPoster.gql'
 
 export default defineComponent({
-  data() {
-    return {
-      poster: {
-        edges: [],
-      },
-    }
-  },
-  async fetch() {
+  setup() {
     const date = new Date()
-    const result = await this.$apollo.query({
-      query: DailyPostersQuery,
-      variables: {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate(),
-      },
+    const { result, loading } = useQuery(DailyPostersQuery, {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
     })
-    if (result.data) {
-      this.poster = result.data.dailyPosters
-    }
-  },
-  computed: {
-    dailyPoster() {
-      if (!this.poster.edges.length) {
-        return null
-      }
+    const dailyPoster = useResult(result, null, (data) => {
       return {
-        title: this.poster.edges[0].node.title,
-        image: this.poster.edges[0].node.featuredImage.node.medium,
+        title: data.dailyPosters.edges[0].node.title,
+        image: data.dailyPosters.edges[0].node.featuredImage.node.medium,
       }
-    },
+    })
+
+    return {
+      loading,
+      dailyPoster,
+      result,
+    }
   },
 })
 </script>

@@ -12,9 +12,7 @@
       </div>
       <div :class="$style['poster-daily']">
         <div :class="$style['image-wrapper']">
-          <client-only>
-            <daily-poster :class="$style.image" />
-          </client-only>
+          <daily-poster :class="$style.image" />
         </div>
         <nuxt-picture
           src="/images/electriciteitskastje.png"
