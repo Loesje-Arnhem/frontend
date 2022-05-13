@@ -12,7 +12,9 @@
       </div>
       <div :class="$style['poster-daily']">
         <div :class="$style['image-wrapper']">
-          <daily-poster :class="$style.image" />
+          <client-only>
+            <daily-poster :class="$style.image" />
+          </client-only>
         </div>
         <nuxt-picture
           src="/images/electriciteitskastje.png"
@@ -62,10 +64,8 @@
 
 .image-wrapper {
   position: absolute;
-  top: 9%;
-  left: 17%;
+  inset: 9% 13% auto 17%;
   transform: rotate(-2deg);
-  width: 72%;
 
   &::after {
     display: block;

@@ -1,7 +1,6 @@
 <template>
-  <app-loader v-if="loading" />
   <img
-    v-else-if="dailyPoster"
+    v-if="dailyPoster"
     :src="dailyPoster.image"
     :alt="dailyPoster.title"
     width="188"
@@ -17,11 +16,17 @@ import DailyPostersQuery from '~/graphql/Posters/DailyPoster.gql'
 export default defineComponent({
   setup() {
     const date = new Date()
-    const { result, loading } = useQuery(DailyPostersQuery, {
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate(),
-    })
+    const { result } = useQuery(
+      DailyPostersQuery,
+      {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        day: date.getDate(),
+      },
+      {
+        fetchPolicy: 'network-only',
+      },
+    )
     const dailyPoster = useResult(result, null, (data) => {
       return {
         title: data.dailyPosters.edges[0].node.title,
@@ -30,7 +35,6 @@ export default defineComponent({
     })
 
     return {
-      loading,
       dailyPoster,
       result,
     }

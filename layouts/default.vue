@@ -2,9 +2,7 @@
   <div :class="$style.page">
     <vue-announcer />
 
-    <lazy-hydrate never>
-      <header-top :class="$style['header-top']" class="header-top" />
-    </lazy-hydrate>
+    <header-top :class="$style['header-top']" class="header-top" />
     <the-header :class="$style.header" />
     <main id="content" :class="$style.main" tabindex="-1">
       <nuxt />
@@ -15,14 +13,9 @@
 
 <script>
 import { defineComponent, onMounted } from '@nuxtjs/composition-api'
-import LazyHydrate from 'vue-lazy-hydration'
 import useFavorites from '~/composables/useFavorites'
 
 export default defineComponent({
-  components: {
-    LazyHydrate,
-    HeaderTop: () => import('~/components/HeaderTop.vue'),
-  },
   setup() {
     const { getFromStorage } = useFavorites()
     onMounted(() => getFromStorage())
