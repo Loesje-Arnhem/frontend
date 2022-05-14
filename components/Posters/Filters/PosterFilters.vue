@@ -56,8 +56,8 @@
         class="tags"
         tabindex="-1"
       >
-        <center-wrapper v-if="tags">
-          <poster-tags-list :list="tags.sources.edges" />
+        <center-wrapper v-if="sources">
+          <poster-tags-list :list="sources.edges" />
         </center-wrapper>
       </div>
 
@@ -67,8 +67,8 @@
         class="tags"
         tabindex="-1"
       >
-        <center-wrapper v-if="tags">
-          <poster-tags-list :list="tags.subjects.edges" />
+        <center-wrapper v-if="subjects">
+          <poster-tags-list :list="subjects.edges" />
         </center-wrapper>
       </div>
     </slide-in-animation>
@@ -76,12 +76,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
-import { useQuery } from '@vue/apollo-composable'
+import { defineComponent, reactive, PropType } from '@nuxtjs/composition-api'
 import useTags from '~/composables/useTags'
-import TagsQuery from '~/graphql/Posters/Tags.gql'
+import { ITags } from '~/interfaces/ITag'
 
 export default defineComponent({
+  props: {
+    sources: {
+      type: Object as PropType<ITags | null>,
+      default: null,
+    },
+    subjects: {
+      type: Object as PropType<ITags | null>,
+      default: null,
+    },
+  },
   setup() {
     const { selectedSourceIds, selectedSubjectIds, dateBefore, dateAfter } =
       useTags()
@@ -100,8 +109,6 @@ export default defineComponent({
       }
     }
 
-    const { result } = useQuery(TagsQuery)
-
     const today = () => {
       const now = new Date()
       let month = (now.getMonth() + 1) as Number | String
@@ -112,7 +119,6 @@ export default defineComponent({
     }
     return {
       today,
-      tags: result,
       toggleOverlay,
       activeOverlays,
       selectedSourceIds,

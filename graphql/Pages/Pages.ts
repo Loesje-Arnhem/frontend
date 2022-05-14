@@ -1,4 +1,6 @@
 import { gql } from '@apollo/client/core'
+import subjectDetails from '../Posters/Fragments/SubjectDetails'
+import sourceDetails from '../Posters/Fragments/SourceDetails'
 import pageContent from './Fragments/PageContent'
 import { postsPageId, homePageId, shopPageId } from './../../data/pages'
 import product from './../Products/Fragments/ProductListItem'
@@ -115,7 +117,23 @@ export const GetPageByPosters = gql`
         }
       }
     }
+    sources(first: 100) {
+      edges {
+        node {
+          ...sourceDetails
+        }
+      }
+    }
+    subjects(first: 100) {
+      edges {
+        node {
+          ...subjectDetails
+        }
+      }
+    }    
   }
+  ${subjectDetails},
+  ${sourceDetails}
 `
 
 export const GetAllPages = gql`

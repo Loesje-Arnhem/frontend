@@ -1,7 +1,7 @@
 <template>
   <div>
     <center-wrapper>
-      <poster-filters />
+      <poster-filters :sources="sources" :subjects="subjects" />
       <posters-auto-complete />
       <poster-tags-list :list="selectedTags" />
     </center-wrapper>
@@ -21,9 +21,10 @@
 import { computed, Ref } from '@nuxtjs/composition-api'
 import { IRelatedPosters } from '~/interfaces/IPoster'
 import useFetch from '~/composables/useFetch'
-import PostersQuery from '~/graphql/Posters/Posters.gql'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
 import useTags from '~/composables/useTags'
+import { GetPageByPosters } from '~/graphql/Pages/Pages'
+import { ITags } from '~/interfaces/ITag'
 export default {
   setup() {
     const {
@@ -35,7 +36,7 @@ export default {
       dateAfter,
     } = useTags()
     const { result, loading } = useFetch({
-      query: PostersQuery,
+      query: GetPageByPosters,
       pageKey: 'page-posters',
       variables: {
         first: PAGE_SIZE_POSTERS,
@@ -46,6 +47,9 @@ export default {
       () => result.value?.posters,
     )
 
+    const sources: Ref<ITags | null> = computed(() => result.value?.sources)
+    const subjects: Ref<ITags | null> = computed(() => result.value?.subjects)
+
     return {
       search,
       selectedSourceIds,
@@ -55,6 +59,8 @@ export default {
       dateAfter,
       loading,
       posters,
+      sources,
+      subjects,
     }
   },
   head: {
