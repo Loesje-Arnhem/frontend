@@ -3,11 +3,11 @@
     <vue-announcer />
 
     <header-top :class="$style['header-top']" class="header-top" />
-    <the-header :class="$style.header" />
+    <the-header :class="$style.header" class="header" />
     <main id="content" :class="$style.main" tabindex="-1">
       <nuxt />
     </main>
-    <the-footer />
+    <the-footer class="footer" />
   </div>
 </template>
 
@@ -57,6 +57,26 @@ export default defineComponent({
 
   @media (--viewport-lg) {
     min-height: calc(100vh - 486px);
+  }
+}
+
+.transition-to-poster-details {
+  & .footer {
+    /* stylelint-disable-next-line */
+    page-transition-tag: footer;
+    contain: paint;
+  }
+
+  & .header-top {
+    /* stylelint-disable-next-line */
+    page-transition-tag: header-top;
+    contain: paint;
+  }
+
+  & .header {
+    /* stylelint-disable-next-line */
+    page-transition-tag: header;
+    contain: paint;
   }
 }
 </style>

@@ -1,66 +1,67 @@
 <template>
-  <div :class="$style['poster-details']">
-    <article :class="$style.content">
-      <h1 class="sr-only">{{ poster.title }}</h1>
-      <div class="tile">
-        <fade-animation>
+  <div class="poster-details">
+    <article class="content">
+      <h1 v-if="poster" class="sr-only">{{ poster.title }}</h1>
+      <div class="embed-container">
+        <div class="tile image-wrapper">
           <app-image
-            v-if="poster.featuredImage"
-            :key="poster.featuredImage.node.large"
+            v-if="poster && poster.featuredImage"
             :alt="poster.title"
             :src="poster.featuredImage.node.large"
-            :class="$style.image"
+            class="image"
           />
-        </fade-animation>
+        </div>
       </div>
     </article>
-    <div :class="$style['meta-data']">
-      <dl :class="$style['definition-list']">
-        <dt :class="$style['definition-title']">Publicatiedatum</dt>
-        <dd :class="$style['definition-item']">
-          <app-date :date="poster.PosterMetaGroup.date" />
-        </dd>
-
-        <template v-if="poster.subjects.edges.length">
-          <dt :class="$style['definition-title']">Onderwerpen:</dt>
-          <dd :class="$style['definition-item']">
-            <poster-tags-list
-              :list="poster.subjects.edges"
-              :class="$style['tags-list']"
-            />
+    <div class="meta-data">
+      <template v-if="poster">
+        <dl class="definition-list">
+          <dt class="definition-title">Publicatiedatum</dt>
+          <dd class="definition-item">
+            <app-date :date="poster.PosterMetaGroup.date" />
           </dd>
-        </template>
 
-        <template v-if="poster.sources.edges.length">
-          <dt :class="$style['definition-title']">Bronnen:</dt>
-          <dd :class="$style['definition-item']">
-            <poster-tags-list
-              :list="poster.sources.edges"
-              :class="$style['tags-list']"
-            />
-          </dd>
-        </template>
-      </dl>
-      <div :class="$style.buttons">
-        <poster-favorites :poster="poster" />
-        <app-button
-          v-if="poster.PosterMetaGroup.pdf"
-          :is-primary="false"
-          button-tag="a"
-          :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
-          target="_blank"
-        >
-          <app-icon icon="pdf" width="32" height="32" :class="$style.icon" />
-          Download
-        </app-button>
-      </div>
-      <div :class="$style['social-media']">
-        <share-this
-          :title="poster.title"
-          :link="poster.link"
-          :image="poster.featuredImage.node.large"
-        />
-      </div>
+          <template v-if="poster.subjects.edges.length">
+            <dt class="definition-title">Onderwerpen:</dt>
+            <dd class="definition-item">
+              <poster-tags-list
+                :list="poster.subjects.edges"
+                class="tags-list"
+              />
+            </dd>
+          </template>
+
+          <template v-if="poster.sources.edges.length">
+            <dt class="definition-title">Bronnen:</dt>
+            <dd class="definition-item">
+              <poster-tags-list
+                :list="poster.sources.edges"
+                class="tags-list"
+              />
+            </dd>
+          </template>
+        </dl>
+        <div class="buttons">
+          <poster-favorites :poster="poster" />
+          <app-button
+            v-if="poster.PosterMetaGroup.pdf"
+            :is-primary="false"
+            button-tag="a"
+            :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
+            target="_blank"
+          >
+            <app-icon icon="pdf" width="32" height="32" class="icon" />
+            Download
+          </app-button>
+        </div>
+        <div class="social-media">
+          <share-this
+            :title="poster.title"
+            :link="poster.link"
+            :image="poster.featuredImage.node.large"
+          />
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -72,14 +73,14 @@ import { IPoster } from '~/interfaces/IPoster'
 export default defineComponent({
   props: {
     poster: {
-      type: Object as PropType<IPoster>,
-      required: true,
+      type: Object as PropType<IPoster | null>,
+      default: null,
     },
   },
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .poster-details {
   display: grid;
   grid-gap: 1em;
@@ -96,6 +97,17 @@ export default defineComponent({
 
 .image {
   width: 100%;
+  display: block;
+}
+
+.image-wrapper {
+  aspect-ratio: 721 / 1024;
+}
+
+.embed-container {
+  /* stylelint-disable-next-line */
+  page-transition-tag: embed-container;
+  contain: paint;
 }
 
 .content {

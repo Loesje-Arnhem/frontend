@@ -1,0 +1,23 @@
+::page-transition-incoming-image(root) {
+  /* Prevent the default animation */
+  animation: none;
+}
+
+.transition-to-poster-details::page-transition-container(embed-container),
+.transition-to-poster-details::page-transition-container(embed-container) {
+  animation-duration: 0.3s;
+  animation-timing-function: var(--transition-timing-function);
+}
+
+.transition-to-poster-details::page-transition-incoming-image(root),
+.transition-to-poster-details::page-transition-outgoing-image(root) {
+  animation-duration: 0.2s;
+  mix-blend-mode: normal;
+  animation-timing-function: var(--transition-timing-function);
+} 
+
+.transition-warming-up::page-transition-container(*),
+.transition-warming-up::page-transition-incoming-image(*),
+.transition-warming-up::page-transition-outgoing-image(*) {
+  animation-play-state: paused !important;
+}

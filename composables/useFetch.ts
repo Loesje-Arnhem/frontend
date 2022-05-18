@@ -16,9 +16,13 @@ export default ({
 }) => {
   const { app, payload } = useContext()
   const loading = ref(false)
+
   const result = useStatic(
     async () => {
-      loading.value = true
+      /* @ts-ignore */
+      if (process.client && !document.createDocumentTransition) {
+        loading.value = true
+      }
       try {
         if (payload && usePayload) {
           return payload
@@ -27,6 +31,7 @@ export default ({
           query,
           variables,
         })
+
         return data
       } finally {
         loading.value = false

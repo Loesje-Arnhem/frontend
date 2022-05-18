@@ -1,11 +1,11 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="poster">
+  <div>
     <center-wrapper>
-      <poster-details :poster="poster" />
+      <poster-details :poster="poster" :loading="loading" />
     </center-wrapper>
     <!-- <related-products-section :related-products="poster.relatedProducts" /> -->
     <posters-overview-section
+      v-if="poster"
       :not-in="poster.databaseId"
       :posters="poster.relatedPosters"
       :subject-ids="subjects"
@@ -57,6 +57,7 @@ export default defineComponent({
     })
 
     return {
+      result,
       loading,
       poster,
       subjects,
