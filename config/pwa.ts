@@ -42,6 +42,7 @@ export default {
         purpose: 'maskable',
       },
     ],
+    display_override: ['window-controls-overlay'],
   },
   icon: false,
   meta: {
