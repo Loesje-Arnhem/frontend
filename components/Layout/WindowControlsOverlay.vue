@@ -27,8 +27,8 @@ export default defineComponent({
   /* Make sure the `div` stays there, even when scrolling. */
   position: fixed;
   app-region: drag;
-  background-image: var(--color-black);
-  inset: env(titlebar-area-y, 0) env(titlebar-area-x, 0)
-    env(titlebar-area-height, 33px);
+  background: var(--color-black);
+  inset: env(titlebar-area-y, 0) env(titlebar-area-x, 0) auto;
+  height: env(titlebar-area-height, 33px);
 }
 </style>
