@@ -3,11 +3,21 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, ref } from '@vue/composition-api'
+import {
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  ref,
+} from '@vue/composition-api'
 
 export default defineComponent({
   setup() {
     const showWindowControlsOverlay = ref(false)
+
+    const onGeometryChange = (event) => {
+      showWindowControlsOverlay.value = event.visible
+    }
+
     onMounted(() => {
       if (!('windowControlsOverlay' in navigator)) {
         return
@@ -17,9 +27,17 @@ export default defineComponent({
 
       navigator.windowControlsOverlay.addEventListener(
         'geometrychange',
-        (event) => {
-          showWindowControlsOverlay.value = event.visible
-        },
+        onGeometryChange,
+      )
+    })
+
+    onUnmounted(() => {
+      if (!('windowControlsOverlay' in navigator)) {
+        return
+      }
+      navigator.windowControlsOverlay.removeEventListener(
+        'geometrychange',
+        onGeometryChange,
       )
     })
     return {
