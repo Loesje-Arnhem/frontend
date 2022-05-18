@@ -1,22 +1,29 @@
 <template>
-  <div v-if="supportsWindowControlsOverlay" class="wrapper">test</div>
+  <div v-if="showWindowControlsOverlay" class="wrapper">test</div>
 </template>
 
 <script>
-import { defineComponent, ref } from '@vue/composition-api'
+import { defineComponent, onMounted, ref } from '@vue/composition-api'
 
 export default defineComponent({
   setup() {
-    const supportsWindowControlsOverlay = ref(false)
-    if (
-      'windowControlsOverlay' in navigator &&
-      navigator.windowControlsOverlay.visible
-    ) {
+    const showWindowControlsOverlay = ref(false)
+    onMounted(() => {
+      if (!('windowControlsOverlay' in navigator)) {
+        return
+      }
       // Window Controls Overlay is supported.
-      supportsWindowControlsOverlay.value = true
-    }
+      showWindowControlsOverlay.value = navigator.windowControlsOverlay.visible
+
+      navigator.windowControlsOverlay.addEventListener(
+        'geometrychange',
+        (event) => {
+          showWindowControlsOverlay.value = event.visible
+        },
+      )
+    })
     return {
-      supportsWindowControlsOverlay,
+      showWindowControlsOverlay,
     }
   },
 })
@@ -25,9 +32,10 @@ export default defineComponent({
 <style scoped lang="postcss">
 .wrapper {
   /* Make sure the `div` stays there, even when scrolling. */
+  @mixin color-negative;
+
   position: fixed;
   app-region: drag;
-  background: var(--color-black);
   inset: env(titlebar-area-y, 0) env(titlebar-area-x, 0) auto;
   height: env(titlebar-area-height, 33px);
 }
