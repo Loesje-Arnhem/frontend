@@ -1,6 +1,9 @@
 <template>
   <div :class="$style.page">
     <vue-announcer />
+    <client-only>
+      <window-controls-overlay />
+    </client-only>
 
     <lazy-hydrate never>
       <header-top :class="$style['header-top']" class="header-top" />

@@ -97,9 +97,6 @@ export default defineComponent({
   @mixin color-negative;
 
   border-bottom: 1px solid var(--color-white);
-  padding-left: env(titlebar-area-x, 0);
-  padding-right: env(titlebar-area-x, 0);
-  app-region: drag;
 }
 
 .background {
