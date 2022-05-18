@@ -26,7 +26,7 @@ export default defineComponent({
 .wrapper {
   /* Make sure the `div` stays there, even when scrolling. */
   position: fixed;
-  pp-region: drag;
+  app-region: drag;
   background-image: var(--color-black);
   inset: env(titlebar-area-y, 0) env(titlebar-area-x, 0)
     env(titlebar-area-height, 33px);
