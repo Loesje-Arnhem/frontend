@@ -10,7 +10,6 @@ export default ({ app }) => {
     ) {
       next()
     } else {
-      console.log(to.name)
       const transition = document.createDocumentTransition()
       document.documentElement.classList.add(
         'transition-warming-up',
@@ -19,7 +18,6 @@ export default ({ app }) => {
 
       const container = document.querySelector('.embed-container')
       if (container) {
-        console.log(container)
         container.classList.remove('embed-container')
       }
 

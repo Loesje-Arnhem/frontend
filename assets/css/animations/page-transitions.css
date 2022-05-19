@@ -6,13 +6,13 @@
 
 .transition-to-poster-details::page-transition-container(embed-container),
 .transition-to-poster-details::page-transition-container(embed-container) {
-  animation-duration: 3s;
+  animation-duration: 0.4s;
   animation-timing-function: var(--transition-timing-function);
 }
 
 .transition-to-poster-details::page-transition-incoming-image(root),
 .transition-to-poster-details::page-transition-outgoing-image(root) {
-  animation-duration: 2s;
+  animation-duration: 0.2s;
   animation-timing-function: var(--transition-timing-function);
 } 
 
