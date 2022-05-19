@@ -1,13 +1,13 @@
 <template>
-  <div :class="$style.page">
+  <div class="page">
     <vue-announcer />
 
-    <header-top :class="$style['header-top']" class="header-top" />
-    <the-header :class="$style.header" class="header" />
-    <main id="content" :class="$style.main" tabindex="-1">
+    <header-top class="page-header-top" />
+    <the-header class="page-header" />
+    <main id="content" class="main" tabindex="-1">
       <nuxt />
     </main>
-    <the-footer class="footer" />
+    <the-footer class="page-footer" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .page {
   position: relative;
   display: flex;
@@ -37,13 +37,13 @@ export default defineComponent({
   }
 }
 
-.header {
+.page-header {
   z-index: var(--z-main-navigation);
   top: 0;
   position: sticky;
 }
 
-.header-top {
+.page-header-top {
   @mixin hide-for-print;
 }
 
@@ -59,24 +59,29 @@ export default defineComponent({
     min-height: calc(100vh - 486px);
   }
 }
+</style>
 
-.transition-to-poster-details {
-  & .footer {
+<style lang="postcss">
+.transition-to-postear-details {
+  & .page-footer,
+  & .page-header-top,
+  & .page-header {
+    contain: paint;
+  }
+
+  & .page-footer {
     /* stylelint-disable-next-line */
     page-transition-tag: footer;
-    contain: paint;
   }
 
-  & .header-top {
+  & .page-header-top {
     /* stylelint-disable-next-line */
     page-transition-tag: header-top;
-    contain: paint;
   }
 
-  & .header {
+  & .page-header {
     /* stylelint-disable-next-line */
     page-transition-tag: header;
-    contain: paint;
   }
 }
 </style>

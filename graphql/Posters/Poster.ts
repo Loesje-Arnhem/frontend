@@ -11,6 +11,7 @@ import { TOTAL_PAGES } from './../../data/generate'
 const posterDetails = gql`
   fragment posterDetails on Poster {
     ...posterBase
+    slug
     date
     uri
     link

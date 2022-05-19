@@ -1,18 +1,18 @@
+::page-transition-outgoing-image(root),
 ::page-transition-incoming-image(root) {
   /* Prevent the default animation */
-  animation: none;
+  animation-duration: 0s;
 }
 
 .transition-to-poster-details::page-transition-container(embed-container),
 .transition-to-poster-details::page-transition-container(embed-container) {
-  animation-duration: 0.3s;
+  animation-duration: 3s;
   animation-timing-function: var(--transition-timing-function);
 }
 
 .transition-to-poster-details::page-transition-incoming-image(root),
 .transition-to-poster-details::page-transition-outgoing-image(root) {
-  animation-duration: 0.2s;
-  mix-blend-mode: normal;
+  animation-duration: 2s;
   animation-timing-function: var(--transition-timing-function);
 } 
 
@@ -21,3 +21,9 @@
 .transition-warming-up::page-transition-outgoing-image(*) {
   animation-play-state: paused !important;
 }
+
+.transition-to-poster-details::page-transition-image-wrapper(root) {
+  /* To allow the images to sit on top of each other,
+  use a normal blend mode: */
+  mix-blend-mode: normal
+} 

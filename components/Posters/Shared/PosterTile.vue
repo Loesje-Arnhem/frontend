@@ -46,19 +46,17 @@ export default defineComponent({
 
     const goToDetails = () => {
       transitionTag.value = 'embed-container'
-      const container = document.querySelector('.embed-container')
 
-      // @ts-ignore-next-line
-      if (document.createDocumentTransition) {
-        document.documentElement.classList.add('transition-to-poster-details')
-      }
-
-      if (container) {
-        container.classList.remove('embed-container')
-      }
-      nextTick(() => {
+      if (
+        // @ts-ignore-next-line
+        document.createDocumentTransition
+      ) {
+        nextTick(() => {
+          router.push(props.poster.uri)
+        })
+      } else {
         router.push(props.poster.uri)
-      })
+      }
     }
     return {
       transitionTag,

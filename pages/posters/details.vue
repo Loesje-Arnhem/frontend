@@ -18,6 +18,7 @@
 import {
   computed,
   defineComponent,
+  onBeforeMount,
   Ref,
   useRoute,
 } from '@nuxtjs/composition-api'
@@ -54,6 +55,10 @@ export default defineComponent({
         )
       }
       return []
+    })
+
+    onBeforeMount(() => {
+      console.log('breasd')
     })
 
     return {

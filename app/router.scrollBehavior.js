@@ -33,7 +33,7 @@ export default (to, from, savedPosition) => {
         y: 0,
       }
 
-      const element = document.querySelector('.header-top')
+      const element = document.querySelector('.page-header-top')
       if (element) {
         const scrollPosition = document.documentElement.scrollTop
         const elementHeight = element.offsetHeight

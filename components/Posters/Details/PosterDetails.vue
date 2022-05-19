@@ -49,6 +49,7 @@
             button-tag="a"
             :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
             target="_blank"
+            :download="poster.slug"
           >
             <app-icon icon="pdf" width="32" height="32" class="icon" />
             Download
