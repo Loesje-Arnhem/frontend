@@ -35,6 +35,7 @@ export default ({ app }) => {
 
       await transition.start(async () => {
         next()
+
         if (navigateToPoster) {
           await waitForElement(
             `.image-wrapper-details[data-slug=${to.params.slug}]`,

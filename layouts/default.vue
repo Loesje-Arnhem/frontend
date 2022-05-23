@@ -62,7 +62,7 @@ export default defineComponent({
 </style>
 
 <style lang="postcss">
-.transition-to-postear-details {
+.transition-to-poster-details {
   & .page-footer,
   & .page-header-top,
   & .page-header {

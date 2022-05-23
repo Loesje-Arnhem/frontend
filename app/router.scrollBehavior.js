@@ -22,6 +22,7 @@ export default (to, from, savedPosition) => {
     nuxt.$nextTick(() => nuxt.$emit('triggerScroll'))
   }
 
+  
   return new Promise((resolve) => {
     nuxt.$once('triggerScroll', () => {
       if (savedPosition) {
