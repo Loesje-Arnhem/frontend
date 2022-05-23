@@ -91,10 +91,6 @@ export default defineComponent({
   display: block;
 }
 
-.image-wrapper {
-  aspect-ratio: 721 / 1024;
-}
-
 .content {
   @media print {
     width: 95%;
