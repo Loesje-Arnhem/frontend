@@ -1,5 +1,3 @@
-// import { nextTick } from '@nuxtjs/composition-api'
-
 export default ({ app }) => {
   app.router.beforeEach(async (to, from, next) => {
     if (
@@ -33,6 +31,13 @@ export default ({ app }) => {
         setStyles(container)
       }
 
+      const pageHeaderTop = document.querySelector('.page-header-top')
+
+      let scrollPosition = document.documentElement.scrollTop
+      if (pageHeaderTop && scrollPosition >= pageHeaderTop.offsetHeight) {
+        scrollPosition = pageHeaderTop.offsetHeight
+      }
+
       await transition.start(async () => {
         next()
 
@@ -42,6 +47,10 @@ export default ({ app }) => {
           ).then((element) => {
             details = element
             updateDOMOnNextPage(element)
+
+            window.scrollTo({
+              top: scrollPosition,
+            })
           })
         } else {
           await waitForElement(
