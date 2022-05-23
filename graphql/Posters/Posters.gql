@@ -16,6 +16,7 @@ query Posters(
       node {
         ...posterDetails2
         uri
+        slug
         featuredImage {
           node {
             id

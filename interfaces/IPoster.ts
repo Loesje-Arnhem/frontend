@@ -11,6 +11,7 @@ export interface IPosterDetailFeaturedImage {
 
 export interface IRelatedPoster extends INodeWithUri {
   featuredImage: IPosterDetailFeaturedImage
+  slug: string
 }
 
 export interface IRelatedPosterNode {

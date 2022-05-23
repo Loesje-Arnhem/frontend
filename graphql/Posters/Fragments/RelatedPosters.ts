@@ -8,6 +8,7 @@ export default gql`
         databaseId
         title
         uri
+        slug
         featuredImage {
           node {
             id

@@ -108,6 +108,7 @@ export const GetPageByPosters = gql`
           databaseId
           title
           uri
+          slug
           featuredImage {
             node {
               id

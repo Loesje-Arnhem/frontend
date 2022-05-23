@@ -1,4 +1,4 @@
-import { nextTick } from '@nuxtjs/composition-api'
+// import { nextTick } from '@nuxtjs/composition-api'
 
 export default ({ app }) => {
   app.router.beforeEach(async (to, from, next) => {
@@ -6,30 +6,95 @@ export default ({ app }) => {
       !process.client ||
       !from.name ||
       !document.createDocumentTransition ||
-      to.name !== 'posters-details___nl'
+      !document.documentElement.classList.contains(
+        'transition-to-poster-details',
+      )
     ) {
       next()
     } else {
       const transition = document.createDocumentTransition()
-      document.documentElement.classList.add(
-        'transition-warming-up',
-        'transition-to-poster-details',
-      )
+      document.documentElement.classList.add('transition-warming-up')
 
-      const container = document.querySelector('.embed-container')
-      if (container) {
-        container.classList.remove('embed-container')
+      // back buttontrigger does not work yet
+      const navigateToPoster = true
+
+      let tile = null
+      let details = null
+
+      if (navigateToPoster) {
+        tile = document.querySelector(
+          `.image-wrapper-tile[data-slug=${to.params.slug}]`,
+        )
+        setStyles(tile)
+      } else {
+        details = document.querySelector(
+          `.image-wrapper-details[data-slug=${from.params.slug}]`,
+        )
+        setStyles(container)
       }
 
-      next()
       await transition.start(async () => {
-        await app.router.onReady(async () => {
-          await nextTick(() => {
-            document.documentElement.classList.remove('transition-warming-up')
+        next()
+        if (navigateToPoster) {
+          await waitForElement(
+            `.image-wrapper-details[data-slug=${to.params.slug}]`,
+          ).then((element) => {
+            details = element
+            updateDOMOnNextPage(element)
           })
-        })
+        } else {
+          await waitForElement(
+            `.image-wrapper-[data-slug=${from.params.slug}]`,
+          ).then((element) => {
+            tile = element
+            updateDOMOnNextPage(element)
+          })
+        }
       })
       document.documentElement.classList.remove('transition-to-poster-details')
+      clearStyles(tile)
+      clearStyles(details)
     }
+  })
+}
+
+const updateDOMOnNextPage = (element) => {
+  setStyles(element)
+  document.documentElement.classList.remove('transition-warming-up')
+}
+
+const setStyles = (element) => {
+  if (!element) {
+    return
+  }
+  element.style['page-transition-tag'] = 'poster-details'
+  element.style.contain = 'paint'
+}
+
+const clearStyles = (element) => {
+  if (!element) {
+    return
+  }
+  element.style.removeProperty('page-transition-tag')
+  element.style.removeProperty('contain')
+}
+
+const waitForElement = (selector) => {
+  return new Promise((resolve) => {
+    if (document.querySelector(selector)) {
+      return resolve(document.querySelector(selector))
+    }
+
+    const observer = new MutationObserver((_) => {
+      if (document.querySelector(selector)) {
+        resolve(document.querySelector(selector))
+        observer.disconnect()
+      }
+    })
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
   })
 }

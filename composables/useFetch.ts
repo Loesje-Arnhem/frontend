@@ -19,10 +19,7 @@ export default ({
 
   const result = useStatic(
     async () => {
-      /* @ts-ignore */
-      if (process.client && !document.createDocumentTransition) {
-        loading.value = true
-      }
+      loading.value = true
       try {
         if (payload && usePayload) {
           return payload

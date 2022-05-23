@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <app-loader v-if="loading" />
+  <div v-else-if="poster">
     <center-wrapper>
       <poster-details :poster="poster" :loading="loading" />
     </center-wrapper>

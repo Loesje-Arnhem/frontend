@@ -1,12 +1,8 @@
 <template>
-  <div :class="$style.wrapper">
+  <div class="wrapper">
     <center-wrapper>
-      <list-animation :class="$style.list">
-        <li
-          v-for="poster in posters"
-          :key="poster.node.id"
-          :class="$style['list-item']"
-        >
+      <list-animation class="list">
+        <li v-for="poster in posters" :key="poster.node.id" class="list-item">
           <poster-tile :poster="poster.node" />
         </li>
       </list-animation>
@@ -34,7 +30,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .wrapper {
   background: url('~assets/images/wall.png');
 }

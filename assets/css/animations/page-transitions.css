@@ -4,8 +4,8 @@
   animation-duration: 0s;
 }
 
-.transition-to-poster-details::page-transition-container(embed-container),
-.transition-to-poster-details::page-transition-container(embed-container) {
+.transition-to-poster-details::page-transition-container(poster-details),
+.transition-to-poster-details::page-transition-container(poster-details) {
   animation-duration: 0.4s;
   animation-timing-function: var(--transition-timing-function);
 }

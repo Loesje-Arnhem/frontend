@@ -1,68 +1,58 @@
 <template>
   <div class="poster-details">
     <article class="content">
-      <h1 v-if="poster" class="sr-only">{{ poster.title }}</h1>
-      <div class="embed-container">
-        <div class="tile image-wrapper">
-          <app-image
-            v-if="poster && poster.featuredImage"
-            :alt="poster.title"
-            :src="poster.featuredImage.node.large"
-            class="image"
-          />
-        </div>
+      <h1 class="sr-only">{{ poster.title }}</h1>
+      <div class="tile image-wrapper-details" :data-slug="poster.slug">
+        <app-image
+          v-if="poster && poster.featuredImage"
+          :alt="poster.title"
+          :src="poster.featuredImage.node.large"
+          class="image"
+        />
       </div>
     </article>
     <div class="meta-data">
-      <template v-if="poster">
-        <dl class="definition-list">
-          <dt class="definition-title">Publicatiedatum</dt>
+      <dl class="definition-list">
+        <dt class="definition-title">Publicatiedatum</dt>
+        <dd class="definition-item">
+          <app-date :date="poster.PosterMetaGroup.date" />
+        </dd>
+
+        <template v-if="poster.subjects.edges.length">
+          <dt class="definition-title">Onderwerpen:</dt>
           <dd class="definition-item">
-            <app-date :date="poster.PosterMetaGroup.date" />
+            <poster-tags-list :list="poster.subjects.edges" class="tags-list" />
           </dd>
+        </template>
 
-          <template v-if="poster.subjects.edges.length">
-            <dt class="definition-title">Onderwerpen:</dt>
-            <dd class="definition-item">
-              <poster-tags-list
-                :list="poster.subjects.edges"
-                class="tags-list"
-              />
-            </dd>
-          </template>
-
-          <template v-if="poster.sources.edges.length">
-            <dt class="definition-title">Bronnen:</dt>
-            <dd class="definition-item">
-              <poster-tags-list
-                :list="poster.sources.edges"
-                class="tags-list"
-              />
-            </dd>
-          </template>
-        </dl>
-        <div class="buttons">
-          <poster-favorites :poster="poster" />
-          <app-button
-            v-if="poster.PosterMetaGroup.pdf"
-            :is-primary="false"
-            button-tag="a"
-            :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
-            target="_blank"
-            :download="poster.slug"
-          >
-            <app-icon icon="pdf" width="32" height="32" class="icon" />
-            Download
-          </app-button>
-        </div>
-        <div class="social-media">
-          <share-this
-            :title="poster.title"
-            :link="poster.link"
-            :image="poster.featuredImage.node.large"
-          />
-        </div>
-      </template>
+        <template v-if="poster.sources.edges.length">
+          <dt class="definition-title">Bronnen:</dt>
+          <dd class="definition-item">
+            <poster-tags-list :list="poster.sources.edges" class="tags-list" />
+          </dd>
+        </template>
+      </dl>
+      <div class="buttons">
+        <poster-favorites :poster="poster" />
+        <app-button
+          v-if="poster.PosterMetaGroup.pdf"
+          :is-primary="false"
+          button-tag="a"
+          :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
+          target="_blank"
+          :download="poster.slug"
+        >
+          <app-icon icon="pdf" width="32" height="32" class="icon" />
+          Download
+        </app-button>
+      </div>
+      <div class="social-media">
+        <share-this
+          :title="poster.title"
+          :link="poster.link"
+          :image="poster.featuredImage.node.large"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -74,8 +64,8 @@ import { IPoster } from '~/interfaces/IPoster'
 export default defineComponent({
   props: {
     poster: {
-      type: Object as PropType<IPoster | null>,
-      default: null,
+      type: Object as PropType<IPoster>,
+      required: true,
     },
   },
 })
@@ -103,12 +93,6 @@ export default defineComponent({
 
 .image-wrapper {
   aspect-ratio: 721 / 1024;
-}
-
-.embed-container {
-  /* stylelint-disable-next-line */
-  page-transition-tag: embed-container;
-  contain: paint;
 }
 
 .content {

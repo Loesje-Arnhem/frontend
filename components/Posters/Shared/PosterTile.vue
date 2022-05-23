@@ -2,10 +2,8 @@
   <div
     v-if="image"
     :class="$style.tile"
-    class="tile"
-    :style="{
-      'page-transition-tag': transitionTag,
-    }"
+    class="tile image-wrapper-tile"
+    :data-slug="poster.slug"
   >
     <button :class="$style.link" @click="goToDetails">
       <img
@@ -24,9 +22,7 @@ import {
   computed,
   defineComponent,
   PropType,
-  ref,
   useRouter,
-  nextTick,
 } from '@nuxtjs/composition-api'
 import { IRelatedPoster } from '~/interfaces/IPoster'
 
@@ -38,28 +34,25 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const transitionTag = ref('none')
-    const router = useRouter()
     const image = computed(() => {
       return props.poster.featuredImage?.node.medium
     })
 
-    const goToDetails = () => {
-      transitionTag.value = 'embed-container'
+    const router = useRouter()
 
-      if (
-        // @ts-ignore-next-line
-        document.createDocumentTransition
-      ) {
-        nextTick(() => {
-          router.push(props.poster.uri)
-        })
-      } else {
-        router.push(props.poster.uri)
+    const supportsTransition = computed(() => {
+      // @ts-ignore-next-line
+      return process.client && document.createDocumentTransition
+    })
+
+    const goToDetails = () => {
+      if (supportsTransition.value) {
+        document.documentElement.classList.add('transition-to-poster-details')
       }
+      router.push(props.poster.uri)
     }
+
     return {
-      transitionTag,
       goToDetails,
       image,
     }
@@ -68,10 +61,6 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" module>
-.tile {
-  contain: paint;
-}
-
 .poster {
   display: block;
   width: 100%;
