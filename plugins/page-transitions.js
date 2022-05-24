@@ -1,17 +1,31 @@
+let navigateByBrowserButtons = false
+window.addEventListener('popstate', () => {
+  navigateByBrowserButtons = true
+})
+
 export default ({ app }) => {
   app.router.beforeEach(async (to, from, next) => {
+    const posterDetailsRoute = app.localeRoute({
+      name: 'posters-details',
+      params: {
+        slug: '-',
+      },
+    })
     if (
       !process.client ||
       !from.name ||
       !document.createDocumentTransition ||
-      !document.documentElement.classList.contains(
-        'transition-to-poster-details',
-      )
+      navigateByBrowserButtons ||
+      to.name !== posterDetailsRoute.name
     ) {
+      navigateByBrowserButtons = false
       next()
     } else {
       const transition = document.createDocumentTransition()
-      document.documentElement.classList.add('transition-warming-up')
+      document.documentElement.classList.add(
+        'transition-warming-up',
+        'transition-to-poster-details',
+      )
 
       // back buttontrigger does not work yet
       const navigateToPoster = true
@@ -39,6 +53,8 @@ export default ({ app }) => {
       }
 
       await transition.start(async () => {
+        navigateByBrowserButtons = false
+
         next()
 
         if (navigateToPoster) {

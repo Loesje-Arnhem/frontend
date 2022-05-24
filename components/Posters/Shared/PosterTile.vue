@@ -5,7 +5,7 @@
     class="tile image-wrapper-tile"
     :data-slug="poster.slug"
   >
-    <button :class="$style.link" @click="goToDetails">
+    <router-link :to="poster.uri" :class="$style.link">
       <img
         :alt="poster.title"
         :src="image"
@@ -13,17 +13,12 @@
         width="200"
         height="500"
       />
-    </button>
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  PropType,
-  useRouter,
-} from '@nuxtjs/composition-api'
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
 import { IRelatedPoster } from '~/interfaces/IPoster'
 
 export default defineComponent({
@@ -38,22 +33,7 @@ export default defineComponent({
       return props.poster.featuredImage?.node.medium
     })
 
-    const router = useRouter()
-
-    const supportsTransition = computed(() => {
-      // @ts-ignore-next-line
-      return process.client && document.createDocumentTransition
-    })
-
-    const goToDetails = () => {
-      if (supportsTransition.value) {
-        document.documentElement.classList.add('transition-to-poster-details')
-      }
-      router.push(props.poster.uri)
-    }
-
     return {
-      goToDetails,
       image,
     }
   },
