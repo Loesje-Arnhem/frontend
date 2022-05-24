@@ -1,5 +1,7 @@
 // import { title, baseUrl } from '~/data/siteDetails'
 
+import { Context } from '@nuxt/types'
+
 // const urlParams = new URLSearchParams(window.location.search)
 // const standalone = urlParams.get('standalone')
 // if (standalone === 'true') {
@@ -14,3 +16,16 @@
 //     title,
 //   )
 // }
+
+export default (context: Context) => {
+  const { route, redirect } = context
+  if (
+    window.matchMedia('(display-mode: standalone)').matches &&
+    route.matched[0].path !== '/posters'
+  ) {
+    redirect('/posters')
+  }
+}
+
+// web+tea://chai
+// web+loesje://hoeveel-warmtepompen-kan-je-eigenlijk-kopen-voor-de-prijs-van-een-kerncentrale
