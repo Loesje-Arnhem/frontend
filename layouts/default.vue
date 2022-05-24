@@ -6,13 +6,13 @@
     </client-only>
 
     <lazy-hydrate never>
-      <header-top :class="$style['header-top']" class="header-top" />
+      <header-top :class="$style['header-top']" class="header-top sa-hidden" />
     </lazy-hydrate>
-    <the-header :class="$style.header" />
+    <the-header :class="$style.header" class="sa-hidden" />
     <main id="content" :class="$style.main" tabindex="-1">
       <nuxt />
     </main>
-    <the-footer />
+    <the-footer class="sa-hidden" />
   </div>
 </template>
 

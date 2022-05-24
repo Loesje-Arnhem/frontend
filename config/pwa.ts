@@ -53,18 +53,13 @@ export default {
     twitterCreator: twitter,
     twitterSite: twitter,
     viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+    start_url: '/posters?standalone=true',
   },
   shortcuts: [
     {
-      name: 'Posters',
-      short_name: 'Posters',
-      url: '/posters',
-      icons: [{ src: '/icon.png', sizes: '512x512' }],
-    },
-    {
-      name: 'Nieuws',
-      short_name: 'Nieuws',
-      url: '/over-mij/nieuws',
+      name: 'Favorieten',
+      short_name: 'Favorieten',
+      url: '/posters/favorieten?standalone=true',
       icons: [{ src: '/icon.png', sizes: '512x512' }],
     },
   ],

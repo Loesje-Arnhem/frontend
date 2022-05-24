@@ -5,4 +5,5 @@ export default [
   '~/plugins/apollo',
   { src: '~/plugins/houdini', mode: 'client' },
   { src: '~/plugins/vue-announcer.js', mode: 'client' },
+  { src: '~/plugins/pwa.ts', mode: 'client' },
 ]
