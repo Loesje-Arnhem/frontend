@@ -1,3 +1,5 @@
+import { title } from '~/data/siteDetails'
+
 const urlParams = new URLSearchParams(window.location.search)
 const standalone = urlParams.get('standalone')
 if (standalone === 'true') {
@@ -5,5 +7,6 @@ if (standalone === 'true') {
 }
 
 if ('registerProtocolHandler' in navigator) {
-  navigator.registerProtocolHandler('web+loesje', 'posters/%s')
+  // @ts-ignore
+  navigator.registerProtocolHandler('web+loesje', 'posters/%s', title)
 }
