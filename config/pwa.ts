@@ -43,6 +43,15 @@ export default {
       },
     ],
     display_override: ['window-controls-overlay'],
+    start_url: '/posters?standalone=true',
+    shortcuts: [
+      {
+        name: 'Favorieten',
+        short_name: 'Favorieten',
+        url: '/posters/favorieten?standalone=true',
+        icons: [{ src: '/icon.png', sizes: '512x512' }],
+      },
+    ],
   },
   icon: false,
   meta: {
@@ -53,14 +62,5 @@ export default {
     twitterCreator: twitter,
     twitterSite: twitter,
     viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
-    start_url: '/posters?standalone=true',
   },
-  shortcuts: [
-    {
-      name: 'Favorieten',
-      short_name: 'Favorieten',
-      url: '/posters/favorieten?standalone=true',
-      icons: [{ src: '/icon.png', sizes: '512x512' }],
-    },
-  ],
 }
