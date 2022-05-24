@@ -2,7 +2,7 @@
     display: none;
 }
 
-.standalone {
+@media (--stand-alone) {
     & .sa-hidden {
         display: none;
     }
