@@ -37,7 +37,7 @@ export default {
   pwa,
   render,
   server,
-  target: 'static',
+  // target: 'static',
   generate: {
     concurrency: 20,
     interval: 10000,
