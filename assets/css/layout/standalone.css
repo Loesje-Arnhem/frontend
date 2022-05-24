@@ -3,11 +3,11 @@
 }
 
 @media (--stand-alone) {
-    & .sa-hidden {
+    .sa-hidden {
         display: none;
     }
   
-    & .sa-only {
+    .sa-only {
         display: block;
     }
 }
