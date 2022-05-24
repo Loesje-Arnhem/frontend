@@ -7,6 +7,10 @@ if (standalone === 'true') {
 }
 
 if ('registerProtocolHandler' in navigator) {
-  // @ts-ignore
-  navigator.registerProtocolHandler('web+loesje', `${baseUrl}posters/%s`, title)
+  navigator.registerProtocolHandler(
+    'web+loesje',
+    `${baseUrl}/posters/%s`,
+    // @ts-ignore
+    title,
+  )
 }
