@@ -54,6 +54,12 @@ export default {
         icons: [{ src: '/icon.png', sizes: '512x512' }],
       },
     ],
+    protocol_handlers: [
+      {
+        protocol: 'web+loesje',
+        url: 'posters/%s',
+      },
+    ],
   },
   icon: false,
   meta: {
