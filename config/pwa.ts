@@ -57,7 +57,7 @@ export default {
     protocol_handlers: [
       {
         protocol: 'web+loesje',
-        url: 'posters/%s',
+        url: `${baseUrl}posters/%s`,
       },
     ],
   },
