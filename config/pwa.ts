@@ -4,6 +4,7 @@ import {
   twitter,
   themeColor,
   backgroundColor,
+  baseUrl,
 } from './../data/siteDetails'
 
 // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -43,13 +44,13 @@ export default {
       },
     ],
     display_override: ['window-controls-overlay'],
-    start_url: '/posters?standalone=true',
-    id: '/posters?standalone=true',
+    start_url: `${baseUrl}/posters?standalone=true`,
+    id: `${baseUrl}/posters?standalone=true`,
     shortcuts: [
       {
         name: 'Favorieten',
         short_name: 'Favorieten',
-        url: '/posters/favorieten?standalone=true',
+        url: `${baseUrl}/posters/favorieten?standalone=true`,
         icons: [{ src: '/icon.png', sizes: '512x512' }],
       },
     ],
