@@ -17,13 +17,13 @@ import { Context } from '@nuxt/types'
 //   )
 // }
 
-export default (context: Context) => {
-  const { route, redirect } = context
-  if (
-    window.matchMedia('(display-mode: standalone)').matches &&
-    route.matched[0].path !== '/posters'
-  ) {
-    redirect('/posters')
+export default ({ route, app, redirect }: Context) => {
+  if (!window.matchMedia('(display-mode: standalone)').matches) {
+    return
+  }
+  const postersPath = app.localePath({ name: 'posters' })
+  if (route.matched[0].path !== postersPath) {
+    return redirect('posters')
   }
 }
 
