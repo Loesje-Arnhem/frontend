@@ -14,7 +14,7 @@
 .transition-to-poster-details::page-transition-outgoing-image(root) {
   animation-duration: 0.2s;
   animation-timing-function: var(--transition-timing-function);
-} 
+}
 
 .transition-warming-up::page-transition-container(*),
 .transition-warming-up::page-transition-incoming-image(*),
@@ -25,5 +25,5 @@
 .transition-to-poster-details::page-transition-image-wrapper(root) {
   /* To allow the images to sit on top of each other,
   use a normal blend mode: */
-  mix-blend-mode: normal
-} 
+  mix-blend-mode: normal;
+}
