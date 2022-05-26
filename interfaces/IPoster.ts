@@ -2,15 +2,22 @@ import { IRelatedProducts } from './IRelatedProducts'
 import { ITaxanomies } from './ITaxonomy'
 import { IBaseContent, INodeWithUri, IPageInfo } from '~/interfaces/INode'
 
-export interface IPosterDetailFeaturedImage {
+export interface IRelatedPosterFeaturedImage {
   node: {
     id: string
     medium: string
   }
 }
 
+export interface IPosterDetailFeaturedImage {
+  node: {
+    id: string
+    large: string
+  }
+}
+
 export interface IRelatedPoster extends INodeWithUri {
-  featuredImage: IPosterDetailFeaturedImage
+  featuredImage: IRelatedPosterFeaturedImage | null
   slug: string
 }
 

@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client/core'
 import postBase from './Fragments/PostBase'
 import postDetails from './Fragments/PostDetails'
-import { TOTAL_PAGES } from './../../data/generate'
+import { TOTAL_POSTS } from './../../data/generate'
 import { PAGE_SIZE_POSTS } from './../../data/pageSizes'
 import postListItem from './Fragments/PostListItem'
 
@@ -54,7 +54,7 @@ export const getPost = gql`
 
 export const GetAllPosts = gql`
   query Posts($after: String) {
-    posts(first: ${TOTAL_PAGES}, after: $after) {
+    posts(first: ${TOTAL_POSTS}, after: $after) {
       pageInfo {
         hasNextPage
         endCursor

@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client/core'
 import product from './../Products/Fragments/ProductListItem'
+import { TOTAL_PRODUCT_CATEGORIES } from './../../data/generate'
 
 const productCategory = gql`
   fragment productCategory on ProductCategory {
@@ -28,8 +29,16 @@ export default gql`
 `
 
 export const GetAllProductCategories = gql`
-  query ProductCategories {
-    productCategories(where: { hideEmpty: true }, first: 99) {
+  query ProductCategories($after: String) {
+    productCategories(
+      where: { hideEmpty: true }
+      first: ${TOTAL_PRODUCT_CATEGORIES},
+      after: $after
+    ) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           ...productCategory

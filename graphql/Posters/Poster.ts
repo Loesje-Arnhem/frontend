@@ -1,12 +1,11 @@
 import { gql } from '@apollo/client/core'
-
 import posterBase from './Fragments/PosterBase'
 import relatedProducts from './Fragments/RelatedProducts'
 import relatedPosters from './Fragments/RelatedPosters'
 import sourceDetails from './Fragments/SourceDetails'
 import subjectDetails from './Fragments/SubjectDetails'
 import { PAGE_SIZE_POSTERS } from './../../data/pageSizes'
-import { TOTAL_PAGES } from './../../data/generate'
+import { TOTAL_POSTERS } from './../../data/generate'
 
 const posterDetails = gql`
   fragment posterDetails on Poster {
@@ -75,7 +74,7 @@ export default gql`
 
 export const GetAllPosters = gql`
   query Posters($after: String) {
-    posters(first: ${TOTAL_PAGES}, after: $after) {
+    posters(first: ${TOTAL_POSTERS}, after: $after) {
       pageInfo {
         hasNextPage
         endCursor

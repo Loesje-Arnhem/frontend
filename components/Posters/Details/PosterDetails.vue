@@ -4,9 +4,9 @@
       <h1 class="sr-only">{{ poster.title }}</h1>
       <div class="tile image-wrapper-details" :data-slug="poster.slug">
         <app-image
-          v-if="poster && poster.featuredImage"
+          v-if="image"
           :alt="poster.title"
-          :src="poster.featuredImage.node.large"
+          :src="image"
           class="image"
         />
       </div>
@@ -47,18 +47,14 @@
         </app-button>
       </div>
       <div class="social-media">
-        <share-this
-          :title="poster.title"
-          :link="poster.link"
-          :image="poster.featuredImage.node.large"
-        />
+        <share-this :title="poster.title" :link="poster.link" :image="image" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
 import { IPoster } from '~/interfaces/IPoster'
 
 export default defineComponent({
@@ -67,6 +63,17 @@ export default defineComponent({
       type: Object as PropType<IPoster>,
       required: true,
     },
+  },
+  setup(props) {
+    const image = computed(() => {
+      if (props.poster.featuredImage?.node.large) {
+        return props.poster.featuredImage?.node.large
+      }
+      return null
+    })
+    return {
+      image,
+    }
   },
 })
 </script>

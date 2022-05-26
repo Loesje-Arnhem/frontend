@@ -1,4 +1,8 @@
-import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client/core'
+import { ApolloClient, HttpLink } from '@apollo/client/core'
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from 'apollo-cache-inmemory'
 import fetch from 'node-fetch'
 import { apiUrl } from '../data/siteDetails'
 import fetchPages from './generate/fetchPages'
@@ -18,6 +22,26 @@ export default {
     /^\/shop/, // path starts with /admin
   ],
   routes: async () => {
+    const PARTIAL_SCHEMA = {
+      __schema: {
+        types: [],
+      },
+    }
+    const fragmentMatcher = new IntrospectionFragmentMatcher({
+      introspectionQueryResultData: PARTIAL_SCHEMA,
+    })
+
+    const config = {
+      typePolicies: {
+        GraphQlConfigurationOption: {
+          keyFields: ['id'],
+        },
+      },
+      fragmentMatcher,
+    }
+
+    const cache = new InMemoryCache(config)
+
     const link = new HttpLink({
       uri: `${apiUrl}graphql`,
       fetch,
@@ -25,18 +49,28 @@ export default {
 
     const client = new ApolloClient({
       link,
-      cache: new InMemoryCache(),
+      httpLinkOptions: {
+        credentials: 'include',
+      },
+      cache,
+      wsEndpoint: null,
+      persisting: false,
+      websocketsOnly: false,
     })
 
-    const posters = await fetchPosters(client)
+    // const posters = await fetchPosters(client)
     // await pauseFetching()
-    // const pages = await fetchPages(client)
-    // await pauseFetching()
-    // const productCategories = await fetchProductCategories(client)
-    // await pauseFetching()
-    // const posts = await fetchPosts(client)
-    return [...posters]
+    const pages = await fetchPages(client)
+    await pauseFetching()
+    const productCategories = await fetchProductCategories(client)
+    await pauseFetching()
+    const posts = await fetchPosts(client)
 
-    // return [...posters, pages, productCategories, posts]
+    return [
+      ...pages,
+      ...productCategories,
+      ...posts,
+      // ...posters
+    ]
   },
 }
