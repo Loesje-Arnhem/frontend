@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client/core'
 import posterBase from './Fragments/PosterBase'
-import relatedProducts from './Fragments/RelatedProducts'
+import posterRelatedProducts from './Fragments/PosterRelatedProducts'
 import relatedPosters from './Fragments/RelatedPosters'
 import sourceDetails from './Fragments/SourceDetails'
 import subjectDetails from './Fragments/SubjectDetails'
@@ -22,7 +22,7 @@ const posterDetails = gql`
       }
     }
     relatedProducts: relatedProductsGroup {
-      ...relatedProducts
+      ...posterRelatedProducts
     }
     PosterMetaGroup {
       date
@@ -58,7 +58,7 @@ const posterDetails = gql`
 
   ${posterBase}
   ${relatedPosters}
-  ${relatedProducts}
+  ${posterRelatedProducts}
   ${subjectDetails}
   ${sourceDetails}
 `
