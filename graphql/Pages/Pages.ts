@@ -1,31 +1,21 @@
 import { gql } from '@apollo/client/core'
 import subjectDetails from '../Posters/Fragments/SubjectDetails'
 import sourceDetails from '../Posters/Fragments/SourceDetails'
+import pageDetails from './Fragments/PageDetails'
 import pageContent from './Fragments/PageContent'
 import { postsPageId, homePageId, shopPageId } from './../../data/pages'
 import product from './../Products/Fragments/ProductListItem'
 import { TOTAL_PAGES } from './../../data/generate'
 import postListItem from './../Posts/Fragments/PostListItem'
 import { PAGE_SIZE_POSTERS, PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
-import page from './Fragments/Page'
 
 export default gql`
   query PageByUri($uri: ID!) {
     page(id: $uri, idType: URI) {
-      ...pageContent
-      relatedPages {
-        edges {
-          node {
-            ...page
-            excerpt
-            uri
-          }
-        }
-      }
+      ...pageDetails
     }
   }
-  ${pageContent}
-  ${page}
+  ${pageDetails}
 `
 
 export const GetPageById = gql`
@@ -146,21 +136,12 @@ export const GetAllPages = gql`
       }
       edges {
         node {
-          ...pageContent
+          ...pageDetails
           uri
-          relatedPages {
-            edges {
-              node {
-                ...page
-                excerpt
-                uri
-              }
-            }
-          }
         }
       }
       
     }
   }
-  ${pageContent}
+  ${pageDetails}
 `
