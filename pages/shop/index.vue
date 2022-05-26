@@ -9,12 +9,40 @@
   </shop-wrapper>
 </template>
 
-<script>
-import { usePageShop } from '~/composables/usePage'
+<script lang="ts">
+import {
+  computed,
+  defineComponent,
+  Ref,
+  useMeta,
+} from '@nuxtjs/composition-api'
+import { IPage } from '~/interfaces/IPage'
+import useFetch from '~/composables/useFetch'
+import { GetPageShop } from '~/graphql/Pages/Pages'
 
-export default {
+export default defineComponent({
   setup() {
-    const { page, loading, products } = usePageShop()
+    const { result, loading } = useFetch({
+      query: GetPageShop,
+      pageKey: 'page-shop',
+    })
+
+    const page: Ref<IPage | null> = computed(() => result.value?.page)
+
+    const products = computed(() => {
+      if (!result.value) {
+        return []
+      }
+
+      // @ts-ignore
+      return result.value?.products.edges.map((product) => {
+        return {
+          ...product.node,
+        }
+      })
+    })
+    useMeta(() => ({ title: page.value?.title }))
+
     return {
       page,
       loading,
@@ -27,5 +55,5 @@ export default {
     },
   },
   head: {},
-}
+})
 </script>

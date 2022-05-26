@@ -9,13 +9,48 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import { usePageByByUri } from '~/composables/usePage'
+import {
+  computed,
+  defineComponent,
+  Ref,
+  useMeta,
+  useRoute,
+} from '@nuxtjs/composition-api'
+import PageByByUri from '~/graphql/Pages/Pages'
+import { IPage } from '~/interfaces/IPage'
+import useFetch from '~/composables/useFetch'
 
 export default defineComponent({
   setup() {
-    const { page, loading } = usePageByByUri()
+    const route = useRoute()
+    const { slug, slug2 } = route.value.params
+    const pageKey = computed(() => {
+      if (slug2) {
+        return `${slug}--${slug2}`
+      }
+      return slug
+    })
 
+    const uri = computed(() => {
+      if (slug2) {
+        return `${slug}/${slug2}`
+      }
+      return slug
+    })
+
+    const { result, loading } = useFetch({
+      query: PageByByUri,
+      usePayload: true,
+      variables: {
+        uri: uri.value,
+      },
+      params: pageKey,
+      pageKey: 'page',
+    })
+
+    const page: Ref<IPage | null> = computed(() => result.value?.page)
+
+    useMeta(() => ({ title: page.value?.title }))
     return {
       page,
       loading,
