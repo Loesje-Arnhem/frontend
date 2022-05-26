@@ -54,7 +54,7 @@
   margin-bottom: 2em;
 
   @media (--viewport-lg) {
-    shape-outside: url('~/assets/images/nederland.png');
+    shape-outside: url('/images/nederland.png');
     shape-image-threshold: 10%;
     shape-margin: 2em;
     float: right;
