@@ -4,7 +4,7 @@ export default ({ route, app, redirect }: Context) => {
   // Add the userAgent property to the context
   if (
     !process.client ||
-    window.matchMedia('(display-mode: standalone)').matches
+    !window.matchMedia('(display-mode: standalone)').matches
   ) {
     return
   }
