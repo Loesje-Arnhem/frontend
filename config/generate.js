@@ -18,8 +18,8 @@ export default {
   exclude: [
     /^\/mijn-account/, // path starts with /admin
     /^\/shop/, // path starts with /admin
-    /^\/account/, // path starts with /admin
-    /^\/shop/, // path starts with /admin
+    /^\/account/, // path starts with /admin,
+    '/over-loesje/nieuws/no-route',
   ],
   routes: async () => {
     const PARTIAL_SCHEMA = {

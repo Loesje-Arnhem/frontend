@@ -80,7 +80,7 @@
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
 import { useQuery, useResult } from '@vue/apollo-composable'
-import OrdersQuery from '~/graphql/Customer/Orders.gql'
+import OrdersQuery from '~/graphql/Customer/Orders'
 
 export default defineComponent({
   setup() {

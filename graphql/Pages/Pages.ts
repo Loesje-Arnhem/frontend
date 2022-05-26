@@ -10,7 +10,7 @@ import postListItem from './../Posts/Fragments/PostListItem'
 import { PAGE_SIZE_POSTERS, PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
 
 export default gql`
-  query PageByUri($uri: ID!) {
+  query PageByByUri($uri: ID!) {
     page(id: $uri, idType: URI) {
       ...pageDetails
     }
@@ -27,8 +27,8 @@ export const GetPageById = gql`
   ${pageContent}
 `
 
-export const GetPageByHome = gql`
-  query GetPageByHome {
+export const GetPageHome = gql`
+  query GetPageHome {
     page(id: ${homePageId}, idType: DATABASE_ID) {
       ...pageContent
     }
@@ -44,8 +44,8 @@ export const GetPageByHome = gql`
   ${postListItem}
 `
 
-export const GetPageByShop = gql`
-  query GetPageByShop {
+export const GetPageShop = gql`
+  query GetPageShop {
     page(id: ${shopPageId}, idType: DATABASE_ID) {
       ...pageContent
     }
@@ -61,8 +61,8 @@ export const GetPageByShop = gql`
   ${product}
 `
 
-export const GetPageByPosts = gql`
-  query GetPageByPosts {
+export const GetPagePosts = gql`
+  query GetPagePosts {
     page(id: ${postsPageId}, idType: DATABASE_ID) {
       ...pageContent
     }
@@ -75,7 +75,7 @@ export const GetPageByPosts = gql`
     }      
       edges {
         node {
-        ...postListItem
+          ...postListItem
         }
       }
     }
@@ -85,8 +85,8 @@ export const GetPageByPosts = gql`
   ${product}
 `
 
-export const GetPageByPosters = gql`
-  query GetPageByPosters {
+export const GetPagePosters = gql`
+  query GetPagePosters {
     posters(first: ${PAGE_SIZE_POSTERS}) {
       pageInfo {
         endCursor

@@ -23,7 +23,7 @@ import { IRelatedPosters } from '~/interfaces/IPoster'
 import useFetch from '~/composables/useFetch'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
 import useTags from '~/composables/useTags'
-import { GetPageByPosters } from '~/graphql/Pages/Pages'
+import { GetPagePosters } from '~/graphql/Pages/Pages'
 import { ITags } from '~/interfaces/ITag'
 export default {
   setup() {
@@ -36,7 +36,7 @@ export default {
       dateAfter,
     } = useTags()
     const { result, loading } = useFetch({
-      query: GetPageByPosters,
+      query: GetPagePosters,
       pageKey: 'page-posters',
       variables: {
         first: PAGE_SIZE_POSTERS,

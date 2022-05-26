@@ -53,7 +53,7 @@ export const getPost = gql`
 `
 
 export const GetAllPosts = gql`
-  query Posts($after: String) {
+  query AllPosts($after: String) {
     posts(first: ${TOTAL_POSTS}, after: $after) {
       pageInfo {
         hasNextPage

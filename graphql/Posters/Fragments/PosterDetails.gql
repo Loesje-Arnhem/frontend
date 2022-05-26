@@ -1,5 +1,0 @@
-fragment posterDetails2 on Poster {
-  id
-  databaseId
-  title
-}

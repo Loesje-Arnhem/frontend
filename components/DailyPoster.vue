@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { useQuery, useResult } from '@vue/apollo-composable'
-import DailyPostersQuery from '~/graphql/Posters/DailyPoster.gql'
+import DailyPostersQuery from '~/graphql/Posters/DailyPoster'
 
 export default defineComponent({
   setup() {

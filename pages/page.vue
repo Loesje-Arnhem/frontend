@@ -10,11 +10,11 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import { usePageByUri } from '~/composables/usePage'
+import { usePageByByUri } from '~/composables/usePage'
 
 export default defineComponent({
   setup() {
-    const { page, loading } = usePageByUri()
+    const { page, loading } = usePageByByUri()
 
     return {
       page,

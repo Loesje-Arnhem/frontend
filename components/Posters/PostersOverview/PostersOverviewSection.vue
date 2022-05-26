@@ -37,7 +37,7 @@ import {
 } from '@nuxtjs/composition-api'
 import { useFetchMore } from '~/composables/useFetch'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
-import PostersQuery from '~/graphql/Posters/Posters.gql'
+import PostersQuery from '~/graphql/Posters/Posters'
 import { IRelatedPosters } from '~/interfaces/IPoster'
 
 interface ITaxQuery {

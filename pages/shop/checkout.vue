@@ -50,7 +50,7 @@
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
 import { useVuelidate } from '@vuelidate/core'
-import PaymentGatewaysQuery from '~/graphql/Shop/PaymentGateways.gql'
+import PaymentGatewaysQuery from '~/graphql/Shop/PaymentGateways'
 import { useCheckout } from '~/composables/checkout'
 import { checkoutPageId } from '~/data/pages'
 import { usePageById } from '~/composables/usePage'

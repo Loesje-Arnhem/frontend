@@ -75,7 +75,7 @@ import {
 } from '@nuxtjs/composition-api'
 import { useMutation } from '@vue/apollo-composable'
 import { v4 } from 'uuid'
-import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop.gql'
+import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop'
 import useValidators from '~/composables/useValidators'
 
 export default defineComponent({

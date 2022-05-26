@@ -11,7 +11,7 @@
 <script>
 import { computed, onMounted, useRoute, ref } from '@nuxtjs/composition-api'
 import { useQuery, useResult } from '@vue/apollo-composable'
-import SearchQuery from '~/graphql/Posters/Search.gql'
+import SearchQuery from '~/graphql/Posters/Search'
 import useTags from '~/composables/useTags'
 
 export default {

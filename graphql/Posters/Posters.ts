@@ -1,5 +1,7 @@
-#import "./Fragments/PosterDetails.gql"
+import { gql } from '@apollo/client/core'
+import posterBase from './Fragments/PosterBase'
 
+export default gql`
 query Posters(
   $first: Int
   $after: String
@@ -14,7 +16,7 @@ query Posters(
     }
     edges {
       node {
-        ...posterDetails2
+        ...posterBase
         uri
         slug
         featuredImage {
@@ -26,4 +28,6 @@ query Posters(
       }
     }
   }
+  ${posterBase}
 }
+`

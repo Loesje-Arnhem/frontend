@@ -1,15 +1,15 @@
 import { computed, ref, useRoute, useMeta, Ref } from '@nuxtjs/composition-api'
 import useFetch from '~/composables/useFetch'
-import PageByUri, {
+import PageByByUri, {
   GetPageById,
-  GetPageByHome,
-  GetPageByShop,
-  GetPageByPosts,
+  GetPageHome,
+  GetPageShop,
+  GetPagePosts,
 } from '~/graphql/Pages/Pages'
 import { IPage } from '~/interfaces/IPage'
 import { IPosts, IPostsBase } from '~/interfaces/IPost'
 
-export const usePageByUri = () => {
+export const usePageByByUri = () => {
   const route = useRoute()
   const { slug, slug2 } = route.value.params
   const pageKey = computed(() => {
@@ -27,7 +27,7 @@ export const usePageByUri = () => {
   })
 
   const { result, loading } = useFetch({
-    query: PageByUri,
+    query: PageByByUri,
     usePayload: true,
     variables: {
       uri: uri.value,
@@ -72,7 +72,7 @@ export const usePageHome = () => {
   const loading = ref(false)
 
   const { result } = useFetch({
-    query: GetPageByHome,
+    query: GetPageHome,
     pageKey: 'page-home',
   })
 
@@ -92,7 +92,7 @@ export const usePagePosts = () => {
   const loading = ref(false)
 
   const { result } = useFetch({
-    query: GetPageByPosts,
+    query: GetPagePosts,
     pageKey: 'page-posts',
   })
 
@@ -112,7 +112,7 @@ export const usePageShop = () => {
   const loading = ref(false)
 
   const { result } = useFetch({
-    query: GetPageByShop,
+    query: GetPageShop,
     pageKey: 'page-shop',
   })
 

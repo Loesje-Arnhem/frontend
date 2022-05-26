@@ -1,0 +1,27 @@
+import { gql } from '@apollo/client/core'
+
+export default gql`
+  mutation REQUEST_WORKSHOP(
+    $clientMutationId: String
+    $name: String
+    $email: String
+    $phoneNumber: String
+    $companyName: String
+    $totalAttendees: Int
+    $date: String
+  ) {
+    requestWorkshop(
+      input: {
+        clientMutationId: $clientMutationId
+        name: $name
+        email: $email
+        phoneNumber: $phoneNumber
+        companyName: $companyName
+        totalAttendees: $totalAttendees
+        date: $date
+      }
+    ) {
+      response
+    }
+  }
+`
