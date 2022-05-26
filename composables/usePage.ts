@@ -4,10 +4,9 @@ import PageByByUri, {
   GetPageById,
   GetPageHome,
   GetPageShop,
-  GetPagePosts,
 } from '~/graphql/Pages/Pages'
 import { IPage } from '~/interfaces/IPage'
-import { IPosts, IPostsBase } from '~/interfaces/IPost'
+import { IPostsBase } from '~/interfaces/IPost'
 
 export const usePageByByUri = () => {
   const route = useRoute()
@@ -78,26 +77,6 @@ export const usePageHome = () => {
 
   const page: Ref<IPage | null> = computed(() => result.value?.page)
   const posts: Ref<IPostsBase | null> = computed(() => result.value?.posts)
-
-  useMeta(() => ({ title: page.value?.title }))
-
-  return {
-    loading,
-    posts,
-    page,
-  }
-}
-
-export const usePagePosts = () => {
-  const loading = ref(false)
-
-  const { result } = useFetch({
-    query: GetPagePosts,
-    pageKey: 'page-posts',
-  })
-
-  const page: Ref<IPage | null> = computed(() => result.value?.page)
-  const posts: Ref<IPosts | null> = computed(() => result.value?.posts)
 
   useMeta(() => ({ title: page.value?.title }))
 

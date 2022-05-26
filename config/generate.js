@@ -20,6 +20,7 @@ export default {
     /^\/shop/, // path starts with /admin
     /^\/account/, // path starts with /admin,
     '/over-loesje/nieuws/no-route',
+    '/over-loesje/nieuws/enable-cookies',
   ],
   routes: async () => {
     const PARTIAL_SCHEMA = {

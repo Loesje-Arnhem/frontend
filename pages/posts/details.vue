@@ -20,15 +20,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import { usePost } from '~/composables/usePost'
+import {
+  computed,
+  defineComponent,
+  useRoute,
+  useMeta,
+  Ref,
+} from '@nuxtjs/composition-api'
+import { getPost } from '~/graphql/Posts/Posts'
+import { IPost } from '~/interfaces/IPost'
+import useFetch from '~/composables/useFetch'
 
 export default defineComponent({
   setup() {
-    const { post, loading } = usePost()
+    const route = useRoute()
+    const { slug } = route.value.params
+
+    const param = computed(() => slug)
+
+    const { result, loading } = useFetch({
+      query: getPost,
+      usePayload: true,
+      variables: {
+        slug,
+      },
+      params: param,
+      pageKey: 'post',
+    })
+
+    const post: Ref<IPost | null> = computed(() => result.value?.post)
+
+    useMeta(() => ({ title: post.value?.title }))
+
     return {
-      post,
       loading,
+      post,
     }
   },
   head: {},
