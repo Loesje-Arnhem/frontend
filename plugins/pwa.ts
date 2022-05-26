@@ -1,9 +1,18 @@
+// import { title, baseUrl } from '~/data/siteDetails'
+
 import { Context } from '@nuxt/types'
 
-export default ({ route, app, redirect }: Context) => {
-  const standalone = route.query.standalone
+// if ('registerProtocolHandler' in navigator) {
+//   navigator.registerProtocolHandler(
+//     'web+loesje',
+//     `${baseUrl}/posters/%s`,
+//     // @ts-ignore
+//     title,
+//   )
+// }
 
-  if (standalone !== 'true') {
+export default ({ route, app, redirect }: Context) => {
+  if (!window.matchMedia('(display-mode: standalone)').matches) {
     return
   }
 
@@ -15,12 +24,3 @@ export default ({ route, app, redirect }: Context) => {
 
 // web+tea://chai
 // web+loesje://hoeveel-warmtepompen-kan-je-eigenlijk-kopen-voor-de-prijs-van-een-kerncentrale
-
-// if ('registerProtocolHandler' in navigator) {
-//   navigator.registerProtocolHandler(
-//     'web+loesje',
-//     `${baseUrl}/posters/%s`,
-//     // @ts-ignore
-//     title,
-//   )
-// }
