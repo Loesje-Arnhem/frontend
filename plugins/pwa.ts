@@ -6,6 +6,7 @@ export default ({ route, app, redirect }: Context) => {
       .matchMedia('(display-mode: standalone)')
       .addEventListener('change', (event) => {
         if (event.matches) {
+          console.log(route)
           const postersPath = app.localePath({ name: 'posters' })
           if (route.matched[0].path !== postersPath) {
             return redirect(postersPath)
