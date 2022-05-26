@@ -40,4 +40,7 @@ export default {
   render,
   server,
   target,
+  router: {
+    middleware: 'pwa',
+  },
 }
