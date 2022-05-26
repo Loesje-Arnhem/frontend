@@ -4,6 +4,7 @@ import {
   twitter,
   themeColor,
   backgroundColor,
+  baseUrl,
 } from './../data/siteDetails'
 
 // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -42,6 +43,23 @@ export default {
         purpose: 'maskable',
       },
     ],
+    display_override: ['window-controls-overlay'],
+    start_url: `${baseUrl}/posters?standalone=true`,
+    id: `${baseUrl}/posters?standalone=true`,
+    shortcuts: [
+      {
+        name: 'Favorieten',
+        short_name: 'Favorieten',
+        url: `${baseUrl}/posters/favorieten?standalone=true`,
+        icons: [{ src: '/icon.png', sizes: '512x512' }],
+      },
+    ],
+    protocol_handlers: [
+      {
+        protocol: 'web+loesje',
+        url: './posters/%s',
+      },
+    ],
   },
   icon: false,
   meta: {
@@ -53,18 +71,4 @@ export default {
     twitterSite: twitter,
     viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
   },
-  shortcuts: [
-    {
-      name: 'Posters',
-      short_name: 'Posters',
-      url: '/posters',
-      icons: [{ src: '/icon.png', sizes: '512x512' }],
-    },
-    {
-      name: 'Nieuws',
-      short_name: 'Nieuws',
-      url: '/over-mij/nieuws',
-      icons: [{ src: '/icon.png', sizes: '512x512' }],
-    },
-  ],
 }

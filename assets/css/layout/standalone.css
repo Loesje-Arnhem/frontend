@@ -1,0 +1,13 @@
+.sa-only {
+    display: none;
+}
+
+@media (--stand-alone) {
+    .sa-hidden {
+        display: none;
+    }
+  
+    .sa-only {
+        display: block;
+    }
+}

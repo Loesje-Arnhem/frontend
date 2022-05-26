@@ -1,13 +1,16 @@
 <template>
   <div class="page">
     <vue-announcer />
+    <client-only>
+      <window-controls-overlay />
+    </client-only>
 
-    <header-top class="page-header-top" />
-    <the-header class="page-header" />
+    <header-top class="page-header-top sa-hidden" />
+    <the-header class="page-header sa-hidden" />
     <main id="content" class="main" tabindex="-1">
       <nuxt />
     </main>
-    <the-footer class="page-footer" />
+    <the-footer class="page-footer sa-hidden" />
   </div>
 </template>
 
