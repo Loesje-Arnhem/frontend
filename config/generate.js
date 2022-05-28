@@ -59,15 +59,14 @@ export default {
       websocketsOnly: false,
     })
 
-    // const posters = await fetchPosters(client)
-    // await pauseFetching()
-    // const pages = await fetchPages(client)
-    // await pauseFetching()
-    // const productCategories = await fetchProductCategories(client)
-    // await pauseFetching()
-    // const posts = await fetchPosts(client)
+    const posters = await fetchPosters(client)
+    await pauseFetching()
+    const pages = await fetchPages(client)
+    await pauseFetching()
+    const productCategories = await fetchProductCategories(client)
+    await pauseFetching()
+    const posts = await fetchPosts(client)
 
-    // return [...pages, ...productCategories, ...posts, ...posters]
-    return []
+    return [...pages, ...productCategories, ...posts, ...posters]
   },
 }
