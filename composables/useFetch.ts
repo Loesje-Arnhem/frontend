@@ -1,4 +1,4 @@
-import { useContext, useStatic, Ref, ref } from '@nuxtjs/composition-api'
+import { useContext, useStatic, Ref, ref, watch } from '@nuxtjs/composition-api'
 import { DocumentNode } from 'graphql'
 
 export default ({
@@ -19,7 +19,6 @@ export default ({
 
   const result = useStatic(
     async () => {
-      loading.value = true
       try {
         if (payload && usePayload) {
           return payload
@@ -30,13 +29,14 @@ export default ({
         })
 
         return data
-      } finally {
-        loading.value = false
-      }
+      } catch {}
     },
     params,
     pageKey,
   )
+  watch(result, () => {
+    loading.value = result.value === null
+  })
 
   return {
     loading,
