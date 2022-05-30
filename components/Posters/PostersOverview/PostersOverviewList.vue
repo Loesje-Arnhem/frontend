@@ -27,7 +27,7 @@ export default defineComponent({
 .list {
   @mixin list-reset;
 
-  background: url('~assets/images/wall.jpg');
+  background: url('/images/wall.jpg');
   margin: 0 0 1em;
   display: grid;
   grid-gap: 1rem;

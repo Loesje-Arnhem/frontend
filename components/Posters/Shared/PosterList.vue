@@ -32,7 +32,7 @@ export default {
 
 <style lang="postcss" scoped>
 .wrapper {
-  background: url('~assets/images/wall.png');
+  background: url('/images/wall.png');
 }
 
 .list {

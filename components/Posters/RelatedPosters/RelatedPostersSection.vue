@@ -51,7 +51,7 @@ export default defineComponent({
 <style lang="postcss" module>
 .related-posters {
   padding: 3em 0;
-  background: url('~assets/images/wall.png');
+  background: url('/images/wall.png');
 }
 
 .title {
