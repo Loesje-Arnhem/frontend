@@ -61,8 +61,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     title: {
       type: String,
@@ -89,7 +91,7 @@ export default {
       default: null,
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

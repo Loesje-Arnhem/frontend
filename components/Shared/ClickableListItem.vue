@@ -8,10 +8,10 @@
   </li>
 </template>
 
-<script>
-import { useRouter, ref } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { useRouter, ref, defineComponent, Ref } from '@nuxtjs/composition-api'
 
-export default {
+export default defineComponent({
   props: {
     url: {
       type: String,
@@ -19,14 +19,14 @@ export default {
     },
   },
   setup(props) {
-    const down = ref(null)
+    const down: Ref<number | null> = ref(null)
     const router = useRouter()
 
     const goToItem = () => {
       router.push(props.url)
     }
 
-    const mouseDown = (event) => {
+    const mouseDown = (event: { target: Element }) => {
       if (event.target.nodeName === 'A') {
         down.value = null
       } else {
@@ -48,7 +48,7 @@ export default {
       mouseDown,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
