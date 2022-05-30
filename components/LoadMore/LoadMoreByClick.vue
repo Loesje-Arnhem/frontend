@@ -23,6 +23,7 @@ export default defineComponent({
       default: false,
     },
   },
+  emits: ['load-more'],
 })
 </script>
 
