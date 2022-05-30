@@ -1,11 +1,11 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page">
+  <div v-if="page">
     <app-content :title="page.title" :content="page.content" />
     <related-posters-section :posters="page.relatedPosters" />
     <related-products-section :related-products="page.relatedProducts" />
     <related-pages-section :pages="page.relatedPages" />
   </div>
+  <app-loader v-else />
 </template>
 
 <script lang="ts">

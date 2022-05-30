@@ -1,6 +1,5 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="poster">
+  <div v-if="poster">
     <center-wrapper>
       <poster-details :poster="poster" :loading="loading" />
     </center-wrapper>
@@ -13,6 +12,7 @@
       :title="$t('relatedTitle')"
     />
   </div>
+  <app-loader v-else />
 </template>
 
 <script lang="ts">
