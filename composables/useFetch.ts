@@ -22,7 +22,6 @@ export default ({
       loading.value = true
       try {
         if (payload && usePayload) {
-          loading.value = false
           return payload
         }
         const { data } = await app.apolloProvider.defaultClient.query({
