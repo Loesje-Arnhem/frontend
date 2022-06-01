@@ -1,5 +1,6 @@
 <template>
-  <div v-if="post">
+  <app-loader v-if="loading" />
+  <div v-else-if="post">
     <app-content
       :image="post.featuredImage"
       :title="post.title"
@@ -16,7 +17,6 @@
       :not-in="post.databaseId"
     />
   </div>
-  <app-loader v-else />
 </template>
 
 <script lang="ts">
