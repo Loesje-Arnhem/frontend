@@ -6,20 +6,18 @@
   </ul>
 </template>
 
-<script>
-import PosterTag from '~/components/Posters/Tags/PosterTag.vue'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { ITag } from '~/interfaces/ITag'
 
-export default {
-  components: {
-    PosterTag,
-  },
+export default defineComponent({
   props: {
     list: {
-      type: Array,
+      type: Array as PropType<ITag[]>,
       default: () => [],
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
