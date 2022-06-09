@@ -22,30 +22,28 @@
         </template>
       </poster-filter-toggle>
       <div class="filter-item">
-        <div class="form-item-2">
-          <label for="date-before"> {{ $t('dateBefore') }} </label>
-          <input
-            id="date-before"
-            v-model="dateBefore"
-            type="date"
-            name="date-before"
-            min="1983-01-01"
-            :max="dateAfter ? dateAfter : today()"
-          />
-        </div>
+        <form-input-text
+          id="date-before"
+          v-model="dateBefore"
+          class="date"
+          type="date"
+          :title="$t('dateBefore')"
+          name="date-before"
+          min="1983-01-01"
+          :max="dateAfter ? dateAfter : today()"
+        />
       </div>
       <div class="filter-item">
-        <div class="form-item-2">
-          <label for="date-after"> {{ $t('dateAfter') }} </label>
-          <input
-            id="date-after"
-            v-model="dateAfter"
-            type="date"
-            name="date-after"
-            :min="dateBefore ? dateBefore : '1983-01-01'"
-            :max="today()"
-          />
-        </div>
+        <form-input-text
+          id="date-after"
+          v-model="dateAfter"
+          class="date"
+          type="date"
+          :title="$t('dateAfter')"
+          name="date-after"
+          :max="today()"
+          :min="dateBefore ? dateBefore : '1983-01-01'"
+        />
       </div>
     </div>
 
@@ -186,17 +184,19 @@ export default defineComponent({
   z-index: 1;
 }
 
-.form-item-2 {
+.date {
   display: flex;
   align-items: center;
+  gap: 0.25em;
 
-  & label {
+  & >>> .label {
     margin: 0;
   }
 
-  & input {
+  & >>> .input {
+    border-image-source: none !important;
+    border-image-outset: 0 !important;
     flex: 1 1 auto;
-    margin-left: 0.25em;
     border: 0;
   }
 }
