@@ -15,6 +15,8 @@ if (process.client) {
 export default (to, from, savedPosition) => {
 
   // as seen on https://github.com/nuxt/nuxt.js/blob/dev/packages/vue-app/template/router.scrollBehavior.js
+
+  // eslint-disable-next-line
   const nuxt = window.<%= globals.nuxt %>;
 
   // triggerScroll is only fired when a new component is loaded
