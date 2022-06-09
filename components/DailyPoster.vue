@@ -1,4 +1,5 @@
 <template>
+<<<<<<< Updated upstream
   <div class="poster-daily">
     <div class="image-wrapper">
       <img
@@ -26,6 +27,16 @@
       sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
     />
   </div>
+=======
+  <img
+    v-if="dailyPoster"
+    :src="dailyPoster.image"
+    :alt="dailyPoster.title"
+    width="188"
+    height="300"
+    crossorigin="anonymous"
+  />
+>>>>>>> Stashed changes
 </template>
 
 <script>

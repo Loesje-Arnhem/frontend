@@ -9,6 +9,7 @@
         @click="goToSlideNumber(index)"
       >
         <app-image
+          crossorigin="anonymous"
           :src="image.thumbnail"
           :alt="image.altText"
           :class="[$style.image, { [$style.active]: index === activeSlide }]"

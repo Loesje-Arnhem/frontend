@@ -2,6 +2,7 @@
   <div :class="$style['poster-details']">
     <article :class="$style.content">
       <h1 class="sr-only">{{ poster.title }}</h1>
+<<<<<<< Updated upstream
       <div class="tile">
         <fade-animation>
           <app-image
@@ -12,6 +13,16 @@
             :class="$style.image"
           />
         </fade-animation>
+=======
+      <div class="tile image-wrapper-details" :data-slug="poster.slug">
+        <app-image
+          v-if="image"
+          crossorigin="anonymous"
+          :alt="poster.title"
+          :src="image"
+          class="image"
+        />
+>>>>>>> Stashed changes
       </div>
     </article>
     <div :class="$style['meta-data']">

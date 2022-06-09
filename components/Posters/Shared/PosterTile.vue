@@ -5,6 +5,7 @@
         :alt="poster.title"
         :src="image"
         :class="$style.poster"
+        crossorigin="anonymous"
         width="200"
         height="500"
       />

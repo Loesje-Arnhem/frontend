@@ -1,6 +1,12 @@
 <template>
   <div :class="$style.wrapper">
-    <img v-if="image" :src="image" alt="" :class="$style.image" />
+    <img
+      v-if="image"
+      :src="image"
+      alt=""
+      :class="$style.image"
+      crossorigin="anonymous"
+    />
     <img src="/images/photoframe.png" alt="" :class="$style.frame" />
   </div>
 </template>

@@ -15,6 +15,7 @@
       <img
         v-else
         :src="videoThumb"
+        crossorigin="anonymous"
         alt=""
         :class="$style.image"
         @click="playVideo"
