@@ -21,12 +21,6 @@ export default ({ app }) => {
       navigateByBrowserButtons = false
       next()
     } else {
-      const transition = document.createDocumentTransition()
-      document.documentElement.classList.add(
-        'transition-warming-up',
-        'transition-to-poster-details',
-      )
-
       // back buttontrigger does not work yet
       const navigateToPoster = true
 
@@ -42,8 +36,20 @@ export default ({ app }) => {
         details = document.querySelector(
           `.image-wrapper-details[data-slug=${from.params.slug}]`,
         )
-        setStyles(container)
+        setStyles(details)
       }
+
+      if (!tile && !details) {
+        navigateByBrowserButtons = false
+        next()
+        return
+      }
+
+      const transition = document.createDocumentTransition()
+      document.documentElement.classList.add(
+        'transition-warming-up',
+        'transition-to-poster-details',
+      )
 
       const pageHeaderTop = document.querySelector('.page-header-top')
 
