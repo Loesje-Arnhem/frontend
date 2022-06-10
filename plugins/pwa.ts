@@ -11,7 +11,12 @@ export default ({ route, app, redirect }: Context) => {
         if (event.matches) {
           const postersPath = app.localePath({ name: 'posters' })
           if (route.matched[0].path !== postersPath) {
-            return redirect(postersPath)
+            return redirect({
+              path: postersPath,
+              query: {
+                standalone: 'true',
+              },
+            })
           }
         }
       },
