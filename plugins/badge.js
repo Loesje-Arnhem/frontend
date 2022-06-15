@@ -7,32 +7,32 @@
 // import { apiUrl } from '~/data/siteDetails'
 const TOTAL_POSTERS_KEY = 'total'
 
-const fetchTotalPosts = async () => {
-  const response = await fetch(`/total.json`)
-  if (!response.ok) {
-    return
-  }
-  const { total } = await response.json()
-  return Number(total)
-}
+// const fetchTotalPosts = async () => {
+//   const response = await fetch(`/total.json`)
+//   if (!response.ok) {
+//     return
+//   }
+//   const { total } = await response.json()
+//   return Number(total)
+// }
 
-const setNewBadgeCount = async () => {
-  const total = await fetchTotalPosts()
-  const storedTotal = window.localStorage.getItem(TOTAL_POSTERS_KEY)
+// const setNewBadgeCount = async () => {
+//   const total = await fetchTotalPosts()
+//   const storedTotal = window.localStorage.getItem(TOTAL_POSTERS_KEY)
 
-  if (total === Number(storedTotal)) {
-    return
-  }
-  const newTotal = total - Number(storedTotal)
+//   if (total === Number(storedTotal)) {
+//     return
+//   }
+//   const newTotal = total - Number(storedTotal)
 
-  navigator.setAppBadge(newTotal)
-}
+//   navigator.setAppBadge(newTotal)
+// }
 
-const reset = async () => {
-  navigator.clearAppBadge()
-  const total = await fetchTotalPosts()
-  window.localStorage.setItem(TOTAL_POSTERS_KEY, total)
-}
+// const reset = async () => {
+//   navigator.clearAppBadge()
+//   const total = await fetchTotalPosts()
+//   window.localStorage.setItem(TOTAL_POSTERS_KEY, total)
+// }
 
 export default async () => {
   /* eslint-disable-next-line */
@@ -68,13 +68,13 @@ export default async () => {
     })
   }
 
-  const tags = await registration.periodicSync.getTags()
-  if (tags.includes(TOTAL_POSTERS_KEY)) {
-    console.log('setNewBadgeCount')
-    await setNewBadgeCount()
-  }
+  // const tags = await registration.periodicSync.getTags()
+  // if (tags.includes(TOTAL_POSTERS_KEY)) {
+  //   console.log('setNewBadgeCount')
+  //   await setNewBadgeCount()
+  // }
 
   registerPeriodicSync()
 
-  reset()
+  // reset()
 }

@@ -71,4 +71,7 @@ export default {
     twitterSite: twitter,
     viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
   },
+  workbox: {
+    importScripts: ['./assets/badge.js'],
+  },
 }
