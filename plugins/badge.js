@@ -19,7 +19,7 @@ const fetchTotalPosts = async () => {
   if (total === storedTotal) {
     return
   }
-  const newTotal = Number(storedTotal) - Number(total)
+  const newTotal = Number(total) - Number(storedTotal)
 
   window.localStorage.setItem(TOTAL_POSTERS_KEY, total)
 
