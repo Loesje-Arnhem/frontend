@@ -31,11 +31,13 @@
 
 // Check if service workers are supported
 export default async () => {
+  /* eslint-disable-next-line */
   if (!'serviceWorker' in navigator) {
     return
   }
   const registration = await navigator.serviceWorker.ready
   // Check if periodicSync is supported
+  /* eslint-disable-next-line */
   if (!'periodicSync' in registration) {
     return
   }
