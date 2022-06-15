@@ -7,4 +7,5 @@ export default [
   { src: '~/plugins/vue-announcer', mode: 'client' },
   { src: '~/plugins/page-transitions', mode: 'client' },
   { src: '~/plugins/pwa', mode: 'client' },
+  { src: '~/plugins/badge', mode: 'client' },
 ]
