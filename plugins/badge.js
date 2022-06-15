@@ -70,6 +70,7 @@ export default async () => {
 
   const tags = await registration.periodicSync.getTags()
   if (tags.includes(TOTAL_POSTERS_KEY)) {
+    console.log('setNewBadgeCount')
     await setNewBadgeCount()
   }
 
