@@ -22,7 +22,7 @@ const setAppBadge = async () => {
   if (total === storedTotal) {
     return
   }
-  const newTotal = total - Number(storedTotal)
+  const newTotal = total - storedTotal
 
   navigator.setAppBadge(newTotal)
 }
