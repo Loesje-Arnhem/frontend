@@ -1,38 +1,4 @@
-// if (navigator.setAppBadge) {
-//   // set badge
-
-//   navigator.setAppBadge(42)
-// }
-
-// import { apiUrl } from '~/data/siteDetails'
-const TOTAL_POSTERS_KEY = 'total'
-
-// const fetchTotalPosts = async () => {
-//   const response = await fetch(`/total.json`)
-//   if (!response.ok) {
-//     return
-//   }
-//   const { total } = await response.json()
-//   return Number(total)
-// }
-
-// const setNewBadgeCount = async () => {
-//   const total = await fetchTotalPosts()
-//   const storedTotal = window.localStorage.getItem(TOTAL_POSTERS_KEY)
-
-//   if (total === Number(storedTotal)) {
-//     return
-//   }
-//   const newTotal = total - Number(storedTotal)
-
-//   navigator.setAppBadge(newTotal)
-// }
-
-// const reset = async () => {
-//   navigator.clearAppBadge()
-//   const total = await fetchTotalPosts()
-//   window.localStorage.setItem(TOTAL_POSTERS_KEY, total)
-// }
+const TOTAL_POSTERS_KEY = 'posters-badge'
 
 export default async () => {
   /* eslint-disable-next-line */
@@ -67,22 +33,9 @@ export default async () => {
       minInterval: 24 * 60 * 60 * 1000, // 1 day
     })
   }
-
-  // const tags = await registration.periodicSync.getTags()
-  // if (tags.includes(TOTAL_POSTERS_KEY)) {
-  //   console.log('setNewBadgeCount')
-  //   await setNewBadgeCount()
-  // }
-
   registerPeriodicSync()
 
-  // app.js - Somewhere in your web app
   registration.active.postMessage({
     type: TOTAL_POSTERS_KEY,
   })
-
-  navigator.serviceWorker.onmessage = (event) => {
-    // event is a MessageEvent object
-    console.log(`The service worker sent me a message: ${event.data}`)
-  }
 }
