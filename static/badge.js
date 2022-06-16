@@ -11,12 +11,24 @@ const fetchTotalPosts = async () => {
   return Number(total)
 }
 
-const setAppBadge = async (event) => {
+const setAppBadge = async () => {
   const total = await fetchTotalPosts()
   const storedTotal = await idbKeyval.get(TOTAL_POSTERS_KEY)
 
-  event.source.postMessage(storedTotal)
-  event.source.postMessage(total)
+  // Select who we want to respond to
+  self.clients
+    .matchAll({
+      includeUncontrolled: true,
+      type: 'window',
+    })
+    .then((clients) => {
+      if (clients && clients.length) {
+        // Send a response - the clients
+        // array is ordered by last focused
+        clients[0].postMessage(storedTotal)
+        clients[0].postMessage(total)
+      }
+    })
 
   // if (!storedTotal) {
   //   return
@@ -33,7 +45,7 @@ const setAppBadge = async (event) => {
 
 self.addEventListener('periodicsync', (event) => {
   if (event.tag === 'total') {
-    event.waitUntil(setAppBadge(event))
+    event.waitUntil(setAppBadge())
   }
 })
 
@@ -41,7 +53,7 @@ self.addEventListener('periodicsync', (event) => {
 self.addEventListener('message', async (event) => {
   if (event.data && event.data.type === TOTAL_POSTERS_KEY) {
     const total = await fetchTotalPosts()
-    await idbKeyval.set(TOTAL_POSTERS_KEY, Number(total))
+    await idbKeyval.set(TOTAL_POSTERS_KEY, total)
 
     navigator.clearAppBadge()
   }

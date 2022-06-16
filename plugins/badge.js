@@ -81,8 +81,8 @@ export default async () => {
     type: TOTAL_POSTERS_KEY,
   })
 
-  navigator.serviceWorker.addEventListener('message', (event) => {
+  navigator.serviceWorker.onmessage = (event) => {
     // event is a MessageEvent object
     console.log(`The service worker sent me a message: ${event.data}`)
-  })
+  }
 }

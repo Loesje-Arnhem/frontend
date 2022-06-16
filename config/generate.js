@@ -59,8 +59,9 @@ export default {
       websocketsOnly: false,
     })
 
-    const posters = await fetchPosters(client)
-    return [...posters]
+    return []
+
+    // const posters = await fetchPosters(client)
     // await pauseFetching()
     // const pages = await fetchPages(client)
     // await pauseFetching()
