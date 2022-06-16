@@ -11,29 +11,29 @@ const fetchTotalPosts = async () => {
   return Number(total)
 }
 
-const setAppBadge = async () => {
+const setAppBadge = async (event) => {
   const total = await fetchTotalPosts()
   const storedTotal = await idbKeyval.get(TOTAL_POSTERS_KEY)
 
   event.source.postMessage(storedTotal)
   event.source.postMessage(total)
 
-  if (!storedTotal) {
-    return
-  }
+  // if (!storedTotal) {
+  //   return
+  // }
 
-  if (total === storedTotal) {
-    return
-  }
-  const newTotal = total - storedTotal
-  event.source.postMessage(newTotal)
+  // if (total === storedTotal) {
+  //   return
+  // }
+  // const newTotal = total - storedTotal
+  // event.source.postMessage(newTotal)
 
   // navigator.setAppBadge(newTotal)
 }
 
 self.addEventListener('periodicsync', (event) => {
   if (event.tag === 'total') {
-    event.waitUntil(setAppBadge())
+    event.waitUntil(setAppBadge(event))
   }
 })
 
