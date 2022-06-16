@@ -1,6 +1,6 @@
 importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@6/dist/umd.js')
 
-const TOTAL_POSTERS_KEY = 'posters-badge'
+const TOTAL_POSTERS_KEY = 'posters-badge-v2'
 
 const fetchTotalPosts = async () => {
   const response = await fetch(`/total.json`)

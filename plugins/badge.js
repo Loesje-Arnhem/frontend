@@ -1,4 +1,4 @@
-const TOTAL_POSTERS_KEY = 'posters-badge'
+const TOTAL_POSTERS_KEY = 'posters-badge-v2'
 
 export default async () => {
   /* eslint-disable-next-line */
@@ -25,16 +25,18 @@ export default async () => {
     const status = await navigator.permissions.query({
       name: 'periodic-background-sync',
     })
-    if (status.state !== 'granted') {
-      return
+    if (status.state === 'granted') {
+      // Register new sync every 24 hours
+      await registration.periodicSync.register(TOTAL_POSTERS_KEY, {
+        // minInterval: 24 * 60 * 60 * 1000, // 1 day
+        minInterval: 60 * 60 * 1000, // 1 hour
+      })
+      console.log('registered')
+    } else {
+      console.log('not registered')
     }
-    // Register new sync every 24 hours
-    await registration.periodicSync.register(TOTAL_POSTERS_KEY, {
-      // minInterval: 24 * 60 * 60 * 1000, // 1 day
-      minInterval: 60 * 60 * 1000, // 1 hour
-    })
   }
-  registerPeriodicSync()
+  await registerPeriodicSync()
 
   registration.active.postMessage({
     type: TOTAL_POSTERS_KEY,
