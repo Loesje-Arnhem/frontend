@@ -77,7 +77,7 @@ export default async () => {
   registerPeriodicSync()
 
   // app.js - Somewhere in your web app
-  navigator.serviceWorker.controller.postMessage({
+  registration.controller.postMessage({
     type: TOTAL_POSTERS_KEY,
   })
 }
