@@ -30,7 +30,8 @@ export default async () => {
     }
     // Register new sync every 24 hours
     await registration.periodicSync.register(TOTAL_POSTERS_KEY, {
-      minInterval: 24 * 60 * 60 * 1000, // 1 day
+      // minInterval: 24 * 60 * 60 * 1000, // 1 day
+      minInterval: 60 * 60 * 1000, // 1 hour
     })
   }
   registerPeriodicSync()
