@@ -77,7 +77,12 @@ export default async () => {
   registerPeriodicSync()
 
   // app.js - Somewhere in your web app
-  registration.controller.postMessage({
+  registration.active.postMessage.postMessage({
     type: TOTAL_POSTERS_KEY,
+  })
+
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    // event is a MessageEvent object
+    console.log(`The service worker sent me a message: ${event.data}`)
   })
 }

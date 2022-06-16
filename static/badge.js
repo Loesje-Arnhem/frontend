@@ -15,6 +15,9 @@ const setAppBadge = async () => {
   const total = await fetchTotalPosts()
   const storedTotal = await idbKeyval.get(TOTAL_POSTERS_KEY)
 
+  event.source.postMessage(storedTotal)
+  event.source.postMessage(total)
+
   if (!storedTotal) {
     return
   }
