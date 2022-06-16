@@ -77,7 +77,7 @@ export default async () => {
   registerPeriodicSync()
 
   // app.js - Somewhere in your web app
-  registration.active.postMessage.postMessage({
+  registration.active.postMessage({
     type: TOTAL_POSTERS_KEY,
   })
 

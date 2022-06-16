@@ -26,8 +26,9 @@ const setAppBadge = async () => {
     return
   }
   const newTotal = total - storedTotal
+  event.source.postMessage(newTotal)
 
-  navigator.setAppBadge(newTotal)
+  // navigator.setAppBadge(newTotal)
 }
 
 self.addEventListener('periodicsync', (event) => {
