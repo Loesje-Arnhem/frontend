@@ -15,6 +15,16 @@ const setAppBadge = async () => {
   const total = await fetchTotalPosts()
   const storedTotal = await idbKeyval.get(TOTAL_POSTERS_KEY)
 
+  // if (!storedTotal) {
+  //   return
+  // }
+
+  // if (total === storedTotal) {
+  //   return
+  // }
+
+  const difference = total - storedTotal
+
   // Select who we want to respond to
   self.clients
     .matchAll({
@@ -27,21 +37,11 @@ const setAppBadge = async () => {
         // array is ordered by last focused
         clients[0].postMessage(storedTotal)
         clients[0].postMessage(total)
-        clients[0].postMessage(total - storedTotal)
+        clients[0].postMessage(difference)
       }
     })
 
-  // if (!storedTotal) {
-  //   return
-  // }
-
-  // if (total === storedTotal) {
-  //   return
-  // }
-  // const newTotal = total - storedTotal
-  // event.source.postMessage(newTotal)
-
-  // navigator.setAppBadge(newTotal)
+  navigator.setAppBadge(difference)
 }
 
 self.addEventListener('periodicsync', (event) => {
