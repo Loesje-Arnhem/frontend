@@ -34,10 +34,10 @@ export default defineComponent({
     })
 
     onResult((result: any) => {
-      if (result.dailyPosters.edges.length > 0) {
-        poster.image =
-          result.dailyPosters.edges[0].node.featuredImage.node.medium
-        poster.title = result.dailyPosters.edges[0].node.title
+      if (result.data.dailyPosters.edges.length > 0) {
+        const { node } = result.data.dailyPosters.edges[0]
+        poster.image = node.featuredImage.node.medium
+        poster.title = node.title
       }
     })
 

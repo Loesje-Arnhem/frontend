@@ -21,6 +21,10 @@ export interface IRelatedPoster extends INodeWithUri {
   slug: string
 }
 
+export interface IPosterAutocomplete {
+  node: INodeWithUri
+}
+
 export interface IRelatedPosterNode {
   node: IRelatedPoster
 }
