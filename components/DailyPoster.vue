@@ -1,22 +1,22 @@
 <template>
   <img
-    v-if="dailyPoster"
-    :src="dailyPoster.image"
-    :alt="dailyPoster.title"
+    v-if="poster.image"
+    :src="poster.image"
+    :alt="poster.title"
     width="188"
     height="300"
   />
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { defineComponent, reactive } from '@nuxtjs/composition-api'
+import { useQuery } from '@vue/apollo-composable'
 import DailyPostersQuery from '~/graphql/Posters/DailyPoster'
 
 export default defineComponent({
   setup() {
     const date = new Date()
-    const { result } = useQuery(
+    const { onResult } = useQuery(
       DailyPostersQuery,
       {
         year: date.getFullYear(),
@@ -27,16 +27,22 @@ export default defineComponent({
         fetchPolicy: 'network-only',
       },
     )
-    const dailyPoster = useResult(result, null, (data) => {
-      return {
-        title: data.dailyPosters.edges[0].node.title,
-        image: data.dailyPosters.edges[0].node.featuredImage.node.medium,
+
+    const poster = reactive({
+      image: null,
+      title: null,
+    })
+
+    onResult((result: any) => {
+      if (result.dailyPosters.edges.length > 0) {
+        poster.image =
+          result.dailyPosters.edges[0].node.featuredImage.node.medium
+        poster.title = result.dailyPosters.edges[0].node.title
       }
     })
 
     return {
-      dailyPoster,
-      result,
+      poster,
     }
   },
 })

@@ -12,6 +12,7 @@
         :class="$style.poster"
         width="200"
         height="500"
+        crossorigin
       />
     </router-link>
   </div>

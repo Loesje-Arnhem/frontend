@@ -35,9 +35,6 @@ export default async ({ isDev }) => {
         // minInterval: 24 * 60 * 60 * 1000, // 1 day
         minInterval: 60 * 60 * 1000, // 1 hour
       })
-      console.log('registered')
-    } else {
-      console.log('not registered')
     }
   }
   await registerPeriodicSync()
