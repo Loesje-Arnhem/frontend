@@ -1,6 +1,6 @@
 const TOTAL_POSTERS_KEY = 'posters-badge-v2'
 
-export default async () => {
+export default async ({ isDev }) => {
   /* eslint-disable-next-line */
   if (!'setAppBadge' in navigator) {
     return
@@ -8,6 +8,10 @@ export default async () => {
 
   /* eslint-disable-next-line */
   if (!'serviceWorker' in navigator) {
+    return
+  }
+
+  if (isDev) {
     return
   }
 
