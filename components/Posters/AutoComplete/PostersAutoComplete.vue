@@ -32,6 +32,7 @@ export default defineComponent({
       search.value = searchField.value
     }
 
+    // @ts-ignore
     const { result } = useQuery(
       SearchQuery,
       { search: searchField },
