@@ -25,23 +25,7 @@ jobs:
             git pull # we pull any changes from git
             npm prune # we remove any unused dependencies
             npm ci # we install any missing dependencies
-            # npm run build
-            # pm2 reload all # we reload the app via PM2
+            ## npm run build
+            ## pm2 reload all # we reload the app via PM2
             npm run generate
-  lighthouse:
-    needs: deploy
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' # we tell Github to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
-    steps:
-
-      - uses: actions/checkout@v2
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v9
-        with:
-          # List of URL(s) to analyze
-#        configPath: './lighthouserc.json'
-          urls: https://test.loesje.nl
-          # Path to a Lighthouse budgets.json file
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-          runs: 3
+            rsync -a --delete ./dist/ ./public_html/
