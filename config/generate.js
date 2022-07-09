@@ -23,6 +23,8 @@ export default {
     '/over-loesje/nieuws/no-route',
     '/over-loesje/nieuws/enable-cookies',
   ],
+  interval: 2000,
+  concurrency: 100,
   routes: async () => {
     const PARTIAL_SCHEMA = {
       __schema: {
