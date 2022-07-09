@@ -10,7 +10,7 @@
             :key="poster.featuredImage.node.large"
             :alt="poster.title"
             :src="poster.featuredImage.node.large"
-            :class="$style.image"
+            cclass="image"
           />
         </fade-animation>
       </div>
