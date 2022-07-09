@@ -5,6 +5,7 @@ import {
   themeColor,
   backgroundColor,
   baseUrl,
+  apiUrl,
 } from './../data/siteDetails'
 
 // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -73,5 +74,11 @@ export default {
   },
   workbox: {
     importScripts: ['/badge.js'],
+
+    runtimeCaching: [
+      {
+        urlPattern: `${apiUrl}/.*`,
+      },
+    ],
   },
 }
