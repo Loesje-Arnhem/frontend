@@ -22,10 +22,10 @@ jobs:
 #           key: ${{ secrets.SSH }}
           script: |
             cd ./frontend # we move into our app's folder
-            # git pull # we pull any changes from git
-            # npm prune # we remove any unused dependencies
-            # npm ci # we install any missing dependencies
+            git pull # we pull any changes from git
+            npm prune # we remove any unused dependencies
+            npm ci # we install any missing dependencies
             ## npm run build
             ## pm2 reload all # we reload the app via PM2
-            # npm run generate
+            npm run generate
             rsync -a --delete ./dist/ ./public_html/
