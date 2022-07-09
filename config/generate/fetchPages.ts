@@ -23,7 +23,7 @@ export default async (client: ApolloClient<NormalizedCacheObject>) => {
           },
         }
       })
-      await pauseFetching(`pages`)
+      await pauseFetching(`pages ${after}`)
 
       after = data.pages.pageInfo.endCursor
       hasNextPage = data.pages.pageInfo.hasNextPage
