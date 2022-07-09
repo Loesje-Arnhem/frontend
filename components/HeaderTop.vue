@@ -1,7 +1,7 @@
 <template>
   <center-wrapper :top="true">
-    <div :class="$style.wrapper">
-      <div :class="$style.text">
+    <div class="wrapper">
+      <div class="text">
         <h1>Wie zegt wat hoort</h1>
         <p>
           Loesje's posters vind je overal. Met haar positief-kritische teksten
@@ -10,17 +10,17 @@
           verspreiden, geeft Loesje de wereld een zetje in de goede richting.
         </p>
       </div>
-      <div :class="$style['poster-daily']">
-        <div :class="$style['image-wrapper']">
+      <div class="poster-daily">
+        <div class="image-wrapper">
           <client-only>
-            <daily-poster :class="$style.image" />
+            <daily-poster class="image" />
           </client-only>
         </div>
         <nuxt-picture
           src="/images/electriciteitskastje.png"
           alt=""
           preload
-          :class="$style.background"
+          class="background"
           width="270"
           height="362"
           preset="base"
@@ -32,7 +32,7 @@
   </center-wrapper>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .wrapper {
   padding-top: var(--spacing-s);
   max-width: var(--container-width-md);

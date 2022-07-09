@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, onMounted } from '@nuxtjs/composition-api'
 import useFavorites from '~/composables/useFavorites'
 

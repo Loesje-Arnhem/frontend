@@ -18,14 +18,14 @@
 </template>
 
 <script lang="ts">
-import { computed, Ref } from '@nuxtjs/composition-api'
+import { computed, defineComponent, Ref } from '@nuxtjs/composition-api'
 import { IRelatedPosters } from '~/interfaces/IPoster'
 import useFetch from '~/composables/useFetch'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
 import useTags from '~/composables/useTags'
 import { GetPagePosters } from '~/graphql/Pages/Pages'
 import { ITags } from '~/interfaces/ITag'
-export default {
+export default defineComponent({
   setup() {
     const {
       search,
@@ -71,5 +71,5 @@ export default {
       nl: '/posters',
     },
   },
-}
+})
 </script>

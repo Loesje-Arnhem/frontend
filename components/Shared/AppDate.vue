@@ -4,10 +4,10 @@
   </time>
 </template>
 
-<script>
-import { computed } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
-export default {
+export default defineComponent({
   props: {
     date: {
       type: String,
@@ -39,5 +39,5 @@ export default {
       formattedDate,
     }
   },
-}
+})
 </script>

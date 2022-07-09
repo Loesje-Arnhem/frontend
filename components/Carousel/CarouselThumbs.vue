@@ -20,9 +20,10 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import useCarousel from '~/composables/carousel'
 
-export default {
+export default defineComponent({
   props: {
     thumbs: {
       type: Array,
@@ -36,7 +37,7 @@ export default {
       goToSlideNumber,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

@@ -1,7 +1,7 @@
 <template>
-  <aside :class="$style['box']" class="box" :aria-labelledby="id">
-    <h2 :id="id" :class="$style.title">{{ title }}</h2>
-    <div :class="$style.content">
+  <aside class="box" :aria-labelledby="id">
+    <h2 :id="id" class="title">{{ title }}</h2>
+    <div class="content">
       <slot />
     </div>
   </aside>
@@ -24,7 +24,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .box {
   position: relative;
 }

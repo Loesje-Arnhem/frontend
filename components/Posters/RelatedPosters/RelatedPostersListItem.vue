@@ -1,53 +1,61 @@
 <template>
-  <li :class="$style['list-item']" :style="{ transform }">
+  <li class="list-item" :style="{ transform }">
     <poster-tile :poster="poster" />
   </li>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  ref,
+} from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     poster: {
       type: Object,
       default: () => {},
     },
   },
-  data() {
+  setup() {
+    const transform = ref(null as String | null)
+    const translate = computed(() => {
+      const range = randomizeRange() / 4
+      const translateX = range
+      const translateY = range
+      return `translate(${translateX}em, ${translateY}em)`
+    })
+    const scale = computed(() => {
+      const scale = (randomizeRange() * 5 + 100) / 100
+      return `scale(${scale})`
+    })
+    const rotate = computed(() => {
+      const rotate = randomizeRange()
+      return `rotate(${rotate}deg)`
+    })
+
+    const generateStyle = () => {
+      transform.value = `${rotate.value} ${scale.value} ${translate.value}`
+    }
+    const randomizeRange = () => {
+      return Math.floor(Math.random() * 8 - 4)
+    }
+    onMounted(() => {
+      if (transform.value) {
+        return
+      }
+      generateStyle()
+    })
     return {
-      transform: null,
+      transform,
     }
   },
-  computed: {
-    translate() {
-      const randomizeRange = this.randomizeRange() / 4
-      const translateX = randomizeRange
-      const translateY = randomizeRange
-      return `translate(${translateX}em, ${translateY}em)`
-    },
-    scale() {
-      const scale = (this.randomizeRange() * 5 + 100) / 100
-      return `scale(${scale})`
-    },
-    rotate() {
-      const rotate = this.randomizeRange()
-      return `rotate(${rotate}deg)`
-    },
-  },
-  mounted() {
-    if (!this.transform) this.generateStyle()
-  },
-  methods: {
-    generateStyle() {
-      this.transform = `${this.rotate} ${this.scale} ${this.translate}`
-    },
-    randomizeRange() {
-      return Math.floor(Math.random() * 8 - 4)
-    },
-  },
-}
+})
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .list-item {
   padding: 0.5em;
   flex: 0 0 10em;

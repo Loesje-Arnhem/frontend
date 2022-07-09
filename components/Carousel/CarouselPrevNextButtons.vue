@@ -18,9 +18,10 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import useCarousel from '~/composables/carousel'
 
-export default {
+export default defineComponent({
   setup() {
     const {
       previousSlideEnabled,
@@ -36,7 +37,7 @@ export default {
       goToPreviousSlide,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" scoped>

@@ -1,18 +1,7 @@
 <template>
-  <nuxt-link
-    :to="to"
-    :class="$style['read-more']"
-    class="read-more"
-    aria-hidden="true"
-  >
+  <nuxt-link :to="to" class="read-more" aria-hidden="true">
     {{ $t('readMore') }}
-    <app-icon
-      icon="chevron-right"
-      :class="$style.icon"
-      class="icon"
-      width="16"
-      height="16"
-    />
+    <app-icon icon="chevron-right" class="icon" width="16" height="16" />
   </nuxt-link>
 </template>
 
@@ -29,7 +18,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .icon {
   transition: margin 0.2s ease-out;
   transform: translate3d(2px, 2px, 0);

@@ -1,9 +1,5 @@
 <template>
-  <li
-    :class="$style['list-item']"
-    @mousedown.left="mouseDown"
-    @mouseup.left="mouseUp"
-  >
+  <li class="list-item" @mousedown.left="mouseDown" @mouseup.left="mouseUp">
     <slot />
   </li>
 </template>
@@ -51,7 +47,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .list-item {
   cursor: pointer;
 

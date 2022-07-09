@@ -10,24 +10,17 @@
   </div>
 </template>
 
-<script>
-import PosterTile from '~/components/Posters/Shared/PosterTile.vue'
-import ListAnimation from '~/components/Animations/ListAnimation.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
-  components: {
-    CenterWrapper,
-    PosterTile,
-    ListAnimation,
-  },
+export default defineComponent({
   props: {
     posters: {
       type: Array,
       default: () => [],
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" scoped>
