@@ -5,6 +5,7 @@
     :alt="poster.title"
     width="188"
     height="300"
+    crossorigin
   />
 </template>
 
