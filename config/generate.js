@@ -19,6 +19,7 @@ export default {
     /^\/mijn-account/, // path starts with /admin
     /^\/shop/, // path starts with /admin
     /^\/account/, // path starts with /admin,
+    /^\/winkeltje/, // path starts with /admin,
     '/over-loesje/nieuws/no-route',
     '/over-loesje/nieuws/enable-cookies',
   ],
