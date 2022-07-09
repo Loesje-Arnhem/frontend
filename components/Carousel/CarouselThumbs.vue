@@ -9,7 +9,6 @@
         @click="goToSlideNumber(index)"
       >
         <app-image
-          crossorigin="anonymous"
           :src="image.thumbnail"
           :alt="image.altText"
           :class="[$style.image, { [$style.active]: index === activeSlide }]"
@@ -21,9 +20,10 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import useCarousel from '~/composables/carousel'
 
-export default {
+export default defineComponent({
   props: {
     thumbs: {
       type: Array,
@@ -37,7 +37,7 @@ export default {
       goToSlideNumber,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

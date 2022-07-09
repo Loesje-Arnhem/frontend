@@ -4,6 +4,8 @@
 export default [
   '~/plugins/apollo',
   { src: '~/plugins/houdini', mode: 'client' },
-  { src: '~/plugins/vue-announcer.js', mode: 'client' },
-  { src: '~/plugins/pwa.ts', mode: 'client' },
+  { src: '~/plugins/vue-announcer', mode: 'client' },
+  { src: '~/plugins/page-transitions', mode: 'client' },
+  { src: '~/plugins/pwa', mode: 'client' },
+  { src: '~/plugins/badge', mode: 'client' },
 ]

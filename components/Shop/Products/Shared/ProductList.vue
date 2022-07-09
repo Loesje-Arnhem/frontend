@@ -1,38 +1,23 @@
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="products">
-    <ul v-if="products.edges.length" :class="$style.list">
-      <product-tile
-        v-for="product in products.edges"
-        :key="product.node.id"
-        :product="product.node"
-      />
-    </ul>
-    <p v-else>Geen producten gevonden</p>
-  </div>
+  <ul v-if="products.length" :class="$style.list">
+    <product-tile
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+    />
+  </ul>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
-import useProducts from '~/composables/useProduct'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedProduct } from '~/interfaces/IRelatedProducts'
 
 export default defineComponent({
   props: {
-    where: {
-      type: Object,
-      default: () => {},
+    products: {
+      type: Array as PropType<IRelatedProduct[]>,
+      default: () => [],
     },
-    size: {
-      type: Number,
-      default: 99,
-    },
-  },
-  setup(props) {
-    const { products, loading } = useProducts(props.where, props.size)
-    return {
-      products,
-      loading,
-    }
   },
 })
 </script>

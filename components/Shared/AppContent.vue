@@ -1,7 +1,6 @@
 <template>
   <center-wrapper>
     <div :class="$style.wrapper">
-      <app-loader v-if="loading" />
       <article :class="{ [$style['has-media']]: hasMedia }">
         <div :class="$style.content">
           <h1>{{ title }}</h1>
@@ -26,10 +25,6 @@ import { defineComponent, computed } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   props: {
-    loading: {
-      type: Boolean,
-      default: false,
-    },
     title: {
       type: String,
       required: true,

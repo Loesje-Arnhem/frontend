@@ -1,5 +1,6 @@
 import { ref } from '@nuxtjs/composition-api'
 
+const FAVORITES_KEY = 'favorites'
 const favorites = ref([] as number[])
 
 export default () => {
@@ -18,14 +19,14 @@ export default () => {
       return
     }
 
-    window.localStorage.setItem('favs', JSON.stringify(favorites.value))
+    window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites.value))
   }
 
   const getFromStorage = () => {
     if (!process.client) {
       return
     }
-    const storedFavorites = window.localStorage.getItem('favs')
+    const storedFavorites = window.localStorage.getItem(FAVORITES_KEY)
 
     if (!storedFavorites) {
       return

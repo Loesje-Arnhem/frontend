@@ -1,10 +1,10 @@
 <template>
   <clickable-list-item :url="url" :class="$style['list-item']">
     <h2 :class="$style.title">
-      <router-link :to="url" :class="$style.link" v-html="post.node.title" />
+      <router-link :to="url" :class="$style.link" v-html="post.title" />
     </h2>
-    <post-date :date="post.node.date" :class="$style.date" />
-    <div class="text" v-html="post.node.excerpt" />
+    <post-date :date="post.date" :class="$style.date" />
+    <div class="text" v-html="post.excerpt" />
     <div :class="$style['link-wrapper']" aria-hidden="true">
       <read-more-link class="read-more" :to="url" />
     </div>
@@ -12,17 +12,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api'
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedPost } from '~/interfaces/IPost'
 export default defineComponent({
   props: {
     post: {
-      type: Object,
+      type: Object as PropType<IRelatedPost>,
       required: true,
     },
   },
   setup(props) {
     const url = computed(() => {
-      return '/over-loesje/nieuws' + props.post.node.uri
+      return '/over-loesje/nieuws' + props.post.uri
     })
     return {
       url,

@@ -9,18 +9,29 @@
   </app-button>
 </template>
 
-<script>
-import { computed, defineComponent } from '@nuxtjs/composition-api'
+<script lang="ts">
+import {
+  computed,
+  defineComponent,
+  useRouter,
+  PropType,
+  useContext,
+  useRoute,
+} from '@nuxtjs/composition-api'
 import useTags from '~/composables/useTags'
+import { ITag } from '~/interfaces/ITag'
 export default defineComponent({
   props: {
     tag: {
-      type: Object,
+      type: Object as PropType<ITag>,
       required: true,
     },
   },
   setup(props) {
     const { selectedTags } = useTags()
+    const router = useRouter()
+    const route = useRoute()
+    const { app } = useContext()
 
     const isSelected = computed(() => {
       return selectedTags.value.find(
@@ -41,12 +52,21 @@ export default defineComponent({
       )
     }
 
+    const goToPostersOverview = () => {
+      const postersUrl = app.localePath({ name: 'posters' })
+      if (route.value.path === postersUrl) {
+        return
+      }
+      router.push(postersUrl)
+    }
+
     const toggleTag = () => {
       if (isSelected.value) {
         remove()
       } else {
         add()
       }
+      goToPostersOverview()
     }
 
     return {

@@ -10,23 +10,51 @@
       :class="$style.content"
     />
 
-    <related-posters-section :related-posters="post.relatedPosters" />
+    <related-posters-section :posters="post.relatedPosters" />
     <related-products-section :related-products="post.relatedProducts" />
-    <posts-overview-section :not-in="post.databaseId" />
+    <posts-overview-section
+      :posts="post.relatedPosts"
+      :not-in="post.databaseId"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, useRoute } from '@nuxtjs/composition-api'
-import { usePost } from '~/composables/usePost'
+import {
+  computed,
+  defineComponent,
+  useRoute,
+  useMeta,
+  Ref,
+} from '@nuxtjs/composition-api'
+import { getPost } from '~/graphql/Posts/Posts'
+import { IPost } from '~/interfaces/IPost'
+import useFetch from '~/composables/useFetch'
 
 export default defineComponent({
   setup() {
     const route = useRoute()
-    const { post, loading } = usePost(route.value.params.slug)
+    const { slug } = route.value.params
+
+    const param = computed(() => slug)
+
+    const { result, loading } = useFetch({
+      query: getPost,
+      usePayload: true,
+      variables: {
+        slug,
+      },
+      params: param,
+      pageKey: 'post',
+    })
+
+    const post: Ref<IPost | null> = computed(() => result.value?.post)
+
+    useMeta(() => ({ title: post.value?.title }))
+
     return {
-      post,
       loading,
+      post,
     }
   },
   head: {},

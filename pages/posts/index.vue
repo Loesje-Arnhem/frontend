@@ -1,25 +1,41 @@
 <template>
-  <div>
-    <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
-    <posts-overview-section />
-    <template v-if="page">
-      <related-posters-section :related-posters="page.relatedPosters" />
-      <related-products-section :related-products="page.relatedProducts" />
-    </template>
+  <app-loader v-if="loading" />
+  <div v-else-if="page">
+    <h1 class="sr-only">{{ page.title }}</h1>
+    <posts-overview-section v-if="posts" :posts="posts" />
+    <related-posters-section :posters="page.relatedPosters" />
+    <related-products-section :related-products="page.relatedProducts" />
   </div>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
-import { blogPageId } from '~/data/pages'
-import { usePageById } from '~/composables/usePage'
+<script lang="ts">
+import {
+  computed,
+  defineComponent,
+  Ref,
+  useMeta,
+} from '@nuxtjs/composition-api'
+import { GetPagePosts } from '~/graphql/Pages/Pages'
+import useFetch from '~/composables/useFetch'
+import { IPage } from '~/interfaces/IPage'
+import { IPosts } from '~/interfaces/IPost'
 
 export default defineComponent({
   setup() {
-    const { page, loading } = usePageById(blogPageId)
+    const { result, loading } = useFetch({
+      query: GetPagePosts,
+      pageKey: 'page-posts',
+    })
+
+    const page: Ref<IPage | null> = computed(() => result.value?.page)
+    const posts: Ref<IPosts | null> = computed(() => result.value?.posts)
+
+    useMeta(() => ({ title: page.value?.title }))
+
     return {
-      page,
       loading,
+      posts,
+      page,
     }
   },
   head: {},

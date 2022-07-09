@@ -2,26 +2,48 @@
   <app-loader v-if="loading" />
   <div v-else-if="poster">
     <center-wrapper>
-      <poster-details :poster="poster" />
+      <poster-details :poster="poster" :loading="loading" />
     </center-wrapper>
-    <related-products-section :related-products="poster.relatedProducts" />
+    <!-- <related-products-section :related-products="poster.relatedProducts" /> -->
     <posters-overview-section
-      :title="$t('relatedTitle')"
+      v-if="poster"
       :not-in="poster.databaseId"
-      :subjects="subjects"
+      :posters="poster.relatedPosters"
+      :subject-ids="subjects"
+      :title="$t('relatedTitle')"
     />
   </div>
 </template>
 
-<script>
-import { defineComponent, useRoute, computed } from '@nuxtjs/composition-api'
-import { usePoster } from '~/composables/posters'
+<script lang="ts">
+import {
+  computed,
+  defineComponent,
+  Ref,
+  useRoute,
+} from '@nuxtjs/composition-api'
+import useFetch from '~/composables/useFetch'
+import { IPoster } from '~/interfaces/IPoster'
+import PosterQuery from '~/graphql/Posters/Poster'
 
 export default defineComponent({
   setup() {
     const route = useRoute()
+    const { slug } = route.value.params
 
-    const { poster, loading } = usePoster(route.value.params.slug)
+    const params = computed(() => slug)
+
+    const { result, loading } = useFetch({
+      query: PosterQuery,
+      usePayload: true,
+      variables: {
+        slug,
+      },
+      params,
+      pageKey: 'poster',
+    })
+
+    const poster: Ref<IPoster | null> = computed(() => result.value?.poster)
 
     const subjects = computed(() => {
       if (!poster.value) {
@@ -36,9 +58,10 @@ export default defineComponent({
     })
 
     return {
-      subjects,
+      result,
       loading,
       poster,
+      subjects,
     }
   },
 

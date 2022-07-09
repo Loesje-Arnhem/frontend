@@ -6,36 +6,36 @@
     <div ref="menu">
       <ul v-if="pages" :class="$style.menu">
         <main-navigation-item
-          class="home"
+          class="menu-item-home"
           :title="$t('pages.home')"
           :uri="localePath({ name: 'index' })"
         />
         <main-navigation-item
-          class="page"
+          class="menu-item-page"
           :title="$t('pages.posters')"
           :uri="localePath({ name: 'posters' })"
         />
         <main-navigation-item
-          class="page"
+          class="menu-item-page"
           :title="pages.aboutPage.title"
           :uri="pages.aboutPage.uri"
           :children="pages.aboutPageChildren"
         />
         <main-navigation-item
-          class="page"
+          class="menu-item-page"
           :title="pages.joinPage.title"
           :uri="pages.joinPage.uri"
           :children="pages.joinPageChildren"
         />
         <main-navigation-item
-          class="page"
+          class="menu-item-page"
           :title="$t('pages.workshops')"
           :uri="localePath({ name: 'workshops' })"
         />
 
         <main-navigation-item
           v-if="pages.productCategories.edges.length"
-          class="page"
+          class="menu-item-page"
           :title="$t('pages.shop')"
           :uri="localePath({ name: 'shop' })"
           :children="pages.productCategories"
@@ -50,11 +50,12 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import { debounce } from 'throttle-debounce'
 import MainNavigationItem from '~/components/Menu/MainNavigation/MainNavigationItem.vue'
 import pages from '~/data/menu'
 
-export default {
+export default defineComponent({
   components: {
     MainNavigationItem,
   },
@@ -106,14 +107,16 @@ export default {
       if (!menu) {
         return null
       }
-      const activeLink = menu.querySelector('.home .nuxt-link-exact-active')
+      const activeLink = menu.querySelector(
+        '.menu-item-home .nuxt-link-exact-active',
+      )
       if (activeLink) {
         return activeLink
       }
-      return menu.querySelector('.page .nuxt-link-active')
+      return menu.querySelector('.menu-item-page .nuxt-link-active')
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

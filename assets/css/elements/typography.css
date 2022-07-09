@@ -1,8 +1,6 @@
 @font-face {
   font-family: Franklin;
-  src:
-    url("./../../fonts/franklin-gothic.woff2") format("woff2"),
-    url("./../../fonts/franklin-gothic.woff") format("woff");
+  src: url("./../../fonts/franklin-gothic.woff2") format("woff2");
   font-display: swap;
 }
 
@@ -36,7 +34,8 @@ h5 {
 
 h1,
 h2,
-h3 {
+h3,
+legend {
   @mixin heading;
 
   line-height: var(--line-height-headings);
@@ -48,6 +47,7 @@ h1 {
   font-size: var(--font-size-xxl);
 }
 
+legend,
 h2 {
   margin: 0 0 0.5em;
   font-size: var(--font-size-xl);

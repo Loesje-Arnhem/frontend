@@ -1,5 +1,5 @@
 export default {
-  // subsets: ['latin', 'latin-ext'],
+  subsets: ['latin', 'latin-ext'],
   families: {
     Ubuntu: [400, 700],
   },

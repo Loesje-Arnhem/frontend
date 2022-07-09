@@ -1,5 +1,5 @@
-import LOGIN_MUTATION from '~/graphql/Customer/Login.gql'
-import USER_QUERY from '~/graphql/User/User.gql'
+import LOGIN_MUTATION from '~/graphql/Customer/Login'
+import USER_QUERY from '~/graphql/User/User'
 
 import { LocalScheme } from '~auth/runtime'
 

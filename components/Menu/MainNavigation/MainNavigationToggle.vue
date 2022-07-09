@@ -10,8 +10,9 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import useLayout from '~/composables/useLayout'
-export default {
+export default defineComponent({
   props: {
     close: {
       type: Boolean,
@@ -38,7 +39,7 @@ export default {
       return this.$t('menu')
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

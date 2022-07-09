@@ -1,9 +1,10 @@
 import apollo from './config/apollo'
+import auth from './config/auth'
 import build from './config/build'
 import buildModules from './config/buildModules'
-// import cache from './config/cache'
 import components from './config/components'
 import css from './config/css'
+import generate from './config/generate'
 import googleFonts from './config/googleFonts'
 import head from './config/head'
 import i18n from './config/i18n'
@@ -16,15 +17,16 @@ import plugins from './config/plugins'
 import pwa from './config/pwa'
 import render from './config/render'
 import server from './config/server'
-import version from './config/version'
+import target from './config/target'
 
 export default {
   apollo,
+  auth,
   build,
   buildModules,
-  // cache,
   components,
   css,
+  generate,
   googleFonts,
   head,
   i18n,
@@ -37,34 +39,5 @@ export default {
   pwa,
   render,
   server,
-  // target: 'static',
-  // generate: {
-  //   concurrency: 20,
-  //   interval: 10000,
-  //   exclude: [
-  //     /^\/mijn-account/, // path starts with /admin
-  //     /^\/winkeltje/, // path starts with /admin
-  //     /^\/shop/, // path starts with /admin
-  //     /^\/account/, // path starts with /admin
-  //     /^\/posters/, // path starts with /admin
-  //   ],
-  // },
-  version,
-  // serverMiddleware: {
-  //   '/_ipx': '~/server/middleware/ipx.js',
-  // },
-
-  auth: {
-    strategies: {
-      graphql: {
-        scheme: '~/schemes/graphqlSchemes.js',
-      },
-    },
-    redirect: {
-      login: '/winkeltje/inloggen',
-      logout: '/winkeltje/inloggen?logout=true',
-      callback: false,
-      home: '/winkeltje/mijn-account',
-    },
-  },
+  target,
 }

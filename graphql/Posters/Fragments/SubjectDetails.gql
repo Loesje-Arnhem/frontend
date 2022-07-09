@@ -1,6 +1,6 @@
 #import "./TaxonomyDetails.gql"
 
-fragment subjectDetails on Subject {
+fragment subjectDetails2 on Subject {
   id
   databaseId
   name

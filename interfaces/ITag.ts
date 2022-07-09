@@ -10,3 +10,7 @@ export interface ITag {
     }
   }
 }
+
+export interface ITags {
+  edges: ITag
+}

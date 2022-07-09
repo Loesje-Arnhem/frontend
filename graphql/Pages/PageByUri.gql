@@ -1,8 +1,0 @@
-#import "./Fragments/PageContent.gql"
-
-query PageByUri($uri: ID!) {
-  page(id: $uri, idType: URI) {
-    ...pageContent
-    parentDatabaseId
-  }
-}

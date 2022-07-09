@@ -8,44 +8,58 @@
   />
 </template>
 
-<script>
-import { computed, onMounted, useRoute, ref } from '@nuxtjs/composition-api'
-import { useQuery, useResult } from '@vue/apollo-composable'
-import SearchQuery from '~/graphql/Posters/Search.gql'
+<script lang="ts">
+import {
+  computed,
+  onMounted,
+  useRoute,
+  ref,
+  defineComponent,
+} from '@nuxtjs/composition-api'
+import { useQuery } from '@vue/apollo-composable'
+import SearchQuery from '~/graphql/Posters/Search'
 import useTags from '~/composables/useTags'
+import { IPosterAutocomplete } from '~/interfaces/IPoster'
 
-export default {
+export default defineComponent({
   setup() {
     const { search } = useTags()
     const searchField = ref(search.value)
     const route = useRoute()
-    const enabled = computed(() => searchField.value.length > 2)
+    const enabled = computed(() => searchField.value.length > 3)
 
     const submit = () => {
       search.value = searchField.value
     }
 
+    // @ts-ignore
     const { result } = useQuery(
       SearchQuery,
       { search: searchField },
       {
         enabled,
+        debounce: 1000,
       },
     )
 
     onMounted(() => {
       const { q } = route.value.query
       if (q) {
-        searchField.value = q
-        search.value = q
+        searchField.value = q.toString()
+        search.value = q.toString()
       }
     })
 
-    const posters = useResult(result)
+    const posters = computed(() => {
+      if (!result.value) {
+        return []
+      }
+      return result.value.posters.edges
+    })
 
     const list = computed(() => {
-      if (!enabled.value || !posters.value) return []
-      return posters.value.edges.map((item) => {
+      if (!enabled.value || !posters.value.length) return []
+      return posters.value.map((item: IPosterAutocomplete) => {
         return {
           id: item.node.id,
           title: item.node.title,
@@ -60,7 +74,7 @@ export default {
       searchField,
     }
   },
-}
+})
 </script>
 
 <i18n>

@@ -2,7 +2,7 @@
   <section :class="$style['app-stores']" aria-labelledby="app-stores-title">
     <div :class="$style.wrapper">
       <div :class="$style['image-wrapper']">
-        <img
+        <nuxt-picture
           :class="$style.mood"
           src="/images/arcarde.png"
           width="500"
@@ -11,16 +11,18 @@
           loading="lazy"
           sizes="sm:100vw md:75vw lg:500px xL:1000px"
           preset="base"
+          format="avif"
         />
 
         <button :class="$style['btn-action']" @click="action">
-          <img
+          <nuxt-picture
             src="/images/arcarde-button.png"
             width="36"
             height="34"
             alt="Play"
             sizes="xs:36 sm:72"
             preset="base"
+            format="avif"
           />
         </button>
       </div>

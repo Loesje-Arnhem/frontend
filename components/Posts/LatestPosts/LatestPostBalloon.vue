@@ -2,32 +2,32 @@
   <div ref="balloon" :class="[$style.balloon, { [$style.animate]: animate }]">
     <app-image
       :class="$style['balloon-image']"
+      alt=""
       width="159"
       height="243"
-      :src="require('~/assets/images/air-balloon.png')"
+      src="/images/air-balloon.png"
     />
   </div>
 </template>
 
 <script>
-import AppImage from '~/components/Shared/AppImage.vue'
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
-  components: {
-    AppImage,
-  },
+export default defineComponent({
   data() {
     return {
       animate: false,
+      imageObserver: null,
+      balloon: null,
     }
   },
   mounted() {
-    const { balloon } = this.$refs
+    this.balloon = this.$refs.balloon
     if (
       'IntersectionObserver' in window &&
       'IntersectionObserverEntry' in window
     ) {
-      const imageObserver = new IntersectionObserver(
+      this.imageObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             this.toggleAnimation(entry.isIntersecting)
@@ -37,17 +37,20 @@ export default {
           rootMargin: '200px 0px',
         },
       )
-      imageObserver.observe(balloon)
+      this.imageObserver.observe(this.balloon)
     } else {
       this.toggleAnimation(true)
     }
+  },
+  destroyed() {
+    this.imageObserver.unobserve(this.balloon)
   },
   methods: {
     toggleAnimation(animate) {
       this.animate = animate
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

@@ -1,41 +1,49 @@
-import { ISEO } from './ISEO'
-import { IContent } from '~/interfaces/IContent'
-import { IFeaturedImageBase } from '~/interfaces/IFeaturedImageBase'
+import { IRelatedProducts } from './IRelatedProducts'
+import { ITaxanomies } from './ITaxonomy'
+import { IBaseContent, INodeWithUri, IPageInfo } from '~/interfaces/INode'
 
-interface IPosterBase extends IContent {
-  uri: string
+export interface IRelatedPosterFeaturedImage {
+  node: {
+    id: string
+    medium: string
+  }
 }
 
-export interface IPosterFeaturedImage extends IFeaturedImageBase {
-  medium: string
+export interface IPosterDetailFeaturedImage {
+  node: {
+    id: string
+    large: string
+  }
 }
 
-export interface IPosterDetailFeaturedImage extends IFeaturedImageBase {
-  large: string
-  medium: string
+export interface IRelatedPoster extends INodeWithUri {
+  featuredImage: IRelatedPosterFeaturedImage | null
+  slug: string
 }
 
-export interface IPosterFeaturedImageNode {
-  node: IPosterFeaturedImage
+export interface IPosterAutocomplete {
+  node: INodeWithUri
 }
 
-export interface IPoster extends IPosterBase {
-  featuredImage: IPosterFeaturedImageNode | null
+export interface IRelatedPosterNode {
+  node: IRelatedPoster
 }
 
-export interface IPosterNode {
-  node: IPoster
+export interface IRelatedPostersBase {
+  edges: IRelatedPosterNode[]
 }
 
-export interface IPosterDetails extends IPosterBase {
+export interface IRelatedPosters extends IRelatedPostersBase {
+  pageInfo: IPageInfo
+}
+
+export interface IPoster extends IBaseContent {
+  slug: string
   date: string
   link: string
   featuredImage: IPosterDetailFeaturedImage | null
-  seo: ISEO
-}
-
-export interface IPosters {
-  edges: {
-    nodes: IPoster[]
-  }
+  relatedPosters: IRelatedPoster
+  relatedProducts: IRelatedProducts
+  sources: ITaxanomies
+  subjects: ITaxanomies
 }

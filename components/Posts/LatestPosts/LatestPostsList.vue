@@ -3,26 +3,24 @@
     <post-list-item
       v-for="post in posts"
       :key="post.node.databaseId"
-      :post="post"
+      :post="post.node"
       :class="$style['list-item']"
     />
   </ul>
 </template>
 
-<script>
-import PostListItem from '~/components/Posts/Shared/PostListItem.vue'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedPostNode } from '~/interfaces/IPost'
 
-export default {
-  components: {
-    PostListItem,
-  },
+export default defineComponent({
   props: {
     posts: {
-      type: Array,
-      required: true,
+      type: Array as PropType<IRelatedPostNode[]>,
+      default: () => [],
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

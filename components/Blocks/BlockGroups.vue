@@ -3,12 +3,13 @@
     <div class="center">
       <div class="wrapper">
         <div class="image-wrapper">
-          <app-image
+          <nuxt-picture
             src="/images/nederland.png"
             width="565"
             height="600"
             class="mood"
             preset="base"
+            format="avif"
             alt=""
             loading="lazy"
             sizes="sm:100vw md:80vw lg:565 xl:800"
@@ -53,7 +54,7 @@
   margin-bottom: 2em;
 
   @media (--viewport-lg) {
-    shape-outside: url('~/assets/images/nederland.png');
+    shape-outside: url('/images/nederland.png');
     shape-image-threshold: 10%;
     shape-margin: 2em;
     float: right;

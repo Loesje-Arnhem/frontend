@@ -17,11 +17,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedPage } from '~/interfaces/IPage'
+
 export default defineComponent({
   props: {
     page: {
-      type: Object,
+      type: Object as PropType<IRelatedPage>,
       required: true,
     },
   },

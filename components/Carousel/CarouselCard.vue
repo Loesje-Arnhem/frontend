@@ -10,10 +10,15 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from '@nuxtjs/composition-api'
+import {
+  ref,
+  onMounted,
+  onUnmounted,
+  defineComponent,
+} from '@nuxtjs/composition-api'
 import useCarousel from '~/composables/carousel'
 
-export default {
+export default defineComponent({
   props: {
     index: {
       type: Number,
@@ -54,7 +59,7 @@ export default {
       item,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" scoped>

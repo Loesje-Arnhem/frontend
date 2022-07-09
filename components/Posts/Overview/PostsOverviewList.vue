@@ -3,29 +3,24 @@
     <post-list-item
       v-for="post in posts"
       :key="post.node.id"
-      :post="post"
+      :post="post.node"
       :class="$style['list-item']"
     />
   </list-animation>
 </template>
 
-<script>
-import PostListItem from '~/components/Posts/Shared/PostListItem.vue'
-import ListAnimation from '~/components/Animations/ListAnimation.vue'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedPostNode } from '~/interfaces/IPost'
 
-export default {
-  components: {
-    PostListItem,
-    ListAnimation,
-  },
-
+export default defineComponent({
   props: {
     posts: {
-      type: Array,
+      type: Array as PropType<IRelatedPostNode[]>,
       default: () => [],
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

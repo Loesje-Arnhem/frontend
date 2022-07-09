@@ -5,7 +5,6 @@
         v-if="product.image"
         :src="product.image.medium"
         :class="$style.image"
-        crossorigin="anonymous"
       />
     </div>
     <h3 :class="$style.title">
@@ -15,27 +14,26 @@
   </clickable-list-item>
 </template>
 
-<script>
-import AppImage from '~/components/Shared/AppImage.vue'
-import ClickableListItem from '~/components/Shared/ClickableListItem.vue'
+<script lang="ts">
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedProduct } from '~/interfaces/IRelatedProducts'
 
-export default {
-  components: {
-    AppImage,
-    ClickableListItem,
-  },
+export default defineComponent({
   props: {
     product: {
-      type: Object,
+      type: Object as PropType<IRelatedProduct>,
       required: true,
     },
   },
-  computed: {
-    url() {
-      return `/winkeltje/${this.product.slug}`
-    },
+  setup(props) {
+    const url = computed(() => {
+      return `/winkeltje/${props.product.slug}`
+    })
+    return {
+      url,
+    }
   },
-}
+})
 </script>
 
 <style module lang="postcss">

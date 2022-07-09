@@ -43,7 +43,7 @@ export default {
         purpose: 'maskable',
       },
     ],
-    display_override: ['window-controls-overlay'],
+    // display_override: ['window-controls-overlay'],
     start_url: `${baseUrl}/posters?standalone=true`,
     id: `${baseUrl}/posters?standalone=true`,
     shortcuts: [
@@ -54,12 +54,12 @@ export default {
         icons: [{ src: '/icon.png', sizes: '512x512' }],
       },
     ],
-    protocol_handlers: [
-      {
-        protocol: 'web+loesje',
-        url: './posters/%s',
-      },
-    ],
+    // protocol_handlers: [
+    //   {
+    //     protocol: 'web+loesje',
+    //     url: './posters/%s',
+    //   },
+    // ],
   },
   icon: false,
   meta: {
@@ -70,5 +70,8 @@ export default {
     twitterCreator: twitter,
     twitterSite: twitter,
     viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+  },
+  workbox: {
+    importScripts: ['/badge.js'],
   },
 }

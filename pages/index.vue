@@ -1,36 +1,54 @@
 <template>
   <div>
     <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
-    <latest-posts-section />
-    <lazy-related-posters-section
-      v-if="page"
-      :related-posters="page.relatedPosters"
-    />
-    <lazy-app-stores-section />
-    <lazy-related-products-section
+    <app-loader v-if="loading" />
+    <latest-posts-section v-if="posts" :posts="posts.edges" />
+    <related-posters-section v-if="page" :posters="page.relatedPosters" />
+    <app-stores-section />
+    <related-products-section
       v-if="page"
       :related-products="page.relatedProducts"
-      :title="page.relatedPosters.title"
     />
     <!-- <block-instagram /> -->
-    <lazy-block-groups />
+    <block-groups />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import { homePageId } from '~/data/pages'
-import { usePageById } from '~/composables/usePage'
+import {
+  computed,
+  defineComponent,
+  Ref,
+  useMeta,
+} from '@nuxtjs/composition-api'
+import { GetPageHome } from '~/graphql/Pages/Pages'
+import useFetch from '~/composables/useFetch'
+import { IPage } from '~/interfaces/IPage'
+import { IPostsBase } from '~/interfaces/IPost'
 
 export default defineComponent({
   setup() {
-    const { page, loading } = usePageById(homePageId)
+    const { result, loading } = useFetch({
+      query: GetPageHome,
+      pageKey: 'page-home',
+    })
+
+    const page: Ref<IPage | null> = computed(() => result.value?.page)
+    const posts: Ref<IPostsBase | null> = computed(() => result.value?.posts)
+
+    useMeta(() => ({ title: page.value?.title }))
+
     return {
-      page,
       loading,
+      posts,
+      page,
     }
   },
-
+  nuxtI18n: {
+    paths: {
+      nl: '/',
+    },
+  },
   head: {},
 })
 </script>

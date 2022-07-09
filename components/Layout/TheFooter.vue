@@ -19,7 +19,7 @@
           />
         </div>
         <div :class="$style['mood-wrapper']">
-          <img
+          <nuxt-picture
             alt=""
             width="210"
             height="240"
@@ -27,6 +27,7 @@
             loading="lazy"
             src="/images/casette-player.png"
             preset="base"
+            format="avif"
             sizes="sm:50vw md:33vw lg:25vw xl:300 xxl:500"
           />
         </div>
@@ -35,7 +36,7 @@
   </footer>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import {
   facebookUrl,

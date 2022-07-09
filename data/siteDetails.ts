@@ -1,5 +1,6 @@
 export const apiUrl = 'https://www.loesje.nl/'
-export const baseUrl = 'https://test.loesje.nl'
+// export const apiUrl = 'http://localhost:8000/'
+export const baseUrl = 'https://loesje.michielkoning.nl'
 export const categories = ['politics']
 export const facebook = 'https://www.facebook.com/loesjevdposters/'
 export const themeColor = '#000000'

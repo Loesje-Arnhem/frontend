@@ -3,35 +3,31 @@
     <posters-overview-list-item
       v-for="poster in posters"
       :key="poster.node.id"
-      :poster="poster"
+      :poster="poster.node"
       :class="$style['list-item']"
     />
   </list-animation>
 </template>
 
-<script>
-import PostersOverviewListItem from '~/components/Posters/PostersOverview/PostersOverviewListItem.vue'
-import ListAnimation from '~/components/Animations/ListAnimation.vue'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IRelatedPoster } from '~/interfaces/IPoster'
 
-export default {
-  components: {
-    PostersOverviewListItem,
-    ListAnimation,
-  },
+export default defineComponent({
   props: {
     posters: {
-      type: Array,
+      type: Array as PropType<IRelatedPoster[]>,
       required: true,
     },
   },
-}
+})
 </script>
 
 <style lang="postcss" module>
 .list {
   @mixin list-reset;
 
-  background: url('~assets/images/wall.jpg');
+  background: url('/images/wall.jpg');
   margin: 0 0 1em;
   display: grid;
   grid-gap: 1rem;

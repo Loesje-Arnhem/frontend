@@ -19,11 +19,12 @@ import {
   onMounted,
   onUnmounted,
   provide,
+  defineComponent,
 } from '@nuxtjs/composition-api'
 import smoothscroll from 'smoothscroll-polyfill'
 import CarouselThumbs from './CarouselThumbs.vue'
 import useCarousel from '~/composables/carousel'
-export default {
+export default defineComponent({
   components: { CarouselThumbs },
   props: {
     totalPages: {
@@ -108,7 +109,7 @@ export default {
       list,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" module>

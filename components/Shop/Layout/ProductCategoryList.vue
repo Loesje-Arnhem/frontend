@@ -32,13 +32,20 @@
   </nav>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
-import useProductCategories from '~/composables/useProductCategory'
+<script lang="ts">
+import { computed, defineComponent } from '@nuxtjs/composition-api'
+import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories'
+import useFetch from '~/composables/useFetch'
 
 export default defineComponent({
   setup() {
-    const { productCategories, loading } = useProductCategories()
+    const { result, loading } = useFetch({
+      query: ProductCategoriesQuery,
+      pageKey: 'product-categories',
+    })
+
+    const productCategories = computed(() => result.value?.productCategories)
+
     return {
       productCategories,
       loading,

@@ -1,7 +1,7 @@
 <template>
   <svg-icon
     :name="icon"
-    :class="$style.icon"
+    class="icon"
     :width="width"
     :height="height"
     aria-hidden="true"
@@ -9,8 +9,10 @@
   />
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     icon: {
       type: String,
@@ -29,10 +31,10 @@ export default {
       default: 24,
     },
   },
-}
+})
 </script>
 
-<style module lang="postcss">
+<style scoped lang="postcss">
 .icon {
   display: inline-block;
   fill: currentcolor;

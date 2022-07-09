@@ -1,12 +1,8 @@
 <template>
-  <div :class="$style.wrapper">
+  <div class="wrapper">
     <center-wrapper>
-      <list-animation :class="$style.list">
-        <li
-          v-for="poster in posters"
-          :key="poster.node.id"
-          :class="$style['list-item']"
-        >
+      <list-animation class="list">
+        <li v-for="poster in posters" :key="poster.node.id" class="list-item">
           <poster-tile :poster="poster.node" />
         </li>
       </list-animation>
@@ -14,29 +10,22 @@
   </div>
 </template>
 
-<script>
-import PosterTile from '~/components/Posters/Shared/PosterTile.vue'
-import ListAnimation from '~/components/Animations/ListAnimation.vue'
-import CenterWrapper from '~/components/Wrappers/CenterWrapper.vue'
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 
-export default {
-  components: {
-    CenterWrapper,
-    PosterTile,
-    ListAnimation,
-  },
+export default defineComponent({
   props: {
     posters: {
       type: Array,
       default: () => [],
     },
   },
-}
+})
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .wrapper {
-  background: url('~assets/images/wall.png');
+  background: url('/images/wall.png');
 }
 
 .list {

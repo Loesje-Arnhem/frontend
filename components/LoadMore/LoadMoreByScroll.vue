@@ -5,11 +5,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {
   defineComponent,
   onMounted,
   onUnmounted,
+  Ref,
+  ref,
 } from '@nuxtjs/composition-api'
 
 export default defineComponent({
@@ -19,25 +21,31 @@ export default defineComponent({
       default: false,
     },
   },
-  setup(props, { refs, emit }) {
+  emits: ['load-more'],
+  setup(props, { emit }) {
     if (!process.client) return
-    let observer
-    let wrapper
+    let observer: IntersectionObserver | null
+    const wrapper: Ref<HTMLDivElement | null> = ref(null)
     onMounted(() => {
-      wrapper = refs.wrapper
-      if (!wrapper) return
+      if (!wrapper.value) return
 
-      observer = new window.IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting && !props.loading) {
-          emit('load-more')
-        }
-      })
-      observer.observe(wrapper)
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !props.loading) {
+            emit('load-more')
+          }
+        },
+        { rootMargin: '0px 0px 100px' },
+      )
+      observer.observe(wrapper.value)
     })
     onUnmounted(() => {
-      if (!wrapper) return
-      observer.unobserve(wrapper)
+      if (!wrapper.value || !observer) return
+      observer.unobserve(wrapper.value)
     })
+    return {
+      wrapper,
+    }
   },
 })
 </script>

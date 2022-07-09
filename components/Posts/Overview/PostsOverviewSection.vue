@@ -1,16 +1,20 @@
 <template>
   <section
+    v-if="relatedPosts"
     :class="$style['posts-overview']"
     aria-labelledby="posts-overview-title"
   >
     <center-wrapper size="md">
-      <h1 id="posts-overview-title">{{ title }}</h1>
+      <h1 id="posts-overview-title">
+        <template v-if="notIn">{{ $t('relatedTitle') }}</template>
+        <template v-else>{{ $t('title') }}</template>
+      </h1>
       <posts-overview-list
-        v-if="posts && posts.edges.length"
-        :posts="posts.edges"
+        v-if="relatedPosts.edges.length"
+        :posts="relatedPosts.edges"
       />
       <load-more-by-click
-        v-if="hasNextPage"
+        v-if="relatedPosts.pageInfo.hasNextPage"
         :loading="loading"
         :title="$t('btnMore')"
         @load-more="loadMore"
@@ -19,37 +23,48 @@
   </section>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
-import usePosts from '~/composables/usePost'
+<script lang="ts">
+import { defineComponent, ref, PropType } from '@nuxtjs/composition-api'
+import { getRelatedPosts } from '~/graphql/Posts/Posts'
+import { useFetchMore } from '~/composables/useFetch'
+import { IPosts } from '~/interfaces/IPost'
 
 export default defineComponent({
   props: {
+    posts: {
+      type: Object as PropType<IPosts>,
+      default: () => {},
+    },
     notIn: {
       type: Number,
       default: 0,
     },
   },
   setup(props) {
-    const { notIn } = props
-    const { posts, loading, loadMore, hasNextPage } = usePosts({
-      notIn,
-    })
+    const relatedPosts = ref(props.posts)
+
+    const { fetchMore, loading } = useFetchMore()
+
+    const loadMore = async () => {
+      const { posts }: { posts: IPosts } = await fetchMore({
+        items: relatedPosts,
+        query: getRelatedPosts,
+        variables: {
+          notIn: props.notIn,
+        },
+      })
+
+      relatedPosts.value = {
+        pageInfo: posts.pageInfo,
+        edges: [...relatedPosts.value.edges, ...posts.edges],
+      }
+    }
 
     return {
-      posts,
-      loading,
       loadMore,
-      hasNextPage,
+      loading,
+      relatedPosts,
     }
-  },
-  computed: {
-    title() {
-      if (this.notIn) {
-        return this.$t('relatedTitle')
-      }
-      return this.$t('title')
-    },
   },
 })
 </script>

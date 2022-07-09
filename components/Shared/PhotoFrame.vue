@@ -1,13 +1,7 @@
 <template>
-  <div :class="$style.wrapper">
-    <img
-      v-if="image"
-      :src="image"
-      alt=""
-      :class="$style.image"
-      crossorigin="anonymous"
-    />
-    <img src="/images/photoframe.png" alt="" :class="$style.frame" />
+  <div class="wrapper">
+    <img v-if="image" :src="image" alt="" class="image" />
+    <img src="/images/photoframe.png" alt="" class="frame" />
   </div>
 </template>
 
@@ -24,7 +18,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .wrapper {
   position: relative;
   max-width: var(--container-width-sm);

@@ -1,5 +1,5 @@
 <template>
-  <span aria-live="assertive">{{ error }}</span>
+  <span aria-live="assertive">{{ $t(error) }}</span>
 </template>
 
 <script lang="ts">

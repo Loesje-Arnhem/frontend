@@ -5,14 +5,14 @@ query Tags {
   sources(first: 100) {
     edges {
       node {
-        ...sourceDetails
+        ...sourceDetails2
       }
     }
   }
   subjects(first: 100) {
     edges {
       node {
-        ...subjectDetails
+        ...subjectDetails2
       }
     }
   }

@@ -1,8 +1,8 @@
 <template>
-  <div :class="$style['poster-details']">
-    <article :class="$style.content">
+  <div class="poster-details">
+    <article class="content">
       <h1 class="sr-only">{{ poster.title }}</h1>
-<<<<<<< Updated upstream
+
       <div class="tile">
         <fade-animation>
           <app-image
@@ -13,46 +13,30 @@
             :class="$style.image"
           />
         </fade-animation>
-=======
-      <div class="tile image-wrapper-details" :data-slug="poster.slug">
-        <app-image
-          v-if="image"
-          crossorigin="anonymous"
-          :alt="poster.title"
-          :src="image"
-          class="image"
-        />
->>>>>>> Stashed changes
       </div>
     </article>
-    <div :class="$style['meta-data']">
-      <dl :class="$style['definition-list']">
-        <dt :class="$style['definition-title']">Publicatiedatum</dt>
-        <dd :class="$style['definition-item']">
+    <div class="meta-data">
+      <dl class="definition-list">
+        <dt class="definition-title">Publicatiedatum</dt>
+        <dd class="definition-item">
           <app-date :date="poster.PosterMetaGroup.date" />
         </dd>
 
         <template v-if="poster.subjects.edges.length">
-          <dt :class="$style['definition-title']">Onderwerpen:</dt>
-          <dd :class="$style['definition-item']">
-            <poster-tags-list
-              :list="poster.subjects.edges"
-              :class="$style['tags-list']"
-            />
+          <dt class="definition-title">Onderwerpen:</dt>
+          <dd class="definition-item">
+            <poster-tags-list :list="poster.subjects.edges" class="tags-list" />
           </dd>
         </template>
 
         <template v-if="poster.sources.edges.length">
-          <dt :class="$style['definition-title']">Bronnen:</dt>
-          <dd :class="$style['definition-item']">
-            <poster-tags-list
-              :list="poster.sources.edges"
-              :class="$style['tags-list']"
-            />
+          <dt class="definition-title">Bronnen:</dt>
+          <dd class="definition-item">
+            <poster-tags-list :list="poster.sources.edges" class="tags-list" />
           </dd>
         </template>
       </dl>
-      <div :class="$style.buttons">
+      <div class="buttons">
         <poster-favorites :poster="poster" />
         <app-button
           v-if="poster.PosterMetaGroup.pdf"
@@ -60,24 +44,21 @@
           button-tag="a"
           :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
           target="_blank"
+          :download="poster.slug"
         >
-          <app-icon icon="pdf" width="32" height="32" :class="$style.icon" />
+          <app-icon icon="pdf" width="32" height="32" class="icon" />
           Download
         </app-button>
       </div>
-      <div :class="$style['social-media']">
-        <share-this
-          :title="poster.title"
-          :link="poster.link"
-          :image="poster.featuredImage.node.large"
-        />
+      <div class="social-media">
+        <share-this :title="poster.title" :link="poster.link" :image="image" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
 import { IPoster } from '~/interfaces/IPoster'
 
 export default defineComponent({
@@ -87,10 +68,21 @@ export default defineComponent({
       required: true,
     },
   },
+  setup(props) {
+    const image = computed(() => {
+      if (props.poster.featuredImage?.node.large) {
+        return props.poster.featuredImage?.node.large
+      }
+      return null
+    })
+    return {
+      image,
+    }
+  },
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .poster-details {
   display: grid;
   grid-gap: 1em;
@@ -107,6 +99,7 @@ export default defineComponent({
 
 .image {
   width: 100%;
+  display: block;
 }
 
 .content {

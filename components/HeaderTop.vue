@@ -1,7 +1,7 @@
 <template>
   <center-wrapper :top="true">
-    <div :class="$style.wrapper">
-      <div :class="$style.text">
+    <div class="wrapper">
+      <div class="text">
         <h1>Wie zegt wat hoort</h1>
         <p>
           Loesje's posters vind je overal. Met haar positief-kritische teksten
@@ -10,12 +10,29 @@
           verspreiden, geeft Loesje de wereld een zetje in de goede richting.
         </p>
       </div>
-      <daily-poster :class="$style['daily-poster']" />
+      <div class="poster-daily">
+        <div class="image-wrapper">
+          <client-only>
+            <daily-poster class="image" />
+          </client-only>
+        </div>
+        <nuxt-picture
+          src="/images/electriciteitskastje.png"
+          alt=""
+          preload
+          class="background"
+          width="270"
+          height="362"
+          preset="base"
+          format="avif"
+          sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
+        />
+      </div>
     </div>
   </center-wrapper>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .wrapper {
   padding-top: var(--spacing-s);
   max-width: var(--container-width-md);
@@ -36,8 +53,38 @@
   }
 }
 
-.daily-poster {
+.poster-daily {
   flex: 0 0 15em;
   order: -1;
+  position: relative;
+  max-width: 18em;
+  width: 100%;
+  margin: 0 auto -1em;
+}
+
+.image-wrapper {
+  position: absolute;
+  inset: 9% 13% auto 17%;
+  transform: rotate(-2deg);
+
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    box-shadow: inset 0 0 0 1px var(--color-white);
+  }
+}
+
+.image {
+  display: block;
+}
+
+.background {
+  width: 100%;
+  display: block;
 }
 </style>

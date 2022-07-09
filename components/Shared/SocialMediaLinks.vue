@@ -1,9 +1,9 @@
 <template>
-  <div :class="$style['social-media']">
+  <div class="social-media">
     <h2>{{ title }}</h2>
-    <ul :class="$style.list">
+    <ul class="list">
       <li v-if="facebook">
-        <a :href="facebook" :class="$style.link" rel="noopener" target="_blank">
+        <a :href="facebook" class="link" rel="noopener" target="_blank">
           <app-icon icon="facebook" width="32" height="32" />
           <span class="sr-only">
             {{ title }}
@@ -12,7 +12,7 @@
         </a>
       </li>
       <li v-if="twitter">
-        <a :href="twitter" :class="$style.link" rel="noopener" target="_blank">
+        <a :href="twitter" class="link" rel="noopener" target="_blank">
           <app-icon icon="twitter" width="32" height="32" />
           <span class="sr-only">
             {{ title }}
@@ -21,7 +21,7 @@
         </a>
       </li>
       <li v-if="linkedin">
-        <a :href="linkedin" :class="$style.link" rel="noopener" target="_blank">
+        <a :href="linkedin" class="link" rel="noopener" target="_blank">
           <app-icon icon="linkedin" width="32" height="32" />
           <span class="sr-only">
             {{ title }}
@@ -30,12 +30,7 @@
         </a>
       </li>
       <li v-if="instagram">
-        <a
-          :href="instagram"
-          :class="$style.link"
-          rel="noopener"
-          target="_blank"
-        >
+        <a :href="instagram" class="link" rel="noopener" target="_blank">
           <app-icon icon="instagram" width="32" height="32" />
           <span class="sr-only">
             {{ title }}
@@ -43,12 +38,23 @@
           </span>
         </a>
       </li>
+      <li v-if="pinterest">
+        <a :href="pinterest" class="link" rel="noopener" target="_blank">
+          <app-icon icon="pinterest" width="32" height="32" />
+          <span class="sr-only">
+            {{ title }}
+            <span lang="en">Pinterest</span>
+          </span>
+        </a>
+      </li>
     </ul>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     title: {
       type: String,
@@ -75,10 +81,10 @@ export default {
       default: null,
     },
   },
-}
+})
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .list {
   @mixin list-reset;
 

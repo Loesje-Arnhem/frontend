@@ -1,32 +1,66 @@
 <template>
   <shop-wrapper>
-    <template v-if="productCategory">
+    <app-loader v-if="loading" />
+    <template v-else-if="productCategory">
       <h1>{{ productCategory.name }}</h1>
       <p
         v-if="productCategory.description"
         v-html="productCategory.description"
       />
+      <product-list :products="products" />
     </template>
-    <product-list :where="{ category: slug }" />
   </shop-wrapper>
 </template>
 
-<script>
-import { defineComponent, useRoute, computed } from '@nuxtjs/composition-api'
-import { useProductCategory } from '~/composables/useProductCategory'
+<script lang="ts">
+import {
+  defineComponent,
+  useRoute,
+  computed,
+  useMeta,
+} from '@nuxtjs/composition-api'
+import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory'
+import useFetch from '~/composables/useFetch'
 
 export default defineComponent({
   setup() {
     const route = useRoute()
+
     const slug = computed(() => {
       return route.value.params.subcategory || route.value.params.category
     })
-    const { productCategory, loading } = useProductCategory(slug.value)
+
+    const { result, loading } = useFetch({
+      query: ProductCategoryQuery,
+      usePayload: true,
+      variables: {
+        slug: slug.value,
+      },
+      params: slug,
+      pageKey: 'product-category',
+    })
+
+    const productCategory = computed(() => result.value?.productCategory)
+
+    const products = computed(() => {
+      if (!productCategory.value) {
+        return []
+      }
+
+      // @ts-ignore
+      return productCategory.value.products.edges.map((product) => {
+        return {
+          ...product.node,
+        }
+      })
+    })
+
+    useMeta(() => ({ title: productCategory.value?.name }))
 
     return {
-      slug,
       productCategory,
       loading,
+      products,
     }
   },
 

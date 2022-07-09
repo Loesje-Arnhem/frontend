@@ -1,13 +1,19 @@
 <template>
   <section
-    v-if="databaseIds.length"
+    v-if="products.length"
     aria-labelledby="featured-products"
     :class="$style['featured-products']"
   >
     <center-wrapper>
-      <h1 id="featured-products">{{ title }}</h1>
-      <product-list :where="{ include: databaseIds }" :first="first" />
-
+      <h1 id="featured-products">
+        <template v-if="relatedProducts.title">
+          {{ relatedProducts.title }}
+        </template>
+        <template v-else>
+          {{ $t('title') }}
+        </template>
+      </h1>
+      <product-list :products="products" />
       <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
       </app-button>
@@ -25,28 +31,21 @@ export default defineComponent({
       type: Object as PropType<IRelatedProducts>,
       default: () => {},
     },
-    first: {
-      type: Number,
-      default: 99,
-    },
   },
-  setup(props, { root }) {
-    const title = computed(() => {
-      // @ts-ignore
-      return props.relatedProducts.title || root.$t('title')
-    })
-    const databaseIds = computed(() => {
-      if (props.relatedProducts.products) {
-        return props.relatedProducts.products.map(
-          (product) => product.product.databaseId,
-        )
+  setup(props) {
+    const products = computed(() => {
+      if (!props.relatedProducts.products) {
+        return []
       }
-      return []
+      return props.relatedProducts.products.map((product) => {
+        return {
+          ...product.product,
+        }
+      })
     })
 
     return {
-      databaseIds,
-      title,
+      products,
     }
   },
 })

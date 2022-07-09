@@ -1,5 +1,0 @@
-fragment page on Page {
-  id
-  databaseId
-  title
-}

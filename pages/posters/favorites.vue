@@ -1,11 +1,13 @@
 <template>
-  <client-only>
-    <posters-overview-section
-      v-if="favorites.length"
-      :poster-ids="favorites"
-      :title="$t('title')"
-    />
-  </client-only>
+  <posters-overview-section
+    v-if="favorites.length"
+    :posters="posters"
+    :poster-ids="favorites"
+    :title="$t('title')"
+  />
+  <center-wrapper v-else>
+    <p>Geen favorieten</p>
+  </center-wrapper>
 </template>
 
 <script lang="ts">
@@ -15,7 +17,15 @@ import useFavorites from '~/composables/useFavorites'
 export default defineComponent({
   setup() {
     const { favorites } = useFavorites()
+    const posters = {
+      pageInfo: {
+        endCursor: '',
+        hasNextPage: true,
+      },
+      edges: [],
+    }
     return {
+      posters,
       favorites,
     }
   },

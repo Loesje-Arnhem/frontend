@@ -9,7 +9,6 @@
       <div class="tile">
         <img
           :class="$style.image"
-          crossorigin="anonymous"
           :src="item.product.node.image.medium"
           alt=""
         />

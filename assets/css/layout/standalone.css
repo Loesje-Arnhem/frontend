@@ -11,3 +11,13 @@
         display: block;
     }
 }
+
+.standalone {
+    & .sa-hidden {
+        display: none;
+    }
+  
+    & .sa-only {
+        display: block;
+    }
+}

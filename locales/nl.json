@@ -52,6 +52,15 @@
   "shop": "Winkeltje",
   "socialMediaLinks": "Social media links",
   "tour": "Tour",
+  "validations": {
+    "email": "Value is not a valid email address",
+    "maxLength": "The maximum value is {max}",
+    "minLength": "This field should be at least {min} long",
+    "numeric": "Value must be numeric",
+    "required": "Dit veld is verplicht",
+    "form": "Enkele velden zijn niet correct ingevuld",
+    "submit": "Er ging iets mis bij het verzenden"
+  },
   "videos": "Videos",
   "view": "view",
   "viewNordgardenOn": "View Nordgarden on"

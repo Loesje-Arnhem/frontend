@@ -13,9 +13,10 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import useCarousel from '~/composables/carousel'
 
-export default {
+export default defineComponent({
   setup() {
     const { activeSlide, goToSlideNumber, totalPages } = useCarousel()
 
@@ -25,7 +26,7 @@ export default {
       goToSlideNumber,
     }
   },
-}
+})
 </script>
 
 <style lang="postcss" scoped>

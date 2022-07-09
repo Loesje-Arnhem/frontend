@@ -1,38 +1,59 @@
 <template>
   <app-loader v-if="loading" />
-  <div v-else-if="page" class="page">
-    <app-content
-      :title="page.title"
-      :content="page.content"
-      :video="page.videoGroup.youtubeId"
-    />
-    <related-posters-section :related-posters="page.relatedPosters" />
-    <related-products-section
-      :related-products="page.relatedProducts"
-      :title="page.relatedPosters.title"
-    />
-    <related-pages-section
-      :not-in="page.databaseId"
-      :parent-page-id="parentPageId"
-    />
+  <div v-else-if="page">
+    <app-content :title="page.title" :content="page.content" />
+    <related-posters-section :posters="page.relatedPosters" />
+    <related-products-section :related-products="page.relatedProducts" />
+    <related-pages-section :pages="page.relatedPages" />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api'
-import { usePageByUri } from '~/composables/usePage'
+import {
+  computed,
+  defineComponent,
+  Ref,
+  useMeta,
+  useRoute,
+} from '@nuxtjs/composition-api'
+import PageByByUri from '~/graphql/Pages/Pages'
+import { IPage } from '~/interfaces/IPage'
+import useFetch from '~/composables/useFetch'
 
 export default defineComponent({
   setup() {
-    const { page, loading } = usePageByUri()
-    const parentPageId = computed(
-      () => page.value.parentDatabaseId || page.value.databaseId,
-    )
+    const route = useRoute()
+    const { slug, slug2 } = route.value.params
+    const pageKey = computed(() => {
+      if (slug2) {
+        return `${slug}--${slug2}`
+      }
+      return slug
+    })
 
+    const uri = computed(() => {
+      if (slug2) {
+        return `${slug}/${slug2}`
+      }
+      return slug
+    })
+
+    const { result, loading } = useFetch({
+      query: PageByByUri,
+      usePayload: true,
+      variables: {
+        uri: uri.value,
+      },
+      params: pageKey,
+      pageKey: 'page',
+    })
+
+    const page: Ref<IPage | null> = computed(() => result.value?.page)
+
+    useMeta(() => ({ title: page.value?.title }))
     return {
-      loading,
-      parentPageId,
       page,
+      loading,
     }
   },
   head: {},
