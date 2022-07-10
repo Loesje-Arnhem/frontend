@@ -3,7 +3,7 @@
     <article class="content">
       <h1 class="sr-only">{{ poster.title }}</h1>
 
-      <div class="tile">
+      <div class="tile image-wrapper-details" :data-slug="poster.slug">
         <fade-animation>
           <app-image
             v-if="poster.featuredImage"

@@ -1,15 +1,10 @@
 <template>
-  <div
-    v-if="image"
-    :class="$style.tile"
-    class="tile image-wrapper-tile"
-    :data-slug="poster.slug"
-  >
-    <router-link :to="poster.uri" :class="$style.link">
+  <div v-if="image" class="tile image-wrapper-tile" :data-slug="poster.slug">
+    <router-link :to="poster.uri" class="link">
       <img
         :alt="poster.title"
         :src="image"
-        :class="$style.poster"
+        class="poster"
         width="200"
         height="500"
       />
@@ -40,7 +35,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .poster {
   display: block;
   width: 100%;
