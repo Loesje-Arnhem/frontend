@@ -25,16 +25,20 @@ export default async ({ isDev }) => {
 
   const registerPeriodicSync = async () => {
     // Request permission
-
-    const status = await navigator.permissions.query({
-      name: 'periodic-background-sync',
-    })
-    if (status.state === 'granted') {
-      // Register new sync every 24 hours
-      await registration.periodicSync.register(TOTAL_POSTERS_KEY, {
-        // minInterval: 24 * 60 * 60 * 1000, // 1 day
-        minInterval: 60 * 60 * 1000, // 1 hour
+    try {
+      const status = await navigator.permissions.query({
+        name: 'periodic-background-sync',
       })
+      if (status.state === 'granted') {
+        // Register new sync every 24 hours
+        await registration.periodicSync.register(TOTAL_POSTERS_KEY, {
+          // minInterval: 24 * 60 * 60 * 1000, // 1 day
+          minInterval: 60 * 60 * 1000, // 1 hour
+        })
+        console.log('permission granted')
+      }
+    } catch (error) {
+      console.log('permission not granted')
     }
   }
   await registerPeriodicSync()
