@@ -11,6 +11,7 @@
           :class="$style.image"
           :src="item.product.node.image.medium"
           alt=""
+          crossorigin
         />
       </div>
     </td>

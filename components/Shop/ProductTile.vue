@@ -5,6 +5,7 @@
         v-if="product.image"
         :src="product.image.medium"
         :class="$style.image"
+        crossorigin
       />
     </div>
     <h3 :class="$style.title">

@@ -15,6 +15,7 @@
           :alt="image.altText"
           :class="$style.image"
           :lazy="index > 0"
+          crossorigin
         />
       </carousel-card>
     </app-carousel>
@@ -24,6 +25,7 @@
         :alt="images[0].altText"
         :class="$style.image"
         :lazy="false"
+        crossorigin
       />
     </div>
   </div>

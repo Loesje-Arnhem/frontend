@@ -4,6 +4,7 @@
     :src="poster.image"
     :alt="poster.title"
     width="188"
+    crossorigin
     height="300"
   />
 </template>

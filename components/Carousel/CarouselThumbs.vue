@@ -13,6 +13,7 @@
           :alt="image.altText"
           :class="[$style.image, { [$style.active]: index === activeSlide }]"
           :lazy="false"
+          crossorigin
         />
       </li>
     </template>

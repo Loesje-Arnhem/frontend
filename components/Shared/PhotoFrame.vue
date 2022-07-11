@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <img v-if="image" :src="image" alt="" class="image" />
+    <img v-if="image" :src="image" alt="" class="image" crossorigin />
     <img src="/images/photoframe.png" alt="" class="frame" />
   </div>
 </template>

@@ -10,7 +10,8 @@
             :key="poster.featuredImage.node.large"
             :alt="poster.title"
             :src="poster.featuredImage.node.large"
-            cclass="image"
+            class="image"
+            crossorigin
           />
         </fade-animation>
       </div>
@@ -43,6 +44,7 @@
           :is-primary="false"
           button-tag="a"
           :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
+          target="_blank"
           :download="poster.slug"
         >
           <app-icon icon="pdf" width="32" height="32" class="icon" />
