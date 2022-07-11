@@ -79,7 +79,7 @@ export default {
 
     runtimeCaching: [
       {
-        urlPattern: `${apiUrl}/.*`,
+        urlPattern: `${apiUrl}.*`,
       },
     ],
   },
