@@ -1,9 +1,14 @@
 <template>
-  <div v-if="image" class="tile image-wrapper-tile" :data-slug="poster.slug">
+  <div
+    v-if="poster.featuredImage"
+    class="tile image-wrapper-tile"
+    :data-slug="poster.slug"
+  >
     <router-link :to="poster.uri" class="link">
       <img
         :alt="poster.title"
-        :src="image"
+        :src="poster.featuredImage.node.medium"
+        :srcset="`${poster.featuredImage.node.large} 2x`"
         class="poster"
         width="200"
         height="500"
@@ -14,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { IRelatedPoster } from '~/interfaces/IPoster'
 
 export default defineComponent({
@@ -23,15 +28,6 @@ export default defineComponent({
       type: Object as PropType<IRelatedPoster>,
       default: () => {},
     },
-  },
-  setup(props) {
-    const image = computed(() => {
-      return props.poster.featuredImage?.node.medium
-    })
-
-    return {
-      image,
-    }
   },
 })
 </script>

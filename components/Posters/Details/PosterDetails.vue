@@ -6,12 +6,15 @@
       <div class="tile image-wrapper-details" :data-slug="poster.slug">
         <fade-animation>
           <app-image
-            v-if="poster.featuredImage"
-            :key="poster.featuredImage.node.large"
+            v-if="image"
+            :key="poster.featuredImage.node.id"
             :alt="poster.title"
-            :src="poster.featuredImage.node.large"
+            :lazy="false"
+            :src="image"
             class="image"
             crossorigin
+            :srcset="poster.featuredImage.node.srcSet"
+            sizes="(max-width: 768px) 100vw, (max-width: 1240px) 50vw, 620px"
           />
         </fade-animation>
       </div>

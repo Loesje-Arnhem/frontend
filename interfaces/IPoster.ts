@@ -6,6 +6,7 @@ export interface IRelatedPosterFeaturedImage {
   node: {
     id: string
     medium: string
+    large: string
   }
 }
 
@@ -13,6 +14,7 @@ export interface IPosterDetailFeaturedImage {
   node: {
     id: string
     large: string
+    srcSet: string
   }
 }
 

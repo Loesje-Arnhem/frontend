@@ -1,7 +1,18 @@
 <template>
   <div class="wrapper">
-    <img v-if="image" :src="image" alt="" class="image" crossorigin />
-    <img src="/images/photoframe.png" alt="" class="frame" />
+    <img :src="image" alt="" class="image" crossorigin />
+
+    <nuxt-picture
+      src="/images/photoframe.png"
+      alt=""
+      preload
+      class="frame"
+      width="355"
+      height="456"
+      preset="base"
+      format="avif"
+      sizes="xs:100vw md:355px lg:710px"
+    />
   </div>
 </template>
 
@@ -12,7 +23,7 @@ export default defineComponent({
   props: {
     image: {
       type: String,
-      default: null,
+      required: true,
     },
   },
 })

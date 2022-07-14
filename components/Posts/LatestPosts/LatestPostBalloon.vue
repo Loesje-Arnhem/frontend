@@ -1,11 +1,14 @@
 <template>
-  <div ref="balloon" :class="[$style.balloon, { [$style.animate]: animate }]">
-    <app-image
-      :class="$style['balloon-image']"
+  <div ref="balloon" class="balloon" :class="{ animate }">
+    <nuxt-picture
+      class="image"
       alt=""
       width="159"
       height="243"
+      preset="base"
+      format="avif"
       src="/images/air-balloon.png"
+      sizes="xs:159px sm:358px"
     />
   </div>
 </template>
@@ -53,7 +56,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .balloon {
   &.animate {
     animation: balloon-x 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
@@ -64,7 +67,7 @@ export default defineComponent({
   }
 }
 
-.balloon-image {
+.image {
   @nest .balloon.animate & {
     animation: balloon-y 20s infinite cubic-bezier(0.3, 0.27, 0.07, 1.64);
 

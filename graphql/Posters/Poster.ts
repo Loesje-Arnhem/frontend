@@ -17,8 +17,8 @@ const posterDetails = gql`
     featuredImage {
       node {
         id
-        large: sourceUrl(size: LARGE)
-        medium: sourceUrl(size: MEDIUM)
+        srcSet
+        large: sourceUrl(size: MEDIUM_LARGE)
       }
     }
     relatedProducts: relatedProductsGroup {

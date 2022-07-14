@@ -23,6 +23,7 @@ export default gql`
             node {
               id
               medium: sourceUrl(size: MEDIUM)
+              large: sourceUrl(size: LARGE)
             }
           }
         }

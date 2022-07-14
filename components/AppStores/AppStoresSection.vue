@@ -9,7 +9,7 @@
           height="560"
           alt=""
           loading="lazy"
-          sizes="sm:100vw md:75vw lg:500px xL:1000px"
+          sizes="sm:100vw lg:75vw xl:33v xl:500px xxl:1000px"
           preset="base"
           format="avif"
         />

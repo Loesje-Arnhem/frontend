@@ -25,7 +25,7 @@
           height="362"
           preset="base"
           format="avif"
-          sizes="sm:80vw md:60vw lg:33vw xl:340 xxl:500"
+          sizes="xs:100vw md:270px lg:540px"
         />
       </div>
     </div>

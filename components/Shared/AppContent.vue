@@ -1,19 +1,15 @@
 <template>
   <center-wrapper>
-    <div :class="$style.wrapper">
-      <article :class="{ [$style['has-media']]: hasMedia }">
-        <div :class="$style.content">
+    <div class="wrapper">
+      <article :class="{ 'has-media': hasMedia }">
+        <div class="content">
           <h1>{{ title }}</h1>
-          <post-date v-if="date" :date="date" :class="$style.date" />
+          <post-date v-if="date" :date="date" class="date" />
           <div class="text" v-html="content" />
         </div>
-        <div :class="$style.media">
-          <app-video v-if="video" :video="video" :class="$style.video" />
-          <photo-frame
-            v-else-if="image"
-            :image="image.node.image"
-            :class="$style.image"
-          />
+        <div class="media">
+          <app-video v-if="video" :video="video" class="video" />
+          <photo-frame v-else-if="image" :image="image.node.image" />
         </div>
       </article>
     </div>
@@ -57,7 +53,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .wrapper {
   @mixin block;
 }
