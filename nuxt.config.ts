@@ -5,7 +5,6 @@ import buildModules from './config/buildModules'
 import components from './config/components'
 import css from './config/css'
 import generate from './config/generate'
-import googleFonts from './config/googleFonts'
 import head from './config/head'
 import i18n from './config/i18n'
 import image from './config/image'
@@ -27,7 +26,6 @@ export default {
   components,
   css,
   generate,
-  googleFonts,
   head,
   i18n,
   image,
