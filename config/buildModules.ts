@@ -5,7 +5,6 @@ export default [
   // https://go.nuxtjs.dev/stylelint
   '@nuxtjs/stylelint-module',
   '@nuxtjs/composition-api/module',
-  '@nuxtjs/google-fonts',
   '@nuxt/typescript-build',
   '@nuxtjs/pwa',
   '@nuxt/postcss8',
