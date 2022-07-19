@@ -25,7 +25,7 @@ export default async (client: ApolloClient<NormalizedCacheObject>) => {
       })
       await pauseFetching(`posters ${after}`)
       after = data.posters.pageInfo.endCursor
-      //hasNextPage = data.posters.pageInfo.hasNextPage
+      // hasNextPage = data.posters.pageInfo.hasNextPage
       hasNextPage = false
       posters = posters.concat(newPosters)
     } catch (error) {
