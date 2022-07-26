@@ -1,63 +1,52 @@
-import { useMeta } from '@nuxtjs/composition-api'
-import { ISEO } from '~/interfaces/ISEO'
+import { computed, Ref, useMeta } from '@nuxtjs/composition-api'
+import { IPage } from '~/interfaces/IPage'
+import { IPost } from '~/interfaces/IPost'
 
-const getMetaTitle = (seo: any, key: string) => {
-  if (seo[key]) {
-    return seo[key]
-  } else if (seo.title) {
-    return seo.title
-  }
-
-  return null
-}
-
-const getMetaDescripion = (seo: any, key: string) => {
-  if (seo[key]) {
-    return seo[key]
-  } else if (seo.metaDesc) {
-    return seo.metaDesc
-  }
-  return null
-}
-
-const getMetaImage = (seo: any, key: string) => {
-  if (seo[key] && seo[key].archive) {
-    return seo[key].archive
-  } else if (seo.opengraphImage) {
-    return seo.opengraphImage.archive
-  }
-  return null
-}
-
-export default () => {
-  const { title, meta } = useMeta()
-
-  const setSEO = (seo: ISEO | undefined) => {
+export default (content: Ref<IPage | IPost | null>) => {
+  const getMetaImage = (seo: any, key: string) => {
     if (!seo) {
-      return
+      return null
     }
-    title.value = seo.title
-    meta.value = [
+
+    if (seo[key] && seo[key].archive) {
+      return seo[key].archive
+    } else if (seo.opengraphImage) {
+      return seo.opengraphImage.archive
+    }
+    return null
+  }
+  const schema = computed(() => {
+    if (!content.value) {
+      return null
+    }
+    return JSON.parse(content.value.seo.schema.raw)
+  })
+
+  useMeta(() => ({
+    title: content.value?.seo.title,
+    meta: [
       {
         name: 'description',
         hid: 'description',
-        content: seo.metaDesc,
+        content: content.value?.seo.metaDesc,
       },
       // Open Graph
       {
         hid: 'og:title',
         name: 'og:title',
-        content: seo.opengraphTitle,
+        content: content.value?.seo.opengraphTitle,
       },
       {
         hid: 'og:description',
         name: 'og:description',
-        content: getMetaDescripion(seo, 'opengraphDescription'),
+        content:
+          content.value?.seo.opengraphDescription ||
+          content.value?.seo.metaDesc,
       },
       {
         hid: 'og:url',
         name: 'og:url',
-        content: seo.opengraphUrl,
+        content: content.value?.seo.opengraphUrl,
       },
       {
         hid: 'og:type',
@@ -67,31 +56,31 @@ export default () => {
       {
         hid: 'og:image',
         name: 'og:image',
-        content: getMetaImage(seo, 'opengraphImage'),
+        content: getMetaImage(content.value?.seo, 'opengraphImage'),
       },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: getMetaTitle(seo, 'twitterTitle'),
+        content: content.value?.seo.twitterTitle || content.value?.seo.title,
       },
       {
         hide: 'twitter:description',
         name: 'twitter:description',
-        content: getMetaDescripion(seo, seo.metaDesc),
+        content:
+          content.value?.seo.twitterDescription || content.value?.seo.metaDesc,
       },
       {
         hide: 'twitter:image',
         name: 'twitter:image',
-        content: getMetaImage(seo, 'twitterImage'),
+        content: getMetaImage(content.value?.seo, 'twitterImage'),
       },
+    ],
+
+    script: [
       {
-        hid: 'twitter:image:alt',
-        name: 'twitter:image:alt',
-        content: seo.title,
+        type: 'application/ld+json',
+        json: schema.value,
       },
-    ]
-  }
-  return {
-    setSEO,
-  }
+    ],
+  }))
 }

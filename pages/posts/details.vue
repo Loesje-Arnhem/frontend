@@ -24,12 +24,12 @@ import {
   computed,
   defineComponent,
   useRoute,
-  useMeta,
   Ref,
 } from '@nuxtjs/composition-api'
 import { getPost } from '~/graphql/Posts/Posts'
 import { IPost } from '~/interfaces/IPost'
 import useFetch from '~/composables/useFetch'
+import useMeta from '~/composables/useMeta'
 
 export default defineComponent({
   setup() {
@@ -50,7 +50,7 @@ export default defineComponent({
 
     const post: Ref<IPost | null> = computed(() => result.value?.post)
 
-    useMeta(() => ({ title: post.value?.title }))
+    useMeta(post)
 
     return {
       loading,

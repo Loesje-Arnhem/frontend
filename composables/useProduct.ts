@@ -1,7 +1,7 @@
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { useQuery } from '@vue/apollo-composable'
+import { computed } from '@nuxtjs/composition-api'
 import ProductsQuery from '~/graphql/Products/Products.gql'
 import ProductQuery from '~/graphql/Products/Product.gql'
-import useMeta from '~/composables/useMeta'
 
 export default (where = {}, size = 99) => {
   const { result, error, loading } = useQuery(ProductsQuery, {
@@ -12,7 +12,7 @@ export default (where = {}, size = 99) => {
     first: size,
   })
 
-  const products = useResult(result)
+  const products = computed(() => result.value.products)
 
   return {
     products,
@@ -22,16 +22,11 @@ export default (where = {}, size = 99) => {
 }
 
 export const useProduct = (slug: string) => {
-  const { setSEO } = useMeta()
-  const { result, error, loading, onResult } = useQuery(ProductQuery, {
+  const { result, error, loading } = useQuery(ProductQuery, {
     slug,
   })
 
-  const product = useResult(result)
-
-  onResult((queryResult) => {
-    setSEO(queryResult.data.product.seo)
-  })
+  const product = computed(() => result.value.product)
 
   return {
     product,

@@ -1,11 +1,11 @@
 export interface ISEOImage {
-  archive: string
+  archive: string | null
 }
 
 export interface ISEO {
+  metaDesc: string
   canonical: string
   cornerstone: boolean
-  metaDesc: string
   opengraphAuthor: string
   opengraphDescription: string
   opengraphImage: ISEOImage
@@ -17,6 +17,11 @@ export interface ISEO {
   opengraphUrl: string
   title: string
   twitterDescription: string
-  twitterImage: ISEOImage
+  twitterImage: {
+    archive: string | null
+  }
   twitterTitle: string
+  schema: {
+    raw: string
+  }
 }

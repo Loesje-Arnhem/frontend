@@ -22,5 +22,8 @@ export default gql`
       archive: sourceUrl(size: MEDIUM)
     }
     twitterTitle
+    schema {
+      raw
+    }
   }
 `

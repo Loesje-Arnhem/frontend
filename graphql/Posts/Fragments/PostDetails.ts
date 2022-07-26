@@ -7,6 +7,7 @@ import postBase from './PostBase'
 import postRelatedProductsGroup from './PostRelatedProductsGroup'
 import relatedPosts from './RelatedPosts'
 import relatedPosters from './../../Posters/Fragments/RelatedPosters'
+import seo from './../../Fragments/Seo'
 
 export default gql`
   fragment postDetails on Post {
@@ -29,9 +30,13 @@ export default gql`
     relatedPosters(first: ${PAGE_SIZE_PAGE_RELATED_POSTERS}) {
       ...relatedPosters
     }
+    seo {
+      ...seo
+    }
   }
   ${postBase}
   ${postRelatedProductsGroup}
   ${relatedPosts}
   ${relatedPosters}
+  ${seo}
 `

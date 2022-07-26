@@ -13,12 +13,12 @@ import {
   computed,
   defineComponent,
   Ref,
-  useMeta,
   useRoute,
 } from '@nuxtjs/composition-api'
 import PageByByUri from '~/graphql/Pages/Pages'
 import { IPage } from '~/interfaces/IPage'
 import useFetch from '~/composables/useFetch'
+import useMeta from '~/composables/useMeta'
 
 export default defineComponent({
   setup() {
@@ -49,8 +49,8 @@ export default defineComponent({
     })
 
     const page: Ref<IPage | null> = computed(() => result.value?.page)
+    useMeta(page)
 
-    useMeta(() => ({ title: page.value?.title }))
     return {
       page,
       loading,
