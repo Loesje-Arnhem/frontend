@@ -1,3 +1,4 @@
+import { NuxtConfig } from '@nuxt/types'
 import apollo from './config/apollo'
 import auth from './config/auth'
 import build from './config/build'
@@ -18,7 +19,7 @@ import render from './config/render'
 import server from './config/server'
 import target from './config/target'
 
-export default {
+const config: NuxtConfig = {
   apollo,
   auth,
   build,
@@ -39,3 +40,5 @@ export default {
   server,
   target,
 }
+
+export default config

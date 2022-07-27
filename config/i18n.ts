@@ -1,11 +1,11 @@
+import { Options } from '@nuxtjs/i18n/types'
 import { baseUrl } from '../data/siteDetails'
 
-export default {
+const config: Options = {
   baseUrl,
   defaultLocale: 'nl',
   vuex: false,
   lazy: true,
-  seo: false,
   langDir: 'locales/',
   locales: [
     {
@@ -46,3 +46,5 @@ export default {
     },
   },
 }
+
+export default config
