@@ -12,7 +12,7 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import useCarousel from '~/composables/carousel'
 

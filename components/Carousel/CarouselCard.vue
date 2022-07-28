@@ -9,7 +9,7 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
 import {
   ref,
   onMounted,
@@ -29,7 +29,7 @@ export default defineComponent({
     const { activeSlide, goToSlideNumber, shouldAnimate } = useCarousel()
     const item = ref(null)
     const threshold = 0.7
-    let observer = null
+    let observer: IntersectionObserver | null = null
 
     onMounted(() => {
       if (!process.client) {
@@ -51,7 +51,11 @@ export default defineComponent({
       )
       observer.observe(item.value)
     })
-    onUnmounted(() => observer.observe(item.value))
+    onUnmounted(() => {
+      if (observer && item.value) {
+        observer.observe(item.value)
+      }
+    })
 
     return {
       activeSlide,

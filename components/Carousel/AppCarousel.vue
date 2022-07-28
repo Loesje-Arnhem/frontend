@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {
   ref,
   watch,
@@ -20,12 +20,13 @@ import {
   onUnmounted,
   provide,
   defineComponent,
+  nextTick,
+  Ref,
 } from '@nuxtjs/composition-api'
 import smoothscroll from 'smoothscroll-polyfill'
-import CarouselThumbs from './CarouselThumbs.vue'
 import useCarousel from '~/composables/carousel'
+
 export default defineComponent({
-  components: { CarouselThumbs },
   props: {
     totalPages: {
       type: Number,
@@ -36,8 +37,8 @@ export default defineComponent({
       default: () => [],
     },
   },
-  setup(props, { root }) {
-    const list = ref(null)
+  setup(props) {
+    const list: Ref<HTMLUListElement | null> = ref(null)
 
     const activeSlide = ref(0)
     const shouldAnimate = ref(false)
@@ -57,7 +58,7 @@ export default defineComponent({
 
       const listItem = list.value.querySelector(
         `li:nth-child(${activeSlide.value + 1})`,
-      )
+      ) as HTMLLIElement | null
 
       if (!listItem) {
         return 0
@@ -67,7 +68,7 @@ export default defineComponent({
     }
 
     const scrollToSelectedSlide = () => {
-      root.$nextTick(() => {
+      nextTick(() => {
         if (!list.value) {
           return
         }
@@ -79,7 +80,7 @@ export default defineComponent({
         })
       })
     }
-    let scrollTimeOut = null
+    let scrollTimeOut: ReturnType<typeof setTimeout> | null = null
 
     watch(activeSlide, () => {
       if (shouldAnimate.value) {

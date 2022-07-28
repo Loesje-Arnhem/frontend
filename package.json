@@ -46,6 +46,7 @@
     "@nuxtjs/google-fonts": "^2.0.0",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/stylelint-module": "^4.1.0",
+    "@types/smoothscroll-polyfill": "^0.3.1",
     "@types/uuid": "^8.3.4",
     "apollo-boost": "^0.4.9",
     "eslint": "^8.20.0",

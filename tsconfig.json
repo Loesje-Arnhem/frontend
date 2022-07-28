@@ -20,6 +20,7 @@
       "@nuxt/image",
       "@types/node",
       "@nuxtjs/i18n",
+      "@types/smoothscroll-polyfill",
       "@types/body-scroll-lock",
       "@nuxtjs/axios",
       "@nuxtjs/auth-next"
