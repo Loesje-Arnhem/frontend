@@ -21,11 +21,13 @@ import target from './config/target'
 
 const config: NuxtConfig = {
   apollo,
+  // @ts-ignore
   auth,
   build,
   buildModules,
   components,
   css,
+  // @ts-ignore
   generate,
   head,
   i18n,

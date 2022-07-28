@@ -2,7 +2,7 @@
   <app-loader v-if="loading" />
   <div v-else-if="poster">
     <center-wrapper>
-      <poster-details :poster="poster" :loading="loading" />
+      <poster-details :poster="poster" />
     </center-wrapper>
     <!-- <related-products-section :related-products="poster.relatedProducts" /> -->
     <posters-overview-section
@@ -25,6 +25,7 @@ import {
 import useFetch from '~/composables/useFetch'
 import { IPoster } from '~/interfaces/IPoster'
 import PosterQuery from '~/graphql/Posters/Poster'
+import useMeta from '~/composables/useMeta'
 
 export default defineComponent({
   setup() {
@@ -44,6 +45,7 @@ export default defineComponent({
     })
 
     const poster: Ref<IPoster | null> = computed(() => result.value?.poster)
+    useMeta(poster)
 
     const subjects = computed(() => {
       if (!poster.value) {

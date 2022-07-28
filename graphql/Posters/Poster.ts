@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client/core'
+import seo from '../Fragments/Seo'
 import posterBase from './Fragments/PosterBase'
 import posterRelatedProducts from './Fragments/PosterRelatedProducts'
 import relatedPosters from './Fragments/RelatedPosters'
@@ -44,9 +45,9 @@ const posterDetails = gql`
         }
       }
     }
-    # seo {
-    #   ...seo
-    # }
+    seo {
+      ...seo
+    }
     relatedPosters(first: ${PAGE_SIZE_POSTERS}) {
       pageInfo {
         hasNextPage
@@ -61,6 +62,7 @@ const posterDetails = gql`
   ${posterRelatedProducts}
   ${subjectDetails}
   ${sourceDetails}
+  ${seo}
 `
 
 export default gql`

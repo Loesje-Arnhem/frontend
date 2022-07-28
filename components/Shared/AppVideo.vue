@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, computed, ref } from '@nuxtjs/composition-api'
 
 export default defineComponent({

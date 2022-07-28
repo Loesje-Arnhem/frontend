@@ -6,8 +6,9 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, computed } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
+import { ErrorObject } from '@vuelidate/core'
 
 export default defineComponent({
   props: {
@@ -20,7 +21,7 @@ export default defineComponent({
       required: true,
     },
     errors: {
-      type: Array,
+      type: Array as PropType<ErrorObject[]>,
       default: () => [],
     },
   },
