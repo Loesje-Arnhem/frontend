@@ -15,6 +15,7 @@ import {
   onMounted,
   onUnmounted,
   defineComponent,
+  Ref,
 } from '@nuxtjs/composition-api'
 import useCarousel from '~/composables/carousel'
 
@@ -27,7 +28,7 @@ export default defineComponent({
   },
   setup(props) {
     const { activeSlide, goToSlideNumber, shouldAnimate } = useCarousel()
-    const item = ref(null)
+    const item: Ref<HTMLLIElement | null> = ref(null)
     const threshold = 0.7
     let observer: IntersectionObserver | null = null
 
