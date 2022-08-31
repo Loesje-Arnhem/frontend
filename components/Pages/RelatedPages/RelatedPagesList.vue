@@ -1,12 +1,14 @@
 <template>
-  <ul v-if="pages.length" :class="$style.list">
-    <related-pages-list-item
-      v-for="page in pages"
-      :key="page.node.id"
-      :page="page.node"
-      :class="$style['list-item']"
-    />
-  </ul>
+  <center-wrapper>
+    <ul v-if="pages.length" :class="$style.list">
+      <related-pages-list-item
+        v-for="page in pages"
+        :key="page.node.id"
+        :page="page.node"
+        :class="$style['list-item']"
+      />
+    </ul>
+  </center-wrapper>
 </template>
 
 <script lang="ts">
@@ -27,7 +29,6 @@ export default defineComponent({
 .list {
   @mixin block;
   @mixin list-reset;
-  @mixin center var(--container-width-lg);
 
   display: grid;
   grid-gap: 1rem;

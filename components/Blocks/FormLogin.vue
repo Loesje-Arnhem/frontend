@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <center-wrapper>
     <app-form
       class="form"
       button-title="inloggen"
@@ -27,7 +27,7 @@
         />
       </form-fieldset>
     </app-form>
-  </div>
+  </center-wrapper>
 </template>
 
 <script lang="ts">
@@ -107,9 +107,5 @@ export default defineComponent({
   & >>> .fields {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-.wrapper {
-  @mixin center;
 }
 </style>

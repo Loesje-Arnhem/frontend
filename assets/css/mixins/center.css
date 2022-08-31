@@ -1,8 +1,0 @@
-@define-mixin center $size: var(--container-width-xlg) {
-  max-width: $size;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-}
