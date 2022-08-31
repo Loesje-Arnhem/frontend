@@ -8,6 +8,7 @@ import product from './../Products/Fragments/ProductListItem'
 import { TOTAL_PAGES } from './../../data/generate'
 import postListItem from './../Posts/Fragments/PostListItem'
 import { PAGE_SIZE_POSTERS, PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
+import seo from './../Fragments/Seo'
 
 export default gql`
   query PageByByUri($uri: ID!) {
@@ -31,6 +32,9 @@ export const GetPageHome = gql`
   query GetPageHome {
     page(id: ${homePageId}, idType: DATABASE_ID) {
       ...pageContent
+      seo {
+      ...seo
+    }
     }
     posts(first: ${PAGE_SIZE_POSTS_HOME}) {
       edges {
@@ -42,6 +46,7 @@ export const GetPageHome = gql`
   }
   ${pageContent}
   ${postListItem}
+  ${seo}
 `
 
 export const GetPageShop = gql`

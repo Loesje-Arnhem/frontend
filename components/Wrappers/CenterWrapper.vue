@@ -45,7 +45,10 @@ export default defineComponent({
 }
 
 .wrapper {
+  /* stylelint-disable-next-line length-zero-no-unit */
+  --zero: 0px;
+
   padding-inline: var(--gutter);
-  margin-inline: max(0px, ((100% - var(--wrapper-width)) / 2));
+  margin-inline: max(var(--zero), ((100% - var(--wrapper-width)) / 2));
 }
 </style>
