@@ -15,16 +15,12 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  Ref,
-  useMeta,
-} from '@nuxtjs/composition-api'
+import { computed, defineComponent, Ref } from '@nuxtjs/composition-api'
 import { GetPageHome } from '~/graphql/Pages/Pages'
 import useFetch from '~/composables/useFetch'
 import { IPage } from '~/interfaces/IPage'
 import { IPostsBase } from '~/interfaces/IPost'
+import useMeta from '~/composables/useMeta'
 
 export default defineComponent({
   setup() {
@@ -36,7 +32,7 @@ export default defineComponent({
     const page: Ref<IPage | null> = computed(() => result.value?.page)
     const posts: Ref<IPostsBase | null> = computed(() => result.value?.posts)
 
-    useMeta(() => ({ title: page.value?.title }))
+    useMeta(page)
 
     return {
       loading,

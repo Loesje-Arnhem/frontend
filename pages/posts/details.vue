@@ -49,7 +49,6 @@ export default defineComponent({
     })
 
     const post: Ref<IPost | null> = computed(() => result.value?.post)
-
     useMeta(post)
 
     return {

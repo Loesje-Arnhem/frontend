@@ -1,7 +1,8 @@
-import { computed, ref, useMeta, Ref } from '@nuxtjs/composition-api'
+import { computed, ref, Ref } from '@nuxtjs/composition-api'
 import useFetch from '~/composables/useFetch'
 import { GetPageById } from '~/graphql/Pages/Pages'
 import { IPage } from '~/interfaces/IPage'
+import useMeta from '~/composables/useMeta'
 
 export const usePageById = (id: number) => {
   const pageKey = ref(id.toString())
@@ -17,7 +18,7 @@ export const usePageById = (id: number) => {
 
   const page: Ref<IPage | null> = computed(() => result.value?.page)
 
-  useMeta(() => ({ title: page.value?.title }))
+  useMeta(page)
 
   return {
     loading,
