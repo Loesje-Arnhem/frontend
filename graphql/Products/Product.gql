@@ -67,7 +67,7 @@ query GetProduct($slug: ID!) {
       }
     }
     seo {
-      ...seo
+      ...seo2
     }
   }
 }
