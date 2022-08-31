@@ -32,22 +32,20 @@ export default defineComponent({
   }
 }
 
-.wrapper {
-  width: 100%;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-  margin: 0 auto;
-}
-
-.wrapper-xlg {
-  max-width: var(--container-width-xlg);
+.wrapper-md {
+  --wrapper-width: var(--container-width-md);
 }
 
 .wrapper-lg {
-  max-width: var(--container-width-lg);
+  --wrapper-width: var(--container-width-lg);
 }
 
-.wrapper-md {
-  max-width: var(--container-width-md);
+.wrapper-xlg {
+  --wrapper-width: var(--container-width-xlg);
+}
+
+.wrapper {
+  padding-inline: var(--gutter);
+  margin-inline: max(0em, ((100% - var(--wrapper-width)) / 2));
 }
 </style>

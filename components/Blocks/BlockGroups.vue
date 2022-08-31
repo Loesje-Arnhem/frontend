@@ -1,32 +1,34 @@
 <template>
   <div class="groups">
-    <div class="center">
-      <div class="wrapper">
-        <div class="image-wrapper">
-          <nuxt-picture
-            src="/images/nederland.png"
-            width="565"
-            height="600"
-            class="mood"
-            preset="base"
-            format="avif"
-            alt=""
-            loading="lazy"
-            sizes="sm:100vw md:80vw lg:565 xl:800"
-          />
-        </div>
-        <div class="text">
-          <h1>Hier ben ik actief</h1>
-          <p>
-            Op verschillende plaatsen in Nederland zijn Loesje-groepen actief.
-            Een Loesje groep bestaat uit een bonte verzameling mensen die
-            regelmatig bijeen komen om te schrijven of te plakken. Ook jij kan
-            je aanmelden voor zo’n groep.
-          </p>
-          <app-button to="/doe-mee/lokale-groepen">Schrijf mee</app-button>
+    <center-wrapper size="md">
+      <div class="center">
+        <div class="wrapper">
+          <div class="image-wrapper">
+            <nuxt-picture
+              src="/images/nederland.png"
+              width="565"
+              height="600"
+              class="mood"
+              preset="base"
+              format="avif"
+              alt=""
+              loading="lazy"
+              sizes="sm:100vw md:80vw lg:565 xl:800"
+            />
+          </div>
+          <div class="text">
+            <h1>Hier ben ik actief</h1>
+            <p>
+              Op verschillende plaatsen in Nederland zijn Loesje-groepen actief.
+              Een Loesje groep bestaat uit een bonte verzameling mensen die
+              regelmatig bijeen komen om te schrijven of te plakken. Ook jij kan
+              je aanmelden voor zo’n groep.
+            </p>
+            <app-button to="/doe-mee/lokale-groepen">Schrijf mee</app-button>
+          </div>
         </div>
       </div>
-    </div>
+    </center-wrapper>
   </div>
 </template>
 
@@ -36,12 +38,7 @@
   @mixin clearfix;
 }
 
-.center {
-  @mixin center;
-}
-
 .wrapper {
-  max-width: var(--container-width-md);
   display: flex;
   flex-direction: column;
 

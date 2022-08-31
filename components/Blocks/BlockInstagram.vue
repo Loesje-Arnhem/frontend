@@ -1,6 +1,6 @@
 <template>
   <div class="instagram">
-    <div class="wrapper">
+    <center-wrapper class="wrapper">
       <ul class="list">
         <li v-for="n in 3" :key="n" :class="`list-item-${n}`" class="list-item">
           <a
@@ -27,7 +27,7 @@
           >Volg Loesje op Instagram
         </app-button>
       </div>
-    </div>
+    </center-wrapper>
   </div>
 </template>
 
@@ -39,8 +39,6 @@
 }
 
 .wrapper {
-  @mixin center;
-
   position: relative;
 }
 
@@ -66,8 +64,6 @@
   bottom: 0;
   left: 0;
   text-align: right;
-
-  @mixin center;
 }
 
 .list-item {

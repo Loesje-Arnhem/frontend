@@ -11,6 +11,8 @@ import { useContext } from '@nuxtjs/composition-api'
 export default () => {
   // Create your i18n message instance. Used for vue-i18n@9
   const { i18n } = useContext()
+
+  // @ts-ignore
   const withI18nMessage = createI18nMessage({ t: i18n.t.bind(i18n) })
 
   // wrap each validator.

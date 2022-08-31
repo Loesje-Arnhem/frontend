@@ -5,7 +5,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { computed, defineComponent, ref } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     text: {
       type: String,
@@ -16,25 +18,25 @@ export default {
       default: 'warning',
     },
   },
-  data() {
-    return {
-      show: true,
-    }
-  },
-  computed: {
-    icon() {
-      if (this.type === 'success') {
+  setup(props) {
+    const show = ref(true)
+
+    const icon = computed(() => {
+      if (props.type === 'success') {
         return 'check'
       }
       return 'warning'
-    },
+    })
+    const close = () => {
+      show.value = false
+    }
+    return {
+      show,
+      icon,
+      close,
+    }
   },
-  methods: {
-    close() {
-      this.show = false
-    },
-  },
-}
+})
 </script>
 
 <style scoped lang="postcss">

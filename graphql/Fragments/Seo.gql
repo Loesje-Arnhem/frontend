@@ -1,4 +1,4 @@
-fragment seo on PostTypeSEO {
+fragment seo2 on PostTypeSEO {
   canonical
   cornerstone
   metaDesc
