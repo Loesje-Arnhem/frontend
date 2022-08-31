@@ -46,6 +46,6 @@ export default defineComponent({
 
 .wrapper {
   padding-inline: var(--gutter);
-  margin-inline: max(0em, ((100% - var(--wrapper-width)) / 2));
+  margin-inline: max(0px, ((100% - var(--wrapper-width)) / 2));
 }
 </style>
