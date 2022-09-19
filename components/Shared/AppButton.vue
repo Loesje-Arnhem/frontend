@@ -88,7 +88,7 @@ export default defineComponent({
   text-align: center;
   display: inline-block;
   text-decoration: none;
-  padding: 0.5em 2em;
+  padding: 0.75em 2em;
   max-width: 20em;
   position: relative;
 

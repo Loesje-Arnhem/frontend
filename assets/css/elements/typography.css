@@ -60,7 +60,6 @@ h3,
 legend {
   @mixin heading;
 
-  line-height: var(--line-height-headings);
   font-weight: var(--font-weight-bold);
 }
 

@@ -8,9 +8,9 @@
         crossorigin
       />
     </div>
-    <h3 :class="$style.title">
+    <div :class="$style.title">
       <nuxt-link :class="$style.link" :to="url" v-html="product.name" />
-    </h3>
+    </div>
     <product-prices :product="product" :class="$style.price" />
   </clickable-list-item>
 </template>
@@ -76,15 +76,9 @@ export default defineComponent({
 }
 
 .title {
-  font-family: var(--font-family-base);
-  margin: 0;
-  font-size: 1em;
-  text-transform: none;
+  @mixin heading;
 
-  @media (--viewport-xs) {
-    font-family: var(--font-family-headings);
-    text-transform: uppercase;
-    font-size: var(--font-size-l);
-  }
+  font-size: 1em;
+  font-size: var(--font-size-l);
 }
 </style>
