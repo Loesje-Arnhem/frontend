@@ -1,5 +1,6 @@
 <template>
   <clickable-list-item
+    v-if="page.uri"
     :url="page.uri"
     :class="$style['related-page']"
     class="box"
