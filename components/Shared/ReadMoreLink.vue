@@ -1,7 +1,13 @@
 <template>
   <nuxt-link :to="to" class="read-more" aria-hidden="true">
     {{ $t('readMore') }}
-    <app-icon icon="chevron-right" class="icon" width="16" height="16" />
+    <app-icon
+      icon="chevron-right"
+      class="icon"
+      width="16"
+      height="16"
+      tabindex="-1"
+    />
   </nuxt-link>
 </template>
 

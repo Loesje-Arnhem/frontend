@@ -8,6 +8,7 @@
           height="27"
           preset="base"
           format="avif"
+          alt=""
           src="/images/check.png"
           sizes="xs:27px sm:54px"
         />
@@ -16,6 +17,7 @@
     </ul>
     <app-button to="/doe-mee/sympathisant">{{ $t('btn') }}</app-button>
     <nuxt-picture
+      alt=""
       :class="$style.image"
       width="167"
       height="144"
