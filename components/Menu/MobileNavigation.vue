@@ -10,7 +10,7 @@
           class="logo"
           height="50"
           width="87"
-          :title="title"
+          :title="`${title} home`"
         />
       </nuxt-link>
       <main-navigation-toggle @toggle-menu="openMobileMenu" />
