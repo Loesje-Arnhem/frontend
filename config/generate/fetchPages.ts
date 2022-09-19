@@ -25,9 +25,11 @@ export default async (client: ApolloClient<NormalizedCacheObject>) => {
       })
       await pauseFetching(`pages ${after}`)
 
+      const pagesWithURI = newPages.filter((page: any) => page.route !== null)
+
       after = data.pages.pageInfo.endCursor
       hasNextPage = data.pages.pageInfo.hasNextPage
-      pages = pages.concat(newPages)
+      pages = pages.concat(pagesWithURI)
     } catch (error) {
       console.error(error)
     }
