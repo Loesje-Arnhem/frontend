@@ -7,8 +7,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
-import { ErrorObject } from '@vuelidate/core'
+import {
+  defineComponent,
+  computed,
+  PropType,
+  Ref,
+} from '@nuxtjs/composition-api'
+// import { ErrorObject } from '@vuelidate/core'
+
+interface ErrorObject {
+  readonly $propertyPath: string
+  readonly $property: string
+  readonly $validator: string
+  readonly $message: string | Ref<string>
+  readonly $params: object
+  readonly $pending: boolean
+  readonly $response: any
+  readonly $uid: string
+}
 
 export default defineComponent({
   props: {
