@@ -23,9 +23,13 @@ export const GetPageById = gql`
   query GetPageById($id: ID!) {
     page(id: $id, idType: DATABASE_ID) {
       ...pageContent
+      seo {
+        ...seo
+      }
     }
   }
   ${pageContent}
+  ${seo}
 `
 
 export const GetPageHome = gql`
@@ -33,8 +37,8 @@ export const GetPageHome = gql`
     page(id: ${homePageId}, idType: DATABASE_ID) {
       ...pageContent
       seo {
-      ...seo
-    }
+        ...seo
+      }
     }
     posts(first: ${PAGE_SIZE_POSTS_HOME}) {
       edges {
