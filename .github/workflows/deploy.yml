@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' # we tell Github to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
     steps:
-      - uses: actions/checkout@v2
       - name: Deploying to Server
         uses: appleboy/ssh-action@master # An action made to control Linux servers
         with: # We set all our secrets here for the action, these won't be shown in the action logs
@@ -31,10 +30,3 @@ jobs:
             ## pm2 reload all # we reload the app via PM2
             npm run generate
             rsync -a --delete ./dist/ ./public_html/
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v9
-        with:
-          urls: |
-            https://test.loesje.nl
-          uploadArtifacts: true # save results as an action artifacts
-          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
