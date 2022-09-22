@@ -30,6 +30,7 @@ export default async (client: ApolloClient<NormalizedCacheObject>) => {
       posters = posters.concat(newPosters)
     } catch (error) {
       console.error(error)
+      hasNextPage = false
     }
   }
   return posters
