@@ -182,4 +182,34 @@ export default [
     media:
       '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)',
   },
+  {
+    rel: 'apple-touch-startup-image',
+    href: '/icons/apple-splash-1290-2796.jpg',
+    hid: 'apple-splash-1290-2796',
+    media:
+      '(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)',
+  },
+  {
+    rel: 'apple-touch-startup-image',
+    href: '/icons/apple-splash-2796-1290.jpg',
+    hid: 'apple-splash-2796-1290',
+    media:
+      '(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)',
+  },
+
+  {
+    rel: 'apple-touch-startup-image',
+    href: '/icons/apple-splash-1179-2556.jpg',
+    hid: 'apple-splash-1179-2556',
+    media:
+      '(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)',
+  },
+
+  {
+    rel: 'apple-touch-startup-image',
+    href: '/icons/apple-splash-2556-1179.jpg',
+    hid: 'apple-splash-2556-1179',
+    media:
+      '(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)',
+  },
 ]
