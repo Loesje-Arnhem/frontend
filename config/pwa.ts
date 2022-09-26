@@ -18,7 +18,7 @@ export default {
     name: title,
     orientation: 'portrait-primary',
     description:
-      'Ook zo benieuwd wat Loesje allemaal al heeft gezegd? Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken op een onderwerp dat jou aanspreekt. Privacy? De liefde? De winter? Of nog een ander onderwerp? Het kan allemaal in deze app. Alle uitspraken van Loesje zijn hier te vinden.',
+      'Ook zo benieuwd wat Loesje allemaal al heeft gezegd? Met deze app kan je lekker door al haar posters heen kuieren.',
     short_name: title,
     icons: [
       {
