@@ -4,7 +4,7 @@ const setBodyClass = () => {
   document.documentElement.classList.add('standalone')
 }
 
-export default ({ route, app, redirect }: Context) => {
+export default ({ route }: Context) => {
   if (route.query.standalone === 'true') {
     setBodyClass()
   }
@@ -15,15 +15,15 @@ export default ({ route, app, redirect }: Context) => {
         if (event.matches) {
           setBodyClass()
 
-          const postersPath = app.localePath({ name: 'posters' })
-          if (route.matched[0].path !== postersPath) {
-            return redirect({
-              path: postersPath,
-              query: {
-                standalone: 'true',
-              },
-            })
-          }
+          // const postersPath = app.localePath({ name: 'posters' })
+          // if (route.matched[0].path !== postersPath) {
+          //   return redirect({
+          //     path: postersPath,
+          //     query: {
+          //       standalone: 'true',
+          //     },
+          //   })
+          // }
         }
       },
       { once: true },
