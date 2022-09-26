@@ -25,5 +25,5 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 # generate icons
 
 ```
-pwa-asset-generator  static/icons/logo.svg static/icons
+npx pwa-asset-generator static/icons/logo.svg static/icons
 ```
