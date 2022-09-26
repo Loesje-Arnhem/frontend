@@ -1,30 +1,20 @@
 import { Context } from '@nuxt/types'
 
-const setBodyClass = () => {
-  document.documentElement.classList.add('standalone')
+const setBodyClass = (isStandalone: boolean) => {
+  if (isStandalone) {
+    document.documentElement.classList.add('standalone')
+  } else {
+    document.documentElement.classList.remove('standalone')
+  }
 }
 
 export default ({ route }: Context) => {
-  if (route.query.standalone === 'true') {
-    setBodyClass()
-  }
+  setBodyClass(route.query.standalone === 'true')
   window.addEventListener('DOMContentLoaded', () => {
     window.matchMedia('(display-mode: standalone)').addEventListener(
       'change',
       (event) => {
-        if (event.matches) {
-          setBodyClass()
-
-          // const postersPath = app.localePath({ name: 'posters' })
-          // if (route.matched[0].path !== postersPath) {
-          //   return redirect({
-          //     path: postersPath,
-          //     query: {
-          //       standalone: 'true',
-          //     },
-          //   })
-          // }
-        }
+        setBodyClass(event.matches)
       },
       { once: true },
     )
