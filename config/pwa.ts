@@ -59,7 +59,7 @@ export default {
     ],
     screenshots: [
       {
-        src: 'screenshots/screenshot-1-wide.png',
+        src: '/screenshots/screenshot-1-wide.png',
         sizes: '1280x800',
         type: 'image/png',
         platform: 'wide',
@@ -67,14 +67,14 @@ export default {
           'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
       },
       {
-        src: 'screenshots/screenshot-2-wide.png',
+        src: '/screenshots/screenshot-2-wide.png',
         sizes: '1280x800',
         type: 'image/png',
         platform: 'wide',
         label: 'Alle uitspraken van Loesje zijn hier te vinden.',
       },
       {
-        src: 'screenshots/screenshot-1-narrow.png',
+        src: '/screenshots/screenshot-1-narrow.png',
         sizes: '750x1334',
         type: 'image/png',
         platform: 'narrow',
@@ -82,7 +82,7 @@ export default {
           'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
       },
       {
-        src: 'screenshots/screenshot-1-narrow.png',
+        src: '/screenshots/screenshot-1-narrow.png',
         sizes: '750x1334',
         type: 'image/png',
         platform: 'narrow',
