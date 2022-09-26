@@ -1,7 +1,7 @@
 <template>
   <section v-if="relatedPosters" aria-labelledby="posters-overview-title">
     <center-wrapper>
-      <h1 id="posters-overview-title">
+      <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
           {{ title }}
         </template>
