@@ -93,7 +93,7 @@ export default {
     protocol_handlers: [
       {
         protocol: 'web+loesje',
-        url: '/posters/%s',
+        url: './%s?standalone=true',
       },
     ],
   },
