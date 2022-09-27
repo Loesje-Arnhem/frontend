@@ -6,6 +6,7 @@ const FAVORITES_KEY = 'favorites'
 const favorites = ref([] as number[])
 
 export default () => {
+  // const { $axios } = useContext()
   const add = (posterId: number) => {
     favorites.value.unshift(posterId)
     updateStorage()
@@ -24,7 +25,7 @@ export default () => {
     window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites.value))
     fetch(SHARED_DATA_ENDPOINT, {
       method: 'POST',
-      body: JSON.stringify({ token: 'sampletoken' }),
+      body: JSON.stringify({ FAVORITES_KEY: favorites.value }),
     }).then(() => {
       console.log('saved to cache')
     })
@@ -40,6 +41,7 @@ export default () => {
       return
     }
     favorites.value = JSON.parse(storedFavorites)
+
     fetch(SHARED_DATA_ENDPOINT)
       .then((response) => response.json())
       .then((data) => {
