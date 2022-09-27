@@ -40,12 +40,10 @@ export default () => {
     if (!storedFavorites) {
       return
     }
-    favorites.value = JSON.parse(storedFavorites)
-
     fetch(SHARED_DATA_ENDPOINT)
       .then((response) => response.json())
       .then((data) => {
-        console.log('Got', data, 'from cache')
+        favorites.value = JSON.parse(data)
       })
   }
 
