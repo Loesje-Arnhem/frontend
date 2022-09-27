@@ -25,7 +25,7 @@ export default () => {
     window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites.value))
     fetch(SHARED_DATA_ENDPOINT, {
       method: 'POST',
-      body: JSON.stringify({ FAVORITES_KEY: favorites.value }),
+      body: JSON.stringify({ favorites: favorites.value }),
     }).then(() => {
       console.log('saved to cache')
     })
@@ -43,8 +43,10 @@ export default () => {
     fetch(SHARED_DATA_ENDPOINT)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
-        // favorites.value = JSON.parse(data)[FAVORITES_KEY]
+        const parsedData = JSON.parse(data)
+        if (parsedData.favorites) {
+          favorites.value = parsedData.favorites
+        }
       })
   }
 
