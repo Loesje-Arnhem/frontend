@@ -108,7 +108,7 @@ export default {
     viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
   },
   workbox: {
-    importScripts: ['/badge.js', '/favorites.js'],
+    importScripts: ['/badge.js'],
 
     runtimeCaching: [
       {
