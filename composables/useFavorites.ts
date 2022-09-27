@@ -43,7 +43,8 @@ export default () => {
     fetch(SHARED_DATA_ENDPOINT)
       .then((response) => response.json())
       .then((data) => {
-        favorites.value = JSON.parse(data)[FAVORITES_KEY]
+        console.log(data)
+        // favorites.value = JSON.parse(data)[FAVORITES_KEY]
       })
   }
 
