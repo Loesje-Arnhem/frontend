@@ -90,12 +90,12 @@ export default {
       },
     ],
 
-    // protocol_handlers: [
-    //   {
-    //     protocol: 'web+loesje',
-    //     url: './posters/%s',
-    //   },
-    // ],
+    protocol_handlers: [
+      {
+        protocol: 'web+loesje',
+        url: './posters/%s',
+      },
+    ],
   },
   icon: false,
   meta: {
