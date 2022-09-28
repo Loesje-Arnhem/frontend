@@ -22,11 +22,6 @@ export default {
       href: apiUrl,
     },
     {
-      hid: 'manifest',
-      rel: 'manifest',
-      href: '/manifest.json',
-    },
-    {
       hid: 'favicon:svg',
       rel: 'icon',
       href: '/favicon.svg',
