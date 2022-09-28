@@ -1,12 +1,9 @@
 import { ref } from '@nuxtjs/composition-api'
-// our fake endpoint to store data
-const SHARED_DATA_ENDPOINT = '/token'
 
 const FAVORITES_KEY = 'favorites'
 const favorites = ref([] as number[])
 
 export default () => {
-  // const { $axios } = useContext()
   const add = (posterId: number) => {
     favorites.value.unshift(posterId)
     updateStorage()
@@ -23,12 +20,6 @@ export default () => {
     }
 
     window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites.value))
-    fetch(SHARED_DATA_ENDPOINT, {
-      method: 'POST',
-      body: JSON.stringify({ favorites: favorites.value }),
-    }).then(() => {
-      console.log('saved to cache')
-    })
   }
 
   const getFromStorage = () => {
@@ -40,13 +31,7 @@ export default () => {
     if (!storedFavorites) {
       return
     }
-    fetch(SHARED_DATA_ENDPOINT)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.favorites) {
-          favorites.value = data.favorites
-        }
-      })
+    favorites.value = JSON.parse(storedFavorites)
   }
 
   return {
