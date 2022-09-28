@@ -1,3 +1,4 @@
+import { url } from '@vuelidate/validators'
 import {
   title,
   categories,
@@ -89,7 +90,12 @@ export default {
         label: 'Alle uitspraken van Loesje zijn hier te vinden.',
       },
     ],
-
+    related_applications: [
+      {
+        platform: 'webapp',
+        url: baseUrl,
+      },
+    ],
     protocol_handlers: [
       {
         protocol: 'web+loesje',
