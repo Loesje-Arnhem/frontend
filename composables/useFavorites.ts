@@ -43,9 +43,8 @@ export default () => {
     fetch(SHARED_DATA_ENDPOINT)
       .then((response) => response.json())
       .then((data) => {
-        const parsedData = data
-        if (parsedData.favorites) {
-          favorites.value = parsedData.favorites
+        if (data.favorites) {
+          favorites.value = data.favorites
         }
       })
   }

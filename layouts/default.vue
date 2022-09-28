@@ -5,7 +5,6 @@
     <the-header class="page-header sa-hidden" />
     <main id="content" class="main" tabindex="-1">
       <nuxt />
-      <button @click="getFromStorage()">getFromStorage</button>
     </main>
 
     <the-footer class="page-footer sa-hidden" />
@@ -13,16 +12,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted } from '@nuxtjs/composition-api'
 import useFavorites from '~/composables/useFavorites'
 
 export default defineComponent({
   setup() {
     const { getFromStorage } = useFavorites()
-    // onMounted(() => getFromStorage())
-    return {
-      getFromStorage,
-    }
+    onMounted(() => getFromStorage())
   },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
