@@ -1,5 +1,7 @@
 <template>
-  <div v-if="showWindowControlsOverlay" class="wrapper">test</div>
+  <div v-if="showWindowControlsOverlay" class="wrapper">
+    <app-icon icon="logo" class="logo" height="50" width="87" />
+  </div>
 </template>
 
 <script>
@@ -54,7 +56,12 @@ export default defineComponent({
 
   position: fixed;
   app-region: drag;
-  inset: env(titlebar-area-y, 0) env(titlebar-area-x, 0) auto;
-  height: env(titlebar-area-height, 33px);
+  inset: env(titlebar-area-y, 0) 0 auto;
+  height: 3em;
+  padding: 0.75em env(titlebar-area-x, 0);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
