@@ -4,6 +4,10 @@
     <window-controls-overlay />
     <header-top class="page-header-top sa-hidden" />
     <the-header class="page-header sa-hidden" />
+
+    <app-button @click="clickToUpdate"
+      >clickToUpdate {{ hasUpdate }}</app-button
+    >
     <main id="content" class="main" tabindex="-1">
       <nuxt />
     </main>
@@ -13,13 +17,42 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
 import useFavorites from '~/composables/useFavorites'
 
 export default defineComponent({
   setup() {
     const { getFromStorage } = useFavorites()
-    onMounted(() => getFromStorage())
+
+    const hasUpdate = ref(false)
+
+    const clickToUpdate = () => {
+      hasUpdate.value = false
+      window.location.reload()
+    }
+
+    onMounted(async () => {
+      getFromStorage()
+
+      if (!process.client) {
+        // @ts-ignore
+        const workbox = await window.$workbox
+        if (workbox) {
+          // @ts-ignore
+          workbox.addEventListener('installed', (event) => {
+            // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
+            if (event.isUpdate) {
+              // whatever logic you want to use to notify the user that they need to refresh the page.
+              hasUpdate.value = false
+            }
+          })
+        }
+      }
+    })
+    return {
+      hasUpdate,
+      clickToUpdate,
+    }
   },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
