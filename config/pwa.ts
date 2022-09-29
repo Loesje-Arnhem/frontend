@@ -46,7 +46,7 @@ export default {
         purpose: 'maskable',
       },
     ],
-    // display_override: ['window-controls-overlay'],
+    display_override: ['window-controls-overlay'],
     start_url: `${baseUrl}/posters?standalone=true`,
     id: `${baseUrl}/posters?standalone=true`,
     shortcuts: [
