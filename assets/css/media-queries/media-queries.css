@@ -8,4 +8,4 @@
 @custom-media --portrait (orientation: portrait);
 @custom-media --landscape (orientation: landscape);
 @custom-media --show-full-navigation (width >= 768px);
-@custom-media --stand-alone (display-mode: standalone);
+@custom-media --stand-alone (display-mode: standalone), (display-mode: window-controls-overlay);

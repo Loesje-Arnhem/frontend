@@ -25,8 +25,11 @@ export default (context: Context) => {
     setBodyClass()
     redirectToPostersPageOnStandalone(context)
   }
+
+  const mediaQuery =
+    '(display-mode: standalone), (display-mode: window-controls-overlay)'
   window.addEventListener('DOMContentLoaded', () => {
-    window.matchMedia('(display-mode: standalone)').addEventListener(
+    window.matchMedia(mediaQuery).addEventListener(
       'change',
       (event) => {
         if (event.matches) {
