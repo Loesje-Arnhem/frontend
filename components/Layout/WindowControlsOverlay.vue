@@ -1,6 +1,9 @@
 <template>
-  <div v-if="showWindowControlsOverlay" class="wrapper">
-    <app-icon icon="logo" class="logo" height="50" width="87" />
+  <div v-if="showWindowControlsOverlay">
+    <div class="wrapper">
+      <app-icon icon="logo" class="logo" height="50" width="87" />
+    </div>
+    <div class="placeholder"></div>
   </div>
 </template>
 
@@ -50,6 +53,11 @@ export default defineComponent({
 </script>
 
 <style scoped lang="postcss">
+.wrapper,
+.placeholder {
+  height: 3em;
+}
+
 .wrapper {
   /* Make sure the `div` stays there, even when scrolling. */
   @mixin color-negative;
@@ -57,11 +65,15 @@ export default defineComponent({
   position: fixed;
   app-region: drag;
   inset: env(titlebar-area-y, 0) 0 auto;
-  height: 3em;
-  padding: 0.75em env(titlebar-area-x, 0);
+  padding: 0.5em env(titlebar-area-x, 0);
   z-index: 9;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.logo {
+  display: block;
+  height: 100%;
 }
 </style>
