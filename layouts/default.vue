@@ -5,7 +5,7 @@
     <header-top class="page-header-top sa-hidden" />
     <the-header class="page-header sa-hidden" />
 
-    <app-button @click="clickToUpdate"
+    <app-button v-if="hasUpdate" @click="clickToUpdate"
       >clickToUpdate {{ hasUpdate }}</app-button
     >
     <main id="content" class="main" tabindex="-1">
