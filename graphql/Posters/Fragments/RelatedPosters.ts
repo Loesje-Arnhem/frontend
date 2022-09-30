@@ -12,8 +12,10 @@ export default gql`
         featuredImage {
           node {
             id
-            medium: sourceUrl(size: MEDIUM)
-            large: sourceUrl(size: LARGE)
+            # medium: sourceUrl(size: MEDIUM)
+            # large: sourceUrl(size: LARGE)
+            medium: sourceUrl(size: THUMBNAIL)
+            large: sourceUrl(size: THUMBNAIL)
           }
         }
       }

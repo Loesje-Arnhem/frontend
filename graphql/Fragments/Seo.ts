@@ -8,7 +8,8 @@ export default gql`
     opengraphAuthor
     opengraphDescription
     opengraphImage {
-      archive: sourceUrl(size: MEDIUM)
+      archive: sourceUrl(size: THUMBNAIL)
+      # archive: sourceUrl(size: MEDIUM)
     }
     opengraphModifiedTime
     opengraphPublishedTime
@@ -19,7 +20,8 @@ export default gql`
     title
     twitterDescription
     twitterImage {
-      archive: sourceUrl(size: MEDIUM)
+      archive: sourceUrl(size: THUMBNAIL)
+      # archive: sourceUrl(size: MEDIUM)
     }
     twitterTitle
     schema {

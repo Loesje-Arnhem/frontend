@@ -19,7 +19,9 @@ const posterDetails = gql`
       node {
         id
         srcSet
-        large: sourceUrl(size: MEDIUM_LARGE)
+        # large: sourceUrl(size: MEDIUM_LARGE)
+        large: sourceUrl(size: THUMBNAIL)
+
       }
     }
     relatedProducts: relatedProductsGroup {
