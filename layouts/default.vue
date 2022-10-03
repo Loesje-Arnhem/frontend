@@ -5,6 +5,9 @@
     <header-top class="page-header-top sa-hidden" />
     <the-header class="page-header sa-hidden" />
 
+    <app-button v-if="hasUpdate" @click="clickToUpdate"
+      >clickToUpdate {{ hasUpdate }}</app-button
+    >
     <main id="content" class="main" tabindex="-1">
       <nuxt />
     </main>
@@ -21,36 +24,36 @@ export default defineComponent({
   setup() {
     const { getFromStorage } = useFavorites()
 
-    // const hasUpdate = ref(false)
+    const hasUpdate = ref(false)
 
-    // const clickToUpdate = () => {
-    //   hasUpdate.value = false
-    //   window.location.reload()
-    // }
+    const clickToUpdate = () => {
+      hasUpdate.value = false
+      window.location.reload()
+    }
 
     onMounted(() => {
       getFromStorage()
 
-      // if (!process.client) {
-      //   return
-      // }
-      // // @ts-ignore
-      // const workbox = await window.$workbox
-      // if (workbox) {
-      //   // @ts-ignore
-      //   workbox.addEventListener('installed', (event) => {
-      //     // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
-      //     if (event.isUpdate) {
-      //       // whatever logic you want to use to notify the user that they need to refresh the page.
-      //       hasUpdate.value = true
-      //     }
-      //   })
-      // }
+      if (!process.client) {
+        return
+      }
+      // @ts-ignore
+      const workbox = await window.$workbox
+      if (workbox) {
+        // @ts-ignore
+        workbox.addEventListener('installed', (event) => {
+          // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
+          if (event.isUpdate) {
+            // whatever logic you want to use to notify the user that they need to refresh the page.
+            hasUpdate.value = true
+          }
+        })
+      }
     })
-    // return {
-    //   hasUpdate,
-    //   clickToUpdate,
-    // }
+    return {
+      hasUpdate,
+      clickToUpdate,
+    }
   },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
