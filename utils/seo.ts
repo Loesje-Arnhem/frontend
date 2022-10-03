@@ -16,7 +16,7 @@ const getMetaDescripion = (seo: ISEO, key: keyof ISEO) => {
   } else if (seo.metaDesc) {
     return seo.metaDesc
   }
-  return null
+  return seo.title
 }
 
 const getMetaImage = (seo: ISEO, key: keyof ISEO) => {
