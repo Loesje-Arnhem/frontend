@@ -20,14 +20,7 @@ button {
   }
 }
 
+.btn-link,
 a {
-  color: currentcolor;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-decoration-style: solid;
-  text-underline-offset: 0.25em;
-
-  &:hover {
-    text-decoration-thickness: 3px;
-  }
+  @mixin btn-link;
 }

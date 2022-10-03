@@ -5,58 +5,28 @@
     <header-top class="page-header-top sa-hidden" />
     <the-header class="page-header sa-hidden" />
 
-    <div>
-      hasUpdate={{ hasUpdate }}ss
-      <app-button v-if="hasUpdate" @click="clickToUpdate"
-        >clickToUpdate
-      </app-button>
-    </div>
     <main id="content" class="main" tabindex="-1">
       <nuxt />
     </main>
 
     <the-footer class="page-footer sa-hidden" />
+    <pwa-update />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted } from '@nuxtjs/composition-api'
+import PwaUpdate from '~/components/Shared/PwaUpdate.vue'
 import useFavorites from '~/composables/useFavorites'
 
 export default defineComponent({
+  components: { PwaUpdate },
   setup() {
     const { getFromStorage } = useFavorites()
 
-    const hasUpdate = ref(false)
-
-    const clickToUpdate = () => {
-      hasUpdate.value = false
-      window.location.reload()
-    }
-
-    onMounted(async () => {
+    onMounted(() => {
       getFromStorage()
-
-      if (!process.client) {
-        return
-      }
-      // @ts-ignore
-      const workbox = await window.$workbox
-      if (workbox) {
-        // @ts-ignore
-        workbox.addEventListener('installed', (event) => {
-          // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
-          if (event.isUpdate) {
-            // whatever logic you want to use to notify the user that they need to refresh the page.
-            hasUpdate.value = true
-          }
-        })
-      }
     })
-    return {
-      hasUpdate,
-      clickToUpdate,
-    }
   },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
