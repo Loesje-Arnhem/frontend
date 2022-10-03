@@ -6,7 +6,7 @@
     <the-header class="page-header sa-hidden" />
 
     <div>
-      hasUpdate={{ hasUpdate }}
+      hasUpdate={{ hasUpdate }}ss
       <app-button v-if="hasUpdate" @click="clickToUpdate"
         >clickToUpdate
       </app-button>
