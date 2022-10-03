@@ -20,8 +20,11 @@ const posterDetails = gql`
         id
         srcSet
         # large: sourceUrl(size: MEDIUM_LARGE)
-        large: sourceUrl(size: THUMBNAIL)
-
+        mediaItemUrl
+        mediaDetails  {
+          width
+          height
+        }
       }
     }
     relatedProducts: relatedProductsGroup {

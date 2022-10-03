@@ -2,6 +2,11 @@ import { IRelatedProducts } from './IRelatedProducts'
 import { ITaxanomies } from './ITaxonomy'
 import { IBaseContent, INodeWithUri, IPageInfo } from '~/interfaces/INode'
 
+export interface IMediaDetails {
+  width: number
+  height: number
+}
+
 export interface IRelatedPosterFeaturedImage {
   node: {
     id: string
@@ -13,8 +18,8 @@ export interface IRelatedPosterFeaturedImage {
 export interface IPosterDetailFeaturedImage {
   node: {
     id: string
-    large: string
-    srcSet: string
+    mediaItemUrl: string
+    mediaDetails: IMediaDetails
   }
 }
 

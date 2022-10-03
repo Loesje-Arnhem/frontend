@@ -5,16 +5,20 @@
 
       <div class="tile image-wrapper-details" :data-slug="poster.slug">
         <fade-animation>
-          <app-image
+          <nuxt-picture
             v-if="image"
             :key="poster.featuredImage.node.id"
             :alt="poster.title"
             :lazy="false"
             :src="image"
-            class="image"
+            preload
+            :width="poster.featuredImage.node.mediaDetails.width"
+            :height="poster.featuredImage.node.mediaDetails.height"
             crossorigin
-            :srcset="poster.featuredImage.node.srcSet"
-            sizes="(max-width: 768px) 100vw, (max-width: 1240px) 50vw, 620px"
+            sizes="md:100vw, xl:50vw, xxl:620px"
+            preset="base"
+            format="avif"
+            :img-attrs="{ class: 'image' }"
           />
         </fade-animation>
       </div>
@@ -74,8 +78,8 @@ export default defineComponent({
   },
   setup(props) {
     const image = computed(() => {
-      if (props.poster.featuredImage?.node.large) {
-        return props.poster.featuredImage?.node.large
+      if (props.poster.featuredImage?.node.mediaItemUrl) {
+        return props.poster.featuredImage?.node.mediaItemUrl
       }
       return null
     })

@@ -1,5 +1,5 @@
 export default {
-  domains: ['localhost'],
+  domains: ['localhost', 'https://www.loesje.nl'],
   presets: {
     base: {
       modifiers: {
