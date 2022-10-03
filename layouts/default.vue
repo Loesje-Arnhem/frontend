@@ -4,6 +4,7 @@
     <window-controls-overlay />
     <header-top class="page-header-top sa-hidden" />
     <the-header class="page-header sa-hidden" />
+    {{ event2 }}
 
     <div>
       hasUpdate={{ hasUpdate }}
@@ -29,6 +30,8 @@ export default defineComponent({
 
     const hasUpdate = ref(false)
 
+    const event2 = ref(null)
+
     const clickToUpdate = () => {
       hasUpdate.value = false
       window.location.reload()
@@ -45,6 +48,7 @@ export default defineComponent({
       if (workbox) {
         // @ts-ignore
         workbox.addEventListener('installed', (event) => {
+          event2.value = event
           // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
           if (event.isUpdate) {
             // whatever logic you want to use to notify the user that they need to refresh the page.
@@ -54,6 +58,7 @@ export default defineComponent({
       }
     })
     return {
+      event2,
       hasUpdate,
       clickToUpdate,
     }
