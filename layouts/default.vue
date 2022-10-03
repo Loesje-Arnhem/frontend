@@ -34,7 +34,7 @@ export default defineComponent({
       window.location.reload()
     }
 
-    onMounted(() => {
+    onMounted(async () => {
       getFromStorage()
 
       if (!process.client) {
