@@ -4,7 +4,8 @@ export default gql`
   fragment featuredImage on NodeWithFeaturedImageToMediaItemConnectionEdge {
     node {
       id
-      mediaItemUrl
+      srcSet
+      src: sourceUrl(size: LARGE)
       mediaDetails {
         width
         height

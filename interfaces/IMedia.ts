@@ -6,7 +6,8 @@ interface IMediaDetails {
 export interface IFeaturedImage {
   node: {
     id: string
-    mediaItemUrl: string
+    srcSet: string
+    src: string
     mediaDetails: IMediaDetails
   }
 }

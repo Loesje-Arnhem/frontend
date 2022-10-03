@@ -11,7 +11,7 @@
             :lazy="false"
             :alt="poster.title"
             :image="poster.featuredImage"
-            sizes="md:100vw, xl:50vw, xxl:620px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
           />
         </fade-animation>
       </div>
@@ -52,7 +52,12 @@
         </app-button>
       </div>
       <div class="social-media">
-        <share-this :title="poster.title" :link="poster.link" :image="image" />
+        <share-this
+          v-if="poster.featuredImage"
+          :title="poster.title"
+          :link="poster.link"
+          :image="poster.featuredImage.node.src"
+        />
       </div>
       <poster-tile
         v-if="poster.featuredImage"
@@ -64,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { IPoster } from '~/interfaces/IPoster'
 
 export default defineComponent({
@@ -73,17 +78,6 @@ export default defineComponent({
       type: Object as PropType<IPoster>,
       required: true,
     },
-  },
-  setup(props) {
-    const image = computed(() => {
-      if (props.poster.featuredImage?.node.mediaItemUrl) {
-        return props.poster.featuredImage?.node.mediaItemUrl
-      }
-      return null
-    })
-    return {
-      image,
-    }
   },
 })
 </script>

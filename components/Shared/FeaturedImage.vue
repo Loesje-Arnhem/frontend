@@ -1,11 +1,14 @@
 <template>
-  <app-image
+  <img
+    class="image"
     :alt="alt"
     :lazy="lazy"
-    :src="image.node.mediaItemUrl"
+    :srcset="image.node.srcSet"
+    :src="image.node.src"
     :sizes="sizes"
     :width="image.node.mediaDetails.width"
     :height="image.node.mediaDetails.height"
+    crossorigin
   />
 </template>
 
@@ -34,3 +37,10 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="postcss" scoped>
+.image {
+  display: block;
+  max-width: 100%;
+}
+</style>
