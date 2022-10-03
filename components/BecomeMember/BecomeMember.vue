@@ -2,13 +2,10 @@
   <box-wrapper id="become-member" :title="$t('title')">
     <ul :class="$style.list">
       <li v-for="usp in $t('usps')" :key="usp" :class="$style['list-item']">
-        <nuxt-picture
+        <app-image
           :class="$style['check']"
-          width="27"
-          height="27"
-          preset="base"
-          format="avif"
-          alt=""
+          :width="27"
+          :height="27"
           src="/images/check.png"
           sizes="xs:27px sm:54px"
         />
@@ -16,13 +13,10 @@
       </li>
     </ul>
     <app-button to="/doe-mee/sympathisant">{{ $t('btn') }}</app-button>
-    <nuxt-picture
-      alt=""
+    <app-image
       :class="$style.image"
-      width="167"
-      height="144"
-      preset="base"
-      format="avif"
+      :width="167"
+      :height="144"
       src="/images/megaphone.png"
       sizes="xs:167px sm:334px"
     />

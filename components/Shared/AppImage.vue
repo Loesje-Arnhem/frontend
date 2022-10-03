@@ -2,11 +2,11 @@
   <nuxt-picture
     :alt="alt"
     :loading="loading"
-    :src="image.node.mediaItemUrl"
+    :src="src"
     :preload="!lazy"
     :sizes="sizes"
-    :width="image.node.mediaDetails.width"
-    :height="image.node.mediaDetails.height"
+    :width="width"
+    :height="height"
     preset="base"
     class="image"
     format="avif"
@@ -14,13 +14,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IFeaturedImage } from '~/interfaces/IMedia'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   props: {
-    image: {
-      type: Object as PropType<IFeaturedImage>,
+    src: {
+      type: String,
+      required: true,
+    },
+    width: {
+      type: Number,
+      required: true,
+    },
+    height: {
+      type: Number,
       required: true,
     },
     lazy: {
@@ -54,6 +61,6 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .image >>> img {
   display: block;
-  width: 100%;
+  max-width: 100%;
 }
 </style>

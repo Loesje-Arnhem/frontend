@@ -3,27 +3,21 @@
     <center-wrapper size="lg">
       <div :class="$style.wrapper">
         <div :class="$style['image-wrapper']">
-          <nuxt-picture
+          <app-image
             :class="$style.mood"
             src="/images/arcarde.png"
-            width="500"
-            height="560"
-            alt=""
-            loading="lazy"
+            :width="500"
+            :height="560"
             sizes="sm:100vw lg:75vw xl:33v xl:500px xxl:1000px"
-            preset="base"
-            format="avif"
           />
 
           <button :class="$style['btn-action']" @click="action">
-            <nuxt-picture
+            <app-image
               src="/images/arcarde-button.png"
-              width="36"
-              height="34"
+              :width="36"
+              :height="34"
               alt="Play"
               sizes="xs:36 sm:72"
-              preset="base"
-              format="avif"
             />
           </button>
         </div>

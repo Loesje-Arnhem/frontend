@@ -4,15 +4,11 @@
       <div class="center">
         <div class="wrapper">
           <div class="image-wrapper">
-            <nuxt-picture
+            <app-image
               src="/images/nederland.png"
-              width="565"
-              height="600"
+              :width="565"
+              :height="600"
               class="mood"
-              preset="base"
-              format="avif"
-              alt=""
-              loading="lazy"
               sizes="sm:100vw md:80vw lg:565 xl:800"
             />
           </div>

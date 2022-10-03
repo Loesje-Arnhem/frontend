@@ -2,15 +2,12 @@
   <div class="wrapper">
     <img :src="image" alt="" class="image" crossorigin />
 
-    <nuxt-picture
+    <app-image
       src="/images/photoframe.png"
-      alt=""
-      preload
+      :lazy="false"
       class="frame"
-      width="355"
-      height="456"
-      preset="base"
-      format="avif"
+      :width="355"
+      :height="456"
       sizes="xs:100vw md:355px lg:710px"
     />
   </div>

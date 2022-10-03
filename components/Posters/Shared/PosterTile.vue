@@ -5,11 +5,11 @@
     :data-slug="poster.slug"
   >
     <router-link :to="poster.uri" class="link">
-      <app-image
+      <featured-image
         :lazy="true"
         :alt="poster.title"
         :image="poster.featuredImage"
-        sizes="xs:50vw, md:33vw, lg:25vw, xl:20vw, xxl: 250px"
+        :sizes="sizes"
       />
     </router-link>
   </div>
@@ -24,6 +24,10 @@ export default defineComponent({
     poster: {
       type: Object as PropType<IRelatedPoster>,
       default: () => {},
+    },
+    sizes: {
+      type: String,
+      default: 'sm:50vw md:33vw lg:25vw xl:250px',
     },
   },
 })

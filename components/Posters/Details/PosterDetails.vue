@@ -5,7 +5,7 @@
 
       <div class="tile image-wrapper-details" :data-slug="poster.slug">
         <fade-animation>
-          <app-image
+          <featured-image
             v-if="poster.featuredImage"
             :key="poster.featuredImage.node.id"
             :lazy="false"

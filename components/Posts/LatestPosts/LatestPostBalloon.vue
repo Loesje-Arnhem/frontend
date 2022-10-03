@@ -1,12 +1,9 @@
 <template>
   <div ref="balloon" class="balloon" :class="{ animate }">
-    <nuxt-picture
+    <app-image
       class="image"
-      alt=""
-      width="159"
-      height="243"
-      preset="base"
-      format="avif"
+      :width="159"
+      :height="243"
       src="/images/air-balloon.png"
       sizes="xs:159px sm:358px"
     />

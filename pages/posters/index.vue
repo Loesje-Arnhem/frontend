@@ -5,8 +5,10 @@
       <posters-auto-complete />
       <poster-tags-list :list="selectedTags" />
     </center-wrapper>
+    <app-loader v-if="loading" />
+
     <posters-overview-section
-      v-if="posters"
+      v-else-if="posters"
       :source-ids="selectedSourceIds"
       :subject-ids="selectedSubjectIds"
       :search="search"

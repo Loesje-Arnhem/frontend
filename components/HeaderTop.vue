@@ -16,15 +16,12 @@
             <daily-poster class="image" />
           </client-only>
         </div>
-        <nuxt-picture
+        <app-image
           src="/images/electriciteitskastje.png"
-          alt=""
-          preload
+          :lazy="false"
           class="background"
-          width="270"
-          height="362"
-          preset="base"
-          format="avif"
+          :width="270"
+          :height="362"
           sizes="xs:100vw md:270px lg:540px"
         />
       </div>

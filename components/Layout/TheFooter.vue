@@ -19,15 +19,11 @@
           />
         </div>
         <div :class="$style['mood-wrapper']">
-          <nuxt-picture
-            alt=""
-            width="210"
-            height="240"
+          <app-image
+            :width="210"
+            :height="240"
             :class="$style.mood"
-            loading="lazy"
             src="/images/casette-player.png"
-            preset="base"
-            format="avif"
             sizes="sm:50vw md:33vw lg:25vw xl:300 xxl:500"
           />
         </div>

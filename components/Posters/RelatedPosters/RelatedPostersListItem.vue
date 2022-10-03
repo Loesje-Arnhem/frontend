@@ -1,6 +1,9 @@
 <template>
   <li class="list-item" :style="{ transform }">
-    <poster-tile :poster="poster" />
+    <poster-tile
+      :poster="poster"
+      sizes="xs:50vw sm:33vw md:25vw lg:20vw xl:200px"
+    />
   </li>
 </template>
 
