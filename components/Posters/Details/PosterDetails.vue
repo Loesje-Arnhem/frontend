@@ -54,6 +54,11 @@
       <div class="social-media">
         <share-this :title="poster.title" :link="poster.link" :image="image" />
       </div>
+      <poster-tile
+        v-if="poster.featuredImage"
+        :poster="poster"
+        class="thumbs"
+      />
     </div>
   </div>
 </template>
@@ -144,5 +149,9 @@ export default defineComponent({
 .icon {
   width: 1em;
   height: 1em;
+}
+
+.thumbs {
+  display: none;
 }
 </style>
