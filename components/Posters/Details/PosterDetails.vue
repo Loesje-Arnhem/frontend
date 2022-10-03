@@ -59,11 +59,6 @@
           :image="poster.featuredImage.node.src"
         />
       </div>
-      <poster-tile
-        v-if="poster.featuredImage"
-        :poster="poster"
-        class="thumbs"
-      />
     </div>
   </div>
 </template>
@@ -143,9 +138,5 @@ export default defineComponent({
 .icon {
   width: 1em;
   height: 1em;
-}
-
-.thumbs {
-  display: none;
 }
 </style>

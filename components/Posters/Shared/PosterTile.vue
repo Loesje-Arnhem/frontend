@@ -27,7 +27,8 @@ export default defineComponent({
     },
     sizes: {
       type: String,
-      default: 'sm:50vw md:33vw lg:25vw xl:250px',
+      default:
+        '(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 250px',
     },
   },
 })

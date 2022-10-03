@@ -2,7 +2,7 @@
   <li class="list-item" :style="{ transform }">
     <poster-tile
       :poster="poster"
-      sizes="xs:50vw sm:33vw md:25vw lg:20vw xl:200px"
+      sizes="(max-width: 480px) 50vw, (max-width: 640px) 33vw, (max-width: 768px) 25vw, (max-width: 1024px) 20vw, 200px"
     />
   </li>
 </template>
