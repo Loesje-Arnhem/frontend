@@ -5,9 +5,12 @@
     <header-top class="page-header-top sa-hidden" />
     <the-header class="page-header sa-hidden" />
 
-    <app-button v-if="hasUpdate" @click="clickToUpdate"
-      >clickToUpdate {{ hasUpdate }}</app-button
-    >
+    <div>
+      {{ hasUpdate }}
+      <app-button v-if="hasUpdate" @click="clickToUpdate"
+        >clickToUpdate
+      </app-button>
+    </div>
     <main id="content" class="main" tabindex="-1">
       <nuxt />
     </main>
