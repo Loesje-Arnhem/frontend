@@ -1,8 +1,10 @@
 import { gql } from '@apollo/client/core'
 import seo from '../Fragments/Seo'
+import featuredImage from '../Media/Fragments/FeaturedImage'
 import posterBase from './Fragments/PosterBase'
 import posterRelatedProducts from './Fragments/PosterRelatedProducts'
 import relatedPosters from './Fragments/RelatedPosters'
+import posters from './Fragments/Posters'
 import sourceDetails from './Fragments/SourceDetails'
 import subjectDetails from './Fragments/SubjectDetails'
 import { PAGE_SIZE_POSTERS } from './../../data/pageSizes'
@@ -16,16 +18,7 @@ const posterDetails = gql`
     uri
     link
     featuredImage {
-      node {
-        id
-        srcSet
-        # large: sourceUrl(size: MEDIUM_LARGE)
-        mediaItemUrl
-        mediaDetails  {
-          width
-          height
-        }
-      }
+      ...featuredImage
     }
     relatedProducts: relatedProductsGroup {
       ...posterRelatedProducts
@@ -61,7 +54,7 @@ const posterDetails = gql`
       ...relatedPosters
     }
   }
-
+  ${featuredImage}
   ${posterBase}
   ${relatedPosters}
   ${posterRelatedProducts}
@@ -77,6 +70,29 @@ export default gql`
     }
   }
   ${posterDetails}
+`
+
+export const GetPosters = gql`
+  query Posters(
+    $first: Int
+    $after: String
+    $where: RootQueryToPosterConnectionWhereArgs
+  ) {
+    posters(first: $first, after: $after, where: $where) {
+      pageInfo {
+        hasNextPage
+        endCursor
+        hasPreviousPage
+        startCursor
+      }
+      edges {
+        node {
+          ...posters
+        }
+      }
+    }
+  }
+  ${posters}
 `
 
 export const GetAllPosters = gql`

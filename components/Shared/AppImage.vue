@@ -1,53 +1,59 @@
 <template>
-  <img :loading="loading" alt="" :src="src" :width="width" :height="height" />
+  <nuxt-picture
+    :alt="alt"
+    :loading="loading"
+    :src="image.node.mediaItemUrl"
+    :preload="!lazy"
+    :sizes="sizes"
+    :width="image.node.mediaDetails.width"
+    :height="image.node.mediaDetails.height"
+    preset="base"
+    class="image"
+    format="avif"
+  />
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IFeaturedImage } from '~/interfaces/IMedia'
 
 export default defineComponent({
   props: {
-    src: {
-      type: String,
+    image: {
+      type: Object as PropType<IFeaturedImage>,
       required: true,
     },
     lazy: {
       type: Boolean,
       default: true,
     },
+    sizes: {
+      type: String,
+      required: true,
+    },
+    alt: {
+      type: String,
+      default: '',
+    },
   },
-  computed: {
-    width() {
-      if (this.hasSizeInSrc) {
-        return this.getSizeFromUrl()[0]
-      }
-      return null
-    },
-    height() {
-      if (this.hasSizeInSrc) {
-        return this.getSizeFromUrl()[1]
-      }
-      return null
-    },
-    loading() {
-      if (this.hasSizeInSrc && this.lazy) {
+  setup(props) {
+    const loading = computed(() => {
+      if (props.lazy) {
         return 'lazy'
       }
       return null
-    },
-    hasSizeInSrc() {
-      return this.getSizeFromUrl().length > 1
-    },
-  },
-  methods: {
-    getSizeFromUrl() {
-      const regex = /(\d{1,4})x(\d{1,4})/g
-      const sizes = this.src.match(regex)
-      if (sizes) {
-        return sizes[0].split('x')
-      }
-      return []
-    },
+    })
+
+    return {
+      loading,
+    }
   },
 })
 </script>
+
+<style lang="postcss" scoped>
+.image >>> img {
+  display: block;
+  width: 100%;
+}
+</style>

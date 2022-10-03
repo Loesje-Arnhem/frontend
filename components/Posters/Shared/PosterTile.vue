@@ -5,14 +5,11 @@
     :data-slug="poster.slug"
   >
     <router-link :to="poster.uri" class="link">
-      <img
+      <app-image
+        :lazy="true"
         :alt="poster.title"
-        :src="poster.featuredImage.node.medium"
-        :srcset="`${poster.featuredImage.node.large} 2x`"
-        class="poster"
-        width="200"
-        height="500"
-        crossorigin
+        :image="poster.featuredImage"
+        sizes="xs:50vw, md:33vw, lg:25vw, xl:20vw, xxl: 250px"
       />
     </router-link>
   </div>
@@ -33,11 +30,6 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.poster {
-  display: block;
-  width: 100%;
-}
-
 .link {
   width: 100%;
   display: block;

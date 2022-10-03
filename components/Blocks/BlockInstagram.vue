@@ -9,7 +9,7 @@
             target="_blank"
             href="https://www.instagram.com/p/B1jl8k5A75L/"
           >
-            <app-image
+            <img
               :src="`/images/instagram/${n}.jpg`"
               :class="`image image-${n}`"
               class="mood"
@@ -17,7 +17,7 @@
           </a>
         </li>
       </ul>
-      <app-image src="/images/backgrounds/instagram.png" class="background" />
+      <img src="/images/backgrounds/instagram.png" class="background" />
       <div class="button-wrapper">
         <app-button
           button-tag="a"

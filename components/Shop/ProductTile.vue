@@ -1,7 +1,7 @@
 <template>
   <clickable-list-item :url="url" :class="$style['product-tile']" class="tile">
     <div :class="$style['image-wrapper']">
-      <app-image
+      <img
         v-if="product.image"
         :src="product.image.medium"
         :class="$style.image"

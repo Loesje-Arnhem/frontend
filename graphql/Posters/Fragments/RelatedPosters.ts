@@ -1,24 +1,13 @@
 import { gql } from '@apollo/client/core'
+import posters from './Posters'
 
 export default gql`
   fragment relatedPosters on ContentNodeToPosterConnection {
     edges {
       node {
-        id
-        databaseId
-        title
-        uri
-        slug
-        featuredImage {
-          node {
-            id
-            # medium: sourceUrl(size: MEDIUM)
-            # large: sourceUrl(size: LARGE)
-            medium: sourceUrl(size: THUMBNAIL)
-            large: sourceUrl(size: THUMBNAIL)
-          }
-        }
+        ...posters
       }
     }
   }
+  ${posters}
 `

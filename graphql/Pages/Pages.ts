@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client/core'
 import subjectDetails from '../Posters/Fragments/SubjectDetails'
 import sourceDetails from '../Posters/Fragments/SourceDetails'
+import posters from '../Posters/Fragments/Posters'
 import pageDetails from './Fragments/PageDetails'
 import pageContent from './Fragments/PageContent'
 import { postsPageId, homePageId, shopPageId } from './../../data/pages'
@@ -60,7 +61,7 @@ export const GetPageShop = gql`
     }
     products(where: {featured: true}, first: 99) {
       edges {
-        node { 
+        node {
           ...product
         }
       }
@@ -75,13 +76,13 @@ export const GetPagePosts = gql`
     page(id: ${postsPageId}, idType: DATABASE_ID) {
       ...pageContent
     }
- 
+
 
    posts(first: 20) {
       pageInfo {
         endCursor
        hasNextPage
-    }      
+    }
       edges {
         node {
           ...postListItem
@@ -100,21 +101,10 @@ export const GetPagePosters = gql`
       pageInfo {
         endCursor
          hasNextPage
-      }      
+      }
       edges {
         node {
-          id
-          databaseId
-          title
-          uri
-          slug
-          featuredImage {
-            node {
-              id
-              medium: sourceUrl(size: MEDIUM)
-              large: sourceUrl(size: LARGE)
-            }
-          }
+          ...posters
         }
       }
     }
@@ -131,8 +121,9 @@ export const GetPagePosters = gql`
           ...subjectDetails
         }
       }
-    }    
+    }
   }
+  ${posters}
   ${subjectDetails},
   ${sourceDetails}
 `
@@ -150,7 +141,7 @@ export const GetAllPages = gql`
           uri
         }
       }
-      
+
     }
   }
   ${pageDetails}

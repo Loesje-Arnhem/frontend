@@ -10,7 +10,7 @@
         :key="image.id"
         :index="index"
       >
-        <app-image
+        <img
           :src="image.medium"
           :alt="image.altText"
           :class="$style.image"
@@ -20,7 +20,7 @@
       </carousel-card>
     </app-carousel>
     <div v-else-if="images[0]" class="tile">
-      <app-image
+      <img
         :src="images[0].mediumLarge"
         :alt="images[0].altText"
         :class="$style.image"

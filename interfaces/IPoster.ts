@@ -1,30 +1,10 @@
 import { IRelatedProducts } from './IRelatedProducts'
 import { ITaxanomies } from './ITaxonomy'
+import { IFeaturedImage } from './IMedia'
 import { IBaseContent, INodeWithUri, IPageInfo } from '~/interfaces/INode'
 
-export interface IMediaDetails {
-  width: number
-  height: number
-}
-
-export interface IRelatedPosterFeaturedImage {
-  node: {
-    id: string
-    medium: string
-    large: string
-  }
-}
-
-export interface IPosterDetailFeaturedImage {
-  node: {
-    id: string
-    mediaItemUrl: string
-    mediaDetails: IMediaDetails
-  }
-}
-
 export interface IRelatedPoster extends INodeWithUri {
-  featuredImage: IRelatedPosterFeaturedImage | null
+  featuredImage: IFeaturedImage | null
   slug: string
 }
 
@@ -48,7 +28,7 @@ export interface IPoster extends IBaseContent {
   slug: string
   date: string
   link: string
-  featuredImage: IPosterDetailFeaturedImage | null
+  featuredImage: IFeaturedImage | null
   relatedPosters: IRelatedPoster
   relatedProducts: IRelatedProducts
   sources: ITaxanomies

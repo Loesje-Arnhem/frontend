@@ -5,20 +5,13 @@
 
       <div class="tile image-wrapper-details" :data-slug="poster.slug">
         <fade-animation>
-          <nuxt-picture
-            v-if="image"
+          <app-image
+            v-if="poster.featuredImage"
             :key="poster.featuredImage.node.id"
-            :alt="poster.title"
             :lazy="false"
-            :src="image"
-            preload
-            :width="poster.featuredImage.node.mediaDetails.width"
-            :height="poster.featuredImage.node.mediaDetails.height"
-            crossorigin
+            :alt="poster.title"
+            :image="poster.featuredImage"
             sizes="md:100vw, xl:50vw, xxl:620px"
-            preset="base"
-            format="avif"
-            :img-attrs="{ class: 'image' }"
           />
         </fade-animation>
       </div>
@@ -103,11 +96,6 @@ export default defineComponent({
   @media print {
     grid-template-columns: 1fr;
   }
-}
-
-.image {
-  width: 100%;
-  display: block;
 }
 
 .content {

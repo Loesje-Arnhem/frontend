@@ -8,7 +8,7 @@
         :class="[$style.thumb, { [$style.active]: index === activeSlide }]"
         @click="goToSlideNumber(index)"
       >
-        <app-image
+        <img
           :src="image.thumbnail"
           :alt="image.altText"
           :class="[$style.image, { [$style.active]: index === activeSlide }]"
