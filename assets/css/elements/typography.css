@@ -60,6 +60,7 @@ h3,
 legend {
   @mixin heading;
 
+  hyphens: auto;
   font-weight: var(--font-weight-bold);
 }
 

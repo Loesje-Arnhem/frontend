@@ -2,6 +2,7 @@
   <clickable-list-item :url="url" :class="$style['product-tile']" class="tile">
     <div :class="$style['image-wrapper']">
       <featured-image
+        v-if="product.featuredImage"
         :image="product.featuredImage"
         :class="$style.image"
         sizes="(max-width: 375px) 50vw, (max-width: 720px) 33vw, (max-width: 1024px) 25vw, 200px"

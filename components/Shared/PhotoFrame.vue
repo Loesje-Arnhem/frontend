@@ -4,7 +4,7 @@
       :lazy="false"
       :image="image"
       class="featured-image"
-      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 600px, 450px"
+      sizes="(max-width: 320px) 80vw, 280px"
     />
 
     <app-image
@@ -13,7 +13,7 @@
       class="frame"
       :width="355"
       :height="456"
-      sizes="sm:80vw lg:600px xxl:450px"
+      sizes="xs:80vw sm:335px"
     />
   </div>
 </template>
@@ -35,7 +35,8 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .photo-wrapper {
   position: relative;
-  max-width: var(--container-width-sm);
+  max-width: 20em;
+  width: 100%;
   margin: 0 auto 4em;
   transform: rotate(2deg);
 }
@@ -46,11 +47,10 @@ export default defineComponent({
 
 .featured-image {
   position: absolute;
-  display: block;
-  top: 12%;
-  left: 11%;
-  width: 71%;
-  aspect-ratio: 355 / 456;
+  top: 11%;
+  left: 17%;
+  width: 68%;
+  aspect-ratio: 24 / 36;
   object-fit: cover;
 }
 </style>

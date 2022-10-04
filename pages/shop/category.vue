@@ -49,11 +49,15 @@ export default defineComponent({
 
       // @ts-ignore
       return productCategory.value.products.edges.map((product) => {
+        let featuredImage = null
+        if (product.featuredImage) {
+          featuredImage = {
+            node: product.featuredImage,
+          }
+        }
         return {
           ...product.node,
-          featuredImage: {
-            node: product.featuredImage,
-          },
+          featuredImage,
         }
       })
     })
