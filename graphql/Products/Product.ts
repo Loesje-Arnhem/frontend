@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client/core'
+import featuredImage, { mediaItem } from '../Media/Fragments/FeaturedImage'
 
 export default gql`
   query GetProduct($slug: ID!) {
@@ -6,19 +7,15 @@ export default gql`
       id
       databaseId
       name
-      image {
-        id
-        altText
-        thumbnail: sourceUrl(size: THUMBNAIL)
-        medium: sourceUrl(size: MEDIUM)
-        mediumLarge: sourceUrl(size: MEDIUM_LARGE)
-      }
       ... on SimpleProduct {
         id
         regularPrice
         price
         salePrice
         stockStatus
+        featuredImage {
+          ...featuredImage
+        }
       }
       ... on VariableProduct {
         id
@@ -26,6 +23,9 @@ export default gql`
         price
         salePrice
         stockStatus
+        featuredImage {
+          ...featuredImage
+        }
       }
 
       shortDescription
@@ -52,12 +52,10 @@ export default gql`
         }
       }
       galleryImages {
-        nodes {
-          id
-          altText
-          thumbnail: sourceUrl(size: THUMBNAIL)
-          medium: sourceUrl(size: MEDIUM)
-          mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+        edges {
+          node {
+            ...mediaItem
+          }
         }
       }
       related {
@@ -69,4 +67,6 @@ export default gql`
       }
     }
   }
+  ${featuredImage}
+  ${mediaItem}
 `

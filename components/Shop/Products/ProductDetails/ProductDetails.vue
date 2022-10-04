@@ -26,13 +26,14 @@ export default {
   },
   computed: {
     gallery() {
-      if (this.product.image) {
-        if (this.product.galleryImages.nodes.length) {
-          return [this.product.image, ...this.product.galleryImages.nodes]
-        }
-        return [this.product.image]
+      const images = []
+      if (this.product.featuredImage) {
+        images.push(this.product.featuredImage)
       }
-      return []
+      if (this.product.galleryImages.edges.length) {
+        return [...images, ...this.product.galleryImages.edges]
+      }
+      return images
     },
   },
 }

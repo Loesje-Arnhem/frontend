@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.gallery">
+  <div class="gallery">
     <app-carousel
       v-if="images.length > 1"
       :total-pages="images.length"
@@ -10,47 +10,41 @@
         :key="image.id"
         :index="index"
       >
-        <img
-          :src="image.medium"
-          :alt="image.altText"
-          :class="$style.image"
+        <featured-image
+          :image="image"
+          class="image"
           :lazy="index > 0"
-          crossorigin
+          sizes="(max-width: 560px) 100vw, (max-width: 560px) 50vw, (max-width: 1024px) 33vw, 460px"
         />
       </carousel-card>
     </app-carousel>
     <div v-else-if="images[0]" class="tile">
-      <img
-        :src="images[0].mediumLarge"
-        :alt="images[0].altText"
-        :class="$style.image"
-        :lazy="false"
-        crossorigin
-      />
+      <featured-image :image="images[0]" class="image" :lazy="false" />
     </div>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IFeaturedImage } from '~/interfaces/IMedia'
+
+export default defineComponent({
   props: {
     images: {
-      type: Array,
+      type: Array as PropType<IFeaturedImage[]>,
       required: true,
     },
   },
-}
+})
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .main-image {
   margin-bottom: 0.5em;
 }
 
-.image {
-  width: 100%;
+.image >>> img {
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 </style>

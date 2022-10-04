@@ -1,19 +1,18 @@
 <template>
-  <ul :class="$style.thumbs">
+  <ul class="thumbs">
     <template v-for="(image, index) in thumbs">
       <li
-        v-if="image.thumbnail"
-        :key="`thumb-${image.id}`"
+        v-if="image"
+        :key="`thumb-${image.node.id}`"
         class="tile"
-        :class="[$style.thumb, { [$style.active]: index === activeSlide }]"
         @click="goToSlideNumber(index)"
       >
-        <img
-          :src="image.thumbnail"
+        <featured-image
+          :image="image"
+          sizes="(max-width: 375px) 25vw, 200px"
           :alt="image.altText"
-          :class="[$style.image, { [$style.active]: index === activeSlide }]"
-          :lazy="false"
-          crossorigin
+          class="image"
+          :class="{ active: index === activeSlide }"
         />
       </li>
     </template>
@@ -21,14 +20,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import useCarousel from '~/composables/carousel'
+import { IFeaturedImage } from '~/interfaces/IMedia'
 
 export default defineComponent({
   props: {
     thumbs: {
-      type: Array,
-      default: () => [],
+      type: Array as PropType<IFeaturedImage[]>,
+      required: true,
     },
   },
   setup() {
@@ -41,7 +41,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .thumbs {
   @mixin list-reset;
 
