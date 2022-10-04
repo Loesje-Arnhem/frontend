@@ -54,6 +54,8 @@ export default defineComponent({
   display: block;
   opacity: 0.5;
   transition: opacity var(--animation);
+  height: 100%;
+  object-fit: cover;
 
   &.active {
     opacity: 1;

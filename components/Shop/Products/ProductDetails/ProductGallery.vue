@@ -43,7 +43,7 @@ export default defineComponent({
   margin-bottom: 0.5em;
 }
 
-.image >>> img {
+.image {
   height: 100%;
   object-fit: cover;
 }
