@@ -21,22 +21,3 @@ export default (where = {}, size = 99) => {
     loading,
   }
 }
-
-export const useProduct = (slug: string) => {
-  const params = computed(() => slug)
-
-  const { result, loading } = useFetch({
-    query: ProductQuery,
-    variables: {
-      slug,
-    },
-    params,
-    pageKey: 'product',
-  })
-  const product = computed(() => result.value.product)
-
-  return {
-    product,
-    loading,
-  }
-}

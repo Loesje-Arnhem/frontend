@@ -1,4 +1,4 @@
-import { IRelatedProducts } from './IRelatedProducts'
+import { IRelatedProducts } from './IProduct'
 import { ITaxanomies } from './ITaxonomy'
 import { IFeaturedImage } from './IMedia'
 import { IBaseContent, INodeWithUri, IPageInfo } from '~/interfaces/INode'

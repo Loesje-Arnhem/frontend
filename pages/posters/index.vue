@@ -1,8 +1,8 @@
 <template>
   <div>
     <center-wrapper>
-      <poster-filters :sources="sources" :subjects="subjects" />
       <posters-auto-complete />
+      <poster-filters :sources="sources" :subjects="subjects" />
       <poster-tags-list :list="selectedTags" />
     </center-wrapper>
     <app-loader v-if="loading" />

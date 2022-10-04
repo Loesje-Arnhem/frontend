@@ -3,11 +3,21 @@ interface IMediaDetails {
   height: number
 }
 
+export interface IImage {
+  id: string
+  srcSet: string
+  src: string
+  mediaDetails: IMediaDetails
+}
+
 export interface IFeaturedImage {
-  node: {
-    id: string
-    srcSet: string
-    src: string
-    mediaDetails: IMediaDetails
-  }
+  node: IImage
+}
+
+export interface IVideo {
+  youtubeId: string | null
+}
+
+export interface IVideoGroup {
+  videoGroup: IVideo
 }

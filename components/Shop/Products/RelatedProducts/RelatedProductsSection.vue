@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
-import { IRelatedProducts } from '~/interfaces/IRelatedProducts'
+import { IRelatedProducts } from '~/interfaces/IProduct'
 
 export default defineComponent({
   props: {

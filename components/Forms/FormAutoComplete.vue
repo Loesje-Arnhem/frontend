@@ -146,7 +146,7 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 .form {
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 }
 
 .input-wrapper {

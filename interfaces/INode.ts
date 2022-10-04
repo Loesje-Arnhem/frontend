@@ -1,8 +1,7 @@
 import { ISEO } from './ISEO'
-import { IVideoGroup } from './IVideo'
+import { IVideoGroup, IFeaturedImage } from './IMedia'
 import { IRelatedPostersBase } from './IPoster'
-import { IRelatedProducts } from './IRelatedProducts'
-import { IFeaturedImage } from './IMedia'
+import { IRelatedProducts } from './IProduct'
 
 export interface INodeBase {
   id: string
