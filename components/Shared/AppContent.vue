@@ -9,7 +9,7 @@
         </div>
         <div class="media">
           <app-video v-if="video" :video="video" class="video" />
-          <photo-frame v-else-if="image" :image="image.node.image" />
+          <photo-frame v-else-if="image" :image="image" />
         </div>
       </article>
     </div>
@@ -17,7 +17,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@nuxtjs/composition-api'
+import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
+import { IFeaturedImage } from '~/interfaces/IMedia'
 
 export default defineComponent({
   props: {
@@ -26,7 +27,7 @@ export default defineComponent({
       required: true,
     },
     image: {
-      type: Object,
+      type: Object as PropType<IFeaturedImage>,
       default: () => {},
     },
     video: {

@@ -6,12 +6,14 @@ query Products($where: RootQueryToProductConnectionWhereArgs, $first: Int) {
         id
         databaseId
         name
-        image {
+        featuredImage {
           id
-          altText
-          thumbnail: sourceUrl(size: THUMBNAIL)
-          medium: sourceUrl(size: MEDIUM)
-          mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+          srcSet
+          src: sourceUrl(size: LARGE)
+          mediaDetails {
+            width
+            height
+          }
         }
         ... on SimpleProduct {
           regularPrice

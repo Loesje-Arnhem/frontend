@@ -8,6 +8,7 @@ import postRelatedProductsGroup from './PostRelatedProductsGroup'
 import relatedPosts from './RelatedPosts'
 import relatedPosters from './../../Posters/Fragments/RelatedPosters'
 import seo from './../../Fragments/Seo'
+import featuredImage from './../../Media/Fragments/FeaturedImage'
 
 export default gql`
   fragment postDetails on Post {
@@ -17,9 +18,7 @@ export default gql`
       youtubeId
     }
     featuredImage {
-      node {
-        image: sourceUrl(size: LARGE)
-      }
+      ...featuredImage
     }
     relatedProducts: relatedProductsGroup {
       ...postRelatedProductsGroup
@@ -39,4 +38,5 @@ export default gql`
   ${relatedPosts}
   ${relatedPosters}
   ${seo}
+  ${featuredImage}
 `

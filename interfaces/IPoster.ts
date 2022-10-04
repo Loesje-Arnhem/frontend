@@ -28,7 +28,6 @@ export interface IPoster extends IBaseContent {
   slug: string
   date: string
   link: string
-  featuredImage: IFeaturedImage | null
   relatedPosters: IRelatedPoster
   relatedProducts: IRelatedProducts
   sources: ITaxanomies

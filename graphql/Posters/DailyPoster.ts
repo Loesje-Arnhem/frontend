@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client/core'
+import FeaturedImage from '../Media/Fragments/FeaturedImage'
 
 export default gql`
   query DailyPoster($year: Int, $month: Int, $day: Int) {
@@ -10,13 +11,11 @@ export default gql`
         node {
           title
           featuredImage {
-            node {
-              id
-              medium: sourceUrl(size: MEDIUM)
-            }
+            ...featuredImage
           }
         }
       }
     }
   }
+  ${FeaturedImage}
 `

@@ -1,6 +1,11 @@
 <template>
-  <div class="wrapper">
-    <img :src="image" alt="" class="image" crossorigin />
+  <div class="photo-wrapper">
+    <featured-image
+      :lazy="false"
+      :image="image"
+      class="featured-image"
+      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 600px, 450px"
+    />
 
     <app-image
       src="/images/photoframe.png"
@@ -8,26 +13,27 @@
       class="frame"
       :width="355"
       :height="456"
-      sizes="xs:100vw md:355px lg:710px"
+      sizes="sm:80vw lg:600px xxl:450px"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IFeaturedImage } from '~/interfaces/IMedia'
 
 export default defineComponent({
   props: {
     image: {
-      type: String,
-      required: true,
+      type: Object as PropType<IFeaturedImage>,
+      default: () => {},
     },
   },
 })
 </script>
 
 <style lang="postcss" scoped>
-.wrapper {
+.photo-wrapper {
   position: relative;
   max-width: var(--container-width-sm);
   margin: 0 auto 4em;
@@ -36,18 +42,15 @@ export default defineComponent({
 
 .frame {
   position: relative;
-  pointer-events: none;
-  display: block;
-  width: 100%;
 }
 
-.image {
+.featured-image {
   position: absolute;
   display: block;
-  top: 10%;
-  left: 16%;
+  top: 12%;
+  left: 11%;
   width: 71%;
-  height: 80%;
+  aspect-ratio: 355 / 456;
   object-fit: cover;
 }
 </style>

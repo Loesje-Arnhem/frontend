@@ -1,15 +1,10 @@
+import { IFeaturedImage } from './IMedia'
 import { INodeBase } from './INode'
 
 export interface IRelatedProduct extends INodeBase {
   slug: string
   name: string
-  image: {
-    id: string
-    altText: string | null
-    thumbnail: string | null
-    medium: string | null
-    mediumLarge: string | null
-  }
+  featuredImage: IFeaturedImage | null
   regularPrice: string
   price: string
   salePrice: string

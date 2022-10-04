@@ -22,7 +22,7 @@
           class="background"
           :width="270"
           :height="362"
-          sizes="xs:100vw md:270px lg:540px"
+          sizes="xs:100vw md:270px"
         />
       </div>
     </div>

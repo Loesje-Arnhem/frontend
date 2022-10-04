@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client/core'
+import featuredImage from '../../Media/Fragments/FeaturedImage'
 
 export default gql`
   fragment product on SimpleProduct {
@@ -9,12 +10,9 @@ export default gql`
     regularPrice
     price
     salePrice
-    image {
-      id
-      altText
-      thumbnail: sourceUrl(size: THUMBNAIL)
-      medium: sourceUrl(size: MEDIUM)
-      mediumLarge: sourceUrl(size: MEDIUM_LARGE)
+    featuredImage {
+      ...featuredImage
     }
   }
+  ${featuredImage}
 `

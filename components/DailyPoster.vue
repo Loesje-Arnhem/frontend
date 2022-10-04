@@ -1,11 +1,9 @@
 <template>
-  <img
-    v-if="poster.image"
-    :src="poster.image"
+  <featured-image
+    v-if="poster.featuredImage"
+    :image="poster.featuredImage"
     :alt="poster.title"
-    width="188"
-    crossorigin
-    height="300"
+    sizes="(max-width: 375px) 100vw, 270px"
   />
 </template>
 
@@ -30,14 +28,14 @@ export default defineComponent({
     )
 
     const poster = reactive({
-      image: null,
+      featuredImage: null,
       title: null,
     })
 
     onResult((result: any) => {
       if (result.data.dailyPosters.edges.length > 0) {
         const { node } = result.data.dailyPosters.edges[0]
-        poster.image = node.featuredImage.node.medium
+        poster.featuredImage = node.featuredImage
         poster.title = node.title
       }
     })

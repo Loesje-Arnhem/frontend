@@ -2,6 +2,7 @@ import { ISEO } from './ISEO'
 import { IVideoGroup } from './IVideo'
 import { IRelatedPostersBase } from './IPoster'
 import { IRelatedProducts } from './IRelatedProducts'
+import { IFeaturedImage } from './IMedia'
 
 export interface INodeBase {
   id: string
@@ -25,6 +26,7 @@ export interface IRelatedContent extends INodeWithUri {
 }
 
 export interface IDetailsContent extends IBaseContent {
+  featuredImage: IFeaturedImage | null
   content: string
   videoGroup: IVideoGroup
   relatedPosters: IRelatedPostersBase
@@ -34,11 +36,4 @@ export interface IDetailsContent extends IBaseContent {
 export interface IPageInfo {
   endCursor: string
   hasNextPage: boolean
-}
-
-export interface IFeaturedImage {
-  node: {
-    id: string
-    medium: string
-  }
 }

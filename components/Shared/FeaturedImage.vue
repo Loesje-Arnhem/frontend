@@ -2,7 +2,7 @@
   <img
     class="image"
     :alt="alt"
-    :lazy="lazy"
+    :loading="lazy ? 'lazy' : null"
     :srcset="image.node.srcSet"
     :src="image.node.src"
     :sizes="sizes"

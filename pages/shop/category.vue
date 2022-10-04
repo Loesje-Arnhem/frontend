@@ -51,6 +51,9 @@ export default defineComponent({
       return productCategory.value.products.edges.map((product) => {
         return {
           ...product.node,
+          featuredImage: {
+            node: product.featuredImage,
+          },
         }
       })
     })

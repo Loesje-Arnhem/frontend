@@ -1,11 +1,10 @@
 <template>
   <clickable-list-item :url="url" :class="$style['product-tile']" class="tile">
     <div :class="$style['image-wrapper']">
-      <img
-        v-if="product.image"
-        :src="product.image.medium"
+      <featured-image
+        :image="product.featuredImage"
         :class="$style.image"
-        crossorigin
+        sizes="(max-width: 375px) 50vw, (max-width: 720px) 33vw, (max-width: 1024px) 25vw, 200px"
       />
     </div>
     <div :class="$style.title">
@@ -71,7 +70,6 @@ export default defineComponent({
 .image {
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
 }
 
