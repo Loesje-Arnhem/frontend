@@ -35,9 +35,6 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .photo-wrapper {
   position: relative;
-  max-width: 20em;
-  width: 100%;
-  margin: 0 auto 4em;
   transform: rotate(2deg);
 }
 

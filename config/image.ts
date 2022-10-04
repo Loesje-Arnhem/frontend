@@ -1,5 +1,5 @@
 export default {
-  domains: ['localhost', 'https://www.loesje.nl'],
+  domains: ['localhost', 'https://i3.ytimg.com'],
   presets: {
     base: {
       modifiers: {

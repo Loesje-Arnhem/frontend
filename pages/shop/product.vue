@@ -6,13 +6,26 @@
 </template>
 
 <script>
-import { defineComponent, useRoute } from '@nuxtjs/composition-api'
-import { useProduct } from '~/composables/useProduct'
+import { computed, defineComponent, useRoute } from '@nuxtjs/composition-api'
+import useFetch from '~/composables/useFetch'
+import ProductQuery from '~/graphql/Products/Product'
 
 export default defineComponent({
   setup() {
     const route = useRoute()
-    const { product, loading } = useProduct(route.value.params.slug)
+    const { slug } = route.value.params
+
+    const params = computed(() => slug)
+
+    const { result, loading } = useFetch({
+      query: ProductQuery,
+      variables: {
+        slug,
+      },
+      params,
+      pageKey: 'product',
+    })
+    const product = computed(() => result.value?.product)
 
     return {
       product,

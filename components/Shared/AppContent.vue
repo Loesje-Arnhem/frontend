@@ -1,6 +1,6 @@
 <template>
   <center-wrapper>
-    <div class="wrapper">
+    <div class="content-wrapper">
       <article :class="{ 'has-media': hasMedia }">
         <div class="content">
           <h1>{{ title }}</h1>
@@ -55,7 +55,7 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.wrapper {
+.content-wrapper {
   @mixin block;
 }
 
@@ -67,6 +67,7 @@ export default defineComponent({
 }
 
 .has-media {
+  align-items: start;
   display: grid;
   grid-gap: calc(var(--gutter) * 2);
 
@@ -80,6 +81,8 @@ export default defineComponent({
 }
 
 .media {
-  margin-top: 4em;
+  max-width: 20em;
+  width: 100%;
+  margin: 4em auto;
 }
 </style>

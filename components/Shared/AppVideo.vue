@@ -1,9 +1,9 @@
 <template>
-  <div :class="$style.wrapper">
-    <div :class="$style['video-wrapper']">
+  <div class="wrapper">
+    <div class="video-wrapper">
       <iframe
         v-if="start"
-        :class="$style.video"
+        class="video"
         title="Workshop creatief schrijven met Loesje"
         width="500"
         height="281"
@@ -12,22 +12,34 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       />
-      <img
+      <app-image
         v-else
         :src="videoThumb"
         alt=""
-        :class="$style.image"
+        class="image"
+        :width="480"
+        :height="360"
+        sizes="sm:100vw, 300px"
         @click="playVideo"
       />
     </div>
-    <button :class="$style['btn-video']" @click="playVideo">
-      <img
+    <button class="btn-video" @click="playVideo">
+      <app-image
         src="/images/btn-video.png"
         alt="Video afspelen"
-        :class="$style['icon-play']"
+        sizes="sm:53px"
+        class="icon-play"
+        :width="53"
+        :height="55"
       />
     </button>
-    <img src="/images/television.png" alt="" :class="$style.frame" />
+    <app-image
+      src="/images/television.png"
+      class="frame"
+      sizes="sm:100vw, 300px"
+      :width="300"
+      :height="320"
+    />
   </div>
 </template>
 
@@ -47,7 +59,7 @@ export default defineComponent({
       start.value = true
     }
     const videoThumb = computed(() => {
-      return `https://i3.ytimg.com/vi/${props.video}/mqdefault.jpg`
+      return `https://i3.ytimg.com/vi/${props.video}/hqdefault.jpg`
     })
     const videoUrl = computed(() => {
       return `https://www.youtube.com/embed/${props.video}?feature=oembed&autoplay=1&showinfo=0`
@@ -62,7 +74,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .image,
 .video {
   display: block;
@@ -78,15 +90,13 @@ export default defineComponent({
 
 .wrapper {
   position: relative;
-  max-width: var(--container-width-sm);
-  margin: 0 auto 4em;
   transform: rotate(2deg);
 }
 
 .video-wrapper {
-  top: 37%;
-  left: 4%;
-  right: 16%;
+  top: 24%;
+  left: 3%;
+  right: 15%;
   position: absolute;
   aspect-ratio: 4 / 3;
 }
@@ -97,11 +107,15 @@ export default defineComponent({
   display: block;
   width: 100%;
   height: auto;
+
+  & >>> img {
+    width: 100%;
+  }
 }
 
 .btn-video {
   position: absolute;
-  top: 50%;
+  top: 33%;
   width: 10%;
   left: 85%;
   z-index: 9;

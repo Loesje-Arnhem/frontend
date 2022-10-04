@@ -1,7 +1,7 @@
 <template>
   <center-wrapper size="md">
     <app-form
-      :class="$style.form"
+      class="form"
       :submitted="submitted"
       :loading="loading"
       :error="error"
@@ -60,7 +60,13 @@
           name="date"
         />
       </form-fieldset>
-      <img src="/images/workshops.png" alt="" :class="$style.image" />
+      <app-image
+        class="image"
+        src="/images/workshops.png"
+        :width="495"
+        :height="280"
+        sizes="md:495px"
+      />
     </app-form>
   </center-wrapper>
 </template>
@@ -75,10 +81,12 @@ import {
 } from '@nuxtjs/composition-api'
 import { useMutation } from '@vue/apollo-composable'
 import { v4 } from 'uuid'
+import AppImage from '../Shared/AppImage.vue'
 import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop'
 import useValidators from '~/composables/useValidators'
 
 export default defineComponent({
+  components: { AppImage },
   setup() {
     const submitted = ref(false)
     const { required, numeric, email } = useValidators()
@@ -149,7 +157,7 @@ export default defineComponent({
 })
 </script>
 
-<style module lang="postcss">
+<style scoped lang="postcss">
 .form {
   position: relative;
   padding-bottom: 2em;
@@ -159,7 +167,7 @@ export default defineComponent({
   }
 }
 
-.image {
+.image >>> img {
   display: none;
 
   @media (--viewport-md) {
