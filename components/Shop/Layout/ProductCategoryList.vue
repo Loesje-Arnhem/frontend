@@ -44,7 +44,9 @@ export default defineComponent({
       pageKey: 'product-categories',
     })
 
-    const productCategories = computed(() => result.value?.productCategories)
+    const productCategories = computed(() => {
+      return result.value?.productCategories
+    })
 
     return {
       productCategories,

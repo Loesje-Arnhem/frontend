@@ -9,7 +9,7 @@
       />
     </div>
     <div :class="$style.title">
-      <nuxt-link :class="$style.link" :to="url" v-html="product.name" />
+      <nuxt-link :class="$style.link" :to="url" v-html="product.title" />
     </div>
     <product-prices :product="product" :class="$style.price" />
   </clickable-list-item>
@@ -17,12 +17,12 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedProduct } from '~/interfaces/IProduct'
+import { IProductTile } from '~/interfaces/IProduct'
 
 export default defineComponent({
   props: {
     product: {
-      type: Object as PropType<IRelatedProduct>,
+      type: Object as PropType<IProductTile>,
       required: true,
     },
   },

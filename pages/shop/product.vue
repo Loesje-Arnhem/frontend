@@ -5,10 +5,17 @@
   </shop-wrapper>
 </template>
 
-<script>
-import { computed, defineComponent, useRoute } from '@nuxtjs/composition-api'
+<script lang="ts">
+import {
+  computed,
+  ComputedRef,
+  defineComponent,
+  useRoute,
+} from '@nuxtjs/composition-api'
 import useFetch from '~/composables/useFetch'
 import ProductQuery from '~/graphql/Products/Product'
+import useMeta from '~/composables/useMeta'
+import { IProduct } from '~/interfaces/IProduct'
 
 export default defineComponent({
   setup() {
@@ -25,7 +32,10 @@ export default defineComponent({
       params,
       pageKey: 'product',
     })
-    const product = computed(() => result.value?.product)
+    const product: ComputedRef<IProduct | null> = computed(() => {
+      return result.value?.product
+    })
+    useMeta(product)
 
     return {
       product,

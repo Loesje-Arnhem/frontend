@@ -19,7 +19,7 @@
 import {
   computed,
   defineComponent,
-  Ref,
+  ComputedRef,
   useRoute,
 } from '@nuxtjs/composition-api'
 import useFetch from '~/composables/useFetch'
@@ -44,7 +44,9 @@ export default defineComponent({
       pageKey: 'poster',
     })
 
-    const poster: Ref<IPoster | null> = computed(() => result.value?.poster)
+    const poster: ComputedRef<IPoster | null> = computed(
+      () => result.value?.poster,
+    )
     useMeta(poster)
 
     const subjects = computed(() => {

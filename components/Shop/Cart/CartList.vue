@@ -26,7 +26,7 @@
         :coupon="coupon"
       />
     </ul>
-    <coupons v-else />
+    <coupon-form v-else />
   </div>
   <p v-else>Je winkelmand is momenteel leeg.</p>
 </template>

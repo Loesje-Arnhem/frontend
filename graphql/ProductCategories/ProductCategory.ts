@@ -1,22 +1,47 @@
 import { gql } from '@apollo/client/core'
-import product from './../Products/Fragments/ProductListItem'
+import { taxonomySeo } from '../Fragments/Seo'
+import {
+  simpleProduct,
+  variableProduct,
+} from './../Products/Fragments/ProductListItem'
 import { TOTAL_PRODUCT_CATEGORIES } from './../../data/generate'
 
 const productCategory = gql`
   fragment productCategory on ProductCategory {
     id
     databaseId
-    name
-    description
-    products(first: 99) {
+    title: name
+    content: description
+    seo {
+      ...taxonomySeo
+    }
+    products(
+      first: 99
+      where: {
+        stockStatus: [IN_STOCK, ON_BACKORDER]
+        orderby: { field: MENU_ORDER, order: ASC }
+      }
+    ) {
       edges {
         node {
-          ...product
+          id
+          slug
+          databaseId
+          title: name
+
+          ... on SimpleProduct {
+            ...simpleProduct
+          }
+          ... on VariableProduct {
+            ...variableProduct
+          }
         }
       }
     }
   }
-  ${product}
+  ${simpleProduct}
+  ${variableProduct}
+  ${taxonomySeo}
 `
 
 export default gql`

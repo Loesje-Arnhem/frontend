@@ -24,7 +24,7 @@ import {
   computed,
   defineComponent,
   useRoute,
-  Ref,
+  ComputedRef,
 } from '@nuxtjs/composition-api'
 import { getPost } from '~/graphql/Posts/Posts'
 import { IPost } from '~/interfaces/IPost'
@@ -48,7 +48,7 @@ export default defineComponent({
       pageKey: 'post',
     })
 
-    const post: Ref<IPost | null> = computed(() => result.value?.post)
+    const post: ComputedRef<IPost | null> = computed(() => result.value?.post)
     useMeta(post)
 
     return {

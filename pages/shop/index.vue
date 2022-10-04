@@ -10,15 +10,12 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  Ref,
-  useMeta,
-} from '@nuxtjs/composition-api'
+import { computed, defineComponent, ComputedRef } from '@nuxtjs/composition-api'
 import { IPage } from '~/interfaces/IPage'
 import useFetch from '~/composables/useFetch'
 import { GetPageShop } from '~/graphql/Pages/Pages'
+import useMeta from '~/composables/useMeta'
+import { IProducts } from '~/interfaces/IProduct'
 
 export default defineComponent({
   setup() {
@@ -27,26 +24,16 @@ export default defineComponent({
       pageKey: 'page-shop',
     })
 
-    const page: Ref<IPage | null> = computed(() => result.value?.page)
-
-    const products = computed(() => {
-      if (!result.value) {
-        return []
-      }
-
-      // @ts-ignore
-      return result.value?.products.edges.map((product) => {
-        return {
-          ...product.node,
-        }
-      })
-    })
-    useMeta(() => ({ title: page.value?.title }))
+    const page: ComputedRef<IPage | null> = computed(() => result.value?.page)
+    const products: ComputedRef<IProducts | null> = computed(
+      () => result.value?.products,
+    )
+    useMeta(page)
 
     return {
+      products,
       page,
       loading,
-      products,
     }
   },
   nuxtI18n: {

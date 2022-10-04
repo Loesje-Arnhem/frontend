@@ -1,31 +1,27 @@
 import { gql } from '@apollo/client/core'
+import seo from '../Fragments/Seo'
 import featuredImage, { mediaItem } from '../Media/Fragments/FeaturedImage'
+import { simpleProduct, variableProduct } from './Fragments/ProductListItem'
 
 export default gql`
   query GetProduct($slug: ID!) {
     product(id: $slug, idType: SLUG) {
       id
       databaseId
-      name
+      title: name
       ... on SimpleProduct {
-        id
-        regularPrice
-        price
-        salePrice
-        stockStatus
-        featuredImage {
-          ...featuredImage
+        ...simpleProduct
+        seo {
+          ...seo
         }
+        stockStatus
       }
       ... on VariableProduct {
-        id
-        regularPrice
-        price
-        salePrice
-        stockStatus
-        featuredImage {
-          ...featuredImage
+        ...variableProduct
+        seo {
+          ...seo
         }
+        stockStatus
       }
 
       shortDescription
@@ -58,10 +54,19 @@ export default gql`
           }
         }
       }
-      related {
+      related(first: 12, where: { stockStatus: [IN_STOCK, ON_BACKORDER] }) {
         edges {
           node {
+            slug
+            id
             databaseId
+            title: name
+            ... on SimpleProduct {
+              ...simpleProduct
+            }
+            ... on VariableProduct {
+              ...variableProduct
+            }
           }
         }
       }
@@ -69,4 +74,7 @@ export default gql`
   }
   ${featuredImage}
   ${mediaItem}
+  ${variableProduct}
+  ${simpleProduct}
+  ${seo}
 `

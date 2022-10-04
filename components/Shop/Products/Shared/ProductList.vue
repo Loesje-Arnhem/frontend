@@ -1,28 +1,28 @@
 <template>
-  <ul v-if="products.length" :class="$style.list">
+  <ul v-if="products.edges.length" class="list">
     <product-tile
-      v-for="product in products"
-      :key="product.id"
-      :product="product"
+      v-for="product in products.edges"
+      :key="product.node.id"
+      :product="product.node"
     />
   </ul>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedProduct } from '~/interfaces/IProduct'
+import { IProducts } from '~/interfaces/IProduct'
 
 export default defineComponent({
   props: {
     products: {
-      type: Array as PropType<IRelatedProduct[]>,
-      default: () => [],
+      type: Object as PropType<IProducts>,
+      default: () => {},
     },
   },
 })
 </script>
 
-<style module lang="postcss">
+<style scoped lang="postcss">
 .list {
   @mixin list-reset;
 

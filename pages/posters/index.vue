@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, Ref } from '@nuxtjs/composition-api'
+import { computed, defineComponent, ComputedRef } from '@nuxtjs/composition-api'
 import { IRelatedPosters } from '~/interfaces/IPoster'
 import useFetch from '~/composables/useFetch'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
@@ -45,12 +45,16 @@ export default defineComponent({
       },
     })
 
-    const posters: Ref<IRelatedPosters | null> = computed(
-      () => result.value?.posters,
-    )
+    const posters: ComputedRef<IRelatedPosters | null> = computed(() => {
+      return result.value?.posters
+    })
 
-    const sources: Ref<ITags | null> = computed(() => result.value?.sources)
-    const subjects: Ref<ITags | null> = computed(() => result.value?.subjects)
+    const sources: ComputedRef<ITags | null> = computed(() => {
+      return result.value?.sources
+    })
+    const subjects: ComputedRef<ITags | null> = computed(() => {
+      return result.value?.subjects
+    })
 
     return {
       search,

@@ -4,7 +4,7 @@
       <div class="product-details">
         <product-gallery :images="gallery" />
         <div class="content">
-          <h1>{{ product.name }}</h1>
+          <h1>{{ product.title }}</h1>
           <div v-html="product.shortDescription"></div>
           <form-add-to-cart :product="product" />
         </div>
@@ -12,31 +12,37 @@
       <h2>Beschrijving</h2>
       <div class="description" v-html="product.description"></div>
     </div>
-    <product-list-section :related-products="product.related.edges" />
+    <product-list-section :products="product.related" />
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+import { IProduct } from '~/interfaces/IProduct'
+
+export default defineComponent({
   props: {
     product: {
-      type: Object,
+      type: Object as PropType<IProduct>,
       required: true,
     },
   },
-  computed: {
-    gallery() {
+  setup(props) {
+    const gallery = computed(() => {
       const images = []
-      if (this.product.featuredImage) {
-        images.push(this.product.featuredImage)
+      if (props.product.featuredImage) {
+        images.push(props.product.featuredImage)
       }
-      if (this.product.galleryImages.edges.length) {
-        return [...images, ...this.product.galleryImages.edges]
+      if (props.product.galleryImages.edges.length) {
+        return [...images, ...props.product.galleryImages.edges]
       }
       return images
-    },
+    })
+    return {
+      gallery,
+    }
   },
-}
+})
 </script>
 
 <style scoped lang="postcss">

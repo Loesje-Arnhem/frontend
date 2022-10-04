@@ -5,11 +5,15 @@ import posters from '../Posters/Fragments/Posters'
 import pageDetails from './Fragments/PageDetails'
 import pageContent from './Fragments/PageContent'
 import { postsPageId, homePageId, shopPageId } from './../../data/pages'
-import product from './../Products/Fragments/ProductListItem'
+import {
+  simpleProduct,
+  variableProduct,
+} from './../Products/Fragments/ProductListItem'
 import { TOTAL_PAGES } from './../../data/generate'
 import postListItem from './../Posts/Fragments/PostListItem'
 import { PAGE_SIZE_POSTERS, PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
 import seo from './../Fragments/Seo'
+import page from './Fragments/Page'
 
 export default gql`
   query PageByByUri($uri: ID!) {
@@ -57,24 +61,53 @@ export const GetPageHome = gql`
 export const GetPageShop = gql`
   query GetPageShop {
     page(id: ${shopPageId}, idType: DATABASE_ID) {
-      ...pageContent
+      ...page
+      content
+      seo {
+        ...seo
+      }
     }
-    products(where: {featured: true}, first: 99) {
+    products(
+      where: {
+        featured: true,
+        stockStatus: [IN_STOCK, ON_BACKORDER]
+        orderby: {
+          field: MENU_ORDER,
+          order: ASC
+        }
+      },
+      first: 99
+    ) {
       edges {
         node {
-          ...product
+          slug
+          id
+          databaseId
+          title: name
+
+          ... on SimpleProduct {
+            ...simpleProduct
+          }
+          ... on VariableProduct {
+            ...variableProduct
+          }
         }
       }
     }
   }
-  ${pageContent}
-  ${product}
+  ${page}
+  ${simpleProduct}
+  ${variableProduct}
+  ${seo}
 `
 
 export const GetPagePosts = gql`
   query GetPagePosts {
     page(id: ${postsPageId}, idType: DATABASE_ID) {
       ...pageContent
+      seo {
+        ...seo
+      }
     }
 
 
@@ -92,7 +125,8 @@ export const GetPagePosts = gql`
   }
   ${postListItem}
   ${pageContent}
-  ${product}
+  ${seo}
+
 `
 
 export const GetPagePosters = gql`

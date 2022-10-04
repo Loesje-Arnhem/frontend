@@ -1,6 +1,6 @@
 <template>
   <section
-    v-if="products.length"
+    v-if="products.edges.length"
     aria-labelledby="featured-products"
     :class="$style['featured-products']"
   >
@@ -22,8 +22,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
-import { IRelatedProducts } from '~/interfaces/IProduct'
+import {
+  defineComponent,
+  computed,
+  PropType,
+  ComputedRef,
+} from '@nuxtjs/composition-api'
+import {
+  IProductNode,
+  IProducts,
+  IRelatedProducts,
+} from '~/interfaces/IProduct'
 
 export default defineComponent({
   props: {
@@ -33,15 +42,18 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const products = computed(() => {
-      if (!props.relatedProducts.products) {
-        return []
+    const products: ComputedRef<IProducts> = computed(() => {
+      let edges: IProductNode[] = []
+      if (props.relatedProducts.products?.length)
+        edges = props.relatedProducts.products.map((product) => {
+          return {
+            node: product.product,
+          }
+        })
+
+      return {
+        edges,
       }
-      return props.relatedProducts.products.map((product) => {
-        return {
-          ...product.product,
-        }
-      })
     })
 
     return {

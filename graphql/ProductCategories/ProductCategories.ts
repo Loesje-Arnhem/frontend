@@ -12,7 +12,7 @@ const categoryFields = gql`
 export default gql`
   query GET_PRODUCT_CATEGORIES {
     productCategories(
-      where: { hideEmpty: true, orderby: TERM_ORDER }
+      where: { hideEmpty: true, orderby: TERM_ORDER, order: ASC }
       first: 99
     ) {
       edges {

@@ -11,8 +11,8 @@
 <script lang="ts">
 import {
   computed,
+  ComputedRef,
   defineComponent,
-  Ref,
   useRoute,
 } from '@nuxtjs/composition-api'
 import PageByByUri from '~/graphql/Pages/Pages'
@@ -48,7 +48,9 @@ export default defineComponent({
       pageKey: 'page',
     })
 
-    const page: Ref<IPage | null> = computed(() => result.value?.page)
+    const page: ComputedRef<IPage | null> = computed(() => {
+      return result.value?.page
+    })
     useMeta(page)
 
     return {

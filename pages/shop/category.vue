@@ -2,12 +2,12 @@
   <shop-wrapper>
     <app-loader v-if="loading" />
     <template v-else-if="productCategory">
-      <h1>{{ productCategory.name }}</h1>
+      <h1>{{ productCategory.title }}</h1>
       <p
         v-if="productCategory.description"
         v-html="productCategory.description"
       />
-      <product-list :products="products" />
+      <product-list :products="productCategory.products" />
     </template>
   </shop-wrapper>
 </template>
@@ -17,10 +17,12 @@ import {
   defineComponent,
   useRoute,
   computed,
-  useMeta,
+  ComputedRef,
 } from '@nuxtjs/composition-api'
 import ProductCategoryQuery from '~/graphql/ProductCategories/ProductCategory'
 import useFetch from '~/composables/useFetch'
+import useMeta from '~/composables/useMeta'
+import { IProductCategory } from '~/interfaces/IProductCategory'
 
 export default defineComponent({
   setup() {
@@ -40,27 +42,17 @@ export default defineComponent({
       pageKey: 'product-category',
     })
 
-    const productCategory = computed(() => result.value?.productCategory)
+    const productCategory: ComputedRef<IProductCategory | null> = computed(
+      () => {
+        return result.value?.productCategory
+      },
+    )
 
-    const products = computed(() => {
-      if (!productCategory.value) {
-        return []
-      }
-
-      // @ts-ignore
-      return productCategory.value.products.edges.map((product) => {
-        return {
-          ...product.node,
-        }
-      })
-    })
-
-    useMeta(() => ({ title: productCategory.value?.name }))
+    useMeta(productCategory)
 
     return {
       productCategory,
       loading,
-      products,
     }
   },
 

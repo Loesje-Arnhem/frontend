@@ -12,7 +12,7 @@
 import {
   computed,
   defineComponent,
-  Ref,
+  ComputedRef,
   useMeta,
 } from '@nuxtjs/composition-api'
 import { GetPagePosts } from '~/graphql/Pages/Pages'
@@ -27,8 +27,12 @@ export default defineComponent({
       pageKey: 'page-posts',
     })
 
-    const page: Ref<IPage | null> = computed(() => result.value?.page)
-    const posts: Ref<IPosts | null> = computed(() => result.value?.posts)
+    const page: ComputedRef<IPage | null> = computed(() => {
+      return result.value?.page
+    })
+    const posts: ComputedRef<IPosts | null> = computed(() => {
+      return result.value?.posts
+    })
 
     useMeta(() => ({ title: page.value?.title }))
 

@@ -1,9 +1,13 @@
 import { computed, Ref, useMeta } from '@nuxtjs/composition-api'
+import { IProductCategory } from '~/interfaces/IProductCategory'
 import { IPage } from '~/interfaces/IPage'
 import { IPost } from '~/interfaces/IPost'
 import { IPoster } from '~/interfaces/IPoster'
+import { IProduct } from '~/interfaces/IProduct'
 
-export default (content: Ref<IPage | IPost | IPoster | null>) => {
+export default (
+  content: Ref<IPage | IPost | IPoster | IProduct | IProductCategory | null>,
+) => {
   const getMetaImage = (seo: any, key: string) => {
     if (!seo) {
       return null
