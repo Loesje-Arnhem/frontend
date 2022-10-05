@@ -8,13 +8,20 @@
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": ["mixin", "define-mixin"]
+        "ignoreAtRules": [
+          "mixin",
+          "define-mixin"
+        ]
       }
     ],
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": ["global", "readonly"]
+        "ignorePseudoClasses": [
+          "global",
+          "readonly",
+          "deep"
+        ]
       }
     ]
   }

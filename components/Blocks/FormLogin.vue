@@ -104,7 +104,7 @@ export default defineComponent({
 .form {
   @mixin block;
 
-  & >>> .fields {
+  & :deep(.fields) {
     grid-template-columns: repeat(2, 1fr);
   }
 }

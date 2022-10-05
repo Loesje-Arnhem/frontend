@@ -23,7 +23,7 @@ import {
   nextTick,
   Ref,
 } from '@nuxtjs/composition-api'
-import smoothscroll from 'smoothscroll-polyfill'
+import { polyfill } from 'smoothscroll-polyfill'
 import useCarousel from '~/composables/carousel'
 
 export default defineComponent({
@@ -95,7 +95,7 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      smoothscroll.polyfill()
+      polyfill()
       document.addEventListener('keydown', navigateByKeyboard)
       window.addEventListener('resize', scrollToSelectedSlide)
     })
