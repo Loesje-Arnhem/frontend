@@ -1,17 +1,13 @@
 {
-    "ci": {
-      "collect": {
-        "numberOfRuns": 3,
-        "disableStorageReset": true,
-        "url": "https://test.loesje.nl"
-      },
-      "assert": {
-      },
-      "upload": {
-      },
-      "server": {
-      },
-      "wizard": {
-      }
-    }
+  "ci": {
+    "collect": {
+      "numberOfRuns": 3,
+      "disableStorageReset": true,
+      "url": "https://loesje.michielkoning.nl"
+    },
+    "assert": {},
+    "upload": {},
+    "server": {},
+    "wizard": {}
   }
+}
