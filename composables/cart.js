@@ -1,4 +1,4 @@
-import { useQuery, useResult, useMutation } from '@vue/apollo-composable'
+import { useQuery, useMutation } from '@vue/apollo-composable'
 import { ref, computed } from '@nuxtjs/composition-api'
 import { v4 } from 'uuid'
 import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
@@ -29,7 +29,7 @@ export const useCart = () => {
     // prefetch: true,
   })
 
-  const cart = useResult(result)
+  const cart = computed(() => result.value?.cart)
 
   const totalProducts = computed(() => {
     if (!cart.value) {
