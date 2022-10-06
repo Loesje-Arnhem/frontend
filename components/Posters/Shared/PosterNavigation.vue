@@ -1,26 +1,24 @@
 <template>
   <center-wrapper>
     <nav>
-      <transition name="slide">
-        <nuxt-link
-          v-if="showOverview"
-          :to="localePath({ name: 'posters' })"
-          class="btn-search"
-        >
-          <app-icon icon="chevron-left" width="12" height="12" />
-          Overzicht
-        </nuxt-link>
-      </transition>
-      <transition name="slide">
-        <nuxt-link
-          v-if="showFavorites"
-          :to="localePath({ name: 'posters-favorites' })"
-          class="btn-favorites"
-        >
-          Jouw favorieten
-          <app-icon icon="chevron-right" width="12" height="12" />
-        </nuxt-link>
-      </transition>
+      <nuxt-link :to="localePath({ name: 'posters' })" class="btn-search">
+        <app-icon icon="chevron-left" width="12" height="12" />
+        Overzicht
+      </nuxt-link>
+      <nuxt-link
+        :to="localePath({ name: 'posters-search' })"
+        class="btn-search"
+      >
+        <app-icon icon="search" width="12" height="12" />
+        Zoeken
+      </nuxt-link>
+      <nuxt-link
+        :to="localePath({ name: 'posters-favorites' })"
+        class="btn-favorites"
+      >
+        <app-icon icon="heart" width="12" height="12" />
+        Jouw favorieten
+      </nuxt-link>
     </nav>
   </center-wrapper>
 </template>
@@ -63,46 +61,44 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 nav {
-  display: flex;
+  /* display: flex;
   margin: 1em 0;
-  height: 1em;
+  height: 1em; */
+
+  @mixin color-negative;
+
+  border-top: 1px solid #fff;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 12938129;
 }
 
 a {
+  @mixin link-reset;
+
   display: flex;
   align-items: center;
+  flex-direction: column;
+  gap: 0.1em;
+  padding: 0.25em;
+
+  &:not(:last-child) {
+    border-right: 1px solid currentcolor;
+  }
+
+  &.nuxt-link-exact-active {
+    text-decoration: underline;
+  }
 }
 
 .icon {
-  @mixin icon 0.8em;
+  @mixin icon;
 
   transition: transform ease-out 0.2s;
   transform: translate(0, 0.1em);
 }
-
-/* stylelint-disable no-descending-specificity */
-.btn-search {
-  & .icon {
-    margin-right: 0.25em;
-  }
-
-  &:hover .icon {
-    transform: translate(-0.2em, 0.1em);
-  }
-}
-
-.btn-favorites {
-  margin-left: auto;
-
-  & .icon {
-    margin-left: 0.25em;
-  }
-
-  &:hover .icon {
-    transform: translate(0.2em, 0.1em);
-  }
-}
-/* stylelint-enable no-descending-specificity */
 
 .slide-enter-active,
 .slide-leave-active {

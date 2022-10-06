@@ -1,8 +1,21 @@
 <template>
   <div>
+    <center-wrapper>
+      <posters-auto-complete />
+      <poster-filters :sources="sources" :subjects="subjects" />
+      <poster-tags-list :list="selectedTags" />
+    </center-wrapper>
     <app-loader v-if="loading" />
 
-    <posters-overview-section v-else-if="posters" :posters="posters" />
+    <posters-overview-section
+      v-if="showOverview"
+      :source-ids="selectedSourceIds"
+      :subject-ids="selectedSubjectIds"
+      :search="search"
+      :date-before="dateBefore"
+      :date-after="dateAfter"
+      :posters="posters"
+    />
   </div>
 </template>
 
@@ -32,6 +45,15 @@ export default defineComponent({
       },
     })
 
+    const showOverview = computed(() => {
+      return (
+        (selectedSourceIds.value.length ||
+          search.value.length ||
+          selectedSubjectIds.value.length) &&
+        !loading.value
+      )
+    })
+
     const posters: ComputedRef<IRelatedPosters | null> = computed(() => {
       return result.value?.posters
     })
@@ -44,6 +66,7 @@ export default defineComponent({
     })
 
     return {
+      showOverview,
       search,
       selectedSourceIds,
       selectedSubjectIds,
@@ -61,7 +84,7 @@ export default defineComponent({
   },
   nuxtI18n: {
     paths: {
-      nl: '/posters',
+      nl: '/posters/zoeken',
     },
   },
 })
