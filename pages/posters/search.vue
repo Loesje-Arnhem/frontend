@@ -8,7 +8,7 @@
     <app-loader v-if="loading" />
 
     <posters-overview-section
-      v-if="showOverview"
+      v-else-if="showOverview"
       :source-ids="selectedSourceIds"
       :subject-ids="selectedSubjectIds"
       :search="search"
