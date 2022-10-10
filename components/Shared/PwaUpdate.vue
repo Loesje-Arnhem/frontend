@@ -19,8 +19,8 @@ export default defineComponent({
     const clickToUpdate = async () => {
       if (registration?.waiting) {
         registration.waiting.postMessage('SKIP_WAITING')
-        window.location.reload()
       }
+      window.location.reload()
     }
 
     onMounted(async () => {
