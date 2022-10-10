@@ -34,6 +34,6 @@ export default defineComponent({
 }
 
 .wrapper {
-  padding-bottom: var(--notch-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 </style>

@@ -25,10 +25,10 @@ export default defineComponent({
 
 <style lang="postcss" module>
 .notch {
-  padding-inline: var(--notch-left) var(--notch-right);
+  padding-inline: env(safe-area-inset-right) env(safe-area-inset-left);
 
   &.top {
-    padding-top: var(--notch-top);
+    padding-top: env(safe-area-inset-top);
   }
 }
 
