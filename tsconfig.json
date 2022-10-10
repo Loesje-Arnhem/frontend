@@ -23,7 +23,8 @@
       "@types/smoothscroll-polyfill",
       "@types/body-scroll-lock",
       "@nuxtjs/axios",
-      "@nuxtjs/auth-next"
+      "@nuxtjs/auth-next",
+      "@types/workbox-window"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]

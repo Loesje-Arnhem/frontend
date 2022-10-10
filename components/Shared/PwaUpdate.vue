@@ -9,33 +9,42 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
+import { WorkboxUpdatableEvent } from 'workbox-window'
 
 export default defineComponent({
   setup() {
     const hasUpdate = ref(false)
 
-    const clickToUpdate = () => {
-      window.location.reload()
+    const clickToUpdate = async () => {
+      const registration = await navigator.serviceWorker.ready
+      if (registration.waiting) {
+        registration.waiting.postMessage('SKIP_WAITING')
+        window.location.reload()
+      }
     }
 
     onMounted(async () => {
       if (!process.client) {
         return
       }
-      // @ts-ignore
+
+      if (!('serviceWorker' in navigator)) {
+        return
+      }
+
+      // @ts-ignore-next-line
       const workbox = await window.$workbox
       if (workbox) {
-        // @ts-ignore
-        workbox.addEventListener('installed', (event) => {
-          // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
-          if (
-            event.isUpdate &&
-            document.documentElement.classList.contains('standalone')
-          ) {
-            // whatever logic you want to use to notify the user that they need to refresh the page.
-            hasUpdate.value = true
-          }
-        })
+        workbox.addEventListener(
+          'installed',
+          (event: WorkboxUpdatableEvent) => {
+            // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
+            if (event.isUpdate) {
+              // whatever logic you want to use to notify the user that they need to refresh the page.
+              hasUpdate.value = true
+            }
+          },
+        )
       }
     })
     return {
