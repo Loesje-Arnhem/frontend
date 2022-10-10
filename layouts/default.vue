@@ -10,7 +10,9 @@
     </main>
 
     <the-footer class="page-footer sa-hidden" />
-    <pwa-update />
+    <client-only>
+      <pwa-update />
+    </client-only>
   </div>
 </template>
 

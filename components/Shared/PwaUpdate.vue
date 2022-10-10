@@ -1,7 +1,7 @@
 <template>
   <app-alert v-if="hasUpdate">
     Er is een nieuwe versie beschikbaar.
-    <button class="btn-link" @click="clickToUpdate">
+    <button class="btn-link" @click="update">
       Updaten naar de laatste versie
     </button>
   </app-alert>
@@ -16,7 +16,7 @@ export default defineComponent({
     const hasUpdate = ref(false)
     let registration: ServiceWorkerRegistration | null
 
-    const clickToUpdate = () => {
+    const update = () => {
       if (registration?.waiting) {
         registration.waiting.postMessage('SKIP_WAITING')
       }
@@ -24,10 +24,6 @@ export default defineComponent({
     }
 
     onMounted(async () => {
-      if (!process.client) {
-        return
-      }
-
       if (!('serviceWorker' in navigator)) {
         return
       }
@@ -50,7 +46,7 @@ export default defineComponent({
     })
     return {
       hasUpdate,
-      clickToUpdate,
+      update,
     }
   },
 })
