@@ -16,7 +16,7 @@ export default defineComponent({
     const hasUpdate = ref(false)
     let registration: ServiceWorkerRegistration | null
 
-    const clickToUpdate = async () => {
+    const clickToUpdate = () => {
       if (registration?.waiting) {
         registration.waiting.postMessage('SKIP_WAITING')
       }
