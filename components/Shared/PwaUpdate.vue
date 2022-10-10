@@ -14,10 +14,10 @@ import { WorkboxUpdatableEvent } from 'workbox-window'
 export default defineComponent({
   setup() {
     const hasUpdate = ref(false)
+    let registration: ServiceWorkerRegistration | null
 
     const clickToUpdate = async () => {
-      const registration = await navigator.serviceWorker.ready
-      if (registration.waiting) {
+      if (registration?.waiting) {
         registration.waiting.postMessage('SKIP_WAITING')
         window.location.reload()
       }
@@ -31,6 +31,7 @@ export default defineComponent({
       if (!('serviceWorker' in navigator)) {
         return
       }
+      registration = await navigator.serviceWorker.ready
 
       // @ts-ignore-next-line
       const workbox = await window.$workbox
