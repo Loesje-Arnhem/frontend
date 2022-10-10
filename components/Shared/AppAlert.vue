@@ -1,8 +1,10 @@
 <template>
   <div class="alert">
-    <center-wrapper>
-      <slot />
-    </center-wrapper>
+    <div class="wrapper">
+      <center-wrapper>
+        <slot />
+      </center-wrapper>
+    </div>
   </div>
 </template>
 
@@ -29,5 +31,9 @@ export default defineComponent({
   inset: auto 0 0;
   border: 1px solid var(--color-black);
   text-align: center;
+}
+
+.wrapper {
+  padding-bottom: var(--notch-bottom);
 }
 </style>
