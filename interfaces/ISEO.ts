@@ -8,7 +8,7 @@ export interface ISEO {
   cornerstone: boolean
   opengraphAuthor: string
   opengraphDescription: string
-  opengraphImage: ISEOImage
+  // opengraphImage: ISEOImage
   opengraphModifiedTime: string
   opengraphPublishedTime: string
   opengraphPublisher: string
@@ -17,9 +17,7 @@ export interface ISEO {
   opengraphUrl: string
   title: string
   twitterDescription: string
-  twitterImage: {
-    archive: string | null
-  }
+  // twitterImage: ISEOImage
   twitterTitle: string
   schema: {
     raw: string

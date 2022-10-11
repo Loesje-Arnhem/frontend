@@ -4,9 +4,9 @@ fragment seo2 on PostTypeSEO {
   metaDesc
   opengraphAuthor
   opengraphDescription
-  opengraphImage {
-    archive: sourceUrl(size: MEDIUM)
-  }
+  # opengraphImage {
+  #   archive: sourceUrl(size: MEDIUM)
+  # }
   opengraphModifiedTime
   opengraphPublishedTime
   opengraphPublisher
@@ -15,8 +15,8 @@ fragment seo2 on PostTypeSEO {
   opengraphUrl
   title
   twitterDescription
-  twitterImage {
-    archive: sourceUrl(size: MEDIUM)
-  }
+  # twitterImage {
+  #   archive: sourceUrl(size: MEDIUM)
+  # }
   twitterTitle
 }

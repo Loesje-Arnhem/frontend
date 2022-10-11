@@ -19,16 +19,16 @@ const getMetaDescripion = (seo: ISEO, key: keyof ISEO) => {
   return seo.title
 }
 
-const getMetaImage = (seo: ISEO, key: keyof ISEO) => {
-  // @ts-ignore
-  if (seo[key] && seo[key].archive) {
-    // @ts-ignore
-    return seo[key].archive
-  } else if (seo.opengraphImage) {
-    return seo.opengraphImage.archive
-  }
-  return null
-}
+// const getMetaImage = (seo: ISEO, key: keyof ISEO) => {
+//   // @ts-ignore
+//   if (seo[key] && seo[key].archive) {
+//     // @ts-ignore
+//     return seo[key].archive
+//   // } else if (seo.opengraphImage) {
+//   //   return seo.opengraphImage.archive
+//   // }
+//   return null
+// }
 
 export default (seo: ISEO) => {
   return {
@@ -60,11 +60,11 @@ export default (seo: ISEO) => {
         name: 'og:type',
         content: 'article',
       },
-      {
-        hid: 'og:image',
-        name: 'og:image',
-        content: getMetaImage(seo, 'opengraphImage'),
-      },
+      // {
+      //   hid: 'og:image',
+      //   name: 'og:image',
+      //   content: getMetaImage(seo, 'opengraphImage'),
+      // },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
@@ -75,11 +75,11 @@ export default (seo: ISEO) => {
         name: 'twitter:description',
         content: getMetaDescripion(seo, 'twitterDescription'),
       },
-      {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: getMetaImage(seo, 'twitterImage'),
-      },
+      // {
+      //   hid: 'twitter:image',
+      //   name: 'twitter:image',
+      //   content: getMetaImage(seo, 'twitterImage'),
+      // },
       {
         hid: 'twitter:image:alt',
         name: 'twitter:image:alt',

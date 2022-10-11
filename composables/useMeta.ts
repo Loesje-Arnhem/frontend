@@ -15,8 +15,8 @@ export default (
 
     if (seo[key] && seo[key].archive) {
       return seo[key].archive
-    } else if (seo.opengraphImage) {
-      return seo.opengraphImage.archive
+      // } else if (seo.opengraphImage) {
+      //   return seo.opengraphImage.archive
     }
     return null
   }

@@ -7,10 +7,10 @@ export default gql`
     metaDesc
     opengraphAuthor
     opengraphDescription
-    opengraphImage {
-      archive: sourceUrl(size: THUMBNAIL)
-      # archive: sourceUrl(size: MEDIUM)
-    }
+    # opengraphImage {
+    #   archive: sourceUrl(size: THUMBNAIL)
+    #   # archive: sourceUrl(size: MEDIUM)
+    # }
     opengraphModifiedTime
     opengraphPublishedTime
     opengraphPublisher
@@ -19,10 +19,10 @@ export default gql`
     opengraphUrl
     title
     twitterDescription
-    twitterImage {
-      archive: sourceUrl(size: THUMBNAIL)
-      # archive: sourceUrl(size: MEDIUM)
-    }
+    # twitterImage {
+    #   archive: sourceUrl(size: THUMBNAIL)
+    #   # archive: sourceUrl(size: MEDIUM)
+    # }
     twitterTitle
     schema {
       raw
@@ -37,10 +37,10 @@ export const taxonomySeo = gql`
     metaDesc
     opengraphAuthor
     opengraphDescription
-    opengraphImage {
-      archive: sourceUrl(size: THUMBNAIL)
-      # archive: sourceUrl(size: MEDIUM)
-    }
+    # opengraphImage {
+    #   archive: sourceUrl(size: THUMBNAIL)
+    #   # archive: sourceUrl(size: MEDIUM)
+    # }
     opengraphModifiedTime
     opengraphPublishedTime
     opengraphPublisher
@@ -49,10 +49,10 @@ export const taxonomySeo = gql`
     opengraphUrl
     title
     twitterDescription
-    twitterImage {
-      archive: sourceUrl(size: THUMBNAIL)
-      # archive: sourceUrl(size: MEDIUM)
-    }
+    # twitterImage {
+    #   archive: sourceUrl(size: THUMBNAIL)
+    #   # archive: sourceUrl(size: MEDIUM)
+    # }
     twitterTitle
     schema {
       raw
