@@ -1,26 +1,28 @@
 <template>
-  <center-wrapper>
-    <nav>
-      <nuxt-link :to="localePath({ name: 'posters' })" class="btn-search">
-        <app-icon icon="chevron-left" width="12" height="12" />
-        Overzicht
-      </nuxt-link>
-      <nuxt-link
-        :to="localePath({ name: 'posters-search' })"
-        class="btn-search"
-      >
-        <app-icon icon="search" width="12" height="12" />
-        Zoeken
-      </nuxt-link>
-      <nuxt-link
-        :to="localePath({ name: 'posters-favorites' })"
-        class="btn-favorites"
-      >
-        <app-icon icon="heart" width="12" height="12" />
-        Jouw favorieten
-      </nuxt-link>
-    </nav>
-  </center-wrapper>
+  <div class="wrapper">
+    <center-wrapper>
+      <nav>
+        <nuxt-link
+          :to="localePath({ name: 'posters-home' })"
+          class="btn-search"
+        >
+          <app-icon icon="chevron-left" width="12" height="12" />
+          Home
+        </nuxt-link>
+        <nuxt-link :to="localePath({ name: 'posters' })" class="btn-search">
+          <app-icon icon="search" width="12" height="12" />
+          Zoeken
+        </nuxt-link>
+        <nuxt-link
+          :to="localePath({ name: 'posters-favorites' })"
+          class="btn-favorites"
+        >
+          <app-icon icon="heart" width="12" height="12" />
+          Jouw favorieten
+        </nuxt-link>
+      </nav>
+    </center-wrapper>
+  </div>
 </template>
 
 <script lang="ts">
@@ -60,19 +62,22 @@ export default defineComponent({
 </script>
 
 <style scoped lang="postcss">
+.wrapper {
+  @mixin color-negative;
+
+  border-top: 1px solid #fff;
+  inset: auto 0 0;
+  z-index: 12938129;
+  position: fixed;
+}
+
 nav {
   /* display: flex;
   margin: 1em 0;
   height: 1em; */
 
-  @mixin color-negative;
-
-  border-top: 1px solid #fff;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  position: fixed;
-  inset: auto 0 0;
-  z-index: 12938129;
 }
 
 a {
@@ -82,7 +87,7 @@ a {
   align-items: center;
   flex-direction: column;
   gap: 0.1em;
-  padding: 0.25em;
+  padding: 0.25em 0.25em env(safe-area-inset-bottom, 0.25em);
 
   &:not(:last-child) {
     border-right: 1px solid currentcolor;
