@@ -7,31 +7,26 @@ export default async (client: ApolloClient<NormalizedCacheObject>) => {
   let after = null
   let posters: any[] = []
   while (hasNextPage) {
-    try {
-      // @ts-ignore
-      const { data } = await client.query({
-        query: GetAllPosters,
-        variables: {
-          after,
+    // @ts-ignore
+    const { data } = await client.query({
+      query: GetAllPosters,
+      variables: {
+        after,
+      },
+    })
+    const newPosters = data.posters.edges.map((item: any) => {
+      return {
+        route: item.node.uri,
+        payload: {
+          poster: item.node,
         },
-      })
-      const newPosters = data.posters.edges.map((item: any) => {
-        return {
-          route: item.node.uri,
-          payload: {
-            poster: item.node,
-          },
-        }
-      })
-      await pauseFetching(`posters ${after}`)
-      after = data.posters.pageInfo.endCursor
-      hasNextPage = data.posters.pageInfo.hasNextPage
-      // hasNextPage = false
-      posters = posters.concat(newPosters)
-    } catch (error) {
-      console.error(error)
-      hasNextPage = false
-    }
+      }
+    })
+    await pauseFetching(`posters ${after}`)
+    after = data.posters.pageInfo.endCursor
+    hasNextPage = data.posters.pageInfo.hasNextPage
+    // hasNextPage = false
+    posters = posters.concat(newPosters)
   }
   return posters
 }
