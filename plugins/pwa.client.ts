@@ -1,4 +1,5 @@
 import { Context } from '@nuxt/types'
+import { mediaQueryStandAlone } from '~/utils/media-queries'
 
 const setBodyClass = () => {
   document.documentElement.classList.add('standalone')
@@ -26,10 +27,8 @@ export default (context: Context) => {
     redirectToPostersPageOnStandalone(context)
   }
 
-  const mediaQuery =
-    '(display-mode: standalone), (display-mode: window-controls-overlay)'
   window.addEventListener('DOMContentLoaded', () => {
-    window.matchMedia(mediaQuery).addEventListener(
+    window.matchMedia(mediaQueryStandAlone).addEventListener(
       'change',
       (event) => {
         if (event.matches) {
