@@ -1,5 +1,5 @@
 export interface ISEOImage {
-  archive: string | null
+  mediaItemUrl: string | null
 }
 
 export interface ISEO {

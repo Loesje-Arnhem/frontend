@@ -13,10 +13,10 @@ export default (
       return null
     }
 
-    if (seo[key] && seo[key].archive) {
-      return seo[key].archive
+    if (seo[key] && seo[key].mediaItemUrl) {
+      return seo[key].mediaItemUrl
     } else if (seo.opengraphImage) {
-      return seo.opengraphImage.archive
+      return seo.opengraphImage.mediaItemUrl
     }
     return null
   }

@@ -5,7 +5,7 @@ fragment seoTaxonomy on TaxonomySEO {
   opengraphAuthor
   opengraphDescription
   opengraphImage {
-    archive: sourceUrl(size: MEDIUM)
+    mediaItemUrl
   }
   opengraphModifiedTime
   opengraphPublishedTime
@@ -16,7 +16,7 @@ fragment seoTaxonomy on TaxonomySEO {
   title
   twitterDescription
   twitterImage {
-    archive: sourceUrl(size: MEDIUM)
+    mediaItemUrl
   }
   twitterTitle
 }
