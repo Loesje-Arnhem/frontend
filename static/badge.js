@@ -36,7 +36,7 @@ self.addEventListener('periodicsync', (event) => {
 
 // On the Service Worker side we have to listen to the message event
 self.addEventListener('message', async (event) => {
-  if (event.data && event.data.type === TOTAL_POSTERS_KEY) {
+  if (event.data === TOTAL_POSTERS_KEY) {
     const total = await fetchTotalPosts()
     await idbKeyval.set(TOTAL_POSTERS_KEY, total)
 

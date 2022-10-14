@@ -8,8 +8,7 @@ export default gql`
     opengraphAuthor
     opengraphDescription
     opengraphImage {
-      archive: sourceUrl(size: THUMBNAIL)
-      # archive: sourceUrl(size: MEDIUM)
+      mediaItemUrl
     }
     opengraphModifiedTime
     opengraphPublishedTime
@@ -20,8 +19,7 @@ export default gql`
     title
     twitterDescription
     twitterImage {
-      archive: sourceUrl(size: THUMBNAIL)
-      # archive: sourceUrl(size: MEDIUM)
+      mediaItemUrl
     }
     twitterTitle
     schema {
@@ -38,8 +36,7 @@ export const taxonomySeo = gql`
     opengraphAuthor
     opengraphDescription
     opengraphImage {
-      archive: sourceUrl(size: THUMBNAIL)
-      # archive: sourceUrl(size: MEDIUM)
+      mediaItemUrl
     }
     opengraphModifiedTime
     opengraphPublishedTime
@@ -50,8 +47,7 @@ export const taxonomySeo = gql`
     title
     twitterDescription
     twitterImage {
-      archive: sourceUrl(size: THUMBNAIL)
-      # archive: sourceUrl(size: MEDIUM)
+      mediaItemUrl
     }
     twitterTitle
     schema {

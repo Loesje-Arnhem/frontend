@@ -1,5 +1,5 @@
 export interface ISEOImage {
-  archive: string | null
+  mediaItemUrl: string | null
 }
 
 export interface ISEO {
@@ -17,9 +17,7 @@ export interface ISEO {
   opengraphUrl: string
   title: string
   twitterDescription: string
-  twitterImage: {
-    archive: string | null
-  }
+  twitterImage: ISEOImage
   twitterTitle: string
   schema: {
     raw: string
