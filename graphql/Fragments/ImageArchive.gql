@@ -1,7 +1,0 @@
-fragment imageArchive on NodeWithFeaturedImageToMediaItemConnectionEdge {
-  node {
-    id
-    large: sourceUrl(size: LARGE)
-    medium: sourceUrl(size: MEDIUM)
-  }
-}
