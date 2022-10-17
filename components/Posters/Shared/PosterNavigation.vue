@@ -6,7 +6,7 @@
           :to="localePath({ name: 'posters-home' })"
           class="btn-search"
         >
-          <app-icon icon="chevron-left" width="12" height="12" />
+          <app-icon icon="home" width="12" height="12" />
           Home
         </nuxt-link>
         <nuxt-link :to="localePath({ name: 'posters' })" class="btn-search">

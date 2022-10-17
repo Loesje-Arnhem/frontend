@@ -8,7 +8,7 @@
     <app-loader v-if="loading" />
 
     <posters-overview-section
-      v-if="showOverview"
+      v-show="showResults"
       :source-ids="selectedSourceIds"
       :subject-ids="selectedSubjectIds"
       :search="search"
@@ -45,7 +45,7 @@ export default defineComponent({
       },
     })
 
-    const showOverview = computed(() => {
+    const showResults = computed(() => {
       return (
         (selectedSourceIds.value.length ||
           search.value.length ||
@@ -66,7 +66,7 @@ export default defineComponent({
     })
 
     return {
-      showOverview,
+      showResults,
       search,
       selectedSourceIds,
       selectedSubjectIds,
@@ -84,7 +84,7 @@ export default defineComponent({
   },
   nuxtI18n: {
     paths: {
-      nl: '/posters/zoeken',
+      nl: '/posters',
     },
   },
 })

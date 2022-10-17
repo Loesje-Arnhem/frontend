@@ -1,7 +1,6 @@
 <template>
   <div>
     <app-loader v-if="loading" />
-
     <posters-overview-section v-else-if="posters" :posters="posters" />
   </div>
 </template>
@@ -11,19 +10,9 @@ import { computed, defineComponent, ComputedRef } from '@nuxtjs/composition-api'
 import { IRelatedPosters } from '~/interfaces/IPoster'
 import useFetch from '~/composables/useFetch'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
-import useTags from '~/composables/useTags'
 import { GetPagePosters } from '~/graphql/Pages/Pages'
-import { ITags } from '~/interfaces/ITag'
 export default defineComponent({
   setup() {
-    const {
-      search,
-      selectedSourceIds,
-      selectedSubjectIds,
-      selectedTags,
-      dateBefore,
-      dateAfter,
-    } = useTags()
     const { result, loading } = useFetch({
       query: GetPagePosters,
       pageKey: 'page-posters',
@@ -36,24 +25,9 @@ export default defineComponent({
       return result.value?.posters
     })
 
-    const sources: ComputedRef<ITags | null> = computed(() => {
-      return result.value?.sources
-    })
-    const subjects: ComputedRef<ITags | null> = computed(() => {
-      return result.value?.subjects
-    })
-
     return {
-      search,
-      selectedSourceIds,
-      selectedSubjectIds,
-      selectedTags,
-      dateBefore,
-      dateAfter,
       loading,
       posters,
-      sources,
-      subjects,
     }
   },
   head: {
@@ -61,7 +35,7 @@ export default defineComponent({
   },
   nuxtI18n: {
     paths: {
-      nl: '/posters',
+      nl: '/posters/home',
     },
   },
 })
