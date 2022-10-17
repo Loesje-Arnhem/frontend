@@ -7,32 +7,28 @@ export default async (client: ApolloClient<NormalizedCacheObject>) => {
   let after = null
   let productCategories: any[] = []
   while (hasNextPage) {
-    try {
-      // @ts-ignore
-      const { data } = await client.query({
-        query: GetAllProductCategories,
-        variables: {
-          after,
-        },
-      })
-      const newproductCategories = data.productCategories.edges.map(
-        (item: any) => {
-          return {
-            route: item.node.uri,
-            payload: {
-              productCategory: item.node,
-            },
-          }
-        },
-      )
-      await pauseFetching(`productCategories`)
+    // @ts-ignore
+    const { data } = await client.query({
+      query: GetAllProductCategories,
+      variables: {
+        after,
+      },
+    })
+    const newproductCategories = data.productCategories.edges.map(
+      (item: any) => {
+        return {
+          route: item.node.uri,
+          payload: {
+            productCategory: item.node,
+          },
+        }
+      },
+    )
+    await pauseFetching(`productCategories`)
 
-      after = data.productCategories.pageInfo.endCursor
-      hasNextPage = data.productCategories.pageInfo.hasNextPage
-      productCategories = productCategories.concat(newproductCategories)
-    } catch (error) {
-      console.error(error)
-    }
+    after = data.productCategories.pageInfo.endCursor
+    hasNextPage = data.productCategories.pageInfo.hasNextPage
+    productCategories = productCategories.concat(newproductCategories)
   }
   return productCategories
 }
