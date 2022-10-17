@@ -26,6 +26,5 @@ export default defineComponent({
 <style lang="postcss" module>
 .related-pages {
   @mixin block;
-  @mixin notch;
 }
 </style>

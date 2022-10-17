@@ -1,7 +1,7 @@
 <template>
   <app-alert v-if="hasUpdate">
     Er is een nieuwe versie beschikbaar.
-    <button class="btn-link" @click="clickToUpdate">
+    <button class="btn-link" @click="update">
       Updaten naar de laatste versie
     </button>
   </app-alert>
@@ -9,38 +9,48 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
+import { WorkboxUpdatableEvent } from 'workbox-window'
+import { mediaQueryStandAlone } from '~/utils/media-queries'
 
 export default defineComponent({
   setup() {
     const hasUpdate = ref(false)
+    let registration: ServiceWorkerRegistration | null
 
-    const clickToUpdate = () => {
+    const update = () => {
+      if (registration?.waiting) {
+        registration.waiting.postMessage('SKIP_WAITING')
+      }
       window.location.reload()
     }
 
     onMounted(async () => {
-      if (!process.client) {
+      if (!('serviceWorker' in navigator)) {
         return
       }
-      // @ts-ignore
+      registration = await navigator.serviceWorker.ready
+
+      // @ts-ignore-next-line
       const workbox = await window.$workbox
       if (workbox) {
-        // @ts-ignore
-        workbox.addEventListener('installed', (event) => {
-          // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
-          if (
-            event.isUpdate &&
-            document.documentElement.classList.contains('standalone')
-          ) {
-            // whatever logic you want to use to notify the user that they need to refresh the page.
-            hasUpdate.value = true
-          }
-        })
+        workbox.addEventListener(
+          'installed',
+          (event: WorkboxUpdatableEvent) => {
+            // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
+            if (
+              event.isUpdate &&
+              window.matchMedia(mediaQueryStandAlone).matches
+            ) {
+              // whatever logic you want to use to notify the user that they need to refresh the page.
+              hasUpdate.value = true
+            }
+          },
+        )
       }
     })
     return {
       hasUpdate,
-      clickToUpdate,
+      update,
     }
   },
 })

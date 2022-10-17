@@ -30,10 +30,10 @@
 <script lang="ts">
 import {
   defineComponent,
-  ref,
   PropType,
   computed,
   watch,
+  toRef,
 } from '@nuxtjs/composition-api'
 import { useFetchMore } from '~/composables/useFetch'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
@@ -86,7 +86,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const relatedPosters = ref(props.posters)
+    const relatedPosters = toRef(props, 'posters')
 
     const { fetchMore, loading } = useFetchMore()
 

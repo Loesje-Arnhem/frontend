@@ -44,8 +44,6 @@ export default async ({ isDev }) => {
     }
     await registerPeriodicSync()
 
-    registration.active.postMessage({
-      type: TOTAL_POSTERS_KEY,
-    })
+    registration.active.postMessage(TOTAL_POSTERS_KEY)
   } catch (error) {}
 }

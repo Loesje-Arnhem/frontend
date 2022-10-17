@@ -109,7 +109,8 @@ export default defineComponent({
   height: 100vh;
   overflow: hidden;
   z-index: var(--z-main-navigation);
-  padding: var(--notch-top) var(--notch-right) 0 var(--notch-left);
+  padding: env(safe-area-inset-top) env(safe-area-inset-left) 0
+    env(safe-area-inset-right);
 
   @media (--show-full-navigation) {
     background: transparent;

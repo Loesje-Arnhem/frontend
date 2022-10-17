@@ -21,11 +21,11 @@ const getMetaDescripion = (seo: ISEO, key: keyof ISEO) => {
 
 const getMetaImage = (seo: ISEO, key: keyof ISEO) => {
   // @ts-ignore
-  if (seo[key] && seo[key].archive) {
+  if (seo[key] && seo[key].mediaItemUrl) {
     // @ts-ignore
-    return seo[key].archive
+    return seo[key].mediaItemUrl
   } else if (seo.opengraphImage) {
-    return seo.opengraphImage.archive
+    return seo.opengraphImage.mediaItemUrl
   }
   return null
 }
