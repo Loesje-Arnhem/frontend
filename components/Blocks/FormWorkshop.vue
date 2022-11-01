@@ -255,7 +255,7 @@ export default defineComponent({
   position: relative;
   padding-bottom: 2em;
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     padding: 0 15em 2em 0;
   }
 
@@ -268,13 +268,15 @@ export default defineComponent({
 
 .intro,
 .motivation {
-  grid-column: span 2;
+  @media (--viewport-sm) {
+    grid-column: span 2;
+  }
 }
 
 .image >>> img {
   display: none;
 
-  @media (--viewport-md) {
+  @media (--viewport-lg) {
     pointer-events: none;
     display: block;
     bottom: 3em;

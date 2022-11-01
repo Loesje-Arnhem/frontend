@@ -78,6 +78,9 @@ export default defineComponent({
   @mixin heading;
 
   font-size: 1em;
-  font-size: var(--font-size-l);
+
+  @media (--viewport-xs) {
+    font-size: var(--font-size-l);
+  }
 }
 </style>
