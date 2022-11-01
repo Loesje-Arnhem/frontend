@@ -1,5 +1,5 @@
 <template>
-  <span aria-live="assertive">{{ $t(error) }}</span>
+  <span aria-live="assertive" class="error">{{ $t(error) }}</span>
 </template>
 
 <script lang="ts">
@@ -13,3 +13,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="postcss" scoped>
+.error {
+  display: block;
+}
+</style>

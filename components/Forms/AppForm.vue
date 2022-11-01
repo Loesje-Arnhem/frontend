@@ -5,14 +5,14 @@
 
   <form
     v-else
-    action
+    action=""
     method="post"
     novalidate
     @submit.prevent="$emit('submit')"
   >
     <slot />
     <app-button type="submit" :loading="loading">{{ buttonTitle }}</app-button>
-    <p><form-error-message :error="error" /></p>
+    <form-error-message :error="error" />
   </form>
 </template>
 
@@ -34,7 +34,7 @@ export default defineComponent({
     },
     error: {
       type: String,
-      default: null,
+      default: '',
     },
   },
 })

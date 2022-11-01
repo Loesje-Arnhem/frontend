@@ -23,6 +23,6 @@ export default defineComponent({
 .fields {
   display: grid;
   grid-gap: var(--gutter);
-  margin-bottom: var(--gutter);
+  margin-bottom: 1.5em;
 }
 </style>

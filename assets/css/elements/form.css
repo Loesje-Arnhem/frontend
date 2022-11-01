@@ -28,6 +28,8 @@ input[type="date"],
 input[type="tel"],
 input[type="url"],
 input[type="password"],
+input[type="time"],
+textarea,
 select {
   @mixin tile-border;
 
@@ -64,8 +66,6 @@ input {
   }
 }
 
-label {
-  display: block;
-  margin-bottom: 0.25em;
-  font-weight: var(--font-weight-bold);
+textarea { 
+  resize: vertical;
 }

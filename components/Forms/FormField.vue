@@ -3,6 +3,9 @@
     <label :for="id" class="label">{{ title }}</label>
     <slot />
     <form-error-message :error="errorMessage" />
+    <div class="description" v-if="description">
+      {{ description }}
+    </div>
   </div>
 </template>
 
@@ -32,6 +35,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+      default: '',
+    },
     id: {
       type: String,
       required: true,
@@ -51,3 +58,15 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="postcss" scoped>
+.label {
+  display: block;
+  margin-bottom: 0.25em;
+  font-weight: var(--font-weight-bold);
+}
+
+.description {
+  margin-bottom: 0.5em;
+}
+</style>
