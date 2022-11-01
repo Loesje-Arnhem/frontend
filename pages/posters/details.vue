@@ -4,7 +4,7 @@
     <center-wrapper>
       <poster-details :poster="poster" />
     </center-wrapper>
-    <!-- <related-products-section :related-products="poster.relatedProducts" /> -->
+    <related-products-section :related-products="poster.relatedProducts" />
     <posters-overview-section
       v-if="poster"
       :not-in="poster.databaseId"
