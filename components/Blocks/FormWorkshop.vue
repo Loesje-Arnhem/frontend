@@ -125,9 +125,9 @@
             @blur="v$.theme.$touch"
           />
           <form-textarea
-            rows="5"
             id="motivation"
             v-model="formData.motivation"
+            rows="5"
             class="motivation"
             description="Motiveer je aanvraag: Waarom wil je graag een Loesje-workshop aanvragen? (Optioneel)"
             :errors="v$.motivation.$errors"
