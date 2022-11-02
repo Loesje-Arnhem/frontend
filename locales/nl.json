@@ -30,7 +30,7 @@
     "email": "Value is not a valid email address",
     "maxLength": "The maximum value is {max}",
     "minLength": "This field should be at least {min} long",
-    "numeric": "Value must be numeric",
+    "numeric": "De waarde moet een geldig nummer zijn",
     "required": "Dit veld is verplicht",
     "form": "Enkele velden zijn niet correct ingevuld",
     "submit": "Er ging iets mis bij het verzenden"
