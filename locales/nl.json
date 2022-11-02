@@ -4,32 +4,6 @@
   "close": "Close",
   "contact": "Contact",
   "followOn": "%{title} op %{network}",
-  "form": {
-    "buttons": {
-      "send": "Send"
-    },
-    "errors": {
-      "fields": {
-        "email": {
-          "invalidEmail": "Please enter a valid email address"
-        }
-      },
-      "general": {
-        "invalid": "Not all fields are filled correctly",
-        "required": "Please enter your {field}."
-      }
-    },
-    "fields": {
-      "email": "E-mailadres",
-      "name": "Naam"
-    },
-    "forms": {
-      "contact": {
-        "success": "The form has been submitted. We will contact you as soon as possible.",
-        "title": "Contactform"
-      }
-    }
-  },
   "gallery": "Gallery",
   "latestPosts": "Latest posts",
   "loadMore": "Load more posts",
@@ -60,8 +34,5 @@
     "required": "Dit veld is verplicht",
     "form": "Enkele velden zijn niet correct ingevuld",
     "submit": "Er ging iets mis bij het verzenden"
-  },
-  "videos": "Videos",
-  "view": "view",
-  "viewNordgardenOn": "View Nordgarden on"
+  }
 }

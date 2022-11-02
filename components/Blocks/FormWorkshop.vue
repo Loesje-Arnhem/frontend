@@ -2,9 +2,20 @@
   <center-wrapper size="lg">
     <section aria-label="Meld je aan voor de workshop">
       <h1>Meld je aan voor de workshop</h1>
+      <div v-if="submitted" class="success">
+        <p>Hoi {{ formData.name }}</p>
+        <p>
+          Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe
+          ik ze maak! Ik heb je aanvraag in goede orde ontvangen en ik ga er
+          eens goed naar kijken, waarschijnlijk met mijn vriendenclub. Je krijgt
+          dan zo snel mogelijk een mailtje van me terug, met de vraag om meer
+          informatie mocht dat nodig zijn, en anders met daarin of ik inderdaad
+          op je gewenste datum kan of niet. Houd dus je mailbox in de gaten!
+        </p>
+      </div>
       <app-form
+        v-else
         class="form"
-        :submitted="submitted"
         :loading="loading"
         :error="error"
         button-title="Aanmelden"
@@ -79,10 +90,10 @@
             v-model="formData.date"
             title="Wanneer wil je de workshop volgen?"
             :errors="v$.date.$errors"
+            :min="minDate"
             type="date"
             @blur="v$.date.$touch"
           />
-
           <form-input-text
             id="time"
             v-model="formData.time"
@@ -94,7 +105,7 @@
 
           <form-input-text
             id="total-attendees"
-            v-model="formData.totalAttendees"
+            v-model.number="formData.totalAttendees"
             type="number"
             :errors="v$.totalAttendees.$errors"
             title="Hoeveel deelnemers verwacht je?"
@@ -111,7 +122,8 @@
           />
           <form-input-text
             id="total-workshops"
-            v-model="formData.totalWorkshops"
+            v-model.number="formData.totalWorkshops"
+            type="number"
             :errors="v$.totalWorkshops.$errors"
             title="Hoeveel workshops wil je aanvragen?"
             @blur="v$.totalWorkshops.$touch"
@@ -153,6 +165,8 @@ import {
   defineComponent,
   ref,
   computed,
+  Ref,
+  onMounted,
 } from '@nuxtjs/composition-api'
 import { useMutation } from '@vue/apollo-composable'
 import { v4 } from 'uuid'
@@ -165,6 +179,7 @@ export default defineComponent({
   setup() {
     const submitted = ref(false)
     const { required, numeric, email } = useValidators()
+    const minDate: Ref<string | null> = ref(null)
 
     const formData = reactive({
       name: '',
@@ -179,7 +194,7 @@ export default defineComponent({
       time: '',
       totalAttendees: null,
       location: '',
-      totalWorkshops: '',
+      totalWorkshops: '1',
       theme: '',
     })
 
@@ -238,6 +253,17 @@ export default defineComponent({
       }
     })
 
+    onMounted(() => {
+      if (!process.client) {
+        return
+      }
+      const date = new Date()
+      const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
+      const month =
+        date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
+      minDate.value = `${date.getFullYear()}-${month}-${day}`
+    })
+
     return {
       error,
       v$,
@@ -245,6 +271,7 @@ export default defineComponent({
       loading,
       submitted,
       formData,
+      minDate,
     }
   },
 })
@@ -284,5 +311,10 @@ export default defineComponent({
     transform: scaleX(-1);
     position: absolute;
   }
+}
+
+.success {
+  margin-bottom: 3em;
+  max-width: 80ch;
 }
 </style>
