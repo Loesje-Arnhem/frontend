@@ -60,6 +60,9 @@ export default defineComponent({
       } else {
         classes.push('btn-outline')
       }
+      if (props.loading) {
+        classes.push('is-loading')
+      }
 
       return classes
     })
@@ -86,7 +89,8 @@ export default defineComponent({
   background: var(--color-black);
   color: var(--color-white);
   text-align: center;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   padding: 0.75em 2em;
   max-width: 20em;
@@ -133,9 +137,14 @@ a {
   @nest .btn-outline:hover & {
     box-shadow: 0 2px 0 0 currentcolor;
   }
+  @nest .is-loading & {
+    padding-left: 1em;
+  }
 }
 
 .loader {
   transform: scale(0.5);
+  position: absolute;
+  left: 0;
 }
 </style>
