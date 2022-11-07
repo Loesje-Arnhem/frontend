@@ -83,6 +83,9 @@ export default defineComponent({
 .media {
   max-width: 20em;
   width: 100%;
-  margin: 4em auto;
+  margin: 1em auto;
+  @media (--viewport-lg) {
+    margin-block: 2em;
+  }
 }
 </style>
