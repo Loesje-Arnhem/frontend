@@ -8,7 +8,7 @@
           <div class="text" v-html="content" />
         </div>
         <div class="media">
-          <app-video v-if="video" :video="video" class="video" />
+          <app-video v-if="video" :video="video" />
           <photo-frame v-else-if="image" :image="image" />
         </div>
       </article>
