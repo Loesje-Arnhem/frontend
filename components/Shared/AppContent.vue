@@ -8,7 +8,7 @@
           <div class="text" v-html="content" />
         </div>
         <div class="media">
-          <app-video v-if="video" :video="video" class="video" />
+          <app-video v-if="video" :video="video" />
           <photo-frame v-else-if="image" :image="image" />
         </div>
       </article>
@@ -83,6 +83,9 @@ export default defineComponent({
 .media {
   max-width: 20em;
   width: 100%;
-  margin: 4em auto;
+  margin: 1em auto;
+  @media (--viewport-lg) {
+    margin-block: 2em;
+  }
 }
 </style>
