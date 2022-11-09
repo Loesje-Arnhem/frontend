@@ -15,7 +15,7 @@ export default gql`
     $theme: String
     $time: String
     $totalAttendees: Int
-    $totalWorkshops: String
+    $totalWorkshops: Int
     $zipcode: String
   ) {
     requestWorkshop(

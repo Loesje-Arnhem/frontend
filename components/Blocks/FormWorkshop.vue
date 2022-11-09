@@ -194,9 +194,9 @@ export default defineComponent({
       motivation: '',
       date: '',
       time: '',
-      totalAttendees: null,
+      totalAttendees: 2,
       location: '',
-      totalWorkshops: '1',
+      totalWorkshops: 1,
       theme: '',
     })
 
@@ -213,7 +213,7 @@ export default defineComponent({
       time: { required },
       totalAttendees: { required, numeric },
       location: { required },
-      totalWorkshops: { required },
+      totalWorkshops: { required, numeric },
       theme: {},
     }
 
@@ -250,7 +250,7 @@ export default defineComponent({
     }))
 
     onDone((result) => {
-      if (result.data.requestWorkshop.response === '1') {
+      if (result.data.requestWorkshop.response === 'success') {
         submitted.value = true
       }
     })
