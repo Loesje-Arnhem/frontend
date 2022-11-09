@@ -59,14 +59,14 @@ export default defineComponent({
 
 .main {
   flex: 1 0 auto;
-  min-height: calc(100vh - 1193px);
+  min-height: calc(100vh - 553px);
 
   @media (--viewport-sm) {
     min-height: calc(100vh - 702px);
   }
 
   @media (--viewport-lg) {
-    min-height: calc(100vh - 486px);
+    min-height: calc(100vh - 381px);
   }
 }
 </style>

@@ -18,6 +18,12 @@ export default (to, from, savedPosition) => {
 
   // eslint-disable-next-line
   const nuxt = window.<%= globals.nuxt %>;
+  const scrollPosition = document.documentElement.scrollTop
+  const element = document.querySelector('.page-header-top')
+  let elementHeight = null
+  if (element) {
+    elementHeight = element.offsetHeight
+  }
 
   // triggerScroll is only fired when a new component is loaded
   if (to.path === from.path && to.hash !== from.hash) {
@@ -28,6 +34,7 @@ export default (to, from, savedPosition) => {
   return new Promise((resolve) => {
     nuxt.$once('triggerScroll', () => {
       if (savedPosition) {
+        console.log(savedPosition)
         resolve(savedPosition)
       }
 
@@ -37,10 +44,7 @@ export default (to, from, savedPosition) => {
       }
 
       const element = document.querySelector('.page-header-top')
-      if (element) {
-        const scrollPosition = document.documentElement.scrollTop
-        const elementHeight = element.offsetHeight
-
+      if (elementHeight) {
         if (scrollPosition >= elementHeight) {
           position.y = element.offsetHeight
         } else {
