@@ -1,8 +1,10 @@
 <template>
-  <app-alert v-if="hasUpdate">
-    Er is een nieuwe content beschikbaar.
-    <button class="btn-link" @click="update">Verversen</button>
-  </app-alert>
+  <slide-in-animation direction="down">
+    <app-alert v-if="hasUpdate">
+      Er is een nieuwe content beschikbaar.
+      <button class="btn-link" @click="update">Verversen</button>
+    </app-alert>
+  </slide-in-animation>
 </template>
 
 <script lang="ts">
