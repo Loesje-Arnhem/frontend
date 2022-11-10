@@ -5,26 +5,26 @@ const setBodyClass = () => {
   document.documentElement.classList.add('standalone')
 }
 
-const redirectToPostersPageOnStandalone = ({
-  route,
-  app,
-  redirect,
-}: Context) => {
-  const postersPath = app.localePath({ name: 'posters' })
-  if (route.matched[0].path !== postersPath) {
-    return redirect({
-      path: postersPath,
-      query: {
-        standalone: 'true',
-      },
-    })
-  }
-}
+// const redirectToPostersPageOnStandalone = ({
+//   route,
+//   app,
+//   redirect,
+// }: Context) => {
+//   const postersPath = app.localePath({ name: 'posters' })
+//   if (route.matched[0].path !== postersPath) {
+//     return redirect({
+//       path: postersPath,
+//       query: {
+//         standalone: 'true',
+//       },
+//     })
+//   }
+// }
 
 export default (context: Context) => {
   if (context.route.query.standalone === 'true') {
     setBodyClass()
-    redirectToPostersPageOnStandalone(context)
+    // redirectToPostersPageOnStandalone(context)
   }
 
   window.addEventListener('DOMContentLoaded', () => {
@@ -33,7 +33,7 @@ export default (context: Context) => {
       (event) => {
         if (event.matches) {
           setBodyClass()
-          redirectToPostersPageOnStandalone(context)
+          // redirectToPostersPageOnStandalone(context)
         }
       },
       { once: true },
