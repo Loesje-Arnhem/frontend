@@ -55,7 +55,7 @@
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.7.0",
-    "node-fetch": "^3.2.10",
+    "node-fetch": "^3.3.0",
     "postcss-html": "^1.5.0",
     "postcss-mixins": "^9.0.4",
     "postcss-preset-env": "^7.8.2",
