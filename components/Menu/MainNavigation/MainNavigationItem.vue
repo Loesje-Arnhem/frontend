@@ -241,6 +241,7 @@ export default defineComponent({
   @media (--show-full-navigation) {
     @mixin list-reset;
 
+    min-width: 10em;
     color: var(--color-black);
     background: var(--color-white);
     border-top: 0;
