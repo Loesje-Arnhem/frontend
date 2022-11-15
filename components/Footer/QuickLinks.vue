@@ -14,18 +14,18 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/doe-mee/lokale-groepen/">
+        <nuxt-link to="/over-loesje/internationaal/">
           <app-icon icon="chevron-right" width="12" height="12" />Loesje
           internationaal
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/doe-mee/lokale-groepen/">
-          <app-icon icon="chevron-right" width="12" height="12" />Word lid
+        <nuxt-link to="/doe-mee">
+          <app-icon icon="chevron-right" width="12" height="12" />Doe mee
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/doe-mee/lokale-groepen/">
+        <nuxt-link to="/doe-mee/donateur/">
           <app-icon icon="chevron-right" width="12" height="12" />Word donateur
         </nuxt-link>
       </li>
