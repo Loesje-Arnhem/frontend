@@ -1,11 +1,14 @@
 <template>
-  <div class="alert">
-    <div class="wrapper">
-      <center-wrapper>
-        <slot />
-      </center-wrapper>
+  <slide-in-animation direction="down">
+    <div v-if="show" class="alert">
+      <div class="wrapper" role="alert">
+        <center-wrapper>
+          {{ text }}
+          <slot />
+        </center-wrapper>
+      </div>
     </div>
-  </div>
+  </slide-in-animation>
 </template>
 
 <script lang="ts">
@@ -17,13 +20,21 @@ export default defineComponent({
       type: String,
       default: 'warning',
     },
+    show: {
+      type: Boolean,
+      default: false,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
   },
 })
 </script>
 
 <style scoped lang="postcss">
 .alert {
-  z-index: 999;
+  z-index: var(--z-alert);
   background-color: var(--color-white);
   padding-block: 0.5em;
   line-height: 1.2;
