@@ -16,10 +16,6 @@ import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   props: {
-    type: {
-      type: String,
-      default: 'warning',
-    },
     show: {
       type: Boolean,
       default: false,

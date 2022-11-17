@@ -50,9 +50,9 @@
 {
   "nl": {
     "title": "Word lid",
-    "btn": "Steun Loesje",
+    "btn": "Ik doe mee!",
     "usps": [
-      "Ontvang de laatste posters",
+      "Doe mee met activiteiten",
       "Schrijf mee",
       "Ontvang korting in het winkeltje"
     ]

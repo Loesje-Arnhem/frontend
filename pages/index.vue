@@ -9,8 +9,6 @@
       v-if="page"
       :related-products="page.relatedProducts"
     />
-    <!-- <block-instagram /> -->
-    <block-groups />
   </div>
 </template>
 
