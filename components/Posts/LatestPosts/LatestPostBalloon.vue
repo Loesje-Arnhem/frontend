@@ -1,12 +1,13 @@
 <template>
-  <div ref="balloon" class="balloon" :class="{ animate }">
-    <app-image
-      class="image"
-      :width="159"
-      :height="243"
-      src="/images/air-balloon.png"
-      sizes="xs:159px sm:358px"
-    />
+  <div ref="balloon" class="balloon-x" :class="{ animate }">
+    <div class="balloon-y" :class="{ animate }">
+      <app-image
+        :width="159"
+        :height="243"
+        src="/images/air-balloon.png"
+        sizes="xs:159px sm:358px"
+      />
+    </div>
   </div>
 </template>
 
@@ -54,9 +55,20 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.balloon {
+.animate {
+  animation: 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
+}
+
+.balloon-x {
+  margin-bottom: 2em;
+
+  @media (--viewport-md) {
+    margin-block: 6em 0;
+  }
+
   &.animate {
-    animation: balloon-x 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
+    animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
+    animation-name: balloon-x;
 
     @media (--viewport-md) {
       animation-name: balloon-x-large;
@@ -64,9 +76,9 @@ export default defineComponent({
   }
 }
 
-.image {
-  @nest .balloon.animate & {
-    animation: balloon-y 20s infinite cubic-bezier(0.3, 0.27, 0.07, 1.64);
+.balloon-y {
+  &.animate {
+    animation-name: balloon-y;
 
     @media (--viewport-md) {
       animation-name: balloon-y-large;
@@ -77,7 +89,7 @@ export default defineComponent({
 @keyframes balloon-y {
   50% {
     animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
-    transform: translateX(5rem);
+    transform: translateX(8rem);
   }
 }
 
