@@ -46,12 +46,26 @@ export default defineComponent({
     })
 
     const posters: ComputedRef<IRelatedPosters | null> = computed(() => {
+      if (
+        search.value ||
+        selectedSourceIds.value.length ||
+        selectedSubjectIds.value.length
+      ) {
+        return {
+          pageInfo: {
+            endCursor: '',
+            hasNextPage: true,
+          },
+          edges: [],
+        }
+      }
       return result.value?.posters
     })
 
     const sources: ComputedRef<ITags | null> = computed(() => {
       return result.value?.sources
     })
+
     const subjects: ComputedRef<ITags | null> = computed(() => {
       return result.value?.subjects
     })
