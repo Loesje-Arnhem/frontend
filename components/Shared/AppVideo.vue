@@ -71,12 +71,9 @@ export default defineComponent({
 }
 
 .video-wrapper {
-  top: 36%;
-  left: 3%;
-  right: 15%;
+  inset: 38% 23% auto 7%;
   position: absolute;
   display: block;
-  aspect-ratio: 4 / 3;
 }
 
 .frame {
@@ -95,7 +92,7 @@ export default defineComponent({
   position: absolute;
   top: 49%;
   width: 10%;
-  left: 85%;
+  left: 82%;
   z-index: 9;
 }
 
