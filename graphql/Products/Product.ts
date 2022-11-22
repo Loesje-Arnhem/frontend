@@ -54,7 +54,7 @@ export default gql`
           }
         }
       }
-      related(first: 12, where: { stockStatus: [IN_STOCK, ON_BACKORDER] }) {
+      related(first: 12, where: { stockStatus: [IN_STOCK] }) {
         edges {
           node {
             slug

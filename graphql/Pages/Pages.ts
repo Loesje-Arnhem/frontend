@@ -70,7 +70,7 @@ export const GetPageShop = gql`
     products(
       where: {
         featured: true,
-        stockStatus: [IN_STOCK, ON_BACKORDER]
+        stockStatus: [IN_STOCK]
         orderby: {
           field: MENU_ORDER,
           order: ASC
