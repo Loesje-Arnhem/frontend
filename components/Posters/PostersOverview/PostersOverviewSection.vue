@@ -33,6 +33,7 @@ import {
   PropType,
   computed,
   ref,
+  watch,
 } from '@nuxtjs/composition-api'
 import { useFetchMore } from '~/composables/useFetch'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
@@ -140,7 +141,16 @@ export default defineComponent({
         posterDateAfter,
       }
     })
-
+    watch(where, () => {
+      relatedPosters.value = {
+        pageInfo: {
+          endCursor: '',
+          hasNextPage: true,
+        },
+        edges: [],
+      }
+      loadMore()
+    })
     const loadMore = async () => {
       const { posters } = await fetchMore({
         items: relatedPosters,
