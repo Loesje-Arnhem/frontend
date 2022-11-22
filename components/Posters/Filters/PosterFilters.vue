@@ -134,8 +134,7 @@ export default defineComponent({
 }
 
 .buttons {
-  @mixin tile-border;
-
+  border: 2px solid var(--color-black);
   display: flex;
   margin-bottom: 1em;
   flex-wrap: wrap;

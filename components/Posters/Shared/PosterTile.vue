@@ -1,17 +1,19 @@
 <template>
-  <div
-    v-if="poster.featuredImage"
-    class="tile image-wrapper-tile"
-    :data-slug="poster.slug"
-  >
-    <router-link :to="poster.uri" class="link">
-      <featured-image
-        :lazy="true"
-        :alt="poster.title"
-        :image="poster.featuredImage"
-        :sizes="sizes"
-      />
-    </router-link>
+  <div class="tile-wrapper">
+    <div
+      v-if="poster.featuredImage"
+      class="tile image-wrapper-tile"
+      :data-slug="poster.slug"
+    >
+      <router-link :to="poster.uri" class="link">
+        <featured-image
+          :lazy="true"
+          :alt="poster.title"
+          :image="poster.featuredImage"
+          :sizes="sizes"
+        />
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -38,10 +40,15 @@ export default defineComponent({
 .link {
   width: 100%;
   display: block;
+  padding: 2px;
 
   &:focus {
     outline-offset: 3px;
     outline-width: 1px;
   }
+}
+
+.tile-wrapper {
+  background: var(--color-white);
 }
 </style>

@@ -2,18 +2,19 @@
   <div class="poster-details">
     <article class="content">
       <h1 class="sr-only">{{ poster.title }}</h1>
-
-      <div class="tile image-wrapper-details" :data-slug="poster.slug">
-        <fade-animation>
-          <featured-image
-            v-if="poster.featuredImage"
-            :key="poster.featuredImage.node.id"
-            :lazy="false"
-            :alt="poster.title"
-            :image="poster.featuredImage"
-            sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
-          />
-        </fade-animation>
+      <div class="tile-wrapper">
+        <div class="tile image-wrapper-details" :data-slug="poster.slug">
+          <fade-animation>
+            <featured-image
+              v-if="poster.featuredImage"
+              :key="poster.featuredImage.node.id"
+              :lazy="false"
+              :alt="poster.title"
+              :image="poster.featuredImage"
+              sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
+            />
+          </fade-animation>
+        </div>
       </div>
     </article>
     <div class="meta-data">
@@ -138,5 +139,13 @@ export default defineComponent({
 .icon {
   width: 1em;
   height: 1em;
+}
+
+.tile-wrapper {
+  background: var(--color-white);
+}
+
+.tile {
+  padding: 3px;
 }
 </style>
