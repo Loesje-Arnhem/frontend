@@ -45,6 +45,12 @@ export default {
     edges: [
       {
         node: {
+          uri: '/doe-mee/word-lid/',
+          title: 'Word lid',
+        },
+      },
+      {
+        node: {
           uri: '/doe-mee/masterclass/',
           title: 'Masterclass',
         },
