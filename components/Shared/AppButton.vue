@@ -89,6 +89,7 @@ export default defineComponent({
   background: var(--color-black);
   color: var(--color-white);
   text-align: center;
+  justify-content: center;
   display: inline-flex;
   align-items: center;
   text-decoration: none;
