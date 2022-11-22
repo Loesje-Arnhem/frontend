@@ -6,6 +6,8 @@ export default async ({ isDev }) => {
     return
   }
 
+  navigator.clearAppBadge()
+
   /* eslint-disable-next-line */
   if (!'serviceWorker' in navigator) {
     return
