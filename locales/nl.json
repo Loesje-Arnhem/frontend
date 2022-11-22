@@ -27,10 +27,11 @@
   "socialMediaLinks": "Social media links",
   "tour": "Tour",
   "validations": {
-    "email": "Value is not a valid email address",
+    "member_exists_with_email_address": "Je bent al aangemeld voor de nieuwsbrief met dit e-mailadres",
+    "email": "Dit is geen geldig e-mailadres",
     "maxLength": "The maximum value is {max}",
-    "minLength": "This field should be at least {min} long",
-    "numeric": "De waarde moet een geldig nummer zijn",
+    "minLength": "Dit veld moet minimaal {min} karakters hebben",
+    "numeric": "Value must be numeric",
     "required": "Dit veld is verplicht",
     "form": "Enkele velden zijn niet correct ingevuld",
     "submit": "Er ging iets mis bij het verzenden"

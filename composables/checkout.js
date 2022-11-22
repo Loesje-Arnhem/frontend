@@ -3,7 +3,7 @@ import { ref, reactive } from '@nuxtjs/composition-api'
 import { v4 } from 'uuid'
 import CheckoutQuery from '~/graphql/Shop/Checkout/Checkout.gql'
 import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
-import useNewsletter from '~/composables/newsletter'
+import useNewsletter from '~/composables/useNewsletter'
 
 export const useCheckout = () => {
   const errors = ref([])

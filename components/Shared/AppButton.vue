@@ -95,12 +95,18 @@ export default defineComponent({
   text-decoration: none;
   padding: 0.75em 2em;
   max-width: 20em;
+  gap: 0.25em;
   position: relative;
 
   @nest .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
       border-image-outset: 0.25em 0.5em;
     }
+  }
+
+  & .loader {
+    margin: 0;
+    transform: scale(0.75);
   }
 }
 
@@ -138,14 +144,5 @@ a {
   @nest .btn-outline:hover & {
     box-shadow: 0 2px 0 0 currentcolor;
   }
-  @nest .is-loading & {
-    padding-left: 1em;
-  }
-}
-
-.loader {
-  transform: scale(0.5);
-  position: absolute;
-  left: 0;
 }
 </style>
