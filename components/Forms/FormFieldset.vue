@@ -1,5 +1,5 @@
 <template>
-  <fieldset>
+  <fieldset class="fieldset">
     <legend>{{ title }}</legend>
     <div class="fields">
       <slot />
@@ -23,6 +23,9 @@ export default defineComponent({
 .fields {
   display: grid;
   grid-gap: var(--gutter);
+}
+
+.fieldset {
   margin-bottom: 1.5em;
 }
 </style>

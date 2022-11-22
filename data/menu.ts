@@ -51,6 +51,12 @@ export default {
       },
       {
         node: {
+          uri: '/doe-mee/blijf-op-hoogte/',
+          title: 'Nieuwsbrief',
+        },
+      },
+      {
+        node: {
           uri: '/doe-mee/masterclass/',
           title: 'Masterclass',
         },

@@ -17,12 +17,12 @@
     button-title="Aanmelden"
     @submit="submit"
   >
-    <form-fieldset title="Nieuwsbrief">
+    <form-fieldset title="Meld je aan voor de nieuwbrief">
       <form-input-text
         id="email"
         v-model="formData.email"
         :errors="v$.email.$errors"
-        title="Meld je aan voor de nieuwbrief"
+        title="E-mailadres"
         type="email"
         autocomplete="email"
         @blur="v$.email.$touch"

@@ -1,5 +1,5 @@
 <template>
-  <center-wrapper>
+  <center-wrapper :size="hasMedia ? 'lg' : 'md'">
     <div class="content-wrapper">
       <article :class="{ 'has-media': hasMedia }">
         <div class="content">
@@ -47,6 +47,7 @@ export default defineComponent({
     const hasMedia = computed(() => {
       return props.video !== null || props.image?.node
     })
+
     return {
       hasMedia,
     }
@@ -62,8 +63,6 @@ export default defineComponent({
 .content {
   display: flex;
   flex-direction: column;
-  max-width: var(--container-width-md);
-  margin: 0 auto;
 }
 
 .has-media {

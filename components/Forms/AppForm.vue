@@ -1,7 +1,9 @@
 <template>
   <form action="" method="post" novalidate @submit.prevent="$emit('submit')">
     <slot />
-    <app-button type="submit" :loading="loading">{{ buttonTitle }}</app-button>
+    <app-button type="submit" :loading="loading" class="btn">
+      {{ buttonTitle }}
+    </app-button>
     <form-error-message :error="error" />
   </form>
 </template>
@@ -26,3 +28,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped lang="postcss">
+.btn {
+  margin-bottom: 0.5em;
+}
+</style>

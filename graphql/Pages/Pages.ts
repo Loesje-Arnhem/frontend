@@ -27,14 +27,10 @@ export default gql`
 export const GetPageById = gql`
   query GetPageById($id: ID!) {
     page(id: $id, idType: DATABASE_ID) {
-      ...pageContent
-      seo {
-        ...seo
-      }
+      ...pageDetails
     }
   }
-  ${pageContent}
-  ${seo}
+  ${pageDetails}
 `
 
 export const GetPageHome = gql`
