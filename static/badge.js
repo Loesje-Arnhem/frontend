@@ -3,12 +3,18 @@ importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@6/dist/umd.js')
 const TOTAL_POSTERS_KEY = 'posters-badge-v2'
 
 const fetchTotalPosts = async () => {
-  const response = await fetch(`/total.json`)
-  if (!response.ok) {
-    return
+  try {
+    const response = await fetch(
+      `https://www.loesje.nl/wp-content/uploads/posters/total-posters.json`,
+    )
+    if (!response.ok) {
+      return
+    }
+    const { total } = await response.json()
+    return Number(total)
+  } catch (error) {
+    // console.error(error)
   }
-  const { total } = await response.json()
-  return Number(total)
 }
 
 const setAppBadge = async () => {

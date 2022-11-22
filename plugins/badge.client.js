@@ -36,11 +36,8 @@ export default async ({ isDev }) => {
             // minInterval: 24 * 60 * 60 * 1000, // 1 day
             minInterval: 60 * 60 * 1000, // 1 hour
           })
-          console.log('permission granted')
         }
-      } catch (error) {
-        console.log('permission not granted')
-      }
+      } catch (error) {}
     }
     await registerPeriodicSync()
 
