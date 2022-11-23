@@ -14,9 +14,13 @@
         </template>
       </h1>
       <product-list :products="products" />
-      <app-button :to="localePath({ name: 'shop' })">
+      <!-- <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
-      </app-button>
+      </app-button> -->
+
+      <shop-button>
+        {{ $t('btn') }}
+      </shop-button>
     </center-wrapper>
   </section>
 </template>
