@@ -61,11 +61,11 @@ export default {
       persisting: false,
       websocketsOnly: false,
     })
-    return []
+    const pages = await fetchPages(client)
+    await pauseFetching()
+    return [...pages]
 
     const posters = await fetchPosters(client)
-    await pauseFetching()
-    const pages = await fetchPages(client)
     await pauseFetching()
     const productCategories = await fetchProductCategories(client)
     await pauseFetching()
