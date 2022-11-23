@@ -1,4 +1,5 @@
 export const apiUrl = 'https://www.loesje.nl/'
+export const shopUrl = `${apiUrl}winkeltje`
 // export const apiUrl = 'http://localhost:8000/'
 export const baseUrl = 'https://test.loesje.nl'
 export const categories = ['politics']

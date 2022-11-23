@@ -11,7 +11,11 @@ export default defineComponent({
   props: {
     url: {
       type: String,
-      required: true,
+      default: null,
+    },
+    href: {
+      type: String,
+      default: null,
     },
   },
   setup(props) {
@@ -19,7 +23,11 @@ export default defineComponent({
     const router = useRouter()
 
     const goToItem = () => {
-      router.push(props.url)
+      if (props.url) {
+        router.push(props.url)
+      } else if (props.href) {
+        location.href = props.href
+      }
     }
 
     const mouseDown = (event: { target: Element }) => {

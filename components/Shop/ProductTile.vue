@@ -1,5 +1,5 @@
 <template>
-  <clickable-list-item :url="url" :class="$style['product-tile']" class="tile">
+  <clickable-list-item :href="url" :class="$style['product-tile']" class="tile">
     <div :class="$style['image-wrapper']">
       <featured-image
         v-if="product.featuredImage"
@@ -9,7 +9,7 @@
       />
     </div>
     <div :class="$style.title">
-      <nuxt-link :class="$style.link" :to="url" v-html="product.title" />
+      <a :class="$style.link" :href="url" v-html="product.title" />
     </div>
     <product-prices :product="product" :class="$style.price" />
   </clickable-list-item>
@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
+import { shopUrl } from '~/data/siteDetails'
 import { IProductTile } from '~/interfaces/IProduct'
 
 export default defineComponent({
@@ -28,7 +29,7 @@ export default defineComponent({
   },
   setup(props) {
     const url = computed(() => {
-      return `/winkeltje/${props.product.slug}`
+      return `${shopUrl}winkeltje/${props.product.slug}`
     })
     return {
       url,
