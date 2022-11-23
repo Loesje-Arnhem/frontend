@@ -13,13 +13,13 @@
       </li>
     </ul>
     <app-button to="/doe-mee/sympathisant">{{ $t('btn') }}</app-button>
-    <app-image
+    <!-- <app-image
       :class="$style.image"
       :width="167"
       :height="144"
       src="/images/megaphone.png"
       sizes="xs:167px sm:334px"
-    />
+    /> -->
   </box-wrapper>
 </template>
 

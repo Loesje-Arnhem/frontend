@@ -1,7 +1,7 @@
-export const apiUrl = 'https://www.loesje.nl/'
+export const apiUrl = 'https://winkeltje.loesje.nl/'
 export const shopUrl = `${apiUrl}winkeltje`
 // export const apiUrl = 'http://localhost:8000/'
-export const baseUrl = 'https://test.loesje.nl'
+export const baseUrl = 'https://www.loesje.nl'
 export const categories = ['politics']
 export const facebook = 'https://www.facebook.com/loesjevdposters/'
 export const themeColor = '#000000'

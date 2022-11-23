@@ -1,5 +1,5 @@
 <template>
-  <app-alert :show="needRefresh" text="Er is een nieuwe content beschikbaar.">
+  <app-alert :show="needRefresh" text="Er is een nieuwe versie beschikbaar.">
     <button class="btn-link" @click="updateServiceWorker">Verversen</button>
   </app-alert>
 </template>
