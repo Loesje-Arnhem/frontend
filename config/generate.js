@@ -66,12 +66,9 @@ export default {
     const posters = await fetchPosters(client)
     await pauseFetching()
     const posts = await fetchPosts(client)
-    return [...posters, ...pages, ...posts]
-
-    await pauseFetching()
-    const productCategories = await fetchProductCategories(client)
-    await pauseFetching()
-
+    // await pauseFetching()
+    // const productCategories = await fetchProductCategories(client)
+    // await pauseFetching()
     return [...pages, ...posts, ...posters, ...productCategories]
   },
 }
