@@ -17,6 +17,12 @@ export default {
       },
       {
         node: {
+          uri: '/over-loesje/nieuws/',
+          title: 'Nieuws',
+        },
+      },
+      {
+        node: {
           uri: '/over-loesje/privacy/',
           title: 'Privacy',
         },
