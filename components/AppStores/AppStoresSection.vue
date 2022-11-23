@@ -22,7 +22,7 @@
           </button>
         </div>
         <div :class="$style.text">
-          <h1 id="app-stores-title">Loesje in de App Stores</h1>
+          <h1 id="app-stores-title">Loesje als App</h1>
           <p>
             De posters van Loesje ken je vooral van op prullenbakken in de stad
             of een elektriciteitskastje bij je om de hoek, maar Loesje wil de
@@ -32,19 +32,8 @@
           <p>
             Nu is er de officiele Loesje-app. In deze app kan je uren
             rondstruinen op zoek de poster die jij het tofst vindt. De app is te
-            downloaden via de
-            <a
-              href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Appstore voor iOS </a
-            >en via de
-            <a
-              href="https://play.google.com/store/apps/details?id=nl.loesje&amp;hl=nl"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Google Play Store</a
-            >.
+            installeren door het op je homescreen van je device toe te voegen of
+            installeer het via je browser (werkt in Chrome of Edge).
           </p>
         </div>
       </div>
