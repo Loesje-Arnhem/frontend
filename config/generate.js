@@ -69,6 +69,6 @@ export default {
     // await pauseFetching()
     // const productCategories = await fetchProductCategories(client)
     // await pauseFetching()
-    return [...pages, ...posts, ...posters, ...productCategories]
+    return [...pages, ...posts, ...posters]
   },
 }
