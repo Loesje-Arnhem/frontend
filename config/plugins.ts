@@ -7,5 +7,5 @@ export default [
   '~/plugins/vue-announcer.client',
   // '~/plugins/page-transitions.client',
   '~/plugins/pwa.client',
-  '~/plugins/badge.client',
+  // '~/plugins/badge.client',
 ]

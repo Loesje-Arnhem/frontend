@@ -117,8 +117,8 @@ const config: NuxtConfig = {
       viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
     },
     workbox: {
-      importScripts: ['/badge.js', '/update.js'],
-
+      // importScripts: ['/badge.js', '/update.js'],
+      importScripts: ['/update.js'],
       runtimeCaching: [
         {
           urlPattern: `${apiUrl}.*`,
