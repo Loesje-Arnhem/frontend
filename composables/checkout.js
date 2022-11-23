@@ -4,6 +4,7 @@ import { v4 } from 'uuid'
 import CheckoutQuery from '~/graphql/Shop/Checkout/Checkout.gql'
 import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
 import useNewsletter from '~/composables/useNewsletter'
+import { NewsletterList } from '~/enums/newsletterList'
 
 export const useCheckout = () => {
   const errors = ref([])
@@ -61,7 +62,7 @@ export const useCheckout = () => {
     newsletterForm.email = billing.email
     newsletterForm.firstName = billing.firstName
     newsletterForm.lastName = billing.lastName
-    newsletterForm.list = 'products'
+    newsletterForm.list = NewsletterList.Products
     submitToNewsletter()
   })
   return {

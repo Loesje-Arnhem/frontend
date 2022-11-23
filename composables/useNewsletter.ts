@@ -10,13 +10,14 @@ import { v4 } from 'uuid'
 import { useMutation } from '@vue/apollo-composable'
 import AddToNewsletterQuery from '~/graphql/Newsletter/AddToNewsletter.gql'
 import useValidators from '~/composables/useValidators'
+import { NewsletterList } from '~/enums/newsletterList'
 
 export default () => {
   const formData = reactive({
     email: '',
     firstName: '',
     lastName: '',
-    list: 'products',
+    list: NewsletterList.Website,
   })
   const errors: Ref<string[]> = ref([])
   const submitted = ref(false)
