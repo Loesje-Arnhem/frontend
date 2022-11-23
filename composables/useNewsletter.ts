@@ -13,7 +13,7 @@ import useValidators from '~/composables/useValidators'
 
 export default () => {
   const formData = reactive({
-    email: 'test@michielkoning.nl',
+    email: '',
     firstName: '',
     lastName: '',
     list: 'products',
