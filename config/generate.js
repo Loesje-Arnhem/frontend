@@ -63,10 +63,10 @@ export default {
     })
     const pages = await fetchPages(client)
     await pauseFetching()
-    // const posters = await fetchPosters(client)
-    // await pauseFetching()
+    const posters = await fetchPosters(client)
+    await pauseFetching()
     const posts = await fetchPosts(client)
-    return [...pages, ...posts]
+    return [...posters, ...pages, ...posts]
 
     await pauseFetching()
     const productCategories = await fetchProductCategories(client)
