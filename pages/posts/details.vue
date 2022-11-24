@@ -7,7 +7,6 @@
       :content="post.content"
       :date="post.date"
       :video="post.videoGroup.youtubeId"
-      :class="$style.content"
     />
 
     <related-posters-section :posters="post.relatedPosters" />
