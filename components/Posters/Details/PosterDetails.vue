@@ -56,7 +56,7 @@
         <share-this
           v-if="poster.featuredImage"
           :title="poster.title"
-          :link="poster.link"
+          :link="`${baseUrl}${poster.uri}`"
           :image="poster.featuredImage.node.src"
         />
       </div>
@@ -67,6 +67,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { IPoster } from '~/interfaces/IPoster'
+import { baseUrl } from '~/data/siteDetails'
 
 export default defineComponent({
   props: {
@@ -74,6 +75,9 @@ export default defineComponent({
       type: Object as PropType<IPoster>,
       required: true,
     },
+  },
+  setup() {
+    return { baseUrl }
   },
 })
 </script>
