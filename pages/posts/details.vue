@@ -7,7 +7,6 @@
       :content="post.content"
       :date="post.date"
       :video="post.videoGroup.youtubeId"
-      :class="$style.content"
     />
 
     <related-posters-section :posters="post.relatedPosters" />
@@ -64,9 +63,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="postcss" module>
-.content {
-  @mixin block;
-}
-</style>

@@ -61,9 +61,9 @@ export default {
       persisting: false,
       websocketsOnly: false,
     })
-    const pages = await fetchPages(client)
-    await pauseFetching()
     const posters = await fetchPosters(client)
+    await pauseFetching()
+    const pages = await fetchPages(client)
     await pauseFetching()
     const posts = await fetchPosts(client)
     // await pauseFetching()

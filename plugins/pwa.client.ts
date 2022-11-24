@@ -22,7 +22,7 @@ const redirectToPostersPageOnStandalone = ({
 }
 
 export default (context: Context) => {
-  if (context.route.query.standalone === 'true') {
+  if (window.matchMedia(mediaQueryStandAlone).matches) {
     setBodyClass()
     redirectToPostersPageOnStandalone(context)
   }

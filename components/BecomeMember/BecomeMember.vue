@@ -12,7 +12,7 @@
         {{ usp }}
       </li>
     </ul>
-    <app-button to="/doe-mee/sympathisant">{{ $t('btn') }}</app-button>
+    <app-button to="/doe-mee/word-lid/">{{ $t('btn') }}</app-button>
     <!-- <app-image
       :class="$style.image"
       :width="167"
