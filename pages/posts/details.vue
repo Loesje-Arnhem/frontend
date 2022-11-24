@@ -64,9 +64,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="postcss" module>
-.content {
-  @mixin block;
-}
-</style>
