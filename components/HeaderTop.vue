@@ -20,8 +20,8 @@
           src="/images/electriciteitskastje.png"
           :lazy="false"
           class="background"
-          :width="270"
-          :height="362"
+          :width="540"
+          :height="726"
           sizes="xs:100vw md:270px"
         />
       </div>
