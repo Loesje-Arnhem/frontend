@@ -99,12 +99,12 @@ const config: NuxtConfig = {
       //     url: baseUrl,
       //   },
       // ],
-      // protocol_handlers: [
-      //   {
-      //     protocol: 'web+loesje',
-      //     url: './%s?standalone=true',
-      //   },
-      // ],
+      protocol_handlers: [
+        {
+          protocol: 'web+loesje',
+          url: '/posters%s',
+        },
+      ],
     },
     icon: false,
     meta: {

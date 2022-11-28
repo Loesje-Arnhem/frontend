@@ -31,10 +31,17 @@
           </p>
           <p>
             Nu is er de officiele Loesje-app. In deze app kan je uren
-            rondstruinen op zoek de poster die jij het tofst vindt. De app is te
-            installeren door het op je homescreen van je device toe te voegen of
-            installeer het via je browser (werkt in Chrome of Edge).
+            rondstruinen op zoek de poster die jij het tofst vindt. Je vindt de
+            Loesjeapp niet in de appstores, maar je kunt hem gratis via de
+            Loesjewebsite installeren op je telefoon of tablet. Zo heb je het
+            Loesjes posterarchief altijd bij de hand.
           </p>
+          <app-button v-if="hasAppInstalled" href="web+loesje://">
+            Open de Loesje-app
+          </app-button>
+          <app-button v-else-if="eventPrompt" @click="install">
+            Installeer de Loesje-app
+          </app-button>
         </div>
       </div>
     </center-wrapper>
@@ -42,18 +49,44 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import CenterWrapper from '../Wrappers/CenterWrapper.vue'
+import {
+  defineComponent,
+  onMounted,
+  useContext,
+  ref,
+} from '@nuxtjs/composition-api'
+import { PWA } from '~/enums/pwa'
 
 export default defineComponent({
-  components: { CenterWrapper },
   setup() {
+    const { $beforeInstallPromptEvent } = useContext()
     let themeColor = '#000'
     const action = () => {
       themeColor = themeColor === '#000' ? '#f0f' : '#000'
       document.documentElement.style.setProperty('--color-black', themeColor)
     }
+    const hasAppInstalled = ref(false)
+
+    onMounted(() => {
+      if (localStorage.getItem(PWA.storageKey) === PWA.storageValue) {
+        hasAppInstalled.value = true
+      }
+    })
+
+    const install = async () => {
+      if (!$beforeInstallPromptEvent) {
+        return
+      }
+      $beforeInstallPromptEvent.prompt()
+      const choiceResult = await $beforeInstallPromptEvent.userChoice
+      if (choiceResult.outcome === 'accepted') {
+        localStorage.setItem(PWA.storageKey, PWA.storageValue)
+      }
+    }
+
     return {
+      hasAppInstalled,
+      install,
       action,
     }
   },

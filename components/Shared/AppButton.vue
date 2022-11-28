@@ -5,6 +5,7 @@
     :to="to"
     :class="cssClasses"
     :disabled="loading"
+    :href="href"
     @click="$emit('click')"
   >
     <app-loader v-if="loading" class="loader" />
@@ -21,13 +22,6 @@ export default defineComponent({
       type: String,
       default: null,
     },
-    buttonTag: {
-      type: String,
-      default: 'button',
-      validator: (value: string) => {
-        return ['nuxt-link', 'a', 'button'].includes(value)
-      },
-    },
     type: {
       type: String,
       default: 'button',
@@ -40,13 +34,20 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    href: {
+      type: String,
+      default: null,
+    },
   },
   setup(props) {
     const tag = computed(() => {
       if (props.to) {
         return 'nuxt-link'
       }
-      return props.buttonTag
+      if (props.href) {
+        return 'a'
+      }
+      return 'button'
     })
 
     const cssClasses = computed(() => {
