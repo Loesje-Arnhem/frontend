@@ -39,7 +39,7 @@
           <app-button v-if="hasAppInstalled" href="web+loesje://">
             Open de Loesje-app
           </app-button>
-          <app-button v-else-if="eventPrompt" @click="install">
+          <app-button v-else-if="canInstallPwa" @click="install">
             Installeer de Loesje-app
           </app-button>
         </div>
@@ -66,11 +66,13 @@ export default defineComponent({
       document.documentElement.style.setProperty('--color-black', themeColor)
     }
     const hasAppInstalled = ref(false)
+    const canInstallPwa = ref(false)
 
     onMounted(() => {
       if (localStorage.getItem(PWA.storageKey) === PWA.storageValue) {
         hasAppInstalled.value = true
       }
+      canInstallPwa.value = $beforeInstallPromptEvent !== undefined
     })
 
     const install = async () => {
@@ -85,6 +87,7 @@ export default defineComponent({
     }
 
     return {
+      canInstallPwa,
       hasAppInstalled,
       install,
       action,
