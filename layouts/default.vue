@@ -20,14 +20,17 @@
 import { defineComponent, onMounted } from '@nuxtjs/composition-api'
 import PwaUpdate from '~/components/Shared/PwaUpdate.vue'
 import useFavorites from '~/composables/useFavorites'
+import usePwa from '~/composables/usePwa'
 
 export default defineComponent({
   components: { PwaUpdate },
   setup() {
+    const { addInstallListener } = usePwa()
     const { getFromStorage } = useFavorites()
 
     onMounted(() => {
       getFromStorage()
+      addInstallListener()
     })
   },
   head() {
@@ -81,17 +84,17 @@ export default defineComponent({
 
   & .page-footer {
     /* stylelint-disable-next-line */
-    page-transition-tag: footer;
+    view-transition-name: footer;
   }
 
   & .page-header-top {
     /* stylelint-disable-next-line */
-    page-transition-tag: header-top;
+    view-transition-name: header-top;
   }
 
   & .page-header {
     /* stylelint-disable-next-line */
-    page-transition-tag: header;
+    view-transition-name: header;
   }
 }
 </style>

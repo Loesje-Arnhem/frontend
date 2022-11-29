@@ -1,7 +1,5 @@
 import { Context } from '@nuxt/types'
 import { mediaQueryStandAlone } from '~/utils/media-queries'
-import { IBeforeInstallPromptEvent } from '~/interfaces/IBeforeInstallPromptEvent'
-import { PWA } from '~/enums/pwa'
 
 const setBodyClass = () => {
   document.documentElement.classList.add('standalone')
@@ -38,13 +36,5 @@ export default (context: Context) => {
           redirectToPostersPageOnStandalone(context)
         }
       })
-  })
-
-  window.addEventListener('beforeinstallprompt', (event) => {
-    event.preventDefault()
-
-    localStorage.removeItem(PWA.storageKey)
-
-    context.$beforeInstallPromptEvent = event as IBeforeInstallPromptEvent
   })
 }
