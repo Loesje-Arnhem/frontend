@@ -49,7 +49,7 @@
     "@nuxtjs/stylelint-module": "^4.1.0",
     "@types/body-scroll-lock": "^3.1.0",
     "@types/smoothscroll-polyfill": "^0.3.1",
-    "@types/uuid": "^8.3.4",
+    "@types/uuid": "^9.0.0",
     "@types/workbox-window": "^4.3.4",
     "apollo-boost": "^0.4.9",
     "eslint": "^8.28.0",
