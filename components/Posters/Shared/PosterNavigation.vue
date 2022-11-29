@@ -63,6 +63,8 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 nav {
+  @mixin hide-for-print;
+
   display: flex;
   margin: 1em 0;
   height: 1em;
