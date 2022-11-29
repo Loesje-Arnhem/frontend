@@ -58,6 +58,10 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .content-wrapper {
   @mixin block;
+
+  @media print {
+    padding: 0;
+  }
 }
 
 .content {
