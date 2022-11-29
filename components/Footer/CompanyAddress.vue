@@ -1,45 +1,52 @@
 <template>
   <address itemscope itemtype="http://schema.org/Organization">
-    <h2 itemprop="name">{{ title }}</h2>
-    <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-      <span class="text">
-        <span itemprop="name">{{ title }} {{ $t('shop') }}</span>
-        <br />
-        <span itemprop="streetAddress">{{ street }}</span>
-        <br />
-        <span itemprop="locality">{{ city }}</span
-        >,
-        <span itemprop="postal-code">{{ zipcode }}</span>
-        <br />
-        {{ kvk }}
-      </span>
-    </p>
-    <p>
-      <span class="text">
-        <app-icon icon="envelope" width="20" height="20" />
-        <a :href="`mailto:${email}`" itemprop="email">
-          {{ email }}
+    <h2 itemprop="name">Contact</h2>
+
+    <ul class="list">
+      <li>
+        <a :href="`mailto:${email}`" itemprop="email" class="link">
+          <app-icon icon="envelope" width="20" height="20" class="icon" />
+          <span class="title">{{ email }}</span>
         </a>
-      </span>
-    </p>
+      </li>
+      <li>
+        <a :href="`mailto:${emailShop}`" itemprop="email" class="link">
+          <app-icon icon="envelope" width="20" height="20" class="icon" />
+          <span class="title">{{ emailShop }}</span>
+        </a>
+      </li>
+    </ul>
   </address>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import { title } from '~/data/siteDetails'
-import { street, zipcode, city, email, kvk } from '~/data/address'
+import { email, emailShop } from '~/data/address'
 
 export default defineComponent({
   setup() {
     return {
-      title,
-      street,
-      zipcode,
-      city,
       email,
-      kvk,
+      emailShop,
     }
   },
 })
 </script>
+
+<style scoped lang="postcss">
+.list {
+  @mixin list-reset;
+
+  padding-top: 0.5em;
+}
+
+.link {
+  display: flex;
+  margin-bottom: 0.5em;
+  gap: 0.5em;
+}
+
+.icon {
+  transform: translateY(0.3em);
+}
+</style>
