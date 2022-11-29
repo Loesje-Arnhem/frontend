@@ -82,7 +82,7 @@ export default defineComponent({
   & .page-footer,
   & .page-header-top,
   & .page-header {
-    contain: paint;
+    contain: layout;
   }
 
   & .page-footer {
