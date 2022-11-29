@@ -39,7 +39,7 @@
           <app-button v-if="isInstalled" href="web+loesje://">
             Open de Loesje-app
           </app-button>
-          <app-button v-else-if="canInstallPwa" @click="install">
+          <app-button v-else-if="installEvent" @click="install">
             Installeer de Loesje-app
           </app-button>
         </div>
@@ -60,14 +60,14 @@ export default defineComponent({
       document.documentElement.style.setProperty('--color-black', themeColor)
     }
 
-    const { install, canInstallPwa, isInstalled, checkIsInstalled } = usePwa()
+    const { install, isInstalled, checkIsInstalled, installEvent } = usePwa()
 
     onMounted(() => {
       checkIsInstalled()
     })
 
     return {
-      canInstallPwa,
+      installEvent,
       isInstalled,
       install,
       updateTheme,

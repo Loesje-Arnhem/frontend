@@ -25,13 +25,16 @@ import usePwa from '~/composables/usePwa'
 export default defineComponent({
   components: { PwaUpdate },
   setup() {
-    const { addInstallListener } = usePwa()
+    const { addInstallListener, installEvent } = usePwa()
     const { getFromStorage } = useFavorites()
 
     onMounted(() => {
       getFromStorage()
       addInstallListener()
     })
+    return {
+      installEvent,
+    }
   },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })

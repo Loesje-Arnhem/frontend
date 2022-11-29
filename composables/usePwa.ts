@@ -1,4 +1,4 @@
-import { computed, ref, Ref } from '@nuxtjs/composition-api'
+import { ref, Ref } from '@nuxtjs/composition-api'
 import { IBeforeInstallPromptEvent } from '~/interfaces/IBeforeInstallPromptEvent'
 
 const installEvent: Ref<IBeforeInstallPromptEvent | undefined> = ref(undefined)
@@ -36,22 +36,17 @@ export default () => {
       return
     }
     window.addEventListener('beforeinstallprompt', (event) => {
-      event.preventDefault()
-
       localStorage.removeItem(storageKey)
-
       installEvent.value = event as IBeforeInstallPromptEvent
+      window.console.log(event)
     })
   }
-  const canInstallPwa = computed(() => {
-    return installEvent.value !== undefined
-  })
 
   return {
+    installEvent,
     addInstallListener,
     install,
     isInstalled,
-    canInstallPwa,
     checkIsInstalled,
   }
 }
