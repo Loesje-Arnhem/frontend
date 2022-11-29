@@ -1,17 +1,17 @@
 <template>
-  <section :class="$style['app-stores']" aria-labelledby="app-stores-title">
+  <section class="app-stores" aria-labelledby="app-stores-title">
     <center-wrapper size="lg">
-      <div :class="$style.wrapper">
-        <div :class="$style['image-wrapper']">
+      <div class="wrapper">
+        <div class="image-wrapper">
           <app-image
-            :class="$style.mood"
+            class="mood"
             src="/images/arcarde.png"
             :width="500"
             :height="560"
             sizes="sm:100vw lg:75vw xl:33v xl:500px xxl:1000px"
           />
 
-          <button :class="$style['btn-action']" @click="action">
+          <button class="btn-theme" @click="updateTheme">
             <app-image
               src="/images/arcarde-button.png"
               :width="36"
@@ -21,7 +21,7 @@
             />
           </button>
         </div>
-        <div :class="$style.text">
+        <div class="text">
           <h1 id="app-stores-title">Loesje als App</h1>
           <p>
             De posters van Loesje ken je vooral van op prullenbakken in de stad
@@ -36,7 +36,7 @@
             Loesjewebsite installeren op je telefoon of tablet. Zo heb je het
             Loesjes posterarchief altijd bij de hand.
           </p>
-          <app-button v-if="hasAppInstalled" href="web+loesje://">
+          <app-button v-if="isInstalled" href="web+loesje://">
             Open de Loesje-app
           </app-button>
           <app-button v-else-if="canInstallPwa" @click="install">
@@ -49,54 +49,34 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  onMounted,
-  useContext,
-  ref,
-} from '@nuxtjs/composition-api'
-import { PWA } from '~/enums/pwa'
+import { defineComponent, onMounted } from '@nuxtjs/composition-api'
+import usePwa from '~/composables/usePwa'
 
 export default defineComponent({
   setup() {
-    const { $beforeInstallPromptEvent } = useContext()
     let themeColor = '#000'
-    const action = () => {
+    const updateTheme = () => {
       themeColor = themeColor === '#000' ? '#f0f' : '#000'
       document.documentElement.style.setProperty('--color-black', themeColor)
     }
-    const hasAppInstalled = ref(false)
-    const canInstallPwa = ref(false)
+
+    const { install, canInstallPwa, isInstalled, checkIsInstalled } = usePwa()
 
     onMounted(() => {
-      if (localStorage.getItem(PWA.storageKey) === PWA.storageValue) {
-        hasAppInstalled.value = true
-      }
-      canInstallPwa.value = $beforeInstallPromptEvent !== undefined
+      checkIsInstalled()
     })
-
-    const install = async () => {
-      if (!$beforeInstallPromptEvent) {
-        return
-      }
-      $beforeInstallPromptEvent.prompt()
-      const choiceResult = await $beforeInstallPromptEvent.userChoice
-      if (choiceResult.outcome === 'accepted') {
-        localStorage.setItem(PWA.storageKey, PWA.storageValue)
-      }
-    }
 
     return {
       canInstallPwa,
-      hasAppInstalled,
+      isInstalled,
       install,
-      action,
+      updateTheme,
     }
   },
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .app-stores {
   @mixin block;
   @mixin clearfix;
@@ -130,7 +110,7 @@ export default defineComponent({
   padding: 4em 0 1em;
 }
 
-.btn-action {
+.btn-theme {
   position: absolute;
   height: 2em;
   width: 2em;
