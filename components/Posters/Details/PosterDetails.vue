@@ -21,7 +21,7 @@
       <dl class="definition-list">
         <dt class="definition-title">Publicatiedatum</dt>
         <dd class="definition-item">
-          <app-date :date="poster.PosterMetaGroup.date" />
+          <app-date :date="poster.posterMetaGroup.date" />
         </dd>
 
         <template v-if="poster.subjects.edges.length">
@@ -41,9 +41,9 @@
       <div class="buttons">
         <poster-favorites :poster="poster" />
         <app-button
-          v-if="poster.PosterMetaGroup.pdf"
+          v-if="poster.posterMetaGroup.pdf"
           :is-primary="false"
-          :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
+          :href="poster.posterMetaGroup.pdf.mediaItemUrl"
           target="_blank"
           :download="poster.slug"
         >
