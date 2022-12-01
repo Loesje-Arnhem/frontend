@@ -20,7 +20,7 @@ export default ({
   params?: Ref<string>
   usePayload?: Boolean
 }) => {
-  const { app, payload } = useContext()
+  const { app, payload, error } = useContext()
 
   const result = useStatic(
     async () => {
@@ -32,8 +32,13 @@ export default ({
           query,
           variables,
         })
-
-        return data
+        if (data) {
+          if (!data[Object.keys(data)[0]]) {
+            error({ statusCode: 404 })
+          } else {
+            return data
+          }
+        }
       } catch {}
     },
     params,
