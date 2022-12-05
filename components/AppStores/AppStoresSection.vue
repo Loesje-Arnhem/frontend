@@ -36,10 +36,7 @@
             Loesjewebsite installeren op je telefoon of tablet. Zo heb je het
             Loesjes posterarchief altijd bij de hand.
           </p>
-          <app-button v-if="isInstalled" href="web+loesje://">
-            Open de Loesje-app
-          </app-button>
-          <app-button v-else-if="installEvent" @click="install">
+          <app-button v-if="installEvent" @click="install">
             Installeer de Loesje-app
           </app-button>
         </div>
