@@ -23,7 +23,7 @@ const posterDetails = gql`
     relatedProducts: relatedProductsGroup {
       ...posterRelatedProducts
     }
-    posterMetaGroup {
+    PosterMetaGroup {
       date
       pdf {
         mediaItemUrl
