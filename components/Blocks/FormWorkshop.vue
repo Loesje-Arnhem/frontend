@@ -180,7 +180,7 @@ export default defineComponent({
   components: { AppImage },
   setup() {
     const submitted = ref(false)
-    const { required, numeric, email } = useValidators()
+    const { required, numeric, email, minValue, maxValue } = useValidators()
     const minDate: Ref<string | null> = ref(null)
 
     const formData = reactive({
@@ -194,7 +194,7 @@ export default defineComponent({
       motivation: '',
       date: '',
       time: '',
-      totalAttendees: 2,
+      totalAttendees: 4,
       location: '',
       totalWorkshops: 1,
       theme: '',
@@ -211,7 +211,12 @@ export default defineComponent({
       motivation: {},
       date: { required },
       time: { required },
-      totalAttendees: { required, numeric },
+      totalAttendees: {
+        required,
+        numeric,
+        minValue: minValue(4),
+        maxValue: maxValue(16),
+      },
       location: { required },
       totalWorkshops: { required, numeric },
       theme: {},

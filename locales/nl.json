@@ -31,6 +31,8 @@
     "email": "Dit is geen geldig e-mailadres",
     "maxLength": "The maximum value is {max}",
     "minLength": "Dit veld moet minimaal {min} karakters hebben",
+    "maxValue": "De maximale waarde is {max}",
+    "minValue": "De minimale waarde is {min}",
     "numeric": "Value must be numeric",
     "required": "Dit veld is verplicht",
     "form": "Enkele velden zijn niet correct ingevuld",
