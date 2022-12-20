@@ -24,7 +24,12 @@ export default (
     if (!content.value) {
       return null
     }
-    return JSON.parse(content.value.seo.schema.raw)
+    const testa = content.value.seo.schema.raw.replaceAll('shop.', 'www.')
+    const testa2 = testa.replaceAll(
+      'www.loesje.nl/wp-content',
+      'shop.loesje.nl/wp-content',
+    )
+    return JSON.parse(testa2)
   })
 
   useMeta(() => ({
