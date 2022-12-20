@@ -24,12 +24,15 @@ export default (
     if (!content.value) {
       return null
     }
-    const testa = content.value.seo.schema.raw.replaceAll('shop.', 'www.')
-    const testa2 = testa.replaceAll(
+    const schemaWithBaseUrl = content.value.seo.schema.raw.replaceAll(
+      'shop.',
+      'www.',
+    )
+    const schemaWithBaseUrlAndImages = schemaWithBaseUrl.replaceAll(
       'www.loesje.nl/wp-content',
       'shop.loesje.nl/wp-content',
     )
-    return JSON.parse(testa2)
+    return JSON.parse(schemaWithBaseUrlAndImages)
   })
 
   useMeta(() => ({
