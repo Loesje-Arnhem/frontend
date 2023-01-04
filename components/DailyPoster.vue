@@ -3,7 +3,7 @@
     v-if="poster.featuredImage"
     :image="poster.featuredImage"
     :alt="poster.title"
-    sizes="(max-width: 375px) 100vw, 270px"
+    :sizes="sizes"
   />
 </template>
 
@@ -13,19 +13,19 @@ import { useQuery } from '@vue/apollo-composable'
 import DailyPostersQuery from '~/graphql/Posters/DailyPoster'
 
 export default defineComponent({
+  props: {
+    sizes: {
+      type: String,
+      default: '(max-width: 375px) 100vw, 270px',
+    },
+  },
   setup() {
     const date = new Date()
-    const { onResult } = useQuery(
-      DailyPostersQuery,
-      {
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        day: date.getDate(),
-      },
-      {
-        fetchPolicy: 'network-only',
-      },
-    )
+    const { onResult } = useQuery(DailyPostersQuery, {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
+    })
 
     const poster = reactive({
       featuredImage: null,

@@ -13,7 +13,9 @@
       <div class="poster-daily">
         <div class="image-wrapper">
           <client-only>
-            <daily-poster class="image" />
+            <nuxt-link :to="localePath({ name: 'daily-poster' })">
+              <daily-poster class="image" />
+            </nuxt-link>
           </client-only>
         </div>
         <app-image
@@ -73,6 +75,7 @@
     bottom: 0;
     top: 0;
     box-shadow: inset 0 0 0 1px var(--color-white);
+    pointer-events: none;
   }
 }
 
