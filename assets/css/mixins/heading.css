@@ -2,4 +2,5 @@
   font-family: var(--font-family-headings);
   text-transform: uppercase;
   line-height: var(--line-height-headings);
+  letter-spacing: 1px;
 }
