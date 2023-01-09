@@ -7,14 +7,12 @@
     :is="tag"
     v-else
     :type="generatedType"
-    :to="to"
     :class="cssClasses"
     class="rough-border"
     :disabled="loading"
     :href="href"
     @click="$emit('click')"
   >
-    {{ tag }} {{ to }}
     <app-loader v-if="loading" class="loader" />
     <span class="title"><slot /></span>
   </component>
