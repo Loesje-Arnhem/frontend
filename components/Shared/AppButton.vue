@@ -1,13 +1,20 @@
 <template>
+  <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
+    <span class="title"><slot /></span>
+  </nuxt-link>
+
   <component
     :is="tag"
+    v-else
     :type="generatedType"
     :to="to"
     :class="cssClasses"
+    class="rough-border"
     :disabled="loading"
     :href="href"
     @click="$emit('click')"
   >
+    {{ tag }} {{ to }}
     <app-loader v-if="loading" class="loader" />
     <span class="title"><slot /></span>
   </component>
@@ -41,9 +48,6 @@ export default defineComponent({
   },
   setup(props) {
     const tag = computed(() => {
-      if (props.to) {
-        return 'nuxt-link'
-      }
       if (props.href) {
         return 'a'
       }
@@ -54,10 +58,6 @@ export default defineComponent({
       const classes = []
       if (props.isPrimary) {
         classes.push('btn')
-
-        if (tag.value !== 'nuxt-link') {
-          classes.push('rough-border')
-        }
       } else {
         classes.push('btn-outline')
       }
