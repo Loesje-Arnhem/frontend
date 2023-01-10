@@ -7,29 +7,25 @@ export default async (client: ApolloClient<NormalizedCacheObject>) => {
   let after = null
   let posts: any[] = []
   while (hasNextPage) {
-    try {
-      // @ts-ignore
-      const { data } = await client.query({
-        query: GetAllPosts,
-        variables: {
-          after,
+    // @ts-ignore
+    const { data } = await client.query({
+      query: GetAllPosts,
+      variables: {
+        after,
+      },
+    })
+    const newPosts = data.posts.edges.map((item: any) => {
+      return {
+        route: `/over-loesje/nieuws/${item.node.slug}`,
+        payload: {
+          post: item.node,
         },
-      })
-      const newPosts = data.posts.edges.map((item: any) => {
-        return {
-          route: `/over-loesje/nieuws/${item.node.slug}`,
-          payload: {
-            post: item.node,
-          },
-        }
-      })
-      await pauseFetching(`posts ${after}`)
-      after = data.posts.pageInfo.endCursor
-      hasNextPage = data.posts.pageInfo.hasNextPage
-      posts = posts.concat(newPosts)
-    } catch (error) {
-      console.error(error)
-    }
+      }
+    })
+    await pauseFetching(`posts ${after}`)
+    after = data.posts.pageInfo.endCursor
+    hasNextPage = data.posts.pageInfo.hasNextPage
+    posts = posts.concat(newPosts)
   }
   return posts
 }

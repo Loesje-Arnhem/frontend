@@ -4,7 +4,7 @@ export const mediaItem = gql`
   fragment mediaItem on MediaItem {
     id
     srcSet
-    src: sourceUrl(size: LARGE)
+    src: mediaItemUrl
     mediaDetails {
       width
       height
