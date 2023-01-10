@@ -2,7 +2,6 @@
   <div class="wrapper">
     <center-wrapper>
       <nav>
-<<<<<<< HEAD
         <nuxt-link
           :to="localePath({ name: 'posters-home' })"
           class="btn-search"
@@ -11,8 +10,6 @@
           Home
         </nuxt-link>
         <nuxt-link :to="localePath({ name: 'posters' })" class="btn-search">
-=======
-        <nuxt-link :to="localePath({ name: 'posters' })" class="btn-search">
           <app-icon icon="chevron-left" width="12" height="12" />
           Overzicht
         </nuxt-link>
@@ -20,7 +17,6 @@
           :to="localePath({ name: 'posters-search' })"
           class="btn-search"
         >
->>>>>>> dba0b212de84e176cb65104d36c1c4550a0c3824
           <app-icon icon="search" width="12" height="12" />
           Zoeken
         </nuxt-link>
@@ -74,7 +70,6 @@ export default defineComponent({
 
 <style scoped lang="postcss">
 .wrapper {
-<<<<<<< HEAD
   @mixin color-negative;
 
   border-top: 1px solid #fff;
@@ -84,28 +79,15 @@ export default defineComponent({
 }
 
 nav {
-=======
->>>>>>> dba0b212de84e176cb65104d36c1c4550a0c3824
   /* display: flex;
   margin: 1em 0;
   height: 1em; */
-
-<<<<<<< HEAD
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-=======
-  @mixin color-negative;
-
   border-top: 1px solid #fff;
   position: fixed;
   inset: auto 0 0;
   z-index: 12938129;
->>>>>>> dba0b212de84e176cb65104d36c1c4550a0c3824
-}
-
-nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
 }
 
 a {
@@ -115,11 +97,7 @@ a {
   align-items: center;
   flex-direction: column;
   gap: 0.1em;
-<<<<<<< HEAD
   padding: 0.25em 0.25em env(safe-area-inset-bottom, 0.25em);
-=======
-  padding: 0.5em 0.25em 0.25em;
->>>>>>> dba0b212de84e176cb65104d36c1c4550a0c3824
 
   &:not(:last-child) {
     border-right: 1px solid currentcolor;
