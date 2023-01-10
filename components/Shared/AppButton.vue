@@ -1,10 +1,16 @@
 <template>
+  <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
+    <span class="title"><slot /></span>
+  </nuxt-link>
+
   <component
     :is="tag"
+    v-else
     :type="generatedType"
-    :to="to"
     :class="cssClasses"
+    class="rough-border"
     :disabled="loading"
+    :href="href"
     @click="$emit('click')"
   >
     <app-loader v-if="loading" class="loader" />
@@ -21,13 +27,6 @@ export default defineComponent({
       type: String,
       default: null,
     },
-    buttonTag: {
-      type: String,
-      default: 'button',
-      validator: (value: string) => {
-        return ['nuxt-link', 'a', 'button'].includes(value)
-      },
-    },
     type: {
       type: String,
       default: 'button',
@@ -40,25 +39,28 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    href: {
+      type: String,
+      default: null,
+    },
   },
   setup(props) {
     const tag = computed(() => {
-      if (props.to) {
-        return 'nuxt-link'
+      if (props.href) {
+        return 'a'
       }
-      return props.buttonTag
+      return 'button'
     })
 
     const cssClasses = computed(() => {
       const classes = []
       if (props.isPrimary) {
         classes.push('btn')
-
-        if (tag.value !== 'nuxt-link') {
-          classes.push('rough-border')
-        }
       } else {
         classes.push('btn-outline')
+      }
+      if (props.loading) {
+        classes.push('is-loading')
       }
 
       return classes
@@ -86,16 +88,24 @@ export default defineComponent({
   background: var(--color-black);
   color: var(--color-white);
   text-align: center;
-  display: inline-block;
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
   padding: 0.75em 2em;
   max-width: 20em;
+  gap: 0.25em;
   position: relative;
 
   @nest .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
       border-image-outset: 0.25em 0.5em;
     }
+  }
+
+  & .loader {
+    margin: 0;
+    transform: scale(0.75);
   }
 }
 
@@ -133,9 +143,5 @@ a {
   @nest .btn-outline:hover & {
     box-shadow: 0 2px 0 0 currentcolor;
   }
-}
-
-.loader {
-  transform: scale(0.5);
 }
 </style>

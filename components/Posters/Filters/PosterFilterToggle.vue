@@ -46,7 +46,7 @@ export default defineComponent({
 .btn {
   display: flex;
   align-items: center;
-  background: var(--color-white);
+  background: transparent;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 

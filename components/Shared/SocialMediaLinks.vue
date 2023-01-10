@@ -88,8 +88,9 @@ export default defineComponent({
 .list {
   @mixin list-reset;
 
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(2.25em, 1fr));
+  padding-top: 0.5em;
+  display: flex;
+  gap: 0.5em;
 }
 
 .link {

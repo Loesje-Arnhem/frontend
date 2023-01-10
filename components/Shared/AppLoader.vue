@@ -12,15 +12,16 @@
 
 <style scoped lang="postcss">
 .loader {
-  margin: 0 auto;
+  margin: 2em auto;
   position: relative;
   width: 64px;
-  height: 64px;
+  height: 11px;
+  display: flex;
+  align-items: center;
 }
 
 .dot {
   position: absolute;
-  top: 27px;
   width: 11px;
   height: 11px;
   border-radius: 50%;

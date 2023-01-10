@@ -1,5 +1,11 @@
 <template>
-  <form-field :id="id" :errors="errors" :title="title" class="field">
+  <form-field
+    :id="id"
+    :errors="errors"
+    :title="title"
+    class="field"
+    :description="description"
+  >
     <input
       :id="id"
       v-bind="$attrs"
@@ -11,6 +17,7 @@
       @keyup.up="$emit('keyup-up')"
       @input="$emit('input', $event.target.value)"
       @change="$emit('change', $event.target.value)"
+      @blur="$emit('blur')"
     />
   </form-field>
 </template>
@@ -23,6 +30,10 @@ export default defineComponent({
     title: {
       type: String,
       required: true,
+    },
+    description: {
+      type: String,
+      default: '',
     },
     id: {
       type: String,

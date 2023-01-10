@@ -24,6 +24,13 @@ export interface IRelatedPosters extends IRelatedPostersBase {
   pageInfo: IPageInfo
 }
 
+interface IPosterMetaGroup {
+  date: string
+  pdf: {
+    mediaItemUrl: string
+  }
+}
+
 export interface IPoster extends IBaseContent {
   slug: string
   date: string
@@ -32,4 +39,6 @@ export interface IPoster extends IBaseContent {
   relatedProducts: IRelatedProducts
   sources: ITaxanomies
   subjects: ITaxanomies
+  PosterMetaGroup: IPosterMetaGroup
+  featuredImage: IFeaturedImage
 }

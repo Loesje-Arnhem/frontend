@@ -174,7 +174,7 @@ export default defineComponent({
   top: 100%;
   border-color: var(--color-black);
   border-style: solid;
-  border-width: 0 1px 1px;
+  border-width: 0 2px 2px;
 }
 
 .search {
@@ -184,6 +184,7 @@ export default defineComponent({
 
   & >>> .input {
     padding: 0.75em 2em 0.75em 0.75em;
+    border-image-source: none !important;
   }
 
   & >>> ::-webkit-search-decoration,

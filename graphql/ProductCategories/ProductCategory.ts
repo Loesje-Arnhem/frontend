@@ -18,7 +18,7 @@ const productCategory = gql`
     products(
       first: 99
       where: {
-        stockStatus: [IN_STOCK, ON_BACKORDER]
+        stockStatus: [IN_STOCK]
         orderby: { field: MENU_ORDER, order: ASC }
       }
     ) {

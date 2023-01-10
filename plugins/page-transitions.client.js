@@ -4,7 +4,7 @@ window.addEventListener('popstate', () => {
 })
 
 export default ({ app }) => {
-  app.router.beforeEach(async (to, from, next) => {
+  app.router.beforeEach((to, from, next) => {
     const posterDetailsRoute = app.localeRoute({
       name: 'posters-details',
       params: {
@@ -14,7 +14,7 @@ export default ({ app }) => {
     if (
       !process.client ||
       !from.name ||
-      !document.createDocumentTransition ||
+      !document.startViewTransition ||
       navigateByBrowserButtons ||
       to.name !== posterDetailsRoute.name
     ) {
@@ -45,7 +45,6 @@ export default ({ app }) => {
         return
       }
 
-      const transition = document.createDocumentTransition()
       document.documentElement.classList.add(
         'transition-warming-up',
         'transition-to-poster-details',
@@ -57,10 +56,9 @@ export default ({ app }) => {
       if (pageHeaderTop && scrollPosition >= pageHeaderTop.offsetHeight) {
         scrollPosition = pageHeaderTop.offsetHeight
       }
+      navigateByBrowserButtons = false
 
-      await transition.start(async () => {
-        navigateByBrowserButtons = false
-
+      document.startViewTransition(async () => {
         next()
 
         if (navigateToPoster) {
@@ -69,23 +67,21 @@ export default ({ app }) => {
           ).then((element) => {
             details = element
             updateDOMOnNextPage(element)
-
-            window.scrollTo({
-              top: scrollPosition,
-            })
           })
         } else {
           await waitForElement(
-            `.image-wrapper-[data-slug=${from.params.slug}]`,
+            `.image-wrapper-tile[data-slug=${from.params.slug}]`,
           ).then((element) => {
             tile = element
             updateDOMOnNextPage(element)
           })
         }
+        document.documentElement.classList.remove(
+          'transition-to-poster-details',
+        )
+        clearStyles(tile)
+        clearStyles(details)
       })
-      document.documentElement.classList.remove('transition-to-poster-details')
-      clearStyles(tile)
-      clearStyles(details)
     }
   })
 }
@@ -99,15 +95,15 @@ const setStyles = (element) => {
   if (!element) {
     return
   }
-  element.style['page-transition-tag'] = 'poster-details'
-  element.style.contain = 'paint'
+  element.style['view-transition-name'] = 'poster-details'
+  element.style.contain = 'layout'
 }
 
 const clearStyles = (element) => {
   if (!element) {
     return
   }
-  element.style.removeProperty('page-transition-tag')
+  element.style.removeProperty('view-transition-name')
   element.style.removeProperty('contain')
 }
 

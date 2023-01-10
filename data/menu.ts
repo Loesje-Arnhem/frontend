@@ -11,26 +11,20 @@ export default {
     edges: [
       {
         node: {
-          uri: '/over-loesje/privacy/',
-          title: 'Privacy',
-        },
-      },
-      {
-        node: {
           uri: '/over-loesje/wie-is-loesje/',
           title: 'Wie is Loesje',
         },
       },
       {
         node: {
-          uri: '/over-loesje/internationaal/',
-          title: 'Loesje International',
+          uri: '/over-loesje/nieuws/',
+          title: 'Nieuws',
         },
       },
       {
         node: {
-          uri: '/over-loesje/nieuws/',
-          title: 'Nieuws',
+          uri: '/over-loesje/privacy/',
+          title: 'Privacy',
         },
       },
       {
@@ -45,10 +39,28 @@ export default {
           title: 'Contact',
         },
       },
+      {
+        node: {
+          uri: '/anbi/',
+          title: 'ANBI',
+        },
+      },
     ],
   },
   joinPageChildren: {
     edges: [
+      {
+        node: {
+          uri: '/doe-mee/word-lid/',
+          title: 'Word lid',
+        },
+      },
+      {
+        node: {
+          uri: '/doe-mee/blijf-op-hoogte/',
+          title: 'Nieuwsbrief',
+        },
+      },
       {
         node: {
           uri: '/doe-mee/masterclass/',
@@ -57,32 +69,8 @@ export default {
       },
       {
         node: {
-          uri: '/doe-mee/online-meeschrijven/',
-          title: 'Schrijf online mee',
-        },
-      },
-      {
-        node: {
-          uri: '/doe-mee/lokale-groepen/',
-          title: 'Schrijf mee in je buurt',
-        },
-      },
-      {
-        node: {
-          uri: '/doe-mee/doe-mee/',
-          title: 'Doe mee!',
-        },
-      },
-      {
-        node: {
-          uri: '/doe-mee/sympathisant/',
-          title: 'Sympathisant',
-        },
-      },
-      {
-        node: {
-          uri: '/doe-mee/blijf-op-hoogte/',
-          title: 'Nieuwsbrief',
+          uri: '/doe-mee/donateur/',
+          title: 'Donateur',
         },
       },
       {

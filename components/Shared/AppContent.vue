@@ -1,5 +1,5 @@
 <template>
-  <center-wrapper>
+  <center-wrapper :size="hasMedia ? 'lg' : 'md'">
     <div class="content-wrapper">
       <article :class="{ 'has-media': hasMedia }">
         <div class="content">
@@ -8,7 +8,7 @@
           <div class="text" v-html="content" />
         </div>
         <div class="media">
-          <app-video v-if="video" :video="video" class="video" />
+          <app-video v-if="video" :video="video" />
           <photo-frame v-else-if="image" :image="image" />
         </div>
       </article>
@@ -47,6 +47,7 @@ export default defineComponent({
     const hasMedia = computed(() => {
       return props.video !== null || props.image?.node
     })
+
     return {
       hasMedia,
     }
@@ -57,13 +58,15 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .content-wrapper {
   @mixin block;
+
+  @media print {
+    padding: 0;
+  }
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  max-width: var(--container-width-md);
-  margin: 0 auto;
 }
 
 .has-media {
@@ -83,6 +86,9 @@ export default defineComponent({
 .media {
   max-width: 20em;
   width: 100%;
-  margin: 4em auto;
+  margin: 1em auto;
+  @media (--viewport-lg) {
+    margin-block: 2em;
+  }
 }
 </style>

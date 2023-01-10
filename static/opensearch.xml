@@ -1,8 +1,8 @@
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
   <ShortName>Loesje</ShortName>
   <Description>Loesje Posters</Description>
-  <Url type="text/html" method="get" template="https://test.loesje.nl/posters?q={searchTerms}"/>
-  <Image width="16" height="16">https://test.loesje.nl/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://www.loesje.nl/posters?q={searchTerms}"/>
+  <Image width="16" height="16">https://www.loesje.nl/favicon.ico</Image>
   <InputEncoding>UTF-8</InputEncoding>
-  <moz:SearchForm>https://test.loesje.nl/posters</moz:SearchForm>
+  <moz:SearchForm>https://www.loesje.nl/posters</moz:SearchForm>
 </OpenSearchDescription>

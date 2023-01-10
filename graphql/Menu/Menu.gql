@@ -5,36 +5,15 @@ fragment menuItem on Page {
 }
 
 query Menu($aboutPageId: ID!, $joinPageId: ID!) {
-  aboutPage: page(id: $aboutPageId, idType: DATABASE_ID) {
-    ...menuItem
-  }
-  joinPage: page(id: $joinPageId, idType: DATABASE_ID) {
-    ...menuItem
-  }
-  aboutPageChildren: pages(
-    where: { parent: $aboutPageId, orderby: { field: MENU_ORDER, order: ASC } }
-  ) {
-    edges {
-      node {
-        ...menuItem
-      }
-    }
-  }
-  joinPageChildren: pages(
-    where: { parent: $joinPageId, orderby: { field: MENU_ORDER, order: ASC } }
-  ) {
-    edges {
-      node {
-        ...menuItem
-      }
-    }
-  }
-  productCategories(where: { hideEmpty: true, orderby: TERM_ORDER }) {
-    edges {
-      node {
-        id
-        uri
-        title: name
+  menu(id: "header-menu", idType: LOCATION) {
+    id
+    menuItems {
+      edges {
+        node {
+          id
+          uri
+          title
+        }
       }
     }
   }

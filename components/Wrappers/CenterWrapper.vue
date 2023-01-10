@@ -25,11 +25,15 @@ export default defineComponent({
 
 <style lang="postcss" module>
 .notch {
-  padding-inline: env(safe-area-inset-right) env(safe-area-inset-left);
+  padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
 
   &.top {
     padding-top: env(safe-area-inset-top);
   }
+}
+
+.wrapper-sm {
+  --wrapper-width: var(--container-width-sm);
 }
 
 .wrapper-md {

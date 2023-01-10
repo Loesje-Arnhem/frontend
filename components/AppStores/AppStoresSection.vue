@@ -1,17 +1,17 @@
 <template>
-  <section :class="$style['app-stores']" aria-labelledby="app-stores-title">
+  <section class="app-stores" aria-labelledby="app-stores-title">
     <center-wrapper size="lg">
-      <div :class="$style.wrapper">
-        <div :class="$style['image-wrapper']">
+      <div class="wrapper">
+        <div class="image-wrapper">
           <app-image
-            :class="$style.mood"
+            class="mood"
             src="/images/arcarde.png"
             :width="500"
             :height="560"
             sizes="sm:100vw lg:75vw xl:33v xl:500px xxl:1000px"
           />
 
-          <button :class="$style['btn-action']" @click="action">
+          <button class="btn-theme" @click="updateTheme">
             <app-image
               src="/images/arcarde-button.png"
               :width="36"
@@ -21,8 +21,8 @@
             />
           </button>
         </div>
-        <div :class="$style.text">
-          <h1 id="app-stores-title">Loesje in de App Stores</h1>
+        <div class="text">
+          <h1 id="app-stores-title">Loesje als App</h1>
           <p>
             De posters van Loesje ken je vooral van op prullenbakken in de stad
             of een elektriciteitskastje bij je om de hoek, maar Loesje wil de
@@ -31,21 +31,14 @@
           </p>
           <p>
             Nu is er de officiele Loesje-app. In deze app kan je uren
-            rondstruinen op zoek de poster die jij het tofst vindt. De app is te
-            downloaden via de
-            <a
-              href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Appstore voor iOS </a
-            >en via de
-            <a
-              href="https://play.google.com/store/apps/details?id=nl.loesje&amp;hl=nl"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Google Play Store</a
-            >.
+            rondstruinen op zoek de poster die jij het tofst vindt. Je vindt de
+            Loesjeapp niet in de appstores, maar je kunt hem gratis via de
+            Loesjewebsite installeren op je telefoon of tablet. Zo heb je het
+            Loesjes posterarchief altijd bij de hand.
           </p>
+          <app-button v-if="installEvent" @click="install">
+            Installeer de Loesje-app
+          </app-button>
         </div>
       </div>
     </center-wrapper>
@@ -53,25 +46,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import CenterWrapper from '../Wrappers/CenterWrapper.vue'
+import { defineComponent, onMounted } from '@nuxtjs/composition-api'
+import usePwa from '~/composables/usePwa'
 
 export default defineComponent({
-  components: { CenterWrapper },
   setup() {
     let themeColor = '#000'
-    const action = () => {
+    const updateTheme = () => {
       themeColor = themeColor === '#000' ? '#f0f' : '#000'
       document.documentElement.style.setProperty('--color-black', themeColor)
     }
+
+    const { install, isInstalled, checkIsInstalled, installEvent } = usePwa()
+
+    onMounted(() => {
+      checkIsInstalled()
+    })
+
     return {
-      action,
+      installEvent,
+      isInstalled,
+      install,
+      updateTheme,
     }
   },
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .app-stores {
   @mixin block;
   @mixin clearfix;
@@ -105,7 +107,7 @@ export default defineComponent({
   padding: 4em 0 1em;
 }
 
-.btn-action {
+.btn-theme {
   position: absolute;
   height: 2em;
   width: 2em;

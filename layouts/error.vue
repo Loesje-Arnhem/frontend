@@ -1,46 +1,22 @@
 <template>
-  <app-content :title="title" :content="error.message" />
+  <app-content :title="title" :content="content" />
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { defineComponent, useMeta } from '@nuxtjs/composition-api'
 export default defineComponent({
-  props: {
-    error: {
-      type: Object,
-      required: true,
-    },
-  },
-  head() {
+  setup() {
+    const title = 'Huh? Pagina? Welke pagina?'
+    const content = `
+<p>Een beetje ongehoorzaamheid af en toe kan geen kwaad, en dit is blijkbaar een van die momenten…</p>
+<p>Of misschien vind ik die pagina echt niet, hoe hard ik ook zoek. Kan gebeuren.</p>
+<p>In elk geval, die pagina krijg je niet te zien. Sorry.</p>`
+    useMeta({ title })
     return {
-      title: this.title,
+      title,
+      content,
     }
   },
-
-  computed: {
-    title() {
-      if (this.error.statusCode === 404) {
-        return this.$t('title404')
-      }
-      return this.$t('title500')
-    },
-  },
+  head: {},
 })
 </script>
-
-<i18n>
-{
-  "nl": {
-    "title404": "Pagina niet gevonden",
-    "title500": "Er is een fout opgetreden"
-  },
-  "de": {
-    "title404": "Seite nicht gefunden",
-    "title500": "Ein Fehler ist aufgetreten"
-  },
-  "en": {
-    "title404": "Page not found",
-    "title500": "An error occured"
-  }
-}
-</i18n>

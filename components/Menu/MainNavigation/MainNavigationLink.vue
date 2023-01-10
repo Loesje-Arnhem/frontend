@@ -1,27 +1,42 @@
 <template>
-  <nuxt-link :to="uri" :class="$style.link" @click.native="clear">
+  <a v-if="url" :href="url" :class="$style.link">
+    <span :class="$style.title" class="title" v-html="title" />
+  </a>
+  <nuxt-link v-else :to="uri" :class="$style.link" @click.native="clear">
     <span :class="$style.title" class="title" v-html="title" />
   </nuxt-link>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, computed } from '@nuxtjs/composition-api'
 import useLayout from '~/composables/useLayout'
+import { shopUrl } from '~/data/siteDetails'
 
 export default defineComponent({
   props: {
     uri: {
       type: String,
-      required: true,
+      default: null,
     },
     title: {
       type: String,
-      required: true,
+      default: null,
     },
   },
-  setup() {
+  setup(props) {
     const { clear } = useLayout()
+
+    const url = computed(() => {
+      if (props.uri.includes('winkeltje')) {
+        const newUrl = `${shopUrl}${props.uri}`
+        return newUrl.replace('winkeltje/winkeltje', 'winkeltje')
+      }
+      return null
+    })
+
     return {
+      url,
+      shopUrl,
       clear,
     }
   },

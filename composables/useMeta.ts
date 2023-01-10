@@ -24,7 +24,15 @@ export default (
     if (!content.value) {
       return null
     }
-    return JSON.parse(content.value.seo.schema.raw)
+    const schemaWithBaseUrl = content.value.seo.schema.raw.replaceAll(
+      'shop.',
+      'www.',
+    )
+    const schemaWithBaseUrlAndImages = schemaWithBaseUrl.replaceAll(
+      'www.loesje.nl/wp-content',
+      'shop.loesje.nl/wp-content',
+    )
+    return JSON.parse(schemaWithBaseUrlAndImages)
   })
 
   useMeta(() => ({

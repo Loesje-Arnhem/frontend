@@ -79,7 +79,9 @@ export default defineComponent({
 }
 
 nav {
-  /* display: flex;
+  @mixin hide-for-print;
+
+  display: flex;
   margin: 1em 0;
   height: 1em; */
   display: grid;

@@ -27,14 +27,10 @@ export default gql`
 export const GetPageById = gql`
   query GetPageById($id: ID!) {
     page(id: $id, idType: DATABASE_ID) {
-      ...pageContent
-      seo {
-        ...seo
-      }
+      ...pageDetails
     }
   }
-  ${pageContent}
-  ${seo}
+  ${pageDetails}
 `
 
 export const GetPageHome = gql`
@@ -70,7 +66,7 @@ export const GetPageShop = gql`
     products(
       where: {
         featured: true,
-        stockStatus: [IN_STOCK, ON_BACKORDER]
+        stockStatus: [IN_STOCK]
         orderby: {
           field: MENU_ORDER,
           order: ASC

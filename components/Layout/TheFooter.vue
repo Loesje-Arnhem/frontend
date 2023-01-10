@@ -6,8 +6,6 @@
 
         <company-address />
 
-        <app-stores />
-
         <div :class="$style['follow-us']">
           <social-media-links
             :title="$t('followMeOn')"
@@ -72,8 +70,8 @@ export default defineComponent({
     padding-bottom: 8em;
   }
 
-  @media (--viewport-lg) {
-    grid-template-columns: repeat(4, 1fr);
+  @media (--viewport-md) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

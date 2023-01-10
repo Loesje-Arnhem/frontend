@@ -12,14 +12,14 @@
         {{ usp }}
       </li>
     </ul>
-    <app-button to="/doe-mee/sympathisant">{{ $t('btn') }}</app-button>
-    <app-image
+    <app-button to="/doe-mee/word-lid/">{{ $t('btn') }}</app-button>
+    <!-- <app-image
       :class="$style.image"
       :width="167"
       :height="144"
       src="/images/megaphone.png"
       sizes="xs:167px sm:334px"
-    />
+    /> -->
   </box-wrapper>
 </template>
 
@@ -50,9 +50,9 @@
 {
   "nl": {
     "title": "Word lid",
-    "btn": "Steun Loesje",
+    "btn": "Ik doe mee!",
     "usps": [
-      "Ontvang de laatste posters",
+      "Doe mee met activiteiten",
       "Schrijf mee",
       "Ontvang korting in het winkeltje"
     ]

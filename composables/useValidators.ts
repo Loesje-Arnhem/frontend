@@ -3,6 +3,8 @@ import {
   required as requiredDefault,
   minLength as minLengthDefault,
   maxLength as maxLengthDefault,
+  minValue as minValueDefault,
+  maxValue as maxValueDefault,
   numeric as numericDefault,
   createI18nMessage,
 } from '@vuelidate/validators'
@@ -28,6 +30,12 @@ export default () => {
   const maxLength = withI18nMessage(maxLengthDefault, {
     withArguments: true,
   })
+  const minValue = withI18nMessage(minValueDefault, {
+    withArguments: true,
+  })
+  const maxValue = withI18nMessage(maxValueDefault, {
+    withArguments: true,
+  })
 
   return {
     email,
@@ -35,5 +43,7 @@ export default () => {
     maxLength,
     minLength,
     numeric,
+    minValue,
+    maxValue,
   }
 }

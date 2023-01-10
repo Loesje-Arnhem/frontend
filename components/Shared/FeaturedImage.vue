@@ -8,7 +8,6 @@
     :sizes="sizes"
     :width="image.node.mediaDetails.width"
     :height="image.node.mediaDetails.height"
-    crossorigin
   />
 </template>
 

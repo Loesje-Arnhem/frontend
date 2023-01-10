@@ -1,23 +1,19 @@
 <template>
-  <app-alert v-if="hasUpdate">
-    Er is een nieuwe versie beschikbaar.
-    <button class="btn-link" @click="update">
-      Updaten naar de laatste versie
-    </button>
+  <app-alert :show="needRefresh" text="Er is een nieuwe versie beschikbaar.">
+    <button class="btn-link" @click="updateServiceWorker">Verversen</button>
   </app-alert>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
 import { WorkboxUpdatableEvent } from 'workbox-window'
-import { mediaQueryStandAlone } from '~/utils/media-queries'
 
 export default defineComponent({
   setup() {
-    const hasUpdate = ref(false)
+    const needRefresh = ref(false)
     let registration: ServiceWorkerRegistration | null
 
-    const update = () => {
+    const updateServiceWorker = () => {
       if (registration?.waiting) {
         registration.waiting.postMessage('SKIP_WAITING')
       }
@@ -37,20 +33,17 @@ export default defineComponent({
           'installed',
           (event: WorkboxUpdatableEvent) => {
             // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
-            if (
-              event.isUpdate &&
-              window.matchMedia(mediaQueryStandAlone).matches
-            ) {
+            if (event.isUpdate) {
               // whatever logic you want to use to notify the user that they need to refresh the page.
-              hasUpdate.value = true
+              needRefresh.value = true
             }
           },
         )
       }
     })
     return {
-      hasUpdate,
-      update,
+      needRefresh,
+      updateServiceWorker,
     }
   },
 })

@@ -6,3 +6,4 @@ export const postsPageId = 757
 export const shopPageId = 30777
 export const cartPageId = 30779
 export const checkoutPageId = 30780
+export const newsletterPageId = 27758

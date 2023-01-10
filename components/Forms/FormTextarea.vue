@@ -4,12 +4,14 @@
     :error-message="errorMessage"
     :title="title"
     class="field"
+    :description="description"
   >
     <textarea
       :id="id"
       v-bind="$attrs"
       :value="value"
       @input="$emit('input', $event.target.value)"
+      @blur="$emit('blur')"
     />
   </form-field>
 </template>
@@ -21,6 +23,10 @@ export default defineComponent({
     title: {
       type: String,
       required: true,
+    },
+    description: {
+      type: String,
+      default: '',
     },
     id: {
       type: String,

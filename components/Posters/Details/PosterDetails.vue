@@ -2,18 +2,19 @@
   <div class="poster-details">
     <article class="content">
       <h1 class="sr-only">{{ poster.title }}</h1>
-
-      <div class="tile image-wrapper-details" :data-slug="poster.slug">
-        <fade-animation>
-          <featured-image
-            v-if="poster.featuredImage"
-            :key="poster.featuredImage.node.id"
-            :lazy="false"
-            :alt="poster.title"
-            :image="poster.featuredImage"
-            sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
-          />
-        </fade-animation>
+      <div class="tile-wrapper">
+        <div class="tile image-wrapper-details" :data-slug="poster.slug">
+          <fade-animation>
+            <featured-image
+              v-if="poster.featuredImage"
+              :key="poster.featuredImage.node.id"
+              :lazy="false"
+              :alt="poster.title"
+              :image="poster.featuredImage"
+              sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
+            />
+          </fade-animation>
+        </div>
       </div>
     </article>
     <div class="meta-data">
@@ -42,7 +43,6 @@
         <app-button
           v-if="poster.PosterMetaGroup.pdf"
           :is-primary="false"
-          button-tag="a"
           :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
           target="_blank"
           :download="poster.slug"
@@ -55,7 +55,7 @@
         <share-this
           v-if="poster.featuredImage"
           :title="poster.title"
-          :link="poster.link"
+          :link="`${baseUrl}${poster.uri}`"
           :image="poster.featuredImage.node.src"
         />
       </div>
@@ -66,6 +66,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { IPoster } from '~/interfaces/IPoster'
+import { baseUrl } from '~/data/siteDetails'
 
 export default defineComponent({
   props: {
@@ -73,6 +74,9 @@ export default defineComponent({
       type: Object as PropType<IPoster>,
       required: true,
     },
+  },
+  setup() {
+    return { baseUrl }
   },
 })
 </script>
@@ -138,5 +142,13 @@ export default defineComponent({
 .icon {
   width: 1em;
   height: 1em;
+}
+
+.tile-wrapper {
+  background: var(--color-white);
+}
+
+.tile {
+  padding: 3px;
 }
 </style>

@@ -1,18 +1,10 @@
 <template>
-  <p v-if="submitted">
-    {{ $t('form.forms.contact.success') }}
-  </p>
-
-  <form
-    v-else
-    action
-    method="post"
-    novalidate
-    @submit.prevent="$emit('submit')"
-  >
+  <form action="" method="post" novalidate @submit.prevent="$emit('submit')">
     <slot />
-    <app-button type="submit" :loading="loading">{{ buttonTitle }}</app-button>
-    <p><form-error-message :error="error" /></p>
+    <app-button type="submit" :loading="loading" class="btn">
+      {{ buttonTitle }}
+    </app-button>
+    <form-error-message :error="error" />
   </form>
 </template>
 
@@ -24,18 +16,21 @@ export default defineComponent({
       type: String,
       default: 'Verzenden',
     },
-    submitted: {
-      type: Boolean,
-      default: false,
-    },
+
     loading: {
       type: Boolean,
       default: false,
     },
     error: {
       type: String,
-      default: null,
+      default: '',
     },
   },
 })
 </script>
+
+<style scoped lang="postcss">
+.btn {
+  margin-bottom: 0.5em;
+}
+</style>
