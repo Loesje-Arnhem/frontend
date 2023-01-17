@@ -8,7 +8,6 @@
     v-else
     :type="generatedType"
     :class="cssClasses"
-    class="rough-border"
     :disabled="loading"
     :href="href"
     @click="$emit('click')"
