@@ -1,3 +1,16 @@
+<script lang="ts" setup>
+withDefaults(
+  defineProps<{
+    sizes: string
+    top: boolean
+  }>(),
+  {
+    top: false,
+    sizes: 'xlg',
+  },
+)
+</script>
+
 <template>
   <div :class="[$style.notch, { [$style.top]: top }]">
     <div :class="[$style['wrapper'], $style['wrapper-' + size]]">
@@ -5,23 +18,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    size: {
-      type: String,
-      default: 'xlg',
-    },
-    top: {
-      type: Boolean,
-      default: false,
-    },
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .notch {

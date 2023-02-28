@@ -1,0 +1,44 @@
+<script lang="ts" setup>
+const props = withDefaults(
+  defineProps<{
+    src: string
+    width: number
+    height: number
+    lazy: boolean
+    sizes: string
+    alt?: string
+  }>(),
+  {
+    alt: '',
+    lazy: true,
+  },
+)
+const loading = computed(() => {
+  if (props.lazy) {
+    return 'lazy'
+  }
+  return null
+})
+</script>
+
+<template>
+  <nuxt-picture
+    :alt="alt"
+    :loading="loading"
+    :src="src"
+    :preload="!lazy"
+    :sizes="sizes"
+    :width="width"
+    :height="height"
+    preset="base"
+    class="image"
+    format="avif"
+  />
+</template>
+
+<style lang="postcss" scoped>
+.image >>> img {
+  display: block;
+  max-width: 100%;
+}
+</style>

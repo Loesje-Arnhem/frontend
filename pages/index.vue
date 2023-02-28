@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { GetPageHome } from '~/graphql/Pages/Pages'
-const { clients, getToken, onLogin, onLogout } = useApollo()
-
-const { data, error } = await useAsyncQuery(GetPageHome)
-onMounted(() => {
-  clients.default.query({ query: GetPageHome })
-})
+import { IPage } from '~~/interfaces/IPage'
+import { IPost, IPostsBase } from '~~/interfaces/IPost'
+const { data } = await useAsyncQuery<{ page: IPage; posts: IPostsBase }>(
+  GetPageHome,
+)
 </script>
 
 <template>
-  <div>{{ error }}</div>
+  <div v-if="data">{{ data?.posts }}</div>
+  <latest-posts-section v-if="data" :posts="data.posts.edges" />
 </template>

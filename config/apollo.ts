@@ -2,7 +2,11 @@ import { apiUrl } from '../data/siteDetails'
 export default {
   clients: {
     default: {
-      httpEndpoint: apiUrl,
+      httpEndpoint: `${apiUrl}graphql`,
+
+      // httpLinkOptions: {
+      //   credentials: 'include',
+      // },
     },
   },
 }
