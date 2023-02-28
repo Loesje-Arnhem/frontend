@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import { IRelatedPages } from '~/interfaces/IPage'
+
+defineProps<{
+  pages: IRelatedPages
+}>()
+</script>
+
 <template>
   <section
     v-if="pages.edges.length"
@@ -8,20 +16,6 @@
     <related-pages-list :pages="pages.edges" />
   </section>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPages } from '~/interfaces/IPage'
-
-export default defineComponent({
-  props: {
-    pages: {
-      type: Object as PropType<IRelatedPages>,
-      default: () => {},
-    },
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .related-pages {

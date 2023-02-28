@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import { IRelatedPage } from '~/interfaces/IPage'
+
+defineProps<{
+  page: IRelatedPage
+}>()
+</script>
+
 <template>
   <clickable-list-item
     v-if="page.uri"
@@ -16,20 +24,6 @@
     </div>
   </clickable-list-item>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPage } from '~/interfaces/IPage'
-
-export default defineComponent({
-  props: {
-    page: {
-      type: Object as PropType<IRelatedPage>,
-      required: true,
-    },
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .title {

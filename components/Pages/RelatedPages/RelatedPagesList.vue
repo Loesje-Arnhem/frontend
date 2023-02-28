@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import { IRelatedPageNode } from '~/interfaces/IPage'
+
+defineProps<{
+  pages: IRelatedPageNode[]
+}>()
+</script>
+
 <template>
   <center-wrapper>
     <ul v-if="pages.length" :class="$style.list">
@@ -10,20 +18,6 @@
     </ul>
   </center-wrapper>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPageNode } from '~/interfaces/IPage'
-
-export default defineComponent({
-  props: {
-    pages: {
-      type: Array as PropType<IRelatedPageNode[]>,
-      default: () => [],
-    },
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .list {

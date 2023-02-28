@@ -33,11 +33,11 @@ export default {
     '~/components/Shop/Cart',
     '~/components/Shop/Checkout',
     '~/components/Shop/Layout',
-    '~/components/Shop/Products',
     '~/components/Shop/Products/ProductDetails',
     '~/components/Shop/Products/ProductList',
     '~/components/Shop/Products/RelatedProducts',
     '~/components/Shop/Products/Shared',
+    '~/components/Shop/Products',
     '~/components/Wrappers',
   ],
 }

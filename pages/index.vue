@@ -8,7 +8,7 @@ const { data } = await useAsyncQuery<{ page: IPage; posts: IPostsBase }>(
 
 defineI18nRoute({
   paths: {
-    en: '/',
+    nl: '/',
   },
 })
 </script>
