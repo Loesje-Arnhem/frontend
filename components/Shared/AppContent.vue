@@ -1,3 +1,19 @@
+<script lang="ts" setup>
+import { IFeaturedImage } from '~/interfaces/IMedia'
+
+const props = defineProps<{
+  title: string
+  image?: IFeaturedImage
+  video?: string
+  content: string
+  date?: string
+}>()
+
+const hasMedia = computed(() => {
+  return props.video !== null || props.image?.node
+})
+</script>
+
 <template>
   <center-wrapper :size="hasMedia ? 'lg' : 'md'">
     <div class="content-wrapper">
@@ -15,45 +31,6 @@
     </div>
   </center-wrapper>
 </template>
-
-<script lang="ts">
-import { defineComponent, computed, PropType } from '@nuxtjs/composition-api'
-import { IFeaturedImage } from '~/interfaces/IMedia'
-
-export default defineComponent({
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    image: {
-      type: Object as PropType<IFeaturedImage>,
-      default: () => {},
-    },
-    video: {
-      type: String,
-      default: null,
-    },
-    content: {
-      type: String,
-      default: null,
-    },
-    date: {
-      type: String,
-      default: null,
-    },
-  },
-  setup(props) {
-    const hasMedia = computed(() => {
-      return props.video !== null || props.image?.node
-    })
-
-    return {
-      hasMedia,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .content-wrapper {

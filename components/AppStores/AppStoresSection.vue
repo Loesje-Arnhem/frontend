@@ -1,3 +1,31 @@
+<script lang="ts">
+import { defineComponent, onMounted } from '@nuxtjs/composition-api'
+import usePwa from '~/composables/usePwa'
+
+export default defineComponent({
+  setup() {
+    let themeColor = '#000'
+    const updateTheme = () => {
+      themeColor = themeColor === '#000' ? '#f0f' : '#000'
+      document.documentElement.style.setProperty('--color-black', themeColor)
+    }
+
+    const { install, isInstalled, checkIsInstalled, installEvent } = usePwa()
+
+    onMounted(() => {
+      checkIsInstalled()
+    })
+
+    return {
+      installEvent,
+      isInstalled,
+      install,
+      updateTheme,
+    }
+  },
+})
+</script>
+
 <template>
   <section class="app-stores" aria-labelledby="app-stores-title">
     <center-wrapper size="lg">
@@ -44,34 +72,6 @@
     </center-wrapper>
   </section>
 </template>
-
-<script lang="ts">
-import { defineComponent, onMounted } from '@nuxtjs/composition-api'
-import usePwa from '~/composables/usePwa'
-
-export default defineComponent({
-  setup() {
-    let themeColor = '#000'
-    const updateTheme = () => {
-      themeColor = themeColor === '#000' ? '#f0f' : '#000'
-      document.documentElement.style.setProperty('--color-black', themeColor)
-    }
-
-    const { install, isInstalled, checkIsInstalled, installEvent } = usePwa()
-
-    onMounted(() => {
-      checkIsInstalled()
-    })
-
-    return {
-      installEvent,
-      isInstalled,
-      install,
-      updateTheme,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .app-stores {

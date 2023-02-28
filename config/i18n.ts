@@ -4,14 +4,14 @@ import { baseUrl } from '../data/siteDetails'
 const config: Options = {
   baseUrl,
   defaultLocale: 'nl',
-  lazy: true,
-  langDir: 'locales/',
+  // lazy: true,
+  // langDir: 'locales/',
   locales: [
     {
       name: 'Nederlands',
       code: 'nl',
       iso: 'nl',
-      file: 'nl.json',
+      file: 'locales/nl.json',
     },
   ],
   vueI18nLoader: true,

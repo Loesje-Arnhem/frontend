@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import { IRelatedPostNode } from '~/interfaces/IPost'
+
+defineProps<{
+  posts: IRelatedPostNode[]
+}>()
+</script>
+
 <template>
   <list-animation v-if="posts.length" :class="$style.list">
     <post-list-item
@@ -8,20 +16,6 @@
     />
   </list-animation>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPostNode } from '~/interfaces/IPost'
-
-export default defineComponent({
-  props: {
-    posts: {
-      type: Array as PropType<IRelatedPostNode[]>,
-      default: () => [],
-    },
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .list {

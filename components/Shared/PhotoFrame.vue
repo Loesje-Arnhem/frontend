@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import { IFeaturedImage } from '~/interfaces/IMedia'
+
+defineProps<{
+  image: IFeaturedImage
+}>()
+</script>
+
 <template>
   <div class="photo-wrapper">
     <featured-image
@@ -17,20 +25,6 @@
     />
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IFeaturedImage } from '~/interfaces/IMedia'
-
-export default defineComponent({
-  props: {
-    image: {
-      type: Object as PropType<IFeaturedImage>,
-      default: () => {},
-    },
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .photo-wrapper {

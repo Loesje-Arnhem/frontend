@@ -14,6 +14,9 @@ defineI18nRoute({
 </script>
 
 <template>
-  <related-posters-section v-if="data" :posters="data.page.relatedPosters" />
-  <latest-posts-section v-if="data" :posts="data.posts.edges" />
+  <div v-if="data">
+    <h1 class="sr-only">{{ data.page.title }}</h1>
+    <related-posters-section v-if="data" :posters="data.page.relatedPosters" />
+    <latest-posts-section v-if="data" :posts="data.posts.edges" />
+  </div>
 </template>

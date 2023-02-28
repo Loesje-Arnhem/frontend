@@ -1,3 +1,16 @@
+<script lang="ts" setup>
+const props = defineProps<{
+  video: string
+}>()
+
+const videoThumb = computed(() => {
+  return `https://i3.ytimg.com/vi/${props.video}/hqdefault.jpg`
+})
+const videoUrl = computed(() => {
+  return `https://www.youtube.com/watch?v=${props.video}`
+})
+</script>
+
 <template>
   <div class="wrapper">
     <a :href="videoUrl" class="video-wrapper" rel="noopener" target="_blank">
@@ -29,31 +42,6 @@
     />
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, computed } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    video: {
-      type: String,
-      required: true,
-    },
-  },
-  setup(props) {
-    const videoThumb = computed(() => {
-      return `https://i3.ytimg.com/vi/${props.video}/hqdefault.jpg`
-    })
-    const videoUrl = computed(() => {
-      return `https://www.youtube.com/watch?v=${props.video}`
-    })
-    return {
-      videoThumb,
-      videoUrl,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .image {

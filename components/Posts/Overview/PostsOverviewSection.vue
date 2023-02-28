@@ -1,3 +1,39 @@
+<script lang="ts" setup>
+import { getRelatedPosts } from '~/graphql/Posts/Posts'
+// import { useFetchMore } from '~/composables/useFetch'
+import { IPosts } from '~/interfaces/IPost'
+
+const { data, pending } = useAsyncQuery(getRelatedPosts)
+
+const props = withDefaults(
+  defineProps<{
+    posts: IPosts
+    notIn: number
+  }>(),
+  {
+    notIn: 0,
+  },
+)
+
+const relatedPosts = ref(props.posts)
+
+// const { fetchMore, loading } = useFetchMore()
+
+const loadMore = async () => {
+  // const { posts }: { posts: IPosts } = await fetchMore({
+  //   items: relatedPosts,
+  //   query: getRelatedPosts,
+  //   variables: {
+  //     notIn: props.notIn,
+  //   },
+  // })
+  // relatedPosts.value = {
+  //   pageInfo: posts.pageInfo,
+  //   edges: [...relatedPosts.value.edges, ...posts.edges],
+  // }
+}
+</script>
+
 <template>
   <section
     v-if="relatedPosts"
@@ -15,59 +51,13 @@
       />
       <load-more-by-click
         v-if="relatedPosts.pageInfo.hasNextPage"
-        :loading="loading"
+        :loading="pending"
         :title="$t('btnMore')"
         @load-more="loadMore"
       />
     </center-wrapper>
   </section>
 </template>
-
-<script lang="ts">
-import { defineComponent, ref, PropType } from '@nuxtjs/composition-api'
-import { getRelatedPosts } from '~/graphql/Posts/Posts'
-import { useFetchMore } from '~/composables/useFetch'
-import { IPosts } from '~/interfaces/IPost'
-
-export default defineComponent({
-  props: {
-    posts: {
-      type: Object as PropType<IPosts>,
-      default: () => {},
-    },
-    notIn: {
-      type: Number,
-      default: 0,
-    },
-  },
-  setup(props) {
-    const relatedPosts = ref(props.posts)
-
-    const { fetchMore, loading } = useFetchMore()
-
-    const loadMore = async () => {
-      const { posts }: { posts: IPosts } = await fetchMore({
-        items: relatedPosts,
-        query: getRelatedPosts,
-        variables: {
-          notIn: props.notIn,
-        },
-      })
-
-      relatedPosts.value = {
-        pageInfo: posts.pageInfo,
-        edges: [...relatedPosts.value.edges, ...posts.edges],
-      }
-    }
-
-    return {
-      loadMore,
-      loading,
-      relatedPosts,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .posts-overview {
