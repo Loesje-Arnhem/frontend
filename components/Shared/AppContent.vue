@@ -3,8 +3,8 @@ import { IFeaturedImage } from '~/interfaces/IMedia'
 
 const props = defineProps<{
   title: string
-  image?: IFeaturedImage
-  video?: string
+  image?: IFeaturedImage | null
+  video?: string | null
   content: string
   date?: string
 }>()

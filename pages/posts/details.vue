@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { getPost } from '~/graphql/Posts/Posts'
-// import { IPost } from '~/interfaces/IPost'
-// import useFetch from '~/composables/useFetch'
-// import useMeta from '~/composables/useMeta'
+import { IPost } from '~~/interfaces/IPost'
 
 defineI18nRoute({
   paths: {
@@ -11,19 +9,9 @@ defineI18nRoute({
 })
 
 const route = useRoute()
-const { data, pending } = await useAsyncQuery<{ post: IPost }>(
-  getPost,
-  {
-    slug: route.params.slug,
-  },
-  // query: getPost,
-  // usePayload: true,
-  // variables: {
-  //   slug,
-  // },
-  // params: param,
-  // pageKey: 'post',
-)
+const { data, pending } = await useAsyncQuery<{ post: IPost }>(getPost, {
+  slug: route.params.slug,
+})
 
 // useMeta(post)
 </script>

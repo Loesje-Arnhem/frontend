@@ -1,5 +1,5 @@
 import { ISEO } from './ISEO'
-import { IVideoGroup, IFeaturedImage } from './IMedia'
+import { IVideo, IFeaturedImage } from './IMedia'
 import { IRelatedPostersBase } from './IPoster'
 import { IRelatedProducts } from './IProduct'
 
@@ -27,7 +27,7 @@ export interface IRelatedContent extends INodeWithUri {
 export interface IDetailsContent extends IBaseContent {
   featuredImage: IFeaturedImage | null
   content: string
-  videoGroup: IVideoGroup
+  videoGroup: IVideo
   relatedPosters: IRelatedPostersBase
   relatedProducts: IRelatedProducts
 }

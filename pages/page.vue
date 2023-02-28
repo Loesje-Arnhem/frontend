@@ -5,24 +5,17 @@ import { IPostsBase } from '~~/interfaces/IPost'
 
 defineI18nRoute({
   paths: {
-    nl: '/:slug',
+    nl: '/:pathMatch(.*)*',
   },
 })
 
 const route = useRoute()
-const { slug, slug2 } = route.params
 
-const uri = computed(() => {
-  if (slug2) {
-    return `${slug}/${slug2}`
-  }
-  return slug
-})
 const { data, pending } = await useAsyncQuery<{
   page: IPage
   posts: IPostsBase
 }>(PageByByUri, {
-  uri: uri.value,
+  uri: route.fullPath,
 })
 </script>
 
