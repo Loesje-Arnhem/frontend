@@ -1,50 +1,13 @@
-<template>
-  <div>
-    <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
-    <app-loader v-if="loading" />
-    <latest-posts-section v-if="posts" :posts="posts.edges" />
-    <related-posters-section v-if="page" :posters="page.relatedPosters" />
-    <app-stores-section />
-    <related-products-section
-      v-if="page"
-      :related-products="page.relatedProducts"
-    />
-  </div>
-</template>
-
-<script lang="ts">
-import { computed, ComputedRef, defineComponent } from '@nuxtjs/composition-api'
+<script setup lang="ts">
 import { GetPageHome } from '~/graphql/Pages/Pages'
-import useFetch from '~/composables/useFetch'
-import { IPage } from '~/interfaces/IPage'
-import { IPostsBase } from '~/interfaces/IPost'
-import useMeta from '~/composables/useMeta'
+const { clients, getToken, onLogin, onLogout } = useApollo()
 
-export default defineComponent({
-  setup() {
-    const { result, loading } = useFetch({
-      query: GetPageHome,
-      pageKey: 'page-home',
-    })
-
-    const page: ComputedRef<IPage | null> = computed(() => result.value?.page)
-    const posts: ComputedRef<IPostsBase | null> = computed(() => {
-      return result.value?.posts
-    })
-
-    useMeta(page)
-
-    return {
-      loading,
-      posts,
-      page,
-    }
-  },
-  nuxtI18n: {
-    paths: {
-      nl: '/',
-    },
-  },
-  head: {},
+const { data, error } = await useAsyncQuery(GetPageHome)
+onMounted(() => {
+  clients.default.query({ query: GetPageHome })
 })
 </script>
+
+<template>
+  <div>{{ error }}</div>
+</template>
