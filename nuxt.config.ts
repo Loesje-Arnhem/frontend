@@ -4,7 +4,7 @@ import apollo from './config/apollo'
 // import build from './config/build'
 // import buildModules from './config/buildModules'
 import components from './config/components'
-// import css from './config/css'
+import css from './config/css'
 // // import generate from './config/generate'
 // import head from './config/head'
 import i18n from './config/i18n'
@@ -67,7 +67,7 @@ export default defineNuxtConfig({
       '~/components',
     ],
   },
-  // css,
+  css,
   // // @ts-ignore
   // // generate,
   // head,

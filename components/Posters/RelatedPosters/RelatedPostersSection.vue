@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+import { IRelatedPostersBase } from '~/interfaces/IPoster'
+
+const localePath = useLocalePath()
+
+defineProps<{
+  posters: IRelatedPostersBase
+}>()
+</script>
+
 <template>
   <section
     v-if="posters.edges.length"
@@ -20,33 +30,6 @@
     </center-wrapper>
   </section>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPostersBase } from '~/interfaces/IPoster'
-
-export default defineComponent({
-  props: {
-    posters: {
-      type: Object as PropType<IRelatedPostersBase>,
-      default: () => {},
-    },
-  },
-  // computed: {
-  //   title() {
-  //     return this.$t('title')
-  //   },
-  //   btnText() {
-  //     const text = this.$t('btnText')
-  //     if (this.posters.subjects?.length === 1) {
-  //       const { name } = this.relatedPosters.subjects[0]
-  //       text += this.$t('aboutSubject', { subject: name })
-  //     }
-  //     return text
-  //   },
-  // },
-})
-</script>
 
 <style lang="postcss" module>
 .related-posters {

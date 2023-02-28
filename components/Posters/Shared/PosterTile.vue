@@ -1,3 +1,18 @@
+<script lang="ts" setup>
+import { IRelatedPoster } from '~/interfaces/IPoster'
+
+withDefaults(
+  defineProps<{
+    poster: IRelatedPoster
+    sizes?: string
+  }>(),
+  {
+    sizes:
+      '(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 250px',
+  },
+)
+</script>
+
 <template>
   <div class="tile-wrapper">
     <div
@@ -16,25 +31,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPoster } from '~/interfaces/IPoster'
-
-export default defineComponent({
-  props: {
-    poster: {
-      type: Object as PropType<IRelatedPoster>,
-      default: () => {},
-    },
-    sizes: {
-      type: String,
-      default:
-        '(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 250px',
-    },
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .link {
