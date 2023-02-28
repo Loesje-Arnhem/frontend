@@ -75,11 +75,11 @@ defineProps<{
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "title": "Nieuws",
     "btnMore": "Meer nieuwsartikelen"
   }
 }
-</i18n>
+<i18n> -->

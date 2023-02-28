@@ -67,11 +67,11 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "menu": "Menu",
     "close": "Sluiten"
   }
 }
-</i18n>
+<i18n> -->

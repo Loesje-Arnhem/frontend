@@ -63,7 +63,7 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "title": "Posters",
@@ -71,4 +71,4 @@ export default defineComponent({
     "aboutSubject": " over {subject}"
   }
 }
-</i18n>
+<i18n> -->

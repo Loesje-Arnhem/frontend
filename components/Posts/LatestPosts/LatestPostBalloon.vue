@@ -1,20 +1,5 @@
-<template>
-  <div ref="balloon" class="balloon-x" :class="{ animate }">
-    <div class="balloon-y" :class="{ animate }">
-      <app-image
-        :width="159"
-        :height="243"
-        src="/images/air-balloon.png"
-        sizes="xs:159px sm:358px"
-      />
-    </div>
-  </div>
-</template>
-
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
+<script lang="ts">
+export default {
   data() {
     return {
       animate: false,
@@ -51,8 +36,21 @@ export default defineComponent({
       this.animate = animate
     },
   },
-})
+}
 </script>
+
+<template>
+  <div ref="balloon" class="balloon-x" :class="{ animate }">
+    <div class="balloon-y" :class="{ animate }">
+      <app-image
+        :width="159"
+        :height="243"
+        src="/images/air-balloon.png"
+        sizes="xs:159px sm:358px"
+      />
+    </div>
+  </div>
+</template>
 
 <style lang="postcss" scoped>
 .animate {

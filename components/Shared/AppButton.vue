@@ -1,3 +1,48 @@
+<script lang="ts" setup>
+const props = withDefaults(
+  defineProps<{
+    to?: string
+    type?: 'button'
+    isPrimary?: boolean
+    loading?: boolean
+    href?: string
+  }>(),
+  {
+    type: 'button',
+    isPrimary: true,
+    loading: false,
+  },
+)
+
+const tag = computed(() => {
+  if (props.href) {
+    return 'a'
+  }
+  return 'button'
+})
+
+const cssClasses = computed(() => {
+  const classes = []
+  if (props.isPrimary) {
+    classes.push('btn')
+  } else {
+    classes.push('btn-outline')
+  }
+  if (props.loading) {
+    classes.push('is-loading')
+  }
+
+  return classes
+})
+
+const generatedType = computed(() => {
+  if (tag.value === 'button') {
+    return props.type
+  }
+  return null
+})
+</script>
+
 <template>
   <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
     <span class="title"><slot /></span>
@@ -16,69 +61,6 @@
     <span class="title"><slot /></span>
   </component>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    to: {
-      type: String,
-      default: null,
-    },
-    type: {
-      type: String,
-      default: 'button',
-    },
-    isPrimary: {
-      type: Boolean,
-      default: true,
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    href: {
-      type: String,
-      default: null,
-    },
-  },
-  setup(props) {
-    const tag = computed(() => {
-      if (props.href) {
-        return 'a'
-      }
-      return 'button'
-    })
-
-    const cssClasses = computed(() => {
-      const classes = []
-      if (props.isPrimary) {
-        classes.push('btn')
-      } else {
-        classes.push('btn-outline')
-      }
-      if (props.loading) {
-        classes.push('is-loading')
-      }
-
-      return classes
-    })
-
-    const generatedType = computed(() => {
-      if (tag.value === 'button') {
-        return props.type
-      }
-      return null
-    })
-    return {
-      cssClasses,
-      generatedType,
-      tag,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .btn {

@@ -33,10 +33,10 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "title": "Toon meer"
   }
 }
-</i18n>
+<i18n> -->

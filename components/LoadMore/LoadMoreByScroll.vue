@@ -50,10 +50,10 @@ export default defineComponent({
 })
 </script>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "loading": "Aan het laden"
   }
 }
-</i18n>
+<i18n> -->

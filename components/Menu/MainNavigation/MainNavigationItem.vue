@@ -276,10 +276,10 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "showSubmenuFor": "Toon submenu voor %{title}"
   }
 }
-</i18n>
+<i18n> -->

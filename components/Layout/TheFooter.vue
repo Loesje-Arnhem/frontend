@@ -97,11 +97,11 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "followMeOnNetwork": "Bekijk %{title} op",
     "followMeOn": "Volg me op"
   }
 }
-</i18n>
+<i18n> -->

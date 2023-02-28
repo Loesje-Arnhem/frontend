@@ -62,10 +62,10 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "viewAll": "Bekijk alle"
   }
 }
-</i18n>
+<i18n> -->

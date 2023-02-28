@@ -7,7 +7,7 @@ import components from './config/components'
 // import css from './config/css'
 // // import generate from './config/generate'
 // import head from './config/head'
-// import i18n from './config/i18n'
+import i18n from './config/i18n'
 // import image from './config/image'
 // import loaders from './config/loaders'
 // import loading from './config/loading'
@@ -71,7 +71,7 @@ export default defineNuxtConfig({
   // // @ts-ignore
   // // generate,
   // head,
-  // i18n,
+  i18n,
   // image,
   // loaders,
   // loading,
@@ -82,5 +82,5 @@ export default defineNuxtConfig({
   // render,
   // server,
   // target,
-  modules: ['@nuxtjs/apollo'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/apollo'],
 })

@@ -80,7 +80,7 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "title": "Nieuws",
@@ -88,4 +88,4 @@ export default defineComponent({
     "btnMore": "Toon meer nieuwsartikelen"
   }
 }
-</i18n>
+<i18n> -->

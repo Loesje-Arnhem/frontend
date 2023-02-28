@@ -1,3 +1,15 @@
+<script lang="ts" setup>
+import { IRelatedPost } from '~/interfaces/IPost'
+
+const props = defineProps<{
+  post: IRelatedPost
+}>()
+
+const url = computed(() => {
+  return '/over-loesje/nieuws' + props.post.uri
+})
+</script>
+
 <template>
   <clickable-list-item :url="url" :class="$style['list-item']">
     <h2 :class="$style.title">
@@ -10,27 +22,6 @@
     </div>
   </clickable-list-item>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPost } from '~/interfaces/IPost'
-export default defineComponent({
-  props: {
-    post: {
-      type: Object as PropType<IRelatedPost>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const url = computed(() => {
-      return '/over-loesje/nieuws' + props.post.uri
-    })
-    return {
-      url,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .list-item {

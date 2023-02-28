@@ -72,10 +72,10 @@ export default defineComponent({
 })
 </script>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "title": "Deel de poster op"
   }
 }
-</i18n>
+<i18n> -->

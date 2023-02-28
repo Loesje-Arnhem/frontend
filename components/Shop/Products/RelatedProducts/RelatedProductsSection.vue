@@ -73,11 +73,11 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "title": "Het winkeltje",
     "btn": "Bezoek ons winkeltje"
   }
 }
-</i18n>
+<i18n> -->

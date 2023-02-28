@@ -4,8 +4,8 @@ const props = withDefaults(
     src: string
     width: number
     height: number
-    lazy: boolean
     sizes: string
+    lazy?: boolean
     alt?: string
   }>(),
   {
@@ -22,7 +22,7 @@ const loading = computed(() => {
 </script>
 
 <template>
-  <nuxt-picture
+  <img
     :alt="alt"
     :loading="loading"
     :src="src"

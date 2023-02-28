@@ -68,11 +68,11 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "add": "Voeg toe aan je favorieten",
     "remove": "Verwijder uit je favorieten"
   }
 }
-</i18n>
+<i18n> -->

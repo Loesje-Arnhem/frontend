@@ -77,11 +77,11 @@ export default defineComponent({
 })
 </script>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "title": "Zoeken naar posters",
     "placeholder": "Zoeken naar posters op tekst"
   }
 }
-</i18n>
+<i18n> -->

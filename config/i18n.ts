@@ -4,7 +4,6 @@ import { baseUrl } from '../data/siteDetails'
 const config: Options = {
   baseUrl,
   defaultLocale: 'nl',
-  vuex: false,
   lazy: true,
   langDir: 'locales/',
   locales: [
@@ -17,7 +16,6 @@ const config: Options = {
   ],
   vueI18nLoader: true,
   vueI18n: {
-    silentFallbackWarn: true,
     numberFormats: {
       nl: {
         currency: {
@@ -48,3 +46,38 @@ const config: Options = {
 }
 
 export default config
+
+// i18n: {
+//   baseUrl: "https://nordgarden.info",
+//   strategy: "prefix_except_default",
+//   defaultLocale: "en",
+//   locales: [
+//     {
+//       code: "en",
+//       iso: "en-US",
+//     },
+//   ],
+//   vueI18n: {
+//     legacy: false,
+//     messages: {
+//       en,
+//     },
+//     datetimeFormats: {
+//       en: {
+//         short: {
+//           year: "numeric",
+//           month: "long",
+//           day: "numeric",
+//         },
+//         long: {
+//           year: "numeric",
+//           month: "short",
+//           day: "numeric",
+//           weekday: "short",
+//           hour: "numeric",
+//           minute: "numeric",
+//         },
+//       },
+//     },
+//   },
+// },

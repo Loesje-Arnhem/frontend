@@ -158,10 +158,10 @@ export default defineComponent({
 }
 </style>
 
-<i18n>
+<!-- <i18n>
 {
   "nl": {
     "title": "Hoofdmenu"
   }
 }
-</i18n>
+<i18n> -->
