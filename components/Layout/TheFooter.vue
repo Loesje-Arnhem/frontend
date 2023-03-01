@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+const appConfig = useAppConfig()
+const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
+  appConfig.socialMedia
+</script>
+
 <template>
   <footer :class="$style.footer">
     <center-wrapper>
@@ -29,29 +35,6 @@
     </center-wrapper>
   </footer>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import {
-  facebookUrl,
-  twitterUrl,
-  pinterestUrl,
-  instagramUrl,
-  linkedinUrl,
-} from '~/data/socialMedia'
-
-export default defineComponent({
-  setup() {
-    return {
-      facebookUrl,
-      twitterUrl,
-      pinterestUrl,
-      instagramUrl,
-      linkedinUrl,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .footer {

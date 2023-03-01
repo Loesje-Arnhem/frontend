@@ -1,3 +1,29 @@
+<script lang="ts" setup>
+import {
+  IProductNode,
+  IProducts,
+  IRelatedProducts,
+} from '~/interfaces/IProduct'
+
+const props = defineProps<{
+  relatedProducts: IRelatedProducts
+}>()
+
+const products: ComputedRef<IProducts> = computed(() => {
+  let edges: IProductNode[] = []
+  if (props.relatedProducts.products?.length)
+    edges = props.relatedProducts.products.map((product) => {
+      return {
+        node: product.product,
+      }
+    })
+
+  return {
+    edges,
+  }
+})
+</script>
+
 <template>
   <section
     v-if="products.edges.length"
@@ -24,48 +50,6 @@
     </center-wrapper>
   </section>
 </template>
-
-<script lang="ts">
-import {
-  defineComponent,
-  computed,
-  PropType,
-  ComputedRef,
-} from '@nuxtjs/composition-api'
-import {
-  IProductNode,
-  IProducts,
-  IRelatedProducts,
-} from '~/interfaces/IProduct'
-
-export default defineComponent({
-  props: {
-    relatedProducts: {
-      type: Object as PropType<IRelatedProducts>,
-      default: () => {},
-    },
-  },
-  setup(props) {
-    const products: ComputedRef<IProducts> = computed(() => {
-      let edges: IProductNode[] = []
-      if (props.relatedProducts.products?.length)
-        edges = props.relatedProducts.products.map((product) => {
-          return {
-            node: product.product,
-          }
-        })
-
-      return {
-        edges,
-      }
-    })
-
-    return {
-      products,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .featured-products {

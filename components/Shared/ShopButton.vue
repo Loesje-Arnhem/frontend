@@ -1,20 +1,12 @@
+<script lang="ts" setup>
+const appConfig = useAppConfig()
+</script>
+
 <template>
-  <a :href="shopUrl" class="btn">
+  <a :href="appConfig.shopUrl" class="btn">
     <span class="title"><slot /></span>
   </a>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import { shopUrl } from '~/data/siteDetails'
-export default defineComponent({
-  setup() {
-    return {
-      shopUrl,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .btn {

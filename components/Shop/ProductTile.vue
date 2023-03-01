@@ -1,3 +1,17 @@
+<script lang="ts" setup>
+import { IProductTile } from '~/interfaces/IProduct'
+
+const props = defineProps<{
+  product: IProductTile
+}>()
+
+const appConfig = useAppConfig()
+
+const url = computed(() => {
+  return `${appConfig.shopUrl}winkeltje/${props.product.slug}`
+})
+</script>
+
 <template>
   <clickable-list-item :href="url" :class="$style['product-tile']" class="tile">
     <div :class="$style['image-wrapper']">
@@ -14,29 +28,6 @@
     <product-prices :product="product" :class="$style.price" />
   </clickable-list-item>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
-import { shopUrl } from '~/data/siteDetails'
-import { IProductTile } from '~/interfaces/IProduct'
-
-export default defineComponent({
-  props: {
-    product: {
-      type: Object as PropType<IProductTile>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const url = computed(() => {
-      return `${shopUrl}winkeltje/${props.product.slug}`
-    })
-    return {
-      url,
-    }
-  },
-})
-</script>
 
 <style module lang="postcss">
 .product-tile {

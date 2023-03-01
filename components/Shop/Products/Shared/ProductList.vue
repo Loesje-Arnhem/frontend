@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import { IProducts } from '~/interfaces/IProduct'
+
+defineProps<{
+  products: IProducts
+}>()
+</script>
+
 <template>
   <ul v-if="products.edges.length" class="list">
     <product-tile
@@ -7,20 +15,6 @@
     />
   </ul>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IProducts } from '~/interfaces/IProduct'
-
-export default defineComponent({
-  props: {
-    products: {
-      type: Object as PropType<IProducts>,
-      default: () => {},
-    },
-  },
-})
-</script>
 
 <style scoped lang="postcss">
 .list {
