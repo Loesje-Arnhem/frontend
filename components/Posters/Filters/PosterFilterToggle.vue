@@ -1,3 +1,15 @@
+<script lang="ts" setup>
+withDefaults(
+  defineProps<{
+    isActive: boolean
+  }>(),
+  {
+    isActive: false,
+  },
+)
+defineEmits(['toggle'])
+</script>
+
 <template>
   <button
     :class="[$style.btn, { [$style['is-active']]: isActive }]"
@@ -7,22 +19,14 @@
   >
     <span :class="$style['sr-only']">{{ $t('viewAll') }}</span>
     <span :class="$style.title"><slot /></span>
-    <app-icon icon="chevron-down" :class="$style.icon" width="12" height="12" />
+    <app-icon
+      icon="chevron-down"
+      :class="$style.icon"
+      :width="12"
+      :height="12"
+    />
   </button>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-export default defineComponent({
-  props: {
-    isActive: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: ['toggle'],
-})
-</script>
 
 <style lang="postcss" module>
 .title {

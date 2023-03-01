@@ -9,7 +9,7 @@ defineI18nRoute({
 })
 
 const route = useRoute()
-const { data, pending } = await useAsyncQuery<{ poster: IPoster }>(
+const { data, pending } = await useAsyncQuery<{ poster: IPoster | null }>(
   PosterQuery,
   {
     slug: route.params.slug,
@@ -17,7 +17,7 @@ const { data, pending } = await useAsyncQuery<{ poster: IPoster }>(
 )
 
 const subjects = computed(() => {
-  if (!data.value) {
+  if (!data.value?.poster) {
     return []
   }
   if (data.value.poster.subjects.edges.length) {
@@ -27,11 +27,18 @@ const subjects = computed(() => {
   }
   return []
 })
+
+if (!data.value?.poster) {
+  throw createError({
+    statusCode: 404,
+    fatal: true,
+  })
+}
 </script>
 
 <template>
   <app-loader v-if="pending" />
-  <div v-else-if="data">
+  <div v-else-if="data?.poster">
     <center-wrapper>
       <poster-details :poster="data.poster" />
     </center-wrapper>

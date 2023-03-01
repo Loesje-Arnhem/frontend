@@ -11,17 +11,23 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data, pending } = await useAsyncQuery<{
-  page: IPage
-  posts: IPostsBase
+const { data, pending, error } = await useAsyncQuery<{
+  page: IPage | null
 }>(PageByByUri, {
   uri: route.fullPath,
 })
+
+if (!data.value?.page) {
+  throw createError({
+    statusCode: 404,
+    fatal: true,
+  })
+}
 </script>
 
 <template>
   <app-loader v-if="pending" />
-  <div v-else-if="data">
+  <div v-else-if="data?.page">
     <app-content :title="data.page.title" :content="data.page.content" />
     <related-posters-section :posters="data.page.relatedPosters" />
     <related-products-section :related-products="data.page.relatedProducts" />

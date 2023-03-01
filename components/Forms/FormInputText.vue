@@ -1,3 +1,16 @@
+<script lang="ts" setup>
+defineProps<{
+  title: string
+  description?: string
+  id: string
+  type: 'text' | 'date'
+  value: string | number
+  errors: []
+}>()
+
+defineEmits(['keyup-down', 'keyup-up', 'input', 'change', 'blur'])
+</script>
+
 <template>
   <form-field
     :id="id"
@@ -12,7 +25,6 @@
       :value="value"
       :type="type"
       class="input"
-      :maxlength="250"
       @keyup.down="$emit('keyup-down')"
       @keyup.up="$emit('keyup-up')"
       @input="$emit('input', $event.target.value)"
@@ -21,40 +33,3 @@
     />
   </form-field>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-export default defineComponent({
-  inheritAttrs: false,
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      default: '',
-    },
-    id: {
-      type: String,
-      required: true,
-    },
-    type: {
-      type: String,
-      default: 'text',
-    },
-    value: {
-      type: [String, Number],
-      default: null,
-    },
-    maxlength: {
-      type: Number,
-      default: 250,
-    },
-    errors: {
-      type: Array,
-      default: () => [],
-    },
-  },
-})
-</script>

@@ -33,6 +33,7 @@ interface IPosterMetaGroup {
 
 export interface IPoster extends IBaseContent {
   slug: string
+  uri: string
   date: string
   link: string
   relatedPosters: IRelatedPoster

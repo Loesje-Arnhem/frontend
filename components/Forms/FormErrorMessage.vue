@@ -1,18 +1,17 @@
+<script lang="ts" setup>
+withDefaults(
+  defineProps<{
+    error: string
+  }>(),
+  {
+    error: '',
+  },
+)
+</script>
+
 <template>
   <span aria-live="assertive" class="error">{{ $t(error) }}</span>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-export default defineComponent({
-  props: {
-    error: {
-      type: String,
-      default: '',
-    },
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .error {

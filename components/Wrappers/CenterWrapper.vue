@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    size?: 'xlg' | 'full' | 'md' | 'lg'
+    size?: 'xlg' | 'full' | 'md' | 'lg' | 'sm'
     top?: boolean
   }>(),
   {

@@ -1,25 +1,21 @@
+<script lang="ts" setup>
+withDefaults(
+  defineProps<{
+    mode?: 'in-out' | 'out-in' | 'default'
+    direction?: 'up' | 'down'
+  }>(),
+  {
+    mode: 'default',
+    direction: 'up',
+  },
+)
+</script>
+
 <template>
   <transition :name="`slide-in-${direction}`" :mode="mode">
     <slot />
   </transition>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    mode: {
-      type: String,
-      default: null,
-    },
-    direction: {
-      type: String,
-      default: 'up',
-    },
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .slide-in-up-enter-active,

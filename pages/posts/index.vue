@@ -21,6 +21,6 @@ const { data, pending } = await useAsyncQuery<{
     <h1 class="sr-only">{{ data.page.title }}</h1>
     <posts-overview-section :posts="data.posts" />
     <related-posters-section :posters="data.page.relatedPosters" />
-    <related-products-section :related-products="page.relatedProducts" />
+    <related-products-section :related-products="data.page.relatedProducts" />
   </div>
 </template>
