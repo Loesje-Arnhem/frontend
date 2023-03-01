@@ -25,19 +25,19 @@ withDefaults(
   transition: opacity var(--animation), transform var(--animation);
 }
 
-.slide-in-up-enter,
+.slide-in-up-enter-from,
 .slide-in-up-leave-to,
-.slide-in-down-enter,
+.slide-in-down-enter-from,
 .slide-in-down-leave-to {
   opacity: 0;
 }
 
-.slide-in-up-enter,
+.slide-in-up-enter-from,
 .slide-in-up-leave-to {
   transform: translateY(-0.5em);
 }
 
-.slide-in-down-enter,
+.slide-in-down-enter-from,
 .slide-in-down-leave-to {
   transform: translateY(0.5em);
 }

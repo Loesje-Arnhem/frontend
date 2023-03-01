@@ -90,7 +90,7 @@ const today = () => {
         tabindex="-1"
       >
         <center-wrapper v-if="sources">
-          <!-- <poster-tags-list :list="sources.edges" /> -->
+          <poster-tags-list :list="sources.edges" />
         </center-wrapper>
       </div>
 
@@ -101,7 +101,7 @@ const today = () => {
         tabindex="-1"
       >
         <center-wrapper v-if="subjects">
-          <!-- <poster-tags-list :list="subjects.edges" /> -->
+          <poster-tags-list :list="subjects.edges" />
         </center-wrapper>
       </div>
     </slide-in-animation>

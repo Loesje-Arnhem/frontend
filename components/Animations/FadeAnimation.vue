@@ -10,7 +10,7 @@
   transition: opacity var(--animation);
 }
 
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }

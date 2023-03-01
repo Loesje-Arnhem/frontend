@@ -14,12 +14,15 @@ const props = defineProps<{
   title: string
   description?: string
   id: string
-  errors: ErrorObject[]
+  errors?: ErrorObject[]
 }>()
 
-const errorMessage = computed(() =>
-  props.errors.map((error) => error.$message).join(', '),
-)
+const errorMessage = computed(() => {
+  if (!props.errors) {
+    return ''
+  }
+  props.errors.map((error) => error.$message).join(', ')
+})
 </script>
 
 <template>

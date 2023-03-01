@@ -10,7 +10,7 @@
   transition: all 0.2s;
 }
 
-.list-enter,
+.list-enter-from,
 .list-leave-to {
   opacity: 0;
   transform: translateY(1em);

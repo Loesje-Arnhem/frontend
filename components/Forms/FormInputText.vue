@@ -5,7 +5,7 @@ defineProps<{
   id: string
   type: 'text' | 'date'
   value: string | number
-  errors: []
+  errors?: []
 }>()
 
 defineEmits(['keyup-down', 'keyup-up', 'input', 'change', 'blur'])

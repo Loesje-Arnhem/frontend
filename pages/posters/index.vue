@@ -4,6 +4,15 @@ import { GetPagePosters } from '~/graphql/Pages/Pages'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
 import { ITags } from '~~/interfaces/ITag'
 
+const {
+  search,
+  selectedSourceIds,
+  selectedSubjectIds,
+  selectedTags,
+  dateBefore,
+  dateAfter,
+} = useTags()
+
 defineI18nRoute({
   paths: {
     nl: '/posters',
@@ -22,10 +31,9 @@ const { data, pending } = useAsyncQuery<{
 <template>
   <div v-if="data">
     <center-wrapper>
-      {{ data.sources }}
       <!-- <posters-auto-complete /> -->
       <poster-filters :sources="data.sources" :subjects="data.subjects" />
-      <!-- <poster-tags-list :list="selectedTags" /> -->
+      <poster-tags-list :list="selectedTags" />
     </center-wrapper>
     <app-loader v-if="pending" />
 
