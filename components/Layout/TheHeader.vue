@@ -93,6 +93,8 @@ export default defineComponent({
 </style>
 
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .header {
   @mixin color-negative;
 

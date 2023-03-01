@@ -1,3 +1,12 @@
+<script lang="ts" setup>
+import { IPoster } from '~/interfaces/IPoster'
+
+defineProps<{
+  poster: IPoster
+}>()
+const { baseUrl } = useAppConfig()
+</script>
+
 <template>
   <div class="poster-details">
     <article class="content">
@@ -47,7 +56,7 @@
           target="_blank"
           :download="poster.slug"
         >
-          <app-icon icon="pdf" width="32" height="32" class="icon" />
+          <app-icon icon="pdf" :width="32" :height="32" class="icon" />
           Download
         </app-button>
       </div>
@@ -63,25 +72,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IPoster } from '~/interfaces/IPoster'
-import { baseUrl } from '~/data/siteDetails'
-
-export default defineComponent({
-  props: {
-    poster: {
-      type: Object as PropType<IPoster>,
-      required: true,
-    },
-  },
-  setup() {
-    return { baseUrl }
-  },
-})
-</script>
-
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .poster-details {
   display: grid;
   grid-gap: 1em;

@@ -73,7 +73,9 @@ export default defineComponent({
   </section>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss" scoped
+@import "~/assets/css/media-queries/media-queries.css";
+
 .app-stores {
   @mixin block;
   @mixin clearfix;

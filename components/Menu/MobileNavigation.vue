@@ -35,6 +35,8 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .wrapper {
   padding: var(--spacing-xs) 0;
 

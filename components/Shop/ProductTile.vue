@@ -30,6 +30,8 @@ const url = computed(() => {
 </template>
 
 <style module lang="postcss">
+@import '~/assets/css/media-queries/media-queries.css';
+
 .product-tile {
   padding: 0 0 0.5em;
   display: grid;

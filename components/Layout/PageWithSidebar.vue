@@ -14,6 +14,8 @@
 </template>
 
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .wrapper {
   display: grid;
   grid-gap: 1rem;

@@ -32,6 +32,8 @@
 </template>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .wrapper {
   padding-top: var(--spacing-s);
   max-width: var(--container-width-md);

@@ -285,6 +285,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="postcss">
+@import '~/assets/css/media-queries/media-queries.css';
+
 .form {
   position: relative;
   padding-bottom: 2em;

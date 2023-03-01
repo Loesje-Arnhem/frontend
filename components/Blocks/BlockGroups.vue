@@ -29,6 +29,8 @@
 </template>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .groups {
   @mixin block;
   @mixin clearfix;

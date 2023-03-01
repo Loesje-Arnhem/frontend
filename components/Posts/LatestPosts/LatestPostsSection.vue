@@ -29,6 +29,8 @@ defineProps<{
 </template>
 
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .latest-posts {
   @mixin block;
 }

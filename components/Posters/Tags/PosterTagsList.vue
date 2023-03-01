@@ -1,24 +1,18 @@
+<script lang="ts" setup>
+import { ITag } from '~~/interfaces/ITag'
+
+defineProps<{
+  list: ITag[]
+}>()
+</script>
+
 <template>
   <ul :class="$style.list">
     <li v-for="item in list" :key="item.node.id" :class="$style['list-item']">
-      <poster-tag :tag="item" />
+      <!-- <poster-tag :tag="item" /> -->
     </li>
   </ul>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { ITag } from '~/interfaces/ITag'
-
-export default defineComponent({
-  props: {
-    list: {
-      type: Array as PropType<ITag[]>,
-      default: () => [],
-    },
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .list {

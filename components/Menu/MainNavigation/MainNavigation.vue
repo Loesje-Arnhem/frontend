@@ -120,6 +120,8 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .nav {
   position: relative;
   margin-bottom: var(--spacing-m);

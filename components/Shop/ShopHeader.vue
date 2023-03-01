@@ -13,6 +13,8 @@
 </template>
 
 <style module lang="postcss">
+@import '~/assets/css/media-queries/media-queries.css';
+
 .header {
   display: flex;
   padding: 0.5em 0;

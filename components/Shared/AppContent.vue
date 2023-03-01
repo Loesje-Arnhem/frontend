@@ -33,6 +33,8 @@ const hasMedia = computed(() => {
 </template>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .content-wrapper {
   @mixin block;
 

@@ -43,6 +43,8 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .title {
   transition: box-shadow 0.2s ease-out;
 }

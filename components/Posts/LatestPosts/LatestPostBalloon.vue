@@ -53,6 +53,8 @@ export default {
 </template>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .animate {
   animation: 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);
 }

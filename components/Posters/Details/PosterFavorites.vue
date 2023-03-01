@@ -1,3 +1,26 @@
+<script lang="ts" setup>
+import { IPoster } from '~/interfaces/IPoster'
+
+const props = defineProps<{
+  poster: IPoster
+}>()
+const favorites = useState<number[]>('favorites')
+
+const { add, remove } = useFavorites()
+
+const isInFavorites = computed(() => {
+  return favorites.value.includes(props.poster.databaseId)
+})
+
+const toggleFavorite = () => {
+  if (isInFavorites.value) {
+    remove(props.poster.databaseId)
+  } else {
+    add(props.poster.databaseId)
+  }
+}
+</script>
+
 <template>
   <div>
     <app-button
@@ -8,8 +31,8 @@
       <app-icon
         :class="$style.icon"
         :icon="isInFavorites ? 'heart' : 'heart-o'"
-        width="20"
-        height="20"
+        :width="20"
+        :height="20"
       />
       <template v-if="isInFavorites">
         {{ $t('remove') }}
@@ -21,42 +44,6 @@
     </app-button>
   </div>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
-import useFavorites from '~/composables/useFavorites'
-import { IPoster } from '~/interfaces/IPoster'
-
-export default defineComponent({
-  props: {
-    poster: {
-      type: Object as PropType<IPoster>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const { favorites, add, remove } = useFavorites()
-
-    const isInFavorites = computed(() => {
-      return favorites.value.includes(props.poster.databaseId)
-    })
-
-    const toggleFavorite = () => {
-      if (isInFavorites.value) {
-        remove(props.poster.databaseId)
-      } else {
-        add(props.poster.databaseId)
-      }
-    }
-
-    return {
-      toggleFavorite,
-      isInFavorites,
-      favorites,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" module>
 .icon {

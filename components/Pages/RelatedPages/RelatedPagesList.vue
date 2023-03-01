@@ -20,6 +20,8 @@ defineProps<{
 </template>
 
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .list {
   @mixin block;
   @mixin list-reset;

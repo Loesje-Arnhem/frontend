@@ -29,6 +29,8 @@ export default {
 </script>
 
 <style module lang="postcss">
+@import '~/assets/css/media-queries/media-queries.css';
+
 .list {
   @mixin list-reset;
 

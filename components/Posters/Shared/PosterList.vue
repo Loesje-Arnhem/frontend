@@ -24,6 +24,8 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .wrapper {
   background: url('/images/wall.png');
 }
