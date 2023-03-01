@@ -4,31 +4,56 @@
     <ul class="list">
       <li>
         <nuxt-link to="/workshops/" class="link">
-          <app-icon icon="chevron-right" width="12" height="12" class="icon" />
+          <app-icon
+            icon="chevron-right"
+            :width="12"
+            :height="12"
+            class="icon"
+          />
           Workshops
         </nuxt-link>
       </li>
       <li>
         <nuxt-link to="/doe-mee/lokale-groepen/" class="link">
-          <app-icon icon="chevron-right" width="12" height="12" class="icon" />
+          <app-icon
+            icon="chevron-right"
+            :width="12"
+            :height="12"
+            class="icon"
+          />
           Lokale groepen
         </nuxt-link>
       </li>
       <li>
         <nuxt-link to="/over-loesje/internationaal/" class="link">
-          <app-icon icon="chevron-right" width="12" height="12" class="icon" />
+          <app-icon
+            icon="chevron-right"
+            :width="12"
+            :height="12"
+            class="icon"
+          />
           Loesje internationaal
         </nuxt-link>
       </li>
       <li>
         <nuxt-link to="/doe-mee" class="link">
-          <app-icon icon="chevron-right" width="12" height="12" class="icon" />
+          <app-icon
+            icon="chevron-right"
+            :width="12"
+            :height="12"
+            class="icon"
+          />
           Doe mee
         </nuxt-link>
       </li>
       <li>
         <nuxt-link to="/doe-mee/donateur/" class="link">
-          <app-icon icon="chevron-right" width="12" height="12" class="icon" />
+          <app-icon
+            icon="chevron-right"
+            :width="12"
+            :height="12"
+            class="icon"
+          />
           Word donateur
         </nuxt-link>
       </li>

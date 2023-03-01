@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const { submit, formData, loading, error, submitted, v$ } = useNewsletter()
+</script>
+
 <template>
   <div v-if="submitted" class="success">
     <p>
@@ -30,23 +34,3 @@
     </form-fieldset>
   </app-form>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-import useNewsletter from '~/composables/useNewsletter'
-export default defineComponent({
-  setup() {
-    const { submit, formData, loading, error, submitted, v$ } = useNewsletter()
-
-    return {
-      submit,
-      formData,
-      loading,
-      error,
-      submitted,
-      v$,
-    }
-  },
-})
-</script>

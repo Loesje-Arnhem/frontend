@@ -9,8 +9,8 @@
     >
       <app-icon
         icon="apple-store"
-        width="120"
-        height="40"
+        :width="120"
+        :height="40"
         class="icon-store"
         title="De loesje App voor iOs is verkrijgbaar in de AppStore"
       />
@@ -23,8 +23,8 @@
     >
       <app-icon
         icon="play-store"
-        width="135"
-        height="40"
+        :width="135"
+        :height="40"
         class="icon-store"
         title="De loesje App voor Android is verkrijgbaar in de Play Store"
       />

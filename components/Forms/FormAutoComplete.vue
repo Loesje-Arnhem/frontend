@@ -1,58 +1,4 @@
-<template>
-  <form method="get" class="form" @keyup.esc="reset" @submit.prevent="submit">
-    <legend class="sr-only">{{ $t('title') }}</legend>
-    <div class="input-wrapper">
-      <form-input-text
-        id="search"
-        type="search"
-        name="search"
-        autocomplete="off"
-        :value="value"
-        class="search"
-        :title="$t('title')"
-        v-bind="$attrs"
-        @input="input"
-        @keyup-down="onArrowDown"
-        @keyup-up="onArrowUp"
-      />
-      <div class="buttons">
-        <button
-          v-if="value.length"
-          type="button"
-          class="btn-reset"
-          @click="reset"
-        >
-          <app-icon icon="close" width="24" height="24" title="Sluiten" />
-        </button>
-        <button type="submit" class="btn-submit">
-          <app-icon icon="search" width="24" height="24" title="Zoeken" />
-        </button>
-      </div>
-      <div
-        v-if="resultsWithHighlightText.length && showList"
-        class="autocomplete"
-      >
-        <ul class="list">
-          <li
-            v-for="(result, index) in resultsWithHighlightText"
-            :key="result.id"
-          >
-            <router-link
-              :class="{ active: index === arrowCounter }"
-              class="btn-result"
-              :to="result.uri"
-              v-html="result.title"
-            />
-          </li>
-        </ul>
-      </div>
-    </div>
-  </form>
-</template>
-
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
-
 export default defineComponent({
   inheritAttrs: false,
 
@@ -143,6 +89,59 @@ export default defineComponent({
   },
 })
 </script>
+
+<template>
+  <form method="get" class="form" @keyup.esc="reset" @submit.prevent="submit">
+    <legend class="sr-only">{{ $t('title') }}</legend>
+
+    <div class="input-wrapper">
+      <form-input-text
+        id="search"
+        type="search"
+        name="search"
+        autocomplete="off"
+        :model-value="value"
+        class="search"
+        :title="$t('title')"
+        v-bind="$attrs"
+        @input="input"
+        @keyup-down="onArrowDown"
+        @keyup-up="onArrowUp"
+      />
+      <div class="buttons">
+        <button
+          v-if="value.length"
+          type="button"
+          class="btn-reset"
+          @click="reset"
+        >
+          <app-icon icon="close" width="24" height="24" title="Sluiten" />
+        </button>
+        <button type="submit" class="btn-submit">
+          <app-icon icon="search" width="24" height="24" title="Zoeken" />
+        </button>
+      </div>
+      <div
+        v-if="resultsWithHighlightText.length && showList"
+        class="autocomplete"
+      >
+        <ul class="list">
+          <li
+            v-for="(result, index) in resultsWithHighlightText"
+            :key="result.id"
+          >
+            <router-link
+              :class="{ active: index === arrowCounter }"
+              class="btn-result"
+              :to="result.uri"
+              v-html="result.title"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+</template>
 
 <style scoped lang="postcss">
 .form {
