@@ -2,7 +2,7 @@
 const props = withDefaults(
   defineProps<{
     to?: string
-    type?: 'button'
+    type?: 'button' | 'submit'
     isPrimary?: boolean
     loading?: boolean
     href?: string

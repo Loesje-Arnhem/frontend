@@ -1,12 +1,9 @@
-<script lang="ts">
-export default defineComponent({
-  props: {
-    posters: {
-      type: Array,
-      default: () => [],
-    },
-  },
-})
+<script lang="ts" setup>
+import { IRelatedPosterNode } from '~~/interfaces/IPoster'
+
+defineProps<{
+  posters: IRelatedPosterNode[]
+}>()
 </script>
 
 <template>

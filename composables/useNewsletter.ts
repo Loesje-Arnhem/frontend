@@ -1,18 +1,9 @@
 import { useVuelidate } from '@vuelidate/core'
-import {
-  computed,
-  ComputedRef,
-  reactive,
-  Ref,
-  ref,
-} from '@nuxtjs/composition-api'
-import { v4 } from 'uuid'
 import { useMutation } from '@vue/apollo-composable'
 import AddToNewsletterQuery from '~/graphql/Newsletter/AddToNewsletter.gql'
-import useValidators from '~/composables/useValidators'
 import { NewsletterList } from '~/enums/newsletterList'
 
-export default () => {
+export const useNewsletter = () => {
   const formData = reactive({
     email: '',
     firstName: '',
@@ -56,7 +47,7 @@ export default () => {
     onDone,
   } = useMutation(AddToNewsletterQuery, () => ({
     variables: {
-      clientMutationId: v4(),
+      // clientMutationId: v4(),
       email: formData.email,
       firstName: formData.firstName,
       lastName: formData.lastName,

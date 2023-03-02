@@ -3,8 +3,8 @@ defineProps<{
   title: string
   description?: string
   id: string
-  type: 'text' | 'date'
-  value: string | number
+  type: 'text' | 'date' | 'email'
+  modelValue: string | number
   errors?: []
 }>()
 
@@ -22,7 +22,7 @@ defineEmits(['keyup-down', 'keyup-up', 'input', 'change', 'blur'])
     <input
       :id="id"
       v-bind="$attrs"
-      :value="value"
+      :model-value="modelValue"
       :type="type"
       class="input"
       @keyup.down="$emit('keyup-down')"

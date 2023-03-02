@@ -1,3 +1,100 @@
+<script lang="ts" setup>
+import useVuelidate from '@vuelidate/core'
+import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop'
+
+const submitted = ref(false)
+const { required, numeric, email, minValue, maxValue } = useValidators()
+const minDate: Ref<string | null> = ref(null)
+
+const formData = reactive({
+  name: '',
+  companyName: '',
+  address: '',
+  zipcode: '',
+  city: '',
+  phoneNumber: '',
+  email: '',
+  motivation: '',
+  date: '',
+  time: '',
+  totalAttendees: 4,
+  location: '',
+  totalWorkshops: 1,
+  theme: '',
+})
+
+const rules = {
+  name: { required },
+  companyName: { required },
+  address: { required },
+  zipcode: { required },
+  city: { required },
+  phoneNumber: { required },
+  email: { required, email },
+  motivation: {},
+  date: { required },
+  time: { required },
+  totalAttendees: {
+    required,
+    numeric,
+    minValue: minValue(4),
+    maxValue: maxValue(16),
+  },
+  location: { required },
+  totalWorkshops: { required, numeric },
+  theme: {},
+}
+
+const v$ = useVuelidate(rules, formData)
+
+const error = computed(() => {
+  if (apiError.value) {
+    return apiError.value.message
+  } else if (v$.value.$dirty && v$.value.$invalid) {
+    return 'validations.form'
+  }
+  return null
+})
+
+const submit = async () => {
+  const isFormCorrect = await v$.value.$validate()
+  if (!isFormCorrect) {
+    return
+  }
+
+  requestWorkshop()
+}
+
+const {
+  mutate: requestWorkshop,
+  loading,
+  onDone,
+  error: apiError,
+} = useMutation(RequestWorkshopQuery, () => ({
+  variables: {
+    clientMutationId: v4(),
+    ...formData,
+  },
+}))
+
+onDone((result) => {
+  if (result.data.requestWorkshop.response === 'success') {
+    submitted.value = true
+  }
+})
+
+onMounted(() => {
+  if (!process.client) {
+    return
+  }
+  const date = new Date()
+  const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
+  const month =
+    date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
+  minDate.value = `${date.getFullYear()}-${month}-${day}`
+})
+</script>
+
 <template>
   <center-wrapper size="lg">
     <section aria-label="Meld je aan voor de workshop">
@@ -159,130 +256,6 @@
     </section>
   </center-wrapper>
 </template>
-
-<script lang="ts">
-import { useVuelidate } from '@vuelidate/core'
-import {
-  reactive,
-  defineComponent,
-  ref,
-  computed,
-  Ref,
-  onMounted,
-} from '@nuxtjs/composition-api'
-import { useMutation } from '@vue/apollo-composable'
-import { v4 } from 'uuid'
-import AppImage from '../Shared/AppImage.vue'
-import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop'
-import useValidators from '~/composables/useValidators'
-
-export default defineComponent({
-  components: { AppImage },
-  setup() {
-    const submitted = ref(false)
-    const { required, numeric, email, minValue, maxValue } = useValidators()
-    const minDate: Ref<string | null> = ref(null)
-
-    const formData = reactive({
-      name: '',
-      companyName: '',
-      address: '',
-      zipcode: '',
-      city: '',
-      phoneNumber: '',
-      email: '',
-      motivation: '',
-      date: '',
-      time: '',
-      totalAttendees: 4,
-      location: '',
-      totalWorkshops: 1,
-      theme: '',
-    })
-
-    const rules = {
-      name: { required },
-      companyName: { required },
-      address: { required },
-      zipcode: { required },
-      city: { required },
-      phoneNumber: { required },
-      email: { required, email },
-      motivation: {},
-      date: { required },
-      time: { required },
-      totalAttendees: {
-        required,
-        numeric,
-        minValue: minValue(4),
-        maxValue: maxValue(16),
-      },
-      location: { required },
-      totalWorkshops: { required, numeric },
-      theme: {},
-    }
-
-    const v$ = useVuelidate(rules, formData)
-
-    const error = computed(() => {
-      if (apiError.value) {
-        return apiError.value.message
-      } else if (v$.value.$dirty && v$.value.$invalid) {
-        return 'validations.form'
-      }
-      return null
-    })
-
-    const submit = async () => {
-      const isFormCorrect = await v$.value.$validate()
-      if (!isFormCorrect) {
-        return
-      }
-
-      requestWorkshop()
-    }
-
-    const {
-      mutate: requestWorkshop,
-      loading,
-      onDone,
-      error: apiError,
-    } = useMutation(RequestWorkshopQuery, () => ({
-      variables: {
-        clientMutationId: v4(),
-        ...formData,
-      },
-    }))
-
-    onDone((result) => {
-      if (result.data.requestWorkshop.response === 'success') {
-        submitted.value = true
-      }
-    })
-
-    onMounted(() => {
-      if (!process.client) {
-        return
-      }
-      const date = new Date()
-      const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
-      const month =
-        date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
-      minDate.value = `${date.getFullYear()}-${month}-${day}`
-    })
-
-    return {
-      error,
-      v$,
-      submit,
-      loading,
-      submitted,
-      formData,
-      minDate,
-    }
-  },
-})
-</script>
 
 <style scoped lang="postcss">
 @import '~/assets/css/media-queries/media-queries.css';

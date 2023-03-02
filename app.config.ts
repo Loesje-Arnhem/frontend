@@ -28,4 +28,15 @@ export default defineAppConfig({
     pinterestUrl: 'https://www.pinterest.com/loesjenl/',
     linkedinUrl: 'https://www.linkedin.com/company/loesje/',
   },
+  pageIds: {
+    home: 6434,
+    join: 430,
+    about: 415,
+    workshops: 362,
+    posts: 757,
+    shop: 30777,
+    cart: 30779,
+    checkout: 30780,
+    newsletter: 27758,
+  },
 })

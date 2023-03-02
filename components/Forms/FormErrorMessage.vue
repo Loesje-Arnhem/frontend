@@ -1,16 +1,15 @@
 <script lang="ts" setup>
-withDefaults(
-  defineProps<{
-    error: string
-  }>(),
-  {
-    error: '',
-  },
-)
+defineProps<{
+  error?: string
+}>()
 </script>
 
 <template>
-  <span aria-live="assertive" class="error">{{ $t(error) }}</span>
+  <span aria-live="assertive" class="error">
+    <template v-if="error">
+      {{ $t(error) }}
+    </template>
+  </span>
 </template>
 
 <style lang="postcss" scoped>

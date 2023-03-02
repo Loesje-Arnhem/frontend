@@ -36,7 +36,6 @@ const { data, pending } = useAsyncQuery<{
       <poster-tags-list :list="selectedTags" />
     </center-wrapper>
     <app-loader v-if="pending" />
-
     <posters-overview-section
       v-else-if="data.posters"
       :source-ids="selectedSourceIds"
@@ -44,7 +43,7 @@ const { data, pending } = useAsyncQuery<{
       :search="search"
       :date-before="dateBefore"
       :date-after="dateAfter"
-      :posters="data.posters"
+      :posters="posters"
     />
   </div>
 </template>
