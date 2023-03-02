@@ -8,8 +8,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@nuxtjs/composition-api'
-import useLayout from '~/composables/useLayout'
 import { shopUrl } from '~/data/siteDetails'
 
 export default defineComponent({

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { IRelatedPosters } from '~~/interfaces/IPoster'
 import { GetPagePosters } from '~/graphql/Pages/Pages'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
 import { ITags } from '~~/interfaces/ITag'
@@ -19,8 +18,7 @@ defineI18nRoute({
   },
 })
 
-const { data, pending } = useAsyncQuery<{
-  posters: IRelatedPosters
+const { data } = useAsyncQuery<{
   sources: ITags
   subjects: ITags
 }>(GetPagePosters, {
@@ -35,15 +33,12 @@ const { data, pending } = useAsyncQuery<{
       <poster-filters :sources="data.sources" :subjects="data.subjects" />
       <poster-tags-list :list="selectedTags" />
     </center-wrapper>
-    <app-loader v-if="pending" />
     <posters-overview-section
-      v-else-if="data.posters"
       :source-ids="selectedSourceIds"
       :subject-ids="selectedSubjectIds"
       :search="search"
       :date-before="dateBefore"
       :date-after="dateAfter"
-      :posters="posters"
     />
   </div>
 </template>

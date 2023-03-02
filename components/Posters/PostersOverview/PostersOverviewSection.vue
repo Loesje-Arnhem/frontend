@@ -128,7 +128,8 @@ watch(where, () => {
         </template>
       </h1>
     </center-wrapper>
-    <template v-if="result">
+    <app-loader v-if="!result && loading" />
+    <template v-else-if="result">
       <poster-list
         v-if="result.posters.edges.length"
         :posters="result.posters.edges"

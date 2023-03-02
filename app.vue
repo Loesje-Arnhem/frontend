@@ -1,7 +1,9 @@
 <template>
   <header-top class="page-header-top sa-hidden" />
+  <window-controls-overlay />
+  <the-header class="page-header sa-hidden" />
 
-  <main class="main">
+  <main id="content" class="main" tabindex="-1">
     <NuxtLayout>
       <NuxtLoadingIndicator color="var(--color-black)" />
       <NuxtPage />

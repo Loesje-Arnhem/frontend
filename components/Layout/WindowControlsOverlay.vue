@@ -1,56 +1,47 @@
+<script lang="ts" setup>
+const showWindowControlsOverlay = ref(false)
+
+const onGeometryChange = (event: any) => {
+  showWindowControlsOverlay.value = event.visible
+}
+
+onMounted(() => {
+  if (!('windowControlsOverlay' in navigator)) {
+    return
+  }
+  // Window Controls Overlay is supported.
+
+  // @ts-ignore
+  showWindowControlsOverlay.value = navigator.windowControlsOverlay.visible
+
+  // @ts-ignore
+  navigator.windowControlsOverlay.addEventListener(
+    'geometrychange',
+    onGeometryChange,
+  )
+})
+
+onUnmounted(() => {
+  if (!('windowControlsOverlay' in navigator)) {
+    return
+  }
+
+  // @ts-ignore
+  navigator.windowControlsOverlay.removeEventListener(
+    'geometrychange',
+    onGeometryChange,
+  )
+})
+</script>
+
 <template>
   <div v-if="showWindowControlsOverlay">
     <div class="wrapper">
-      <app-icon icon="logo" class="logo" height="50" width="87" />
+      <app-icon icon="logo" class="logo" :height="50" :width="87" />
     </div>
     <div class="placeholder"></div>
   </div>
 </template>
-
-<script>
-import {
-  defineComponent,
-  onMounted,
-  onUnmounted,
-  ref,
-} from '@vue/composition-api'
-
-export default defineComponent({
-  setup() {
-    const showWindowControlsOverlay = ref(false)
-
-    const onGeometryChange = (event) => {
-      showWindowControlsOverlay.value = event.visible
-    }
-
-    onMounted(() => {
-      if (!('windowControlsOverlay' in navigator)) {
-        return
-      }
-      // Window Controls Overlay is supported.
-      showWindowControlsOverlay.value = navigator.windowControlsOverlay.visible
-
-      navigator.windowControlsOverlay.addEventListener(
-        'geometrychange',
-        onGeometryChange,
-      )
-    })
-
-    onUnmounted(() => {
-      if (!('windowControlsOverlay' in navigator)) {
-        return
-      }
-      navigator.windowControlsOverlay.removeEventListener(
-        'geometrychange',
-        onGeometryChange,
-      )
-    })
-    return {
-      showWindowControlsOverlay,
-    }
-  },
-})
-</script>
 
 <style scoped lang="postcss">
 .wrapper,

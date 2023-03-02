@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const localePath = useLocalePath()
+</script>
+
 <template>
   <center-wrapper :top="true">
     <div class="wrapper">

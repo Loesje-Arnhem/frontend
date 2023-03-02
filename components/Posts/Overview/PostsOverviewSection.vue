@@ -1,13 +1,9 @@
 <script lang="ts" setup>
 import { getRelatedPosts } from '~/graphql/Posts/Posts'
-// import { useFetchMore } from '~/composables/useFetch'
 import { IPosts } from '~/interfaces/IPost'
-
-const { data, pending } = useAsyncQuery(getRelatedPosts)
 
 const props = withDefaults(
   defineProps<{
-    posts: IPosts
     notIn: number
   }>(),
   {
@@ -15,28 +11,37 @@ const props = withDefaults(
   },
 )
 
-const relatedPosts = ref(props.posts)
+const { result, fetchMore, loading } = useQuery<{
+  posts: IPosts
+}>(getRelatedPosts, {
+  notIn: props.notIn,
+})
 
-// const { fetchMore, loading } = useFetchMore()
-
-const loadMore = async () => {
-  // const { posts }: { posts: IPosts } = await fetchMore({
-  //   items: relatedPosts,
-  //   query: getRelatedPosts,
-  //   variables: {
-  //     notIn: props.notIn,
-  //   },
-  // })
-  // relatedPosts.value = {
-  //   pageInfo: posts.pageInfo,
-  //   edges: [...relatedPosts.value.edges, ...posts.edges],
-  // }
+const loadMore = () => {
+  fetchMore({
+    variables: {
+      after: result.value?.posts.pageInfo.endCursor,
+    },
+    updateQuery: (previousResult, { fetchMoreResult }) => {
+      if (!fetchMoreResult) return previousResult
+      return {
+        ...fetchMoreResult,
+        posts: {
+          ...fetchMoreResult.posts,
+          pageInfo: fetchMoreResult.posts.pageInfo,
+          edges: [
+            ...previousResult.posts.edges,
+            ...fetchMoreResult.posts.edges,
+          ],
+        },
+      }
+    },
+  })
 }
 </script>
 
 <template>
   <section
-    v-if="relatedPosts"
     :class="$style['posts-overview']"
     aria-labelledby="posts-overview-title"
   >
@@ -45,16 +50,19 @@ const loadMore = async () => {
         <template v-if="notIn">{{ $t('relatedTitle') }}</template>
         <template v-else>{{ $t('title') }}</template>
       </h1>
-      <posts-overview-list
-        v-if="relatedPosts.edges.length"
-        :posts="relatedPosts.edges"
-      />
-      <load-more-by-click
-        v-if="relatedPosts.pageInfo.hasNextPage"
-        :loading="pending"
-        :title="$t('btnMore')"
-        @load-more="loadMore"
-      />
+      <app-loader v-if="!result && loading" />
+      <template v-else-if="result">
+        <posts-overview-list
+          v-if="result.posts.edges.length"
+          :posts="result.posts.edges"
+        />
+        <load-more-by-click
+          v-if="result.posts.pageInfo.hasNextPage"
+          :loading="loading"
+          :title="$t('btnMore')"
+          @load-more="loadMore"
+        />
+      </template>
     </center-wrapper>
   </section>
 </template>
