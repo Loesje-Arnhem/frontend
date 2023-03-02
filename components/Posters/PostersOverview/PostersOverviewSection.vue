@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { IRelatedPosters } from '~/interfaces/IPoster'
+import { PAGE_SIZE_POSTERS } from '~~/data/pageSizes'
+import { GetPosters } from '~~/graphql/Posters/Poster'
 
 interface ITaxQuery {
   terms: string[]
@@ -9,7 +11,6 @@ interface ITaxQuery {
 
 const props = withDefaults(
   defineProps<{
-    posters: IRelatedPosters
     title?: string
     search?: string
     dateBefore?: string
@@ -25,8 +26,6 @@ const props = withDefaults(
     posterIds: () => [],
   },
 )
-
-const relatedPosters = ref(props.posters)
 
 const createTaxArray = (ids: number[], key: string) => {
   return {
@@ -79,37 +78,46 @@ const where = computed(() => {
     posterDateAfter,
   }
 })
-watch(where, () => {
-  relatedPosters.value = {
-    pageInfo: {
-      endCursor: '',
-      hasNextPage: true,
-    },
-    edges: [],
-  }
-  loadMore()
+
+const { result, fetchMore, loading, refetch } = useQuery<{
+  posters: IRelatedPosters
+}>(GetPosters, {
+  first: PAGE_SIZE_POSTERS,
+  where,
 })
 
-const loading = ref(false)
 const loadMore = () => {
-  // const { posters } = await fetchMore({
-  //   items: relatedPosters,
-  //   query: GetPosters,
-  //   variables: {
-  //     where: where.value,
-  //     first: PAGE_SIZE_POSTERS,
-  //   },
-  // })
-  // relatedPosters.value = {
-  //   pageInfo: posters.pageInfo,
-  //   edges: [...relatedPosters.value.edges, ...posters.edges],
-  // }
+  fetchMore({
+    variables: {
+      after: result.value?.posters.pageInfo.endCursor,
+    },
+    updateQuery: (previousResult, { fetchMoreResult }) => {
+      // No new feed posts
+      if (!fetchMoreResult) return previousResult
+
+      // Concat previous feed with new feed posts
+      return {
+        ...fetchMoreResult,
+        posters: {
+          ...fetchMoreResult.posters,
+          pageInfo: fetchMoreResult.posters.pageInfo,
+          edges: [
+            ...previousResult.posters.edges,
+            ...fetchMoreResult.posters.edges,
+          ],
+        },
+      }
+    },
+  })
 }
+
+watch(where, () => {
+  refetch()
+})
 </script>
 
 <template>
-  <div>213</div>
-  <section v-if="relatedPosters" aria-labelledby="posters-overview-title">
+  <section aria-labelledby="posters-overview-title">
     <center-wrapper>
       <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
@@ -120,21 +128,22 @@ const loadMore = () => {
         </template>
       </h1>
     </center-wrapper>
-    {{ posters }}
-    <poster-list
-      v-if="relatedPosters && relatedPosters.edges.length"
-      :posters="relatedPosters.edges"
-    />
-    <center-wrapper>
-      <load-more-by-scroll
-        v-if="relatedPosters.pageInfo.hasNextPage"
-        :loading="loading"
-        @load-more="loadMore"
+    <template v-if="result">
+      <poster-list
+        v-if="result.posters.edges.length"
+        :posters="result.posters.edges"
       />
-      <p v-if="relatedPosters.edges.length === 0 && !loading">
-        Geen posters gevonden
-      </p>
-    </center-wrapper>
+      <center-wrapper>
+        <load-more-by-scroll
+          v-if="result.posters.pageInfo.hasNextPage"
+          :loading="loading"
+          @load-more="loadMore"
+        />
+        <p v-if="result.posters.edges.length === 0 && !loading">
+          Geen posters gevonden
+        </p>
+      </center-wrapper>
+    </template>
   </section>
 </template>
 

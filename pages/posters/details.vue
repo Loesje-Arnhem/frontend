@@ -16,6 +16,13 @@ const { data, pending } = await useAsyncQuery<{ poster: IPoster | null }>(
   },
 )
 
+if (!data.value?.poster) {
+  throw createError({
+    statusCode: 404,
+    fatal: true,
+  })
+}
+
 useMeta(data.value?.poster)
 
 const subjects = computed(() => {
@@ -29,13 +36,6 @@ const subjects = computed(() => {
   }
   return []
 })
-
-if (!data.value?.poster) {
-  throw createError({
-    statusCode: 404,
-    fatal: true,
-  })
-}
 </script>
 
 <template>
@@ -46,9 +46,7 @@ if (!data.value?.poster) {
     </center-wrapper>
     <related-products-section :related-products="data.poster.relatedProducts" />
     <posters-overview-section
-      v-if="data.poster"
       :not-in="data.poster.databaseId"
-      :posters="data.poster.relatedPosters"
       :subject-ids="subjects"
       :title="$t('relatedTitle')"
     />

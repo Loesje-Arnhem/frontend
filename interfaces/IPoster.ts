@@ -36,7 +36,6 @@ export interface IPoster extends IBaseContent {
   uri: string
   date: string
   link: string
-  relatedPosters: IRelatedPoster
   relatedProducts: IRelatedProducts
   sources: ITaxanomies
   subjects: ITaxanomies

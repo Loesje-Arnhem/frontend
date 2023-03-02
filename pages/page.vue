@@ -23,6 +23,8 @@ if (!data.value?.page) {
     fatal: true,
   })
 }
+
+useMeta(data.value.page)
 </script>
 
 <template>
