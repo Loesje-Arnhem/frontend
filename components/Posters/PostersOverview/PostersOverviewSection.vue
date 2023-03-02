@@ -28,14 +28,6 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  PropType,
-  computed,
-  ref,
-  watch,
-} from '@nuxtjs/composition-api'
-import { useFetchMore } from '~/composables/useFetch'
 import { PAGE_SIZE_POSTERS } from '~/data/pageSizes'
 import { GetPosters } from '~/graphql/Posters/Poster'
 import { IRelatedPosters } from '~/interfaces/IPoster'

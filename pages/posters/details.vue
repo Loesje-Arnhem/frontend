@@ -43,13 +43,13 @@ if (!data.value?.poster) {
       <poster-details :poster="data.poster" />
     </center-wrapper>
     <related-products-section :related-products="data.poster.relatedProducts" />
-    <!-- <posters-overview-section
+    <posters-overview-section
       v-if="data.poster"
       :not-in="data.poster.databaseId"
       :posters="data.poster.relatedPosters"
       :subject-ids="subjects"
       :title="$t('relatedTitle')"
-    /> -->
+    />
   </div>
 </template>
 

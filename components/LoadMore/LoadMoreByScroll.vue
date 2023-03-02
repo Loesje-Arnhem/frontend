@@ -6,14 +6,6 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  onMounted,
-  onUnmounted,
-  Ref,
-  ref,
-} from '@nuxtjs/composition-api'
-
 export default defineComponent({
   props: {
     loading: {

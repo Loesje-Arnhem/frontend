@@ -1,3 +1,14 @@
+<script lang="ts">
+export default defineComponent({
+  props: {
+    posters: {
+      type: Array,
+      default: () => [],
+    },
+  },
+})
+</script>
+
 <template>
   <div class="wrapper">
     <center-wrapper>
@@ -9,19 +20,6 @@
     </center-wrapper>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    posters: {
-      type: Array,
-      default: () => [],
-    },
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';

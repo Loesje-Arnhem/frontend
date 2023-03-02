@@ -9,16 +9,8 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  onMounted,
-  useRoute,
-  ref,
-  defineComponent,
-} from '@nuxtjs/composition-api'
 import { useQuery } from '@vue/apollo-composable'
 import SearchQuery from '~/graphql/Posters/Search'
-import useTags from '~/composables/useTags'
 import { IPosterAutocomplete } from '~/interfaces/IPoster'
 
 export default defineComponent({
@@ -43,7 +35,7 @@ export default defineComponent({
     )
 
     onMounted(() => {
-      const { q } = route.value.query
+      const { q } = route.query
       if (q) {
         searchField.value = q.toString()
         search.value = q.toString()

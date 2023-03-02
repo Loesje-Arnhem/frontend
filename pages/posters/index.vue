@@ -31,21 +31,21 @@ const { data, pending } = useAsyncQuery<{
 <template>
   <div v-if="data">
     <center-wrapper>
-      <!-- <posters-auto-complete /> -->
+      <posters-auto-complete />
       <poster-filters :sources="data.sources" :subjects="data.subjects" />
       <poster-tags-list :list="selectedTags" />
     </center-wrapper>
     <app-loader v-if="pending" />
 
-    <!-- <posters-overview-section
-      v-else-if="posters"
+    <posters-overview-section
+      v-else-if="data.posters"
       :source-ids="selectedSourceIds"
       :subject-ids="selectedSubjectIds"
       :search="search"
       :date-before="dateBefore"
       :date-after="dateAfter"
-      :posters="posters"
-    /> -->
+      :posters="data.posters"
+    />
   </div>
 </template>
 
