@@ -13,6 +13,8 @@ const { data, pending } = await useAsyncQuery<{
   page: IPage
   posts: IPosts
 }>(GetPagePosts)
+
+useMeta(data.value?.page)
 </script>
 
 <template>

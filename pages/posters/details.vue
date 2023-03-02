@@ -16,6 +16,8 @@ const { data, pending } = await useAsyncQuery<{ poster: IPoster | null }>(
   },
 )
 
+useMeta(data.value?.poster)
+
 const subjects = computed(() => {
   if (!data.value?.poster) {
     return []
