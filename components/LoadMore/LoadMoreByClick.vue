@@ -19,7 +19,7 @@ defineEmits(['load-more'])
         {{ title }}
       </template>
       <template v-else>
-        {{ $t('title') }}
+        {{ $t('showMore') }}
       </template>
     </app-button>
   </div>
@@ -30,11 +30,3 @@ defineEmits(['load-more'])
   text-align: center;
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "title": "Toon meer"
-  }
-}
-</i18n>

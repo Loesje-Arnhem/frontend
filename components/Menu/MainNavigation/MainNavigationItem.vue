@@ -268,11 +268,3 @@ export default defineComponent({
   }
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "showSubmenuFor": "Toon submenu voor %{title}"
-  }
-}
-</i18n>

@@ -35,10 +35,10 @@ const toggleFavorite = () => {
         :height="20"
       />
       <template v-if="isInFavorites">
-        {{ $t('remove') }}
+        {{ $t('removeFromFavorites') }}
       </template>
       <template v-else>
-        {{ $t('add') }}
+        {{ $t('addToFavorites') }}
       </template>
       <span class="sr-only">: {{ poster.title }}</span>
     </app-button>
@@ -54,12 +54,3 @@ const toggleFavorite = () => {
   color: currentcolor;
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "add": "Voeg toe aan je favorieten",
-    "remove": "Verwijder uit je favorieten"
-  }
-}
-</i18n>

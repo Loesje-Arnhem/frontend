@@ -1,4 +1,5 @@
 {
+  "addToFavorites": "Voeg toe aan je favorieten",
   "becomeMember": "Word lid",
   "followMeOn": "Volg me op",
   "followMeOnNetwork": "Bekijk %{title} op",
@@ -6,16 +7,21 @@
   "home": "Home",
   "iWillJoin": "Ik doe mee!",
   "joinWriting": "Schrijf mee",
+  "loading": "Aan het laden",
   "mainMenu": "Hoofdmenu",
   "participateToActivities": "Doe mee met activiteiten",
   "posters": "Posters",
-  "loading": "Aan het laden",
   "receiveDiscountInTheShop": "Ontvang korting in het winkeltje",
+  "removeFromFavorites": "Verwijder uit je favorieten",
   "searchPosters": "Zoeken naar posters",
   "searchPostersByText": "Zoeken naar posters op tekst",
   "shop": "Winkeltje",
+  "showMore": "Toon meer",
+  "showSubmenuFor": "Toon submenu voor %{title}",
   "sources": "Bronnen",
   "subjects": "Onderwerpen",
   "until": "Van",
+  "viewAll": "Bekijk alle",
+  "viewAllPosters": "Bekijk alle posters",
   "workshops": "Workshops"
 }

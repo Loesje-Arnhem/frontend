@@ -6,8 +6,6 @@ const localePath = useLocalePath()
 defineProps<{
   posters: IRelatedPostersBase
 }>()
-
-const { t } = useI18n({ useScope: 'local' })
 </script>
 
 <template>
@@ -18,7 +16,7 @@ const { t } = useI18n({ useScope: 'local' })
   >
     <center-wrapper>
       <h1 id="related-posters-title" :class="$style.title">
-        {{ t('title') }}
+        {{ $t('posters') }}
       </h1>
     </center-wrapper>
 
@@ -27,7 +25,7 @@ const { t } = useI18n({ useScope: 'local' })
     </center-wrapper>
     <center-wrapper :class="$style['btn-wrapper']">
       <app-button :to="localePath({ name: 'posters' })">
-        {{ t('btnText') }}
+        {{ $t('viewAllPosters') }}
       </app-button>
     </center-wrapper>
   </section>
@@ -47,13 +45,3 @@ const { t } = useI18n({ useScope: 'local' })
   text-align: right;
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "title": "Posters",
-    "btnText": "Bekijk alle posters",
-    "aboutSubject": " over {subject}"
-  }
-}
-</i18n>

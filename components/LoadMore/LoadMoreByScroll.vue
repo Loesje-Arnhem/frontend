@@ -39,11 +39,3 @@ onUnmounted(() => {
     <span class="sr-only">{{ $t('loading') }}</span>
   </div>
 </template>
-
-<i18n lang="json">
-{
-  "nl": {
-    "loading": "Aan het laden"
-  }
-}
-</i18n>
