@@ -114,10 +114,10 @@ export default defineComponent({
           class="btn-reset"
           @click="reset"
         >
-          <app-icon icon="close" width="24" height="24" title="Sluiten" />
+          <app-icon icon="close" :width="24" :height="24" title="Sluiten" />
         </button>
         <button type="submit" class="btn-submit">
-          <app-icon icon="search" width="24" height="24" title="Zoeken" />
+          <app-icon icon="search" :width="24" :height="24" title="Zoeken" />
         </button>
       </div>
       <div

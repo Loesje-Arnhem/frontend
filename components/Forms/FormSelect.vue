@@ -17,13 +17,12 @@
           {{ option.title }}
         </option>
       </select>
-      <app-icon icon="chevron-down" class="icon" width="24" height="24" />
+      <app-icon icon="chevron-down" class="icon" :width="24" :height="24" />
     </div>
   </form-field>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { IOption } from '~/interfaces/IOption'
 export default defineComponent({
   inheritAttrs: false,

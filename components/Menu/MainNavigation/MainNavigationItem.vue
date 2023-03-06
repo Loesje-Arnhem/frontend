@@ -22,8 +22,8 @@
     >
       <app-icon
         icon="chevron-down"
-        width="16"
-        height="16"
+        :width="16"
+        :height="16"
         :class="$style['icon']"
       />
       <span class="sr-only">
