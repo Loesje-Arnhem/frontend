@@ -76,11 +76,3 @@ export default {
   flex: 1 1 auto;
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "paymentGateways": "Betaalmethoden"
-  }
-}
-</i18n>

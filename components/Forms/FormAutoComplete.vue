@@ -14,7 +14,7 @@ export default defineComponent({
     title: {
       type: String,
       default() {
-        return this.$t('title')
+        return this.$t('search')
       },
     },
   },
@@ -92,7 +92,7 @@ export default defineComponent({
 
 <template>
   <form method="get" class="form" @keyup.esc="reset" @submit.prevent="submit">
-    <legend class="sr-only">{{ $t('title') }}</legend>
+    <legend class="sr-only">{{ $t('search') }}</legend>
     <div class="input-wrapper">
       <form-input-text
         id="search"
@@ -101,7 +101,7 @@ export default defineComponent({
         autocomplete="off"
         :model-value="modelValue"
         class="search"
-        :title="$t('title')"
+        :title="$t('search')"
         v-bind="$attrs"
         @input="input"
         @keyup-down="onArrowDown"
@@ -214,11 +214,3 @@ export default defineComponent({
   }
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "title": "Zoeken"
-  }
-}
-</i18n>

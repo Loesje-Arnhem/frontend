@@ -106,6 +106,7 @@ export default defineNuxtConfig({
     langDir: 'locales',
     locales: [
       {
+        iso: 'nl-NL',
         code: 'nl',
         file: 'nl.json',
       },

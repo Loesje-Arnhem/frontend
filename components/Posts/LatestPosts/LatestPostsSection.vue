@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { IRelatedPostNode } from '~/interfaces/IPost'
 
+const localePath = useLocalePath()
+
 defineProps<{
   posts: IRelatedPostNode[]
 }>()
@@ -15,10 +17,10 @@ defineProps<{
     <center-wrapper size="lg">
       <div :class="$style.wrapper">
         <div :class="$style.list">
-          <h1 id="latest-posts-title">{{ $t('title') }}</h1>
+          <h1 id="latest-posts-title">{{ $t('posts') }}</h1>
           <latest-posts-list :posts="posts" />
           <app-button :to="localePath({ name: 'posts' })">
-            {{ $t('btnMore') }}
+            {{ $t('morePosts') }}
           </app-button>
         </div>
         <become-member :class="$style['become-member']" />
@@ -76,12 +78,3 @@ defineProps<{
   grid-area: list;
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "title": "Nieuws",
-    "btnMore": "Meer nieuwsartikelen"
-  }
-}
-</i18n>
