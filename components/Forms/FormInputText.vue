@@ -1,14 +1,19 @@
 <script lang="ts" setup>
-defineProps<{
-  title: string
-  description?: string
-  id: string
-  type: 'text' | 'date' | 'email'
-  modelValue: string | number
-  errors?: []
-}>()
+withDefaults(
+  defineProps<{
+    title: string
+    description?: string
+    id: string
+    type: 'text' | 'date' | 'email' | 'time' | 'number'
+    modelValue: string | number
+    errors?: []
+  }>(),
+  {
+    type: 'text',
+  },
+)
 
-defineEmits(['keyup-down', 'keyup-up', 'input', 'change', 'blur'])
+defineEmits(['keyup-down', 'keyup-up', 'update:modelValue', 'change', 'blur'])
 </script>
 
 <template>
@@ -22,12 +27,12 @@ defineEmits(['keyup-down', 'keyup-up', 'input', 'change', 'blur'])
     <input
       :id="id"
       v-bind="$attrs"
-      :model-value="modelValue"
+      :value="modelValue"
       :type="type"
       class="input"
       @keyup.down="$emit('keyup-down')"
       @keyup.up="$emit('keyup-up')"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
       @change="$emit('change', $event.target.value)"
       @blur="$emit('blur')"
     />

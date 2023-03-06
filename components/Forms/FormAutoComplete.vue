@@ -7,7 +7,7 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
-    value: {
+    modelValue: {
       type: String,
       default: '',
     },
@@ -32,7 +32,7 @@ export default defineComponent({
           ...item,
           // make current searchterm bold with a regex
           title: item.title.replace(
-            new RegExp(`(^|)(${this.value})(|$)`, 'ig'),
+            new RegExp(`(^|)(${this.modelValue})(|$)`, 'ig'),
             '$1<strong>$2</strong>$3',
           ),
         }
@@ -49,7 +49,7 @@ export default defineComponent({
   methods: {
     input(value) {
       this.showList = true
-      this.$emit('input', value)
+      this.$emit('update:modelValue', event.target.value)
     },
     selectItem(result) {
       this.$router.push(result.uri)
@@ -69,7 +69,7 @@ export default defineComponent({
         this.selectItem(this.resultsWithHighlightText[this.arrowCounter])
       } else {
         this.close()
-        this.$emit('submit', this.value)
+        this.$emit('submit', this.modelValue)
       }
     },
     handleClickOutside(event) {
@@ -78,7 +78,7 @@ export default defineComponent({
       }
     },
     reset() {
-      this.$emit('input', '')
+      this.$emit('update:modelValue', '')
       this.$emit('submit', '')
       this.close()
     },
@@ -93,14 +93,13 @@ export default defineComponent({
 <template>
   <form method="get" class="form" @keyup.esc="reset" @submit.prevent="submit">
     <legend class="sr-only">{{ $t('title') }}</legend>
-
     <div class="input-wrapper">
       <form-input-text
         id="search"
         type="search"
         name="search"
         autocomplete="off"
-        :model-value="value"
+        :model-value="modelValue"
         class="search"
         :title="$t('title')"
         v-bind="$attrs"
@@ -110,7 +109,7 @@ export default defineComponent({
       />
       <div class="buttons">
         <button
-          v-if="value.length"
+          v-if="modelValue.length"
           type="button"
           class="btn-reset"
           @click="reset"

@@ -50,20 +50,12 @@ const list = computed(() => {
 </script>
 
 <template>
+  aaa {{ $t('searchPosters') }}
   <form-auto-complete
     v-model="searchField"
     :results="list"
-    :title="$t('title')"
-    :placeholder="$t('placeholder')"
+    :title="$t('searchPosters')"
+    :placeholder="$t('searchPostersByText')"
     @submit="submit"
   />
 </template>
-
-<!-- <i18n>
-{
-  "nl": {
-    "title": "Zoeken naar posters",
-    "placeholder": "Zoeken naar posters op tekst"
-  }
-}
-<i18n> -->
