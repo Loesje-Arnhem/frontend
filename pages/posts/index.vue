@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { IPage } from '~~/interfaces/IPage'
-import { IPosts } from '~~/interfaces/IPost'
 import { GetPagePosts } from '~/graphql/Pages/Pages'
 
 defineI18nRoute({
@@ -11,15 +10,16 @@ defineI18nRoute({
 
 const { data, pending } = await useAsyncQuery<{
   page: IPage
-  posts: IPosts
 }>(GetPagePosts)
+
+useMeta(data.value?.page)
 </script>
 
 <template>
   <app-loader v-if="pending" />
   <div v-else-if="data">
     <h1 class="sr-only">{{ data.page.title }}</h1>
-    <posts-overview-section :posts="data.posts" />
+    <posts-overview-section />
     <related-posters-section :posters="data.page.relatedPosters" />
     <related-products-section :related-products="data.page.relatedProducts" />
   </div>

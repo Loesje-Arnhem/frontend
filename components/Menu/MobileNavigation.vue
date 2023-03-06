@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+const localePath = useLocalePath()
+const { openMobileMenu } = useLayout()
+const { title } = useAppConfig()
+</script>
+
 <template>
   <div :class="$style.wrapper">
     <div :class="$style.buttons">
@@ -8,8 +14,8 @@
         <app-icon
           icon="logo"
           class="logo"
-          height="50"
-          width="87"
+          :height="50"
+          :width="87"
           :title="`${title} home`"
         />
       </nuxt-link>
@@ -17,22 +23,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import useLayout from '~/composables/useLayout'
-import { title } from '~/data/siteDetails'
-
-export default defineComponent({
-  setup() {
-    const { openMobileMenu } = useLayout()
-    return {
-      title,
-      openMobileMenu,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" module>
 @import '~/assets/css/media-queries/media-queries.css';

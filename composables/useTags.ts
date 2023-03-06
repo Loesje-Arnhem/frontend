@@ -4,8 +4,8 @@ import { ITag } from '~/interfaces/ITag'
 export const useTags = () => {
   const search = ref('')
   const selectedTags = ref([] as ITag[])
-  const dateBefore = ref(null)
-  const dateAfter = ref(null)
+  const dateBefore = ref(undefined)
+  const dateAfter = ref(undefined)
 
   const getSelectedTagsByTaxonomy = (taxonomy: string) => {
     return []

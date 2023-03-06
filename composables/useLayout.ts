@@ -1,9 +1,7 @@
-import { ref } from '@nuxtjs/composition-api'
+export const useLayout = () => {
+  const openMenus = ref([] as string[])
+  const mobileMenuIsOpen = ref(false)
 
-const openMenus = ref([] as string[])
-const mobileMenuIsOpen = ref(false)
-
-export default () => {
   const add = (menuId: string) => {
     if (openMenus.value.includes(menuId)) {
       return

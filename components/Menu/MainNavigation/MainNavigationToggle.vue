@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
-import useLayout from '~/composables/useLayout'
 export default defineComponent({
   props: {
     close: {

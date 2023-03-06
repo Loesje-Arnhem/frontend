@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
 import { debounce } from 'throttle-debounce'
 import MainNavigationItem from '~/components/Menu/MainNavigation/MainNavigationItem.vue'
 import pages from '~/data/menu'

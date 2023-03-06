@@ -31,9 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from '@nuxtjs/composition-api'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
-import useLayout from '~/composables/useLayout'
 
 export default defineComponent({
   setup() {

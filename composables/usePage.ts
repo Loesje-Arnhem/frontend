@@ -8,7 +8,7 @@ export const usePageById = async (id: number) => {
     id,
   })
 
-  // useMeta(page)
+  useMeta(data.value?.page)
 
   return {
     error,

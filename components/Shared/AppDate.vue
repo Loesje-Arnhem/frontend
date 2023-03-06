@@ -24,8 +24,6 @@ const dateTime = computed(() => {
 
 <template>
   <time v-if="formattedDate" :datetime="dateTime">
-    <!-- TODO -->
-    <!-- {{ $d(new Date(formattedDate), 'short') }} -->
-    {{ new Date(formattedDate) }}
+    {{ $d(new Date(formattedDate), 'short') }}
   </time>
 </template>

@@ -57,15 +57,6 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  ref,
-  computed,
-  watch,
-  ComponentPublicInstance,
-} from '@nuxtjs/composition-api'
-import useLayout from '~/composables/useLayout'
-
 export default defineComponent({
   props: {
     uri: {

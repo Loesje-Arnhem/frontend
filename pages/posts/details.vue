@@ -9,16 +9,16 @@ defineI18nRoute({
 })
 
 const route = useRoute()
-const { data, pending } = await useAsyncQuery<{ post: IPost }>(getPost, {
+const { data, pending } = await useAsyncQuery<{ post: IPost | null }>(getPost, {
   slug: route.params.slug,
 })
 
-// useMeta(post)
+useMeta(data.value?.post)
 </script>
 
 <template>
   <app-loader v-if="pending" />
-  <div v-else-if="data">
+  <div v-else-if="data?.post">
     <app-content
       :image="data.post.featuredImage"
       :title="data.post.title"

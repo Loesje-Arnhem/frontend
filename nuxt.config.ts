@@ -1,30 +1,58 @@
-// import { defineNuxtConfig } from 'nuxt/config'
-import apollo from './config/apollo'
-// import auth from './config/auth'
-// import build from './config/build'
-// import buildModules from './config/buildModules'
-import components from './config/components'
-import css from './config/css'
-// // import generate from './config/generate'
-// import head from './config/head'
-import i18n from './config/i18n'
-// import image from './config/image'
-// import loaders from './config/loaders'
-// import loading from './config/loading'
-// import modern from './config/modern'
-// import modules from './config/modules'
-// import plugins from './config/plugins'
-// import pwa from './config/pwa'
-// import render from './config/render'
-// import server from './config/server'
-// import target from './config/target'
+import { baseUrl, facebook, apiUrl } from './data/siteDetails'
 
 export default defineNuxtConfig({
-  apollo,
-  // @ts-ignore
-  // auth,
-  // build,
-  // buildModules,
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: `${apiUrl}graphql`,
+      },
+    },
+  },
+  telemetry: false,
+  app: {
+    head: {
+      meta: [
+        {
+          name: 'og:publisher',
+          content: facebook,
+        },
+        {
+          name: 'viewport',
+          content: 'width=device-width,initial-scale=1,viewport-fit=cover',
+        },
+      ],
+      link: [
+        {
+          rel: 'dns-prefetch',
+          href: apiUrl,
+        },
+        {
+          rel: 'icon',
+          href: '/favicon.svg',
+          type: 'image/svg+xml',
+        },
+        {
+          type: 'application/atom+xml',
+          rel: 'alternate',
+          href: `${apiUrl}feed/`,
+          title: 'Nieuws - Loesje',
+        },
+        {
+          type: 'application/atom+xml',
+          rel: 'alternate',
+          href: `${apiUrl}feed/?post_type=poster&source=landelijke-serie`,
+          title: 'Posters - Loesje',
+        },
+        {
+          type: 'application/opensearchdescription+xml',
+          rel: 'search',
+          href: '/opensearch.xml',
+          title: 'Loesje',
+        },
+      ],
+    },
+  },
+
   components: {
     dirs: [
       '~/components/Animations',
@@ -67,21 +95,52 @@ export default defineNuxtConfig({
       '~/components',
     ],
   },
-  css,
-  // // @ts-ignore
-  // // generate,
-  // head,
-  i18n,
-  // image,
-  // loaders,
-  // loading,
-  // modern,
-  // modules,
-  // plugins,
-  // pwa,
-  // render,
-  // server,
-  // target,
+  css: ['~/assets/css/base.css'],
+  nitro: {
+    preset: 'netlify',
+  },
+  i18n: {
+    baseUrl,
+    defaultLocale: 'nl',
+    // lazy: true,
+    // langDir: 'locales/',
+    locales: [
+      {
+        name: 'Nederlands',
+        code: 'nl',
+        iso: 'nl',
+        file: 'locales/nl.json',
+      },
+    ],
+    vueI18n: {
+      numberFormats: {
+        nl: {
+          currency: {
+            style: 'currency',
+            currency: 'EUR',
+            currencyDisplay: 'symbol',
+          },
+        },
+      },
+      datetimeFormats: {
+        nl: {
+          short: {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          },
+          long: {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric',
+          },
+        },
+      },
+    },
+  },
   modules: ['@nuxtjs/i18n', '@nuxtjs/apollo'],
   postcss: {
     plugins: {

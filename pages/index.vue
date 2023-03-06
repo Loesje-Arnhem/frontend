@@ -7,6 +7,8 @@ const { data, pending } = await useAsyncQuery<{
   posts: IPostsBase
 }>(GetPageHome)
 
+useMeta(data.value?.page)
+
 defineI18nRoute({
   paths: {
     nl: '/',
