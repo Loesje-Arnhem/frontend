@@ -55,11 +55,11 @@ const toggleFavorite = () => {
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "add": "Voeg toe aan je favorieten",
     "remove": "Verwijder uit je favorieten"
   }
 }
-<i18n> -->
+</i18n>

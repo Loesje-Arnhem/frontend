@@ -102,14 +102,12 @@ export default defineNuxtConfig({
   i18n: {
     baseUrl,
     defaultLocale: 'nl',
-    // lazy: true,
-    // langDir: 'locales/',
+    lazy: true,
+    langDir: 'locales',
     locales: [
       {
-        name: 'Nederlands',
         code: 'nl',
-        iso: 'nl',
-        file: 'locales/nl.json',
+        file: 'nl.json',
       },
     ],
     vueI18n: {

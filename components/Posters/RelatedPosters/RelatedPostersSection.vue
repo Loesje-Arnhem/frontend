@@ -6,6 +6,8 @@ const localePath = useLocalePath()
 defineProps<{
   posters: IRelatedPostersBase
 }>()
+
+const { t } = useI18n({ useScope: 'local' })
 </script>
 
 <template>
@@ -16,7 +18,7 @@ defineProps<{
   >
     <center-wrapper>
       <h1 id="related-posters-title" :class="$style.title">
-        {{ $t('title') }}
+        {{ t('title') }}
       </h1>
     </center-wrapper>
 
@@ -25,7 +27,7 @@ defineProps<{
     </center-wrapper>
     <center-wrapper :class="$style['btn-wrapper']">
       <app-button :to="localePath({ name: 'posters' })">
-        {{ $t('btnText') }}
+        {{ t('btnText') }}
       </app-button>
     </center-wrapper>
   </section>
@@ -46,7 +48,7 @@ defineProps<{
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "title": "Posters",
@@ -54,4 +56,4 @@ defineProps<{
     "aboutSubject": " over {subject}"
   }
 }
-<i18n> -->
+</i18n>

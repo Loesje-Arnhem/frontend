@@ -81,18 +81,18 @@ export default {
 
 <style lang="postcss" scoped>
 .form {
-  & >>> .fields {
+  & :deep(.fields) {
     grid-gap: 0.5em;
     margin-bottom: 0.5em;
   }
 
-  & >>> .field {
+  & :deep(.field) {
     display: grid;
     grid-template-columns: 5em auto;
     align-items: center;
   }
 
-  & >>> legend {
+  & :deep(legend) {
     @mixin sr-only;
   }
 }

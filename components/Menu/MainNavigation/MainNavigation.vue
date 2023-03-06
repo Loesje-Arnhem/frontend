@@ -1,18 +1,18 @@
 <template>
   <nav aria-labelledby="menu" :class="$style.nav">
     <h2 id="menu" class="sr-only" tabindex="-1">
-      {{ $t('title') }}
+      {{ $t('mainMenu') }}
     </h2>
     <div ref="menu">
       <ul v-if="pages" :class="$style.menu">
         <main-navigation-item
           class="menu-item-home"
-          :title="$t('pages.home')"
+          :title="$t('home')"
           :uri="localePath({ name: 'index' })"
         />
         <main-navigation-item
           class="menu-item-page"
-          :title="$t('pages.posters')"
+          :title="$t('posters')"
           :uri="localePath({ name: 'posters' })"
         />
         <main-navigation-item
@@ -29,14 +29,14 @@
         />
         <main-navigation-item
           class="menu-item-page"
-          :title="$t('pages.workshops')"
+          :title="$t('workshops')"
           :uri="localePath({ name: 'workshops' })"
         />
 
         <main-navigation-item
           v-if="pages.productCategories.edges.length"
           class="menu-item-page"
-          :title="$t('pages.shop')"
+          :title="$t('shop')"
           :uri="localePath({ name: 'shop' })"
           :children="pages.productCategories"
         />
@@ -158,11 +158,3 @@ export default defineComponent({
   }
 }
 </style>
-
-<!-- <i18n>
-{
-  "nl": {
-    "title": "Hoofdmenu"
-  }
-}
-<i18n> -->

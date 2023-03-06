@@ -45,10 +45,10 @@ const share = () => {
   </div>
 </template>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "title": "Deel de poster op"
   }
 }
-<i18n> -->
+</i18n>

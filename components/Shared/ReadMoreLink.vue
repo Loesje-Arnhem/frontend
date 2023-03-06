@@ -26,10 +26,10 @@ defineProps<{
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "readMore": "Lees verder"
   }
 }
-<i18n> -->
+</i18n>

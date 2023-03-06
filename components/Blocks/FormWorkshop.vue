@@ -269,7 +269,7 @@ onMounted(() => {
   }
 
   @media (--viewport-sm) {
-    & >>> .fields {
+    & :deep(.fields) {
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -282,7 +282,7 @@ onMounted(() => {
   }
 }
 
-.image >>> img {
+.image {
   display: none;
 
   @media (--viewport-lg) {

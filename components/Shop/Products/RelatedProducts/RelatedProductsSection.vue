@@ -57,11 +57,11 @@ const products: ComputedRef<IProducts> = computed(() => {
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "title": "Het winkeltje",
     "btn": "Bezoek ons winkeltje"
   }
 }
-<i18n> -->
+</i18n>

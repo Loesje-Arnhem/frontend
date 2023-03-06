@@ -77,10 +77,10 @@ export default {
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "paymentGateways": "Betaalmethoden"
   }
 }
-<i18n> -->
+</i18n>

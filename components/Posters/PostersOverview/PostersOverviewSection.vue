@@ -148,10 +148,10 @@ watch(where, () => {
   </section>
 </template>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "title": "Posters"
   }
 }
-<i18n> -->
+</i18n>

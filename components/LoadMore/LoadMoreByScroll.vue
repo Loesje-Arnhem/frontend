@@ -40,10 +40,10 @@ onUnmounted(() => {
   </div>
 </template>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "loading": "Aan het laden"
   }
 }
-<i18n> -->
+</i18n>

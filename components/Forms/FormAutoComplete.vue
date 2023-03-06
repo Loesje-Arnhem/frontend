@@ -176,19 +176,19 @@ export default defineComponent({
 }
 
 .search {
-  & >>> .label {
+  & :deep(.label) {
     @mixin sr-only;
   }
 
-  & >>> .input {
+  & :deep(.input) {
     padding: 0.75em 2em 0.75em 0.75em;
     border-image-source: none !important;
   }
 
-  & >>> ::-webkit-search-decoration,
-  & >>> ::-webkit-search-cancel-button,
-  & >>> ::-webkit-search-results-button,
-  & >>> ::-webkit-search-results-decoration {
+  & :deep(::-webkit-search-decoration),
+  & :deep(::-webkit-search-cancel-button),
+  & :deep(::-webkit-search-results-button),
+  & :deep(::-webkit-search-results-decoration) {
     display: none;
   }
 }
@@ -215,10 +215,10 @@ export default defineComponent({
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "title": "Zoeken"
   }
 }
-<i18n> -->
+</i18n>

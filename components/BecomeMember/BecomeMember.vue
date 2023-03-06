@@ -1,7 +1,16 @@
+<script lang="ts" setup>
+const { t } = useI18n()
+const usps = [
+  t('participateToActivities'),
+  t('joinWriting'),
+  t('receiveDiscountInTheShop'),
+]
+</script>
+
 <template>
-  <box-wrapper id="become-member" :title="$t('title')">
+  <box-wrapper id="become-member" :title="$t('becomeMember')">
     <ul :class="$style.list">
-      <li v-for="usp in $t('usps')" :key="usp" :class="$style['list-item']">
+      <li v-for="usp in usps" :key="usp" :class="$style['list-item']">
         <app-image
           :class="$style['check']"
           :width="27"
@@ -12,7 +21,7 @@
         {{ usp }}
       </li>
     </ul>
-    <app-button to="/doe-mee/word-lid/">{{ $t('btn') }}</app-button>
+    <app-button to="/doe-mee/word-lid/">{{ $t('iWillJoin') }}</app-button>
     <!-- <app-image
       :class="$style.image"
       :width="167"
@@ -45,17 +54,3 @@
   right: calc(var(--gutter) * -1);
 }
 </style>
-
-<!-- <i18n>
-{
-  "nl": {
-    "title": "Word lid",
-    "btn": "Ik doe mee!",
-    "usps": [
-      "Doe mee met activiteiten",
-      "Schrijf mee",
-      "Ontvang korting in het winkeltje"
-    ]
-  }
-}
-<i18n> -->

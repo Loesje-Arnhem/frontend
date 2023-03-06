@@ -62,7 +62,7 @@ const today = () => {
           v-model="dateBefore"
           class="date"
           type="date"
-          :title="$t('dateBefore')"
+          :title="$t('voor')"
           name="date-before"
           min="1983-01-01"
           :max="dateAfter ? dateAfter : today()"
@@ -74,7 +74,7 @@ const today = () => {
           v-model="dateAfter"
           class="date"
           type="date"
-          :title="$t('dateAfter')"
+          :title="$t('until')"
           name="date-after"
           :max="today()"
           :min="dateBefore ? dateBefore : '1983-01-01'"
@@ -168,11 +168,11 @@ const today = () => {
   align-items: center;
   gap: 0.25em;
 
-  & >>> .label {
+  & :deep(.label) {
     margin: 0;
   }
 
-  & >>> .input {
+  & :deep(.input) {
     border-image-source: none !important;
     border-image-outset: 0 !important;
     flex: 1 1 auto;
@@ -180,14 +180,3 @@ const today = () => {
   }
 }
 </style>
-
-<!-- <i18n>
-{
-  "nl": {
-    "sources": "Bronnen",
-    "subjects": "Onderwerpen",
-    "dateBefore": "Voor",
-    "dateAfter": "Van"
-  }
-}
-<i18n> -->

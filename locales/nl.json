@@ -1,6 +1,21 @@
 {
-  "followMeOnNetwork": "Bekijk %{title} op",
+  "becomeMember": "Word lid",
   "followMeOn": "Volg me op",
+  "followMeOnNetwork": "Bekijk %{title} op",
+  "from": "Voor",
+  "home": "Home",
+  "iWillJoin": "Ik doe mee!",
+  "joinWriting": "Schrijf mee",
+  "mainMenu": "Hoofdmenu",
+  "participateToActivities": "Doe mee met activiteiten",
+  "posters": "Posters",
+  "loading": "Aan het laden",
+  "receiveDiscountInTheShop": "Ontvang korting in het winkeltje",
   "searchPosters": "Zoeken naar posters",
-  "searchPostersByText": "Zoeken naar posters op tekst"
+  "searchPostersByText": "Zoeken naar posters op tekst",
+  "shop": "Winkeltje",
+  "sources": "Bronnen",
+  "subjects": "Onderwerpen",
+  "until": "Van",
+  "workshops": "Workshops"
 }

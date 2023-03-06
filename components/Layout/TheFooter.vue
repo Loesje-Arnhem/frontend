@@ -81,12 +81,3 @@ const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
   margin-bottom: 0.5em;
 }
 </style>
-
-<!-- <i18n>
-{
-  "nl": {
-    "followMeOnNetwork": "Bekijk %{title} op",
-    "followMeOn": "Volg me op"
-  }
-}
-<i18n> -->

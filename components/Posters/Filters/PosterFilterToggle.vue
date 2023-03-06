@@ -66,10 +66,10 @@ defineEmits(['toggle'])
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "viewAll": "Bekijk alle"
   }
 }
-<i18n> -->
+</i18n>

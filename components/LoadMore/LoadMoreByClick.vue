@@ -31,10 +31,10 @@ defineEmits(['load-more'])
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "title": "Toon meer"
   }
 }
-<i18n> -->
+</i18n>

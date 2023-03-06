@@ -78,7 +78,7 @@ const loadMore = () => {
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "title": "Nieuws",
@@ -86,4 +86,4 @@ const loadMore = () => {
     "btnMore": "Toon meer nieuwsartikelen"
   }
 }
-<i18n> -->
+</i18n>

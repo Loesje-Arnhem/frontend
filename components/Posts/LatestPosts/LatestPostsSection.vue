@@ -77,11 +77,11 @@ defineProps<{
 }
 </style>
 
-<!-- <i18n>
+<i18n lang="json">
 {
   "nl": {
     "title": "Nieuws",
     "btnMore": "Meer nieuwsartikelen"
   }
 }
-<i18n> -->
+</i18n>

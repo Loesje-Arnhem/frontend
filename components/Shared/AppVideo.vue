@@ -71,7 +71,7 @@ const videoUrl = computed(() => {
   width: 100%;
   height: auto;
 
-  & >>> img {
+  & :deep(img) {
     width: 100%;
   }
 }
