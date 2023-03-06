@@ -47,8 +47,8 @@ const loadMore = () => {
   >
     <center-wrapper size="md">
       <h1 id="posts-overview-title">
-        <template v-if="notIn">{{ $t('relatedTitle') }}</template>
-        <template v-else>{{ $t('title') }}</template>
+        <template v-if="notIn">{{ $t('otherNews') }}</template>
+        <template v-else>{{ $t('posts') }}</template>
       </h1>
       <app-loader v-if="!result && loading" />
       <template v-else-if="result">
@@ -59,7 +59,7 @@ const loadMore = () => {
         <load-more-by-click
           v-if="result.posts.pageInfo.hasNextPage"
           :loading="loading"
-          :title="$t('btnMore')"
+          :title="$t('showMorePosts')"
           @load-more="loadMore"
         />
       </template>
@@ -77,13 +77,3 @@ const loadMore = () => {
   justify-content: center;
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "title": "Nieuws",
-    "relatedTitle": "Overig nieuws",
-    "btnMore": "Toon meer nieuwsartikelen"
-  }
-}
-</i18n>

@@ -37,18 +37,10 @@ const share = () => {
     >
     <social-media-links
       v-else
-      :title="$t('title')"
+      :title="$t('shareThePosterOn')"
       :twitter="twitter"
       :facebook="facebook"
       :pinterest="pinterest"
     />
   </div>
 </template>
-
-<i18n lang="json">
-{
-  "nl": {
-    "title": "Deel de poster op"
-  }
-}
-</i18n>

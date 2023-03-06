@@ -124,7 +124,7 @@ watch(where, () => {
           {{ title }}
         </template>
         <template v-else>
-          {{ $t('title') }}
+          {{ $t('posters') }}
         </template>
       </h1>
     </center-wrapper>
@@ -147,11 +147,3 @@ watch(where, () => {
     </template>
   </section>
 </template>
-
-<i18n lang="json">
-{
-  "nl": {
-    "title": "Posters"
-  }
-}
-</i18n>

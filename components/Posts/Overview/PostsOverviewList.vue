@@ -7,17 +7,17 @@ defineProps<{
 </script>
 
 <template>
-  <list-animation v-if="posts.length" :class="$style.list">
+  <list-animation v-if="posts.length" class="list">
     <post-list-item
       v-for="post in posts"
       :key="post.node.id"
       :post="post.node"
-      :class="$style['list-item']"
+      class="list-item"
     />
   </list-animation>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .list {
   @mixin list-reset;
 
@@ -35,12 +35,3 @@ defineProps<{
   flex-direction: column;
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "title": "Nieuws",
-    "btnMore": "Meer nieuwsartikelen"
-  }
-}
-</i18n>

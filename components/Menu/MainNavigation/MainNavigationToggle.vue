@@ -66,12 +66,3 @@ export default defineComponent({
   fill: currentcolor;
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "menu": "Menu",
-    "close": "Sluiten"
-  }
-}
-</i18n>

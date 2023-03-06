@@ -28,7 +28,7 @@ const products: ComputedRef<IProducts> = computed(() => {
   <section
     v-if="products.edges.length"
     aria-labelledby="featured-products"
-    :class="$style['featured-products']"
+    class="featured-products"
   >
     <center-wrapper>
       <h1 id="featured-products">
@@ -36,7 +36,7 @@ const products: ComputedRef<IProducts> = computed(() => {
           {{ relatedProducts.title }}
         </template>
         <template v-else>
-          {{ $t('title') }}
+          {{ $t('theShop') }}
         </template>
       </h1>
       <product-list :products="products" />
@@ -45,23 +45,14 @@ const products: ComputedRef<IProducts> = computed(() => {
       </app-button> -->
 
       <shop-button>
-        {{ $t('btn') }}
+        {{ $t('visitOurShop') }}
       </shop-button>
     </center-wrapper>
   </section>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .featured-products {
   padding: 3em 0;
 }
 </style>
-
-<i18n lang="json">
-{
-  "nl": {
-    "title": "Het winkeltje",
-    "btn": "Bezoek ons winkeltje"
-  }
-}
-</i18n>
