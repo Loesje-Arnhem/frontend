@@ -4,7 +4,7 @@ import { IPoster } from '~/interfaces/IPoster'
 const props = defineProps<{
   poster: IPoster
 }>()
-const favorites = useState<number[]>('favorites')
+const favorites = useFavoriteIds()
 
 const { add, remove } = useFavorites()
 
@@ -22,30 +22,28 @@ const toggleFavorite = () => {
 </script>
 
 <template>
-  <div>
-    <app-button
-      :is-primary="false"
-      :class="{ 'is-active': isInFavorites }"
-      @click="toggleFavorite"
-    >
-      <app-icon
-        :class="$style.icon"
-        :icon="isInFavorites ? 'heart' : 'heart-o'"
-        :width="20"
-        :height="20"
-      />
-      <template v-if="isInFavorites">
-        {{ $t('removeFromFavorites') }}
-      </template>
-      <template v-else>
-        {{ $t('addToFavorites') }}
-      </template>
-      <span class="sr-only">: {{ poster.title }}</span>
-    </app-button>
-  </div>
+  <app-button
+    :is-primary="false"
+    :active="isInFavorites"
+    @click="toggleFavorite"
+  >
+    <app-icon
+      class="icon"
+      :icon="isInFavorites ? 'heart' : 'heart-o'"
+      :width="20"
+      :height="20"
+    />
+    <template v-if="isInFavorites">
+      {{ $t('removeFromFavorites') }}
+    </template>
+    <template v-else>
+      {{ $t('addToFavorites') }}
+    </template>
+    <span class="sr-only">: {{ poster.title }}</span>
+  </app-button>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .icon {
   margin-right: 0.25em;
   height: 1em;

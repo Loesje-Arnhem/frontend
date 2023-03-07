@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client/core'
 import subjectDetails from '../Posters/Fragments/SubjectDetails'
 import sourceDetails from '../Posters/Fragments/SourceDetails'
-import posters from '../Posters/Fragments/Posters'
 import pageDetails from './Fragments/PageDetails'
 import pageContent from './Fragments/PageContent'
 import { postsPageId, homePageId, shopPageId } from './../../data/pages'
@@ -127,17 +126,6 @@ export const GetPagePosts = gql`
 
 export const GetPagePosters = gql`
   query GetPagePosters {
-    posters(first: ${PAGE_SIZE_POSTERS}) {
-      pageInfo {
-        endCursor
-         hasNextPage
-      }
-      edges {
-        node {
-          ...posters
-        }
-      }
-    }
     sources(first: 100) {
       edges {
         node {
@@ -153,7 +141,6 @@ export const GetPagePosters = gql`
       }
     }
   }
-  ${posters}
   ${subjectDetails},
   ${sourceDetails}
 `

@@ -10,6 +10,7 @@ const { getFromStorage } = useFavorites()
 onMounted(() => {
   getFromStorage()
 })
+const search = useSearch()
 </script>
 
 <template>

@@ -1,17 +1,14 @@
 import { Taxonomy } from '~/enums/taxonomy'
-import { ITag } from '~/interfaces/ITag'
+import { useSelectedTags } from './useState'
 
 export const useTags = () => {
-  const selectedTags = ref([] as ITag[])
-  const dateBefore = ref('')
-  const dateAfter = ref('')
+  const selectedTags = useSelectedTags()
 
   const getSelectedTagsByTaxonomy = (taxonomy: string) => {
-    return []
-    // const subjects = selectedTags.value.filter(
-    //   (tag) => tag.node.taxonomy.node.name === taxonomy,
-    // )
-    // return subjects.map((subject) => subject.node.databaseId)
+    const subjects = selectedTags.value.filter(
+      (tag) => tag.node.taxonomy.node.name === taxonomy,
+    )
+    return subjects.map((subject) => subject.node.databaseId)
   }
 
   const selectedSourceIds = computed(() => {
@@ -24,8 +21,6 @@ export const useTags = () => {
 
   return {
     selectedTags,
-    dateBefore,
-    dateAfter,
     selectedSourceIds,
     selectedSubjectIds,
   }

@@ -48,15 +48,7 @@ const subjects = computed(() => {
     <posters-overview-section
       :not-in="data.poster.databaseId"
       :subject-ids="subjects"
-      :title="$t('relatedTitle')"
+      :title="$t('relatedPosters')"
     />
   </div>
 </template>
-
-<i18n>
-{
-  "nl": {
-    "relatedTitle": "Gerelateerde posters"
-  }
-}
-</i18n>

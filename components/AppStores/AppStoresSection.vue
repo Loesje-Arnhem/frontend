@@ -1,29 +1,9 @@
-<script lang="ts">
-import { defineComponent, onMounted } from '@nuxtjs/composition-api'
-import usePwa from '~/composables/usePwa'
-
-export default defineComponent({
-  setup() {
-    let themeColor = '#000'
-    const updateTheme = () => {
-      themeColor = themeColor === '#000' ? '#f0f' : '#000'
-      document.documentElement.style.setProperty('--color-black', themeColor)
-    }
-
-    const { install, isInstalled, checkIsInstalled, installEvent } = usePwa()
-
-    onMounted(() => {
-      checkIsInstalled()
-    })
-
-    return {
-      installEvent,
-      isInstalled,
-      install,
-      updateTheme,
-    }
-  },
-})
+<script lang="ts" setup>
+let themeColor = '#000'
+const updateTheme = () => {
+  themeColor = themeColor === '#000' ? '#f0f' : '#000'
+  document.documentElement.style.setProperty('--color-black', themeColor)
+}
 </script>
 
 <template>
@@ -64,17 +44,17 @@ export default defineComponent({
             Loesjewebsite installeren op je telefoon of tablet. Zo heb je het
             Loesjes posterarchief altijd bij de hand.
           </p>
-          <app-button v-if="installEvent" @click="install">
+          <!-- <app-button v-if="installEvent" @click="install">
             Installeer de Loesje-app
-          </app-button>
+          </app-button> -->
         </div>
       </div>
     </center-wrapper>
   </section>
 </template>
 
-<style lang="postcss" scoped
-@import "~/assets/css/media-queries/media-queries.css";
+<style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
 
 .app-stores {
   @mixin block;

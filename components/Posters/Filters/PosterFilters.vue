@@ -6,12 +6,14 @@ defineProps<{
   subjects: ITags
 }>()
 
-const { selectedSourceIds, selectedSubjectIds, dateBefore, dateAfter } =
-  useTags()
+const { selectedSourceIds, selectedSubjectIds } = useTags()
 const activeOverlays = reactive({
   sources: false,
   subjects: false,
 })
+
+const dateBefore = useDateBefore()
+const dateAfter = useDateAfter()
 
 const search = useState('search')
 const toggleOverlay = (type: string) => {
@@ -110,6 +112,8 @@ const today = () => {
 </template>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .filter {
   position: relative;
 }

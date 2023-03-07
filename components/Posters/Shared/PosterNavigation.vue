@@ -2,18 +2,21 @@
 const favorites = useFavoriteIds()
 const route = useRoute()
 
+const localePath = useLocalePath()
+const localeRoute = useLocaleRoute()
+
 const showFavorites = computed(() => {
   if (!process.client) {
     return false
   }
 
-  const path = app.localeRoute({ name: 'posters-favorites' })
-  return favorites.value.length && route.value.name !== path?.name
+  const path = localeRoute({ name: 'posters-favorites' })
+  return favorites.value.length && route.name !== path?.name
 })
 
 const showOverview = computed(() => {
-  const path = app.localeRoute({ name: 'posters' })
-  return route.value.name !== path?.name
+  const path = localeRoute({ name: 'posters' })
+  return route.name !== path?.name
 })
 </script>
 

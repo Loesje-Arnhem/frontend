@@ -5,13 +5,13 @@ const props = defineProps<{
   tag: ITag
 }>()
 
-const { selectedTags } = useTags()
+const selectedTags = useSelectedTags()
 const router = useRouter()
 const route = useRoute()
 const localePath = useLocalePath()
 
 const isSelected = computed(() => {
-  return selectedTags.value.find((selectedTag) => {
+  return selectedTags.value.some((selectedTag) => {
     return selectedTag.node.databaseId === props.tag.node.databaseId
   })
 })
@@ -36,6 +36,7 @@ const goToPostersOverview = () => {
 }
 
 const toggleTag = () => {
+  console.log(isSelected.value)
   if (isSelected.value) {
     remove()
   } else {
@@ -47,10 +48,10 @@ const toggleTag = () => {
 
 <template>
   <app-button
-    :class="{ 'is-active': isSelected }"
+    :active="isSelected"
     :is-primary="false"
     css-class="btn-outline"
-    @click="toggleTag()"
+    @click="toggleTag"
   >
     {{ tag.node.name }}
   </app-button>

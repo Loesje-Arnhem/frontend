@@ -6,11 +6,13 @@ const props = withDefaults(
     isPrimary?: boolean
     loading?: boolean
     href?: string
+    active?: boolean
   }>(),
   {
     type: 'button',
     isPrimary: true,
     loading: false,
+    active: false,
   },
 )
 
@@ -30,6 +32,10 @@ const cssClasses = computed(() => {
   }
   if (props.loading) {
     classes.push('is-loading')
+  }
+
+  if (props.active) {
+    classes.push('is-active')
   }
 
   return classes
@@ -55,7 +61,6 @@ const generatedType = computed(() => {
     :class="cssClasses"
     :disabled="loading"
     :href="href"
-    @click="$emit('click')"
   >
     <app-loader v-if="loading" class="loader" />
     <span class="title"><slot /></span>

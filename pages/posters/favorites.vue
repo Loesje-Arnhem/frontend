@@ -5,24 +5,16 @@ defineI18nRoute({
   },
 })
 
-const favorites = useState<number[]>('favorites')
+const favorites = useFavoriteIds()
 </script>
 
 <template>
   <posters-overview-section
     v-if="favorites.length"
     :poster-ids="favorites"
-    :title="$t('title')"
+    :title="$t('favorites')"
   />
   <center-wrapper v-else>
     <p>Geen favorieten</p>
   </center-wrapper>
 </template>
-
-<i18n>
-{
-  "nl": {
-    "title": "Favorieten"
-  }
-}
-</i18n>

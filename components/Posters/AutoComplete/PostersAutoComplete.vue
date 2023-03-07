@@ -50,7 +50,6 @@ const list = computed(() => {
 </script>
 
 <template>
-  aaa {{ $t('searchPosters') }}
   <form-auto-complete
     v-model="searchField"
     :results="list"
