@@ -4,7 +4,7 @@ withDefaults(
     title: string
     description?: string
     id: string
-    type: 'text' | 'date' | 'email' | 'time' | 'number' | 'password'
+    type?: 'text' | 'date' | 'email' | 'time' | 'number' | 'password'
     modelValue: string | number
     errors?: []
   }>(),

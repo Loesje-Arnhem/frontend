@@ -94,9 +94,9 @@ export default defineComponent({
       const activeLink = this.getMainLink()
 
       if (activeLink) {
-        const title = activeLink.querySelector('.title')
-        this.arrowPosition = `translateX(${activeLink.parentElement.offsetLeft}px)`
-        this.arrowWidth = `${title.offsetWidth}px`
+        // const title = activeLink.querySelector('.title')
+        // this.arrowPosition = `translateX(${activeLink.parentElement.offsetLeft}px)`
+        // this.arrowWidth = `${title.offsetWidth}px`
       } else {
         this.arrowWidth = 0
       }
