@@ -3,7 +3,6 @@ defineProps<{
   title: string
   description?: string
   id: string
-  type: 'text' | 'date' | 'email'
   modelValue: string | number
   errors?: []
 }>()

@@ -13,6 +13,7 @@ const activeOverlays = reactive({
   subjects: false,
 })
 
+const search = useState('search')
 const toggleOverlay = (type: string) => {
   if (type === 'subjects') {
     activeOverlays.subjects = !activeOverlays.subjects
@@ -62,7 +63,7 @@ const today = () => {
           v-model="dateBefore"
           class="date"
           type="date"
-          :title="$t('voor')"
+          :title="$t('from')"
           name="date-before"
           min="1983-01-01"
           :max="dateAfter ? dateAfter : today()"

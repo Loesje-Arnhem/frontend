@@ -2,10 +2,9 @@ import { Taxonomy } from '~/enums/taxonomy'
 import { ITag } from '~/interfaces/ITag'
 
 export const useTags = () => {
-  const search = ref('')
   const selectedTags = ref([] as ITag[])
-  const dateBefore = ref(undefined)
-  const dateAfter = ref(undefined)
+  const dateBefore = ref('')
+  const dateAfter = ref('')
 
   const getSelectedTagsByTaxonomy = (taxonomy: string) => {
     return []
@@ -24,7 +23,6 @@ export const useTags = () => {
   })
 
   return {
-    search,
     selectedTags,
     dateBefore,
     dateAfter,

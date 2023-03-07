@@ -4,7 +4,7 @@ import { IPosts } from '~/interfaces/IPost'
 
 const props = withDefaults(
   defineProps<{
-    notIn: number
+    notIn?: number
   }>(),
   {
     notIn: 0,

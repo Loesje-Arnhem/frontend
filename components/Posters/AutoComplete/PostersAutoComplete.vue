@@ -3,7 +3,7 @@ import { useQuery } from '@vue/apollo-composable'
 import SearchQuery from '~/graphql/Posters/Search'
 import { IPosterAutocomplete } from '~/interfaces/IPoster'
 
-const { search } = useTags()
+const search = useSearch()
 const searchField = ref(search.value)
 const route = useRoute()
 const enabled = computed(() => searchField.value.length > 3)
