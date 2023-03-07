@@ -1,10 +1,15 @@
 <script setup>
-  const route = useRoute();
-  const head = useLocaleHead({
-    addDirAttribute: true,
-    identifierAttribute: "id",
-    addSeoAttributes: true,
-  });
+const head = useLocaleHead({
+  addDirAttribute: true,
+  identifierAttribute: 'id',
+  addSeoAttributes: true,
+})
+
+const { getFromStorage } = useFavorites()
+
+onMounted(() => {
+  getFromStorage()
+})
 </script>
 
 <template>

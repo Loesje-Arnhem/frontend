@@ -1,3 +1,22 @@
+<script lang="ts" setup>
+const favorites = useFavoriteIds()
+const route = useRoute()
+
+const showFavorites = computed(() => {
+  if (!process.client) {
+    return false
+  }
+
+  const path = app.localeRoute({ name: 'posters-favorites' })
+  return favorites.value.length && route.value.name !== path?.name
+})
+
+const showOverview = computed(() => {
+  const path = app.localeRoute({ name: 'posters' })
+  return route.value.name !== path?.name
+})
+</script>
+
 <template>
   <center-wrapper>
     <nav>
@@ -24,42 +43,6 @@
     </nav>
   </center-wrapper>
 </template>
-
-<script lang="ts">
-import {
-  computed,
-  defineComponent,
-  useContext,
-  useRoute,
-} from '@nuxtjs/composition-api'
-import useFavorites from '~/composables/useFavorites'
-
-export default defineComponent({
-  setup() {
-    const { favorites } = useFavorites()
-    const { app } = useContext()
-    const route = useRoute()
-
-    const showFavorites = computed(() => {
-      if (!process.client) {
-        return false
-      }
-
-      const path = app.localeRoute({ name: 'posters-favorites' })
-      return favorites.value.length && route.value.name !== path?.name
-    })
-
-    const showOverview = computed(() => {
-      const path = app.localeRoute({ name: 'posters' })
-      return route.value.name !== path?.name
-    })
-    return {
-      showOverview,
-      showFavorites,
-    }
-  },
-})
-</script>
 
 <style scoped lang="postcss">
 nav {
