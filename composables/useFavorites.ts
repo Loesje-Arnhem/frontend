@@ -11,15 +11,14 @@ export const useFavorites = () => {
   }
 
   const remove = (posterId: number) => {
-    // favorites.value = favorites.value.filter((id) => id !== posterId)
-    // updateStorage()
+    favorites.value = favorites.value.filter((id) => id !== posterId)
+    updateStorage()
   }
 
   const updateStorage = () => {
     if (!process.client) {
       return
     }
-    console.log('aa')
 
     window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites.value))
   }

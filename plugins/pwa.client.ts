@@ -1,10 +1,8 @@
-import { Context } from '@nuxt/types'
-import { mediaQueryStandAlone } from '~/utils/media-queries'
+export default defineNuxtPlugin(() => {
+  const localePath = useLocalePath()
+  const route = useRoute()
 
-export default (context: Context) => {
-  const { route, app, redirect } = context
-
-  const postersPath = app.localePath({ name: 'posters' })
+  const postersPath = localePath({ name: 'posters' })
 
   const setBodyClass = () => {
     document.documentElement.classList.add('standalone')
@@ -12,7 +10,7 @@ export default (context: Context) => {
 
   const redirectToPostersPageOnStandalone = () => {
     if (route.matched[0].path !== postersPath) {
-      return redirect({
+      return navigateTo({
         path: postersPath,
         query: {
           standalone: 'true',
@@ -47,4 +45,4 @@ export default (context: Context) => {
         }
       })
   })
-}
+})

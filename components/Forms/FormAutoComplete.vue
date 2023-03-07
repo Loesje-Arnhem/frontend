@@ -129,7 +129,7 @@ export default defineComponent({
             v-for="(result, index) in resultsWithHighlightText"
             :key="result.id"
           >
-            <router-link
+            <nuxt-link
               :class="{ active: index === arrowCounter }"
               class="btn-result"
               :to="result.uri"

@@ -8,6 +8,19 @@ export const useMeta = (
   if (!content) {
     return
   }
+
+  const schema = () => {
+    if (!content) {
+      return null
+    }
+    const schemaWithBaseUrl = content.seo.schema.raw.replaceAll('shop.', 'www.')
+    const schemaWithBaseUrlAndImages = schemaWithBaseUrl.replaceAll(
+      'www.loesje.nl/wp-content',
+      'shop.loesje.nl/wp-content',
+    )
+    return JSON.parse(schemaWithBaseUrlAndImages)
+  }
+
   useServerSeoMeta({
     ogUrl: () => content.seo.opengraphUrl,
     ogTitle: () => content.seo.opengraphTitle || content.seo.title,
@@ -27,7 +40,7 @@ export const useMeta = (
     script: [
       {
         type: 'application/ld+json',
-        children: JSON.stringify(content.seo.schema.raw),
+        children: JSON.stringify(schema()),
       },
     ],
   })

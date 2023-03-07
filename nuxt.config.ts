@@ -8,6 +8,11 @@ export default defineNuxtConfig({
       },
     },
   },
+  nitro: {
+    prerender: {
+      ignore: '/posters/',
+    },
+  },
   telemetry: false,
   app: {
     head: {

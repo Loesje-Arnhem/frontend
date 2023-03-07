@@ -11,19 +11,19 @@ const url = computed(() => {
 </script>
 
 <template>
-  <clickable-list-item :url="url" :class="$style['list-item']">
-    <h2 :class="$style.title">
-      <router-link :to="url" :class="$style.link" v-html="post.title" />
+  <clickable-list-item :url="url" class="list-item">
+    <h2 class="title">
+      <nuxt-link :to="url" class="link">{{ post.title }}</nuxt-link>
     </h2>
-    <post-date :date="post.date" :class="$style.date" />
+    <post-date :date="post.date" class="date" />
     <div class="text" v-html="post.excerpt" />
-    <div :class="$style['link-wrapper']" aria-hidden="true">
+    <div class="link-wrapper" aria-hidden="true">
       <read-more-link class="read-more" :to="url" />
     </div>
   </clickable-list-item>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .list-item {
   display: flex;
   flex-direction: column;
