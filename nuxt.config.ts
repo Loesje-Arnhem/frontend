@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
+    preset: 'netlify',
     prerender: {
       ignore: '/posters/',
     },
@@ -101,9 +102,6 @@ export default defineNuxtConfig({
     ],
   },
   css: ['~/assets/css/base.css'],
-  nitro: {
-    preset: 'netlify',
-  },
   i18n: {
     baseUrl,
     defaultLocale: 'nl',
@@ -145,7 +143,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ['@nuxtjs/i18n', '@nuxtjs/apollo'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/apollo', 'nuxt-svgo'],
   postcss: {
     plugins: {
       'postcss-import': {},
