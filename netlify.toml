@@ -1,2 +1,30 @@
-[build.environment]
-    NODE_OPTIONS = "--max_old_space_size=4096"
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    immutable'''
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    immutable'''
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    immutable'''
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "interest-cohort=()"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "no-referrer"
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "default-src 'self';"
