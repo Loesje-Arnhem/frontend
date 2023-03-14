@@ -32,7 +32,6 @@ export default <RouterConfig>{
     return new Promise((resolve) => {
       //   nuxt.$once('triggerScroll', () => {
       if (savedPosition) {
-        console.log(savedPosition)
         resolve(savedPosition)
       }
 

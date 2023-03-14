@@ -1,9 +1,3 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script lang="ts" setup>
 import IconBars from '~/assets/icons/bars.svg'
 import IconChevronDown from '~/assets/icons/chevron-down.svg'
@@ -89,13 +83,10 @@ const iconComponent = computed(() => {
 </script>
 
 <template>
-  <span>
-    <component
-      :is="iconComponent"
-      :width="width"
-      :height="heigth"
-      v-bind="$attrs"
-    />
-    <span class="sr-only" v-if="title">{{ title }}</span>
-  </span>
+  <component
+    :is="iconComponent"
+    :width="width"
+    :height="heigth"
+    v-bind="$attrs"
+  />
 </template>

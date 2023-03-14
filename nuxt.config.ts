@@ -10,9 +10,6 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: 'netlify',
-    prerender: {
-      ignore: '/posters/',
-    },
   },
   telemetry: false,
   app: {
