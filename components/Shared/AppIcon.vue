@@ -89,12 +89,13 @@ const iconComponent = computed(() => {
 </script>
 
 <template>
-  <component
-    :is="iconComponent"
-    :width="width"
-    :height="heigth"
-    v-bind="$attrs"
-  />
-  <div>{{ icon }}</div>
-  <span class="sr-only" v-if="title">{{ title }}</span>
+  <span>
+    <component
+      :is="iconComponent"
+      :width="width"
+      :height="heigth"
+      v-bind="$attrs"
+    />
+    <span class="sr-only" v-if="title">{{ title }}</span>
+  </span>
 </template>
