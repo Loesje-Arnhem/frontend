@@ -9,12 +9,12 @@
     "generate-images": "node ./images"
   },
   "devDependencies": {
-    "@kevinmarrec/nuxt-pwa": "^0.17.0",
     "@nuxtjs/apollo": "^5.0.0-alpha.5",
     "@nuxtjs/i18n": "^8.0.0-beta.8",
     "@types/body-scroll-lock": "^3.1.0",
     "@types/throttle-debounce": "^5.0.0",
     "@types/workbox-window": "^4.3.4",
+    "@vite-pwa/nuxt": "^0.0.7",
     "nuxt": "^3.3.1",
     "nuxt-svgo": "^0.0.3",
     "postcss-mixins": "^9.0.4",

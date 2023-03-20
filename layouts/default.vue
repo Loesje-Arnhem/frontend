@@ -44,6 +44,9 @@ const search = useSearch()
       </Head>
       <Body>
         <slot />
+        <client-only>
+          <pwa-update />
+        </client-only>
       </Body>
     </Html>
   </div>

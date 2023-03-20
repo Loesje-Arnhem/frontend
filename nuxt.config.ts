@@ -1,4 +1,13 @@
-import { baseUrl, facebook, apiUrl } from './data/siteDetails'
+import {
+  categories,
+  themeColor,
+  baseUrl,
+  facebook,
+  apiUrl,
+  backgroundColor,
+  title,
+  twitter,
+} from './data/siteDetails'
 
 export default defineNuxtConfig({
   apollo: {
@@ -8,6 +17,16 @@ export default defineNuxtConfig({
       },
     },
   },
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        isolatedModules: true,
+        esModuleInterop: true,
+        types: ['@types/body-scroll-lock', 'vite-plugin-pwa/client'],
+      },
+    },
+  },
+
   nitro: {
     preset: 'netlify',
   },
@@ -23,8 +42,26 @@ export default defineNuxtConfig({
           name: 'viewport',
           content: 'width=device-width,initial-scale=1,viewport-fit=cover',
         },
+
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        {
+          name: 'apple-mobile-web-app-status-bar-style',
+          content: 'black-translucent',
+        },
+        { name: 'apple-mobile-web-app-title', content: title },
+        { name: 'theme-color', content: themeColor },
+        { property: 'og:site_name', content: title },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: twitter },
+        { name: 'twitter:creator', content: twitter },
       ],
       link: [
+        {
+          rel: 'apple-touch-icon',
+          href: '/icons/manifest-icon-512.maskable.png',
+          sizes: '512x512',
+        },
         {
           rel: 'dns-prefetch',
           href: apiUrl,
@@ -140,7 +177,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ['@nuxtjs/i18n', '@nuxtjs/apollo', 'nuxt-svgo'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/apollo', 'nuxt-svgo', '@vite-pwa/nuxt'],
   postcss: {
     plugins: {
       'postcss-import': {},
@@ -157,6 +194,101 @@ export default defineNuxtConfig({
           'media-query-ranges': true,
         },
       },
+    },
+  },
+  pwa: {
+    manifest: {
+      background_color: backgroundColor,
+      theme_color: themeColor,
+      categories,
+      lang: 'nl',
+      name: title,
+      orientation: 'portrait-primary',
+      description:
+        'Ook zo benieuwd wat Loesje allemaal al heeft gezegd? Met deze app kan je lekker door al haar posters heen kuieren.',
+      short_name: title,
+      icons: [
+        {
+          src: '/icons/manifest-icon-192.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'any',
+        },
+        {
+          src: '/icons/manifest-icon-192.maskable.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'maskable',
+        },
+        {
+          src: '/icons/manifest-icon-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any',
+        },
+        {
+          src: '/icons/manifest-icon-512.maskable.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable',
+        },
+      ],
+      display_override: ['window-controls-overlay'],
+      start_url: `${baseUrl}/posters?standalone=true`,
+      id: `${baseUrl}/posters?standalone=true`,
+      shortcuts: [
+        {
+          name: 'Favorieten',
+          short_name: 'Favorieten',
+          url: `${baseUrl}/posters/favorieten?standalone=true`,
+          icons: [{ src: '/icon.png', sizes: '512x512' }],
+        },
+      ],
+      screenshots: [
+        {
+          src: '/screenshots/screenshot-1-wide.png',
+          sizes: '1280x800',
+          type: 'image/png',
+          platform: 'wide',
+          label:
+            'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
+        },
+        {
+          src: '/screenshots/screenshot-2-wide.png',
+          sizes: '1280x800',
+          type: 'image/png',
+          platform: 'wide',
+          label: 'Alle uitspraken van Loesje zijn hier te vinden.',
+        },
+        {
+          src: '/screenshots/screenshot-1-narrow.png',
+          sizes: '750x1334',
+          type: 'image/png',
+          platform: 'narrow',
+          label:
+            'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
+        },
+        {
+          src: '/screenshots/screenshot-1-narrow.png',
+          sizes: '750x1334',
+          type: 'image/png',
+          platform: 'narrow',
+          label: 'Alle uitspraken van Loesje zijn hier te vinden.',
+        },
+      ],
+      // android only
+      // related_applications: [
+      //   {
+      //     platform: 'webapp',
+      //     url: baseUrl,
+      //   },
+      // ],
+      protocol_handlers: [
+        {
+          protocol: 'web+loesje',
+          url: '/posters%s',
+        },
+      ],
     },
   },
 })
