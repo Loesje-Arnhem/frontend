@@ -1,3 +1,7 @@
+[build]
+  command = "pnpm run generate"
+  publish = "dist"
+
 [[headers]]
   for = "/images/*"
   [headers.values]
