@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import PageByByUri from '~/graphql/Pages/Pages'
 import { IPage } from '~~/interfaces/IPage'
-import { IPostsBase } from '~~/interfaces/IPost'
 
 defineI18nRoute({
   paths: {
@@ -11,10 +10,15 @@ defineI18nRoute({
 
 const route = useRoute()
 
+const uri = computed(() => {
+  const slugs = route.path.split('/').filter((url) => url !== '')
+  return slugs[slugs.length - 1]
+})
+
 const { data, pending, error } = await useAsyncQuery<{
   page: IPage | null
 }>(PageByByUri, {
-  uri: route.fullPath,
+  uri: uri.value,
 })
 
 if (!data.value?.page) {
