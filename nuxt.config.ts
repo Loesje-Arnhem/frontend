@@ -25,6 +25,7 @@ export default defineNuxtConfig({
         types: ['@types/body-scroll-lock', 'vite-plugin-pwa/client'],
       },
     },
+    strict: true,
   },
 
   nitro: {
