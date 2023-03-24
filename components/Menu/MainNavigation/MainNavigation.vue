@@ -23,13 +23,19 @@ const getMainLink = () => {
   if (!menu.value) {
     return null
   }
-  const activeLink = menu.value.querySelector(
-    '.menu-item-home .router-link-exact-active',
-  )
-  if (activeLink) {
-    return activeLink
+  let activeLink = menu.value.querySelector(
+    '.router-link-exact-active',
+  ) as HTMLAnchorElement | null
+  if (!activeLink) {
+    return null
   }
-  return menu.value.querySelector('.menu-item-page .router-link-active')
+
+  const parent = activeLink.closest('.menu-item-page') as HTMLLIElement | null
+  if (!parent) {
+    return null
+  }
+  console.log({ activeLink, parent })
+  return parent
 }
 
 onMounted(() => {
@@ -46,7 +52,8 @@ const setArrowPosition = () => {
     return
   }
   const activeLink = getMainLink()
-  if (!activeLink?.parentElement) {
+  console.log({ activeLink })
+  if (!activeLink) {
     arrowWidth.value = '0'
     return
   }
@@ -55,7 +62,7 @@ const setArrowPosition = () => {
     arrowWidth.value = '0'
     return
   }
-  arrowPosition.value = `translateX(${activeLink.parentElement.offsetLeft}px)`
+  arrowPosition.value = `translateX(${activeLink.offsetLeft}px)`
   arrowWidth.value = `${title.offsetWidth}px`
 }
 </script>
@@ -68,7 +75,7 @@ const setArrowPosition = () => {
     <div ref="menu">
       <ul v-if="pages" class="menu">
         <main-navigation-item
-          class="menu-item-home"
+          class="menu-item-page"
           :title="$t('home')"
           :uri="localePath({ name: 'index' })"
         />

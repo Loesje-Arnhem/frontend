@@ -18,12 +18,13 @@ const { getFromStorage } = useFavorites()
 onMounted(() => {
   getFromStorage()
 })
+
 const search = useSearch()
 </script>
 
 <template>
   <div>
-    <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir">
+    <Html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir">
       <Head>
         <template v-for="link in head.link" :key="link.id">
           <Link
