@@ -6,18 +6,18 @@
 
 ```bash
 # install dependencies
-$ npm install
+$ pnpm install
 
 # serve with hot reload at localhost:3000
-$ npm run dev
+$ pnpm run dev
 
 # build for production and launch server
-$ npm run build
-$ npm start
+$ pnpm run build
+$ pnpm start
 
 
 # generate static project
-$ npm run generate
+$ pnpm run generate
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
