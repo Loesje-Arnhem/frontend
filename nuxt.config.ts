@@ -11,6 +11,11 @@ import {
 
 export default defineNuxtConfig({
   apollo: {
+    defaultOptions: {
+      query: {
+        fetchPolicy: 'cache-first',
+      },
+    },
     clients: {
       default: {
         httpEndpoint: `${apiUrl}graphql`,
