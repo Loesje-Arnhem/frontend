@@ -34,7 +34,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    preset: 'netlify-builder',
     prerender: {
       routes: ['/', '/doe-mee'],
     },
