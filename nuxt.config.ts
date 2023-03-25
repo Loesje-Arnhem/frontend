@@ -10,11 +10,6 @@ import {
 } from './data/siteDetails'
 
 export default defineNuxtConfig({
-  nitro: {
-    prerender: {
-      routes: ['/', '/doe-mee', '/doe-mee/**'],
-    },
-  },
   apollo: {
     defaultOptions: {
       query: {
@@ -40,6 +35,9 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'netlify',
+    prerender: {
+      routes: ['/', '/doe-mee'],
+    },
   },
   telemetry: false,
   app: {
