@@ -10,8 +10,10 @@ import {
 } from './data/siteDetails'
 
 export default defineNuxtConfig({
-  routeRules: {
-    '/doe-mee/**': { static: true },
+  nitro: {
+    prerender: {
+      routes: ['/', '/doe-mee', '/doe-mee/**'],
+    },
   },
   apollo: {
     defaultOptions: {
