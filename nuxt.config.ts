@@ -10,6 +10,9 @@ import {
 } from './data/siteDetails'
 
 export default defineNuxtConfig({
+  routeRules: {
+    '/doe-mee/**': { static: true },
+  },
   apollo: {
     defaultOptions: {
       query: {
