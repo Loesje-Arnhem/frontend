@@ -5,14 +5,6 @@ const head = useLocaleHead({
   addSeoAttributes: true,
 })
 
-head.value.link?.forEach((link) => {
-  const url = new URL(link.href)
-  if (!url.pathname.endsWith('/')) {
-    url.pathname = `${url.pathname}/`
-    link.href = url.href
-  }
-})
-
 const { getFromStorage } = useFavorites()
 
 onMounted(() => {
