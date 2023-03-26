@@ -39,15 +39,16 @@ export default defineEventHandler(async (event) => {
       youtubeId = response.youtube_id
     }
     const featuredImage = getFeaturedImage(response._embedded)
-
-    return {
+    const page: IPage = {
       title: response.title.rendered,
       content: response.content.rendered,
       seo: response.yoast_head_json,
       relatedProducts,
       youtubeId,
       featuredImage,
-    } as IPage
+      relatedPosters: {},
+    }
+    return page
   }
   return null
 })

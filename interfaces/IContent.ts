@@ -12,6 +12,12 @@ interface IFeaturedImageNode {
   node: IFeaturedImage
 }
 
+export interface IRelatedPosters {
+  subjects?: number[]
+  search?: string
+  posterIds?: number[]
+}
+
 export interface IBasePage {
   title: string
   content: string
@@ -19,6 +25,7 @@ export interface IBasePage {
   relatedProducts: number[]
   youtubeId: string | null
   featuredImage?: IFeaturedImage
+  relatedPosters: IRelatedPosters
 }
 
 export interface IPage extends IBasePage {}

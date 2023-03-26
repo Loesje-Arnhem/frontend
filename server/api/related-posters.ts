@@ -3,7 +3,7 @@ import { IResponsePosters } from '~~/interfaces/IResponse'
 
 export default defineEventHandler(async (event) => {
   const url = getUrl({
-    type: 'poster',
+    type: 'posters',
     fields: ['title', 'slug'],
     image: true,
     pageSize: 7,
