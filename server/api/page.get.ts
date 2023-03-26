@@ -29,11 +29,11 @@ export default defineEventHandler(async (event) => {
   }
   if (response) {
     let relatedProducts: number[] = []
-    if (response.acf.related_products_products) {
-      relatedProducts = response.acf.related_products_products.map(
-        (p) => p.product,
-      )
-    }
+    // if (response.acf.related_products_products) {
+    //   relatedProducts = response.acf.related_products_products.map(
+    //     (p) => p.product,
+    //   )
+    // }
     let youtubeId: string | null = null
     if (response.youtube_id) {
       youtubeId = response.youtube_id
