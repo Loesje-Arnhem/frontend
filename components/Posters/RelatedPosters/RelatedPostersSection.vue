@@ -1,9 +1,34 @@
 <script lang="ts" setup>
-const localePath = useLocalePath()
+import { IRelatedPosters } from '~~/interfaces/IContent'
 
-const { data, pending, error } = await useFetch('/api/related-posters', {
-  key: 'related-posters',
+const localePath = useLocalePath()
+const { t } = useI18n()
+
+const props = defineProps<{
+  posters: IRelatedPosters
+}>()
+
+let key = 'related-posters'
+if (props.posters.search) {
+  key = `${key}-${props.posters.search}`
+}
+if (props.posters.subjects.length) {
+  key = `${key}-${props.posters.subjects.join(',')}`
+}
+if (props.posters.posterIds.length) {
+  key = `${key}-${props.posters.posterIds.join(',')}`
+}
+
+const { data, pending } = await useFetch('/api/related-posters', {
+  key,
+  params: {
+    search: props.posters.search,
+    subjects: props.posters.subjects,
+    posterId: props.posters.posterIds,
+  },
 })
+
+const title = props.posters.title || t('posters')
 </script>
 
 <template>
@@ -12,7 +37,7 @@ const { data, pending, error } = await useFetch('/api/related-posters', {
     <div v-else-if="data">
       <center-wrapper>
         <h1 id="related-posters-title" class="title">
-          {{ $t('posters') }}
+          {{ title }}
         </h1>
       </center-wrapper>
 

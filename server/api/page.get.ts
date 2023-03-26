@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
       relatedProducts,
       youtubeId,
       featuredImage,
-      relatedPosters: {},
+      relatedPosters: getRelatedPosters(response),
     }
     return page
   }

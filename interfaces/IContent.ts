@@ -13,9 +13,10 @@ interface IFeaturedImageNode {
 }
 
 export interface IRelatedPosters {
-  subjects?: number[]
-  search?: string
-  posterIds?: number[]
+  subjects: number[]
+  search: string | null
+  posterIds: number[]
+  title: string | null
 }
 
 export interface IBasePage {

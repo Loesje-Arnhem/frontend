@@ -59,7 +59,7 @@ const { data, pending, error } = await useFetch('/api/page', {
       :content="data.content"
       :video="data.youtubeId"
     />
-    <related-posters-section v-if="data" />
+    <related-posters-section :posters="data.relatedPosters" />
     <!-- <related-products-section :related-products="data.relatedProducts" />
     <related-pages-section :pages="data.relatedPages" /> -->
   </div>

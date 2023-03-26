@@ -7,6 +7,7 @@ export default ({
   image,
   exclude,
   pageSize,
+  search,
 }: {
   fields: string[]
   type: string
@@ -16,6 +17,7 @@ export default ({
   image?: Boolean
   exclude?: number
   pageSize?: number
+  search?: string
 }) => {
   const { apiUrl } = useAppConfig()
 
@@ -32,6 +34,9 @@ export default ({
   url.searchParams.set('_fields', fields.join(','))
   if (slug) {
     url.searchParams.set('slug', slug)
+  }
+  if (search) {
+    url.searchParams.set('search', search)
   }
   if (exclude) {
     url.searchParams.set('exclude', exclude.toString())
