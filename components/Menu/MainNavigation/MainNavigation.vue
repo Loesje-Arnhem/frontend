@@ -34,7 +34,6 @@ const getMainLink = () => {
   if (!parent) {
     return null
   }
-  console.log({ activeLink, parent })
   return parent
 }
 
@@ -52,7 +51,6 @@ const setArrowPosition = () => {
     return
   }
   const activeLink = getMainLink()
-  console.log({ activeLink })
   if (!activeLink) {
     arrowWidth.value = '0'
     return

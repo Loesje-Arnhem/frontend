@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import PageByByUri from '~/graphql/Pages/Pages'
-import { IPage } from '~~/interfaces/IPage'
-
 defineI18nRoute({
   paths: {
     nl: '/:pathMatch(.*)*',
@@ -15,28 +12,56 @@ const uri = computed(() => {
   return slugs[slugs.length - 1]
 })
 
-const { data, pending, error } = await useAsyncQuery<{
-  page: IPage | null
-}>(PageByByUri, {
-  uri: uri.value,
-})
+const { getPage } = useServer()
 
-if (!data.value?.page) {
-  throw createError({
-    statusCode: 404,
-    fatal: true,
-  })
-}
+const { data, pending, error } = await useAsyncData(
+  `page-${uri.value}`,
+  async () => {
+    return await getPage({
+      slug: uri.value,
+    })
+  },
+)
+// const { data, pending, error } = await useAsyncQuery<{
+//   page: IPage | null
+// }>(PageByByUri, {
+//   uri: uri.value,
+// })
 
-useMeta(data.value.page)
+// onError((error) => {
+//   throw createError({
+//     statusCode: 404,
+//     message: error.message,
+//     fatal: true,
+//   })
+// })
+
+// onResult((response) => {
+//   console.log(!response.data)
+//   if (!response.data) {
+//     throw createError({
+//       statusCode: 404,
+//       fatal: true,
+//     })
+//   }
+//   useMeta(response.data)
+// })
+
+//
+
+// useMeta(data)
 </script>
 
 <template>
   <app-loader v-if="pending" />
-  <div v-else-if="data?.page">
-    <app-content :title="data.page.title" :content="data.page.content" />
-    <related-posters-section :posters="data.page.relatedPosters" />
-    <related-products-section :related-products="data.page.relatedProducts" />
-    <related-pages-section :pages="data.page.relatedPages" />
+  <div v-else-if="data">
+    <app-content
+      :title="data.title"
+      :content="data.content"
+      :video="data.youtubeId"
+    />
+    <!-- <related-posters-section :posters="data.relatedPosters" />
+    <related-products-section :related-products="data.relatedProducts" />
+    <related-pages-section :pages="data.relatedPages" /> -->
   </div>
 </template>

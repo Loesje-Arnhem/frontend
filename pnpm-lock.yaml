@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@nuxtjs/apollo': ^5.0.0-alpha.5
+  '@nuxtjs/apollo': ^5.0.0-alpha.6
   '@nuxtjs/i18n': ^8.0.0-beta.8
   '@types/body-scroll-lock': ^3.1.0
   '@types/throttle-debounce': ^5.0.0

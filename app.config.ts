@@ -1,9 +1,11 @@
 import { apiUrl } from './data/siteDetails'
 
 export default defineAppConfig({
-  apiUrl: 'https://shop.loesje.nl/',
+  // apiUrl: 'https://shop.loesje.nl/',
   shopUrl: `${apiUrl}winkeltje`,
   // apiUrl: 'http://localhost:8000/',
+  apiUrl: 'https://shop.loesje.nl/wp-json/wp/v2/',
+
   baseUrl: 'https://www.loesje.nl',
   categories: ['politics'],
   facebook: 'https://www.facebook.com/loesjevdposters/',
