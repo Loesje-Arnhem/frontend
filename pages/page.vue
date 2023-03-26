@@ -14,14 +14,13 @@ const uri = computed(() => {
 
 const { getPage } = useServer()
 
-const { data, pending, error } = await useAsyncData(
-  `page-${uri.value}`,
-  async () => {
-    return await getPage({
-      slug: uri.value,
-    })
+const { data, pending, error } = await useFetch('/api/page', {
+  key: `page-${uri.value}`,
+  params: {
+    slug: uri.value,
   },
-)
+})
+
 // const { data, pending, error } = await useAsyncQuery<{
 //   page: IPage | null
 // }>(PageByByUri, {

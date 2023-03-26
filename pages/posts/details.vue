@@ -29,6 +29,6 @@ useMeta(data.value?.post)
 
     <related-posters-section :posters="data.post.relatedPosters" />
     <!-- <related-products-section :related-products="data.post.relatedProducts" /> -->
-    <posts-overview-section :not-in="data.post.databaseId" />
+    <!-- <posts-overview-section :not-in="data.post.databaseId" /> -->
   </div>
 </template>

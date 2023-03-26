@@ -45,10 +45,10 @@ const subjects = computed(() => {
       <poster-details :poster="data.poster" />
     </center-wrapper>
     <!-- <related-products-section :related-products="data.poster.relatedProducts" /> -->
-    <posters-overview-section
+    <!-- <posters-overview-section
       :not-in="data.poster.databaseId"
       :subject-ids="subjects"
       :title="$t('relatedPosters')"
-    />
+    /> -->
   </div>
 </template>

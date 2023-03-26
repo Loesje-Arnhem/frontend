@@ -1,14 +1,9 @@
 <script lang="ts" setup>
 const localePath = useLocalePath()
 
-const { getPosters } = useServer()
-
-const { data, pending } = await useLazyAsyncData(
-  `related-posters`,
-  async () => {
-    return await getPosters()
-  },
-)
+const { data, pending, error } = await useFetch('/api/related-posters', {
+  key: 'related-posters',
+})
 </script>
 
 <template>

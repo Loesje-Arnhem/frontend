@@ -29,12 +29,12 @@ const { data } = useAsyncQuery<{
       <poster-filters :sources="data.sources" :subjects="data.subjects" />
       <poster-tags-list :list="selectedTags" />
     </center-wrapper>
-    <posters-overview-section
+    <!-- <posters-overview-section
       :source-ids="selectedSourceIds"
       :subject-ids="selectedSubjectIds"
       :search="search"
       :date-before="dateBefore"
       :date-after="dateAfter"
-    />
+    /> -->
   </div>
 </template>
