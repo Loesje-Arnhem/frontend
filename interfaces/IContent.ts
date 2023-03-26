@@ -36,6 +36,12 @@ export interface IPostListItem {
   featuredImage?: IFeaturedImage
 }
 
+export interface IPosterListItem {
+  title: string
+  slug: string
+  featuredImage?: IFeaturedImage
+}
+
 interface IPostNode {
   node: IPost
 }

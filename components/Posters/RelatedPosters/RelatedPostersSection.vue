@@ -1,37 +1,39 @@
 <script lang="ts" setup>
-import { IRelatedPostersBase } from '~/interfaces/IPoster'
-
 const localePath = useLocalePath()
 
-defineProps<{
-  posters: IRelatedPostersBase
-}>()
+const { getPosters } = useServer()
+
+const { data, pending } = await useLazyAsyncData(
+  `related-posters`,
+  async () => {
+    return await getPosters()
+  },
+)
 </script>
 
 <template>
-  <section
-    v-if="posters.edges.length"
-    :class="$style['related-posters']"
-    aria-labelledby="related-posters-title"
-  >
-    <center-wrapper>
-      <h1 id="related-posters-title" :class="$style.title">
-        {{ $t('posters') }}
-      </h1>
-    </center-wrapper>
+  <section class="related-posters" aria-labelledby="related-posters-title">
+    <app-loader v-if="pending" />
+    <div v-else-if="data">
+      <center-wrapper>
+        <h1 id="related-posters-title" class="title">
+          {{ $t('posters') }}
+        </h1>
+      </center-wrapper>
 
-    <center-wrapper size="full">
-      <related-posters-list :posters="posters.edges" />
-    </center-wrapper>
-    <center-wrapper :class="$style['btn-wrapper']">
-      <app-button :to="localePath({ name: 'posters' })">
-        {{ $t('viewAllPosters') }}
-      </app-button>
-    </center-wrapper>
+      <center-wrapper size="full">
+        <related-posters-list :posters="data" />
+      </center-wrapper>
+      <center-wrapper class="btn-wrapper">
+        <app-button :to="localePath({ name: 'posters' })">
+          {{ $t('viewAllPosters') }}
+        </app-button>
+      </center-wrapper>
+    </div>
   </section>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .related-posters {
   padding: 3em 0;
   background: url('/images/wall.png');

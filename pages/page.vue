@@ -60,8 +60,8 @@ const { data, pending, error } = await useAsyncData(
       :content="data.content"
       :video="data.youtubeId"
     />
-    <!-- <related-posters-section :posters="data.relatedPosters" />
-    <related-products-section :related-products="data.relatedProducts" />
+    <related-posters-section v-if="data" />
+    <!-- <related-products-section :related-products="data.relatedProducts" />
     <related-pages-section :pages="data.relatedPages" /> -->
   </div>
 </template>

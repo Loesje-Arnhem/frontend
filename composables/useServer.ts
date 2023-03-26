@@ -1,8 +1,14 @@
-import { IPage, IPost, IPostListItem } from '~~/interfaces/IContent'
+import {
+  IPage,
+  IPost,
+  IPosterListItem,
+  IPostListItem,
+} from '~~/interfaces/IContent'
 import {
   IResponseImage,
   IResponsePage,
   IResponsePost,
+  IResponsePosters,
   IResponsePosts,
 } from '~~/interfaces/IResponse'
 
@@ -11,7 +17,7 @@ export const useServer = () => {
 
   const getFeaturedImage = (featuredImage: IResponseImage) => {
     if (!featuredImage['wp:featuredmedia']) {
-      return null
+      return undefined
     }
     const image = featuredImage['wp:featuredmedia'][0]
     const srcSet = Object.values(image.media_details.sizes).map((size) => {
@@ -35,6 +41,7 @@ export const useServer = () => {
     page,
     image,
     exclude,
+    pageSize,
   }: {
     fields: string[]
     type: string
@@ -43,6 +50,7 @@ export const useServer = () => {
     page?: number
     image?: Boolean
     exclude?: number
+    pageSize?: number
   }) => {
     let baseUrl = `${apiUrl}${type}/`
     if (id) {
@@ -63,7 +71,9 @@ export const useServer = () => {
     }
     if (page) {
       url.searchParams.set('page', page.toString())
-      url.searchParams.set('per_page', '5')
+    }
+    if (pageSize) {
+      url.searchParams.set('per_page', pageSize.toString())
     }
     return url.toString()
   }
@@ -166,9 +176,32 @@ export const useServer = () => {
     }
     return null
   }
+
+  const getPosters = async () => {
+    const url = getUrl({
+      type: 'poster',
+      fields: ['title', 'slug'],
+      image: true,
+      pageSize: 7,
+    })
+
+    const response = await $fetch<IResponsePosters[]>(url)
+    const items: IPosterListItem[] = response.map((item) => {
+      const featuredImage = getFeaturedImage(item._embedded)
+
+      return {
+        slug: item.slug,
+        title: item.title.rendered,
+        featuredImage,
+      }
+    })
+    return items
+  }
+
   return {
     getPage,
     getPost,
     getPosts,
+    getPosters,
   }
 }

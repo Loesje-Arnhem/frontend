@@ -24,6 +24,6 @@ defineI18nRoute({
     <latest-posts-section v-if="data" :posts="data.posts.edges" />
     <related-posters-section v-if="data" :posters="data.page.relatedPosters" />
     <app-stores-section />
-    <related-products-section :related-products="data.page.relatedProducts" />
+    <!-- <related-products-section :related-products="data.page.relatedProducts" /> -->
   </div>
 </template>

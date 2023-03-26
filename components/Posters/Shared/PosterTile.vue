@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 import { IRelatedPoster } from '~/interfaces/IPoster'
+import { IPosterListItem } from '~~/interfaces/IContent'
+
+const localePath = useLocalePath()
 
 withDefaults(
   defineProps<{
-    poster: IRelatedPoster
+    poster: IPosterListItem
     sizes?: string
   }>(),
   {
@@ -20,7 +23,12 @@ withDefaults(
       class="tile image-wrapper-tile"
       :data-slug="poster.slug"
     >
-      <nuxt-link :to="poster.uri" class="link">
+      <nuxt-link
+        :to="
+          localePath({ name: 'posters-details', params: { slug: poster.slug } })
+        "
+        class="link"
+      >
         <featured-image
           :lazy="true"
           :alt="poster.title"

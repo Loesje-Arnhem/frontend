@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IFeaturedImage } from '~/interfaces/IMedia'
+import { IFeaturedImage } from '~/interfaces/IContent'
 
 withDefaults(
   defineProps<{
@@ -20,11 +20,11 @@ withDefaults(
     class="image"
     :alt="alt"
     :loading="lazy ? 'lazy' : null"
-    :srcset="image.node.srcSet"
-    :src="image.node.src"
+    :srcset="image.srcSet"
+    :src="image.src"
     :sizes="sizes"
-    :width="image.node.mediaDetails.width"
-    :height="image.node.mediaDetails.height"
+    :width="image.width"
+    :height="image.height"
   />
 </template>
 

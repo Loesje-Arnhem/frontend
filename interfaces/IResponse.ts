@@ -49,6 +49,14 @@ export interface IResponsePosts {
   _embedded: IResponseImage
 }
 
+export interface IResponsePosters {
+  title: {
+    rendered: string
+  }
+  slug: string
+  _embedded: IResponseImage
+}
+
 export interface IResponsePage {
   title: {
     rendered: string

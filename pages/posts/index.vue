@@ -21,6 +21,6 @@ useMeta(data.value?.page)
     <h1 class="sr-only">{{ data.page.title }}</h1>
     <posts-overview-section />
     <related-posters-section :posters="data.page.relatedPosters" />
-    <related-products-section :related-products="data.page.relatedProducts" />
+    :related-products="data.page.relatedProducts" />
   </div>
 </template>

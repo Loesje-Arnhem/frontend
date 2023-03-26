@@ -44,7 +44,7 @@ const subjects = computed(() => {
     <center-wrapper>
       <poster-details :poster="data.poster" />
     </center-wrapper>
-    <related-products-section :related-products="data.poster.relatedProducts" />
+    <!-- <related-products-section :related-products="data.poster.relatedProducts" /> -->
     <posters-overview-section
       :not-in="data.poster.databaseId"
       :subject-ids="subjects"

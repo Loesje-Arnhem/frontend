@@ -19,6 +19,6 @@ const { data, pending } = await usePageById(pageIds.workshops)
     />
     <form-workshop />
     <related-posters-section :posters="data.page.relatedPosters" />
-    <related-products-section :related-products="data.page.relatedProducts" />
+    <!-- <related-products-section :related-products="data.page.relatedProducts" /> -->
   </div>
 </template>

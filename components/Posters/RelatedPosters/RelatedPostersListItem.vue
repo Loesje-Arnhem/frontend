@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+import { IPosterListItem } from '~~/interfaces/IContent'
 import { IRelatedPoster } from '~~/interfaces/IPoster'
 
 defineProps<{
-  poster: IRelatedPoster
+  poster: IPosterListItem
 }>()
 
-const transform = ref(null as String | null)
+const transform: Ref<string | undefined> = ref(undefined)
 const translate = computed(() => {
   const range = randomizeRange() / 4
   const translateX = range
