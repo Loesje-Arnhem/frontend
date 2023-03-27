@@ -8,10 +8,6 @@ export interface IFeaturedImage {
   height: number
 }
 
-interface IFeaturedImageNode {
-  node: IFeaturedImage
-}
-
 export interface IBasePage {
   title: string
   content: string

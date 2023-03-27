@@ -58,6 +58,7 @@ export default defineComponent({
       default: () => [],
     },
   },
+  emits: ['change', 'input'],
 })
 </script>
 

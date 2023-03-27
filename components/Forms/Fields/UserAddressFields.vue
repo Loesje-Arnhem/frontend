@@ -69,12 +69,14 @@ import usePostcode from '~/composables/usePostcode'
 import countries from '~/data/countries'
 
 export default defineComponent({
+
   props: {
     isShipping: {
       type: Boolean,
       default: false,
     },
   },
+    emits: ['input', 'change'],
   setup(props) {
     const { loading, checkPostcode, form } = usePostcode()
     const id = computed(() => {

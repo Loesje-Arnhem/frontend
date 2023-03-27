@@ -75,6 +75,7 @@ export default defineComponent({
       default: false,
     },
   },
+  emits: ['input'],
   setup(props) {
     const id = computed(() => {
       return props.isShipping ? `shipping` : 'user'

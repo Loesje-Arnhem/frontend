@@ -1,21 +1,15 @@
 <script lang="ts" setup>
-interface ErrorObject {
-  readonly $propertyPath: string
-  readonly $property: string
-  readonly $validator: string
-  readonly $message: string | Ref<string>
-  readonly $params: object
-  readonly $pending: boolean
-  readonly $response: any
-  readonly $uid: string
-}
+import { ErrorObject } from '@vuelidate/core';
 
-const props = defineProps<{
+const props = withDefaults( defineProps<{
   title: string
-  description?: string
+  description?: string | null
   id: string
   errors?: ErrorObject[]
-}>()
+}>(), {
+  description: null,
+  errors: () => []
+})
 
 const errorMessage = computed(() => {
   if (!props.errors) {

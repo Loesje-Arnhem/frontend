@@ -14,7 +14,7 @@ const uri = computed(() => {
 
 const { getPage } = useServer()
 
-const { data, pending, error } = await useAsyncData(
+const { data, pending } = await useAsyncData(
   `page-${uri.value}`,
   async () => {
     return await getPage({
