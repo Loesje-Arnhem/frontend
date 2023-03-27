@@ -14,7 +14,7 @@
     v-else
     :to="uri"
     :class="$style.link"
-    @click.native="clear"
+    @click="clear"
   >
     <span
       :class="$style.title"

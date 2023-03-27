@@ -8,7 +8,7 @@ import { apiUrl } from '../data/siteDetails'
 import fetchPages from './generate/fetchPages'
 import fetchPosts from './generate/fetchPosts'
 import fetchPosters from './generate/fetchPosters'
-import fetchProductCategories from './generate/fetchProductCategories'
+// import fetchProductCategories from './generate/fetchProductCategories'
 import pauseFetching from './generate/pauseFetching'
 
 export default {

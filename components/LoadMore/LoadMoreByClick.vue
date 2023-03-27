@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    title?: string
+    title?: string | null
     loading?: boolean
   }>(),
   {
+    title: null,
     loading: false,
   },
 )

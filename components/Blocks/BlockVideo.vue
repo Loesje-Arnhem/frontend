@@ -26,7 +26,9 @@ export default defineComponent({
         })
         video.value.srcObject = stream
         video.value.play()
-      } catch (error) {}
+      } catch (error) {
+        //
+      }
     }
     return {
       video,

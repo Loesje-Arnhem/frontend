@@ -1,14 +1,17 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    buttonTitle?: string
+    buttonTitle?: string | null
     loading: boolean
     error: string
   }>(),
   {
+    buttonTitle: null,
     loading: false,
   },
 )
+
+defineEmits(['submit'])
 </script>
 
 <template>

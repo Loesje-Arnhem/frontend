@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    to?: string
+    to?: string | null
     type?: 'button' | 'submit'
     isPrimary?: boolean
     loading?: boolean
-    href?: string
+    href?: string | null
     active?: boolean
   }>(),
   {
@@ -13,6 +13,8 @@ const props = withDefaults(
     isPrimary: true,
     loading: false,
     active: false,
+    href: null,
+    to: null
   },
 )
 
