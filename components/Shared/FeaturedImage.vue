@@ -25,7 +25,7 @@ withDefaults(
     :sizes="sizes"
     :width="image.node.mediaDetails.width"
     :height="image.node.mediaDetails.height"
-  />
+  >
 </template>
 
 <style lang="postcss" scoped>

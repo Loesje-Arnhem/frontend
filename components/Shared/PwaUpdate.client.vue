@@ -9,8 +9,14 @@ const { t } = useI18n({
 </script>
 
 <template>
-  <app-alert :show="needRefresh" :text="t('newContentAvailable')">
-    <button class="btn-link" @click="() => updateServiceWorker()">
+  <app-alert
+    :show="needRefresh"
+    :text="t('newContentAvailable')"
+  >
+    <button
+      class="btn-link"
+      @click="() => updateServiceWorker()"
+    >
       {{ t('newContentAvailable') }}
     </button>
   </app-alert>

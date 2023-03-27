@@ -5,7 +5,10 @@ defineProps<{
 </script>
 
 <template>
-  <app-date :date="date" :class="$style.date" />
+  <app-date
+    :date="date"
+    :class="$style.date"
+  />
 </template>
 
 <style lang="postcss" module>

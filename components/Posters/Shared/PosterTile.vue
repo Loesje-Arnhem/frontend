@@ -20,7 +20,10 @@ withDefaults(
       class="tile image-wrapper-tile"
       :data-slug="poster.slug"
     >
-      <nuxt-link :to="poster.uri" class="link">
+      <nuxt-link
+        :to="poster.uri"
+        class="link"
+      >
         <featured-image
           :lazy="true"
           :alt="poster.title"

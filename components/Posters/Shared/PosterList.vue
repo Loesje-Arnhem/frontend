@@ -10,7 +10,11 @@ defineProps<{
   <div class="wrapper">
     <center-wrapper>
       <list-animation class="list">
-        <li v-for="poster in posters" :key="poster.node.id" class="list-item">
+        <li
+          v-for="poster in posters"
+          :key="poster.node.id"
+          class="list-item"
+        >
           <poster-tile :poster="poster.node" />
         </li>
       </list-animation>

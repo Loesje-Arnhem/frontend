@@ -2,7 +2,10 @@
   <div>
     <div :class="$style.wrapper">
       <div class="tile">
-        <ul ref="list" :class="$style.list">
+        <ul
+          ref="list"
+          :class="$style.list"
+        >
           <slot />
         </ul>
       </div>

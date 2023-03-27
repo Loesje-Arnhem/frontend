@@ -1,15 +1,29 @@
 <template>
-  <nav aria-labelledby="categories-title" class="categories">
-    <h2 id="categories-title" class="sr-only">Categorien</h2>
+  <nav
+    aria-labelledby="categories-title"
+    class="categories"
+  >
+    <h2
+      id="categories-title"
+      class="sr-only"
+    >
+      Categorien
+    </h2>
     <app-loader v-if="loading" />
-    <ul v-if="productCategories" class="category-list">
+    <ul
+      v-if="productCategories"
+      class="category-list"
+    >
       <template v-for="productCategory in productCategories.edges">
         <li
           v-if="!productCategory.node.parentDatabaseId"
           :key="productCategory.node.id"
           class="list-item"
         >
-          <nuxt-link :to="productCategory.node.uri" class="link">
+          <nuxt-link
+            :to="productCategory.node.uri"
+            class="link"
+          >
             {{ productCategory.node.name }}
           </nuxt-link>
           <ul
@@ -21,7 +35,10 @@
               :key="child.node.id"
               class="list-item"
             >
-              <nuxt-link :to="child.node.uri" class="link">
+              <nuxt-link
+                :to="child.node.uri"
+                class="link"
+              >
                 {{ child.node.name }}
               </nuxt-link>
             </li>

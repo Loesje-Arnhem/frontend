@@ -9,7 +9,10 @@
         @after-enter="afterEnter"
         @after-leave="afterLeave"
       >
-        <div v-show="mobileMenuIsOpen" :class="$style.background">
+        <div
+          v-show="mobileMenuIsOpen"
+          :class="$style.background"
+        >
           <transition name="fade">
             <div
               v-show="mobileMenuIsOpen"

@@ -1,5 +1,8 @@
 <template>
-  <form-fieldset title="Adresgegevens" class="fields">
+  <form-fieldset
+    title="Adresgegevens"
+    class="fields"
+  >
     <form-select
       :id="`${id}-country`"
       :value="form.country"
@@ -51,7 +54,12 @@
       name="city"
       @input="$emit('input', 'city', $event)"
     />
-    <div class="button" @click="test">Haal gegevens op</div>
+    <div
+      class="button"
+      @click="test"
+    >
+      Haal gegevens op
+    </div>
   </form-fieldset>
 </template>
 

@@ -28,7 +28,7 @@ export default {
       this.toggleAnimation(true)
     }
   },
-  destroyed() {
+  unmounted() {
     this.imageObserver.unobserve(this.balloon)
   },
   methods: {
@@ -40,8 +40,15 @@ export default {
 </script>
 
 <template>
-  <div ref="balloon" class="balloon-x" :class="{ animate }">
-    <div class="balloon-y" :class="{ animate }">
+  <div
+    ref="balloon"
+    class="balloon-x"
+    :class="{ animate }"
+  >
+    <div
+      class="balloon-y"
+      :class="{ animate }"
+    >
       <app-image
         :width="159"
         :height="243"

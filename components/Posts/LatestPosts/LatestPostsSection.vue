@@ -17,7 +17,9 @@ defineProps<{
     <center-wrapper size="lg">
       <div :class="$style.wrapper">
         <div :class="$style.list">
-          <h1 id="latest-posts-title">{{ $t('posts') }}</h1>
+          <h1 id="latest-posts-title">
+            {{ $t('posts') }}
+          </h1>
           <latest-posts-list :posts="posts" />
           <app-button :to="localePath({ name: 'posts' })">
             {{ $t('morePosts') }}

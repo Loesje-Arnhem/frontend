@@ -14,7 +14,10 @@ defineProps<{
     class="box"
   >
     <h2 :class="$style.title">
-      <nuxt-link :to="page.uri" :class="$style.link">
+      <nuxt-link
+        :to="page.uri"
+        :class="$style.link"
+      >
         {{ page.title }}
       </nuxt-link>
     </h2>

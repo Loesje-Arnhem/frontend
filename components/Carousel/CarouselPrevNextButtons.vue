@@ -5,14 +5,20 @@
       :disabled="!previousSlideEnabled"
       @click="goToPreviousSlide"
     >
-      <app-icon icon="chevron-left" title="Vorige slide" />
+      <app-icon
+        icon="chevron-left"
+        title="Vorige slide"
+      />
     </button>
     <button
       class="btn-next"
       :disabled="!nextSlideEnabled"
       @click="goToNextSlide"
     >
-      <app-icon icon="chevron-right" title="Volgende slide" />
+      <app-icon
+        icon="chevron-right"
+        title="Volgende slide"
+      />
     </button>
   </div>
 </template>

@@ -1,6 +1,8 @@
 <template>
   <section aria-labelledby="featured-products">
-    <h1 id="featured-products">Gerelateerde producten</h1>
+    <h1 id="featured-products">
+      Gerelateerde producten
+    </h1>
     <product-list :products="products" />
   </section>
 </template>

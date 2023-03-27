@@ -8,7 +8,11 @@ defineProps<{
 
 <template>
   <ul :class="$style.list">
-    <li v-for="item in list" :key="item.node.id" :class="$style['list-item']">
+    <li
+      v-for="item in list"
+      :key="item.node.id"
+      :class="$style['list-item']"
+    >
       <poster-tag :tag="item" />
     </li>
   </ul>

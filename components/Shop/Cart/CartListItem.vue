@@ -2,7 +2,10 @@
   <tr>
     <td :class="$style['remove-wrapper']">
       <button @click="removeItemsFromCart">
-        <app-icon icon="close" title="Verwijderen" />
+        <app-icon
+          icon="close"
+          title="Verwijderen"
+        />
       </button>
     </td>
     <td :class="$style['image-wrapper']">
@@ -12,7 +15,7 @@
           :src="item.product.node.image.medium"
           alt=""
           crossorigin
-        />
+        >
       </div>
     </td>
     <td class="title">
@@ -32,7 +35,9 @@
         @change="updateItemQuantities"
       />
     </td>
-    <td :class="$style.price">{{ item.total }}</td>
+    <td :class="$style.price">
+      {{ item.total }}
+    </td>
   </tr>
 </template>
 

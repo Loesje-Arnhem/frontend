@@ -18,7 +18,9 @@ useMeta(data.value?.page)
 <template>
   <app-loader v-if="pending" />
   <div v-else-if="data">
-    <h1 class="sr-only">{{ data.page.title }}</h1>
+    <h1 class="sr-only">
+      {{ data.page.title }}
+    </h1>
     <posts-overview-section />
     <related-posters-section :posters="data.page.relatedPosters" />
     <related-products-section :related-products="data.page.relatedProducts" />

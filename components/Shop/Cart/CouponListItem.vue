@@ -2,7 +2,9 @@
   <li>
     {{ coupon.code }}
     -{{ coupon.discountAmount }}
-    <button @click="removeCoupon">remove</button>
+    <button @click="removeCoupon">
+      remove
+    </button>
   </li>
 </template>
 

@@ -1,6 +1,9 @@
 <template>
   <form-fieldset :title="$t('paymentGateways')">
-    <ul v-if="paymentGateways.length" :class="$style.list">
+    <ul
+      v-if="paymentGateways.length"
+      :class="$style.list"
+    >
       <li
         v-for="paymentGateway in paymentGateways"
         :key="paymentGateway.node.id"
@@ -14,13 +17,16 @@
           :class="$style.input"
           :checked="paymentGateway.node.id == value"
           @change="$emit('input', paymentGateway.node.id)"
-        />
+        >
         <div
           v-if="paymentGateway.node.icon"
           :class="$style.icon"
           v-html="paymentGateway.node.icon"
         />
-        <label :for="`payment-${paymentGateway.node.id}`" :class="$style.label">
+        <label
+          :for="`payment-${paymentGateway.node.id}`"
+          :class="$style.label"
+        >
           {{ paymentGateway.node.title }}
         </label>
       </li>

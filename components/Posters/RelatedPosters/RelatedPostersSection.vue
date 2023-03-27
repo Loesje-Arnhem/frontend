@@ -15,7 +15,10 @@ defineProps<{
     aria-labelledby="related-posters-title"
   >
     <center-wrapper>
-      <h1 id="related-posters-title" :class="$style.title">
+      <h1
+        id="related-posters-title"
+        :class="$style.title"
+      >
         {{ $t('posters') }}
       </h1>
     </center-wrapper>

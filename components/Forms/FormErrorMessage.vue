@@ -5,7 +5,10 @@ defineProps<{
 </script>
 
 <template>
-  <span aria-live="assertive" class="error">
+  <span
+    aria-live="assertive"
+    class="error"
+  >
     <template v-if="error">
       {{ $t(error) }}
     </template>

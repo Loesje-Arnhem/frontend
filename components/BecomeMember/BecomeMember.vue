@@ -8,9 +8,16 @@ const usps = [
 </script>
 
 <template>
-  <box-wrapper id="become-member" :title="$t('becomeMember')">
+  <box-wrapper
+    id="become-member"
+    :title="$t('becomeMember')"
+  >
     <ul :class="$style.list">
-      <li v-for="usp in usps" :key="usp" :class="$style['list-item']">
+      <li
+        v-for="usp in usps"
+        :key="usp"
+        :class="$style['list-item']"
+      >
         <app-image
           :class="$style['check']"
           :width="27"
@@ -21,7 +28,9 @@ const usps = [
         {{ usp }}
       </li>
     </ul>
-    <app-button to="/doe-mee/word-lid/">{{ $t('iWillJoin') }}</app-button>
+    <app-button to="/doe-mee/word-lid/">
+      {{ $t('iWillJoin') }}
+    </app-button>
     <!-- <app-image
       :class="$style.image"
       :width="167"

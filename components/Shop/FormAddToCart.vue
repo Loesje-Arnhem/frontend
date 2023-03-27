@@ -1,8 +1,14 @@
 <template>
   <div class="wrapper">
-    <product-prices :product="product" class="price" />
+    <product-prices
+      :product="product"
+      class="price"
+    />
 
-    <form class="form" @submit.prevent="addToCart">
+    <form
+      class="form"
+      @submit.prevent="addToCart"
+    >
       <form-fieldset title="In winkelmandje">
         <form-input-text
           id="quantity"
@@ -37,10 +43,17 @@
           </div>
         </div>
       </form-fieldset>
-      <app-button :disabled="loading" type="submit" class="btn-add-to-cart">
+      <app-button
+        :disabled="loading"
+        type="submit"
+        class="btn-add-to-cart"
+      >
         In winkelmandje
       </app-button>
-      <div v-if="errors.length" v-html="errors.join(', ')" />
+      <div
+        v-if="errors.length"
+        v-html="errors.join(', ')"
+      />
     </form>
   </div>
 </template>

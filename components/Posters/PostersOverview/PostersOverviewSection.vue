@@ -119,7 +119,10 @@ watch(where, () => {
 <template>
   <section aria-labelledby="posters-overview-title">
     <center-wrapper>
-      <h1 id="posters-overview-title" class="sa-hidden">
+      <h1
+        id="posters-overview-title"
+        class="sa-hidden"
+      >
         <template v-if="title">
           {{ title }}
         </template>
