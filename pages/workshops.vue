@@ -21,7 +21,7 @@ const { data, pending } = await usePageById(pageIds.workshops)
       :video="data.page.videoGroup.youtubeId"
     />
     <form-workshop />
-    <related-posters-section :posters="data.page.relatedPosters" />
+    <!-- <related-posters-section :posters="data.page.relatedPosters" /> -->
     <!-- <related-products-section :related-products="data.page.relatedProducts" /> -->
   </div>
 </template>
