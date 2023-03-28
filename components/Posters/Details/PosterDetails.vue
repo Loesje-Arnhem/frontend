@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { IPoster } from '~/interfaces/IPoster'
+import { IPoster } from '~/interfaces/IContent'
 
 defineProps<{
   poster: IPoster
 }>()
-const { baseUrl } = useAppConfig()
 </script>
 
 <template>
@@ -16,12 +15,12 @@ const { baseUrl } = useAppConfig()
       <div class="tile-wrapper">
         <div
           class="tile image-wrapper-details"
-          :data-slug="poster.slug"
+          :data-slug="poster.id"
         >
           <fade-animation>
             <featured-image
               v-if="poster.featuredImage"
-              :key="poster.featuredImage.node.id"
+              :key="poster.id"
               :lazy="false"
               :alt="poster.title"
               :image="poster.featuredImage"
@@ -37,10 +36,10 @@ const { baseUrl } = useAppConfig()
           Publicatiedatum
         </dt>
         <dd class="definition-item">
-          <app-date :date="poster.PosterMetaGroup.date" />
+          <app-date :date="poster.date" />
         </dd>
 
-        <template v-if="poster.subjects.edges.length">
+        <!-- <template v-if="poster.subjects.edges.length">
           <dt class="definition-title">
             Onderwerpen:
           </dt>
@@ -62,9 +61,9 @@ const { baseUrl } = useAppConfig()
               class="tags-list"
             />
           </dd>
-        </template>
+        </template> -->
       </dl>
-      <div class="buttons">
+      <!-- <div class="buttons">
         <poster-favorites :poster="poster" />
         <app-button
           v-if="poster.PosterMetaGroup.pdf"
@@ -81,13 +80,12 @@ const { baseUrl } = useAppConfig()
           />
           Download
         </app-button>
-      </div>
+      </div> -->
       <div class="social-media">
         <share-this
           v-if="poster.featuredImage"
           :title="poster.title"
-          :link="`${baseUrl}${poster.uri}`"
-          :image="poster.featuredImage.node.src"
+          :image="poster.featuredImage.src"
         />
       </div>
     </div>

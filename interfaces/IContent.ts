@@ -8,6 +8,11 @@ export interface IFeaturedImage {
   height: number
 }
 
+export interface IBase {
+  id: number
+  title: string
+}
+
 export interface IRelatedPosters {
   subjects: number[]
   search: string | null
@@ -15,10 +20,8 @@ export interface IRelatedPosters {
   title: string | null
 }
 
-export interface IBasePage {
-  id: number
+export interface IBasePage extends IBase {
   parentId: number
-  title: string
   content: string
   seo: ISEO
   relatedProducts: number[]
@@ -27,23 +30,21 @@ export interface IBasePage {
   relatedPosters: IRelatedPosters
 }
 
-export interface IRelatedPage {
-  id: number
-  title: string
-  excerpt: string
-  uri: string
-}
-
 export interface IPage extends IBasePage {}
 
-export interface IPost extends IBasePage {
-  id: number
+export interface IPost extends IBase {
   date: string
+  excerpt: string
+}
+
+export interface IPoster extends IBase {
+  date: string
+  featuredImage?: IFeaturedImage
+  pdf: string
 }
 
 export interface IPostListItem {
   title: string
-  date: string
   slug: string
   excerpt: string
   featuredImage?: IFeaturedImage

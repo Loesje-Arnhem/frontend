@@ -87,6 +87,18 @@ export interface IResponsePage {
   _embedded: IResponseImage
 }
 
+export interface IResponsePoster {
+  id: number
+  title: {
+    rendered: string
+  }
+  _embedded: IResponseImage
+  acf: {
+    pdf: string
+    date: string
+  }
+}
+
 export interface IResponseRelatedPage {
   id: number
   title: {
