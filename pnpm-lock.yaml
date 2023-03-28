@@ -16,7 +16,7 @@ specifiers:
   nuxt: ^3.3.2
   nuxt-svgo: ^0.0.3
   postcss-mixins: ^9.0.4
-  postcss-preset-env: ^8.1.0
+  postcss-preset-env: ^8.2.0
   throttle-debounce: ^5.0.0
 
 dependencies:
@@ -38,7 +38,7 @@ devDependencies:
   nuxt: 3.3.2_eslint@8.36.0
   nuxt-svgo: 0.0.3
   postcss-mixins: 9.0.4
-  postcss-preset-env: 8.1.0
+  postcss-preset-env: 8.2.0
 
 packages:
 
@@ -1334,6 +1334,19 @@ packages:
       '@csstools/css-tokenizer': 2.1.0
     dev: true
 
+  /@csstools/css-color-parser/1.1.0_eu5cdbcexitnvbdq5yia3g22um:
+    resolution: {integrity: sha512-jRpIhjThaH8jxuJ8Q1H+jai/dekP5952kzLHTuN+rPI48eF2esf/18TMb3N/HtEgmnybhfiwUO6Ph2OkHi3jpA==}
+    engines: {node: ^14 || ^16 || >=18}
+    peerDependencies:
+      '@csstools/css-parser-algorithms': ^2.1.0
+      '@csstools/css-tokenizer': ^2.1.0
+    dependencies:
+      '@csstools/color-helpers': 2.0.0
+      '@csstools/css-calc': 1.0.1_eu5cdbcexitnvbdq5yia3g22um
+      '@csstools/css-parser-algorithms': 2.1.0_5vzy4lghjvuzkedkkk4tqwjftm
+      '@csstools/css-tokenizer': 2.1.0
+    dev: true
+
   /@csstools/css-parser-algorithms/2.1.0_5vzy4lghjvuzkedkkk4tqwjftm:
     resolution: {integrity: sha512-KP8TicdXpUyeB1NMlbHud/1l39xvLGvqNFWMpG4qC6H1zs9SadGUHe5SO92n/659sDW9aGDvm9AMru0DZkN1Bw==}
     engines: {node: ^14 || ^16 || >=18}
@@ -1400,6 +1413,18 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss-value-parser: 4.2.0
+    dev: true
+
+  /@csstools/postcss-gradients-interpolation-method/3.0.1:
+    resolution: {integrity: sha512-sCfFSzL5HRb/GhrGuTEi8IRrxp2bUeKakyXvuXzuBBxL0L2X8kZAljQwkuRkd0W/wIWTsQG/E72REb5XMmRfrA==}
+    engines: {node: ^14 || ^16 || >=18}
+    peerDependencies:
+      postcss: ^8.4
+    dependencies:
+      '@csstools/css-color-parser': 1.1.0_eu5cdbcexitnvbdq5yia3g22um
+      '@csstools/css-parser-algorithms': 2.1.0_5vzy4lghjvuzkedkkk4tqwjftm
+      '@csstools/css-tokenizer': 2.1.0
+      '@csstools/postcss-progressive-custom-properties': 2.1.1
     dev: true
 
   /@csstools/postcss-hwb-function/2.2.0:
@@ -2084,11 +2109,11 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/kit-edge/3.3.3-27994724.dd6f9c01:
-    resolution: {integrity: sha512-AtsdYtCKalYlqBkNEjLM3QNFsMVVNG/Y3upBYNgKepcCP23qDIyXb63UKhl8SHEEbqJ4r+L4DNZXHSQKyIGssg==}
+  /@nuxt/kit-edge/3.3.3-27999905.6f614080:
+    resolution: {integrity: sha512-5hVJzYPiO61WDni75ATYQMcW8ws7tPEIBgvPfx5XORVIZOE1HMzi5S8BQYZFrg/Ahig3n+sAIxAJ4sVwZUWL+g==}
     engines: {node: ^14.18.0 || ^16.10.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
     dependencies:
-      '@nuxt/schema': /@nuxt/schema-edge/3.3.3-27994724.dd6f9c01
+      '@nuxt/schema': /@nuxt/schema-edge/3.3.3-27999905.6f614080
       c12: 1.2.0
       consola: 2.15.3
       defu: 6.1.2
@@ -2165,8 +2190,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/schema-edge/3.3.3-27994724.dd6f9c01:
-    resolution: {integrity: sha512-SkiMDEbPjck1tDh2oSKxfadcHVeMJpzNDxhoGCDc58crRdGxdcPg8BD/c1vwEr3M1bpCDulTJKOsWLT4s+d+2w==}
+  /@nuxt/schema-edge/3.3.3-27999905.6f614080:
+    resolution: {integrity: sha512-g2Xe0916I73Yu+2Aj15D5UhmP728jolHtAvSD63yD//Ffuy5rhrrpOUsObbojy2udRTHUzDdxO1DTb65/Wz1CQ==}
     engines: {node: ^14.18.0 || ^16.10.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
     dependencies:
       c12: 1.2.0
@@ -3849,8 +3874,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /cssdb/7.5.1:
-    resolution: {integrity: sha512-YdmjGmoS9TT5wgoKjySaBqgbPYtyxbbegeK8WNqWbZRa7SJcX9V0qGfDjbI8oPQwmh/zuA6ZSnQBCKLj9bZufw==}
+  /cssdb/7.5.2:
+    resolution: {integrity: sha512-Xpu7Bf5Vlw+G7ikA2Lg/lVCRTSY8D5M5qFUgGNFyS4pa8ufGLyCBxIX/3if3krHlF1SKSfVPI/YsAWLDVEbocw==}
     dev: true
 
   /cssesc/3.0.0:
@@ -6114,7 +6139,7 @@ packages:
   /nuxt-svgo/0.0.3:
     resolution: {integrity: sha512-hYdHLyLNQkhZ3rBwkClDuv1zWYXUYmT0zJTeWG41LrSPDYxbbfzfCHwc7O2qCXPt822m8mdolSvXlCWHFhnIkA==}
     dependencies:
-      '@nuxt/kit': /@nuxt/kit-edge/3.3.3-27994724.dd6f9c01
+      '@nuxt/kit': /@nuxt/kit-edge/3.3.3-27999905.6f614080
       svg-to-vue-component: 0.3.8
       vite-svg-loader: 3.6.0
       vue-loader: 17.0.1
@@ -6674,7 +6699,7 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/css-color-parser': 1.0.0_eu5cdbcexitnvbdq5yia3g22um
+      '@csstools/css-color-parser': 1.1.0_eu5cdbcexitnvbdq5yia3g22um
       '@csstools/css-parser-algorithms': 2.1.0_5vzy4lghjvuzkedkkk4tqwjftm
       '@csstools/css-tokenizer': 2.1.0
       '@csstools/postcss-progressive-custom-properties': 2.1.1
@@ -6919,8 +6944,8 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-preset-env/8.1.0:
-    resolution: {integrity: sha512-YIsPebk8tMZ9dOcKynyDue5zaod1oyXQ7WhbjmTufjNf9RyJlJx0A/4jYLVKxaHL8XgeygoUghg99+vwPX4SFA==}
+  /postcss-preset-env/8.2.0:
+    resolution: {integrity: sha512-m5wWWANGQlXFYpgIcuatUWXYFQDhSfxeet4RiwietcuDpnXWpkY9JbzegR73DP0V6MUbhiIIl0vVjfJyql+Esw==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.4
@@ -6929,6 +6954,7 @@ packages:
       '@csstools/postcss-color-function': 2.2.0
       '@csstools/postcss-color-mix-function': 1.0.0
       '@csstools/postcss-font-format-keywords': 2.0.2
+      '@csstools/postcss-gradients-interpolation-method': 3.0.1
       '@csstools/postcss-hwb-function': 2.2.0
       '@csstools/postcss-ic-unit': 2.0.2
       '@csstools/postcss-is-pseudo-class': 3.1.1
@@ -6950,7 +6976,7 @@ packages:
       css-blank-pseudo: 5.0.2
       css-has-pseudo: 5.0.2
       css-prefers-color-scheme: 8.0.2
-      cssdb: 7.5.1
+      cssdb: 7.5.2
       postcss-attribute-case-insensitive: 6.0.2
       postcss-clamp: 4.1.0
       postcss-color-functional-notation: 5.0.2
