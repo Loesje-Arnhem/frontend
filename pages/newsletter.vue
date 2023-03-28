@@ -12,20 +12,20 @@ const { data, pending } = await usePageById(pageIds.newsletter)
 <template>
   <app-loader v-if="pending" />
   <div
-    v-else-if="data?.page"
+    v-else-if="data"
     class="page"
   >
     <app-content
-      :title="data.page.title"
-      :content="data.page.content"
-      :video="data.page.videoGroup.youtubeId"
+      :title="data.title"
+      :content="data.content"
+      :video="data.youtubeId"
     />
     <center-wrapper size="md">
       <form-newsletter class="newsletter" />
     </center-wrapper>
-    <related-posters-section :posters="data.page.relatedPosters" />
+    <related-posters-section :posters="data.relatedPosters" />
     <!-- <related-products-section :related-products="data.page.relatedProducts" /> -->
-    <!-- <related-pages-section :pages="data.page.relatedPages" /> -->
+    <related-pages-section :parent-id="data.parentId" />
   </div>
 </template>
 

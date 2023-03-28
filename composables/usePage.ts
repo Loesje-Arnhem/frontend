@@ -2,23 +2,13 @@ import { GetPageById } from '~/graphql/Pages/Pages'
 import { IPage } from '~/interfaces/IPage'
 
 export const usePageById = async (id: number) => {
-  const {
-    result: data,
-    loading: pending,
-    error,
-  } = await useQuery<{
-    page: IPage | null
-  }>(
-    GetPageById,
-    {
+  const { data, pending, error } = await useFetch('/api/page', {
+    key: `page-${id}`,
+    params: {
       id,
     },
-    {
-      fetchPolicy: 'cache-first',
-    },
-  )
-
-  useMeta(data.value?.page)
+  })
+  // useMeta(data.value?.page)
 
   return {
     error,
