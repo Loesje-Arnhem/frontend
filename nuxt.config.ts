@@ -8,6 +8,7 @@ import {
   title,
   twitter,
 } from './data/siteDetails'
+import routes from './data/routes'
 
 export default defineNuxtConfig({
   apollo: {
@@ -34,9 +35,16 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify-builder',
-    prerender: {
-      routes: ['/', '/doe-mee'],
+    preset: 'netlify',
+  },
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      if (nitroConfig.dev) {
+        return
+      }
+      const slugs = await routes()
+      // @ts-ignore
+      nitroConfig.prerender.routes.push(...slugs)
     },
   },
   telemetry: false,
