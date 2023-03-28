@@ -31,7 +31,7 @@ const props = withDefaults(
   {
     width: 24,
     height: 24,
-    title: null
+    title: null,
   },
 )
 
@@ -87,7 +87,7 @@ const iconComponent = computed(() => {
   <component
     :is="iconComponent"
     :width="width"
-    :height="heigth"
+    :height="height"
     v-bind="$attrs"
   />
 </template>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IRelatedPage } from '~/interfaces/IPage'
+import { IRelatedPage } from '~~/interfaces/IContent'
 
 defineProps<{
   page: IRelatedPage
@@ -14,10 +14,7 @@ defineProps<{
     class="box"
   >
     <h2 :class="$style.title">
-      <nuxt-link
-        :to="page.uri"
-        :class="$style.link"
-      >
+      <nuxt-link :to="page.uri" :class="$style.link">
         {{ page.title }}
       </nuxt-link>
     </h2>

@@ -16,6 +16,8 @@ export interface IRelatedPosters {
 }
 
 export interface IBasePage {
+  id: number
+  parentId: number
   title: string
   content: string
   seo: ISEO
@@ -23,6 +25,13 @@ export interface IBasePage {
   youtubeId: string | null
   featuredImage?: IFeaturedImage
   relatedPosters: IRelatedPosters
+}
+
+export interface IRelatedPage {
+  id: number
+  title: string
+  excerpt: string
+  uri: string
 }
 
 export interface IPage extends IBasePage {}

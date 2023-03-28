@@ -12,8 +12,6 @@ const uri = computed(() => {
   return slugs[slugs.length - 1]
 })
 
-const { getPage } = useServer()
-
 const { data, pending, error } = await useFetch('/api/page', {
   key: `page-${uri.value}`,
   params: {
@@ -60,7 +58,7 @@ const { data, pending, error } = await useFetch('/api/page', {
       :video="data.youtubeId"
     />
     <related-posters-section :posters="data.relatedPosters" />
-    <!-- <related-products-section :related-products="data.relatedProducts" />
-    <related-pages-section :pages="data.relatedPages" /> -->
+    <!-- <related-products-section :related-products="data.relatedProducts" />-->
+    <related-pages-section :parent-id="data.parentId" />
   </div>
 </template>

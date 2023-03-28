@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     fields: ['title', 'slug'],
     image: true,
     pageSize: 7,
-    search: query.search,
+    search: query.search || null,
   })
 
   const response = await $fetch<IResponsePosters[]>(url, {})

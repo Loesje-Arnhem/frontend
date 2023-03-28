@@ -1,18 +1,16 @@
-
 <script lang="ts" setup>
-withDefaults( defineProps<{
-  close?: boolean
-}>(), {
-  close: false
-})
+withDefaults(
+  defineProps<{
+    close?: boolean
+  }>(),
+  {
+    close: false,
+  },
+)
 
 const { mobileMenuIsOpen } = useLayout()
-return {
-  mobileMenuIsOpen,
-}
 
 defineEmits(['toggle-menu'])
-
 </script>
 
 <template>
@@ -37,7 +35,6 @@ defineEmits(['toggle-menu'])
     </span>
   </button>
 </template>
-
 
 <style lang="postcss" module>
 @import '~/assets/css/media-queries/media-queries.css';

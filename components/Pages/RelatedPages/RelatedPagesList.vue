@@ -1,21 +1,18 @@
 <script lang="ts" setup>
-import { IRelatedPageNode } from '~/interfaces/IPage'
+import { IRelatedPage } from '~~/interfaces/IContent'
 
 defineProps<{
-  pages: IRelatedPageNode[]
+  pages: IRelatedPage[]
 }>()
 </script>
 
 <template>
   <center-wrapper>
-    <ul
-      v-if="pages.length"
-      :class="$style.list"
-    >
+    <ul :class="$style.list">
       <related-pages-list-item
         v-for="page in pages"
-        :key="page.node.id"
-        :page="page.node"
+        :key="page.id"
+        :page="page"
         :class="$style['list-item']"
       />
     </ul>

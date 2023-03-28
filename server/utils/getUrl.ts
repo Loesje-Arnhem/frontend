@@ -8,6 +8,7 @@ export default ({
   exclude,
   pageSize,
   search,
+  parent,
 }: {
   fields: string[]
   type: string
@@ -18,6 +19,7 @@ export default ({
   exclude?: number
   pageSize?: number
   search?: string
+  parent?: Number
 }) => {
   const { apiUrl } = useAppConfig()
 
@@ -31,12 +33,16 @@ export default ({
     fields.push('_links')
     fields.push('_embedded')
   }
-  url.searchParams.set('_fields', fields.join(','))
+  const allFields = ['id', ...fields]
+  url.searchParams.set('_fields', allFields.join(','))
   if (slug) {
     url.searchParams.set('slug', slug)
   }
   if (search) {
     url.searchParams.set('search', search)
+  }
+  if (parent) {
+    url.searchParams.set('parent', parent.toString())
   }
   if (exclude) {
     url.searchParams.set('exclude', exclude.toString())

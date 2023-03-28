@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     id,
     image: true,
     type: 'pages',
-    fields: ['title', 'content', 'yoast_head_json', 'acf'],
+    fields: ['title', 'content', 'yoast_head_json', 'parent', 'acf'],
   })
   let response: IResponsePage | null = null
   if (slug) {
@@ -40,6 +40,8 @@ export default defineEventHandler(async (event) => {
     }
     const featuredImage = getFeaturedImage(response._embedded)
     const page: IPage = {
+      id: response.id,
+      parentId: response.parent || response.id,
       title: response.title.rendered,
       content: response.content.rendered,
       seo: response.yoast_head_json,

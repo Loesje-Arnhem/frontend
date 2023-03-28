@@ -58,12 +58,14 @@ export interface IResponsePosters {
 }
 
 export interface IResponsePage {
+  id: number
   title: {
     rendered: string
   }
   content: {
     rendered: string
   }
+  parent: number
   yoast_head_json: ISEO
   youtube_id: string
   acf: {
@@ -83,4 +85,15 @@ export interface IResponsePage {
         }[]
   }
   _embedded: IResponseImage
+}
+
+export interface IResponseRelatedPage {
+  id: number
+  title: {
+    rendered: string
+  }
+  excerpt: {
+    rendered: string
+  }
+  link: string
 }
