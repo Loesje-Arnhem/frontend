@@ -1,6 +1,9 @@
 <template>
   <form class="form">
-    <form-fieldset title="Factuurgegevens" class="fields">
+    <form-fieldset
+      title="Factuurgegevens"
+      class="fields"
+    >
       <form-input-text
         :id="`${id}-firstName`"
         :value="firstName"
@@ -33,7 +36,10 @@
       />
     </form-fieldset>
     <user-address-fields :user="user" />
-    <form-fieldset v-if="!isShipping" title="Factuurgegevens">
+    <form-fieldset
+      v-if="!isShipping"
+      title="Factuurgegevens"
+    >
       <form-input-text
         :id="`${id}-email`"
         :value="user.email"
@@ -69,6 +75,7 @@ export default defineComponent({
       default: false,
     },
   },
+  emits: ['input'],
   setup(props) {
     const id = computed(() => {
       return props.isShipping ? `shipping` : 'user'

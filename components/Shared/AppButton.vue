@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    to?: string
+    to?: string | null
     type?: 'button' | 'submit'
     isPrimary?: boolean
     loading?: boolean
-    href?: string
+    href?: string | null
     active?: boolean
   }>(),
   {
@@ -13,6 +13,8 @@ const props = withDefaults(
     isPrimary: true,
     loading: false,
     active: false,
+    href: null,
+    to: null
   },
 )
 
@@ -50,7 +52,12 @@ const generatedType = computed(() => {
 </script>
 
 <template>
-  <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
+  <nuxt-link
+    v-if="to"
+    :to="to"
+    :class="cssClasses"
+    :type="generatedType"
+  >
     <span class="title"><slot /></span>
   </nuxt-link>
 
@@ -62,7 +69,10 @@ const generatedType = computed(() => {
     :disabled="loading"
     :href="href"
   >
-    <app-loader v-if="loading" class="loader" />
+    <app-loader
+      v-if="loading"
+      class="loader"
+    />
     <span class="title"><slot /></span>
   </component>
 </template>

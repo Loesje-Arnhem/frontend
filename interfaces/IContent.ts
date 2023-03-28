@@ -8,10 +8,6 @@ export interface IFeaturedImage {
   height: number
 }
 
-interface IFeaturedImageNode {
-  node: IFeaturedImage
-}
-
 export interface IRelatedPosters {
   subjects: number[]
   search: string | null

@@ -26,7 +26,10 @@ const { data } = useAsyncQuery<{
   <div v-if="data">
     <center-wrapper>
       <posters-auto-complete />
-      <poster-filters :sources="data.sources" :subjects="data.subjects" />
+      <poster-filters
+        :sources="data.sources"
+        :subjects="data.subjects"
+      />
       <poster-tags-list :list="selectedTags" />
     </center-wrapper>
     <!-- <posters-overview-section

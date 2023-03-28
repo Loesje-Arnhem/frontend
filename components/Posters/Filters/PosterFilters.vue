@@ -15,7 +15,6 @@ const activeOverlays = reactive({
 const dateBefore = useDateBefore()
 const dateAfter = useDateAfter()
 
-const search = useState('search')
 const toggleOverlay = (type: string) => {
   if (type === 'subjects') {
     activeOverlays.subjects = !activeOverlays.subjects

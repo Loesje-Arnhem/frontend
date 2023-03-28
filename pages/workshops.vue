@@ -11,7 +11,10 @@ const { data, pending } = await usePageById(pageIds.workshops)
 
 <template>
   <app-loader v-if="pending" />
-  <div v-else-if="data?.page" class="page">
+  <div
+    v-else-if="data?.page"
+    class="page"
+  >
     <app-content
       :title="data.page.title"
       :content="data.page.content"

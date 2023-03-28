@@ -3,7 +3,10 @@ const { submit, formData, loading, error, submitted, v$ } = useNewsletter()
 </script>
 
 <template>
-  <div v-if="submitted" class="success">
+  <div
+    v-if="submitted"
+    class="success"
+  >
     <p>
       Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe ik
       ze maak! Ik heb je aanvraag in goede orde ontvangen en ik ga er eens goed

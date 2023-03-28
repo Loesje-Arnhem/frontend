@@ -1,5 +1,8 @@
 <template>
-  <form-fieldset title="Adresgegevens" class="fields">
+  <form-fieldset
+    title="Adresgegevens"
+    class="fields"
+  >
     <form-select
       :id="`${id}-country`"
       :value="form.country"
@@ -51,7 +54,12 @@
       name="city"
       @input="$emit('input', 'city', $event)"
     />
-    <div class="button" @click="test">Haal gegevens op</div>
+    <div
+      class="button"
+      @click="test"
+    >
+      Haal gegevens op
+    </div>
   </form-fieldset>
 </template>
 
@@ -61,12 +69,14 @@ import usePostcode from '~/composables/usePostcode'
 import countries from '~/data/countries'
 
 export default defineComponent({
+
   props: {
     isShipping: {
       type: Boolean,
       default: false,
     },
   },
+    emits: ['input', 'change'],
   setup(props) {
     const { loading, checkPostcode, form } = usePostcode()
     const id = computed(() => {

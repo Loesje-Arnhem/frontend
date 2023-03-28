@@ -5,10 +5,15 @@
       <thead>
         <tr>
           <th>Product</th>
-          <th class="price">Subtotaal</th>
+          <th class="price">
+            Subtotaal
+          </th>
         </tr>
       </thead>
-      <tr v-for="item in cart.contents.nodes" :key="item.key">
+      <tr
+        v-for="item in cart.contents.nodes"
+        :key="item.key"
+      >
         <td>
           <div class="title">
             <span class="quantity">{{ item.quantity }}x</span>
@@ -22,22 +27,41 @@
       </tr>
       <tfoot>
         <tr>
-          <td class="label">Subtotaal</td>
-          <td class="price">{{ cart.subtotal }}</td>
+          <td class="label">
+            Subtotaal
+          </td>
+          <td class="price">
+            {{ cart.subtotal }}
+          </td>
         </tr>
         <template v-if="cart.appliedCoupons">
-          <tr v-for="coupon in cart.appliedCoupons" :key="coupon.code">
-            <td class="label">Kortingsbon: {{ coupon.code }}</td>
-            <td class="price">- {{ coupon.discountAmount }}</td>
+          <tr
+            v-for="coupon in cart.appliedCoupons"
+            :key="coupon.code"
+          >
+            <td class="label">
+              Kortingsbon: {{ coupon.code }}
+            </td>
+            <td class="price">
+              - {{ coupon.discountAmount }}
+            </td>
           </tr>
         </template>
         <tr>
-          <td class="label">Verzending</td>
-          <td class="price">{{ cart.shippingTotal }}</td>
+          <td class="label">
+            Verzending
+          </td>
+          <td class="price">
+            {{ cart.shippingTotal }}
+          </td>
         </tr>
         <tr>
-          <td class="total">Totaal</td>
-          <td class="price total">{{ cart.total }}</td>
+          <td class="total">
+            Totaal
+          </td>
+          <td class="price total">
+            {{ cart.total }}
+          </td>
         </tr>
       </tfoot>
     </table>

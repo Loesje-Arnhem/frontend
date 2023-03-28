@@ -8,9 +8,8 @@ import {
   simpleProduct,
   variableProduct,
 } from './../Products/Fragments/ProductListItem'
-import { TOTAL_PAGES } from './../../data/generate'
 import postListItem from './../Posts/Fragments/PostListItem'
-import { PAGE_SIZE_POSTERS, PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
+import {  PAGE_SIZE_POSTS_HOME } from './../../data/pageSizes'
 import seo from './../Fragments/Seo'
 import page from './Fragments/Page'
 

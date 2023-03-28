@@ -1,15 +1,19 @@
 <script lang="ts" setup>
+import { ErrorObject } from '@vuelidate/core';
+
 withDefaults(
   defineProps<{
     title: string
-    description?: string
+    description?: string | null
     id: string
     type?: 'text' | 'date' | 'email' | 'time' | 'number' | 'password'
     modelValue: string | number
-    errors?: []
+    errors?: ErrorObject[]
   }>(),
   {
     type: 'text',
+    description: null,
+    errors: () => []
   },
 )
 
@@ -35,6 +39,6 @@ defineEmits(['keyup-down', 'keyup-up', 'update:modelValue', 'change', 'blur'])
       @input="$emit('update:modelValue', $event.target.value)"
       @change="$emit('change', $event.target.value)"
       @blur="$emit('blur')"
-    />
+    >
   </form-field>
 </template>

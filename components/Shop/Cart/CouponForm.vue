@@ -1,5 +1,8 @@
 <template>
-  <form class="form" @submit.prevent="applyCoupon">
+  <form
+    class="form"
+    @submit.prevent="applyCoupon"
+  >
     <form-fieldset title="Coupon">
       <form-input-text
         id="code"
@@ -8,10 +11,16 @@
         name="code"
       />
     </form-fieldset>
-    <app-button :disabled="loading" type="submit">
+    <app-button
+      :disabled="loading"
+      type="submit"
+    >
       Waardebon toepassen
     </app-button>
-    <div v-if="errors.length" v-html="errors.join(', ')" />
+    <div
+      v-if="errors.length"
+      v-html="errors.join(', ')"
+    />
   </form>
 </template>
 

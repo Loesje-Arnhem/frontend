@@ -33,7 +33,7 @@ const loading = computed(() => {
     preset="base"
     class="image"
     format="avif"
-  />
+  >
 </template>
 
 <style lang="postcss" scoped>

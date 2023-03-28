@@ -18,7 +18,10 @@
         />
       </carousel-card>
     </app-carousel>
-    <div v-else-if="images[0]" class="tile">
+    <div
+      v-else-if="images[0]"
+      class="tile"
+    >
       <featured-image
         :image="images[0]"
         class="image"

@@ -25,12 +25,13 @@ const props = withDefaults(
   defineProps<{
     icon: string
     width?: number
-    heigth?: number
-    title?: string
+    height?: number
+    title?: string | null
   }>(),
   {
     width: 24,
     height: 24,
+    title: null
   },
 )
 

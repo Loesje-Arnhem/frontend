@@ -4,7 +4,9 @@
       <span :class="$style['price-old']">{{ product.regularPrice }}</span>
       {{ product.salePrice }}
     </template>
-    <template v-else>{{ product.price }}</template>
+    <template v-else>
+      {{ product.price }}
+    </template>
   </div>
 </template>
 

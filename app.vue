@@ -3,11 +3,15 @@
   <window-controls-overlay />
   <the-header class="page-header sa-hidden" />
 
-  <main id="content" class="main" tabindex="-1">
-    <NuxtLayout>
-      <NuxtLoadingIndicator color="var(--color-black)" />
-      <NuxtPage />
-    </NuxtLayout>
+  <main
+    id="content"
+    class="main"
+    tabindex="-1"
+  >
+    <nuxt-layout>
+      <nuxt-loading-indicator color="var(--color-black)" />
+      <nuxt-page />
+    </nuxt-layout>
   </main>
   <the-footer class="page-footer sa-hidden" />
 </template>

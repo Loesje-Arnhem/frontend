@@ -20,12 +20,25 @@ const hasMedia = computed(() => {
       <article :class="{ 'has-media': hasMedia }">
         <div class="content">
           <h1>{{ title }}</h1>
-          <post-date v-if="date" :date="date" class="date" />
-          <div class="text" v-html="content" />
+          <post-date
+            v-if="date"
+            :date="date"
+            class="date"
+          />
+          <div
+            class="text"
+            v-html="content"
+          />
         </div>
         <div class="media">
-          <app-video v-if="video" :video="video" />
-          <photo-frame v-else-if="image" :image="image" />
+          <app-video
+            v-if="video"
+            :video="video"
+          />
+          <photo-frame
+            v-else-if="image"
+            :image="image"
+          />
         </div>
       </article>
     </div>

@@ -32,9 +32,12 @@ const share = () => {
 
 <template>
   <div>
-    <app-button v-if="supportsShareAPI" @click="share"
-      >Deze poster delen</app-button
+    <app-button
+      v-if="supportsShareAPI"
+      @click="share"
     >
+      Deze poster delen
+    </app-button>
     <social-media-links
       v-else
       :title="$t('shareThePosterOn')"

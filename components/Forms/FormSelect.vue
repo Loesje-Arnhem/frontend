@@ -1,5 +1,10 @@
 <template>
-  <form-field :id="id" :errors="errors" :title="title" class="field">
+  <form-field
+    :id="id"
+    :errors="errors"
+    :title="title"
+    class="field"
+  >
     <div class="form-select">
       <select
         :id="id"
@@ -17,7 +22,12 @@
           {{ option.title }}
         </option>
       </select>
-      <app-icon icon="chevron-down" class="icon" :width="24" :height="24" />
+      <app-icon
+        icon="chevron-down"
+        class="icon"
+        :width="24"
+        :height="24"
+      />
     </div>
   </form-field>
 </template>
@@ -48,6 +58,7 @@ export default defineComponent({
       default: () => [],
     },
   },
+  emits: ['change', 'input'],
 })
 </script>
 

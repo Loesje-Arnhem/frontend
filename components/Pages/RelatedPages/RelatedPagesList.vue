@@ -8,7 +8,10 @@ defineProps<{
 
 <template>
   <center-wrapper>
-    <ul v-if="pages.length" :class="$style.list">
+    <ul
+      v-if="pages.length"
+      :class="$style.list"
+    >
       <related-pages-list-item
         v-for="page in pages"
         :key="page.node.id"

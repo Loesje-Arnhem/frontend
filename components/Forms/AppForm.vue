@@ -1,20 +1,32 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    buttonTitle?: string
+    buttonTitle?: string | null
     loading: boolean
     error: string
   }>(),
   {
+    buttonTitle: null,
     loading: false,
   },
 )
+
+defineEmits(['submit'])
 </script>
 
 <template>
-  <form action="" method="post" novalidate @submit.prevent="$emit('submit')">
+  <form
+    action=""
+    method="post"
+    novalidate
+    @submit.prevent="$emit('submit')"
+  >
     <slot />
-    <app-button type="submit" :loading="loading" class="btn">
+    <app-button
+      type="submit"
+      :loading="loading"
+      class="btn"
+    >
       <template v-if="buttonTitle">
         {{ buttonTitle }}
       </template>

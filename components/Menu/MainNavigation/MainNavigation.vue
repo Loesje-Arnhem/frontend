@@ -23,7 +23,7 @@ const getMainLink = () => {
   if (!menu.value) {
     return null
   }
-  let activeLink = menu.value.querySelector(
+  const activeLink = menu.value.querySelector(
     '.router-link-exact-active',
   ) as HTMLAnchorElement | null
   if (!activeLink) {
@@ -66,12 +66,22 @@ const setArrowPosition = () => {
 </script>
 
 <template>
-  <nav aria-labelledby="menu" class="nav">
-    <h2 id="menu" class="sr-only" tabindex="-1">
+  <nav
+    aria-labelledby="menu"
+    class="nav"
+  >
+    <h2
+      id="menu"
+      class="sr-only"
+      tabindex="-1"
+    >
       {{ $t('mainMenu') }}
     </h2>
     <div ref="menu">
-      <ul v-if="pages" class="menu">
+      <ul
+        v-if="pages"
+        class="menu"
+      >
         <main-navigation-item
           class="menu-item-page"
           :title="$t('home')"
@@ -109,9 +119,9 @@ const setArrowPosition = () => {
         />
       </ul>
       <div
+        v-if="arrowPosition"
         :style="{ transform: arrowPosition, width: arrowWidth }"
         class="arrow"
-        v-if="arrowPosition"
       />
     </div>
   </nav>

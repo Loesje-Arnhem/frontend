@@ -23,7 +23,10 @@ const dateTime = computed(() => {
 </script>
 
 <template>
-  <time v-if="formattedDate" :datetime="dateTime">
+  <time
+    v-if="formattedDate"
+    :datetime="dateTime"
+  >
     {{ $d(new Date(formattedDate), 'short') }}
   </time>
 </template>

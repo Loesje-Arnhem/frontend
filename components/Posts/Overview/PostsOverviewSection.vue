@@ -47,8 +47,12 @@ const loadMore = () => {
   >
     <center-wrapper size="md">
       <h1 id="posts-overview-title">
-        <template v-if="notIn">{{ $t('otherNews') }}</template>
-        <template v-else>{{ $t('posts') }}</template>
+        <template v-if="notIn">
+          {{ $t('otherNews') }}
+        </template>
+        <template v-else>
+          {{ $t('posts') }}
+        </template>
       </h1>
       <app-loader v-if="!result && loading" />
       <template v-else-if="result">

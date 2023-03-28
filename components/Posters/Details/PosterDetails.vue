@@ -10,9 +10,14 @@ const { baseUrl } = useAppConfig()
 <template>
   <div class="poster-details">
     <article class="content">
-      <h1 class="sr-only">{{ poster.title }}</h1>
+      <h1 class="sr-only">
+        {{ poster.title }}
+      </h1>
       <div class="tile-wrapper">
-        <div class="tile image-wrapper-details" :data-slug="poster.slug">
+        <div
+          class="tile image-wrapper-details"
+          :data-slug="poster.slug"
+        >
           <fade-animation>
             <featured-image
               v-if="poster.featuredImage"
@@ -28,22 +33,34 @@ const { baseUrl } = useAppConfig()
     </article>
     <div class="meta-data">
       <dl class="definition-list">
-        <dt class="definition-title">Publicatiedatum</dt>
+        <dt class="definition-title">
+          Publicatiedatum
+        </dt>
         <dd class="definition-item">
           <app-date :date="poster.PosterMetaGroup.date" />
         </dd>
 
         <template v-if="poster.subjects.edges.length">
-          <dt class="definition-title">Onderwerpen:</dt>
+          <dt class="definition-title">
+            Onderwerpen:
+          </dt>
           <dd class="definition-item">
-            <poster-tags-list :list="poster.subjects.edges" class="tags-list" />
+            <poster-tags-list
+              :list="poster.subjects.edges"
+              class="tags-list"
+            />
           </dd>
         </template>
 
         <template v-if="poster.sources.edges.length">
-          <dt class="definition-title">Bronnen:</dt>
+          <dt class="definition-title">
+            Bronnen:
+          </dt>
           <dd class="definition-item">
-            <poster-tags-list :list="poster.sources.edges" class="tags-list" />
+            <poster-tags-list
+              :list="poster.sources.edges"
+              class="tags-list"
+            />
           </dd>
         </template>
       </dl>
@@ -56,7 +73,12 @@ const { baseUrl } = useAppConfig()
           target="_blank"
           :download="poster.slug"
         >
-          <app-icon icon="pdf" :width="32" :height="32" class="icon" />
+          <app-icon
+            icon="pdf"
+            :width="32"
+            :height="32"
+            class="icon"
+          />
           Download
         </app-button>
       </div>

@@ -5,12 +5,15 @@
         <product-gallery :images="gallery" />
         <div class="content">
           <h1>{{ product.title }}</h1>
-          <div v-html="product.shortDescription"></div>
+          <div v-html="product.shortDescription" />
           <form-add-to-cart :product="product" />
         </div>
       </div>
       <h2>Beschrijving</h2>
-      <div class="description" v-html="product.description"></div>
+      <div
+        class="description"
+        v-html="product.description"
+      />
     </div>
     <product-list-section :products="product.related" />
   </div>
