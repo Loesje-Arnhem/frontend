@@ -20,9 +20,10 @@ if (props.posters.posterIds.length) {
   key = `${key}-${props.posters.posterIds.join(',')}`
 }
 
-const { data, pending } = await useFetch(Endpoints.RelatedPosters, {
+const { data, pending } = await useFetch(Endpoints.Posters, {
   key,
   params: {
+    pageSize: 7,
     search: props.posters.search,
     subjects: props.posters.subjects,
     posterId: props.posters.posterIds,

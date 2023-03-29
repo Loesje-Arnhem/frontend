@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { IRelatedPosterNode } from '~~/interfaces/IPoster'
+import { IPosterListItem } from '~~/interfaces/IContent'
 
 defineProps<{
-  posters: IRelatedPosterNode[]
+  posters: IPosterListItem[]
 }>()
 </script>
 
@@ -12,10 +12,10 @@ defineProps<{
       <list-animation class="list">
         <li
           v-for="poster in posters"
-          :key="poster.node.id"
+          :key="poster.id"
           class="list-item"
         >
-          <poster-tile :poster="poster.node" />
+          <poster-tile :poster="poster" />
         </li>
       </list-animation>
     </center-wrapper>

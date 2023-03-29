@@ -16,6 +16,13 @@ const { data, pending } = await useFetch(Endpoints.Poster, {
   },
 })
 
+const subjectIds = computed(() => {
+  if (!data.value) {
+    return []
+  }
+  return data.value.subjects.map(subject => subject.id)
+})
+
 // useMeta(data.value?.poster)
 </script>
 
@@ -26,10 +33,10 @@ const { data, pending } = await useFetch(Endpoints.Poster, {
       <poster-details :poster="data" />
     </center-wrapper>
     <!-- <related-products-section :related-products="data.poster.relatedProducts" /> -->
-    <!-- <posters-overview-section
-      :not-in="data.poster.databaseId"
-      :subject-ids="subjects"
+     <posters-overview-section
+      :exclude="data.id"
+      :subject-ids="subjectIds"
       :title="$t('relatedPosters')"
-    /> -->
+    />
   </div>
 </template>

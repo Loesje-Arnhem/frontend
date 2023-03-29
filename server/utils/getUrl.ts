@@ -5,6 +5,7 @@ export default ({
   slug,
   page,
   image,
+  subjectIds,
   exclude,
   pageSize,
   search,
@@ -17,6 +18,7 @@ export default ({
   page?: number
   image?: Boolean
   exclude?: number
+  subjectIds?: string | null
   pageSize?: number
   search?: string
   parent?: Number
@@ -37,6 +39,9 @@ export default ({
   url.searchParams.set('_fields', allFields.join(','))
   if (slug) {
     url.searchParams.set('slug', slug)
+  }
+  if (subjectIds) {
+    url.searchParams.set('subjects', subjectIds)
   }
   if (search) {
     url.searchParams.set('search', search)

@@ -1,6 +1,6 @@
 export enum Endpoints {
   RelatedPages = '/api/pages/related-pages',
-  RelatedPosters = '/api/posters/related-posters',
+  Posters = '/api/posters/posters',
   Posts = '/api/posts/posts',
   Page = '/api/pages/page',
   Poster = '/api/posters/poster',

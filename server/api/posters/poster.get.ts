@@ -19,8 +19,8 @@ export default defineEventHandler(async (event) => {
     let sources: ITag[] = []
     if (item._embedded['wp:term']) {
       const tags = item._embedded['wp:term'].flat()
-      subjects = getTagsByType(tags, Taxonomy.Source)
-      sources = getTagsByType(tags, Taxonomy.Subject)
+      subjects = getTagsByType(tags, Taxonomy.Subject)
+      sources = getTagsByType(tags, Taxonomy.Source)
     }
 
     const pattern = /(\d{4})(\d{2})(\d{2})/

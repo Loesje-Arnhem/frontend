@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { IRelatedPosters } from '~/interfaces/IPoster'
-import { PAGE_SIZE_POSTERS } from '~~/data/pageSizes'
-import { GetPosters } from '~~/graphql/Posters/Poster'
+import { Endpoints } from '~~/enums/endpoints';
 
 interface ITaxQuery {
   terms: string[]
@@ -18,7 +16,7 @@ const props = withDefaults(
     subjectIds?: number[]
     sourceIds?: number[]
     posterIds?: number[]
-    notIn?: number
+    exclude?: number
   }>(),
   {
     subjectIds: () => [],
@@ -71,7 +69,7 @@ const where = computed(() => {
     }
   }
   return {
-    notIn: props.notIn,
+    exclude: props.exclude,
     search: props.search,
     taxQuery: taxQuery.taxArray.length ? taxQuery : null,
     posterDateBefore,
@@ -79,41 +77,43 @@ const where = computed(() => {
   }
 })
 
-const { result, fetchMore, loading, refetch } = useQuery<{
-  posters: IRelatedPosters
-}>(GetPosters, {
-  first: PAGE_SIZE_POSTERS,
-  where,
+const search = toRef(props, 'search')
+
+const { data, pending } = useFetch(Endpoints.Posters, {
+  query: {
+    search: search,
+    subjectIds: props.subjectIds.join(','),
+    exclude: props.exclude
+  },
+  watch: [search],
+  server: false
 })
 
-const loadMore = () => {
-  fetchMore({
-    variables: {
-      after: result.value?.posters.pageInfo.endCursor,
-    },
-    updateQuery: (previousResult, { fetchMoreResult }) => {
-      // No new feed posts
-      if (!fetchMoreResult) return previousResult
+// const loadMore = () => {
+//   fetchMore({
+//     variables: {
+//       after: result.value?.posters.pageInfo.endCursor,
+//     },
+//     updateQuery: (previousResult, { fetchMoreResult }) => {
+//       // No new feed posts
+//       if (!fetchMoreResult) return previousResult
 
-      // Concat previous feed with new feed posts
-      return {
-        ...fetchMoreResult,
-        posters: {
-          ...fetchMoreResult.posters,
-          pageInfo: fetchMoreResult.posters.pageInfo,
-          edges: [
-            ...previousResult.posters.edges,
-            ...fetchMoreResult.posters.edges,
-          ],
-        },
-      }
-    },
-  })
-}
+//       // Concat previous feed with new feed posts
+//       return {
+//         ...fetchMoreResult,
+//         posters: {
+//           ...fetchMoreResult.posters,
+//           pageInfo: fetchMoreResult.posters.pageInfo,
+//           edges: [
+//             ...previousResult.posters.edges,
+//             ...fetchMoreResult.posters.edges,
+//           ],
+//         },
+//       }
+//     },
+//   })
+// }
 
-watch(where, () => {
-  refetch()
-})
 </script>
 
 <template>
@@ -131,13 +131,13 @@ watch(where, () => {
         </template>
       </h1>
     </center-wrapper>
-    <app-loader v-if="!result && loading" />
-    <template v-else-if="result">
+    <app-loader v-if="pending" />
+    <template v-else-if="data">
       <poster-list
-        v-if="result.posters.edges.length"
-        :posters="result.posters.edges"
+        v-if="data"
+        :posters="data"
       />
-      <center-wrapper>
+      <!-- <center-wrapper>
         <load-more-by-scroll
           v-if="result.posters.pageInfo.hasNextPage"
           :loading="loading"
@@ -146,7 +146,7 @@ watch(where, () => {
         <p v-if="result.posters.edges.length === 0 && !loading">
           Geen posters gevonden
         </p>
-      </center-wrapper>
+      </center-wrapper> -->
     </template>
   </section>
 </template>
