@@ -25,7 +25,7 @@ export interface IRelatedPage extends IBase {
   uri: string
 }
 
-export interface IBasePage extends IBase {
+export interface IPage extends IBase {
   parentId: number
   content: string
   seo: ISEO
@@ -35,8 +35,6 @@ export interface IBasePage extends IBase {
   relatedPosters: IRelatedPosters
 }
 
-export interface IPage extends IBasePage {}
-
 export interface IPost extends IBase {
   seo: ISEO
   date: string
@@ -44,7 +42,6 @@ export interface IPost extends IBase {
   youtubeId: string | null
   featuredImage?: IFeaturedImage
   relatedPosters: IRelatedPosters
-
 }
 
 export interface ITag extends IBase {
@@ -65,10 +62,15 @@ export interface IPostListItem extends IBase {
   excerpt: string
 }
 
-export interface IPosterListItem {
+export interface IPosterListItem extends IBase {
   title: string
   slug: string
   featuredImage?: IFeaturedImage
+}
+
+export interface IPostersSearchResult extends IBase {
+  title: string
+  slug: string
 }
 
 interface IPostNode {

@@ -1,6 +1,6 @@
 import { Taxonomy } from '~~/enums/taxonomy'
 import { IPoster, ITag } from '~~/interfaces/IContent'
-import { IResponsePoster } from '../types/IResponsePoster'
+import { IResponsePoster } from '~/server/types/IResponsePoster'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)

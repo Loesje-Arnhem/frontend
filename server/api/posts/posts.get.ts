@@ -1,5 +1,5 @@
 import { IPostListItem } from '~~/interfaces/IContent'
-import { IResponsePosts } from '../types/IResponsePosts'
+import { IResponsePosts } from '~/server/types/IResponsePosts'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)

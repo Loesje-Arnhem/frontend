@@ -1,5 +1,5 @@
-import {  IPost } from '~~/interfaces/IContent'
-import { IResponsePost } from '../types/IResponsePost'
+import { IPost } from '~~/interfaces/IContent'
+import { IResponsePost } from '~/server/types/IResponsePost'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -14,15 +14,12 @@ export default defineEventHandler(async (event) => {
   if (response.length) {
     const item = response[0]
 
-    const featuredImage = getFeaturedImage(
-      item._embedded['wp:featuredmedia'],
-    )
+    const featuredImage = getFeaturedImage(item._embedded['wp:featuredmedia'])
 
     let youtubeId: string | null = null
     if (item.acf.youtube_id) {
       youtubeId = item.acf.youtube_id
     }
-
 
     const post: IPost = {
       id: item.id,

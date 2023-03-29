@@ -1,5 +1,5 @@
 import { IPage } from '~~/interfaces/IContent'
-import { IResponsePage } from '../types/IResponsePage'
+import { IResponsePage } from '~/server/types/IResponsePage'
 
 export default defineEventHandler(async (event) => {
   let slug: undefined | string = undefined

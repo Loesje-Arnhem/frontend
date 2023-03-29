@@ -1,5 +1,5 @@
 import { IRelatedPage } from '~~/interfaces/IContent'
-import { IResponseRelatedPage } from '../types/IResponseRelatedPage'
+import { IResponseRelatedPage } from '~/server/types/IResponseRelatedPage'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
