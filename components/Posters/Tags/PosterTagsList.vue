@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ITag } from '~~/interfaces/ITag'
+import { ITag } from '~~/interfaces/IContent'
 
 defineProps<{
   list: ITag[]
@@ -10,7 +10,7 @@ defineProps<{
   <ul :class="$style.list">
     <li
       v-for="item in list"
-      :key="item.node.id"
+      :key="item.id"
       :class="$style['list-item']"
     >
       <poster-tag :tag="item" />

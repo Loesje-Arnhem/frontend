@@ -37,10 +37,16 @@ export interface IPost extends IBase {
   excerpt: string
 }
 
+export interface ITag extends IBase {
+  slug: string
+}
+
 export interface IPoster extends IBase {
   date: string
   featuredImage?: IFeaturedImage
   pdf: string
+  sources: ITag[]
+  subjects: ITag[]
 }
 
 export interface IPostListItem {

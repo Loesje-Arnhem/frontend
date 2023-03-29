@@ -1,10 +1,10 @@
 import { IResponseImage } from '~~/interfaces/IResponse'
 
-export default (featuredImage: IResponseImage) => {
-  if (!featuredImage['wp:featuredmedia']) {
+export default (featuredImage: IResponseImage[] | undefined) => {
+  if (!featuredImage) {
     return undefined
   }
-  const image = featuredImage['wp:featuredmedia'][0]
+  const image = featuredImage[0]
   const srcSet = Object.values(image.media_details.sizes).map((size) => {
     return `${size?.source_url} ${size?.width}w`
   })

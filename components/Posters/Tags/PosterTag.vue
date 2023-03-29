@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ITag } from '~~/interfaces/ITag'
+import { ITag } from '~~/interfaces/IContent'
 
 const props = defineProps<{
   tag: ITag
@@ -12,7 +12,7 @@ const localePath = useLocalePath()
 
 const isSelected = computed(() => {
   return selectedTags.value.some((selectedTag) => {
-    return selectedTag.node.databaseId === props.tag.node.databaseId
+    return selectedTag.id === props.tag.id
   })
 })
 
@@ -23,7 +23,7 @@ const remove = () => {
   const tags = [...selectedTags.value]
 
   selectedTags.value = tags.filter(
-    (selectedTag) => selectedTag.node.databaseId !== props.tag.node.databaseId,
+    (selectedTag) => selectedTag.id !== props.tag.id,
   )
 }
 
@@ -53,6 +53,6 @@ const toggleTag = () => {
     css-class="btn-outline"
     @click="toggleTag"
   >
-    {{ tag.node.name }}
+    {{ tag.title }}
   </app-button>
 </template>

@@ -38,7 +38,9 @@ export default defineEventHandler(async (event) => {
     if (response.youtube_id) {
       youtubeId = response.youtube_id
     }
-    const featuredImage = getFeaturedImage(response._embedded)
+    const featuredImage = getFeaturedImage(
+      response._embedded['wp:featuredmedia'],
+    )
     const page: IPage = {
       id: response.id,
       parentId: response.parent || response.id,

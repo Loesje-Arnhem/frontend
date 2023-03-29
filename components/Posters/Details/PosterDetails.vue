@@ -39,29 +39,29 @@ defineProps<{
           <app-date :date="poster.date" />
         </dd>
 
-        <!-- <template v-if="poster.subjects.edges.length">
+        <template v-if="poster.subjects.length">
           <dt class="definition-title">
             Onderwerpen:
           </dt>
           <dd class="definition-item">
             <poster-tags-list
-              :list="poster.subjects.edges"
+              :list="poster.subjects"
               class="tags-list"
             />
           </dd>
         </template>
 
-        <template v-if="poster.sources.edges.length">
+        <template v-if="poster.sources.length">
           <dt class="definition-title">
             Bronnen:
           </dt>
           <dd class="definition-item">
             <poster-tags-list
-              :list="poster.sources.edges"
+              :list="poster.sources"
               class="tags-list"
             />
           </dd>
-        </template> -->
+        </template>
       </dl>
       <!-- <div class="buttons">
         <poster-favorites :poster="poster" />

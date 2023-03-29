@@ -7,21 +7,19 @@ interface IResponseImageSize {
 }
 
 export interface IResponseImage {
-  'wp:featuredmedia'?: {
-    alt_text: string
-    source_url: string
-    media_details: {
-      width: number
-      height: number
-      sizes: {
-        thumbnail: IResponseImageSize
-        full: IResponseImageSize
-        medium?: IResponseImageSize
-        large?: IResponseImageSize
-        medium_large?: IResponseImageSize
-      }
+  alt_text: string
+  source_url: string
+  media_details: {
+    width: number
+    height: number
+    sizes: {
+      thumbnail: IResponseImageSize
+      full: IResponseImageSize
+      medium?: IResponseImageSize
+      large?: IResponseImageSize
+      medium_large?: IResponseImageSize
     }
-  }[]
+  }
 }
 
 export interface IResponsePost {
@@ -34,7 +32,9 @@ export interface IResponsePost {
   }
   yoast_head_json: ISEO
   date: string
-  _embedded: IResponseImage
+  _embedded: {
+    'wp:featuredmedia'?: IResponseImage[]
+  }
 }
 
 export interface IResponsePosts {
@@ -46,7 +46,9 @@ export interface IResponsePosts {
   }
   slug: string
   date: string
-  _embedded: IResponseImage
+  _embedded: {
+    'wp:featuredmedia'?: IResponseImage[]
+  }
 }
 
 export interface IResponsePosters {
@@ -54,7 +56,9 @@ export interface IResponsePosters {
     rendered: string
   }
   slug: string
-  _embedded: IResponseImage
+  _embedded: {
+    'wp:featuredmedia'?: IResponseImage[]
+  }
 }
 
 export interface IResponsePage {
@@ -84,7 +88,16 @@ export interface IResponsePage {
           product: number
         }[]
   }
-  _embedded: IResponseImage
+  _embedded: {
+    'wp:featuredmedia'?: IResponseImage[]
+  }
+}
+
+export interface ITerm {
+  id: number
+  name: string
+  slug: string
+  taxonomy: 'subject' | 'source'
 }
 
 export interface IResponsePoster {
@@ -92,7 +105,10 @@ export interface IResponsePoster {
   title: {
     rendered: string
   }
-  _embedded: IResponseImage
+  _embedded: {
+    'wp:featuredmedia'?: IResponseImage[]
+    'wp:term'?: ITerm[][]
+  }
   acf: {
     pdf: string
     date: string
