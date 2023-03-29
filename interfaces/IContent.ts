@@ -1,3 +1,4 @@
+import { Taxonomy } from '~~/enums/taxonomy'
 import { ISEO } from './ISEO'
 
 export interface IFeaturedImage {
@@ -46,6 +47,7 @@ export interface IPost extends IBase {
 
 export interface ITag extends IBase {
   slug: string
+  type: Taxonomy.Source | Taxonomy.Subject
 }
 
 export interface IPoster extends IBase {

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Taxonomy } from '~~/enums/taxonomy';
 import { ITag } from '~~/interfaces/IContent'
 
 const props = defineProps<{
@@ -36,7 +37,6 @@ const goToPostersOverview = () => {
 }
 
 const toggleTag = () => {
-  console.log(isSelected.value)
   if (isSelected.value) {
     remove()
   } else {

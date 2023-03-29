@@ -23,6 +23,7 @@ export default defineEventHandler(async (event) => {
       id: item.id,
       slug: item.slug,
       title: item.name,
+      type,
     }
   })
   return items

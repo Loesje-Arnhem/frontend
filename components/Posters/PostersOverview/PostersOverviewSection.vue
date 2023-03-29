@@ -78,14 +78,15 @@ const where = computed(() => {
 })
 
 const search = toRef(props, 'search')
+const subjectIds = toRef(props, 'subjectIds')
 
 const { data, pending } = useFetch(Endpoints.Posters, {
   query: {
     search: search,
-    subjectIds: props.subjectIds.join(','),
+    subjectIds: '12',
     exclude: props.exclude
   },
-  watch: [search],
+  watch: [search, subjectIds],
   server: false
 })
 

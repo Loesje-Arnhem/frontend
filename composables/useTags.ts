@@ -4,11 +4,12 @@ import { useSelectedTags } from './useState'
 export const useTags = () => {
   const selectedTags = useSelectedTags()
 
-  const getSelectedTagsByTaxonomy = (taxonomy: string) => {
-    const subjects = selectedTags.value.filter(
-      (tag) => tag.node.taxonomy.node.name === taxonomy,
-    )
-    return subjects.map((subject) => subject.node.databaseId)
+  const getSelectedTagsByTaxonomy = (
+    taxonomy: Taxonomy.Source | Taxonomy.Subject,
+  ) => {
+    const tags = selectedTags.value.filter((tag) => tag.type === taxonomy)
+    console.log(taxonomy)
+    return tags.map((tag) => tag.id)
   }
 
   const selectedSourceIds = computed(() => {

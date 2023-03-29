@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
   if (query.subjectIds) {
     subjectIds = query.subjectIds
   }
+  console.log(subjectIds)
 
   const url = getUrl({
     type: 'posters',
