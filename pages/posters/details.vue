@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import PosterQuery from '~/graphql/Posters/Poster'
-import { IPoster } from '~~/interfaces/IPoster'
-
 defineI18nRoute({
   paths: {
     nl: '/posters/:slug',
@@ -10,7 +7,7 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data, pending, error } = await useFetch('/api/poster', {
+const { data, pending } = await useFetch('/api/poster', {
   key: `poster-${route.params.slug}`,
   params: {
     slug: route.params.slug,
@@ -18,18 +15,6 @@ const { data, pending, error } = await useFetch('/api/poster', {
 })
 
 // useMeta(data.value?.poster)
-
-// const subjects = computed(() => {
-//   if (!data.value?.poster) {
-//     return []
-//   }
-//   if (data.value.poster.subjects.edges.length) {
-//     return data.value.poster.subjects.edges.map(
-//       (subject) => subject.node.databaseId,
-//     )
-//   }
-//   return []
-// })
 </script>
 
 <template>

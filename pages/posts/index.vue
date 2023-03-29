@@ -1,28 +1,23 @@
 <script lang="ts" setup>
-import { IPage } from '~~/interfaces/IPage'
-import { GetPagePosts } from '~/graphql/Pages/Pages'
-
 defineI18nRoute({
   paths: {
     nl: '/over-loesje/nieuws',
   },
 })
 
-const { data, pending } = await useAsyncQuery<{
-  page: IPage
-}>(GetPagePosts)
+const { pageIds } = useAppConfig()
 
-useMeta(data.value?.page)
+const { data, pending } = await usePageById(pageIds.posts)
 </script>
 
 <template>
   <app-loader v-if="pending" />
   <div v-else-if="data">
     <h1 class="sr-only">
-      {{ data.page.title }}
+      {{ data.title }}
     </h1>
     <posts-overview-section />
-    <!-- <related-posters-section :posters="data.page.relatedPosters" />
-    :related-products="data.page.relatedProducts" /> -->
+    <related-posters-section :posters="data.relatedPosters" />
+    <!-- :related-products="data.page.relatedProducts" /> -->
   </div>
 </template>
