@@ -35,8 +35,8 @@ export default defineEventHandler(async (event) => {
       )
     }
     let youtubeId: string | null = null
-    if (response.youtube_id) {
-      youtubeId = response.youtube_id
+    if (response.acf.youtube_id) {
+      youtubeId = response.acf.youtube_id
     }
     const featuredImage = getFeaturedImage(
       response._embedded['wp:featuredmedia'],

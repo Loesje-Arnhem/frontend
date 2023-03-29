@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Endpoints } from '~~/enums/endpoints';
+
 defineI18nRoute({
   paths: {
     nl: '/posters/:slug',
@@ -7,7 +9,7 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data, pending } = await useFetch('/api/poster', {
+const { data, pending } = await useFetch(Endpoints.Poster, {
   key: `poster-${route.params.slug}`,
   params: {
     slug: route.params.slug,

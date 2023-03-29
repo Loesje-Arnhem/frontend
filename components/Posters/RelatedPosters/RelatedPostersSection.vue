@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Endpoints } from '~~/enums/endpoints';
 import { IRelatedPosters } from '~~/interfaces/IContent'
 
 const localePath = useLocalePath()
@@ -19,7 +20,7 @@ if (props.posters.posterIds.length) {
   key = `${key}-${props.posters.posterIds.join(',')}`
 }
 
-const { data, pending } = await useFetch('/api/related-posters', {
+const { data, pending } = await useFetch(Endpoints.RelatedPosters, {
   key,
   params: {
     search: props.posters.search,
@@ -32,11 +33,17 @@ const title = props.posters.title || t('posters')
 </script>
 
 <template>
-  <section class="related-posters" aria-labelledby="related-posters-title">
+  <section
+    class="related-posters"
+    aria-labelledby="related-posters-title"
+  >
     <app-loader v-if="pending" />
     <div v-else-if="data">
       <center-wrapper>
-        <h1 id="related-posters-title" class="title">
+        <h1
+          id="related-posters-title"
+          class="title"
+        >
           {{ title }}
         </h1>
       </center-wrapper>

@@ -18,14 +18,20 @@ export default defineEventHandler(async (event) => {
       item._embedded['wp:featuredmedia'],
     )
 
+    let youtubeId: string | null = null
+    if (item.acf.youtube_id) {
+      youtubeId = item.acf.youtube_id
+    }
+
+
     const post: IPost = {
       id: item.id,
       date: item.date,
       title: item.title.rendered,
       content: item.content.rendered,
       seo: item.yoast_head_json,
-
       featuredImage,
+      youtubeId,
       relatedPosters: getRelatedPosters(item),
     }
     return post

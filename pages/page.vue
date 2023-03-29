@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Endpoints } from '~~/enums/endpoints';
+
 defineI18nRoute({
   paths: {
     nl: '/:pathMatch(.*)*',
@@ -12,7 +14,7 @@ const uri = computed(() => {
   return slugs[slugs.length - 1]
 })
 
-const { data, pending, error } = await useFetch('/api/page', {
+const { data, pending, error } = await useFetch(Endpoints.Page, {
   key: `page-${uri.value}`,
   params: {
     slug: uri.value,

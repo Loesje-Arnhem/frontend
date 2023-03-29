@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+import { Endpoints } from '~~/enums/endpoints';
+
 const props = defineProps<{
   parentId: number
 }>()
 
-const { data, pending } = await useFetch('/api/related-pages', {
+const { data, pending } = await useFetch(Endpoints.RelatedPages, {
   key: `related-pages-${props.parentId}`,
   params: {
     parentId: props.parentId,

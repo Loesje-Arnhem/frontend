@@ -11,8 +11,10 @@ export interface IResponsePost {
   }
   yoast_head_json: ISEO
   date: string
-  youtube_id: string
   _embedded: {
     'wp:featuredmedia'?: IResponseImage[]
+  }
+  acf: {
+    youtube_id: string
   }
 }

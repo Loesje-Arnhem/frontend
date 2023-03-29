@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Endpoints } from '~~/enums/endpoints';
+
 const props = withDefaults(
   defineProps<{
     exclude?: number
@@ -8,7 +10,7 @@ const props = withDefaults(
   },
 )
 
-const { data, pending } = await useFetch('/api/posts', {
+const { data, pending } = await useFetch(Endpoints.Posts, {
   key: `posts`,
   params: {
     exclude: props.exclude,

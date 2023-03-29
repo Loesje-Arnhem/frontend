@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+import { Endpoints } from '~~/enums/endpoints';
+
 const localePath = useLocalePath()
 
-const { data } = await useFetch('/api/posts', {
+const { data } = await useFetch(Endpoints.Posts, {
   key: `latest-posts`,
   params: {
     pageSize: 3,

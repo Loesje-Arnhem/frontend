@@ -1,8 +1,7 @@
-import { GetPageById } from '~/graphql/Pages/Pages'
-import { IPage } from '~/interfaces/IPage'
+import { Endpoints } from '~~/enums/endpoints'
 
 export const usePageById = async (id: number) => {
-  const { data, pending, error } = await useFetch('/api/page', {
+  const { data, pending, error } = await useFetch(Endpoints.Page, {
     key: `page-${id}`,
     params: {
       id,

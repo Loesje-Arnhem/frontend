@@ -11,8 +11,8 @@ export interface IResponsePage {
   }
   parent: number
   yoast_head_json: ISEO
-  youtube_id: string
   acf: {
+    youtube_id: string
     related_posters_title: string | null
     related_posters_search: string | null
     related_posters_subjects: [number]
