@@ -1,16 +1,20 @@
 <script lang="ts" setup>
 import { ITags } from '~/interfaces/ITag'
+import { Endpoints } from '~~/enums/endpoints';
 
-defineProps<{
-  sources: ITags
-  subjects: ITags
-}>()
+
+const [{ data: subjects }, { data: sources }] = await Promise.all([
+      useFetch(Endpoints.PosterSubjects),
+      useFetch(Endpoints.PosterSources)
+    ])
+
 
 const { selectedSourceIds, selectedSubjectIds } = useTags()
 const activeOverlays = reactive({
   sources: false,
   subjects: false,
 })
+
 
 const dateBefore = useDateBefore()
 const dateAfter = useDateAfter()
@@ -92,7 +96,7 @@ const today = () => {
         tabindex="-1"
       >
         <center-wrapper v-if="sources">
-          <poster-tags-list :list="sources.edges" />
+          <poster-tags-list :list="sources" />
         </center-wrapper>
       </div>
 
@@ -103,7 +107,7 @@ const today = () => {
         tabindex="-1"
       >
         <center-wrapper v-if="subjects">
-          <poster-tags-list :list="subjects.edges" />
+          <poster-tags-list :list="subjects" />
         </center-wrapper>
       </div>
     </slide-in-animation>
