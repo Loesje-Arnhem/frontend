@@ -1,6 +1,7 @@
 import { IResponseImage } from "./IResponseImage"
 
 export interface IResponsePosters {
+  id: number
   title: {
     rendered: string
   }

@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
   const url = getUrl({
     type: 'posters',
-    fields: ['title', 'slug'],
+    fields: ['title', 'slug', 'id'],
     image: true,
     pageSize: 7,
     search: query.search || null,
@@ -17,6 +17,7 @@ export default defineEventHandler(async (event) => {
     const featuredImage = getFeaturedImage(item._embedded['wp:featuredmedia'])
 
     return {
+      id: item.id,
       slug: item.slug,
       title: item.title.rendered,
       featuredImage,
