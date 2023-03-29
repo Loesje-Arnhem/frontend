@@ -1,17 +1,6 @@
+import { Taxonomy } from '~~/enums/taxonomy'
 import { IPoster, ITag } from '~~/interfaces/IContent'
-import { IResponsePoster, ITerm } from '~~/interfaces/IResponse'
-
-const getTagsByType = (terms: ITerm[], type: 'subject' | 'source') => {
-  const tags = terms.filter((tag) => tag.taxonomy === type)
-
-  return tags.map((tag) => {
-    return {
-      id: tag.id,
-      slug: tag.slug,
-      title: tag.name,
-    }
-  })
-}
+import { IResponsePoster } from '../types/IResponsePoster'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -30,8 +19,8 @@ export default defineEventHandler(async (event) => {
     let sources: ITag[] = []
     if (item._embedded['wp:term']) {
       const tags = item._embedded['wp:term'].flat()
-      subjects = getTagsByType(tags, 'subject')
-      sources = getTagsByType(tags, 'source')
+      subjects = getTagsByType(tags, Taxonomy.Source)
+      sources = getTagsByType(tags, Taxonomy.Subject)
     }
 
     const pattern = /(\d{4})(\d{2})(\d{2})/

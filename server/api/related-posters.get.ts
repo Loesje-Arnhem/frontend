@@ -1,5 +1,5 @@
 import { IPosterListItem } from '~~/interfaces/IContent'
-import { IResponsePosters } from '~~/interfaces/IResponse'
+import { IResponsePosters } from '../types/IResponsePosters'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)

@@ -20,6 +20,11 @@ export interface IRelatedPosters {
   title: string | null
 }
 
+export interface IRelatedPage extends IBase {
+  excerpt: string
+  uri: string
+}
+
 export interface IBasePage extends IBase {
   parentId: number
   content: string
