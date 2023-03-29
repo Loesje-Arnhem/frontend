@@ -1,43 +1,19 @@
 <script lang="ts" setup>
-import { getRelatedPosts } from '~/graphql/Posts/Posts'
-import { IPosts } from '~/interfaces/IPost'
-
 const props = withDefaults(
   defineProps<{
-    notIn?: number
+    exclude?: number
   }>(),
   {
-    notIn: 0,
+    exclude: 0,
   },
 )
 
-const { result, fetchMore, loading } = useQuery<{
-  posts: IPosts
-}>(getRelatedPosts, {
-  notIn: props.notIn,
+const { data, pending } = await useFetch('/api/posts', {
+  key: `posts`,
+  params: {
+    exclude: props.exclude,
+  },
 })
-
-const loadMore = () => {
-  fetchMore({
-    variables: {
-      after: result.value?.posts.pageInfo.endCursor,
-    },
-    updateQuery: (previousResult, { fetchMoreResult }) => {
-      if (!fetchMoreResult) return previousResult
-      return {
-        ...fetchMoreResult,
-        posts: {
-          ...fetchMoreResult.posts,
-          pageInfo: fetchMoreResult.posts.pageInfo,
-          edges: [
-            ...previousResult.posts.edges,
-            ...fetchMoreResult.posts.edges,
-          ],
-        },
-      }
-    },
-  })
-}
 </script>
 
 <template>
@@ -47,25 +23,16 @@ const loadMore = () => {
   >
     <center-wrapper size="md">
       <h1 id="posts-overview-title">
-        <template v-if="notIn">
+        <template v-if="exclude">
           {{ $t('otherNews') }}
         </template>
         <template v-else>
           {{ $t('posts') }}
         </template>
       </h1>
-      <app-loader v-if="!result && loading" />
-      <template v-else-if="result">
-        <posts-overview-list
-          v-if="result.posts.edges.length"
-          :posts="result.posts.edges"
-        />
-        <load-more-by-click
-          v-if="result.posts.pageInfo.hasNextPage"
-          :loading="loading"
-          :title="$t('showMorePosts')"
-          @load-more="loadMore"
-        />
+      <app-loader v-if="pending" />
+      <template v-else-if="data?.items.length">
+        <posts-overview-list :posts="data.items" />
       </template>
     </center-wrapper>
   </section>

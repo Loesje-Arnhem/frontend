@@ -1,16 +1,17 @@
 <script lang="ts" setup>
-import { IRelatedPostNode } from '~/interfaces/IPost'
-
 const localePath = useLocalePath()
 
-defineProps<{
-  posts: IRelatedPostNode[]
-}>()
+const { data } = await useFetch('/api/posts', {
+  key: `latest-posts`,
+  params: {
+    pageSize: 3,
+  },
+})
 </script>
 
 <template>
   <section
-    v-if="posts.length"
+    v-if="data?.items.length"
     :class="$style['latest-posts']"
     aria-labelledby="latest-posts-title"
   >
@@ -20,7 +21,7 @@ defineProps<{
           <h1 id="latest-posts-title">
             {{ $t('posts') }}
           </h1>
-          <latest-posts-list :posts="posts" />
+          <latest-posts-list :posts="data.items" />
           <app-button :to="localePath({ name: 'posts' })">
             {{ $t('morePosts') }}
           </app-button>

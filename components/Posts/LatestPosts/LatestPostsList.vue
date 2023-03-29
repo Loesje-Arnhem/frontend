@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { IRelatedPostNode } from '~/interfaces/IPost'
+import { IPostListItem } from '~/interfaces/IContent'
 defineProps<{
-  posts: IRelatedPostNode[]
+  posts: IPostListItem[]
 }>()
 </script>
 
@@ -9,8 +9,8 @@ defineProps<{
   <ul class="list">
     <post-list-item
       v-for="post in posts"
-      :key="post.node.databaseId"
-      :post="post.node"
+      :key="post.id"
+      :post="post"
       class="list-item"
     />
   </ul>

@@ -1,20 +1,17 @@
 <script lang="ts" setup>
-import { IRelatedPostNode } from '~/interfaces/IPost'
+import { IPostListItem } from '~/interfaces/IContent'
 
 defineProps<{
-  posts: IRelatedPostNode[]
+  posts: IPostListItem[]
 }>()
 </script>
 
 <template>
-  <list-animation
-    v-if="posts.length"
-    class="list"
-  >
+  <list-animation v-if="posts.length" class="list">
     <post-list-item
       v-for="post in posts"
-      :key="post.node.id"
-      :post="post.node"
+      :key="post.id"
+      :post="post"
       class="list-item"
     />
   </list-animation>

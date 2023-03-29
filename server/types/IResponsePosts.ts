@@ -1,5 +1,3 @@
-import { IResponseImage } from "./IResponseImage"
-
 export interface IResponsePosts {
   title: {
     rendered: string
@@ -9,7 +7,4 @@ export interface IResponsePosts {
   }
   slug: string
   date: string
-  _embedded: {
-    'wp:featuredmedia'?: IResponseImage[]
-  }
 }

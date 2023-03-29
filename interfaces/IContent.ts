@@ -38,8 +38,13 @@ export interface IBasePage extends IBase {
 export interface IPage extends IBasePage {}
 
 export interface IPost extends IBase {
+  seo: ISEO
   date: string
-  excerpt: string
+  content: string
+  youtubeId: string | null
+  featuredImage?: IFeaturedImage
+  relatedPosters: IRelatedPosters
+
 }
 
 export interface ITag extends IBase {
@@ -54,11 +59,10 @@ export interface IPoster extends IBase {
   subjects: ITag[]
 }
 
-export interface IPostListItem {
-  title: string
+export interface IPostListItem extends IBase {
   slug: string
+  date: string
   excerpt: string
-  featuredImage?: IFeaturedImage
 }
 
 export interface IPosterListItem {

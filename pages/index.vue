@@ -17,14 +17,8 @@ const { data, pending } = await usePageById(pageIds.workshops)
     <h1 class="sr-only">
       {{ data.title }}
     </h1>
-    <!-- <latest-posts-section
-      v-if="data"
-      :posts="data.posts.edges"
-    /> -->
-    <related-posters-section
-      v-if="data"
-      :posters="data.relatedPosters"
-    />
+    <latest-posts-section />
+    <related-posters-section v-if="data" :posters="data.relatedPosters" />
     <app-stores-section />
     <!-- <related-products-section :related-products="data.page.relatedProducts" /> -->
   </div>
