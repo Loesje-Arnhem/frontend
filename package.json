@@ -52,7 +52,7 @@
     "@types/uuid": "^9.0.0",
     "@types/workbox-window": "^4.3.4",
     "apollo-boost": "^0.4.9",
-    "eslint": "^8.32.0",
+    "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",
