@@ -13,17 +13,17 @@ export interface IResponsePage {
   yoast_head_json: ISEO
   acf: {
     youtube_id: string
-    related_posters_title: string | null
-    related_posters_search: string | null
-    related_posters_subjects: [number]
+    related_posters_title: string
+    related_posters_search: string
+    related_posters_subjects: [number] | false
     related_posters_posters:
       | {
           poster: number
         }[]
-      | null
+      | false
     related_products_title: string | null
     related_products_products:
-      | null
+      | false
       | {
           product: number
         }[]

@@ -63,14 +63,14 @@ defineProps<{
           </dd>
         </template>
       </dl>
-      <!-- <div class="buttons">
+      <div class="buttons">
         <poster-favorites :poster="poster" />
         <app-button
-          v-if="poster.PosterMetaGroup.pdf"
+          v-if="poster.pdf"
           :is-primary="false"
-          :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
+          :href="poster.pdf"
           target="_blank"
-          :download="poster.slug"
+          download
         >
           <app-icon
             icon="pdf"
@@ -80,7 +80,7 @@ defineProps<{
           />
           Download
         </app-button>
-      </div> -->
+      </div>
       <div class="social-media">
         <share-this
           v-if="poster.featuredImage"

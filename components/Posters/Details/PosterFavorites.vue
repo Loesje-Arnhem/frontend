@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IPoster } from '~/interfaces/IPoster'
+import { IPoster } from '~/interfaces/IContent'
 
 const props = defineProps<{
   poster: IPoster
@@ -9,14 +9,14 @@ const favorites = useFavoriteIds()
 const { add, remove } = useFavorites()
 
 const isInFavorites = computed(() => {
-  return favorites.value.includes(props.poster.databaseId)
+  return favorites.value.includes(props.poster.id)
 })
 
 const toggleFavorite = () => {
   if (isInFavorites.value) {
-    remove(props.poster.databaseId)
+    remove(props.poster.id)
   } else {
-    add(props.poster.databaseId)
+    add(props.poster.id)
   }
 }
 </script>
