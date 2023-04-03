@@ -1,6 +1,5 @@
 import { IPage } from '~~/interfaces/IContent'
 import { IResponsePage } from '~/server/types/IResponsePage'
-import getRelatedProducts from '~~/server/utils/getRelatedProducts'
 
 export default defineEventHandler(async (event) => {
   let slug: undefined | string = undefined
