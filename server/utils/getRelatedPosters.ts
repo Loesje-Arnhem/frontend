@@ -11,7 +11,7 @@ export default (page: IResponsePage | IResponsePost) => {
   } = page.acf
   let posterIds: number[] = []
   if (related_posters_posters) {
-    posterIds = related_posters_posters.map((poster) => poster.poster)
+    posterIds = related_posters_posters.map((poster) => poster.poster.ID)
   }
 
   const relatedPosters: IRelatedPosters = {

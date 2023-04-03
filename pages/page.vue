@@ -60,7 +60,10 @@ const { data, pending, error } = await useFetch(Endpoints.Page, {
       :video="data.youtubeId"
     />
     <related-posters-section :posters="data.relatedPosters" />
-    <!-- <related-products-section :related-products="data.relatedProducts" />-->
+    <related-products-section
+      v-if="data.relatedProducts.length"
+      :product-ids="data.relatedProducts"
+    />
     <related-pages-section :parent-id="data.parentId" />
   </div>
 </template>

@@ -1,5 +1,6 @@
 import { IPost } from '~~/interfaces/IContent'
 import { IResponsePost } from '~/server/types/IResponsePost'
+import getRelatedProducts from '~~/server/utils/getRelatedProducts'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -30,6 +31,7 @@ export default defineEventHandler(async (event) => {
       featuredImage,
       youtubeId,
       relatedPosters: getRelatedPosters(item),
+      relatedProducts: getRelatedProducts(response),
     }
     return post
   }

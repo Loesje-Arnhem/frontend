@@ -1,20 +1,20 @@
 <script lang="ts" setup>
-import { IProducts } from '~/interfaces/IProduct'
+import { IProductListItem } from '~/interfaces/IContent'
 
 defineProps<{
-  products: IProducts
+  products: IProductListItem[]
 }>()
 </script>
 
 <template>
   <ul
-    v-if="products.edges.length"
+    v-if="products.length"
     class="list"
   >
     <product-tile
-      v-for="product in products.edges"
-      :key="product.node.id"
-      :product="product.node"
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
     />
   </ul>
 </template>

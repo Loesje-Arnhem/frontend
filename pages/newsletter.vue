@@ -24,7 +24,10 @@ const { data, pending } = await usePageById(pageIds.newsletter)
       <form-newsletter class="newsletter" />
     </center-wrapper>
     <related-posters-section :posters="data.relatedPosters" />
-    <!-- <related-products-section :related-products="data.page.relatedProducts" /> -->
+    <related-products-section
+      v-if="data.relatedProducts.length"
+      :product-ids="data.relatedProducts"
+    />
     <related-pages-section :parent-id="data.parentId" />
   </div>
 </template>

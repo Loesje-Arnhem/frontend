@@ -1,5 +1,6 @@
 import { IPage } from '~~/interfaces/IContent'
 import { IResponsePage } from '~/server/types/IResponsePage'
+import getRelatedProducts from '~~/server/utils/getRelatedProducts'
 
 export default defineEventHandler(async (event) => {
   let slug: undefined | string = undefined
@@ -28,12 +29,6 @@ export default defineEventHandler(async (event) => {
     response = await $fetch<IResponsePage>(url)
   }
   if (response) {
-    let relatedProducts: number[] = []
-    if (response.acf.related_products_products) {
-      relatedProducts = response.acf.related_products_products.map(
-        (p) => p.product,
-      )
-    }
     let youtubeId: string | null = null
     if (response.acf.youtube_id) {
       youtubeId = response.acf.youtube_id
@@ -47,7 +42,7 @@ export default defineEventHandler(async (event) => {
       title: response.title.rendered,
       content: response.content.rendered,
       seo: response.yoast_head_json,
-      relatedProducts,
+      relatedProducts: getRelatedProducts(response),
       youtubeId,
       featuredImage,
       relatedPosters: getRelatedPosters(response),

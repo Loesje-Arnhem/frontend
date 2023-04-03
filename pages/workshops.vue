@@ -22,6 +22,9 @@ const { data, pending } = await usePageById(pageIds.workshops)
     />
     <form-workshop />
     <related-posters-section :posters="data.relatedPosters" />
-    <!-- <related-products-section :related-products="data.page.relatedProducts" /> -->
+    <related-products-section
+      v-if="data.relatedProducts.length"
+      :product-ids="data.relatedProducts"
+    />
   </div>
 </template>

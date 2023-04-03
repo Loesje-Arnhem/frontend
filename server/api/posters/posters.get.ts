@@ -4,16 +4,8 @@ import { IResponsePosters } from '~/server/types/IResponsePosters'
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   let pageSize = 20
-  let exclude = 0
-  let subjectIds: null | string = null
   if (query.pageSize) {
-    pageSize = Number(query.pageSize)
-  }
-  if (query.exclude) {
-    exclude = Number(query.exclude)
-  }
-  if (query.subjectIds) {
-    subjectIds = query.subjectIds
+    pageSize = query.pageSize
   }
 
   const url = getUrl({
@@ -21,8 +13,8 @@ export default defineEventHandler(async (event) => {
     fields: ['title', 'slug', 'id'],
     image: true,
     pageSize,
-    exclude,
-    subjectIds,
+    exclude: query.exclude || null,
+    subjectIds: query.subjectIds || null,
     search: query.search || null,
   })
 

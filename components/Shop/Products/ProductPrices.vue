@@ -1,25 +1,26 @@
+<script lang="ts" setup>
+import { IProductListItem } from '~/interfaces/IContent'
+
+ defineProps<{
+  product: IProductListItem
+}>()
+</script>
+
+
 <template>
-  <div :class="$style.price">
-    <template v-if="product.salePrice">
-      <span :class="$style['price-old']">{{ product.regularPrice }}</span>
-      {{ product.salePrice }}
+  <div
+    v-if="product.price"
+    :class="$style.price"
+  >
+    <template v-if="product.regularPrice">
+      <span :class="$style['price-old']">{{ $n(product.regularPrice, 'currency') }}</span>
+      <!-- {{ $n(product.salePrice, 'currency') }} -->
     </template>
     <template v-else>
-      {{ product.price }}
+      {{ $n(product.price, 'currency') }}
     </template>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    product: {
-      type: Object,
-      required: true,
-    },
-  },
-}
-</script>
 
 <style module lang="postcss">
 .price-old {
