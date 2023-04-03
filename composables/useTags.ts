@@ -8,7 +8,6 @@ export const useTags = () => {
     taxonomy: Taxonomy.Source | Taxonomy.Subject,
   ) => {
     const tags = selectedTags.value.filter((tag) => tag.type === taxonomy)
-    console.log(taxonomy)
     return tags.map((tag) => tag.id)
   }
 

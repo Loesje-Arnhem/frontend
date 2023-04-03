@@ -83,7 +83,7 @@ const subjectIds = toRef(props, 'subjectIds')
 const { data, pending } = useFetch(Endpoints.Posters, {
   query: {
     search: search,
-    subjectIds: '12',
+    subjectIds: subjectIds.value.join(','),
     exclude: props.exclude
   },
   watch: [search, subjectIds],

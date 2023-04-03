@@ -5,11 +5,15 @@ const fetchByType = async (type: string) => {
   const apiUrl = `${baseUrl}/wp-json/wp/v2/${type}/?_fields[]=link&per_page=99`
   const response = await fetch(apiUrl)
   const data = (await response.json()) as { link: string }[]
-  return data.map((r) => r.link.replace(baseUrl, ''))
+  let suffix = ''
+  if (type === 'posts') {
+    suffix = `/over-loesje/nieuws`
+  }
+  return data.map((r) => r.link.replace(baseUrl, suffix))
 }
 
 export default async () => {
-  const pages = await fetchByType('pages')
   const posts = await fetchByType('posts')
-  return [...pages, ...posts]
+  const pages = await fetchByType('pages')
+  return [ ...posts, ...pages]
 }
