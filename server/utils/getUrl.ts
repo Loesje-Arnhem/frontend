@@ -6,10 +6,13 @@ export default ({
   page,
   image,
   subjectIds,
+  include,
   exclude,
   pageSize,
   search,
   parent,
+  consumerKey,
+  consumerSecret
 }: {
   fields: string[]
   type: string
@@ -17,18 +20,24 @@ export default ({
   slug?: string
   page?: number
   image?: Boolean
-  exclude?: number
+  include?: string
+  exclude?: string
   subjectIds?: string | null
   pageSize?: number
   search?: string
   parent?: Number
+  consumerKey?: string
+  consumerSecret?: string
 }) => {
-  const { apiUrl } = useAppConfig()
+  const { apiUrl, woocommerceApiUrl } = useAppConfig()
 
   let baseUrl = `${apiUrl}${type}/`
   if (id) {
     baseUrl = `${baseUrl}${id}`
+  }   else if (consumerKey && consumerSecret) {
+    baseUrl = `${woocommerceApiUrl}${type}/`
   }
+
   const url = new URL(baseUrl)
   if (image) {
     url.searchParams.set('_embed', 'true')
@@ -37,6 +46,9 @@ export default ({
   }
   const allFields = ['id', ...fields]
   url.searchParams.set('_fields', allFields.join(','))
+  if (fields.includes('acf')) {
+    url.searchParams.set('acf_format', 'standard')
+  }
   if (slug) {
     url.searchParams.set('slug', slug)
   }
@@ -50,13 +62,20 @@ export default ({
     url.searchParams.set('parent', parent.toString())
   }
   if (exclude) {
-    url.searchParams.set('exclude', exclude.toString())
+    url.searchParams.set('exclude', exclude)
+  }
+  if (include) {
+    url.searchParams.set('include', include)
   }
   if (page) {
     url.searchParams.set('page', page.toString())
   }
   if (pageSize) {
     url.searchParams.set('per_page', pageSize.toString())
+  }
+  if (consumerKey && consumerSecret) {
+    url.searchParams.set('consumer_secret', consumerSecret)
+    url.searchParams.set('consumer_key', consumerKey)
   }
   return url.toString()
 }

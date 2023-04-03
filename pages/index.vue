@@ -7,7 +7,7 @@ defineI18nRoute({
 
 const { pageIds } = useAppConfig()
 
-const { data, pending } = await usePageById(pageIds.workshops)
+const { data, pending } = await usePageById(pageIds.home)
 </script>
 
 <template>
@@ -18,8 +18,14 @@ const { data, pending } = await usePageById(pageIds.workshops)
       {{ data.title }}
     </h1>
     <latest-posts-section />
-    <related-posters-section v-if="data" :posters="data.relatedPosters" />
+    <related-posters-section
+      v-if="data"
+      :posters="data.relatedPosters"
+    />
     <app-stores-section />
-    <!-- <related-products-section :related-products="data.page.relatedProducts" /> -->
+    <related-products-section
+      v-if="data.relatedProducts.length"
+      :product-ids="data.relatedProducts"
+    />
   </div>
 </template>

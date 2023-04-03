@@ -30,6 +30,7 @@ export default defineEventHandler(async (event) => {
       featuredImage,
       youtubeId,
       relatedPosters: getRelatedPosters(item),
+      relatedProducts: getRelatedProducts(response),
     }
     return post
   }

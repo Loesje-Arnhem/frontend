@@ -1,5 +1,7 @@
 import { ISEO } from "~~/interfaces/ISEO"
 import { IResponseImage } from "./IResponseImage"
+import { IResponseRelatedPoster } from "./IResponseRelatedPoster"
+import { IResponseRelatedProduct } from "./IResponseRelatedProduct"
 
 export interface IResponsePage {
   id: number
@@ -13,20 +15,12 @@ export interface IResponsePage {
   yoast_head_json: ISEO
   acf: {
     youtube_id: string
-    related_posters_title: string | null
-    related_posters_search: string | null
-    related_posters_subjects: [number]
-    related_posters_posters:
-      | {
-          poster: number
-        }[]
-      | null
+    related_posters_title: string
+    related_posters_search: string
+    related_posters_subjects: [number] | false
     related_products_title: string | null
-    related_products_products:
-      | null
-      | {
-          product: number
-        }[]
+    related_posters_posters: IResponseRelatedPoster[] | false
+    related_products_products: IResponseRelatedProduct[] | false
   }
   _embedded: {
     'wp:featuredmedia'?: IResponseImage[]

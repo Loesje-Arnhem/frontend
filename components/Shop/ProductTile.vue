@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { IProductTile } from '~/interfaces/IProduct'
+import { IProductListItem } from '~/interfaces/IContent'
 
 const props = defineProps<{
-  product: IProductTile
+  product: IProductListItem
 }>()
 
 const appConfig = useAppConfig()
@@ -19,12 +19,12 @@ const url = computed(() => {
     class="tile"
   >
     <div :class="$style['image-wrapper']">
-      <featured-image
+      <!-- <featured-image
         v-if="product.featuredImage"
         :image="product.featuredImage"
         :class="$style.image"
         sizes="(max-width: 375px) 50vw, (max-width: 720px) 33vw, (max-width: 1024px) 25vw, 200px"
-      />
+      /> -->
     </div>
     <div :class="$style.title">
       <a

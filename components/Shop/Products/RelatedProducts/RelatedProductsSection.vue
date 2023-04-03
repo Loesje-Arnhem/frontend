@@ -1,45 +1,34 @@
 <script lang="ts" setup>
-import {
-  IProductNode,
-  IProducts,
-  IRelatedProducts,
-} from '~/interfaces/IProduct'
+import { Endpoints } from '~~/enums/endpoints';
 
 const props = defineProps<{
-  relatedProducts: IRelatedProducts
+  productIds: number[]
 }>()
 
-const products: ComputedRef<IProducts> = computed(() => {
-  let edges: IProductNode[] = []
-  if (props.relatedProducts.products?.length)
-    edges = props.relatedProducts.products.map((product) => {
-      return {
-        node: product.product,
-      }
-    })
-
-  return {
-    edges,
-  }
+const { data, pending } = await useFetch(Endpoints.RelatedProducts, {
+  key: `related-products-${props.productIds.join('-')}`,
+  params: {
+    productIds: props.productIds.join(','),
+  },
 })
 </script>
 
 <template>
   <section
-    v-if="products.edges.length"
+    v-if="data?.length"
     aria-labelledby="featured-products"
     class="featured-products"
   >
     <center-wrapper>
       <h1 id="featured-products">
-        <template v-if="relatedProducts.title">
+        <!-- <template v-if="relatedProducts.title">
           {{ relatedProducts.title }}
         </template>
-        <template v-else>
-          {{ $t('theShop') }}
-        </template>
+        <template v-else> -->
+        {{ $t('theShop') }}
+        <!-- </template> -->
       </h1>
-      <product-list :products="products" />
+      <product-list :products="data" />
       <!-- <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
       </app-button> -->

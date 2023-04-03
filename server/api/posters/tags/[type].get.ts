@@ -1,4 +1,3 @@
-import { Taxonomy } from '~~/enums/taxonomy'
 import { ITag } from '~~/interfaces/IContent'
 import { IResponseTerm } from '~~/server/types/IResponseTerm'
 
@@ -11,7 +10,7 @@ export default defineEventHandler(async (event) => {
   const url = getUrl({
     type,
     fields: ['name', 'slug', 'id'],
-    pageSize: 50,
+    pageSize: 99,
   })
 
   const response = await $fetch<IResponseTerm[]>(url, {})

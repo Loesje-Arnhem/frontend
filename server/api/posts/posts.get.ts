@@ -4,12 +4,8 @@ import { IResponsePosts } from '~/server/types/IResponsePosts'
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   let pageSize = 0
-  let exclude = 0
   if (query.pageSize) {
     pageSize = Number(query.pageSize)
-  }
-  if (query.exclude) {
-    exclude = Number(query.exclude)
   }
 
   const url = getUrl({
@@ -17,7 +13,7 @@ export default defineEventHandler(async (event) => {
     fields: ['title', 'excerpt', 'date', 'slug'],
     pageSize,
     image: true,
-    exclude,
+    exclude: query.exclude || null
   })
 
   const response = await $fetch.raw(url).catch((error) => error.data)

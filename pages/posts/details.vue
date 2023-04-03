@@ -31,7 +31,10 @@ const { data, pending } = await useFetch(Endpoints.Post, {
     />
 
     <related-posters-section :posters="data.relatedPosters" />
-    <!-- <related-products-section :related-products="data.post.relatedProducts" /> -->
+    <related-products-section
+      v-if="data.relatedProducts.length"
+      :product-ids="data.relatedProducts"
+    />
     <posts-overview-section :exclude="data.id" />
   </div>
 </template>

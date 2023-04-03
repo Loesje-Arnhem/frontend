@@ -1,13 +1,10 @@
 <script lang="ts" setup>
-import { ITags } from '~/interfaces/ITag'
 import { Endpoints } from '~~/enums/endpoints';
-
 
 const [{ data: subjects }, { data: sources }] = await Promise.all([
       useFetch(Endpoints.PosterSubjects),
       useFetch(Endpoints.PosterSources)
     ])
-
 
 const { selectedSourceIds, selectedSubjectIds } = useTags()
 const activeOverlays = reactive({

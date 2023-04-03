@@ -43,6 +43,7 @@ export interface IPost extends IBase {
   youtubeId: string | null
   featuredImage?: IFeaturedImage
   relatedPosters: IRelatedPosters
+  relatedProducts: number[]
 }
 
 export interface ITag extends IBase {
@@ -63,6 +64,14 @@ export interface IPostListItem extends IBase {
   date: string
   excerpt: string
 }
+
+export interface IProductListItem extends IBase {
+  slug: string
+  price: number | null
+  regularPrice: number | null
+  externalUrl: string | null
+}
+
 
 export interface IPosterListItem extends IBase {
   title: string
