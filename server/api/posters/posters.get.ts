@@ -7,6 +7,7 @@ export default defineEventHandler(async (event) => {
   if (query.pageSize) {
     pageSize = query.pageSize
   }
+  console.log(subjectIds)
 
   const url = getUrl({
     type: 'posters',

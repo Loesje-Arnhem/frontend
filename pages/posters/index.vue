@@ -17,6 +17,7 @@ defineI18nRoute({
     <poster-filters />
     <poster-tags-list :list="selectedTags" />
   </center-wrapper>
+  {{ selectedTags }}
   <posters-overview-section
     :source-ids="selectedSourceIds"
     :subject-ids="selectedSubjectIds"
