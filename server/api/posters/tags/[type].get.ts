@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
   const url = getUrl({
     type,
-    fields: ['name', 'slug', 'id'],
+    fields: ['name', 'slug', 'id', 'taxonomy'],
     pageSize: 99,
   })
 
@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
       id: item.id,
       slug: item.slug,
       title: item.name,
-      type,
+      type: item.taxonomy,
     }
   })
   return items

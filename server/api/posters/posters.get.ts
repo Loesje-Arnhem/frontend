@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
     pageSize,
     exclude: query.exclude || null,
     subjectIds: query.subjectIds || null,
+    sourceIds: query.sourceIds || null,
     search: query.search || null,
   })
 

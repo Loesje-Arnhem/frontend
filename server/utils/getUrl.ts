@@ -6,13 +6,14 @@ export default ({
   page,
   image,
   subjectIds,
+  sourceIds,
   include,
   exclude,
   pageSize,
   search,
   parent,
   consumerKey,
-  consumerSecret
+  consumerSecret,
 }: {
   fields: string[]
   type: string
@@ -23,6 +24,7 @@ export default ({
   include?: string
   exclude?: string
   subjectIds?: string | null
+  sourceIds?: string | null
   pageSize?: number
   search?: string
   parent?: Number
@@ -34,7 +36,7 @@ export default ({
   let baseUrl = `${apiUrl}${type}/`
   if (id) {
     baseUrl = `${baseUrl}${id}`
-  }   else if (consumerKey && consumerSecret) {
+  } else if (consumerKey && consumerSecret) {
     baseUrl = `${woocommerceApiUrl}${type}/`
   }
 
@@ -54,6 +56,9 @@ export default ({
   }
   if (subjectIds) {
     url.searchParams.set('subjects', subjectIds)
+  }
+  if (sourceIds) {
+    url.searchParams.set('sources', sourceIds)
   }
   if (search) {
     url.searchParams.set('search', search)

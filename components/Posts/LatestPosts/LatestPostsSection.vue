@@ -14,12 +14,12 @@ const { data } = await useFetch(Endpoints.Posts, {
 <template>
   <section
     v-if="data?.items.length"
-    :class="$style['latest-posts']"
+    class="latest-posts"
     aria-labelledby="latest-posts-title"
   >
     <center-wrapper size="lg">
-      <div :class="$style.wrapper">
-        <div :class="$style.list">
+      <div class="wrapper">
+        <div class="list">
           <h1 id="latest-posts-title">
             {{ $t('posts') }}
           </h1>
@@ -28,14 +28,14 @@ const { data } = await useFetch(Endpoints.Posts, {
             {{ $t('morePosts') }}
           </app-button>
         </div>
-        <become-member :class="$style['become-member']" />
-        <latest-post-balloon :class="$style.balloon" />
+        <become-member class="become-member" />
+        <latest-post-balloon class="balloon" />
       </div>
     </center-wrapper>
   </section>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
 .latest-posts {

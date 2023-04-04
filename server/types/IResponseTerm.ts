@@ -1,6 +1,8 @@
+import { Taxonomy } from '~/enums/taxonomy'
+
 export interface IResponseTerm {
   id: number
   name: string
   slug: string
-  taxonomy: 'subject' | 'source'
+  taxonomy: Taxonomy.Source | Taxonomy.Subject
 }
