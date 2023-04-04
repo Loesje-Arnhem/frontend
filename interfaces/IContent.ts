@@ -74,13 +74,17 @@ export interface IProductListItem extends IBase {
 
 
 export interface IPosterListItem extends IBase {
-  title: string
+  slug: string
+  featuredImage?: IFeaturedImage
+}
+
+export interface IDailyPoster {
+  id: number
   slug: string
   featuredImage?: IFeaturedImage
 }
 
 export interface IPostersSearchResult extends IBase {
-  title: string
   slug: string
 }
 

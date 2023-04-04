@@ -16,11 +16,9 @@ const localePath = useLocalePath()
       </div>
       <div class="poster-daily">
         <div class="image-wrapper">
-          <client-only>
-            <nuxt-link :to="localePath({ name: 'daily-poster' })">
-              <daily-poster class="image" />
-            </nuxt-link>
-          </client-only>
+          <nuxt-link :to="localePath({ name: 'daily-poster' })">
+            <daily-poster class="image" />
+          </nuxt-link>
         </div>
         <app-image
           src="/images/electriciteitskastje.png"

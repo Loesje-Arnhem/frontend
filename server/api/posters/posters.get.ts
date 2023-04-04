@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
 
   const response = await $fetch<IResponsePosters[]>(url, {})
   const items: IPosterListItem[] = response.map((item) => {
-    const featuredImage = getFeaturedImage(item._embedded['wp:featuredmedia'])
+    const featuredImage = getFeaturedImage(item._embedded['wp:featuredmedia'], item.title.rendered)
 
     return {
       id: item.id,

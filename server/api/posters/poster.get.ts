@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const response = await $fetch<IResponsePoster[]>(url)
   if (response.length) {
     const item = response[0]
-    const featuredImage = getFeaturedImage(item._embedded['wp:featuredmedia'])
+    const featuredImage = getFeaturedImage(item._embedded['wp:featuredmedia'], item.title.rendered)
 
     let subjects: ITag[] = []
     let sources: ITag[] = []

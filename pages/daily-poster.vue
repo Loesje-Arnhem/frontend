@@ -8,12 +8,10 @@ defineI18nRoute({
 
 <template>
   <center-wrapper size="sm">
-    <client-only>
-      <daily-poster
-        class="daily-poster"
-        sizes="default: '(max-width: 640px) 90vw, 540px',"
-      />
-    </client-only>
+    <daily-poster
+      class="daily-poster"
+      sizes="default: '(max-width: 640px) 90vw, 540px',"
+    />
   </center-wrapper>
 </template>
 

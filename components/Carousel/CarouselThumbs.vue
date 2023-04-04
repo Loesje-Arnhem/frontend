@@ -10,7 +10,6 @@
         <featured-image
           :image="image"
           sizes="(max-width: 375px) 25vw, 200px"
-          :alt="image.altText"
           class="image"
           :class="{ active: index === activeSlide }"
         />

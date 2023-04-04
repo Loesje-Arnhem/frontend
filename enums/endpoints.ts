@@ -5,6 +5,7 @@ export enum Endpoints {
   Page = '/api/pages/page',
   Poster = '/api/posters/poster',
   PosterSearch = '/api/posters/search',
+  DailyPoster = '/api/posters/daily-poster',
   Post = '/api/posts/post',
   PosterSubjects = '/api/posters/tags/subjects',
   PosterSources = '/api/posters/tags/sources',
