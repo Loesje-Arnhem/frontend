@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
     fields: ['title', 'slug', 'id'],
     image: true,
     pageSize,
+    include: query.include || null,
     exclude: query.exclude || null,
     subjectIds: query.subjectIds || null,
     sourceIds: query.sourceIds || null,

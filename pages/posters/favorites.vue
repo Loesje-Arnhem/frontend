@@ -9,12 +9,14 @@ const favorites = useFavoriteIds()
 </script>
 
 <template>
-  <posters-overview-section
-    v-if="favorites.length"
-    :poster-ids="favorites"
-    :title="$t('favorites')"
-  />
-  <center-wrapper v-else>
-    <p>Geen favorieten</p>
-  </center-wrapper>
+  <client-only>
+    <posters-overview-section
+      v-if="favorites.length"
+      :include="favorites"
+      :title="$t('favorites')"
+    />
+    <center-wrapper v-else>
+      <p>Geen favorieten</p>
+    </center-wrapper>
+  </client-only>
 </template>

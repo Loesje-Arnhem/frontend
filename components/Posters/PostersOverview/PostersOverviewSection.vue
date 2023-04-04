@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { execute } from 'graphql';
 import { Endpoints } from '~~/enums/endpoints';
 
 interface ITaxQuery {
@@ -16,13 +15,19 @@ const props = withDefaults(
     dateAfter?: string
     subjectIds?: number[]
     sourceIds?: number[]
-    posterIds?: number[]
+    include?: number[]
     exclude?: number
   }>(),
   {
+    title: undefined,
+    search: undefined,
+    dateBefore: undefined,
+    dateAfter: undefined,
     subjectIds: () => [],
     sourceIds: () => [],
     posterIds: () => [],
+    include: () => [],
+    exclude: undefined,
   },
 )
 
@@ -91,7 +96,8 @@ const { data, pending } = useFetch(Endpoints.Posters, {
     search,
     subjectIds,
     sourceIds,
-    exclude: props.exclude
+    exclude: props.exclude,
+    include: props.include.join(',')
   },
   watch: [search, subjectIds, sourceIds],
   server: false

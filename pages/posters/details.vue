@@ -33,7 +33,7 @@ const subjectIds = computed(() => {
       <poster-details :poster="data" />
     </center-wrapper>
     <!-- <related-products-section :related-products="data.poster.relatedProducts" /> -->
-     <posters-overview-section
+    <posters-overview-section
       :exclude="data.id"
       :subject-ids="subjectIds"
       :title="$t('relatedPosters')"
