@@ -14,7 +14,7 @@ export default (featuredImage: IResponseImage[] | undefined, title?: string) => 
     alt = title
   } else if (image.alt_text) {
     alt = image.alt_text
-
+  }
   const result: IFeaturedImage =  {
     alt,
     width: image.media_details.width,
