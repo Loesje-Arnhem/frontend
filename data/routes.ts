@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 const fetchByType = async (type: string) => {
   const baseUrl = 'https://shop.loesje.nl'
-  const apiUrl = `${baseUrl}/wp-json/wp/v2/${type}/?_fields[]=link&per_page=10`
+  const apiUrl = `${baseUrl}/wp-json/wp/v2/${type}/?_fields[]=link&per_page=99`
   const response = await fetch(apiUrl)
   const data = (await response.json()) as { link: string }[]
   let suffix = ''
@@ -13,7 +13,8 @@ const fetchByType = async (type: string) => {
 }
 
 export default async () => {
-  const posts = await fetchByType('posts')
+  // const posts = await fetchByType('posts')
   const pages = await fetchByType('pages')
-  return [ ...posts, ...pages]
+  return pages
+  // return [ ...posts, ...pages]
 }
