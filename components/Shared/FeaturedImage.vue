@@ -6,11 +6,9 @@ withDefaults(
     image: IFeaturedImage
     sizes: string
     lazy?: boolean
-    alt?: string
   }>(),
   {
     lazy: true,
-    alt: '',
   },
 )
 </script>
@@ -18,14 +16,14 @@ withDefaults(
 <template>
   <img
     class="image"
-    :alt="alt"
+    :alt="image.alt"
     :loading="lazy ? 'lazy' : null"
     :srcset="image.srcSet"
     :src="image.src"
     :sizes="sizes"
     :width="image.width"
     :height="image.height"
-  />
+  >
 </template>
 
 <style lang="postcss" scoped>

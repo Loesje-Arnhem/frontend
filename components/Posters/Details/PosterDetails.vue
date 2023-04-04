@@ -22,7 +22,6 @@ defineProps<{
               v-if="poster.featuredImage"
               :key="poster.id"
               :lazy="false"
-              :alt="poster.title"
               :image="poster.featuredImage"
               sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
             />
