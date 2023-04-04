@@ -1,4 +1,4 @@
-import { IResponseImage } from "./IResponseImage"
+import { IResponseImage } from './IResponseImage'
 
 export interface IResponsePoster {
   id: number
@@ -8,5 +8,9 @@ export interface IResponsePoster {
   slug: string
   _embedded: {
     'wp:featuredmedia'?: IResponseImage[]
+  }
+  acf: {
+    pdf: string
+    date: string
   }
 }

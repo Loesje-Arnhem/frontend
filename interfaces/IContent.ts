@@ -72,8 +72,8 @@ export interface IProductListItem extends IBase {
   externalUrl: string | null
 }
 
-
-export interface IPosterListItem extends IBase {
+export interface IPosterListItem {
+  id: number
   slug: string
   featuredImage?: IFeaturedImage
 }
