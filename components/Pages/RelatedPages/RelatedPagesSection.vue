@@ -5,12 +5,14 @@ const props = defineProps<{
   parentId: number
 }>()
 
-const { data, pending } = await useFetch(Endpoints.RelatedPages, {
-  key: `related-pages-${props.parentId}`,
-  params: {
-    parentId: props.parentId,
-  },
-})
+const { data, pending } = await useAsyncData(
+  'related-pages',
+  () => $fetch(Endpoints.RelatedPages, {
+    params: {
+      parentId: props.parentId,
+    }
+  })
+)
 </script>
 
 <template>

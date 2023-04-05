@@ -9,26 +9,17 @@ const props = defineProps<{
   posters: IRelatedPosters
 }>()
 
-let key = 'related-posters'
-if (props.posters.search) {
-  key = `${key}-${props.posters.search}`
-}
-if (props.posters.subjects.length) {
-  key = `${key}-${props.posters.subjects.join(',')}`
-}
-if (props.posters.posterIds.length) {
-  key = `${key}-${props.posters.posterIds.join(',')}`
-}
-
-const { data, pending } = await useFetch(Endpoints.Posters, {
-  key,
-  params: {
-    pageSize: 7,
-    search: props.posters.search,
-    subjects: props.posters.subjects,
-    posterId: props.posters.posterIds,
-  },
-})
+const { data, pending } = await useAsyncData(
+  'related-posters',
+  () => $fetch(Endpoints.Posters, {
+    params: {
+      pageSize: 7,
+      search: props.posters.search,
+      subjects: props.posters.subjects,
+      include: props.posters.posterIds,
+    }
+  })
+)
 
 const title = props.posters.title || t('posters')
 </script>

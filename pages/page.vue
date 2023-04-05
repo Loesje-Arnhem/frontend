@@ -14,13 +14,15 @@ const uri = computed(() => {
   return slugs[slugs.length - 1]
 })
 
-const { data, pending } = await useFetch(Endpoints.Page, {
-  key: `page`,
-  params: {
+const { data, pending } = await useAsyncData(
+  'page',
+  () => $fetch(Endpoints.Page, {
+    params: {
     slug: uri.value,
-  },
-  
-})
+    }
+  })
+)
+
 // const { data, pending, error } = await useAsyncQuery<{
 //   page: IPage | null
 // }>(PageByByUri, {
