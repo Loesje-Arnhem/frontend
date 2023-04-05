@@ -52,6 +52,7 @@ export interface ITag extends IBase {
 }
 
 export interface IPoster extends IBase {
+  slug: string
   date: string
   featuredImage?: IFeaturedImage
   pdf: string

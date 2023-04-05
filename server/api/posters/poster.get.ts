@@ -35,6 +35,7 @@ export default defineEventHandler(async (event) => {
       pdf: item.acf.pdf,
       featuredImage,
       subjects,
+      slug: item.slug,
       sources,
     }
     return poster

@@ -15,7 +15,7 @@ defineProps<{
       <div class="tile-wrapper">
         <div
           class="tile image-wrapper-details"
-          :data-slug="poster.id"
+          :data-slug="poster.slug"
         >
           <fade-animation>
             <featured-image
