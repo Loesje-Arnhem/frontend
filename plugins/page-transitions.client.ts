@@ -22,6 +22,7 @@ export default defineNuxtPlugin(() => {
       !document.startViewTransition ||
       to.name !== posterDetailsRoute?.name
     ) {
+      navigateByBrowserButtons = false
       next()
     } else {
       // back buttontrigger does not work yet
