@@ -65,35 +65,30 @@ export default defineNuxtPlugin(() => {
 
       document.startViewTransition(async () => {
         next()
-
         if (navigateToPoster) {
-          console.log(`.image-wrapper-details[data-slug=${to.params.slug}]`)
-          await waitForElement(
+          const element = await waitForElement(
             `.image-wrapper-details[data-slug=${to.params.slug}]`,
-          ).then((element) => {
-            console.log(to.params.slug)
-            details = element
-            updateDOMOnNextPage(element)
-          })
+          )
+          details = element
+          updateDOMOnNextPage(element)
         } else {
-          await waitForElement(
+          const element = await waitForElement(
             `.image-wrapper-tile[data-slug=${from.params.slug}]`,
-          ).then((element) => {
-            console.log(to.params.slug)
-            tile = element
-            updateDOMOnNextPage(element)
-          })
+          )
+          tile = element
+          updateDOMOnNextPage(element)
         }
         document.documentElement.classList.remove(
           'transition-to-poster-details',
         )
-        clearStyles(tile)
-        clearStyles(details)
+        setTimeout(() => {
+          clearStyles(tile)
+          clearStyles(details)
+        }, 400)
       })
     }
   })
 })
-
 const updateDOMOnNextPage = (element: HTMLElement | null) => {
   setStyles(element)
   document.documentElement.classList.remove('transition-warming-up')
@@ -103,7 +98,7 @@ const setStyles = (element: HTMLElement | null) => {
   if (!element) {
     return
   }
-  element.style['view-transition-name'] = 'poster-details'
+  element.style.viewTransitionName = 'poster-details'
   element.style.contain = 'layout'
 }
 
