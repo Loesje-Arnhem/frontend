@@ -4,11 +4,14 @@ defineI18nRoute({
     nl: '/posters',
   },
 })
+definePageMeta({
+  key: route => route.fullPath
+})
 </script>
 
 <template>
   <div>
     <poster-navigation />
-    <nuxt-page :key="$route.fullPath" />
+    <nuxt-page />
   </div>
 </template>
