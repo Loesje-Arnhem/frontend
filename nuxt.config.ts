@@ -8,18 +8,14 @@ import {
   title,
   twitter,
 } from './data/siteDetails'
-// import routes from './data/routes'
+import routes from './data/routes'
 
 export default defineNuxtConfig({
   runtimeConfig: {
     woocommerceConsumerKey: '',
     woocommerceConsumerSecret: '',
   },
-  routeRules: {
-    // Static page generated on-demand, revalidates in background
-    '/doe-mee/**': { swr: true },
-    'over-loesje/**': { static: true },
-  },
+
   apollo: {
     defaultOptions: {
       query: {
@@ -46,16 +42,16 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
   },
-  // hooks: {
-  //   async 'nitro:config'(nitroConfig) {
-  //     if (nitroConfig.dev) {
-  //       return
-  //     }
-  //     const slugs = await routes()
-  //     // @ts-ignore
-  //     nitroConfig.prerender.routes.push(...slugs)
-  //   },
-  // },
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      if (nitroConfig.dev) {
+        return
+      }
+      const slugs = await routes()
+      // @ts-ignore
+      nitroConfig.prerender.routes.push(...slugs)
+    },
+  },
   telemetry: false,
   app: {
     head: {

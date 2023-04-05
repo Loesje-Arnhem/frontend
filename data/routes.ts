@@ -13,8 +13,7 @@ const fetchByType = async (type: string) => {
 }
 
 export default async () => {
-  // const posts = await fetchByType('posts')
+  const posts = await fetchByType('posts')
   const pages = await fetchByType('pages')
-  return pages
-  // return [ ...posts, ...pages]
+  return [...posts, ...pages]
 }
