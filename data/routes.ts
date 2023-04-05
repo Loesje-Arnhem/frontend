@@ -8,6 +8,8 @@ const fetchByType = async (type: string) => {
   let suffix = ''
   if (type === 'posts') {
     suffix = `/over-loesje/nieuws`
+  } else if (type === 'posters') {
+    suffix = `/posters`
   }
   return data.map((r) => r.link.replace(baseUrl, suffix))
 }
@@ -15,5 +17,6 @@ const fetchByType = async (type: string) => {
 export default async () => {
   const posts = await fetchByType('posts')
   const pages = await fetchByType('pages')
-  return [...posts, ...pages]
+  const posters = await fetchByType('posters')
+  return [...posts, ...pages, ...posters]
 }
