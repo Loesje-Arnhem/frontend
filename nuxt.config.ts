@@ -42,16 +42,16 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
   },
-  hooks: {
-    async 'nitro:config'(nitroConfig) {
-      if (nitroConfig.dev) {
-        return
-      }
-      const slugs = await routes()
-      // @ts-ignore
-      nitroConfig.prerender.routes.push(...slugs)
-    },
-  },
+  // hooks: {
+  //   async 'nitro:config'(nitroConfig) {
+  //     if (nitroConfig.dev) {
+  //       return
+  //     }
+  //     const slugs = await routes()
+  //     // @ts-ignore
+  //     nitroConfig.prerender.routes.push(...slugs)
+  //   },
+  // },
   telemetry: false,
   app: {
     head: {
