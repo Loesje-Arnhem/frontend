@@ -17,11 +17,11 @@
     "@types/throttle-debounce": "^5.0.0",
     "@types/workbox-window": "^4.3.4",
     "@vite-pwa/nuxt": "^0.0.7",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "nuxt": "^3.3.3",
     "nuxt-svgo": "^0.0.3",
     "postcss-mixins": "^9.0.4",
-    "postcss-preset-env": "^8.3.0"
+    "postcss-preset-env": "^8.3.1"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.2",
