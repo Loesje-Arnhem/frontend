@@ -6,29 +6,28 @@ defineI18nRoute({
 })
 const { pageIds } = useAppConfig()
 
-const { data, pending } = await usePageById(pageIds.newsletter)
+const { data } = await usePageById(pageIds.newsletter)
 </script>
 
 <template>
-  <app-loader v-if="pending" />
   <div
-    v-else-if="data"
+    v-if="data?.page"
     class="page"
   >
     <app-content
-      :title="data.title"
-      :content="data.content"
-      :video="data.youtubeId"
+      :title="data.page.title"
+      :content="data.page.content"
+      :video="data.page?.videoGroup?.youtubeId"
     />
-    <center-wrapper size="md">
+    <!-- <center-wrapper size="md">
       <form-newsletter class="newsletter" />
-    </center-wrapper>
-    <!-- <related-posters-section :posters="data.relatedPosters" /> -->
-    <related-products-section
+    </center-wrapper> -->
+    <related-posters-section :posters="data.page.relatedPosters" />
+    <!-- <related-products-section
       v-if="data.relatedProducts.length"
       :product-ids="data.relatedProducts"
-    />
-    <related-pages-section :parent-id="data.parentId" />
+    /> -->
+    <related-pages-section :pages="data.page.relatedPages" />
   </div>
 </template>
 

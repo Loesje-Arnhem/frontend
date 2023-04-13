@@ -40,9 +40,9 @@ const createTaxArray = (ids: number[], key: string) => {
 }
 
 const where = computed(() => {
-  if (props.posterIds.length) {
+  if (props.include.length) {
     return {
-      in: props.posterIds,
+      in: props.include,
     }
   }
   const taxQuery: { taxArray: ITaxQuery[] } = {
@@ -75,7 +75,7 @@ const where = computed(() => {
     }
   }
   return {
-    exclude: props.exclude,
+    notIn: props.exclude,
     search: props.search,
     taxQuery: taxQuery.taxArray.length ? taxQuery : null,
     posterDateBefore,
@@ -91,48 +91,56 @@ const sourceIds = computed(() => {
   return props.sourceIds.join(',')
 })
 
-const { data, pending } = useFetch(Endpoints.Posters, {
-  query: {
-    search,
-    subjectIds,
-    sourceIds,
-    exclude: props.exclude,
-    include: props.include.join(',')
-  },
-  watch: [search, subjectIds, sourceIds],
-  server: false
+// const { data, pending } = useFetch(Endpoints.Posters, {
+//   query: {
+//     search,
+//     subjectIds,
+//     sourceIds,
+//     exclude: props.exclude,
+//     include: props.include.join(',')
+//   },
+//   watch: [search, subjectIds, sourceIds],
+//   server: false
+// })
+
+const { data, pending } = await useAsyncGql('GetPosters', {
+  where: where.value,
 })
 
 
-// const loadMore = () => {
-//   fetchMore({
-//     variables: {
-//       after: result.value?.posters.pageInfo.endCursor,
-//     },
-//     updateQuery: (previousResult, { fetchMoreResult }) => {
-//       // No new feed posts
-//       if (!fetchMoreResult) return previousResult
 
-//       // Concat previous feed with new feed posts
-//       return {
-//         ...fetchMoreResult,
-//         posters: {
-//           ...fetchMoreResult.posters,
-//           pageInfo: fetchMoreResult.posters.pageInfo,
-//           edges: [
-//             ...previousResult.posters.edges,
-//             ...fetchMoreResult.posters.edges,
-//           ],
-//         },
-//       }
-//     },
-//   })
-// }
+const loadMore = async () => {
+  if (!data.value?.posters?.edges.length) {
+    return
+  }
 
+  pending.value = true
+  const result =  await GqlGetPosters({
+    where: where.value,
+  })
+
+  if (!result.posters?.edges.length) {
+    return
+  }
+
+  data.value = {
+    posters: {
+      pageInfo: result.posters.pageInfo,
+      edges: [
+        ...data.value.posters.edges,
+        ...result.posters.edges,
+      ]
+    }
+  }
+  pending.value = false
+}
 </script>
 
 <template>
-  <section aria-labelledby="posters-overview-title">
+  <section
+    v-if="data?.posters"
+    aria-labelledby="posters-overview-title"
+  >
     <center-wrapper>
       <h1
         id="posters-overview-title"
@@ -146,22 +154,20 @@ const { data, pending } = useFetch(Endpoints.Posters, {
         </template>
       </h1>
     </center-wrapper>
-    <app-loader v-if="pending" />
-    <template v-else-if="data">
+    <template v-if="data">
       <poster-list
-        v-if="data"
-        :posters="data"
+        :posters="data.posters"
       />
-      <!-- <center-wrapper>
+      <center-wrapper>
         <load-more-by-scroll
-          v-if="result.posters.pageInfo.hasNextPage"
-          :loading="loading"
+          v-if="data.posters.pageInfo.hasNextPage"
+          :loading="pending"
           @load-more="loadMore"
         />
-        <p v-if="result.posters.edges.length === 0 && !loading">
+        <p v-if="data.posters.edges.length === 0 && !pending">
           Geen posters gevonden
         </p>
-      </center-wrapper> -->
+      </center-wrapper>
     </template>
   </section>
 </template>

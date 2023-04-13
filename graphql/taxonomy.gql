@@ -1,0 +1,21 @@
+fragment sourceDetails on Source {
+  id
+  databaseId
+  title: name
+  taxonomy {
+    node {
+      name
+    }
+  }
+}
+
+fragment subjectDetails on Subject {
+  id
+  databaseId
+  title: name
+  taxonomy {
+    node {
+      name
+    }
+  }
+}

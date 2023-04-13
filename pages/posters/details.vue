@@ -9,34 +9,31 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data, pending } = await useFetch(Endpoints.Poster, {
-  key: `poster-${route.params.slug}`,
-  params: {
-    slug: route.params.slug,
-  },
+const { data, error } = await useAsyncGql('GetPoster', {
+  slug: route.params.slug.toString(),
 })
 
 const subjectIds = computed(() => {
-  if (!data.value) {
+  if (!data.value?.poster?.subjects) {
     return []
   }
-  return data.value.subjects.map(subject => subject.id)
+  return data.value.poster.subjects.edges.map(subject => subject.node.databaseId)
 })
+
 
 // useMeta(data.value?.poster)
 </script>
 
 <template>
-  <app-loader v-if="pending" />
-  <div v-else-if="data">
+  <div v-if="data?.poster">
     <center-wrapper>
-      <!-- <poster-details :poster="data" /> -->
+      <poster-details :poster="data.poster" />
     </center-wrapper>
     <!-- <related-products-section :related-products="data.poster.relatedProducts" /> -->
-    <!-- <posters-overview-section
-      :exclude="data.id"
+    <posters-overview-section
+      :exclude="data.poster.databaseId"
       :subject-ids="subjectIds"
       :title="$t('relatedPosters')"
-    /> -->
+    />
   </div>
 </template>

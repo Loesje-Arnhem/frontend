@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { IPosterListItem } from '~~/interfaces/IContent'
+import { PostersFragment } from '#gql';
 
 defineProps<{
-  posters: IPosterListItem[]
+  posters: PostersFragment
 }>()
 </script>
 
@@ -11,11 +11,11 @@ defineProps<{
     <center-wrapper>
       <list-animation class="list">
         <li
-          v-for="poster in posters"
-          :key="poster.id"
+          v-for="poster in posters.edges"
+          :key="poster.node.id"
           class="list-item"
         >
-          <poster-tile :poster="poster" />
+          <poster-tile :poster="poster.node" />
         </li>
       </list-animation>
     </center-wrapper>

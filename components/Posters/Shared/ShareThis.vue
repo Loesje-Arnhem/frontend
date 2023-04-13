@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
-  title: string
-  image: string | null
+  title?: string | null
+  image?: string | null
 }>()
 
 const route = useRoute()
@@ -29,9 +29,9 @@ const pinterest = computed(() => {
 
 const share = () => {
   window.navigator.share({
-    title: props.title,
+    title: props.title || '',
     url: link.value,
-    text: props.title,
+    text: props.title || '',
   })
 }
 </script>

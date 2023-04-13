@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import { PosterDetailsFragment } from '#gql';
 import { IPoster } from '~/interfaces/IContent'
 
 defineProps<{
-  poster: IPoster
+  poster: PosterDetailsFragment
 }>()
 </script>
 
@@ -35,10 +36,10 @@ defineProps<{
           Publicatiedatum
         </dt>
         <dd class="definition-item">
-          <app-date :date="poster.date" />
+          <!-- <app-date :date="poster.PosterMetaGroup?.date" /> -->
         </dd>
 
-        <template v-if="poster.subjects.length">
+        <!-- <template v-if="poster.subjects.length">
           <dt class="definition-title">
             Onderwerpen:
           </dt>
@@ -60,14 +61,14 @@ defineProps<{
               class="tags-list"
             />
           </dd>
-        </template>
+        </template> -->
       </dl>
       <div class="buttons">
-        <poster-favorites :poster="poster" />
+        <!-- <poster-favorites :poster="poster" /> -->
         <app-button
-          v-if="poster.pdf"
+          v-if="poster.PosterMetaGroup?.pdf"
           :is-primary="false"
-          :href="poster.pdf"
+          :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
           target="_blank"
           download
         >
@@ -84,7 +85,7 @@ defineProps<{
         <share-this
           v-if="poster.featuredImage"
           :title="poster.title"
-          :image="poster.featuredImage.src"
+          :image="poster.featuredImage.node.src"
         />
       </div>
     </div>

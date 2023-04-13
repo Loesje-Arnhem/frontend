@@ -13,7 +13,7 @@ fragment Poster on Poster {
   }
 }
 
-fragment PosterNode on ContentNodeToPosterConnectionEdge {
+fragment RelatedPosterNode on ContentNodeToPosterConnectionEdge {
   node {
     ...Poster
   }
@@ -21,6 +21,78 @@ fragment PosterNode on ContentNodeToPosterConnectionEdge {
 
 fragment RelatedPosters on ContentNodeToPosterConnection {
   edges {
+    ...RelatedPosterNode
+  }
+}
+
+fragment PosterDetails on Poster {
+  ...PosterBase
+  slug
+  date
+  uri
+  link
+  featuredImage {
+    ...FeaturedImage
+  }
+  PosterMetaGroup {
+    date
+    pdf {
+      mediaItemUrl
+    }
+  }
+  sources {
+    edges {
+      node {
+        ...sourceDetails
+      }
+    }
+  }
+  subjects {
+    edges {
+      node {
+        ...subjectDetails
+      }
+    }
+  }
+}
+
+fragment PosterNode on RootQueryToPosterConnectionEdge {
+  node {
+    ...Poster
+  }
+}
+
+fragment Posters on RootQueryToPosterConnection {
+  edges {
     ...PosterNode
+  }
+}
+
+query GetPoster($slug: ID!) {
+  poster(id: $slug, idType: SLUG) {
+    ...PosterDetails
+    # relatedProducts: relatedProductsGroup {
+    #   ...posterRelatedProducts
+    # }
+
+
+    # seo {
+    #   ...seo
+    # }
+  }
+}
+
+query GetPosters(
+  $after: String
+  $where: RootQueryToPosterConnectionWhereArgs
+) {
+  posters(first: 20, after: $after, where: $where) {
+    pageInfo {
+      hasNextPage
+      endCursor
+      hasPreviousPage
+      startCursor
+    }
+    ...Posters
   }
 }
