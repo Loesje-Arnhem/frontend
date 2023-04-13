@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import useVuelidate from '@vuelidate/core'
-import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop'
+// import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop'
 
 const submitted = ref(false)
 const { required, numeric, email, minValue, maxValue } = useValidators()
@@ -65,17 +65,17 @@ const submit = async () => {
   requestWorkshop()
 }
 
-const {
-  mutate: requestWorkshop,
-  loading,
-  onDone,
-  error: apiError,
-} = useMutation(RequestWorkshopQuery, () => ({
-  variables: {
-    clientMutationId: v4(),
-    ...formData,
-  },
-}))
+// const {
+//   mutate: requestWorkshop,
+//   loading,
+//   onDone,
+//   error: apiError,
+// } = useMutation(RequestWorkshopQuery, () => ({
+//   variables: {
+//     clientMutationId: v4(),
+//     ...formData,
+//   },
+// }))
 
 onDone((result) => {
   if (result.data.requestWorkshop.response === 'success') {

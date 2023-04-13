@@ -1,0 +1,45 @@
+fragment Page on Page {
+  id
+  databaseId
+  title
+}
+
+fragment RelatedPageNode on PageToPageConnectionEdge {
+  node {
+    ...Page
+    excerpt
+    uri
+  }
+}
+
+fragment RelatedPages on PageToPageConnection {
+  edges {
+    ...RelatedPageNode
+  }
+}
+
+fragment PageDetails on Page {
+  ...Page  
+  content
+  videoGroup {
+    youtubeId
+  }
+  relatedPages {
+    ...RelatedPages
+  }
+  relatedPosters(first: 7) {
+      ...RelatedPosters
+    }
+}
+
+query GetPageByByUri($uri: ID!) {
+  page(id: $uri, idType: URI) {
+    ...PageDetails
+  }
+}
+
+query GetPageByByID($id: ID!) {
+  page(id: $id, idType: ID) {
+    ...PageDetails
+  }
+}

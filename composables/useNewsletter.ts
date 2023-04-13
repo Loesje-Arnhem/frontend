@@ -1,5 +1,5 @@
 import { useVuelidate } from '@vuelidate/core'
-import { useMutation } from '@vue/apollo-composable'
+// import { useMutation } from '@vue/apollo-composable'
 import AddToNewsletterQuery from '~/graphql/Newsletter/AddToNewsletter.gql'
 import { NewsletterList } from '~/enums/newsletterList'
 
@@ -40,29 +40,29 @@ export const useNewsletter = () => {
 
     addToNewsletter()
   }
-  const {
-    mutate: addToNewsletter,
-    loading,
-    error: apiError,
-    onDone,
-  } = useMutation(AddToNewsletterQuery, () => ({
-    variables: {
-      // clientMutationId: v4(),
-      email: formData.email,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      list: formData.list,
-    },
-  }))
+  // const {
+  //   mutate: addToNewsletter,
+  //   loading,
+  //   error: apiError,
+  //   onDone,
+  // } = useMutation(AddToNewsletterQuery, () => ({
+  //   variables: {
+  //     // clientMutationId: v4(),
+  //     email: formData.email,
+  //     firstName: formData.firstName,
+  //     lastName: formData.lastName,
+  //     list: formData.list,
+  //   },
+  // }))
 
-  onDone(({ data }) => {
-    const response = JSON.parse(data.addToNewsletter.response)
-    if (response.error) {
-      errors.value.push(response.error.code)
-    } else {
-      submitted.value = response.status === 'SUBSCRIBED'
-    }
-  })
+  // onDone(({ data }) => {
+  //   const response = JSON.parse(data.addToNewsletter.response)
+  //   if (response.error) {
+  //     errors.value.push(response.error.code)
+  //   } else {
+  //     submitted.value = response.status === 'SUBSCRIBED'
+  //   }
+  // })
   return {
     submit,
     error,

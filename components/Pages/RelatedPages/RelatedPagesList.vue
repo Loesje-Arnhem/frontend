@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { IRelatedPage } from '~~/interfaces/IContent'
+import { RelatedPageNodeFragment } from '#gql';
 
 defineProps<{
-  pages: IRelatedPage[]
+  pages: RelatedPageNodeFragment[]
 }>()
 </script>
 
@@ -11,7 +11,7 @@ defineProps<{
     <ul :class="$style.list">
       <related-pages-list-item
         v-for="page in pages"
-        :key="page.id"
+        :key="page.node.id"
         :page="page"
         :class="$style['list-item']"
       />

@@ -14,19 +14,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     woocommerceConsumerKey: '',
     woocommerceConsumerSecret: '',
-  },
-
-  apollo: {
-    defaultOptions: {
-      query: {
-        fetchPolicy: 'cache-first',
-      },
-    },
-    clients: {
-      default: {
-        httpEndpoint: `${apiUrl}graphql`,
-      },
-    },
+    public: {
+            GQL_HOST: `${apiUrl}graphql` 
+   }
   },
   typescript: {
     tsConfig: {
@@ -199,7 +189,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ['@nuxtjs/i18n', '@nuxtjs/apollo', 'nuxt-svgo', '@vite-pwa/nuxt'],
+  modules: ['@nuxtjs/i18n',  'nuxt-svgo', '@vite-pwa/nuxt', 'nuxt-graphql-client'],
   postcss: {
     plugins: {
       'postcss-import': {},

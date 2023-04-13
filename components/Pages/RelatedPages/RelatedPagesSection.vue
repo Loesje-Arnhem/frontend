@@ -1,24 +1,29 @@
 <script lang="ts" setup>
-import { Endpoints } from '~~/enums/endpoints';
+import { RelatedPagesFragment } from '#gql';
 
-const props = defineProps<{
-  parentId: number
+defineProps<{
+  pages?: RelatedPagesFragment | null
 }>()
 
-const { data, pending } = await useAsyncData(
-  'related-pages',
-  () => $fetch(Endpoints.RelatedPages, {
-    params: {
-      parentId: props.parentId,
-    }
-  })
-)
+// import { Endpoints } from '~~/enums/endpoints';
+
+// const props = defineProps<{
+//   parentId: number
+// }>()
+
+// const { data, pending } = await useAsyncData(
+//   'related-pages',
+//   () => $fetch(Endpoints.RelatedPages, {
+//     params: {
+//       parentId: props.parentId,
+//     }
+//   })
+// )
 </script>
 
 <template>
-  <app-loader v-if="pending" />
   <section
-    v-else-if="data?.length"
+    v-if="pages?.edges.length"
     :class="$style['related-pages']"
     aria-labelledby="related-pages-title"
   >
@@ -28,7 +33,7 @@ const { data, pending } = await useAsyncData(
     >
       Overige pagina's
     </h2>
-    <related-pages-list :pages="data" />
+    <related-pages-list :pages="pages.edges" />
   </section>
 </template>
 

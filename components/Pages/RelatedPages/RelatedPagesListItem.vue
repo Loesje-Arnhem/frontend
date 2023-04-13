@@ -1,26 +1,29 @@
 <script lang="ts" setup>
-import { IRelatedPage } from '~~/interfaces/IContent'
+import { RelatedPageNodeFragment } from '#gql';
 
 defineProps<{
-  page: IRelatedPage
+  page: RelatedPageNodeFragment
 }>()
 </script>
 
 <template>
   <clickable-list-item
-    v-if="page.uri"
-    :url="page.uri"
+    v-if="page.node.uri"
+    :url="page.node.uri"
     :class="$style['related-page']"
     class="box"
   >
     <h2 :class="$style.title">
-      <nuxt-link :to="page.uri" :class="$style.link">
-        {{ page.title }}
+      <nuxt-link
+        :to="page.node.uri"
+        :class="$style.link"
+      >
+        {{ page.node.title }}
       </nuxt-link>
     </h2>
     <div :class="$style.text">
-      <div v-html="page.excerpt" />
-      <read-more-link :to="page.uri" />
+      <div v-html="page.node.excerpt" />
+      <read-more-link :to="page.node.uri" />
     </div>
   </clickable-list-item>
 </template>

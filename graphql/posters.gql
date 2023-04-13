@@ -1,0 +1,22 @@
+fragment PosterBase on Poster {
+  id
+  databaseId
+  title
+}
+
+fragment Posters on Poster {
+  ...PosterBase
+  uri
+  slug
+  featuredImage {
+    ...FeaturedImage
+  }
+}
+
+fragment RelatedPosters on ContentNodeToPosterConnection {
+  edges {
+    node {
+      ...Posters
+    }
+  }
+}

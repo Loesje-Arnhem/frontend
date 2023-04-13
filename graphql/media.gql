@@ -1,0 +1,15 @@
+fragment MediaItem on MediaItem {
+  id
+  srcSet
+  src: mediaItemUrl
+  mediaDetails {
+    width
+    height
+  }
+}
+
+fragment FeaturedImage on NodeWithFeaturedImageToMediaItemConnectionEdge {
+  node {
+    ...MediaItem
+  }
+}

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { IPage } from '~/interfaces/IPage';
-import PageByByUri from '~/graphql/Pages/Pages'
+// import PageByByUri from '~/graphql/Pages/PageByUri.gql'
 // import { Endpoints } from '~~/enums/endpoints';
 
 defineI18nRoute({
@@ -18,21 +17,23 @@ const uri = computed(() => {
 
 // const { data, pending } = await useAsyncData(
 //   'page',
-//   () => $fetch(Endpoints.Page, {
-//     params: {
-//     slug: uri.value,
-//     }
-//   })
+//   () => GqlGetPageByByUri({ uri: uri.value, }))
 // )
 
-const { data, pending, error } = await useAsyncQuery<{
-  page: IPage | null
-}>(PageByByUri, {
+const { data, pending, error } = await useAsyncGql('GetPageByByUri', {
   uri: uri.value,
 })
 
 const page = computed(() => {
-  return data.value?.page
+  if (!data.value?.page) {
+    return null
+  }
+  const result= data.value.page;
+  return {
+    title: result.title || '',
+    content: result.content || '',
+    video: result.videoGroup?.youtubeId
+  }
 })
 
 // onError((error) => {
@@ -61,16 +62,12 @@ const page = computed(() => {
 
 <template>
   <app-loader v-if="pending" />
-  <div v-else-if="page">
+  <div v-else-if="data?.page">
     <app-content
-      :title="page.title"
-      :content="page.content"
+      :title="data.page.title || ''"
+      :content="data.page.content || ''"
+      :video="data.page?.videoGroup?.youtubeId"
     />
-    <!-- <related-posters-section :posters="data.relatedPosters" />
-    <related-products-section
-      v-if="data.relatedProducts.length"
-      :product-ids="data.relatedProducts"
-    />
-    <related-pages-section :parent-id="data.parentId" /> -->
+    <related-pages-section :pages="data.page.relatedPages" />
   </div>
 </template>
