@@ -1,10 +1,24 @@
 <script lang="ts" setup>
 import { PosterDetailsFragment } from '#gql';
-import { IPoster } from '~/interfaces/IContent'
-
-defineProps<{
+ 
+const props = defineProps<{
   poster: PosterDetailsFragment
 }>()
+
+const subjects = computed(() => {
+  if (!props.poster.subjects) {
+    return []
+  }
+  return props.poster.subjects.edges.map(subject => subject.node)
+})
+
+
+const sources = computed(() => {
+  if (!props.poster.sources) {
+    return []
+  }
+  return props.poster.sources.edges.map(source => source.node)
+})
 </script>
 
 <template>
@@ -39,32 +53,34 @@ defineProps<{
           <!-- <app-date :date="poster.PosterMetaGroup?.date" /> -->
         </dd>
 
-        <!-- <template v-if="poster.subjects.length">
+        <template
+          v-if="subjects.length"
+        >
           <dt class="definition-title">
             Onderwerpen:
           </dt>
           <dd class="definition-item">
             <poster-tags-list
-              :list="poster.subjects"
+              :list="subjects"
               class="tags-list"
             />
           </dd>
         </template>
 
-        <template v-if="poster.sources.length">
+        <template v-if="sources.length">
           <dt class="definition-title">
             Bronnen:
           </dt>
           <dd class="definition-item">
             <poster-tags-list
-              :list="poster.sources"
+              :list="sources"
               class="tags-list"
             />
           </dd>
-        </template> -->
+        </template>
       </dl>
       <div class="buttons">
-        <!-- <poster-favorites :poster="poster" /> -->
+        <poster-favorites :poster="poster" />
         <app-button
           v-if="poster.PosterMetaGroup?.pdf"
           :is-primary="false"

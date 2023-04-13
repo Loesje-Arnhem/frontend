@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { Endpoints } from '~~/enums/endpoints';
-
 defineI18nRoute({
   paths: {
     nl: '/posters/:slug',

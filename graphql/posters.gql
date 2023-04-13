@@ -41,18 +41,10 @@ fragment PosterDetails on Poster {
     }
   }
   sources {
-    edges {
-      node {
-        ...sourceDetails
-      }
-    }
+    ...Sources
   }
   subjects {
-    edges {
-      node {
-        ...subjectDetails
-      }
-    }
+    ...Subjects
   }
 }
 
@@ -79,6 +71,17 @@ query GetPoster($slug: ID!) {
     # seo {
     #   ...seo
     # }
+  }
+}
+
+query SearchPoster($search: String) {
+  posters(where: { search: $search }, first: 10) {
+    edges {
+      node {
+        ...PosterBase
+        slug
+      }
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-fragment sourceDetails on Source {
+fragment Source on Source {
   id
   databaseId
   title: name
@@ -9,13 +9,56 @@ fragment sourceDetails on Source {
   }
 }
 
-fragment subjectDetails on Subject {
+fragment Subject on Subject {
   id
   databaseId
   title: name
   taxonomy {
     node {
       name
+    }
+  }
+}
+
+fragment SourceNode on PosterToSourceConnectionEdge {
+  node {
+    ...Source
+  }
+}
+
+
+fragment Sources on PosterToSourceConnection {
+  edges {
+    ...SourceNode
+  }
+}
+
+fragment SubjectNode on PosterToSubjectConnectionEdge {
+  node {
+    ...Subject
+  }
+}
+
+
+fragment Subjects on PosterToSubjectConnection {
+  edges {
+    ...SubjectNode
+  }
+}
+
+query GetTaxonomies {
+  sources(first: 100) {
+    edges {
+      node {
+        ...Source
+      }
+    }
+  }
+  subjects(first: 100) {
+    edges {
+      node {
+        ...Subject
+      }
     }
   }
 }

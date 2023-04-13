@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import { IPoster } from '~/interfaces/IContent'
+import { PosterDetailsFragment } from '#gql'
 
 const props = defineProps<{
-  poster: IPoster
+  poster: PosterDetailsFragment
 }>()
 const favorites = useFavoriteIds()
 
 const { add, remove } = useFavorites()
 
 const isInFavorites = computed(() => {
-  return favorites.value.includes(props.poster.id)
+  return favorites.value.includes(props.poster.databaseId)
 })
 
 const toggleFavorite = () => {
   if (isInFavorites.value) {
-    remove(props.poster.id)
+    remove(props.poster.databaseId)
   } else {
-    add(props.poster.id)
+    add(props.poster.databaseId)
   }
 }
 </script>

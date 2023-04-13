@@ -1,13 +1,16 @@
 <script lang="ts" setup>
-import { ITag } from '~~/interfaces/IContent'
+import { SourceFragment, SubjectFragment } from '#gql';
 
 defineProps<{
-  list: ITag[]
+  list: (SubjectFragment | SourceFragment)[]
 }>()
 </script>
 
 <template>
-  <ul :class="$style.list">
+  <ul
+    v-if="list"
+    :class="$style.list"
+  >
     <li
       v-for="item in list"
       :key="item.id"

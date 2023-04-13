@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { Taxonomy } from '~~/enums/taxonomy';
-import { ITag } from '~~/interfaces/IContent'
+import { SourceFragment, SubjectFragment } from '#gql';
 
 const props = defineProps<{
-  tag: ITag
+  tag: SubjectFragment | SourceFragment
 }>()
 
 const selectedTags = useSelectedTags()
@@ -13,7 +12,7 @@ const localePath = useLocalePath()
 
 const isSelected = computed(() => {
   return selectedTags.value.some((selectedTag) => {
-    return selectedTag.id === props.tag.id
+    return selectedTag.databaseId === props.tag.databaseId
   })
 })
 
@@ -24,7 +23,7 @@ const remove = () => {
   const tags = [...selectedTags.value]
 
   selectedTags.value = tags.filter(
-    (selectedTag) => selectedTag.id !== props.tag.id,
+    (selectedTag) => selectedTag.databaseId !== props.tag.databaseId,
   )
 }
 

@@ -1,23 +1,42 @@
 <script lang="ts" setup>
-import { Endpoints } from '~~/enums/endpoints';
+import { IAutocomplete } from '~/interfaces/IAutocomplete'
 
 const search = useSearch()
 const searchField = ref(search.value)
 const route = useRoute()
-const enabled = computed(() => searchField.value.length > 3)
 const localePath = useLocalePath()
 
 const submit = () => {
   search.value = searchField.value
 }
 
-const { data } = useFetch(Endpoints.PosterSearch, {
-  key: 'search',
-  params: {
-    search: searchField
-  },
-  watch: [searchField],
-  immediate:false
+const posters: Ref<IAutocomplete[]> = ref([])
+
+watch(searchField, async() => {
+  if (searchField.value.length < 2) {
+    posters.value = []
+    return
+  }
+  const result = await GqlSearchPoster({
+    search: searchField.value,
+  })
+  if (!result.posters) {
+    posters.value = []
+    return
+  }
+  posters.value = result.posters.edges.map(poster => {
+    const uri = localePath({
+      name: 'posters-details',
+      params: {
+        slug: poster.node.slug?.toString() || ''
+      }
+    })
+    return {
+      id: poster.node.databaseId,
+      title: poster.node.title || '',
+      uri
+    }
+  })
 })
 
 onMounted(() => {
@@ -28,24 +47,6 @@ onMounted(() => {
   }
 })
 
-const posters = computed(() => {
-  if (!data.value) {
-    return []
-  }
-  return data.value.map(item => {
-    const uri = localePath({
-      name: 'posters-details',
-      params: {
-        slug: item.slug
-      }
-    })
-    return {
-      id: item.id,
-      title: item.title,
-      uri
-    }
-  })
-})
 </script>
 
 <template>

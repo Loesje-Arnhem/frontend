@@ -83,30 +83,21 @@ const where = computed(() => {
   }
 })
 
-const search = toRef(props, 'search')
-const subjectIds = computed(() => {
-  return props.subjectIds.join(',')
-})
-const sourceIds = computed(() => {
-  return props.sourceIds.join(',')
-})
-
-// const { data, pending } = useFetch(Endpoints.Posters, {
-//   query: {
-//     search,
-//     subjectIds,
-//     sourceIds,
-//     exclude: props.exclude,
-//     include: props.include.join(',')
-//   },
-//   watch: [search, subjectIds, sourceIds],
-//   server: false
-// })
-
 const { data, pending } = await useAsyncGql('GetPosters', {
   where: where.value,
 })
 
+watch(where, async () => {
+
+  pending.value = true
+  data.value = null
+
+  data.value = await GqlGetPosters({
+    where: where.value,
+  })
+
+  pending.value = false  
+})
 
 
 const loadMore = async () => {
@@ -137,8 +128,11 @@ const loadMore = async () => {
 </script>
 
 <template>
+  <app-loader
+    v-if="pending && !data"
+  />
   <section
-    v-if="data?.posters"
+    v-else-if="data?.posters"
     aria-labelledby="posters-overview-title"
   >
     <center-wrapper>

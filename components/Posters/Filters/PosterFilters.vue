@@ -1,10 +1,7 @@
 <script lang="ts" setup>
 import { Endpoints } from '~~/enums/endpoints';
 
-const [{ data: subjects }, { data: sources }] = await Promise.all([
-      useFetch(Endpoints.PosterSubjects),
-      useFetch(Endpoints.PosterSources)
-    ])
+
 
 const { selectedSourceIds, selectedSubjectIds } = useTags()
 const activeOverlays = reactive({
@@ -12,6 +9,22 @@ const activeOverlays = reactive({
   subjects: false,
 })
 
+const { data, pending } = await useAsyncGql('GetTaxonomies')
+
+const subjects = computed(() => {
+  if (!data.value?.subjects) {
+    return []
+  }
+  return data.value.subjects.edges.map(subject => subject.node)
+})
+
+
+const sources = computed(() => {
+  if (!data.value?.sources) {
+    return []
+  }
+  return data.value.sources.edges.map(subject => subject.node)
+})
 
 const dateBefore = useDateBefore()
 const dateAfter = useDateAfter()
@@ -28,11 +41,17 @@ const toggleOverlay = (type: string) => {
 
 const today = () => {
   const now = new Date()
-  let month = (now.getMonth() + 1) as Number | String
-  let day = now.getDate() as Number | String
-  if (month < 10) month = '0' + month
-  if (day < 10) day = '0' + day
-  return now.getFullYear() + '-' + month + '-' + day
+  const currentMonth = now.getMonth() + 1
+  const currentDay = now.getDate()
+  let month = `${(currentMonth)}`
+  if (currentMonth < 10) {
+    month = `0${currentMonth}`
+  }
+  let day = `${currentDay}`
+  if (currentDay < 10) { 
+    day = `0${currentDay}`
+  }
+  return `${now.getFullYear()}-${month}-${day}`
 }
 </script>
 

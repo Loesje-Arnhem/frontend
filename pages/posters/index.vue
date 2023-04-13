@@ -17,11 +17,11 @@ defineI18nRoute({
     <poster-filters />
     <poster-tags-list :list="selectedTags" />
   </center-wrapper>
-  <!-- <posters-overview-section
-    :source-ids="selectedSourceIds"
-    :subject-ids="selectedSubjectIds"
+  <posters-overview-section
     :search="search"
     :date-before="dateBefore"
     :date-after="dateAfter"
-  /> -->
+    :source-ids="selectedSourceIds"
+    :subject-ids="selectedSubjectIds"
+  />
 </template>
