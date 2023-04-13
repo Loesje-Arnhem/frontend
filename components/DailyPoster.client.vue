@@ -9,16 +9,27 @@ withDefaults(
     sizes: '(max-width: 375px) 100vw, 270px',
   },
 )
+const date = new Date()
 
-const { data } = await useFetch(Endpoints.DailyPoster, {
-  key: `daily-poster`,
+const { data, error } = await useAsyncGql('GetDailyPoster', {
+  year: date.getFullYear(),
+  month: date.getMonth() + 1,
+  day: date.getDate(),
+})
+
+const image = computed(() => {
+  if (!data.value?.dailyPosters?.edges.length) {
+    return null
+  }
+  return data.value?.dailyPosters?.edges[0].node.featuredImage
+  
 })
 </script>
 
 <template>
   <featured-image
-    v-if="data?.featuredImage"
-    :image="data.featuredImage"
+    v-if="image"
+    :image="image"
     :sizes="sizes"
   />
 </template>

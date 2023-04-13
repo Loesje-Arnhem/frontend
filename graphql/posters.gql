@@ -99,3 +99,18 @@ query GetPosters(
     ...Posters
   }
 }
+query GetDailyPoster($year: Int, $month: Int, $day: Int) {
+  dailyPosters(
+    first: 1
+    where: { posterDateEquals: { year: $year, month: $month, day: $day } }
+  ) {
+    edges {
+      node {
+        title
+        featuredImage {
+          ...FeaturedImage
+        }
+      }
+    }
+  }
+}
