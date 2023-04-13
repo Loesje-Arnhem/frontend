@@ -1,17 +1,20 @@
 <script lang="ts" setup>
-import { IPostListItem } from '~/interfaces/IContent'
+import { PostListItemsFragment } from '#gql';
 
 defineProps<{
-  posts: IPostListItem[]
+  posts: PostListItemsFragment
 }>()
 </script>
 
 <template>
-  <list-animation v-if="posts.length" class="list">
+  <list-animation
+    v-if="posts.edges.length"
+    class="list"
+  >
     <post-list-item
-      v-for="post in posts"
-      :key="post.id"
-      :post="post"
+      v-for="post in posts.edges"
+      :key="post.node.id"
+      :post="post.node"
       class="list-item"
     />
   </list-animation>

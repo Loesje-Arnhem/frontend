@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { IPostListItem } from '~/interfaces/IContent'
+import { PostListItemNodeFragment } from '#gql';
 defineProps<{
-  posts: IPostListItem[]
+  posts: PostListItemNodeFragment[]
 }>()
 </script>
 
@@ -9,8 +9,8 @@ defineProps<{
   <ul class="list">
     <post-list-item
       v-for="post in posts"
-      :key="post.id"
-      :post="post"
+      :key="post.node.id"
+      :post="post.node"
       class="list-item"
     />
   </ul>

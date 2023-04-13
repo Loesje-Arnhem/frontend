@@ -20,21 +20,10 @@ const uri = computed(() => {
 //   () => GqlGetPageByByUri({ uri: uri.value, }))
 // )
 
-const { data, pending, error } = await useAsyncGql('GetPageByByUri', {
+const { data, error } = await useAsyncGql('GetPageByUri', {
   uri: uri.value,
 })
 
-const page = computed(() => {
-  if (!data.value?.page) {
-    return null
-  }
-  const result= data.value.page;
-  return {
-    title: result.title || '',
-    content: result.content || '',
-    video: result.videoGroup?.youtubeId
-  }
-})
 
 // onError((error) => {
 //   throw createError({
@@ -61,13 +50,18 @@ const page = computed(() => {
 </script>
 
 <template>
-  <app-loader v-if="pending" />
-  <div v-else-if="data?.page">
+  <div v-if="data?.page">
     <app-content
-      :title="data.page.title || ''"
-      :content="data.page.content || ''"
+      :title="data.page.title"
+      :content="data.page.content"
       :video="data.page?.videoGroup?.youtubeId"
     />
-    <related-pages-section :pages="data.page.relatedPages" />
+    <related-posters-section
+      :posters="data.page.relatedPosters"
+      :title="data.page.relatedPostersGroup?.title"
+    />
+    <related-pages-section
+      :pages="data.page.relatedPages"
+    />
   </div>
 </template>

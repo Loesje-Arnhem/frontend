@@ -1,6 +1,7 @@
 fragment MediaItem on MediaItem {
   id
   srcSet
+  alt: altText
   src: mediaItemUrl
   mediaDetails {
     width

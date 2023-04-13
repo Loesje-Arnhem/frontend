@@ -4,7 +4,7 @@ fragment PosterBase on Poster {
   title
 }
 
-fragment Posters on Poster {
+fragment Poster on Poster {
   ...PosterBase
   uri
   slug
@@ -13,10 +13,14 @@ fragment Posters on Poster {
   }
 }
 
+fragment PosterNode on ContentNodeToPosterConnectionEdge {
+  node {
+    ...Poster
+  }
+}
+
 fragment RelatedPosters on ContentNodeToPosterConnection {
   edges {
-    node {
-      ...Posters
-    }
+    ...PosterNode
   }
 }

@@ -1,14 +1,18 @@
-fragment Page on Page {
+fragment PageBase on Page {
   id
   databaseId
   title
 }
 
+fragment RelatedPage on Page {
+  ...PageBase
+  excerpt
+  uri
+}
+
 fragment RelatedPageNode on PageToPageConnectionEdge {
   node {
-    ...Page
-    excerpt
-    uri
+    ...RelatedPage
   }
 }
 
@@ -19,7 +23,7 @@ fragment RelatedPages on PageToPageConnection {
 }
 
 fragment PageDetails on Page {
-  ...Page  
+  ...PageBase
   content
   videoGroup {
     youtubeId
@@ -27,19 +31,33 @@ fragment PageDetails on Page {
   relatedPages {
     ...RelatedPages
   }
+  relatedPostersGroup {
+    title: relatedPostersTitle
+  }
   relatedPosters(first: 7) {
-      ...RelatedPosters
-    }
+    ...RelatedPosters
+  }
 }
 
-query GetPageByByUri($uri: ID!) {
+query GetPageByUri($uri: ID!) {
   page(id: $uri, idType: URI) {
     ...PageDetails
   }
 }
 
-query GetPageByByID($id: ID!) {
-  page(id: $id, idType: ID) {
+query GetPageByID($id: ID!) {
+  page(id: $id, idType: DATABASE_ID) {
     ...PageDetails
+  }
+}
+
+query GetPageHome($id: ID!) {
+  page(id: $id, idType: DATABASE_ID) {
+    ...PageDetails
+  }
+  posts(first: 3, where: {
+    hasPassword: false
+  }) {
+    ...PostListItems
   }
 }

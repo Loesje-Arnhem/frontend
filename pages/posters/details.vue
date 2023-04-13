@@ -30,13 +30,13 @@ const subjectIds = computed(() => {
   <app-loader v-if="pending" />
   <div v-else-if="data">
     <center-wrapper>
-      <poster-details :poster="data" />
+      <!-- <poster-details :poster="data" /> -->
     </center-wrapper>
     <!-- <related-products-section :related-products="data.poster.relatedProducts" /> -->
-    <posters-overview-section
+    <!-- <posters-overview-section
       :exclude="data.id"
       :subject-ids="subjectIds"
       :title="$t('relatedPosters')"
-    />
+    /> -->
   </div>
 </template>

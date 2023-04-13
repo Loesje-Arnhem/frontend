@@ -1,34 +1,33 @@
 <script lang="ts" setup>
-import { RelatedPageNodeFragment } from '#gql';
+import { RelatedPageFragment } from '#gql';
 
 defineProps<{
-  page: RelatedPageNodeFragment
+  page: RelatedPageFragment
 }>()
 </script>
 
 <template>
   <clickable-list-item
-    v-if="page.node.uri"
-    :url="page.node.uri"
-    :class="$style['related-page']"
-    class="box"
+    v-if="page.uri"
+    :url="page.uri"
+    class="related-page box"
   >
-    <h2 :class="$style.title">
+    <h2 class="title">
       <nuxt-link
-        :to="page.node.uri"
-        :class="$style.link"
+        :to="page.uri"
+        class="link"
       >
-        {{ page.node.title }}
+        {{ page.title }}
       </nuxt-link>
     </h2>
-    <div :class="$style.text">
-      <div v-html="page.node.excerpt" />
-      <read-more-link :to="page.node.uri" />
+    <div class="text">
+      <div v-html="page.excerpt" />
+      <read-more-link :to="page.uri" />
     </div>
   </clickable-list-item>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .title {
   @mixin color-negative;
 

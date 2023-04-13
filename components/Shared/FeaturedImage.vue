@@ -1,14 +1,17 @@
 <script lang="ts" setup>
+import { FeaturedImageFragment } from '#gql';
 import { IFeaturedImage } from '~/interfaces/IContent'
 
 withDefaults(
   defineProps<{
-    image: IFeaturedImage
+    image: FeaturedImageFragment
     sizes: string
     lazy?: boolean
+    alt?: string
   }>(),
   {
     lazy: true,
+    alt: undefined
   },
 )
 </script>
@@ -16,13 +19,13 @@ withDefaults(
 <template>
   <img
     class="image"
-    :alt="image.alt"
+    :alt="alt"
     :loading="lazy ? 'lazy' : null"
-    :srcset="image.srcSet"
-    :src="image.src"
+    :srcset="image.node.srcSet || undefined"
+    :src="image.node.src || undefined"
     :sizes="sizes"
-    :width="image.width"
-    :height="image.height"
+    :width="image.node.mediaDetails?.width || undefined"
+    :height="image.node.mediaDetails?.height || undefined"
   >
 </template>
 

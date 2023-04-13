@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { IRelatedPoster } from '~/interfaces/IPoster'
-import { IPosterListItem } from '~~/interfaces/IContent'
+import { PosterFragment } from '#gql';
 
 const localePath = useLocalePath()
 
 withDefaults(
   defineProps<{
-    poster: IPosterListItem
+    poster: PosterFragment
     sizes?: string
   }>(),
   {
@@ -25,12 +24,13 @@ withDefaults(
     >
       <nuxt-link
         :to="
-          localePath({ name: 'posters-details', params: { slug: poster.slug } })
+          localePath({ name: 'posters-details', params: { slug: poster.slug || '' } })
         "
         class="link"
       >
         <featured-image
           :lazy="true"
+          :alt="poster.title || ''"
           :image="poster.featuredImage"
           :sizes="sizes"
         />

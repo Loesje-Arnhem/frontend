@@ -1,33 +1,51 @@
 <script lang="ts" setup>
-import { IPostListItem } from '~/interfaces/IContent'
+import { PostListItemFragment } from '#gql';
 
 const localePath = useLocalePath()
 
 const props = defineProps<{
-  post: IPostListItem
+  post: PostListItemFragment
 }>()
 
 const url = computed(() => {
   return localePath({
     name: 'posts-details',
     params: {
-      slug: props.post.slug,
+      slug: props.post.slug || '',
     },
   })
 })
 </script>
 
 <template>
-  <clickable-list-item :url="url" class="list-item">
+  <clickable-list-item
+    :url="url"
+    class="list-item"
+  >
     <h2 class="title">
-      <nuxt-link :to="url" class="link">
+      <nuxt-link
+        :to="url"
+        class="link"
+      >
         {{ post.title }}
       </nuxt-link>
     </h2>
-    <post-date :date="post.date" class="date" />
-    <div class="text" v-html="post.excerpt" />
-    <div class="link-wrapper" aria-hidden="true">
-      <read-more-link class="read-more" :to="url" />
+    <post-date
+      :date="post.date"
+      class="date"
+    />
+    <div
+      class="text"
+      v-html="post.excerpt"
+    />
+    <div
+      class="link-wrapper"
+      aria-hidden="true"
+    >
+      <read-more-link
+        class="read-more"
+        :to="url"
+      />
     </div>
   </clickable-list-item>
 </template>

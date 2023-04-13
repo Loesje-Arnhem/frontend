@@ -7,25 +7,31 @@ defineI18nRoute({
 
 const { pageIds } = useAppConfig()
 
-const { data, pending } = await usePageById(pageIds.home)
+const { data, error } = await useAsyncGql('GetPageHome', {
+  id: pageIds.home.toString(),
+})
+
 </script>
 
 <template>
-  <app-loader v-if="pending" />
-
-  <div v-else-if="data">
-    <h1 class="sr-only">
-      {{ data.title }}
+  <div>
+    <h1
+      v-if="data?.page"
+      class="sr-only"
+    >
+      {{ data.page?.title }}
     </h1>
-    <latest-posts-section />
+
+    <latest-posts-section :posts="data?.posts" />
     <related-posters-section
-      v-if="data"
-      :posters="data.relatedPosters"
+      v-if="data?.page"
+      :posters="data.page.relatedPosters"
+      :title="data.page.relatedPostersGroup?.title"
     />
     <app-stores-section />
-    <related-products-section
+    <!-- <related-products-section
       v-if="data.relatedProducts.length"
       :product-ids="data.relatedProducts"
-    />
+    /> -->
   </div>
 </template>

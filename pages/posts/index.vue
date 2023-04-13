@@ -17,7 +17,7 @@ const { data, pending } = await usePageById(pageIds.posts)
       {{ data.title }}
     </h1>
     <posts-overview-section />
-    <related-posters-section :posters="data.relatedPosters" />
+    <!-- <related-posters-section :posters="data.relatedPosters" /> -->
     <!-- :related-products="data.page.relatedProducts" /> -->
   </div>
 </template>

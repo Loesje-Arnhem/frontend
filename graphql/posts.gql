@@ -1,0 +1,58 @@
+fragment PostBase on Post {
+  id
+  databaseId
+  date
+  title
+}
+
+fragment PostListItem on Post {
+  ...PostBase
+  excerpt
+  slug
+}
+
+fragment PostListItemNode on RootQueryToPostConnectionEdge {
+  node {
+    ...PostListItem
+  }
+}
+
+fragment PostListItems on RootQueryToPostConnection {
+  edges {
+    ...PostListItemNode
+  }
+}
+
+query GetPost($slug: ID!) {
+  post(id: $slug, idType: URI) {
+    ...PostBase
+    content
+    videoGroup {
+      youtubeId
+    }
+    featuredImage {
+      ...FeaturedImage
+    }
+    relatedPostersGroup {
+      title: relatedPostersTitle
+    }
+    relatedPosters(first: 7) {
+      ...RelatedPosters
+    }
+  }
+}
+
+query GetPosts($after: String, $notIn: ID) {
+  posts(first: 10, after: $after, where: {
+    notIn: [$notIn],
+    hasPassword: false
+  }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+      hasPreviousPage
+      startCursor
+    }
+    ...PostListItems
+  }
+}

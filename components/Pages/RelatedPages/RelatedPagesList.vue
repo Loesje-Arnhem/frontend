@@ -12,7 +12,7 @@ defineProps<{
       <related-pages-list-item
         v-for="page in pages"
         :key="page.node.id"
-        :page="page"
+        :page="page.node"
         :class="$style['list-item']"
       />
     </ul>

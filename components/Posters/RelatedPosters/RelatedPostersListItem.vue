@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { IPosterListItem } from '~~/interfaces/IContent'
-import { IRelatedPoster } from '~~/interfaces/IPoster'
+import { PosterFragment } from '#gql';
 
 defineProps<{
-  poster: IPosterListItem
+  poster: PosterFragment
 }>()
 
 const transform: Ref<string | undefined> = ref(undefined)

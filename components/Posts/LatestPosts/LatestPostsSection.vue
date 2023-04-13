@@ -1,19 +1,17 @@
 <script lang="ts" setup>
-import { Endpoints } from '~~/enums/endpoints';
+import { PostListItemsFragment } from '#gql';
+
+defineProps<{
+  posts: PostListItemsFragment
+}>()
+
 
 const localePath = useLocalePath()
-
-const { data } = await useFetch(Endpoints.Posts, {
-  key: `latest-posts`,
-  params: {
-    pageSize: 3,
-  },
-})
 </script>
 
 <template>
   <section
-    v-if="data?.items.length"
+    v-if="posts.edges.length"
     class="latest-posts"
     aria-labelledby="latest-posts-title"
   >
@@ -23,7 +21,7 @@ const { data } = await useFetch(Endpoints.Posts, {
           <h1 id="latest-posts-title">
             {{ $t('posts') }}
           </h1>
-          <latest-posts-list :posts="data.items" />
+          <latest-posts-list :posts="posts.edges" />
           <app-button :to="localePath({ name: 'posts' })">
             {{ $t('morePosts') }}
           </app-button>

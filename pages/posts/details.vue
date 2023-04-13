@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { Endpoints } from '~~/enums/endpoints';
-
 defineI18nRoute({
   paths: {
     nl: '/over-loesje/nieuws/:slug',
@@ -9,32 +7,32 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data, pending } = await useFetch(Endpoints.Post, {
-  key: `post-${route.params.slug}`,
-  params: {
-    slug: route.params.slug,
-  },
+const { data, error } = await useAsyncGql('GetPost', {
+  slug: route.params.slug.toString(),
 })
+
 
 // useMeta(data.value?.post)
 </script>
 
 <template>
-  <app-loader v-if="pending" />
-  <div v-else-if="data">
+  <div v-if="data?.post">
     <app-content
-      :image="data.featuredImage"
-      :title="data.title"
-      :content="data.content"
-      :date="data.date"
-      :video="data.youtubeId"
+      :image="data.post.featuredImage"
+      :title="data.post.title"
+      :content="data.post.content"
+      :date="data.post.date"
+      :video="data.post?.videoGroup?.youtubeId"
     />
 
-    <related-posters-section :posters="data.relatedPosters" />
-    <related-products-section
+    <related-posters-section
+      :posters="data.post.relatedPosters"
+      :title="data.post.relatedPostersGroup?.title"
+    />
+    <!-- <related-products-section
       v-if="data.relatedProducts.length"
       :product-ids="data.relatedProducts"
-    />
-    <posts-overview-section :exclude="data.id" />
+    /> -->
+    <posts-overview-section :exclude="data.post.databaseId" />
   </div>
 </template>

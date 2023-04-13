@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { IFeaturedImage } from '~/interfaces/IContent'
+import { FeaturedImageFragment } from '#gql';
 
 const props = defineProps<{
-  title: string
-  image?: IFeaturedImage | null
+  title?: string | null
+  image?: FeaturedImageFragment | null
   video?: string | null
-  content: string
-  date?: string
+  content?: string | null
+  date?: string | null
 }>()
 
 const hasMedia = computed(() => {

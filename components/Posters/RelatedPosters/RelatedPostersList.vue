@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { IPosterListItem } from '~~/interfaces/IContent'
-import { IRelatedPosterNode } from '~~/interfaces/IPoster'
+import { PosterNodeFragment } from '#gql';
 
 defineProps<{
-  posters: IPosterListItem[]
+  posters: PosterNodeFragment[]
 }>()
 </script>
 
@@ -11,8 +10,8 @@ defineProps<{
   <ul class="list">
     <related-posters-list-item
       v-for="poster in posters"
-      :key="poster.slug"
-      :poster="poster"
+      :key="poster.node.id"
+      :poster="poster.node"
     />
   </ul>
 </template>
