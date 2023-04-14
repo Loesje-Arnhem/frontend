@@ -19,6 +19,19 @@ const sources = computed(() => {
   }
   return props.poster.sources.edges.map(source => source.node)
 })
+
+const posterDate = computed(() => {
+  if (!props.poster.PosterMetaGroup?.date) {
+    return null
+  }
+  const { date } = props.poster.PosterMetaGroup
+  const pattern = /(\d{2})\/(\d{2})\/(\d{4})/ // date via posters is 24/03/2010
+  const regex = RegExp(pattern)
+  if (!regex.test(date)) {
+    return null
+  }
+  return date.replace(pattern, '$3-$2-$1')
+})
 </script>
 
 <template>
@@ -50,7 +63,10 @@ const sources = computed(() => {
           Publicatiedatum
         </dt>
         <dd class="definition-item">
-          <!-- <app-date :date="poster.PosterMetaGroup?.date" /> -->
+          <app-date
+            v-if="posterDate"
+            :date="posterDate"
+          />
         </dd>
 
         <template

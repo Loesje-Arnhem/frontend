@@ -22,6 +22,57 @@ fragment RelatedPages on PageToPageConnection {
   }
 }
 
+fragment SimpleProduct on SimpleProduct {
+  regularPrice
+  price
+  salePrice
+  featuredImage {
+    ...FeaturedImage
+  }
+}
+
+fragment VariableProduct on VariableProduct {
+  regularPrice
+  price
+  salePrice
+  featuredImage {
+    ...FeaturedImage
+  }
+}
+
+fragment Product on Product {
+  ... on SimpleProduct {
+      slug
+      id
+      databaseId
+      title: name
+      ...SimpleProduct
+    }
+    ... on VariableProduct {
+      slug
+      id
+      databaseId
+      title: name
+      ...VariableProduct
+    }
+}
+
+fragment RelatedProduct on Product {
+  product {
+    ...Product
+  }
+}
+
+
+fragment RelatedProducts on Page_Relatedproductsgroup {
+  title: relatedProductsTitle
+  products: relatedProductsProducts {
+    ... on Page_Relatedproductsgroup_relatedProductsProducts {
+      ...RelatedProduct
+    }
+  }
+}
+
 fragment PageDetails on Page {
   ...PageBase
   content
@@ -37,6 +88,9 @@ fragment PageDetails on Page {
   relatedPosters(first: 7) {
     ...RelatedPosters
   }
+  relatedProducts: relatedProductsGroup {
+    ...RelatedProducts
+  }  
 }
 
 query GetPageByUri($uri: ID!) {

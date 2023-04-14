@@ -1,34 +1,29 @@
 <script lang="ts" setup>
+import { RelatedProductsFragment } from '#gql';
 import { Endpoints } from '~~/enums/endpoints';
 
 const props = defineProps<{
-  productIds: number[]
+  relatedProducts: RelatedProductsFragment
 }>()
 
-const { data, pending } = await useFetch(Endpoints.RelatedProducts, {
-  key: `related-products-${props.productIds.join('-')}`,
-  params: {
-    productIds: props.productIds.join(','),
-  },
-})
 </script>
 
 <template>
   <section
-    v-if="data?.length"
+    v-if="relatedProducts.products?.length"
     aria-labelledby="featured-products"
     class="featured-products"
   >
     <center-wrapper>
       <h1 id="featured-products">
-        <!-- <template v-if="relatedProducts.title">
+        <template v-if="relatedProducts.title">
           {{ relatedProducts.title }}
         </template>
-        <template v-else> -->
-        {{ $t('theShop') }}
-        <!-- </template> -->
+        <template v-else> 
+          {{ $t('theShop') }}
+        </template>
       </h1>
-      <product-list :products="data" />
+      <product-list :products="relatedProducts.products" />
       <!-- <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
       </app-button> -->
