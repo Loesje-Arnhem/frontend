@@ -40,35 +40,30 @@ fragment VariableProduct on VariableProduct {
   }
 }
 
-fragment Product on Product {
+fragment RelatedProduct on Page_Relatedproductsgroup_relatedProductsProducts_Product {
   ... on SimpleProduct {
-      slug
-      id
-      databaseId
-      title: name
-      ...SimpleProduct
-    }
-    ... on VariableProduct {
-      slug
-      id
-      databaseId
-      title: name
-      ...VariableProduct
-    }
-}
-
-fragment RelatedProduct on Product {
-  product {
-    ...Product
+    slug
+    id
+    databaseId
+    title: name
+    ...SimpleProduct
+  }
+  ... on VariableProduct {
+    slug
+    id
+    databaseId
+    title: name
+    ...VariableProduct
   }
 }
-
 
 fragment RelatedProducts on Page_Relatedproductsgroup {
   title: relatedProductsTitle
   products: relatedProductsProducts {
     ... on Page_Relatedproductsgroup_relatedProductsProducts {
-      ...RelatedProduct
+      product {
+        ...RelatedProduct
+      }
     }
   }
 }
@@ -90,7 +85,7 @@ fragment PageDetails on Page {
   }
   relatedProducts: relatedProductsGroup {
     ...RelatedProducts
-  }  
+  }
 }
 
 query GetPageByUri($uri: ID!) {
