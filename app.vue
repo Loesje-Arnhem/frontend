@@ -1,19 +1,21 @@
 <template>
-  <header-top class="page-header-top sa-hidden" />
-  <window-controls-overlay />
-  <the-header class="page-header sa-hidden" />
+  <div>
+    <header-top class="page-header-top sa-hidden" />
+    <window-controls-overlay />
+    <the-header class="page-header sa-hidden" />
 
-  <main
-    id="content"
-    class="main"
-    tabindex="-1"
-  >
-    <nuxt-layout>
-      <nuxt-loading-indicator color="var(--color-black)" />
-      <nuxt-page />
-    </nuxt-layout>
-  </main>
-  <the-footer class="page-footer sa-hidden" />
+    <main
+      id="content"
+      class="main"
+      tabindex="-1"
+    >
+      <nuxt-layout>
+        <nuxt-loading-indicator color="var(--color-black)" />
+        <nuxt-page />
+      </nuxt-layout>
+    </main>
+    <the-footer class="page-footer sa-hidden" />
+  </div>
 </template>
 
 <style lang="postcss" scoped>

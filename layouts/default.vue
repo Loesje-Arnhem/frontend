@@ -13,39 +13,37 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <html
-      :lang="head.htmlAttrs?.lang"
-      :dir="head.htmlAttrs?.dir"
-    >
-      <head>
-        <template
-          v-for="link in head.link"
-          :key="link.id"
+  <html
+    :lang="head.htmlAttrs?.lang"
+    :dir="head.htmlAttrs?.dir"
+  >
+    <head>
+      <template
+        v-for="link in head.link"
+        :key="link.id"
+      >
+        <link
+          :id="link.id"
+          :rel="link.rel"
+          :href="link.href"
+          :hreflang="link.hreflang"
         >
-          <link
-            :id="link.id"
-            :rel="link.rel"
-            :href="link.href"
-            :hreflang="link.hreflang"
-          >
-        </template>
+      </template>
 
-        <template
-          v-for="meta in head.meta"
-          :key="meta.id"
+      <template
+        v-for="meta in head.meta"
+        :key="meta.id"
+      >
+        <meta
+          :id="meta.id"
+          :property="meta.property"
+          :content="meta.content"
         >
-          <meta
-            :id="meta.id"
-            :property="meta.property"
-            :content="meta.content"
-          >
-        </template>
-      </head>
-      <body>
-        <slot />
-        <pwa-update />
-      </body>
-    </html>
-  </div>
+      </template>
+    </head>
+    <body>
+      <slot />
+      <pwa-update />
+    </body>
+  </html>
 </template>

@@ -2,7 +2,7 @@
 import { PostListItemsFragment } from '#gql';
 
 defineProps<{
-  posts: PostListItemsFragment
+  posts?: PostListItemsFragment | null
 }>()
 
 
@@ -11,7 +11,7 @@ const localePath = useLocalePath()
 
 <template>
   <section
-    v-if="posts.edges.length"
+    v-if="posts?.edges.length"
     class="latest-posts"
     aria-labelledby="latest-posts-title"
   >
