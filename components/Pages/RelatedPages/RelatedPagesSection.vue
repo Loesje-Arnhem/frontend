@@ -4,21 +4,6 @@ import { RelatedPagesFragment } from '#gql';
 defineProps<{
   pages?: RelatedPagesFragment | null
 }>()
-
-// import { Endpoints } from '~~/enums/endpoints';
-
-// const props = defineProps<{
-//   parentId: number
-// }>()
-
-// const { data, pending } = await useAsyncData(
-//   'related-pages',
-//   () => $fetch(Endpoints.RelatedPages, {
-//     params: {
-//       parentId: props.parentId,
-//     }
-//   })
-// )
 </script>
 
 <template>
