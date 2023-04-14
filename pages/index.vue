@@ -23,17 +23,15 @@ const { data, error } = await useAsyncGql('GetPageHome', {
     </h1>
 
     <latest-posts-section :posts="data?.posts" />
-    
+
     <related-posters-section
       v-if="data?.page"
       :posters="data.page.relatedPosters"
       :title="data.page.relatedPostersGroup?.title"
     />
     <app-stores-section />
-    {{ data?.page?.relatedProducts }}
-    <!-- <related-products-section
-      v-if="data.relatedProducts.length"
-      :product-ids="data.relatedProducts"
-    /> -->
+    <related-products-section
+      :products="data?.page?.relatedProducts"
+    />
   </div>
 </template>

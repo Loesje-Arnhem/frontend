@@ -22,51 +22,45 @@ fragment RelatedPages on PageToPageConnection {
   }
 }
 
-fragment SimpleProduct on SimpleProduct {
-  regularPrice
-  price
-  salePrice
+fragment Product on Product {
+  slug
+  id
+  databaseId
+  title: name
   featuredImage {
     ...FeaturedImage
   }
-}
-
-fragment VariableProduct on VariableProduct {
-  regularPrice
-  price
-  salePrice
-  featuredImage {
-    ...FeaturedImage
+  ... on SimpleProduct {
+    regularPrice
+    price
+    salePrice
+  }
+  ... on VariableProduct {
+    regularPrice
+    price
+    salePrice
   }
 }
 
 fragment RelatedProduct on Page_Relatedproductsgroup_relatedProductsProducts_Product {
-  ... on SimpleProduct {
-    slug
-    id
-    databaseId
-    title: name
-    ...SimpleProduct
-  }
-  ... on VariableProduct {
-    slug
-    id
-    databaseId
-    title: name
-    ...VariableProduct
+  ...Product
+}
+
+fragment RelatedProductNode on Page_Relatedproductsgroup_relatedProductsProducts {
+    ... on Page_Relatedproductsgroup_relatedProductsProducts {
+    product {
+      ...RelatedProduct
+    }
   }
 }
 
 fragment RelatedProducts on Page_Relatedproductsgroup {
   title: relatedProductsTitle
   products: relatedProductsProducts {
-    ... on Page_Relatedproductsgroup_relatedProductsProducts {
-      product {
-        ...RelatedProduct
-      }
-    }
+    ...RelatedProductNode
   }
 }
+
 
 fragment PageDetails on Page {
   ...PageBase

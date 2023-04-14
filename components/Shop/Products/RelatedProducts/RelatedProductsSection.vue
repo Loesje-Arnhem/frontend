@@ -1,29 +1,28 @@
 <script lang="ts" setup>
 import { RelatedProductsFragment } from '#gql';
-import { Endpoints } from '~~/enums/endpoints';
 
-const props = defineProps<{
-  relatedProducts: RelatedProductsFragment
+ defineProps<{
+  products: RelatedProductsFragment
 }>()
 
 </script>
 
 <template>
   <section
-    v-if="relatedProducts.products?.length"
+    v-if="products.products?.length"
     aria-labelledby="featured-products"
     class="featured-products"
   >
     <center-wrapper>
       <h1 id="featured-products">
-        <template v-if="relatedProducts.title">
-          {{ relatedProducts.title }}
+        <template v-if="products.title">
+          {{ products.title }}
         </template>
-        <template v-else> 
+        <template v-else>
           {{ $t('theShop') }}
         </template>
       </h1>
-      <product-list :products="relatedProducts.products" />
+      <product-list :products="products.products" />
       <!-- <app-button :to="localePath({ name: 'shop' })">
         {{ $t('btn') }}
       </app-button> -->

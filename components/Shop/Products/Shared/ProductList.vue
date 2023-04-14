@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { IProductListItem } from '~/interfaces/IContent'
+import { RelatedProductNodeFragment } from '#gql';
 
 defineProps<{
-  products: IProductListItem[]
+  products: RelatedProductNodeFragment[]
 }>()
 </script>
 
@@ -13,8 +13,8 @@ defineProps<{
   >
     <product-tile
       v-for="product in products"
-      :key="product.id"
-      :product="product"
+      :key="product.product?.id"
+      :product="product.product"
     />
   </ul>
 </template>

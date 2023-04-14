@@ -1,28 +1,29 @@
 <script lang="ts" setup>
-import { IProductListItem } from '~/interfaces/IContent'
+import { ProductFragment } from '#gql';
 
- defineProps<{
-  product: IProductListItem
+defineProps<{
+  product: ProductFragment
 }>()
+
 </script>
 
 
 <template>
   <div
     v-if="product.price"
-    :class="$style.price"
+    class="price"
   >
     <template v-if="product.regularPrice">
-      <span :class="$style['price-old']">{{ $n(product.regularPrice, 'currency') }}</span>
-      <!-- {{ $n(product.salePrice, 'currency') }} -->
+      <span class="price-old">{{ product.regularPrice }}</span>
+      {{ product.salePrice }}
     </template>
     <template v-else>
-      {{ $n(product.price, 'currency') }}
+      {{ product.price }}
     </template>
   </div>
 </template>
 
-<style module lang="postcss">
+<style lang="postcss" scoped>
 .price-old {
   font-size: 1rem;
   font-weight: var(--font-weight-normal);

@@ -1,30 +1,31 @@
 <script lang="ts" setup>
-import { IProductListItem } from '~/interfaces/IContent'
+import { ProductFragment } from '#gql';
 
 const props = defineProps<{
-  product: IProductListItem
+  product?: ProductFragment | null
 }>()
 
 const appConfig = useAppConfig()
 
 const url = computed(() => {
-  return `${appConfig.shopUrl}winkeltje/${props.product.slug}`
+  return `${appConfig.shopUrl}winkeltje/${props.product?.slug}`
 })
 </script>
 
 <template>
   <clickable-list-item
+    v-if="product"
     :href="url"
     :class="$style['product-tile']"
     class="tile"
   >
     <div :class="$style['image-wrapper']">
-      <!-- <featured-image
+      <featured-image
         v-if="product.featuredImage"
         :image="product.featuredImage"
         :class="$style.image"
         sizes="(max-width: 375px) 50vw, (max-width: 720px) 33vw, (max-width: 1024px) 25vw, 200px"
-      /> -->
+      />
     </div>
     <div :class="$style.title">
       <a
