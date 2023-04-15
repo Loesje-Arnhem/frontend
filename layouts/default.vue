@@ -1,4 +1,6 @@
 <script setup lang="ts">
+/* eslint-disable vue/component-name-in-template-casing */
+
 const head = useLocaleHead({
   addDirAttribute: true,
   identifierAttribute: 'id',
@@ -14,7 +16,6 @@ onMounted(() => {
 
 <template>
   <div>
-    <!-- eslint-disable vue/component-name-in-template-casing -->
     <Html
       :lang="head.htmlAttrs?.lang"
       :dir="head.htmlAttrs?.dir"
