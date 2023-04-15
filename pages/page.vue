@@ -20,7 +20,7 @@ const uri = computed(() => {
 //   () => GqlGetPageByByUri({ uri: uri.value, }))
 // )
 
-const { data, error } = await useAsyncGql('GetPageByUri', {
+const { data, error, pending } = await useAsyncGql('GetPageByUri', {
   uri: uri.value,
 })
 
@@ -50,7 +50,8 @@ useMeta(data.value?.page)
 </script>
 
 <template>
-  <div v-if="data?.page">
+  <app-loader v-if="pending" />
+  <div v-else-if="data?.page">
     <app-content
       :title="data.page.title"
       :content="data.page.content"
