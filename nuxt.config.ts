@@ -16,8 +16,8 @@ export default defineNuxtConfig({
     woocommerceConsumerKey: '',
     woocommerceConsumerSecret: '',
     public: {
-            GQL_HOST: `${apiUrl}graphql` 
-   }
+      GQL_HOST: `${apiUrl}graphql` 
+    }
   },
   typescript: {
     tsConfig: {

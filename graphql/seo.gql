@@ -1,0 +1,8 @@
+fragment seo on PostTypeSEO {
+  metaDesc
+  opengraphUrl
+  title
+  schema {
+    raw
+  }  
+}

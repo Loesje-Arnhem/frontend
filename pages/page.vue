@@ -46,7 +46,7 @@ const { data, error } = await useAsyncGql('GetPageByUri', {
 
 //
 
-// useMeta(data)
+useMeta(data.value?.page)
 </script>
 
 <template>

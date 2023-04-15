@@ -1,16 +1,14 @@
-import { IPage } from '~~/interfaces/IPage'
-import { IPost } from '~~/interfaces/IPost'
-import { IPoster } from '~~/interfaces/IPoster'
+import { PageDetailsFragment, PostDetailsFragment, PosterDetailsFragment } from '#gql'
 
 export const useMeta = (
-  content: IPage | IPost | IPoster | undefined | null,
+  content?: PageDetailsFragment | PostDetailsFragment | PosterDetailsFragment | null,
 ) => {
   if (!content) {
     return
   }
 
   const schema = () => {
-    if (!content) {
+    if (!content.seo?.schema?.raw) {
       return null
     }
     const schemaWithBaseUrl = content.seo.schema.raw.replaceAll('shop.', 'www.')
@@ -22,21 +20,19 @@ export const useMeta = (
   }
 
   useServerSeoMeta({
-    ogUrl: () => content.seo.opengraphUrl,
-    ogTitle: () => content.seo.opengraphTitle || content.seo.title,
-    description: () => content.seo.metaDesc,
-    ogDescription: () =>
-      content.seo.opengraphDescription || content.seo.metaDesc,
-    ogType: () => content.seo.opengraphType,
-    ogImage: () => content.seo.opengraphImage?.mediaItemUrl,
-    twitterTitle: () => content.seo.twitterTitle || content.seo.title,
-    twitterDescription: () =>
-      content.seo.twitterDescription || content.seo.metaDesc,
-    twitterImage: () => content.seo.twitterImage?.mediaItemUrl,
+    ogUrl: () => content.seo?.opengraphUrl?.replaceAll('shop.', 'www.'),
+    ogTitle: () => content.seo?.title,
+    description: () => content.seo?.metaDesc,
+    ogDescription: () => content.seo?.metaDesc,
+    ogType: () => "article",
+    ogImage: () => content.featuredImage?.node.src,
+    twitterTitle: () => content.seo?.title,
+    twitterDescription: () => content.seo?.metaDesc,
+    twitterImage: () => content.featuredImage?.node.src
   })
 
   useHead({
-    title: content.seo.title,
+    title: content.seo?.title,
     script: [
       {
         type: 'application/ld+json',

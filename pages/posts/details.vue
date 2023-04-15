@@ -12,7 +12,7 @@ const { data, error } = await useAsyncGql('GetPost', {
 })
 
 
-// useMeta(data.value?.post)
+useMeta(data.value?.post)
 </script>
 
 <template>

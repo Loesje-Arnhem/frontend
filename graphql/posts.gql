@@ -42,26 +42,32 @@ fragment PostRelatedProducts on Post_Relatedproductsgroup {
   }
 }
 
+fragment PostDetails on Post {
+  ...PostBase
+  content
+  videoGroup {
+    youtubeId
+  }
+  featuredImage {
+    ...FeaturedImage
+  }
+  relatedPostersGroup {
+    title: relatedPostersTitle
+  }
+  relatedPosters(first: 7) {
+    ...RelatedPosters
+  }
+  relatedProducts: relatedProductsGroup {
+    ...PostRelatedProducts
+  }    
+  seo {
+    ...seo
+  }  
+}
 
 query GetPost($slug: ID!) {
   post(id: $slug, idType: URI) {
-    ...PostBase
-    content
-    videoGroup {
-      youtubeId
-    }
-    featuredImage {
-      ...FeaturedImage
-    }
-    relatedPostersGroup {
-      title: relatedPostersTitle
-    }
-    relatedPosters(first: 7) {
-      ...RelatedPosters
-    }
-    relatedProducts: relatedProductsGroup {
-      ...PostRelatedProducts
-    }    
+    ...PostDetails
   }
 }
 

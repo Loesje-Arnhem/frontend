@@ -13,37 +13,40 @@ onMounted(() => {
 </script>
 
 <template>
-  <html
-    :lang="head.htmlAttrs?.lang"
-    :dir="head.htmlAttrs?.dir"
-  >
-    <head>
-      <template
-        v-for="link in head.link"
-        :key="link.id"
-      >
-        <link
-          :id="link.id"
-          :rel="link.rel"
-          :href="link.href"
-          :hreflang="link.hreflang"
+  <div>
+    <!-- eslint-disable vue/component-name-in-template-casing -->
+    <Html
+      :lang="head.htmlAttrs?.lang"
+      :dir="head.htmlAttrs?.dir"
+    >
+      <Head>
+        <template
+          v-for="link in head.link"
+          :key="link.id"
         >
-      </template>
+          <link
+            :id="link.id"
+            :rel="link.rel"
+            :href="link.href"
+            :hreflang="link.hreflang"
+          >
+        </template>
 
-      <template
-        v-for="meta in head.meta"
-        :key="meta.id"
-      >
-        <meta
-          :id="meta.id"
-          :property="meta.property"
-          :content="meta.content"
+        <template
+          v-for="meta in head.meta"
+          :key="meta.id"
         >
-      </template>
-    </head>
-    <body>
-      <slot />
-      <pwa-update />
-    </body>
-  </html>
+          <meta
+            :id="meta.id"
+            :property="meta.property"
+            :content="meta.content"
+          >
+        </template>
+      </Head>
+      <Body>
+        <slot />
+        <pwa-update />
+      </Body>
+    </Html>
+  </div>
 </template>

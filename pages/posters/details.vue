@@ -19,7 +19,7 @@ const subjectIds = computed(() => {
 })
 
 
-// useMeta(data.value?.poster)
+useMeta(data.value?.poster)
 </script>
 
 <template>

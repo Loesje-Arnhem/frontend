@@ -44,6 +44,9 @@ fragment PageRelatedProducts on Page_Relatedproductsgroup {
 fragment PageDetails on Page {
   ...PageBase
   content
+  featuredImage {
+    ...FeaturedImage
+  }  
   videoGroup {
     youtubeId
   }
@@ -58,6 +61,9 @@ fragment PageDetails on Page {
   }
   relatedProducts: relatedProductsGroup {
     ...PageRelatedProducts
+  }
+  seo {
+    ...seo
   }
 }
 

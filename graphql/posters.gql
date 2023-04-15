@@ -46,6 +46,9 @@ fragment PosterDetails on Poster {
   subjects {
     ...Subjects
   }
+  seo {
+    ...seo
+  }  
 }
 
 fragment PosterNode on RootQueryToPosterConnectionEdge {
