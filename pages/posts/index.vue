@@ -12,12 +12,14 @@ const { data, pending } = await usePageById(pageIds.posts)
 
 <template>
   <app-loader v-if="pending" />
-  <div v-else-if="data">
+  <div v-else-if="data?.page">
     <h1 class="sr-only">
-      {{ data.title }}
+      {{ data.page.title }}
     </h1>
     <posts-overview-section />
-    <!-- <related-posters-section :posters="data.relatedPosters" /> -->
-    <!-- :related-products="data.page.relatedProducts" /> -->
+    <related-posters-section :posters="data.page.relatedPosters" />
+    <related-products-section
+      :products="data?.page?.relatedProducts"
+    />
   </div>
 </template>

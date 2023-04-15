@@ -25,6 +25,25 @@ fragment RelatedPosters on ContentNodeToPosterConnection {
   }
 }
 
+fragment PosterRelatedProduct on Poster_Relatedproductsgroup_relatedProductsProducts_Product {
+  ...Product
+}
+
+fragment PosterRelatedProductNode on Poster_Relatedproductsgroup_relatedProductsProducts {
+    ... on Poster_Relatedproductsgroup_relatedProductsProducts {
+    product {
+      ...PosterRelatedProduct
+    }
+  }
+}
+
+fragment PosterRelatedProducts on Poster_Relatedproductsgroup {
+  title: relatedProductsTitle
+  products: relatedProductsProducts {
+    ...PosterRelatedProductNode
+  }
+}
+
 fragment PosterDetails on Poster {
   ...PosterBase
   slug
@@ -48,7 +67,10 @@ fragment PosterDetails on Poster {
   }
   seo {
     ...seo
-  }  
+  } 
+  relatedProducts: relatedProductsGroup {
+    ...PosterRelatedProducts
+  }      
 }
 
 fragment PosterNode on RootQueryToPosterConnectionEdge {

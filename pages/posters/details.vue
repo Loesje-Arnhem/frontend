@@ -27,7 +27,9 @@ useMeta(data.value?.poster)
     <center-wrapper>
       <poster-details :poster="data.poster" />
     </center-wrapper>
-    <!-- <related-products-section :related-products="data.poster.relatedProducts" /> -->
+    <related-products-section
+      :products="data.poster?.relatedProducts"
+    />
     <posters-overview-section
       :exclude="data.poster.databaseId"
       :subject-ids="subjectIds"

@@ -20,10 +20,9 @@ const uri = computed(() => {
 //   () => GqlGetPageByByUri({ uri: uri.value, }))
 // )
 
-const { data, error, pending } = await useAsyncGql('GetPageByUri', {
+const { data, error } = await useAsyncGql('GetPageByUri', {
   uri: uri.value,
 })
-
 
 // onError((error) => {
 //   throw createError({
@@ -44,14 +43,18 @@ const { data, error, pending } = await useAsyncGql('GetPageByUri', {
 //   useMeta(response.data)
 // })
 
-//
+if (data.value?.page === null || error.value) {
+  throw createError({
+    statusCode: 404,
+    fatal: true,
+  })
+}
 
 useMeta(data.value?.page)
 </script>
 
 <template>
-  <app-loader v-if="pending" />
-  <div v-else-if="data?.page">
+  <div v-if="data?.page">
     <app-content
       :title="data.page.title"
       :content="data.page.content"
