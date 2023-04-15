@@ -24,7 +24,7 @@ const getMainLink = () => {
     return null
   }
   const activeLink = menu.value.querySelector(
-    '.router-link-exact-active',
+    '.router-link-active',
   ) as HTMLAnchorElement | null
   if (!activeLink) {
     return null
