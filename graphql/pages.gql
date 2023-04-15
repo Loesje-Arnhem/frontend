@@ -22,45 +22,24 @@ fragment RelatedPages on PageToPageConnection {
   }
 }
 
-fragment Product on Product {
-  slug
-  id
-  databaseId
-  title: name
-  featuredImage {
-    ...FeaturedImage
-  }
-  ... on SimpleProduct {
-    regularPrice
-    price
-    salePrice
-  }
-  ... on VariableProduct {
-    regularPrice
-    price
-    salePrice
-  }
-}
-
-fragment RelatedProduct on Page_Relatedproductsgroup_relatedProductsProducts_Product {
+fragment PageRelatedProduct on Page_Relatedproductsgroup_relatedProductsProducts_Product {
   ...Product
 }
 
-fragment RelatedProductNode on Page_Relatedproductsgroup_relatedProductsProducts {
+fragment PageRelatedProductNode on Page_Relatedproductsgroup_relatedProductsProducts {
     ... on Page_Relatedproductsgroup_relatedProductsProducts {
     product {
-      ...RelatedProduct
+      ...PageRelatedProduct
     }
   }
 }
 
-fragment RelatedProducts on Page_Relatedproductsgroup {
+fragment PageRelatedProducts on Page_Relatedproductsgroup {
   title: relatedProductsTitle
   products: relatedProductsProducts {
-    ...RelatedProductNode
+    ...PageRelatedProductNode
   }
 }
-
 
 fragment PageDetails on Page {
   ...PageBase
@@ -78,7 +57,7 @@ fragment PageDetails on Page {
     ...RelatedPosters
   }
   relatedProducts: relatedProductsGroup {
-    ...RelatedProducts
+    ...PageRelatedProducts
   }
 }
 

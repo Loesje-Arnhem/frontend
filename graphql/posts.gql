@@ -23,6 +23,26 @@ fragment PostListItems on RootQueryToPostConnection {
   }
 }
 
+fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {
+  ...Product
+}
+
+fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {
+    ... on Post_Relatedproductsgroup_relatedProductsProducts {
+    product {
+      ...PostRelatedProduct
+    }
+  }
+}
+
+fragment PostRelatedProducts on Post_Relatedproductsgroup {
+  title: relatedProductsTitle
+  products: relatedProductsProducts {
+    ...PostRelatedProductNode
+  }
+}
+
+
 query GetPost($slug: ID!) {
   post(id: $slug, idType: URI) {
     ...PostBase
@@ -39,6 +59,9 @@ query GetPost($slug: ID!) {
     relatedPosters(first: 7) {
       ...RelatedPosters
     }
+    relatedProducts: relatedProductsGroup {
+      ...PostRelatedProducts
+    }    
   }
 }
 

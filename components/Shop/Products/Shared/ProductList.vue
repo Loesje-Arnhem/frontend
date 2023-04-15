@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { RelatedProductNodeFragment } from '#gql';
+import { PageRelatedProductNodeFragment, PostRelatedProductNodeFragment } from '#gql';
 
 defineProps<{
-  products: RelatedProductNodeFragment[]
+  products: PageRelatedProductNodeFragment[] |  PostRelatedProductNodeFragment[]
 }>()
 </script>
 

@@ -8,7 +8,7 @@ import {
   title,
   twitter,
 } from './data/siteDetails'
-import routes from './data/routes'
+import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
   runtimeConfig: {
@@ -32,16 +32,17 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
   },
-  // hooks: {
-  //   async 'nitro:config'(nitroConfig) {
-  //     if (nitroConfig.dev) {
-  //       return
-  //     }
-  //     const slugs = await routes()
-  //     // @ts-ignore
-  //     nitroConfig.prerender.routes.push(...slugs)
-  //   },
-  // },
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      if (nitroConfig.dev) {
+        return
+      }
+      const pages = await getAllRoutes()
+      if (nitroConfig?.prerender?.routes) {
+        nitroConfig.prerender.routes.push(...pages)
+      }
+    },
+  },
   telemetry: false,
   app: {
     head: {

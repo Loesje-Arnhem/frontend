@@ -1,0 +1,19 @@
+fragment Product on Product {
+  slug
+  id
+  databaseId
+  title: name
+  featuredImage {
+    ...FeaturedImage
+  }
+  ... on SimpleProduct {
+    regularPrice
+    price
+    salePrice
+  }
+  ... on VariableProduct {
+    regularPrice
+    price
+    salePrice
+  }
+}

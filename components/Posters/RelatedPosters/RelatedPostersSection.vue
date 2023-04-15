@@ -15,7 +15,7 @@ const title = props.title || t('posters')
 
 <template>
   <section
-    v-if="posters?.edges"
+    v-if="posters?.edges.length"
     class="related-posters"
     aria-labelledby="related-posters-title"
   >

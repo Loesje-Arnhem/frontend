@@ -29,10 +29,9 @@ const { data, error } = await useAsyncGql('GetPost', {
       :posters="data.post.relatedPosters"
       :title="data.post.relatedPostersGroup?.title"
     />
-    <!-- <related-products-section
-      v-if="data.relatedProducts.length"
-      :product-ids="data.relatedProducts"
-    /> -->
+    <related-products-section
+      :products="data?.post?.relatedProducts"
+    />
     <posts-overview-section :exclude="data.post.databaseId" />
   </div>
 </template>
