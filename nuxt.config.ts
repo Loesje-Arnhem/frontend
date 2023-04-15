@@ -11,6 +11,7 @@ import {
 import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
+  ssr: process.env.NUXT_SSR === 'false' ? false : true,
   runtimeConfig: {
     woocommerceConsumerKey: '',
     woocommerceConsumerSecret: '',
