@@ -249,7 +249,7 @@ export default defineNuxtConfig({
         },
       ],
       display_override: ['window-controls-overlay'],
-      start_url: `${baseUrl}/posters?standalone=true`,
+      start_url: `./posters?standalone=true`,
       id: `${baseUrl}/posters?standalone=true`,
       shortcuts: [
         {

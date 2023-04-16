@@ -46,6 +46,7 @@ onMounted(() => {
       </Head>
       <Body>
         <vite-pwa-manifest />
+
         <slot />
         <pwa-update />
       </Body>
