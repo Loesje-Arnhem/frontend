@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     woocommerceConsumerKey: '',
     woocommerceConsumerSecret: '',
     public: {
-      GQL_HOST: `${apiUrl}graphql` 
+      GQL_HOST: `${apiUrl}graphql`
     }
   },
   typescript: {
@@ -211,6 +211,7 @@ export default defineNuxtConfig({
     },
   },
   pwa: {
+    registerWebManifestInRouteRules: true,
     manifest: {
       background_color: backgroundColor,
       theme_color: themeColor,
