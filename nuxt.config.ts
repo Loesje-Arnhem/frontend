@@ -255,7 +255,7 @@ export default defineNuxtConfig({
         {
           name: 'Favorieten',
           short_name: 'Favorieten',
-          url: `${baseUrl}/posters/favorieten?standalone=true`,
+          url: `./posters/favorieten?standalone=true`,
           icons: [{ src: '/icon.png', sizes: '512x512' }],
         },
       ],
