@@ -20,7 +20,7 @@
     "nuxt": "^3.4.1",
     "nuxt-svgo": "^1.2.1",
     "postcss-mixins": "^9.0.4",
-    "postcss-preset-env": "^8.3.1"
+    "postcss-preset-env": "^8.3.2"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.2",
