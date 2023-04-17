@@ -8,10 +8,13 @@ import {
   title,
   twitter,
 } from './data/siteDetails'
-import getAllRoutes from './data/routes'
+// import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
-  ssr: process.env.NUXT_SSR === 'false' ? false : true,
+  routeRules: {
+    // Static page generated on-demand, revalidates in background
+    '/posters/**': { swr: true },
+  },
   runtimeConfig: {
     woocommerceConsumerKey: '',
     woocommerceConsumerSecret: '',
@@ -33,17 +36,17 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
   },
-  hooks: {
-    async 'nitro:config'(nitroConfig) {
-      if (nitroConfig.dev) {
-        return
-      }
-      const pages = await getAllRoutes()
-      if (nitroConfig?.prerender?.routes) {
-        nitroConfig.prerender.routes.push(...pages)
-      }
-    },
-  },
+  // hooks: {
+  //   async 'nitro:config'(nitroConfig) {
+  //     if (nitroConfig.dev) {
+  //       return
+  //     }
+  //     const pages = await getAllRoutes()
+  //     if (nitroConfig?.prerender?.routes) {
+  //       nitroConfig.prerender.routes.push(...pages)
+  //     }
+  //   },
+  // },
   telemetry: false,
   app: {
     head: {

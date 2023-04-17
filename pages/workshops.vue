@@ -16,7 +16,7 @@ const { data } = await usePageById(pageIds.workshops)
       :content="data.page.content"
       :video="data.page?.videoGroup?.youtubeId"
     />
-    <!-- <form-workshop /> -->
+    <form-workshop />
     <related-posters-section :posters="data.page.relatedPosters" />
     <related-products-section
       :products="data?.page?.relatedProducts"
