@@ -16,9 +16,9 @@
     "@types/throttle-debounce": "^5.0.0",
     "@types/workbox-window": "^4.3.4",
     "@vite-pwa/nuxt": "^0.0.7",
-    "eslint": "^8.38.0",
-    "nuxt": "^3.4.1",
-    "nuxt-svgo": "^1.2.1",
+    "eslint": "^8.39.0",
+    "nuxt": "^3.4.2",
+    "nuxt-svgo": "^2.0.0",
     "postcss-mixins": "^9.0.4",
     "postcss-preset-env": "^8.3.2"
   },

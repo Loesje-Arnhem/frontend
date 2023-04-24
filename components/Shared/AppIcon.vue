@@ -85,7 +85,7 @@ const iconComponent = computed(() => {
 
 <template>
   <component
-    :is="iconComponent"
+    :is="`svgo-${icon}`"
     :width="width"
     :height="height"
     v-bind="$attrs"
