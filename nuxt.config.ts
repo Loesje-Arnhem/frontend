@@ -194,7 +194,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ['@nuxtjs/i18n',  'nuxt-svgo', '@vite-pwa/nuxt', 'nuxt-graphql-client'],
+  modules: ['@nuxtjs/i18n', 'nuxt-svgo', '@vite-pwa/nuxt', 'nuxt-graphql-client'],
   postcss: {
     plugins: {
       'postcss-import': {},

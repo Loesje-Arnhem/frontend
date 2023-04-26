@@ -18,7 +18,7 @@
     "@vite-pwa/nuxt": "^0.0.7",
     "eslint": "^8.39.0",
     "nuxt": "^3.4.2",
-    "nuxt-svgo": "^2.0.0",
+    "nuxt-svgo": "^2.0.1",
     "postcss-mixins": "^9.0.4",
     "postcss-preset-env": "^8.3.2"
   },
