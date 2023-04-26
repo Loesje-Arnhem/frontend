@@ -48,7 +48,6 @@ const toggleFavorite = () => {
   margin-right: 0.25em;
   height: 1em;
   width: auto;
-  transform: translateY(0.1em);
   color: currentcolor;
 }
 </style>
