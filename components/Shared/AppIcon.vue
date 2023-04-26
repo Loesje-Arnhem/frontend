@@ -29,6 +29,5 @@ withDefaults(
 .icon {
   width: auto;
   height: auto;
-  margin-bottom: 0;
 }
 </style>
