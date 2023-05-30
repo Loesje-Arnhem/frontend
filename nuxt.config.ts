@@ -12,6 +12,7 @@ import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
   ssr: process.env.NUXT_SSR === 'false' ? false : true,
+
   runtimeConfig: {
     woocommerceConsumerKey: '',
     woocommerceConsumerSecret: '',
@@ -19,6 +20,7 @@ export default defineNuxtConfig({
       GQL_HOST: `${apiUrl}graphql`
     }
   },
+
   typescript: {
     tsConfig: {
       compilerOptions: {
@@ -33,6 +35,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
   },
+
   hooks: {
     async 'nitro:config'(nitroConfig) {
       if (nitroConfig.dev) {
@@ -47,7 +50,9 @@ export default defineNuxtConfig({
       }
     },
   },
+
   telemetry: false,
+
   app: {
     head: {
       meta: [
@@ -152,7 +157,9 @@ export default defineNuxtConfig({
       '~/components',
     ],
   },
+
   css: ['~/assets/css/base.css'],
+
   i18n: {
     baseUrl,
     defaultLocale: 'nl',
@@ -165,36 +172,11 @@ export default defineNuxtConfig({
         file: 'nl.json',
       },
     ],
-    vueI18n: {
-      numberFormats: {
-        nl: {
-          currency: {
-            style: 'currency',
-            currency: 'EUR',
-            currencyDisplay: 'symbol',
-          },
-        },
-      },
-      datetimeFormats: {
-        nl: {
-          short: {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          },
-          long: {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            weekday: 'short',
-            hour: 'numeric',
-            minute: 'numeric',
-          },
-        },
-      },
-    },
+
   },
+
   modules: ['@nuxtjs/i18n', 'nuxt-svgo', '@vite-pwa/nuxt', 'nuxt-graphql-client'],
+
   postcss: {
     plugins: {
       'postcss-import': {},
@@ -213,6 +195,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   pwa: {
     registerWebManifestInRouteRules: true,
     manifest: {
@@ -308,5 +291,9 @@ export default defineNuxtConfig({
         },
       ],
     },
+  },
+
+  devtools: {
+    enabled: true,
   },
 })
