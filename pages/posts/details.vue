@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: '/over-loesje/nieuws/:slug',
+    nl: '/over-loesje/nieuws/[slug]',
   },
 })
 

@@ -78,7 +78,7 @@ export default {
     )
 
     onDone(() => {
-      router.push(localePath({ name: 'shop-cart' }))
+      navigateTo(localePath({ name: 'shop-cart' }))
     })
 
     return {

@@ -6,11 +6,10 @@ const props = defineProps<{
 }>()
 
 const down: Ref<number | null> = ref(null)
-const router = useRouter()
 
 const goToItem = () => {
   if (props.url) {
-    router.push(props.url)
+    navigateTo(props.url)
   } else if (props.href) {
     location.href = props.href
   }

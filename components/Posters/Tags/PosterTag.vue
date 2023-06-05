@@ -6,7 +6,6 @@ const props = defineProps<{
 }>()
 
 const selectedTags = useSelectedTags()
-const router = useRouter()
 const route = useRoute()
 const localePath = useLocalePath()
 
@@ -32,7 +31,7 @@ const goToPostersOverview = () => {
   if (route.path === postersUrl) {
     return
   }
-  router.push(postersUrl)
+  navigateTo(postersUrl)
 }
 
 const toggleTag = () => {

@@ -4,15 +4,15 @@
 
 defineI18nRoute({
   paths: {
-    nl: '/:pathMatch(.*)*',
+    nl: '/[...slug]',
   },
 })
 
 const route = useRoute()
 
 const uri = computed(() => {
-  const slugs = route.path.split('/').filter((url) => url !== '')
-  return slugs[slugs.length - 1]
+  const slugs = route.params.slug.filter(slug => slug !== '')
+  return slugs.at(-1)
 })
 
 // const { data, pending } = await useAsyncData(

@@ -163,13 +163,10 @@ export default defineNuxtConfig({
   i18n: {
     baseUrl,
     defaultLocale: 'nl',
-    lazy: true,
-    langDir: 'locales',
     locales: [
       {
         iso: 'nl-NL',
         code: 'nl',
-        file: 'nl.json',
       },
     ],
 
@@ -293,7 +290,4 @@ export default defineNuxtConfig({
     },
   },
 
-  devtools: {
-    enabled: true,
-  },
 })
