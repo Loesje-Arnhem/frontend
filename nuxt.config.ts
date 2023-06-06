@@ -163,15 +163,16 @@ export default defineNuxtConfig({
   i18n: {
     baseUrl,
     defaultLocale: 'nl',
+    lazy: true,
+    langDir: "locales",
     locales: [
       {
         iso: 'nl-NL',
         code: 'nl',
+        file: "nl.json",
       },
     ],
-
   },
-
   modules: ['@nuxtjs/i18n', 'nuxt-svgo', '@vite-pwa/nuxt', 'nuxt-graphql-client'],
 
   postcss: {
