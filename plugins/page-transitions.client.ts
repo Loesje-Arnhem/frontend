@@ -117,7 +117,7 @@ const waitForElement = (selector: string) => {
       return resolve(document.querySelector(selector) as HTMLElement)
     }
 
-    const observer = new MutationObserver((_) => {
+    const observer = new MutationObserver(() => {
       if (document.querySelector(selector)) {
         resolve(document.querySelector(selector) as HTMLElement)
         observer.disconnect()

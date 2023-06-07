@@ -13,11 +13,15 @@ export default defineComponent({
     },
     title: {
       type: String,
-      default() {
-        return this.$t('search')
-      },
+      default: '',
     },
   },
+  emits:[
+    'update:modelValue',
+    'submit',
+    'update:modelValue',
+    'submit'
+  ],
   data() {
     return {
       arrowCounter: -1,
@@ -47,7 +51,7 @@ export default defineComponent({
     document.removeEventListener('click', this.handleClickOutside)
   },
   methods: {
-    input(value) {
+    input() {
       this.showList = true
       this.$emit('update:modelValue', event.target.value)
     },

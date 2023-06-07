@@ -1,15 +1,11 @@
 <script lang="ts" setup>
-import { Endpoints } from '~~/enums/endpoints';
-
-
-
 const { selectedSourceIds, selectedSubjectIds } = useTags()
 const activeOverlays = reactive({
   sources: false,
   subjects: false,
 })
 
-const { data, pending } = await useAsyncGql('GetTaxonomies')
+const { data } = await useAsyncGql('GetTaxonomies')
 
 const subjects = computed(() => {
   if (!data.value?.subjects) {
@@ -48,7 +44,7 @@ const today = () => {
     month = `0${currentMonth}`
   }
   let day = `${currentDay}`
-  if (currentDay < 10) { 
+  if (currentDay < 10) {
     day = `0${currentDay}`
   }
   return `${now.getFullYear()}-${month}-${day}`

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { Endpoints } from '~~/enums/endpoints';
-
 interface ITaxQuery {
   terms: string[]
   taxonomy: string
@@ -96,7 +94,7 @@ watch(where, async () => {
     where: where.value,
   })
 
-  pending.value = false  
+  pending.value = false
 })
 
 

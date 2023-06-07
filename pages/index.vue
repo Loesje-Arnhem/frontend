@@ -7,7 +7,7 @@ defineI18nRoute({
 
 const { pageIds } = useAppConfig()
 
-const { data, error } = await useAsyncGql('GetPageHome', {
+const { data } = await useAsyncGql('GetPageHome', {
   id: pageIds.home.toString(),
 })
 

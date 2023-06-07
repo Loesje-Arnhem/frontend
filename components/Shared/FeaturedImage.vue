@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { FeaturedImageFragment } from '#gql';
-import { IFeaturedImage } from '~/interfaces/IContent'
 
 withDefaults(
   defineProps<{

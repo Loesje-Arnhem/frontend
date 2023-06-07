@@ -7,7 +7,7 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data, error } = await useAsyncGql('GetPoster', {
+const { data } = await useAsyncGql('GetPoster', {
   slug: route.params.slug.toString(),
 })
 

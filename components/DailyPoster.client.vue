@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { Endpoints } from '~/enums/endpoints';
-
 withDefaults(
   defineProps<{
     sizes?: string
@@ -11,7 +9,7 @@ withDefaults(
 )
 const date = new Date()
 
-const { data, error } = await useAsyncGql('GetDailyPoster', {
+const { data } = await useAsyncGql('GetDailyPoster', {
   year: date.getFullYear(),
   month: date.getMonth() + 1,
   day: date.getDate(),
@@ -22,7 +20,7 @@ const image = computed(() => {
     return null
   }
   return data.value?.dailyPosters?.edges[0].node.featuredImage
-  
+
 })
 </script>
 

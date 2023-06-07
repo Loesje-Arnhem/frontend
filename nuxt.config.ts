@@ -11,7 +11,6 @@ import {
 import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
-  ssr: process.env.NUXT_SSR === 'false' ? false : true,
 
   runtimeConfig: {
     woocommerceConsumerKey: '',
@@ -173,7 +172,7 @@ export default defineNuxtConfig({
       },
     ],
   },
-  modules: ['@nuxtjs/i18n', 'nuxt-svgo', '@vite-pwa/nuxt', 'nuxt-graphql-client'],
+  modules: ['@nuxtjs/i18n', 'nuxt-svgo', '@vite-pwa/nuxt', 'nuxt-graphql-client','@nuxtjs/eslint-module'],
 
   postcss: {
     plugins: {

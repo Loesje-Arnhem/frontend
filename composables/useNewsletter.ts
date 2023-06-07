@@ -1,6 +1,4 @@
 import { useVuelidate } from '@vuelidate/core'
-// import { useMutation } from '@vue/apollo-composable'
-import AddToNewsletterQuery from '~/graphql/Newsletter/AddToNewsletter.gql'
 import { NewsletterList } from '~/enums/newsletterList'
 
 export const useNewsletter = () => {
