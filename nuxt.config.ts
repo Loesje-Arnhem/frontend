@@ -32,7 +32,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    preset: 'netlify-builder',
   },
 
   hooks: {
@@ -49,7 +49,9 @@ export default defineNuxtConfig({
       }
     },
   },
-
+  routeRules: {
+    '/posters/**': { isr: 3000 },
+  },
   telemetry: false,
 
   app: {
