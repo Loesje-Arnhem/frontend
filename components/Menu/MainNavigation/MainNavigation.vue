@@ -114,7 +114,7 @@ const setArrowPosition = () => {
           v-if="pages.productCategories.edges.length"
           class="menu-item-page"
           :title="$t('shop')"
-          :uri="localePath({ name: 'shop' })"
+          uri="/winkeltje/"
           :children="pages.productCategories"
         />
       </ul>
