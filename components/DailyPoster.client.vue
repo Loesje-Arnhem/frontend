@@ -15,19 +15,20 @@ const { data } = await useAsyncGql('GetDailyPoster', {
   day: date.getDate(),
 })
 
-const image = computed(() => {
+const poster = computed(() => {
   if (!data.value?.dailyPosters?.edges.length) {
     return null
   }
-  return data.value?.dailyPosters?.edges[0].node.featuredImage
+  return data.value?.dailyPosters?.edges[0].node
 
 })
 </script>
 
 <template>
   <featured-image
-    v-if="image"
-    :image="image"
+    v-if="poster"
+    :image="poster.featuredImage"
+    :alt="poster.title"
     :sizes="sizes"
   />
 </template>
