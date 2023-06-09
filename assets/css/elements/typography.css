@@ -62,6 +62,7 @@ legend {
 
   hyphens: auto;
   font-weight: var(--font-weight-bold);
+  text-wrap: balance;
 }
 
 h1 {
