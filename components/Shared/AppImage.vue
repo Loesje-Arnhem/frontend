@@ -6,10 +6,9 @@ const props = withDefaults(
     height: number
     sizes: string
     lazy?: boolean
-    alt?: string
+    alt: string
   }>(),
   {
-    alt: '',
     lazy: true,
   },
 )
@@ -23,7 +22,7 @@ const loading = computed(() => {
 
 <template>
   <img
-    :alt="alt"
+    :alt="alt ? alt : ''"
     :loading="loading"
     :src="src"
     :preload="!lazy"

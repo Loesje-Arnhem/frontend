@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { FeaturedImageFragment } from '#gql';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     image: FeaturedImageFragment
     sizes: string
@@ -10,15 +10,24 @@ withDefaults(
   }>(),
   {
     lazy: true,
-    alt: undefined
+    alt: ''
   },
 )
+
+const altText = computed(() => {
+  if (props.alt) {
+    return props.alt
+  } else if (props.image.node.alt) {
+    return props.image.node.alt
+  }
+  return ''
+})
 </script>
 
 <template>
   <img
     class="image"
-    :alt="alt"
+    :alt="altText"
     :loading="lazy ? 'lazy' : null"
     :srcset="image.node.srcSet || undefined"
     :src="image.node.src || undefined"
