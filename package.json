@@ -29,7 +29,7 @@
     "core-js": "^3.27.1",
     "graphql-tag": "^2.12.6",
     "ipx": "^0.9.11",
-    "nuxt": "^2.15.8",
+    "nuxt": "^2.17.0",
     "nuxt-precompress": "^0.5.9",
     "pwa-asset-generator": "^6.2.1",
     "smoothscroll-polyfill": "^0.4.4",
