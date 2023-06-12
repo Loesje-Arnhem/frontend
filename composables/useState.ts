@@ -6,3 +6,13 @@ export const useSelectedTags = () => useState<(SourceFragment | SubjectFragment)
 export const useDateBefore = () => useState<string>('dateBefore', () => '')
 export const useDateAfter = () => useState<string>('dateAfter', () => '')
 export const useSearch = () => useState<string>('search', () => '')
+
+export const useDonation = () => useState('donation', () => {
+    return {
+        body: '',
+        amount: 0,
+        target: 0,
+        enabled: false,
+        loaded: false,
+    }
+})
