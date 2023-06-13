@@ -10,7 +10,7 @@ const { t } = useI18n({
 
 <template>
   <app-alert
-    :show="needRefresh"
+    :show="$pwa.needRefresh"
     :text="t('newContentAvailable')"
   >
     <button

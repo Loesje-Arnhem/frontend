@@ -6,40 +6,41 @@ onMounted(async() => {
     if (donation.loaded) {
         return
     }
-    nextTick(async() => {
-    if (typeof window.widgetDiv === 'undefined') {
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = 'https://res.cloudinary.com/dxhaja5tz/raw/upload/script_main.js', 
-        document.body.appendChild(script);
-    }
 
-    await waitForElement('.widget > div')
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = 'https://res.cloudinary.com/dxhaja5tz/raw/upload/script_main.js',
+    document.body.appendChild(script);
+
+    await waitForElement('.why-donate > div')
     const plugin_ele = getPluginElement();
     const plugin_obj = getPluginData(plugin_ele);
     const fundraiser_response = await getFundraiserData(plugin_obj.data.slug)
     const { data } = fundraiser_response
-    console.log(data)
+    const amount = data.donation.amount
+    const target = data.amount_target
     donation.value = {
-        amount: data.donation.amount,
+        amount,
         enabled: Date.now() < new Date(data.end_date).getTime(),
-        target: data.amount_target,
+        target,
         body: data.content,
-        loaded: true
+        loaded: true,
+        progress: `${( amount / target) * 100}%`
     }
-    const widget = document.querySelector('.widget[value=donation-widget]')
+    const widget = document.querySelector('.why-donate')
     if (widget) {
         widget.remove()
     }
+
+
   })
-})
 
 </script>
 
 <template>
   <div
     id="de-posters-van-loesje"
-    class="widget"
+    class="widget why-donate"
     data-slug="de-posters-van-loesje"
     data-lang="nl"
     data-success_url=""
@@ -47,12 +48,39 @@ onMounted(async() => {
     data-card="show"
     value="donation-widget"
   />
-  <div
-    v-if="donation.enabled"
-    class="wrapper"
-  >
-    <center-wrapper size="md">
+  <center-wrapper size="xlg">
+    <div class="wrapper">
       <div class="widget">
+        <box-wrapper
+          id="donate"
+          title="Doneren"
+        >
+          <div class="donate-box">
+            <app-loader v-if="!donation.loaded" />
+            <template v-else>
+              <div
+                class="progress"
+                :style="{width: donation.progress}"
+              />
+
+              <p>
+                {{ $n(donation.amount, 'currency') }} van
+                <span class="target">
+                  {{ $n(donation.target, 'currency') }}
+                </span>
+              </p>
+            </template>
+            <app-button
+              href="https://whydonate.com/nl/donate/de-posters-van-loesje"
+              rel="noopener"
+              target="_blank"
+            >
+              Ga naar Why Donate
+            </app-button>
+          </div>
+        </box-wrapper>
+      </div>
+      <div class="text">
         <h1>Steun Loesje</h1>
         <div>
           <p>
@@ -69,19 +97,9 @@ onMounted(async() => {
             Een bijdrage helpt haar enorm om te blijven doen waar ze goed in is: posters maken die mensen aan het denken zet, laat glimlachen of nieuwsgierig maakt.
           </p>
         </div>
-        <div class="donate-box">
-          {{ $n(donation.amount, 'currency') }} van {{ $n(donation.target, 'currency') }}
-          <app-button
-            href="https://whydonate.com/nl/donate/de-posters-van-loesje"
-            rel="noopener"
-            target="_blank"
-          >
-            Doneren
-          </app-button>
-        </div>
       </div>
-    </center-wrapper>
-  </div>
+    </div>
+  </center-wrapper>
 </template>
 
 <style lang="postcss" scoped>
@@ -89,9 +107,38 @@ onMounted(async() => {
 
 .wrapper {
   @mixin block;
+
+  display: grid;
+  gap: 2em;
+
+  @media (--viewport-md) {
+    grid-template-columns: 1fr 2fr;
+  }
+  @media (--viewport-lg) {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+.why-donate {
+    display: none !important;
+}
+
+.text {
+  order: -1;
 }
 
 .widget {
-    display: none;
+  @media (--viewport-md) {
+    order: -1;
+  }
+}
+
+.target {
+  font-weight: var(--font-weight-bold);
+}
+.progress {
+  margin-bottom: 0.5em;
+  height: 0.25em;
+  background-color: var(--color-black);
 }
 </style>

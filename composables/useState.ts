@@ -14,5 +14,6 @@ export const useDonation = () => useState('donation', () => {
         target: 0,
         enabled: false,
         loaded: false,
+        progress: `0%`
     }
 })

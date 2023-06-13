@@ -50,7 +50,6 @@ const config: NuxtConfig = {
       ],
       display_override: ['window-controls-overlay'],
       start_url: `${baseUrl}/posters?standalone=true`,
-      id: `${baseUrl}/posters?standalone=true`,
       shortcuts: [
         {
           name: 'Favorieten',
