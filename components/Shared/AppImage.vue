@@ -6,9 +6,10 @@ const props = withDefaults(
     height: number
     sizes: string
     lazy?: boolean
-    alt: string
+    alt?: string
   }>(),
   {
+    alt: '',
     lazy: true,
   },
 )

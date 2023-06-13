@@ -2,7 +2,7 @@
 
 const donation = useDonation()
 
-onMounted(() => {
+onMounted(async() => {
     if (donation.loaded) {
         return
     }
@@ -13,22 +13,24 @@ onMounted(() => {
         script.src = 'https://res.cloudinary.com/dxhaja5tz/raw/upload/script_main.js', 
         document.body.appendChild(script);
     }
-    setTimeout(async() => {
-        const plugin_ele = getPluginElement();
-        const plugin_obj = getPluginData(plugin_ele);
-        const fundraiser_response = await getFundraiserData(plugin_obj.data.slug)
-        const { data } =fundraiser_response
 
-        donation.value = {
-            amount: data.donation.amount,
-            enabled: Date.now() < new Date(data.end_date).getTime(),
-            target: data.amount_target,
-            body: data.content,
-            loaded: true
-        }
-
-
-    }, 1000);
+    await waitForElement('.widget > div')
+    const plugin_ele = getPluginElement();
+    const plugin_obj = getPluginData(plugin_ele);
+    const fundraiser_response = await getFundraiserData(plugin_obj.data.slug)
+    const { data } = fundraiser_response
+    console.log(data)
+    donation.value = {
+        amount: data.donation.amount,
+        enabled: Date.now() < new Date(data.end_date).getTime(),
+        target: data.amount_target,
+        body: data.content,
+        loaded: true
+    }
+    const widget = document.querySelector('.widget[value=donation-widget]')
+    if (widget) {
+        widget.remove()
+    }
   })
 })
 
@@ -38,7 +40,6 @@ onMounted(() => {
   <div
     id="de-posters-van-loesje"
     class="widget"
-    style="display:none"
     data-slug="de-posters-van-loesje"
     data-lang="nl"
     data-success_url=""
@@ -88,5 +89,9 @@ onMounted(() => {
 
 .wrapper {
   @mixin block;
+}
+
+.widget {
+    display: none;
 }
 </style>
