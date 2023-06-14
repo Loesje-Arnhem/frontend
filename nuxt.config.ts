@@ -235,7 +235,6 @@ export default defineNuxtConfig({
       ],
       display_override: ['window-controls-overlay'],
       start_url: `./posters?standalone=true`,
-      id: `${baseUrl}/posters?standalone=true`,
       shortcuts: [
         {
           name: 'Favorieten',
