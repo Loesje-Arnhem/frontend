@@ -40,17 +40,14 @@ export default defineNuxtPlugin(() => {
 
   redirectIfProtocol()
 
-  window.addEventListener('DOMContentLoaded', () => {
-    alert(`r44: ${window.matchMedia(mediaQueryStandAlone).matches}`)
 
-    window
-      .matchMedia(mediaQueryStandAlone)
-      .addEventListener('change', (event) => {
-        alert(`r49: ${window.matchMedia(mediaQueryStandAlone).matches}`)
-        if (event.matches) {
-          setBodyClass()
-          redirectToPostersPageOnStandalone()
-        }
-      })
-  })
+  window
+    .matchMedia(mediaQueryStandAlone)
+    .addEventListener('change', (event) => {
+      alert(`r47: ${window.matchMedia(mediaQueryStandAlone).matches}`)
+      if (event.matches) {
+        setBodyClass()
+        redirectToPostersPageOnStandalone()
+      }
+    })
 })
