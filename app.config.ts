@@ -42,4 +42,5 @@ export default defineAppConfig({
     checkout: 30780,
     newsletter: 27758,
   },
+  mediaQueryStandAlone: '(display-mode: standalone), (display-mode: window-controls-overlay)'
 })

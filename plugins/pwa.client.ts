@@ -1,6 +1,7 @@
 export default defineNuxtPlugin(() => {
   const localePath = useLocalePath()
   const route = useRoute()
+  const { mediaQueryStandAlone } = useAppConfig()
 
   const postersPath = localePath({ name: 'posters' })
 
