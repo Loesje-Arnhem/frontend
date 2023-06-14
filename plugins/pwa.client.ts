@@ -20,6 +20,8 @@ export default defineNuxtPlugin(() => {
     }
   }
 
+  window.test = window.matchMedia(mediaQueryStandAlone).matches
+
   if (window.matchMedia(mediaQueryStandAlone).matches) {
     setBodyClass()
     redirectToPostersPageOnStandalone()
@@ -30,7 +32,9 @@ export default defineNuxtPlugin(() => {
     if (route.fullPath.includes(encodeURIComponent(protocol))) {
       const decodedUrl = decodeURIComponent(route.fullPath)
       const url = decodedUrl.replace(`${protocol}://`, '/')
-      window.location.href = url
+      navigateTo(url, {
+        external: true
+      })
     }
   }
 
