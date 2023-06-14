@@ -20,7 +20,7 @@ export default defineNuxtPlugin(() => {
     }
   }
 
-  window.test = window.matchMedia(mediaQueryStandAlone).matches
+  alert(`r23: ${window.matchMedia(mediaQueryStandAlone).matches}`)
 
   if (window.matchMedia(mediaQueryStandAlone).matches) {
     setBodyClass()
@@ -41,9 +41,12 @@ export default defineNuxtPlugin(() => {
   redirectIfProtocol()
 
   window.addEventListener('DOMContentLoaded', () => {
+    alert(`r44: ${window.matchMedia(mediaQueryStandAlone).matches}`)
+
     window
       .matchMedia(mediaQueryStandAlone)
       .addEventListener('change', (event) => {
+        alert(`r49: ${window.matchMedia(mediaQueryStandAlone).matches}`)
         if (event.matches) {
           setBodyClass()
           redirectToPostersPageOnStandalone()
