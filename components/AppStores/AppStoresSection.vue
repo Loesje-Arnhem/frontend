@@ -59,7 +59,6 @@ const updateTheme = () => {
               </app-button>
             </client-only>
             <app-button
-              v-if="!$pwa.showInstallPrompt"
               href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
               target="_blank"
               rel="noopener noreferrer"
