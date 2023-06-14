@@ -1,6 +1,4 @@
-
-
-      mutation REQUEST_WORKSHOP(
+mutation SubmitWorkshop(
     $address: String
     $city: String
     $clientMutationId: String

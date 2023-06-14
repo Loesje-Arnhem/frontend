@@ -48,21 +48,26 @@ const rules = {
 const v$ = useVuelidate(rules, formData)
 
 const error = computed(() => {
-  if (apiError.value) {
-    return apiError.value.message
-  } else if (v$.value.$dirty && v$.value.$invalid) {
-    return 'validations.form'
-  }
+  // if (apiError.value) {
+  //   return apiError.value.message
+  // } else if (v$.value.$dirty && v$.value.$invalid) {
+  //   return 'validations.form'
+  // }
   return null
 })
 
 const submit = async () => {
   const isFormCorrect = await v$.value.$validate()
-  if (!isFormCorrect) {
-    return
+  // if (!isFormCorrect) {
+  //   return
+  // }
+  try {
+    await GqlSubmitWorkshop('asdsa')
+    
+  } catch (error) {
+    console.log(error)
+    
   }
-
-  requestWorkshop()
 }
 
 // const {
@@ -77,11 +82,11 @@ const submit = async () => {
 //   },
 // }))
 
-onDone((result) => {
-  if (result.data.requestWorkshop.response === 'success') {
-    submitted.value = true
-  }
-})
+// onDone((result) => {
+//   if (result.data.requestWorkshop.response === 'success') {
+//     submitted.value = true
+//   }
+// })
 
 onMounted(() => {
   if (!process.client) {
