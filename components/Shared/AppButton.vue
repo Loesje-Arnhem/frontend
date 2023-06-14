@@ -66,7 +66,7 @@ const generatedType = computed(() => {
     v-else
     :type="generatedType"
     :class="cssClasses"
-    :disabled="loading"
+    :disabled="loading === true ? 'true' : undefined"
     :href="href"
   >
     <app-loader

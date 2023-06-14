@@ -47,7 +47,7 @@ const { email, emailShop } = appConfig.address
   </address>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .list {
   @mixin list-reset;
 

@@ -47,14 +47,26 @@ const updateTheme = () => {
           </p>
           <p>
             Nu is er de officiele Loesje-app. In deze app kan je uren
-            rondstruinen op zoek de poster die jij het tofst vindt. Je vindt de
-            Loesjeapp niet in de appstores, maar je kunt hem gratis via de
-            Loesjewebsite installeren op je telefoon of tablet. Zo heb je het
-            Loesjes posterarchief altijd bij de hand.
+            rondstruinen op zoek de poster die jij het tofst vindt.
           </p>
-          <!-- <app-button v-if="installEvent" @click="install">
-            Installeer de Loesje-app
-          </app-button> -->
+          <div class="buttons">
+            <client-only>
+              <app-button
+                v-if="$pwa.showInstallPrompt"
+                @click="$pwa.install()"
+              >
+                Installeer de app
+              </app-button>
+            </client-only>
+            <app-button
+              v-if="!$pwa.showInstallPrompt"
+              href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Bekijk de app in de Appstore
+            </app-button>
+          </div>
         </div>
       </div>
     </center-wrapper>
@@ -77,6 +89,12 @@ const updateTheme = () => {
   @media (--viewport-lg) {
     display: block;
   }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
 }
 
 .image-wrapper {

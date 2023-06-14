@@ -38,7 +38,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .newsletter {
   max-width: var(--container-width-sm);
   margin-bottom: 4em;

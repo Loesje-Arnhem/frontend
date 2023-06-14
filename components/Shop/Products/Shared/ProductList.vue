@@ -19,7 +19,7 @@ defineProps<{
   </ul>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
 .list {

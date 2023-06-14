@@ -260,7 +260,7 @@ onMounted(() => {
   </center-wrapper>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
 .form {
