@@ -48,7 +48,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .product-wrapper {
   margin-bottom: 3em;
 }

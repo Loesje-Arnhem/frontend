@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .loader {
   margin: 2em auto;
   position: relative;

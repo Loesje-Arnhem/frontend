@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useRegisterSW } from 'virtual:pwa-register/vue'
-
-const { needRefresh, updateServiceWorker } = useRegisterSW()
-
 const { t } = useI18n({
   useScope: 'local',
 })
@@ -10,12 +6,12 @@ const { t } = useI18n({
 
 <template>
   <app-alert
-    :show="needRefresh"
+    :show="$pwa.needRefresh"
     :text="t('newContentAvailable')"
   >
     <button
       class="btn-link"
-      @click="() => updateServiceWorker()"
+      @click="$pwa.updateServiceWorker()"
     >
       {{ t('newContentAvailable') }}
     </button>

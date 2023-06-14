@@ -166,7 +166,7 @@ export default defineComponent({
   </form>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .form {
   margin-bottom: 1em;
 }

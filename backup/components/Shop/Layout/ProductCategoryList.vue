@@ -73,7 +73,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
 .category-list {

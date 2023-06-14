@@ -20,7 +20,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .alert {
   z-index: var(--z-index-alert);
   background-color: var(--color-white);

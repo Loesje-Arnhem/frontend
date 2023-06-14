@@ -48,7 +48,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .wrapper,
 .placeholder {
   height: 3em;

@@ -30,7 +30,7 @@ const { data } = await usePageById(pageIds.newsletter)
   </div>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .newsletter {
   max-width: var(--container-width-sm);
   margin-bottom: 4em;

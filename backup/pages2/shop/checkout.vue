@@ -111,7 +111,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .checkout {
   display: grid;
   grid-gap: 1em;

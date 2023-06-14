@@ -38,7 +38,7 @@ defineEmits(['submit'])
   </form>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .btn {
   margin-bottom: 0.5em;
 }
