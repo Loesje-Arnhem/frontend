@@ -40,18 +40,18 @@ export default defineNuxtConfig({
       if (nitroConfig.dev) {
         return
       }
-      // if (process.env.NUXT_SSR === 'false') {
-      //   return
-      // }
+      if (process.env.NUXT_SSR === 'false') {
+        return
+      }
       const pages = await getAllRoutes()
       if (nitroConfig?.prerender?.routes) {
         nitroConfig.prerender.routes.push(...pages)
       }
     },
   },
-  // routeRules: {
-  //   '/posters/**': { isr: 3000 },
-  // },
+  routeRules: {
+    '/posters/**': { isr: 3000 },
+  },
   telemetry: false,
 
   app: {
@@ -70,7 +70,7 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         {
           name: 'apple-mobile-web-app-status-bar-style',
-          content: 'black-translucent',
+          content: 'black',
         },
         { name: 'apple-mobile-web-app-title', content: title },
         { name: 'theme-color', content: themeColor },
@@ -235,7 +235,6 @@ export default defineNuxtConfig({
       ],
       display_override: ['window-controls-overlay'],
       start_url: `./posters?standalone=true`,
-      id: `./posters?standalone=true`,
       shortcuts: [
         {
           name: 'Favorieten',
