@@ -93,7 +93,7 @@ const generatedType = computed(() => {
   gap: 0.25em;
   position: relative;
 
-  @nest .is-loaded & {
+  .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
       border-image-outset: 0.25em 0.5em;
     }
@@ -132,11 +132,11 @@ a {
 .title {
   transition: box-shadow 0.2s ease-out;
 
-  @nest .btn:hover & {
+  .btn:hover & {
     box-shadow: 0 3px 0 0 currentcolor;
   }
 
-  @nest .btn-outline:hover & {
+  .btn-outline:hover & {
     box-shadow: 0 2px 0 0 currentcolor;
   }
 }

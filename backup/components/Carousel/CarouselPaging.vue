@@ -46,7 +46,7 @@ export default defineComponent({
   transition: transform var(--animation);
 
   &.active {
-    transform: scale(2);
+     scale: 2;
   }
 }
 </style>
