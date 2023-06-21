@@ -135,42 +135,22 @@ const today = () => {
 
 .buttons {
   border: 2px solid var(--color-black);
-  display: flex;
+  background-color: var(--color-black);
+  display: grid;
   margin-bottom: 1em;
-  flex-wrap: wrap;
+  gap: 1px;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (--viewport-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .filter-item {
-  border-bottom: 1px solid var(--color-black);
-  flex: 0 0 auto;
-  width: 100%;
   padding-left: 1em;
   padding-right: 1em;
-
-  &:last-child {
-    border-bottom: 0;
-  }
-
-  @media (--viewport-sm) {
-    width: 50%;
-
-    &:nth-child(2n + 1) {
-      border-right: 1px solid var(--color-black);
-    }
-
-    &:nth-child(3) {
-      border-bottom: 0;
-    }
-  }
-
-  @media (--viewport-lg) {
-    width: 25%;
-    border-bottom: 0;
-
-    &:nth-child(2) {
-      border-right: 1px solid var(--color-black);
-    }
-  }
+  background-color: var(--color-white);
+   overflow: hidden;
 }
 
 .tags {
