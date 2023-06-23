@@ -59,6 +59,9 @@ const showOverview = computed(() => {
 nav {
   @mixin hide-for-print;
 
+  @media (--stand-alone) {
+    padding-top: env(safe-area-inset-top);
+  }
   display: flex;
   margin: 1em 0;
   height: 1em;
