@@ -32,7 +32,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify-builder',
+    preset: 'netlify',
   },
 
   hooks: {
@@ -43,14 +43,14 @@ export default defineNuxtConfig({
       if (process.env.NUXT_SSR === 'false') {
         return
       }
-      const pages = await getAllRoutes()
-      if (nitroConfig?.prerender?.routes) {
-        nitroConfig.prerender.routes.push(...pages)
-      }
+      // const pages = await getAllRoutes()
+      // if (nitroConfig?.prerender?.routes) {
+      //   nitroConfig.prerender.routes.push(...pages)
+      // }
     },
   },
   routeRules: {
-    '/posters/**': { isr: 3000 },
+    '/**': { swr: true },
   },
   telemetry: false,
 
