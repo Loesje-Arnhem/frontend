@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import useVuelidate from '@vuelidate/core'
-// import RequestWorkshopQuery from '~/graphql/Workshop/RequestWorkshop'
+import { Endpoints } from '~/enums/endpoints';
 
-const submitted = ref(false)
+
 const { required, numeric, email, minValue, maxValue } = useValidators()
 const minDate: Ref<string | null> = ref(null)
 
@@ -45,48 +44,8 @@ const rules = {
   theme: {},
 }
 
-const v$ = useVuelidate(rules, formData)
+const { v$, loading, error, submit, submitted } = useForm(rules, formData, Endpoints.FormWorkshop)
 
-const error = computed(() => {
-  // if (apiError.value) {
-  //   return apiError.value.message
-  // } else if (v$.value.$dirty && v$.value.$invalid) {
-  //   return 'validations.form'
-  // }
-  return null
-})
-
-const submit = async () => {
-  const isFormCorrect = await v$.value.$validate()
-  // if (!isFormCorrect) {
-  //   return
-  // }
-  try {
-    await GqlSubmitWorkshop('asdsa')
-    
-  } catch (error) {
-    console.log(error)
-    
-  }
-}
-
-// const {
-//   mutate: requestWorkshop,
-//   loading,
-//   onDone,
-//   error: apiError,
-// } = useMutation(RequestWorkshopQuery, () => ({
-//   variables: {
-//     clientMutationId: v4(),
-//     ...formData,
-//   },
-// }))
-
-// onDone((result) => {
-//   if (result.data.requestWorkshop.response === 'success') {
-//     submitted.value = true
-//   }
-// })
 
 onMounted(() => {
   if (!process.client) {

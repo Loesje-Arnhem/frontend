@@ -19,9 +19,9 @@ const { data } = await usePageById(pageIds.newsletter)
       :content="data.page.content"
       :video="data.page?.videoGroup?.youtubeId"
     />
-    <!-- <center-wrapper size="md">
+    <center-wrapper size="md">
       <form-newsletter class="newsletter" />
-    </center-wrapper> -->
+    </center-wrapper>
     <related-posters-section :posters="data.page.relatedPosters" />
     <related-products-section
       :products="data?.page?.relatedProducts"

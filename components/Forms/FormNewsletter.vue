@@ -1,5 +1,23 @@
 <script lang="ts" setup>
-const { submit, formData, loading, error, submitted, v$ } = useNewsletter()
+import { NewsletterList } from '~/enums/newsletterList';
+import { Endpoints } from '~/enums/endpoints';
+
+const { required, email } = useValidators()
+
+
+const formData = reactive({
+  email: '',
+  firstName: '',
+  lastName: '',
+  list: NewsletterList.Website,
+})
+
+const rules = {
+  email: { required, email },
+}
+
+const { v$, loading, error, submit, submitted } = useForm(rules, formData, Endpoints.FormNewsletter)
+
 </script>
 
 <template>

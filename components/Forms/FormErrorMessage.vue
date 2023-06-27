@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-defineProps<{
-  error?: string
-}>()
+withDefaults(defineProps<{
+  error?: string | null
+}>(), {
+  error: null
+})
 </script>
 
 <template>

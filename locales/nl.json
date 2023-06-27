@@ -37,5 +37,9 @@
   "viewAll": "Bekijk alle",
   "viewAllPosters": "Bekijk alle posters",
   "visitOurShop": "Bezoek ons winkeltje",
-  "workshops": "Workshops"
+  "workshops": "Workshops",
+  "validations": {
+    "required": "Het veld {property} is verplicht",
+    "email": "Dit is geen geldig e-mailadres"
+  }
 }

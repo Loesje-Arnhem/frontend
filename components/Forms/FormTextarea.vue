@@ -1,11 +1,20 @@
 <script lang="ts" setup>
-defineProps<{
-  title: string
-  description?: string
-  id: string
-  modelValue: string | number
-  errors?: []
-}>()
+import { ErrorObject } from '@vuelidate/core';
+
+withDefaults(
+  defineProps<{
+    title: string
+    description?: string | null
+    id: string
+    modelValue: string | number
+    errors?: ErrorObject[]
+  }>(),
+  {
+    description: null,
+    errors: () => []
+  },
+)
+
 
 defineEmits(['keyup-down', 'keyup-up', 'input', 'change', 'blur'])
 </script>

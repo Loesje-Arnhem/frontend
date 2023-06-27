@@ -12,10 +12,10 @@ const props = withDefaults( defineProps<{
 })
 
 const errorMessage = computed(() => {
-  if (!props.errors) {
+  if (!props.errors.length) {
     return ''
   }
-  props.errors.map((error) => error.$message).join(', ')
+  return props.errors.map((error) => error.$message).join(', ')
 })
 </script>
 

@@ -6,7 +6,7 @@ withDefaults(
     title: string
     description?: string | null
     id: string
-    type?: 'text' | 'date' | 'email' | 'time' | 'number' | 'password'
+    type?: 'text' | 'date' | 'email' | 'time' | 'number' | 'password' | 'tel'
     modelValue: string | number
     errors?: ErrorObject[]
   }>(),
