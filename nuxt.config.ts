@@ -19,6 +19,9 @@ export default defineNuxtConfig({
       GQL_HOST: `${apiUrl}graphql`
     }
   },
+  experimental: {
+    componentIslands: true
+  },
 
   typescript: {
     tsConfig: {
@@ -34,7 +37,6 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
   },
-
   hooks: {
     async 'nitro:config'(nitroConfig) {
       if (nitroConfig.dev) {
@@ -49,9 +51,9 @@ export default defineNuxtConfig({
       // }
     },
   },
-  routeRules: {
-    '/**': { swr: true },
-  },
+  // routeRules: {
+  //   '/**': { swr: true },
+  // },
   telemetry: false,
 
   app: {
@@ -197,6 +199,11 @@ export default defineNuxtConfig({
 
   pwa: {
     registerWebManifestInRouteRules: true,
+    registerType: 'autoUpdate',
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
     manifest: {
       background_color: backgroundColor,
       theme_color: themeColor,
