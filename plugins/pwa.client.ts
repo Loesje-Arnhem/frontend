@@ -1,26 +1,27 @@
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
   const localePath = useLocalePath()
   const route = useRoute()
   const { mediaQueryStandAlone } = useAppConfig()
 
-  const postersPath = localePath({ name: 'posters' })
 
   const setBodyClass = () => {
     document.documentElement.classList.add('standalone')
   }
 
-  const redirectToPostersPageOnStandalone = () => {
-    if (route.matched[0].path !== postersPath) {
-      return navigateTo({
-        path: postersPath,
-        query: {
-          standalone: 'true',
-        },
-      })
+  const redirectToPostersPageOnStandalone = async () => {
+    const posterPages = ['posters-favorites', 'posters', 'posters-details']
+    if (posterPages.includes(nuxtApp.$getRouteBaseName())) {
+      return
     }
-  }
+    const postersListPage = localePath({ name: 'posters' })
+    await navigateTo({
+      path: postersListPage,
+      query: {
+        standalone: 'true',
+      },
+    })
 
-  window.test = window.matchMedia(mediaQueryStandAlone).matches
+  }
 
   if (window.matchMedia(mediaQueryStandAlone).matches) {
     setBodyClass()
@@ -40,14 +41,12 @@ export default defineNuxtPlugin(() => {
 
   redirectIfProtocol()
 
-  window.addEventListener('DOMContentLoaded', () => {
-    window
-      .matchMedia(mediaQueryStandAlone)
-      .addEventListener('change', (event) => {
-        if (event.matches) {
-          setBodyClass()
-          redirectToPostersPageOnStandalone()
-        }
-      })
-  })
+  window
+    .matchMedia(mediaQueryStandAlone)
+    .addEventListener('change', (event) => {
+      if (event.matches) {
+        setBodyClass()
+        redirectToPostersPageOnStandalone()
+      }
+    })
 })

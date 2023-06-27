@@ -168,7 +168,7 @@ export default defineComponent({
   font-size: var(--font-size-xl);
   border-bottom-width: 2px;
 
-  @nest .menu-item:first-child & {
+  .menu-item:first-child & {
     border-top: 2px solid currentColor;
 
     @media (--show-full-navigation) {
@@ -195,7 +195,7 @@ export default defineComponent({
     padding: var(--spacing-xxs) var(--spacing-xs);
   }
 
-  @nest .submenu-item:last-child & {
+  .submenu-item:last-child & {
     border-bottom-width: 0;
   }
 
@@ -220,7 +220,7 @@ export default defineComponent({
 
 .icon {
   transition: transform var(--animation);
-  @nest [aria-expanded='true'] & {
+  [aria-expanded='true'] & {
     transform: rotate(-180deg);
 
     @media (--show-full-navigation) {
@@ -261,7 +261,7 @@ export default defineComponent({
       border-bottom: 0.5em solid var(--color-white);
     }
 
-    @nest .menu-item:last-child & {
+    .menu-item:last-child & {
       left: auto;
       right: calc(-1 * var(--spacing-xs));
       &::before {

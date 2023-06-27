@@ -19,6 +19,9 @@ export default defineNuxtConfig({
       GQL_HOST: `${apiUrl}graphql`
     }
   },
+  experimental: {
+    componentIslands: true
+  },
 
   typescript: {
     tsConfig: {
@@ -32,9 +35,8 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify-builder',
+    preset: 'netlify',
   },
-
   hooks: {
     async 'nitro:config'(nitroConfig) {
       if (nitroConfig.dev) {
@@ -43,15 +45,15 @@ export default defineNuxtConfig({
       if (process.env.NUXT_SSR === 'false') {
         return
       }
-      const pages = await getAllRoutes()
-      if (nitroConfig?.prerender?.routes) {
-        nitroConfig.prerender.routes.push(...pages)
-      }
+      // const pages = await getAllRoutes()
+      // if (nitroConfig?.prerender?.routes) {
+      //   nitroConfig.prerender.routes.push(...pages)
+      // }
     },
   },
-  routeRules: {
-    '/posters/**': { isr: 3000 },
-  },
+  // routeRules: {
+  //   '/**': { swr: true },
+  // },
   telemetry: false,
 
   app: {
@@ -70,7 +72,7 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         {
           name: 'apple-mobile-web-app-status-bar-style',
-          content: 'black-translucent',
+          content: 'black',
         },
         { name: 'apple-mobile-web-app-title', content: title },
         { name: 'theme-color', content: themeColor },
@@ -197,6 +199,11 @@ export default defineNuxtConfig({
 
   pwa: {
     registerWebManifestInRouteRules: true,
+    registerType: 'autoUpdate',
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
     manifest: {
       background_color: backgroundColor,
       theme_color: themeColor,

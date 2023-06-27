@@ -12,6 +12,8 @@ const { getFromStorage } = useFavorites()
 onMounted(() => {
   getFromStorage()
 })
+
+
 </script>
 
 <template>
@@ -48,7 +50,6 @@ onMounted(() => {
         <vite-pwa-manifest />
 
         <slot />
-        <pwa-update />
       </Body>
     </Html>
   </div>
