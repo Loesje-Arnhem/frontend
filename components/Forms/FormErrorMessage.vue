@@ -12,7 +12,7 @@ withDefaults(defineProps<{
     class="error"
   >
     <template v-if="error">
-      {{ $t(error) }}
+      {{ error }}
     </template>
   </span>
 </template>

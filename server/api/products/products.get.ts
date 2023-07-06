@@ -2,7 +2,7 @@ import { IProductListItem } from "~~/interfaces/IContent"
 import { IResponseProducts } from "~~/server/types/IResponseProducts"
 
 export default defineEventHandler(async (event) => {
-  const { woocommerceConsumerKey, woocommerceConsumerSecret} = useRuntimeConfig()
+  const { woocommerce } = useRuntimeConfig()
   const query = getQuery(event)
 
   const url = getUrl({
@@ -10,8 +10,8 @@ export default defineEventHandler(async (event) => {
     fields: ['name', 'id', 'slug', 'price', 'regular_price', 'images', 'external_url'],
     image: true,
     include: query.productIds || null,
-    consumerKey: woocommerceConsumerKey,
-    consumerSecret: woocommerceConsumerSecret
+    consumerKey: woocommerce.consumerKey,
+    consumerSecret: woocommerce.consumerSecret
   })
 
   const response = await $fetch<IResponseProducts[]>(url)
