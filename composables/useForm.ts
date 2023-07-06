@@ -21,6 +21,8 @@ export default (rules: object, formData: ValidationArgs, endpoint: Endpoints.For
             const response = await $fetch(endpoint, {
                 method: 'POST',
                 body: formData
+            }).catch(err => {
+                error.value = err.data.message
             })
             if (response === 1) {
                 submitted.value = true

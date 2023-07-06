@@ -13,6 +13,13 @@ import getAllRoutes from './data/routes'
 export default defineNuxtConfig({
 
   runtimeConfig: {
+    newsletter: {
+      api_key: '',
+      list: {
+        products: "",
+        website: ""
+      }
+    },
     woocommerceConsumerKey: '',
     woocommerceConsumerSecret: '',
     public: {
