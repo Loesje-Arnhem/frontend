@@ -16,7 +16,9 @@ const fetchPagesByType = async (type: string) => {
   const baseUrl = 'https://shop.loesje.nl'
 
   while (hasNextPage) {
-    const apiUrl = `${baseUrl}/wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[page]}`
+    const apiUrl = `${baseUrl}/wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[
+      page,
+    ]}`
     const data = await ofetch<{ link: string }[]>(apiUrl)
 
     let suffix = ''
@@ -33,16 +35,15 @@ const fetchPagesByType = async (type: string) => {
     pauseFetching()
   }
   return pages
-
 }
 
 export default async () => {
-  const posts = await fetchPagesByType('posts')
+  // const posts = await fetchPagesByType('posts')
   const pages = await fetchPagesByType('pages')
-  const posters = await fetchPagesByType('posters')
+  // const posters = await fetchPagesByType('posters')
   return [
-    ...posts,
+    // ...posts,
     ...pages,
-    ...posters
+    // ...posters
   ]
 }
