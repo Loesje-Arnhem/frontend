@@ -13,8 +13,17 @@ import getAllRoutes from './data/routes'
 export default defineNuxtConfig({
 
   runtimeConfig: {
-    woocommerceConsumerKey: '',
-    woocommerceConsumerSecret: '',
+    newsletter: {
+      api_key: '',
+      list: {
+        products: "",
+        website: ""
+      }
+    },
+    woocommerce: {
+      consumerKey: '',
+      consumerSecret: '',
+    },
     public: {
       GQL_HOST: `${apiUrl}graphql`
     }

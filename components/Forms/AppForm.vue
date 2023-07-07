@@ -3,9 +3,10 @@ withDefaults(
   defineProps<{
     buttonTitle?: string | null
     loading: boolean
-    error: string
+    error?: string | null
   }>(),
   {
+    error: null,
     buttonTitle: null,
     loading: false,
   },
@@ -34,6 +35,7 @@ defineEmits(['submit'])
         {{ $t('send') }}
       </template>
     </app-button>
+    
     <form-error-message :error="error" />
   </form>
 </template>
