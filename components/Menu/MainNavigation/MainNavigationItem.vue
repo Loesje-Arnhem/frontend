@@ -37,7 +37,7 @@
     <template v-if="hasChildren">
       <slide-in-animation>
         <ul
-          v-show="isOpen"
+          v-if="isOpen"
           :class="$style.submenu"
           class="tile"
         >
