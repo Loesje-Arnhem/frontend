@@ -63,9 +63,9 @@ export default defineNuxtConfig({
       }
     },
   },
-  // routeRules: {
-  //   '/': { static: true },
-  // },
+  routeRules: {
+    '/': { isr: true },
+  },
   telemetry: false,
 
   app: {
