@@ -30,7 +30,7 @@ const densities = computed(() => {
 </script>
 
 <template>
-  <img
+  <nuxt-img
     :densities="densities"
     :sizes="sizes"
     :alt="alt ? alt : ''"
