@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { Endpoints } from '~/enums/endpoints';
-
+import { Endpoints } from '~/enums/endpoints'
 
 const { required, numeric, email, minValue, maxValue } = useValidators()
 const minDate: Ref<string | null> = ref(null)
@@ -44,8 +43,11 @@ const rules = {
   theme: {},
 }
 
-const { v$, loading, error, submit, submitted } = useForm(rules, formData, Endpoints.FormWorkshop)
-
+const { v$, loading, error, submit, submitted } = useForm(
+  rules,
+  formData,
+  Endpoints.FormWorkshop,
+)
 
 onMounted(() => {
   if (!process.client) {
@@ -63,10 +65,7 @@ onMounted(() => {
   <center-wrapper size="lg">
     <section aria-label="Meld je aan voor de workshop">
       <h1>Meld je aan voor de workshop</h1>
-      <div
-        v-if="submitted"
-        class="success"
-      >
+      <div v-if="submitted" class="success">
         <p>Hoi {{ formData.name }}</p>
         <p>
           Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe
@@ -217,7 +216,6 @@ onMounted(() => {
           src="/images/workshops.png"
           :width="495"
           :height="280"
-          sizes="md:495px"
         />
       </app-form>
     </section>

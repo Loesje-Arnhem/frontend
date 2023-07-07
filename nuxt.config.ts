@@ -11,25 +11,27 @@ import {
 import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
-
+  image: {
+    densities: [1, 2, 3],
+  },
   runtimeConfig: {
     newsletter: {
       api_key: '',
       list: {
-        products: "",
-        website: ""
-      }
+        products: '',
+        website: '',
+      },
     },
     woocommerce: {
       consumerKey: '',
       consumerSecret: '',
     },
     public: {
-      GQL_HOST: `${apiUrl}graphql`
-    }
+      GQL_HOST: `${apiUrl}graphql`,
+    },
   },
   experimental: {
-    componentIslands: true
+    componentIslands: true,
   },
 
   typescript: {
@@ -176,16 +178,23 @@ export default defineNuxtConfig({
     baseUrl,
     defaultLocale: 'nl',
     lazy: true,
-    langDir: "locales",
+    langDir: 'locales',
     locales: [
       {
         iso: 'nl-NL',
         code: 'nl',
-        file: "nl.json",
+        file: 'nl.json',
       },
     ],
   },
-  modules: ['@nuxtjs/i18n', 'nuxt-svgo', '@vite-pwa/nuxt', 'nuxt-graphql-client', '@nuxtjs/eslint-module'],
+  modules: [
+    '@nuxtjs/i18n',
+    'nuxt-svgo',
+    '@vite-pwa/nuxt',
+    'nuxt-graphql-client',
+    '@nuxtjs/eslint-module',
+    '@nuxt/image-edge',
+  ],
 
   postcss: {
     plugins: {
@@ -306,5 +315,4 @@ export default defineNuxtConfig({
       ],
     },
   },
-
 })

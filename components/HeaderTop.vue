@@ -6,7 +6,7 @@ const localePath = useLocalePath()
   <center-wrapper :top="true">
     <div class="wrapper">
       <div class="text">
-        <h1>Wie zegt wat hoort  TEST</h1>
+        <h1>Wie zegt wat hoort TEST</h1>
         <p>
           Loesje's posters vind je overal. Met haar positief-kritische teksten
           wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan
@@ -24,9 +24,8 @@ const localePath = useLocalePath()
           src="/images/electriciteitskastje.png"
           :lazy="false"
           class="background"
-          :width="540"
-          :height="726"
-          sizes="xs:100vw md:270px"
+          :width="270"
+          :height="360"
         />
       </div>
     </div>

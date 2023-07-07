@@ -8,18 +8,11 @@ const usps = [
 </script>
 
 <template>
-  <box-wrapper
-    id="become-member"
-    :title="$t('becomeMember')"
-  >
-    <ul :class="$style.list">
-      <li
-        v-for="usp in usps"
-        :key="usp"
-        :class="$style['list-item']"
-      >
+  <box-wrapper id="become-member" :title="$t('becomeMember')">
+    <ul class="list">
+      <li v-for="usp in usps" :key="usp" class="list-item">
         <app-image
-          :class="$style['check']"
+          class="check"
           :width="27"
           :height="27"
           src="/images/check.png"
@@ -32,34 +25,24 @@ const usps = [
       {{ $t('iWillJoin') }}
     </app-button>
     <!-- <app-image
-      :class="$style.image"
+      class="image"
       :width="167"
       :height="144"
       src="/images/megaphone.png"
-      sizes="xs:167px sm:334px"
     /> -->
   </box-wrapper>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .list {
   @mixin list-reset;
 
   margin-bottom: 1em;
 }
 
-.check {
-  margin-right: 0.25em;
-}
-
 .list-item {
+  gap: 0.25em;
   padding: 0 0 0.5rem;
   display: flex;
-}
-
-.image {
-  position: absolute;
-  bottom: -2em;
-  right: calc(var(--gutter) * -1);
 }
 </style>

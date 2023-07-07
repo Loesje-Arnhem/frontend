@@ -28,7 +28,6 @@ const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
             :height="240"
             :class="$style.mood"
             src="/images/casette-player.png"
-            sizes="sm:50vw md:33vw lg:25vw xl:300 xxl:500"
           />
         </div>
       </div>

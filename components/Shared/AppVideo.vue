@@ -13,31 +13,19 @@ const videoUrl = computed(() => {
 
 <template>
   <div class="wrapper">
-    <a
-      :href="videoUrl"
-      class="video-wrapper"
-      rel="noopener"
-      target="_blank"
-    >
+    <a :href="videoUrl" class="video-wrapper" rel="noopener" target="_blank">
       <app-image
         :src="videoThumb"
         alt=""
         class="image"
         :width="480"
         :height="360"
-        sizes="sm:100vw, 300px"
       />
     </a>
-    <a
-      :href="videoUrl"
-      class="btn-video"
-      rel="noopener"
-      target="_blank"
-    >
+    <a :href="videoUrl" class="btn-video" rel="noopener" target="_blank">
       <app-image
         src="/images/btn-video.png"
         alt="Video afspelen"
-        sizes="sm:53px"
         class="icon-play"
         :width="53"
         :height="55"
@@ -46,7 +34,6 @@ const videoUrl = computed(() => {
     <app-image
       src="/images/television.png"
       class="frame"
-      sizes="sm:100vw, 300px"
       :width="300"
       :height="320"
     />

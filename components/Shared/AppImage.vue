@@ -4,11 +4,12 @@ const props = withDefaults(
     src: string
     width: number
     height: number
-    sizes: string
+    sizes?: string
     lazy?: boolean
     alt?: string
   }>(),
   {
+    sizes: undefined,
     alt: '',
     lazy: true,
   },
@@ -17,23 +18,31 @@ const loading = computed(() => {
   if (props.lazy) {
     return 'lazy'
   }
-  return null
+  return 'eager'
+})
+
+const densities = computed(() => {
+  if (!props.sizes) {
+    return 'x1 x2'
+  }
+  return undefined
 })
 </script>
 
 <template>
-  <img
+  <nuxt-img
+    :densities="densities"
+    :sizes="sizes"
     :alt="alt ? alt : ''"
     :loading="loading"
     :src="src"
-    :preload="!lazy"
-    :sizes="sizes"
+    :preload="loading === 'eager'"
     :width="width"
     :height="height"
-    preset="base"
     class="image"
+    fit="inside"
     format="avif"
-  >
+  />
 </template>
 
 <style lang="postcss" scoped>
