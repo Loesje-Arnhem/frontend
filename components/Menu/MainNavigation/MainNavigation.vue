@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { Ref } from 'vue'
 import pages from '~/data/menu'
 
 const localePath = useLocalePath()
@@ -9,7 +8,8 @@ const arrowPosition: Ref<string | undefined> = ref(undefined)
 const arrowWidth = ref(`0`)
 
 const route = useRoute()
-watch(route, () => {
+const fullPath = toRef(route, 'fullPath')
+watch(fullPath, () => {
   nextTick(() => {
     setArrowPosition()
   })
@@ -66,22 +66,12 @@ const setArrowPosition = () => {
 </script>
 
 <template>
-  <nav
-    aria-labelledby="menu"
-    class="nav"
-  >
-    <h2
-      id="menu"
-      class="sr-only"
-      tabindex="-1"
-    >
+  <nav aria-labelledby="menu" class="nav">
+    <h2 id="menu" class="sr-only" tabindex="-1">
       {{ $t('mainMenu') }}
     </h2>
     <div ref="menu">
-      <ul
-        v-if="pages"
-        class="menu"
-      >
+      <ul v-if="pages" class="menu">
         <main-navigation-item
           class="menu-item-page"
           :title="$t('home')"
