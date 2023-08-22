@@ -8,13 +8,14 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "generate-images": "node ./images",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix && stylelint . --fix"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/image-edge": "latest",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/i18n": "^8.0.0-beta.13",
+    "@nuxtjs/stylelint-module": "^5.1.0",
     "@types/body-scroll-lock": "^3.1.0",
     "@types/throttle-debounce": "^5.0.0",
     "@types/workbox-window": "^4.3.4",
@@ -24,9 +25,13 @@
     "eslint-plugin-prettier": "^5.0.0",
     "nuxt": "3.6.5",
     "nuxt-svgo": "^3.4.0",
+    "postcss-html": "^1.5.0",
     "postcss-mixins": "^9.0.4",
     "postcss-preset-env": "^9.1.1",
-    "prettier": "3.0.2"
+    "prettier": "3.0.2",
+    "stylelint": "^15.10.3",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard": "^34.0.0"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.3",

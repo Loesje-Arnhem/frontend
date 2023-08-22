@@ -194,6 +194,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     'nuxt-graphql-client',
     '@nuxtjs/eslint-module',
+    '@nuxtjs/stylelint-module',
     '@nuxt/image-edge',
   ],
 

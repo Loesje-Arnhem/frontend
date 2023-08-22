@@ -102,10 +102,7 @@ export default defineComponent({
 .background {
   position: fixed;
   background: var(--color-black);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   height: 100vh;
   overflow: hidden;
   z-index: var(--z-main-navigation);
