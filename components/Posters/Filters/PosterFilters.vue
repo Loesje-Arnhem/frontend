@@ -11,15 +11,14 @@ const subjects = computed(() => {
   if (!data.value?.subjects) {
     return []
   }
-  return data.value.subjects.edges.map(subject => subject.node)
+  return data.value.subjects.edges.map((subject) => subject.node)
 })
-
 
 const sources = computed(() => {
   if (!data.value?.sources) {
     return []
   }
-  return data.value.sources.edges.map(subject => subject.node)
+  return data.value.sources.edges.map((subject) => subject.node)
 })
 
 const dateBefore = useDateBefore()
@@ -39,7 +38,7 @@ const today = () => {
   const now = new Date()
   const currentMonth = now.getMonth() + 1
   const currentDay = now.getDate()
-  let month = `${(currentMonth)}`
+  let month = `${currentMonth}`
   if (currentMonth < 10) {
     month = `0${currentMonth}`
   }
@@ -150,7 +149,7 @@ const today = () => {
   padding-left: 1em;
   padding-right: 1em;
   background-color: var(--color-white);
-   overflow: hidden;
+  overflow: hidden;
 }
 
 .tags {

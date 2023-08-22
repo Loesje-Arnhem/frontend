@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PosterFragment } from '#gql';
+import { PosterFragment } from '#gql'
 
 const localePath = useLocalePath()
 
@@ -24,7 +24,10 @@ withDefaults(
     >
       <nuxt-link
         :to="
-          localePath({ name: 'posters-details', params: { slug: poster.slug || '' } })
+          localePath({
+            name: 'posters-details',
+            params: { slug: poster.slug || '' },
+          })
         "
         class="link"
       >

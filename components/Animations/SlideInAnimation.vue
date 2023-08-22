@@ -12,10 +12,7 @@ withDefaults(
 </script>
 
 <template>
-  <transition
-    :name="`slide-in-${direction}`"
-    :mode="mode"
-  >
+  <transition :name="`slide-in-${direction}`" :mode="mode">
     <slot />
   </transition>
 </template>
@@ -25,7 +22,9 @@ withDefaults(
 .slide-in-up-leave-active,
 .slide-in-down-enter-active,
 .slide-in-down-leave-active {
-  transition: opacity var(--animation), transform var(--animation);
+  transition:
+    opacity var(--animation),
+    transform var(--animation);
 }
 
 .slide-in-up-enter-from,

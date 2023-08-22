@@ -1,7 +1,10 @@
 import { IFeaturedImage } from '~/interfaces/IContent'
 import { IResponseImage } from '~~/interfaces/IResponse'
 
-export default (featuredImage: IResponseImage[] | undefined, title?: string) => {
+export default (
+  featuredImage: IResponseImage[] | undefined,
+  title?: string,
+) => {
   if (!featuredImage) {
     return undefined
   }
@@ -15,7 +18,7 @@ export default (featuredImage: IResponseImage[] | undefined, title?: string) => 
   } else if (image.alt_text) {
     alt = image.alt_text
   }
-  const result: IFeaturedImage =  {
+  const result: IFeaturedImage = {
     alt,
     width: image.media_details.width,
     height: image.media_details.height,

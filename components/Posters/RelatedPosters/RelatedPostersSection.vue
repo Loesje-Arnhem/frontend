@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RelatedPostersFragment } from '#gql';
+import { RelatedPostersFragment } from '#gql'
 
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -8,7 +8,6 @@ const props = defineProps<{
   posters?: RelatedPostersFragment | null
   title?: string | null
 }>()
-
 
 const title = props.title || t('posters')
 </script>
@@ -20,10 +19,7 @@ const title = props.title || t('posters')
     aria-labelledby="related-posters-title"
   >
     <center-wrapper>
-      <h1
-        id="related-posters-title"
-        class="title"
-      >
+      <h1 id="related-posters-title" class="title">
         {{ title }}
       </h1>
     </center-wrapper>

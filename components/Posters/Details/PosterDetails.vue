@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { PosterDetailsFragment } from '#gql';
- 
+import { PosterDetailsFragment } from '#gql'
+
 const props = defineProps<{
   poster: PosterDetailsFragment
 }>()
@@ -9,15 +9,14 @@ const subjects = computed(() => {
   if (!props.poster.subjects) {
     return []
   }
-  return props.poster.subjects.edges.map(subject => subject.node)
+  return props.poster.subjects.edges.map((subject) => subject.node)
 })
-
 
 const sources = computed(() => {
   if (!props.poster.sources) {
     return []
   }
-  return props.poster.sources.edges.map(source => source.node)
+  return props.poster.sources.edges.map((source) => source.node)
 })
 
 const posterDate = computed(() => {
@@ -41,10 +40,7 @@ const posterDate = computed(() => {
         {{ poster.title }}
       </h1>
       <div class="tile-wrapper">
-        <div
-          class="tile image-wrapper-details"
-          :data-slug="poster.slug"
-        >
+        <div class="tile image-wrapper-details" :data-slug="poster.slug">
           <fade-animation>
             <featured-image
               v-if="poster.featuredImage"
@@ -59,39 +55,22 @@ const posterDate = computed(() => {
     </article>
     <div class="meta-data">
       <dl class="definition-list">
-        <dt class="definition-title">
-          Publicatiedatum
-        </dt>
+        <dt class="definition-title">Publicatiedatum</dt>
         <dd class="definition-item">
-          <app-date
-            v-if="posterDate"
-            :date="posterDate"
-          />
+          <app-date v-if="posterDate" :date="posterDate" />
         </dd>
 
-        <template
-          v-if="subjects.length"
-        >
-          <dt class="definition-title">
-            Onderwerpen:
-          </dt>
+        <template v-if="subjects.length">
+          <dt class="definition-title">Onderwerpen:</dt>
           <dd class="definition-item">
-            <poster-tags-list
-              :list="subjects"
-              class="tags-list"
-            />
+            <poster-tags-list :list="subjects" class="tags-list" />
           </dd>
         </template>
 
         <template v-if="sources.length">
-          <dt class="definition-title">
-            Bronnen:
-          </dt>
+          <dt class="definition-title">Bronnen:</dt>
           <dd class="definition-item">
-            <poster-tags-list
-              :list="sources"
-              class="tags-list"
-            />
+            <poster-tags-list :list="sources" class="tags-list" />
           </dd>
         </template>
       </dl>
@@ -104,12 +83,7 @@ const posterDate = computed(() => {
           target="_blank"
           download
         >
-          <app-icon
-            icon="pdf"
-            :width="32"
-            :height="32"
-            class="icon"
-          />
+          <app-icon icon="pdf" :width="32" :height="32" class="icon" />
           Download
         </app-button>
       </div>

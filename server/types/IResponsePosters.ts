@@ -1,4 +1,4 @@
-import { IResponseImage } from "./IResponseImage"
+import { IResponseImage } from './IResponseImage'
 
 export interface IResponsePosters {
   id: number

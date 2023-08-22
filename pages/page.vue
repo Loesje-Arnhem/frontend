@@ -11,7 +11,7 @@ defineI18nRoute({
 const route = useRoute()
 
 const uri = computed(() => {
-  const slugs = route.params.slug.filter(slug => slug !== '')
+  const slugs = route.params.slug.filter((slug) => slug !== '')
   return slugs.at(-1)
 })
 
@@ -64,8 +64,6 @@ useMeta(data.value?.page)
       :posters="data.page.relatedPosters"
       :title="data.page.relatedPostersGroup?.title"
     />
-    <related-pages-section
-      :pages="data.page.relatedPages"
-    />
+    <related-pages-section :pages="data.page.relatedPages" />
   </div>
 </template>

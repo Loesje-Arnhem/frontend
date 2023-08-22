@@ -16,12 +16,7 @@ export default defineComponent({
       default: '',
     },
   },
-  emits:[
-    'update:modelValue',
-    'submit',
-    'update:modelValue',
-    'submit'
-  ],
+  emits: ['update:modelValue', 'submit', 'update:modelValue', 'submit'],
   data() {
     return {
       arrowCounter: -1,
@@ -95,12 +90,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <form
-    method="get"
-    class="form"
-    @keyup.esc="reset"
-    @submit.prevent="submit"
-  >
+  <form method="get" class="form" @keyup.esc="reset" @submit.prevent="submit">
     <legend class="sr-only">
       {{ $t('search') }}
     </legend>
@@ -125,23 +115,10 @@ export default defineComponent({
           class="btn-reset"
           @click="reset"
         >
-          <app-icon
-            icon="close"
-            :width="24"
-            :height="24"
-            title="Sluiten"
-          />
+          <app-icon icon="close" :width="24" :height="24" title="Sluiten" />
         </button>
-        <button
-          type="submit"
-          class="btn-submit"
-        >
-          <app-icon
-            icon="search"
-            :width="24"
-            :height="24"
-            title="Zoeken"
-          />
+        <button type="submit" class="btn-submit">
+          <app-icon icon="search" :width="24" :height="24" title="Zoeken" />
         </button>
       </div>
       <div

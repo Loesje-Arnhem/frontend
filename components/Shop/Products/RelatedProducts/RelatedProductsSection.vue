@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { PageRelatedProductsFragment, PostRelatedProductsFragment } from '#gql';
+import { PageRelatedProductsFragment, PostRelatedProductsFragment } from '#gql'
 
- defineProps<{
+defineProps<{
   products: PageRelatedProductsFragment | PostRelatedProductsFragment
 }>()
-
 </script>
 
 <template>

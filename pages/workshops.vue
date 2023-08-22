@@ -18,9 +18,7 @@ const { data } = await usePageById(pageIds.workshops)
     />
     <form-workshop />
     <related-posters-section :posters="data.page.relatedPosters" />
-    <related-products-section
-      :products="data?.page?.relatedProducts"
-    />
+    <related-products-section :products="data?.page?.relatedProducts" />
 
     <related-pages-section :pages="data.page.relatedPages" />
   </div>

@@ -1,5 +1,5 @@
-import { IProductListItem } from "~~/interfaces/IContent"
-import { IResponseProducts } from "~~/server/types/IResponseProducts"
+import { IProductListItem } from '~~/interfaces/IContent'
+import { IResponseProducts } from '~~/server/types/IResponseProducts'
 
 export default defineEventHandler(async (event) => {
   const { woocommerce } = useRuntimeConfig()
@@ -7,15 +7,23 @@ export default defineEventHandler(async (event) => {
 
   const url = getUrl({
     type: 'products',
-    fields: ['name', 'id', 'slug', 'price', 'regular_price', 'images', 'external_url'],
+    fields: [
+      'name',
+      'id',
+      'slug',
+      'price',
+      'regular_price',
+      'images',
+      'external_url',
+    ],
     image: true,
     include: query.productIds || null,
     consumerKey: woocommerce.consumerKey,
-    consumerSecret: woocommerce.consumerSecret
+    consumerSecret: woocommerce.consumerSecret,
   })
 
   const response = await $fetch<IResponseProducts[]>(url)
-  const items: IProductListItem[] = response.map(item => {
+  const items: IProductListItem[] = response.map((item) => {
     return {
       id: item.id,
       slug: item.slug,

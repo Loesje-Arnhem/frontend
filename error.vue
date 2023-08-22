@@ -6,7 +6,7 @@ defineProps<{
 const { t } = useI18n()
 
 useHead({
-  title: t('errors.error404')
+  title: t('errors.error404'),
 })
 </script>
 

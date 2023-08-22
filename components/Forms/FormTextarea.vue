@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ErrorObject } from '@vuelidate/core';
+import { ErrorObject } from '@vuelidate/core'
 
 withDefaults(
   defineProps<{
@@ -11,10 +11,9 @@ withDefaults(
   }>(),
   {
     description: null,
-    errors: () => []
+    errors: () => [],
   },
 )
-
 
 defineEmits(['keyup-down', 'keyup-up', 'input', 'change', 'blur'])
 </script>

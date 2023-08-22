@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RelatedPageFragment } from '#gql';
+import { RelatedPageFragment } from '#gql'
 
 defineProps<{
   page: RelatedPageFragment
@@ -7,16 +7,9 @@ defineProps<{
 </script>
 
 <template>
-  <clickable-list-item
-    v-if="page.uri"
-    :url="page.uri"
-    class="related-page box"
-  >
+  <clickable-list-item v-if="page.uri" :url="page.uri" class="related-page box">
     <h2 class="title">
-      <nuxt-link
-        :to="page.uri"
-        class="link"
-      >
+      <nuxt-link :to="page.uri" class="link">
         {{ page.title }}
       </nuxt-link>
     </h2>

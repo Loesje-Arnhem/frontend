@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { SourceFragment, SubjectFragment } from '#gql';
+import { SourceFragment, SubjectFragment } from '#gql'
 
 const props = defineProps<{
   tag: SubjectFragment | SourceFragment

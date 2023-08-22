@@ -8,7 +8,6 @@ const props = withDefaults(
   },
 )
 
-
 const { data, pending } = await useAsyncGql('GetPosts', {
   notIn: props.exclude.toString(),
 })
@@ -19,9 +18,9 @@ const loadMore = async () => {
   }
 
   pending.value = true
-  const result =  await GqlGetPosts({
+  const result = await GqlGetPosts({
     notIn: props.exclude.toString(),
-    after: data.value.posts.pageInfo.endCursor
+    after: data.value.posts.pageInfo.endCursor,
   })
 
   if (!result.posts?.edges.length) {
@@ -31,11 +30,8 @@ const loadMore = async () => {
   data.value = {
     posts: {
       pageInfo: result.posts.pageInfo,
-      edges: [
-        ...data.value.posts.edges,
-        ...result.posts.edges,
-      ]
-    }
+      edges: [...data.value.posts.edges, ...result.posts.edges],
+    },
   }
   pending.value = false
 }

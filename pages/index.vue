@@ -16,10 +16,7 @@ useMeta(data.value?.page)
 
 <template>
   <div>
-    <h1
-      v-if="data?.page"
-      class="sr-only"
-    >
+    <h1 v-if="data?.page" class="sr-only">
       {{ data.page?.title }}
     </h1>
 
@@ -32,8 +29,6 @@ useMeta(data.value?.page)
       :title="data.page.relatedPostersGroup?.title"
     />
     <app-stores-section />
-    <related-products-section
-      :products="data?.page?.relatedProducts"
-    />
+    <related-products-section :products="data?.page?.relatedProducts" />
   </div>
 </template>

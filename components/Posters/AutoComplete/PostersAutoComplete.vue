@@ -12,7 +12,7 @@ const submit = () => {
 
 const posters: Ref<IAutocomplete[]> = ref([])
 
-watch(searchField, async() => {
+watch(searchField, async () => {
   if (searchField.value.length < 2) {
     posters.value = []
     return
@@ -24,17 +24,17 @@ watch(searchField, async() => {
     posters.value = []
     return
   }
-  posters.value = result.posters.edges.map(poster => {
+  posters.value = result.posters.edges.map((poster) => {
     const uri = localePath({
       name: 'posters-details',
       params: {
-        slug: poster.node.slug?.toString() || ''
-      }
+        slug: poster.node.slug?.toString() || '',
+      },
     })
     return {
       id: poster.node.databaseId,
       title: poster.node.title || '',
-      uri
+      uri,
     }
   })
 })
@@ -46,7 +46,6 @@ onMounted(() => {
     search.value = q.toString()
   }
 })
-
 </script>
 
 <template>

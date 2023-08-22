@@ -11,7 +11,6 @@ const { data } = await useAsyncGql('GetPost', {
   slug: route.params.slug.toString(),
 })
 
-
 useMeta(data.value?.post)
 </script>
 
@@ -29,9 +28,7 @@ useMeta(data.value?.post)
       :posters="data.post.relatedPosters"
       :title="data.post.relatedPostersGroup?.title"
     />
-    <related-products-section
-      :products="data?.post?.relatedProducts"
-    />
+    <related-products-section :products="data?.post?.relatedProducts" />
     <posts-overview-section :exclude="data.post.databaseId" />
   </div>
 </template>

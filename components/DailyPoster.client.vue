@@ -20,7 +20,6 @@ const poster = computed(() => {
     return null
   }
   return data.value?.dailyPosters?.edges[0].node
-
 })
 </script>
 

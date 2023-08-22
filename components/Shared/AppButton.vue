@@ -14,7 +14,7 @@ const props = withDefaults(
     loading: false,
     active: false,
     href: null,
-    to: null
+    to: null,
   },
 )
 
@@ -52,12 +52,7 @@ const generatedType = computed(() => {
 </script>
 
 <template>
-  <nuxt-link
-    v-if="to"
-    :to="to"
-    :class="cssClasses"
-    :type="generatedType"
-  >
+  <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
     <span class="title"><slot /></span>
   </nuxt-link>
 
@@ -69,10 +64,7 @@ const generatedType = computed(() => {
     :disabled="loading === true ? 'true' : undefined"
     :href="href"
   >
-    <app-loader
-      v-if="loading"
-      class="loader"
-    />
+    <app-loader v-if="loading" class="loader" />
     <span class="title"><slot /></span>
   </component>
 </template>

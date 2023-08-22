@@ -1,4 +1,3 @@
-
 export enum Endpoints {
   RelatedPages = '/api/pages/related-pages',
   Posters = '/api/posters/posters',
@@ -12,5 +11,5 @@ export enum Endpoints {
   PosterSources = '/api/posters/tags/sources',
   RelatedProducts = '/api/products/products',
   FormNewsletter = '/api/forms/newsletter',
-  FormWorkshop = '/api/forms/workshop'
+  FormWorkshop = '/api/forms/workshop',
 }

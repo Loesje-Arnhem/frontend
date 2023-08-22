@@ -10,10 +10,7 @@ const { data } = await usePageById(pageIds.newsletter)
 </script>
 
 <template>
-  <div
-    v-if="data?.page"
-    class="page"
-  >
+  <div v-if="data?.page" class="page">
     <app-content
       :title="data.page.title"
       :content="data.page.content"
@@ -23,9 +20,7 @@ const { data } = await usePageById(pageIds.newsletter)
       <form-newsletter class="newsletter" />
     </center-wrapper>
     <related-posters-section :posters="data.page.relatedPosters" />
-    <related-products-section
-      :products="data?.page?.relatedProducts"
-    />
+    <related-products-section :products="data?.page?.relatedProducts" />
     <related-pages-section :pages="data.page.relatedPages" />
   </div>
 </template>

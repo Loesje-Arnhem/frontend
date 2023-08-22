@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { FeaturedImageFragment } from '#gql';
+import { FeaturedImageFragment } from '#gql'
 
 const props = withDefaults(
   defineProps<{
@@ -10,7 +10,7 @@ const props = withDefaults(
   }>(),
   {
     lazy: true,
-    alt: ''
+    alt: '',
   },
 )
 
@@ -34,7 +34,7 @@ const altText = computed(() => {
     :sizes="sizes"
     :width="image.node.mediaDetails?.width || undefined"
     :height="image.node.mediaDetails?.height || undefined"
-  >
+  />
 </template>
 
 <style lang="postcss" scoped>

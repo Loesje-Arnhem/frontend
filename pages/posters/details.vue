@@ -15,9 +15,10 @@ const subjectIds = computed(() => {
   if (!data.value?.poster?.subjects) {
     return []
   }
-  return data.value.poster.subjects.edges.map(subject => subject.node.databaseId)
+  return data.value.poster.subjects.edges.map(
+    (subject) => subject.node.databaseId,
+  )
 })
-
 
 useMeta(data.value?.poster)
 </script>
@@ -27,9 +28,7 @@ useMeta(data.value?.poster)
     <center-wrapper>
       <poster-details :poster="data.poster" />
     </center-wrapper>
-    <related-products-section
-      :products="data.poster?.relatedProducts"
-    />
+    <related-products-section :products="data.poster?.relatedProducts" />
     <posters-overview-section
       :exclude="data.poster.databaseId"
       :subject-ids="subjectIds"

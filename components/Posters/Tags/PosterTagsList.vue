@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { SourceFragment, SubjectFragment } from '#gql';
+import { SourceFragment, SubjectFragment } from '#gql'
 
 defineProps<{
   list: (SubjectFragment | SourceFragment)[]
@@ -7,15 +7,8 @@ defineProps<{
 </script>
 
 <template>
-  <ul
-    v-if="list"
-    :class="$style.list"
-  >
-    <li
-      v-for="item in list"
-      :key="item.id"
-      :class="$style['list-item']"
-    >
+  <ul v-if="list" :class="$style.list">
+    <li v-for="item in list" :key="item.id" :class="$style['list-item']">
       <poster-tag :tag="item" />
     </li>
   </ul>

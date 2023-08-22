@@ -7,7 +7,9 @@ export const useTags = () => {
   const getSelectedTagsByTaxonomy = (
     taxonomy: Taxonomy.Source | Taxonomy.Subject,
   ) => {
-    const tags = selectedTags.value.filter((tag) => tag.taxonomy?.node.name === taxonomy)
+    const tags = selectedTags.value.filter(
+      (tag) => tag.taxonomy?.node.name === taxonomy,
+    )
     return tags.map((tag) => tag.databaseId)
   }
 

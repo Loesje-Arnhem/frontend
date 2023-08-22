@@ -52,7 +52,6 @@ const config: NuxtConfig = {
         title: 'Loesje',
       },
     ],
-
   },
 }
 

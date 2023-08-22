@@ -9,4 +9,3 @@ defineI18nRoute({
 <template>
   <div />
 </template>
-

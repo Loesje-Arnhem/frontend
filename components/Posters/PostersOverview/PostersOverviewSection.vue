@@ -86,7 +86,6 @@ const { data, pending } = await useAsyncGql('GetPosters', {
 })
 
 watch(where, async () => {
-
   pending.value = true
   data.value = null
 
@@ -97,14 +96,13 @@ watch(where, async () => {
   pending.value = false
 })
 
-
 const loadMore = async () => {
   if (!data.value?.posters?.edges.length) {
     return
   }
 
   pending.value = true
-  const result =  await GqlGetPosters({
+  const result = await GqlGetPosters({
     where: where.value,
   })
 
@@ -115,29 +113,18 @@ const loadMore = async () => {
   data.value = {
     posters: {
       pageInfo: result.posters.pageInfo,
-      edges: [
-        ...data.value.posters.edges,
-        ...result.posters.edges,
-      ]
-    }
+      edges: [...data.value.posters.edges, ...result.posters.edges],
+    },
   }
   pending.value = false
 }
 </script>
 
 <template>
-  <app-loader
-    v-if="pending && !data"
-  />
-  <section
-    v-else-if="data?.posters"
-    aria-labelledby="posters-overview-title"
-  >
+  <app-loader v-if="pending && !data" />
+  <section v-else-if="data?.posters" aria-labelledby="posters-overview-title">
     <center-wrapper>
-      <h1
-        id="posters-overview-title"
-        class="sa-hidden"
-      >
+      <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
           {{ title }}
         </template>
@@ -147,9 +134,7 @@ const loadMore = async () => {
       </h1>
     </center-wrapper>
     <template v-if="data">
-      <poster-list
-        :posters="data.posters"
-      />
+      <poster-list :posters="data.posters" />
       <center-wrapper>
         <load-more-by-scroll
           v-if="data.posters.pageInfo.hasNextPage"

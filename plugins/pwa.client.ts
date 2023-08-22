@@ -3,7 +3,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   const route = useRoute()
   const { mediaQueryStandAlone } = useAppConfig()
 
-
   const setBodyClass = () => {
     document.documentElement.classList.add('standalone')
   }
@@ -20,7 +19,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         standalone: 'true',
       },
     })
-
   }
 
   if (window.matchMedia(mediaQueryStandAlone).matches) {
@@ -34,7 +32,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       const decodedUrl = decodeURIComponent(route.fullPath)
       const url = decodedUrl.replace(`${protocol}://`, '/')
       navigateTo(url, {
-        external: true
+        external: true,
       })
     }
   }

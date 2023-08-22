@@ -16,18 +16,9 @@ defineEmits(['submit'])
 </script>
 
 <template>
-  <form
-    action=""
-    method="post"
-    novalidate
-    @submit.prevent="$emit('submit')"
-  >
+  <form action="" method="post" novalidate @submit.prevent="$emit('submit')">
     <slot />
-    <app-button
-      type="submit"
-      :loading="loading"
-      class="btn"
-    >
+    <app-button type="submit" :loading="loading" class="btn">
       <template v-if="buttonTitle">
         {{ buttonTitle }}
       </template>
@@ -35,7 +26,7 @@ defineEmits(['submit'])
         {{ $t('send') }}
       </template>
     </app-button>
-    
+
     <form-error-message :error="error" />
   </form>
 </template>

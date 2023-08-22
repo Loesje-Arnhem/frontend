@@ -4,7 +4,6 @@ import fs from 'fs'
 const PAGESIZE = 50
 const FETCH_TIMEOUT = 1000
 
-
 const getUrl = ({
   fields,
   type,
@@ -24,7 +23,7 @@ const getUrl = ({
   const apiUrl = 'https://shop.loesje.nl/wp-json/wp/v2/'
 
   let baseUrl = `${apiUrl}${type}/`
-    // baseUrl = `${baseUrl}${id}`
+  // baseUrl = `${baseUrl}${id}`
 
   const url = new URL(baseUrl)
   if (image) {
@@ -77,12 +76,11 @@ const pauseFetching = () => {
   })
 }
 
-
 const getFeaturedImage = (featuredImage, title) => {
   if (!featuredImage) {
     return undefined
   }
-    return undefined
+  return undefined
   // const image = featuredImage[0]
   // const srcSet = Object.values(image.media_details.sizes).map((size) => {
   //   return `${size.source_url} ${size.width}w`
@@ -103,22 +101,19 @@ const getFeaturedImage = (featuredImage, title) => {
   // return result
 }
 
-
 const fetchPagesByType = async (type) => {
   const pages = []
   let hasNextPage = true
   let page = 1
 
-
-
   while (hasNextPage) {
-  const url = getUrl({
-    image: true,
-    type,
-    fields: ['title', 'content', 'yoast_head_json', 'date', 'acf', 'slug'],
-    pageSize: PAGESIZE,
-    page
-  })
+    const url = getUrl({
+      image: true,
+      type,
+      fields: ['title', 'content', 'yoast_head_json', 'date', 'acf', 'slug'],
+      pageSize: PAGESIZE,
+      page,
+    })
     // const apiUrl = `${baseUrl}/wp-json/wp/v2/${type}/?per_page=${PAGESIZE}&page=${[page]}`
     const data = await ofetch(url)
 
@@ -129,31 +124,27 @@ const fetchPagesByType = async (type) => {
 
     // const urls = data.map((r) => r.link.replace(baseUrl, suffix))
 
-
-
     data.forEach((item) => {
+      const featuredImage = getFeaturedImage(item._embedded['wp:featuredmedia'])
 
-    const featuredImage = getFeaturedImage(item._embedded['wp:featuredmedia'])
+      let youtubeId = null
+      if (item.acf.youtube_id) {
+        youtubeId = item.acf.youtube_id
+      }
 
-    let youtubeId  = null
-    if (item.acf.youtube_id) {
-      youtubeId = item.acf.youtube_id
-    }
+      const data = {
+        id: item.id,
+        date: item.date,
+        title: item.title.rendered,
+        content: item.content.rendered,
+        seo: item.yoast_head_json,
+        featuredImage,
+        slug: item.slug,
+        youtubeId,
+      }
 
-
-    const data = {
-      id: item.id,
-      date: item.date,
-      title: item.title.rendered,
-      content: item.content.rendered,
-      seo: item.yoast_head_json,
-      featuredImage,
-      slug: item.slug,
-     youtubeId,
-    }
-
-  fs.writeFileSync(`content/test/${item.slug}.json`, JSON.stringify(data));
-})
+      fs.writeFileSync(`content/test/${item.slug}.json`, JSON.stringify(data))
+    })
 
     if (!data.length) {
       hasNextPage = false
@@ -161,12 +152,11 @@ const fetchPagesByType = async (type) => {
     if (data.length !== PAGESIZE) {
       hasNextPage = false
     }
-      hasNextPage = false
+    hasNextPage = false
     page = page + 1
     pauseFetching()
   }
   return pages
-
 }
 
 const posts = await fetchPagesByType('posts')

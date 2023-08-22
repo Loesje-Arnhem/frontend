@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RelatedPageNodeFragment } from '#gql';
+import { RelatedPageNodeFragment } from '#gql'
 
 defineProps<{
   pages: RelatedPageNodeFragment[]

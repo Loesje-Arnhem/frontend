@@ -1,7 +1,7 @@
-import { ISEO } from "~~/interfaces/ISEO"
-import { IResponseImage } from "./IResponseImage"
-import { IResponseRelatedPoster } from "./IResponseRelatedPoster"
-import { IResponseRelatedProduct } from "./IResponseRelatedProduct"
+import { ISEO } from '~~/interfaces/ISEO'
+import { IResponseImage } from './IResponseImage'
+import { IResponseRelatedPoster } from './IResponseRelatedPoster'
+import { IResponseRelatedProduct } from './IResponseRelatedProduct'
 
 export interface IResponsePage {
   id: number

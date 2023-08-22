@@ -65,10 +65,7 @@ onMounted(() => {
   <center-wrapper size="lg">
     <section aria-label="Meld je aan voor de workshop">
       <h1>Meld je aan voor de workshop</h1>
-      <div
-        v-if="submitted"
-        class="success"
-      >
+      <div v-if="submitted" class="success">
         <p>Hoi {{ formData.name }}</p>
         <p>
           Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe

@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     fields: ['title', 'excerpt', 'date', 'slug'],
     pageSize,
     image: true,
-    exclude: query.exclude || null
+    exclude: query.exclude || null,
   })
 
   const response = await $fetch.raw(url).catch((error) => error.data)

@@ -1,7 +1,7 @@
-import { ISEO } from "~~/interfaces/ISEO"
-import { IResponseImage } from "./IResponseImage"
-import { IResponseRelatedPoster } from "./IResponseRelatedPoster"
-import { IResponseRelatedProduct } from "./IResponseRelatedProduct"
+import { ISEO } from '~~/interfaces/ISEO'
+import { IResponseImage } from './IResponseImage'
+import { IResponseRelatedPoster } from './IResponseRelatedPoster'
+import { IResponseRelatedProduct } from './IResponseRelatedProduct'
 
 export interface IResponsePost {
   id: number
@@ -24,6 +24,5 @@ export interface IResponsePost {
     related_products_title: string | null
     related_posters_posters: IResponseRelatedPoster[] | false
     related_products_products: IResponseRelatedProduct[] | false
-
   }
 }

@@ -12,7 +12,6 @@ withDefaults(
     title: null,
   },
 )
-
 </script>
 
 <template>

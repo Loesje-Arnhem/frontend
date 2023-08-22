@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { PostListItemsFragment } from '#gql';
+import { PostListItemsFragment } from '#gql'
 
 defineProps<{
   posts?: PostListItemsFragment | null
 }>()
-
 
 const localePath = useLocalePath()
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ErrorObject } from '@vuelidate/core';
+import { ErrorObject } from '@vuelidate/core'
 
 withDefaults(
   defineProps<{
@@ -13,7 +13,7 @@ withDefaults(
   {
     type: 'text',
     description: null,
-    errors: () => []
+    errors: () => [],
   },
 )
 
@@ -39,6 +39,6 @@ defineEmits(['keyup-down', 'keyup-up', 'update:modelValue', 'change', 'blur'])
       @input="$emit('update:modelValue', $event.target.value)"
       @change="$emit('change', $event.target.value)"
       @blur="$emit('blur')"
-    >
+    />
   </form-field>
 </template>

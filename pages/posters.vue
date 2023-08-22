@@ -5,7 +5,7 @@ defineI18nRoute({
   },
 })
 definePageMeta({
-  key: route => route.fullPath
+  key: (route) => route.fullPath,
 })
 </script>
 
