@@ -221,10 +221,10 @@ export default defineNuxtConfig({
     strategies: 'generateSW',
     registerWebManifestInRouteRules: true,
     registerType: 'autoUpdate',
-    workbox: {
-      // navigateFallback: '/',
-      // globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-    },
+    // workbox: {
+    //   // navigateFallback: '/',
+    //   // globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    // },
     manifest: {
       background_color: backgroundColor,
       theme_color: themeColor,
