@@ -194,7 +194,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     'nuxt-graphql-client',
     '@nuxtjs/eslint-module',
-    '@nuxtjs/stylelint-module',
+    // '@nuxtjs/stylelint-module',
     '@nuxt/image-edge',
   ],
 
@@ -218,6 +218,7 @@ export default defineNuxtConfig({
   },
 
   pwa: {
+    strategies: 'generateSW',
     registerWebManifestInRouteRules: true,
     registerType: 'autoUpdate',
     workbox: {
