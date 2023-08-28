@@ -218,13 +218,8 @@ export default defineNuxtConfig({
   },
 
   pwa: {
-    strategies: 'generateSW',
     registerWebManifestInRouteRules: true,
     registerType: 'autoUpdate',
-    workbox: {
-      navigateFallback: '/?standalone=true',
-      // globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-    },
     manifest: {
       background_color: backgroundColor,
       theme_color: themeColor,
@@ -262,7 +257,6 @@ export default defineNuxtConfig({
         },
       ],
       display_override: ['window-controls-overlay'],
-      start_url: `/?standalone=true`,
       shortcuts: [
         {
           name: 'Favorieten',
