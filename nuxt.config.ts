@@ -262,7 +262,7 @@ export default defineNuxtConfig({
         },
       ],
       display_override: ['window-controls-overlay'],
-      // start_url: `./posters?standalone=true`,
+      start_url: `/?standalone=true`,
       shortcuts: [
         {
           name: 'Favorieten',
