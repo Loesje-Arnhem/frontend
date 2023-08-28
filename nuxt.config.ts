@@ -223,7 +223,7 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      // globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
     },
     manifest: {
       background_color: backgroundColor,
