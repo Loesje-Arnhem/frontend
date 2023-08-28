@@ -222,7 +222,7 @@ export default defineNuxtConfig({
     registerWebManifestInRouteRules: true,
     registerType: 'autoUpdate',
     workbox: {
-      navigateFallback: '/',
+      // navigateFallback: '/',
       // globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
     },
     manifest: {
