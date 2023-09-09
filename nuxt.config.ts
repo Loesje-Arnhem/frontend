@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     },
   },
   experimental: {
+    headNext: true,
     componentIslands: true,
     payloadExtraction: true,
   },
