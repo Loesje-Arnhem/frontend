@@ -1,6 +1,6 @@
 import { ofetch } from 'ofetch'
 
-const PAGESIZE = 99
+const PAGESIZE = 20
 const FETCH_TIMEOUT = 1000
 
 const pauseFetching = () => {
