@@ -51,7 +51,7 @@ export default defineNuxtConfig({
     preset: 'netlify',
     prerender: {
       interval: 3000,
-      concurrency: 5,
+      concurrency: 10,
     },
   },
   hooks: {
