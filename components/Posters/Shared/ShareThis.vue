@@ -37,7 +37,10 @@ const share = () => {
 </script>
 
 <template>
-  <app-button v-if="supportsShareAPI" @click="share">
+  <app-button
+    v-if="supportsShareAPI"
+    @click="share"
+  >
     Deze poster delen
   </app-button>
   <social-media-links

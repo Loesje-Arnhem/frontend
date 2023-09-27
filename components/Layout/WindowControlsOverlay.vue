@@ -37,7 +37,12 @@ onUnmounted(() => {
 <template>
   <div v-if="showWindowControlsOverlay">
     <div class="wrapper">
-      <app-icon icon="logo" class="logo" :height="50" :width="87" />
+      <app-icon
+        icon="logo"
+        class="logo"
+        :height="50"
+        :width="87"
+      />
     </div>
     <div class="placeholder" />
   </div>

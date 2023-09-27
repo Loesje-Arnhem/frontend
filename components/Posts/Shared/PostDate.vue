@@ -5,7 +5,11 @@ defineProps<{
 </script>
 
 <template>
-  <app-date v-if="date" :date="date" :class="$style.date" />
+  <app-date
+    v-if="date"
+    :date="date"
+    :class="$style.date"
+  />
 </template>
 
 <style lang="postcss" module>

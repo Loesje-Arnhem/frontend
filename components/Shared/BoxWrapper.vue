@@ -6,8 +6,14 @@ defineProps<{
 </script>
 
 <template>
-  <aside class="box" :aria-labelledby="id">
-    <h2 :id="id" class="title">
+  <aside
+    class="box"
+    :aria-labelledby="id"
+  >
+    <h2
+      :id="id"
+      class="title"
+    >
       {{ title }}
     </h2>
     <div class="content">

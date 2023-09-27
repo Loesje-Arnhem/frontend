@@ -4,7 +4,11 @@
     <window-controls-overlay />
     <the-header class="page-header sa-hidden" />
 
-    <main id="content" class="main" tabindex="-1">
+    <main
+      id="content"
+      class="main"
+      tabindex="-1"
+    >
       <nuxt-layout>
         <nuxt-loading-indicator color="var(--color-black)" />
         <nuxt-page />

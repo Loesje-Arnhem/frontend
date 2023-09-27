@@ -34,7 +34,7 @@ const altText = computed(() => {
     :sizes="sizes"
     :width="image.node.mediaDetails?.width || undefined"
     :height="image.node.mediaDetails?.height || undefined"
-  />
+  >
 </template>
 
 <style lang="postcss" scoped>

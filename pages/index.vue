@@ -16,7 +16,10 @@ useMeta(data.value?.page)
 
 <template>
   <div>
-    <h1 v-if="data?.page" class="sr-only">
+    <h1
+      v-if="data?.page"
+      class="sr-only"
+    >
       {{ data.page?.title }}
     </h1>
 

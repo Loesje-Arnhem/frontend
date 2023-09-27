@@ -1,9 +1,26 @@
 <template>
-  <a v-if="url" :href="url" :class="$style.link">
-    <span :class="$style.title" class="title" v-html="title" />
+  <a
+    v-if="url"
+    :href="url"
+    :class="$style.link"
+  >
+    <span
+      :class="$style.title"
+      class="title"
+      v-html="title"
+    />
   </a>
-  <nuxt-link v-else :to="uri" :class="$style.link" @click="clear">
-    <span :class="$style.title" class="title" v-html="title" />
+  <nuxt-link
+    v-else
+    :to="uri"
+    :class="$style.link"
+    @click="clear"
+  >
+    <span
+      :class="$style.title"
+      class="title"
+      v-html="title"
+    />
   </nuxt-link>
 </template>
 

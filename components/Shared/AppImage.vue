@@ -42,7 +42,7 @@ const densities = computed(() => {
     class="image"
     fit="inside"
     format="avif"
-  />
+  >
 </template>
 
 <style lang="postcss" scoped>

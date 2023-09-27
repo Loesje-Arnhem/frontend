@@ -36,7 +36,11 @@
     </button>
     <template v-if="hasChildren">
       <slide-in-animation>
-        <ul v-if="isOpen" :class="$style.submenu" class="tile">
+        <ul
+          v-if="isOpen"
+          :class="$style.submenu"
+          class="tile"
+        >
           <li
             v-for="subItem in children.edges"
             :key="subItem.node.uri"

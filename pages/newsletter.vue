@@ -10,7 +10,10 @@ const { data } = await usePageById(pageIds.newsletter)
 </script>
 
 <template>
-  <div v-if="data?.page" class="page">
+  <div
+    v-if="data?.page"
+    class="page"
+  >
     <app-content
       :title="data.page.title"
       :content="data.page.content"

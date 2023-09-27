@@ -28,9 +28,16 @@ const url = computed(() => {
       />
     </div>
     <div :class="$style.title">
-      <a :class="$style.link" :href="url" v-html="product.title" />
+      <a
+        :class="$style.link"
+        :href="url"
+        v-html="product.title"
+      />
     </div>
-    <product-prices :product="product" :class="$style.price" />
+    <product-prices
+      :product="product"
+      :class="$style.price"
+    />
   </clickable-list-item>
 </template>
 

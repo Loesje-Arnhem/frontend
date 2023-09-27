@@ -48,11 +48,17 @@ onMounted(async () => {
   <center-wrapper size="xlg">
     <div class="wrapper">
       <div class="widget">
-        <box-wrapper id="donate" title="Doneren">
+        <box-wrapper
+          id="donate"
+          title="Doneren"
+        >
           <div class="donate-box">
             <app-loader v-if="!donation.loaded" />
             <template v-else>
-              <div class="progress" :style="{ width: donation.progress }" />
+              <div
+                class="progress"
+                :style="{ width: donation.progress }"
+              />
 
               <p>
                 {{ $n(donation.amount, 'currency') }} van

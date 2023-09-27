@@ -34,7 +34,11 @@ const mouseUp = () => {
 </script>
 
 <template>
-  <li class="list-item" @mousedown.left="mouseDown" @mouseup.left="mouseUp">
+  <li
+    class="list-item"
+    @mousedown.left="mouseDown"
+    @mouseup.left="mouseUp"
+  >
     <slot />
   </li>
 </template>
