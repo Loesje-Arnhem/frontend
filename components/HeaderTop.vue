@@ -6,13 +6,23 @@ const localePath = useLocalePath()
   <center-wrapper :top="true">
     <div class="wrapper">
       <div class="text">
-        <h1>Wie zegt wat hoort</h1>
+        <h1>Steun Loesje!</h1>
+        <p>Loesje wil met haar positieve, kritische posters de wereld een zetje in de goede richting geven. Wil jij haar daarbij helpen? Een donatie als steun in de rug is altijd welkom!</p>
+        <app-button
+          href="https://whydonate.com/nl/donate/de-posters-van-loesje"
+          rel="noopener"
+          target="_blank"
+          class="btn"
+        >
+          Ga naar Why Donate
+        </app-button>
+        <!-- <h1>Wie zegt wat hoort</h1>
         <p>
           Loesje's posters vind je overal. Met haar positief-kritische teksten
           wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan
           bazen, politici of ouders. Door haar posters op straat en online te
           verspreiden, geeft Loesje de wereld een zetje in de goede richting.
-        </p>
+        </p> -->
       </div>
       <div class="poster-daily">
         <div class="image-wrapper">

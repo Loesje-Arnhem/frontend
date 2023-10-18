@@ -51,7 +51,7 @@ export default defineNuxtConfig({
     preset: 'netlify',
     prerender: {
       interval: 3000,
-      concurrency: 10,
+      concurrency: 20,
     },
   },
   hooks: {
@@ -59,9 +59,9 @@ export default defineNuxtConfig({
       if (nitroConfig.dev) {
         return
       }
-      // if (process.env.NUXT_SSR === 'false') {
-      //   return
-      // }
+      if (process.env.NUXT_SSR === 'false') {
+        return
+      }
       const pages = await getAllRoutes()
       if (nitroConfig?.prerender?.routes) {
         nitroConfig.prerender.routes.push(...pages)
@@ -69,7 +69,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/**': { isr: true },
+    '/posters/posters/favorieten': { ssr: false },
   },
   telemetry: false,
 
