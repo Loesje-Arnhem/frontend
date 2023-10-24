@@ -49,10 +49,10 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'netlify',
-    prerender: {
-      interval: 3000,
-      concurrency: 20,
-    },
+    // prerender: {
+    //   interval: 3000,
+    //   concurrency: 20,
+    // },
   },
   hooks: {
     async 'nitro:config'(nitroConfig) {
