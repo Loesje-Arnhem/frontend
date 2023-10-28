@@ -1,21 +1,21 @@
 import {
-  IPage,
-  IPost,
-  IPosterListItem,
-  IPostListItem,
-} from '~~/interfaces/IContent'
+  type IPage,
+  type IPost,
+  type IPosterListItem,
+  type IPostListItem,
+} from '~~/types/Content'
 import {
-  IResponseImage,
-  IResponsePage,
-  IResponsePost,
-  IResponsePosters,
-  IResponsePosts,
-} from '~~/interfaces/IResponse'
+  type ResponseImage,
+  type ResponsePage,
+  type ResponsePost,
+  type ResponsePosters,
+  type ResponsePosts,
+} from '~~/types/Response'
 
 export const useServer = () => {
   const { apiUrl } = useAppConfig()
 
-  const getFeaturedImage = (featuredImage: IResponseImage) => {
+  const getFeaturedImage = (featuredImage: ResponseImage) => {
     if (!featuredImage['wp:featuredmedia']) {
       return undefined
     }
@@ -85,7 +85,7 @@ export const useServer = () => {
       fields: ['title', 'content', 'yoast_head_json', 'date', 'id'],
       image: true,
     })
-    const response = await $fetch<IResponsePost[]>(url)
+    const response = await $fetch<ResponsePost[]>(url)
 
     if (response.length) {
       const featuredImage = getFeaturedImage(response[0]._embedded)
@@ -118,7 +118,7 @@ export const useServer = () => {
       }
     }
     const total = Number(response.headers.get('x-wp-totalpages')) as number
-    const items = response._data.map((item: IResponsePosts) => {
+    const items = response._data.map((item: ResponsePosts) => {
       const featuredImage = getFeaturedImage(item._embedded)
 
       return {
@@ -143,14 +143,14 @@ export const useServer = () => {
       type: 'pages',
       fields: ['title', 'content', 'yoast_head_json', 'acf'],
     })
-    let response: IResponsePage | null = null
+    let response: ResponsePage | null = null
     if (slug) {
-      const items = await $fetch<IResponsePage[]>(url)
+      const items = await $fetch<ResponsePage[]>(url)
       if (items.length) {
         response = items[0]
       }
     } else {
-      response = await $fetch<IResponsePage>(url)
+      response = await $fetch<ResponsePage>(url)
     }
     if (response) {
       let relatedProducts: number[] = []
@@ -185,7 +185,7 @@ export const useServer = () => {
       pageSize: 7,
     })
 
-    const response = await $fetch<IResponsePosters[]>(url)
+    const response = await $fetch<ResponsePosters[]>(url)
     const items: IPosterListItem[] = response.map((item) => {
       const featuredImage = getFeaturedImage(item._embedded)
 

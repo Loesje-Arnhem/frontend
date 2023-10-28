@@ -1,5 +1,5 @@
-import { IPage } from '~~/interfaces/IContent'
-import { IResponsePage } from '~/server/types/IResponsePage'
+import { type IPage } from '~~/types/Content'
+import { type ResponsePage } from '~/server/types/ResponsePage'
 
 export default defineEventHandler(async (event) => {
   let slug: undefined | string = undefined
@@ -18,14 +18,14 @@ export default defineEventHandler(async (event) => {
     type: 'pages',
     fields: ['title', 'content', 'yoast_head_json', 'parent', 'acf'],
   })
-  let response: IResponsePage | null = null
+  let response: ResponsePage | null = null
   if (slug) {
-    const items = await $fetch<IResponsePage[]>(url)
+    const items = await $fetch<ResponsePage[]>(url)
     if (items.length) {
       response = items[0]
     }
   } else {
-    response = await $fetch<IResponsePage>(url)
+    response = await $fetch<ResponsePage>(url)
   }
   if (response) {
     let youtubeId: string | null = null

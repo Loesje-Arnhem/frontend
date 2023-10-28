@@ -1,6 +1,6 @@
-import { Taxonomy } from '~/enums/taxonomy'
+import { type Taxonomy } from '~/enums/taxonomy'
 
-export interface IResponseTerm {
+export type ResponseTerm = {
   id: number
   name: string
   slug: string

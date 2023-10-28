@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { IOption } from '~/interfaces/IOption'
+import { type IOption } from '~/types/IOption'
 export default defineComponent({
   inheritAttrs: false,
   props: {

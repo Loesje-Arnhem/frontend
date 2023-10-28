@@ -1,5 +1,5 @@
-import { IRelatedPage } from '~~/interfaces/IContent'
-import { IResponseRelatedPage } from '~/server/types/IResponseRelatedPage'
+import { type IRelatedPage } from '~~/types/Content'
+import { type ResponseRelatedPage } from '~/server/types/ResponseRelatedPage'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     type: 'pages',
     fields: ['title', 'excerpt', 'link'],
   })
-  const response = await $fetch<IResponseRelatedPage[]>(url)
+  const response = await $fetch<ResponseRelatedPage[]>(url)
   if (!response) {
     return []
   }

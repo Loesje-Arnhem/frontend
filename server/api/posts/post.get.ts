@@ -1,5 +1,5 @@
-import { IPost } from '~~/interfaces/IContent'
-import { IResponsePost } from '~/server/types/IResponsePost'
+import { type IPost } from '~~/types/Content'
+import { type ResponsePost } from '~/server/types/ResponsePost'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     type: 'posts',
     fields: ['title', 'content', 'yoast_head_json', 'date', 'acf'],
   })
-  const response = await $fetch<IResponsePost[]>(url)
+  const response = await $fetch<ResponsePost[]>(url)
 
   if (response.length) {
     const item = response[0]

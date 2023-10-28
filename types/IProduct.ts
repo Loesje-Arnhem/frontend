@@ -1,7 +1,7 @@
-import { IFeaturedImage } from './IMedia'
-import { IBaseContent, INodeBase } from './INode'
+import { type IFeaturedImage } from './IMedia'
+import { type IBaseContent, type INodeBase } from './INode'
 
-export interface IProductTile extends INodeBase {
+export type IProductTile = INodeBase & {
   slug: string
   name: string
   featuredImage: IFeaturedImage | null
@@ -10,24 +10,24 @@ export interface IProductTile extends INodeBase {
   salePrice: string
 }
 
-export interface IRelatedProductProduct {
+export type IRelatedProductProduct = {
   product: IProductTile
 }
 
-export interface IProductNode {
+export type IProductNode = {
   node: IProductTile
 }
 
-export interface IProducts {
+export type IProducts = {
   edges: IProductNode[]
 }
 
-export interface IRelatedProducts {
+export type IRelatedProducts = {
   title: string | null
   products: IRelatedProductProduct[] | null
 }
 
-export interface IProduct extends IBaseContent {
+export type IProduct = IBaseContent & {
   shortDescription: string | null
   description: string | null
   stockStatus: string

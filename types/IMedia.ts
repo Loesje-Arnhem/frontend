@@ -1,19 +1,19 @@
-interface IMediaDetails {
+type IMediaDetails = {
   width: number
   height: number
 }
 
-export interface IImage {
+export type IImage = {
   id: string
   srcSet: string
   src: string
   mediaDetails: IMediaDetails
 }
 
-export interface IFeaturedImage {
+export type IFeaturedImage = {
   node: IImage
 }
 
-export interface IVideo {
+export type IVideo = {
   youtubeId: string | null
 }

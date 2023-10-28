@@ -1,10 +1,10 @@
-export interface IResponsePosts {
+export type ResponseRelatedPage = {
+  id: number
   title: {
     rendered: string
   }
   excerpt: {
     rendered: string
   }
-  slug: string
-  date: string
+  link: string
 }

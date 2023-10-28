@@ -1,8 +1,8 @@
-import { IResponseTerm } from '../types/IResponseTerm'
+import { ResponseTerm } from '../types/ResponseTerm'
 import { Taxonomy } from '~/enums/taxonomy'
 
 export const getTagsByType = (
-  terms: IResponseTerm[],
+  terms: ResponseTerm[],
   type: Taxonomy.Source | Taxonomy.Subject,
 ) => {
   const tags = terms.filter((tag) => tag.taxonomy === type)

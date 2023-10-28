@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type ostersFragment } from '#gql'
+import { type PostersFragment } from '#gql'
 
 defineProps<{
   posters: PostersFragment

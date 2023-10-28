@@ -1,5 +1,5 @@
-import { ITag } from '~~/interfaces/IContent'
-import { IResponseTerm } from '~~/server/types/IResponseTerm'
+import { type ITag } from '~~/types/Content'
+import { type ResponseTerm } from '~~/server/types/ResponseTerm'
 
 export default defineEventHandler(async (event) => {
   const type = event.context.params?.type
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     pageSize: 99,
   })
 
-  const response = await $fetch<IResponseTerm[]>(url, {})
+  const response = await $fetch<ResponseTerm[]>(url, {})
   if (!response) {
     return []
   }

@@ -1,8 +1,8 @@
-import { IFeaturedImage } from '~/interfaces/IContent'
-import { IResponseImage } from '~~/interfaces/IResponse'
+import { type IFeaturedImage } from '~/types/Content'
+import { type ResponseImage } from '~~/server/types/Response'
 
 export default (
-  featuredImage: IResponseImage[] | undefined,
+  featuredImage: ResponseImage[] | undefined,
   title?: string,
 ) => {
   if (!featuredImage) {

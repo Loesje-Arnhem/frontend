@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-interface ITaxQuery {
+type TaxQuery ={
   terms: string[]
   taxonomy: string
   operator: string
@@ -43,7 +43,7 @@ const where = computed(() => {
       in: props.include,
     }
   }
-  const taxQuery: { taxArray: ITaxQuery[] } = {
+  const taxQuery: { taxArray: TaxQuery[] } = {
     taxArray: [],
   }
   if (props.subjectIds.length) {

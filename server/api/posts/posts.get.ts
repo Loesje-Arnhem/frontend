@@ -1,5 +1,5 @@
-import { IPostListItem } from '~~/interfaces/IContent'
-import { IResponsePosts } from '~/server/types/IResponsePosts'
+import { type IPostListItem } from '~~/types/Content'
+import { type ResponsePosts } from '~/server/types/ResponsePosts'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
 
   const response = await $fetch.raw(url).catch((error) => error.data)
   const total = Number(response.headers.get('X-WP-TotalPages'))
-  const items = response._data.map((item: IResponsePosts) => {
+  const items = response._data.map((item: ResponsePosts) => {
     return {
       slug: item.slug,
       title: item.title.rendered,

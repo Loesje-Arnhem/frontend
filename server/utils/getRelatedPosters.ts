@@ -1,8 +1,8 @@
-import { IResponsePage } from '~~/server/types/IResponsePage'
-import { IRelatedPosters } from '~~/interfaces/IContent'
-import { IResponsePost } from '../types/IResponsePost'
+import { type ResponsePage } from '~~/server/types/ResponsePage'
+import { type IRelatedPosters } from '~~/type /Content'
+import { type ResponsePost } from '../types/ResponsePost'
 
-export default (page: IResponsePage | IResponsePost) => {
+export default (page: ResponsePage | ResponsePost) => {
   const {
     related_posters_search,
     related_posters_subjects,

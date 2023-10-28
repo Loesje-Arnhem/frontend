@@ -1,5 +1,5 @@
-import { IPostersSearchResult } from '~~/interfaces/IContent'
-import { IResponsePostersSearchResult } from '~~/server/types/IResponsePostersSearchResultResult'
+import { type IPostersSearchResult } from '~~/types/Content'
+import { type ResponsePostersSearchResult } from '~~/server/types/ResponsePostersSearchResultResult'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     search: query.search,
   })
 
-  const response = await $fetch<IResponsePostersSearchResult[]>(url, {})
+  const response = await $fetch<ResponsePostersSearchResult[]>(url, {})
   const items: IPostersSearchResult[] = response.map((item) => {
     return {
       id: item.id,

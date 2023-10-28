@@ -1,13 +1,13 @@
-import { IResponseImage } from './IResponseImage'
+import { type ResponseImage } from './ResponseImage'
 
-export interface IResponsePoster {
+export type ResponsePoster = {
   id: number
   title: {
     rendered: string
   }
   slug: string
   _embedded: {
-    'wp:featuredmedia'?: IResponseImage[]
+    'wp:featuredmedia'?: ResponseImage[]
   }
   acf: {
     pdf: string

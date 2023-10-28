@@ -1,5 +1,5 @@
-import { IProductListItem } from '~~/interfaces/IContent'
-import { IResponseProducts } from '~~/server/types/IResponseProducts'
+import { type IProductListItem } from '~~/types/Content'
+import { type ResponseProducts } from '~~/server/types/ResponseProducts'
 
 export default defineEventHandler(async (event) => {
   const { woocommerce } = useRuntimeConfig()
@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     consumerSecret: woocommerce.consumerSecret,
   })
 
-  const response = await $fetch<IResponseProducts[]>(url)
+  const response = await $fetch<ResponseProducts[]>(url)
   const items: IProductListItem[] = response.map((item) => {
     return {
       id: item.id,

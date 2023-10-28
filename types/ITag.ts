@@ -1,4 +1,4 @@
-export interface ITag {
+export type ITag = {
   node: {
     id: string
     databaseId: number
@@ -11,6 +11,6 @@ export interface ITag {
   }
 }
 
-export interface ITags {
+export type ITags = {
   edges: ITag
 }

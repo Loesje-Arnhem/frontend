@@ -1,8 +1,8 @@
-export interface ISEOImage {
+export type ISEOImage = {
   mediaItemUrl: string | null
 }
 
-export interface ISEO {
+export type ISEO = {
   metaDesc: string
   canonical: string
   cornerstone: boolean
@@ -14,18 +14,18 @@ export interface ISEO {
   opengraphPublisher: string
   opengraphTitle: string
   opengraphType:
-    | 'website'
-    | 'article'
-    | 'book'
-    | 'profile'
-    | 'music.song'
-    | 'music.album'
-    | 'music.playlist'
-    | 'music.radio_status'
-    | 'video.movie'
-    | 'video.episode'
-    | 'video.tv_show'
-    | 'video.other'
+  | 'website'
+  | 'article'
+  | 'book'
+  | 'profile'
+  | 'music.song'
+  | 'music.album'
+  | 'music.playlist'
+  | 'music.radio_status'
+  | 'video.movie'
+  | 'video.episode'
+  | 'video.tv_show'
+  | 'video.other'
   opengraphUrl: string
   title: string
   twitterDescription: string

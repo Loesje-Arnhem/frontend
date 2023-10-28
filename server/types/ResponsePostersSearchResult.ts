@@ -1,4 +1,4 @@
-export interface IResponsePostersSearchResult {
+export type ResponsePostersSearchResult = {
   id: number
   title: {
     rendered: string

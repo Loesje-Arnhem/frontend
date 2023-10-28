@@ -1,4 +1,4 @@
-export interface IResponseProducts {
+export type ResponseProducts = {
   id: number
   name: string
   slug: string

@@ -1,7 +1,7 @@
 import { Taxonomy } from '~~/enums/taxonomy'
 import { ISEO } from './ISEO'
 
-export interface IFeaturedImage {
+export type IFeaturedImage = {
   srcSet: string
   src: string
   alt: string
@@ -9,24 +9,24 @@ export interface IFeaturedImage {
   height: number
 }
 
-export interface IBase {
+export type IBase = {
   id: number
   title: string
 }
 
-export interface IRelatedPosters {
+export type IRelatedPosters = {
   subjects: number[]
   search: string | null
   posterIds: number[]
   title: string | null
 }
 
-export interface IRelatedPage extends IBase {
+export type IRelatedPage = IBase & {
   excerpt: string
   uri: string
 }
 
-export interface IPage extends IBase {
+export type IPage = IBase & {
   parentId: number
   content: string
   seo: ISEO
@@ -36,7 +36,7 @@ export interface IPage extends IBase {
   relatedPosters: IRelatedPosters
 }
 
-export interface IPost extends IBase {
+export type IPost = IBase & {
   seo: ISEO
   date: string
   content: string
@@ -46,12 +46,12 @@ export interface IPost extends IBase {
   relatedProducts: number[]
 }
 
-export interface ITag extends IBase {
+export type ITag = IBase & {
   slug: string
   type: Taxonomy.Source | Taxonomy.Subject
 }
 
-export interface IPoster extends IBase {
+export type IPoster = IBase & {
   slug: string
   date: string
   featuredImage?: IFeaturedImage
@@ -60,40 +60,40 @@ export interface IPoster extends IBase {
   subjects: ITag[]
 }
 
-export interface IPostListItem extends IBase {
+export type IPostListItem = IBase & {
   slug: string
   date: string
   excerpt: string
 }
 
-export interface IProductListItem extends IBase {
+export type IProductListItem = IBase & {
   slug: string
   price: number | null
   regularPrice: number | null
   externalUrl: string | null
 }
 
-export interface IPosterListItem {
+export type IPosterListItem = {
   id: number
   slug: string
   featuredImage?: IFeaturedImage
 }
 
-export interface IDailyPoster {
+export type IDailyPoster = {
   id: number
   slug: string
   featuredImage?: IFeaturedImage
 }
 
-export interface IPostersSearchResult extends IBase {
+export type IPostersSearchResult = IBase & {
   slug: string
 }
 
-interface IPostNode {
+type IPostNode = {
   node: IPost
 }
 
-export interface IPosts {
+export type IPosts = {
   pageInfo: { hasNextPage: boolean; endCursor: string }
   edges: IPostNode[]
 }

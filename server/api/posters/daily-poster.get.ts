@@ -1,5 +1,5 @@
-import { IDailyPoster } from '~~/interfaces/IContent'
-import { IResponseDailyPoster } from '~/server/types/IResponseDailyPoster'
+import { type IDailyPoster } from '~~/types/Content'
+import { type ResponseDailyPoster } from '~/server/types/ResponseDailyPoster'
 
 export default defineEventHandler(async () => {
   const url = getUrl({
@@ -9,7 +9,7 @@ export default defineEventHandler(async () => {
     pageSize: 1,
   })
 
-  const response = await $fetch<IResponseDailyPoster[]>(url, {})
+  const response = await $fetch<ResponseDailyPoster[]>(url, {})
   if (response.length) {
     const item = response[0]
 

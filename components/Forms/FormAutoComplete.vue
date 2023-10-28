@@ -90,77 +90,77 @@ export default defineComponent({
 </script>
 
 <template>
-  <search role="search">
-    <form
-      method="get"
-      class="form"
-      @keyup.esc="reset"
-      @submit.prevent="submit"
-    >
-      <legend class="sr-only">
-        {{ $t('search') }}
-      </legend>
-      <div class="input-wrapper">
-        <form-input-text
-          id="search"
-          type="search"
-          name="search"
-          autocomplete="off"
-          :model-value="modelValue"
-          class="search"
-          :title="$t('search')"
-          v-bind="$attrs"
-          @input="input"
-          @keyup-down="onArrowDown"
-          @keyup-up="onArrowUp"
-        />
-        <div class="buttons">
-          <button
-            v-if="modelValue.length"
-            type="button"
-            class="btn-reset"
-            @click="reset"
-          >
-            <app-icon
-              icon="close"
-              :width="24"
-              :height="24"
-              title="Sluiten"
-            />
-          </button>
-          <button
-            type="submit"
-            class="btn-submit"
-          >
-            <app-icon
-              icon="search"
-              :width="24"
-              :height="24"
-              title="Zoeken"
-            />
-          </button>
-        </div>
-        <div
-          v-if="resultsWithHighlightText.length && showList"
-          class="autocomplete"
+  <!-- <search role="search"> -->
+  <form
+    method="get"
+    class="form"
+    @keyup.esc="reset"
+    @submit.prevent="submit"
+  >
+    <legend class="sr-only">
+      {{ $t('search') }}
+    </legend>
+    <div class="input-wrapper">
+      <form-input-text
+        id="search"
+        type="search"
+        name="search"
+        autocomplete="off"
+        :model-value="modelValue"
+        class="search"
+        :title="$t('search')"
+        v-bind="$attrs"
+        @input="input"
+        @keyup-down="onArrowDown"
+        @keyup-up="onArrowUp"
+      />
+      <div class="buttons">
+        <button
+          v-if="modelValue.length"
+          type="button"
+          class="btn-reset"
+          @click="reset"
         >
-          <ul class="list">
-            <li
-              v-for="(result, index) in resultsWithHighlightText"
-              :key="result.id"
-            >
-              <nuxt-link
-                :class="{ active: index === arrowCounter }"
-                class="btn-result"
-                :to="result.uri"
-                v-html="result.title"
-              />
-            </li>
-          </ul>
-        </div>
+          <app-icon
+            icon="close"
+            :width="24"
+            :height="24"
+            title="Sluiten"
+          />
+        </button>
+        <button
+          type="submit"
+          class="btn-submit"
+        >
+          <app-icon
+            icon="search"
+            :width="24"
+            :height="24"
+            title="Zoeken"
+          />
+        </button>
       </div>
-    </form>
-  </search>
+      <div
+        v-if="resultsWithHighlightText.length && showList"
+        class="autocomplete"
+      >
+        <ul class="list">
+          <li
+            v-for="(result, index) in resultsWithHighlightText"
+            :key="result.id"
+          >
+            <nuxt-link
+              :class="{ active: index === arrowCounter }"
+              class="btn-result"
+              :to="result.uri"
+              v-html="result.title"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+  <!-- </search> -->
 </template>
 
 <style lang="postcss" scoped>
