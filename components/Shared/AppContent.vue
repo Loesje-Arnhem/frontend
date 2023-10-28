@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { FeaturedImageFragment } from '#gql'
+import { type FeaturedImageFragment } from '#gql'
 
 const props = defineProps<{
   title?: string | null

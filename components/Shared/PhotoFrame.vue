@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { IFeaturedImage } from '~/interfaces/IContent'
+import { type IFeaturedImage } from '~/interfaces/IContent'
 
 defineProps<{
   image: IFeaturedImage

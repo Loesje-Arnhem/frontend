@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RelatedPostersFragment } from '#gql'
+import { type RelatedPostersFragment } from '#gql'
 
 const localePath = useLocalePath()
 const { t } = useI18n()

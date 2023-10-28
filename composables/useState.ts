@@ -1,4 +1,4 @@
-import { SourceFragment, SubjectFragment } from '#gql'
+import { type SourceFragment, type SubjectFragment } from '#gql'
 
 export const useMenu = () => useState<boolean>('menuIsOpen', () => false)
 export const useFavoriteIds = () => useState<number[]>('favorites', () => [])

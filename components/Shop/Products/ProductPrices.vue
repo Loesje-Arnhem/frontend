@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ProductFragment } from '#gql'
+import { type ProductFragment } from '#gql'
 
 defineProps<{
   product: ProductFragment

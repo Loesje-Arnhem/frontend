@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PostListItemsFragment } from '#gql'
+import { type PostListItemsFragment } from '#gql'
 
 defineProps<{
   posts?: PostListItemsFragment | null

@@ -23,8 +23,7 @@ useMeta(data.value?.page)
       {{ data.page?.title }}
     </h1>
 
-    <latest-posts-section :posts="data?.posts" />
-
+    <latest-posts-section :posts="data?.posts" /> 
     <related-posters-section
       v-if="data?.page"
       :posters="data.page.relatedPosters"

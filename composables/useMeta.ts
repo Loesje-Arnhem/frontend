@@ -1,7 +1,7 @@
 import {
-  PageDetailsFragment,
-  PostDetailsFragment,
-  PosterDetailsFragment,
+  type PageDetailsFragment,
+  type PostDetailsFragment,
+  type PosterDetailsFragment,
 } from '#gql'
 
 export const useMeta = (

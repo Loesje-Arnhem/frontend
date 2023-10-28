@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {
-  PageRelatedProductNodeFragment,
-  PostRelatedProductNodeFragment,
+  type PageRelatedProductNodeFragment,
+  type PostRelatedProductNodeFragment,
 } from '#gql'
 
 defineProps<{

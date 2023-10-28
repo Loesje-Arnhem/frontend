@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { SourceFragment, SubjectFragment } from '#gql'
+import { type SourceFragment, type SubjectFragment } from '#gql'
 
 defineProps<{
   list: (SubjectFragment | SourceFragment)[]

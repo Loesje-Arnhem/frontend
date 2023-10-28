@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PosterFragment } from '#gql'
+import { type PosterFragment } from '#gql'
 
 const localePath = useLocalePath()
 

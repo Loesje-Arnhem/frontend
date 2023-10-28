@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PageRelatedProductsFragment, PostRelatedProductsFragment } from '#gql'
+import { type PageRelatedProductsFragment, type PostRelatedProductsFragment } from '#gql'
 
 defineProps<{
   products: PageRelatedProductsFragment | PostRelatedProductsFragment
