@@ -39,12 +39,6 @@ export default {
           title: 'Contact',
         },
       },
-      {
-        node: {
-          uri: '/anbi/',
-          title: 'ANBI',
-        },
-      },
     ],
   },
   joinPageChildren: {
