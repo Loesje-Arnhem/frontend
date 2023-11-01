@@ -10,7 +10,23 @@ import {
 } from './data/siteDetails'
 import getAllRoutes from './data/routes'
 
+
+
 export default defineNuxtConfig({
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: `${apiUrl}graphql`,
+        inMemoryCacheOptions: {
+          typePolicies: {
+            GraphQlConfigurationOption: {
+              keyFields: ['id'],
+            },
+          },
+        }
+      }
+    },
+  },
   image: {
     densities: [1, 2, 3],
   },
@@ -69,6 +85,7 @@ export default defineNuxtConfig({
       }
     },
   },
+
   routeRules: {
     '/posters/posters/favorieten': { ssr: false },
   },
@@ -196,12 +213,13 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/i18n',
+    '@nuxtjs/apollo',
     'nuxt-svgo',
     '@vite-pwa/nuxt',
     'nuxt-graphql-client',
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
-    '@nuxt/image-edge',
+    '@nuxt/image',
   ],
 
   postcss: {

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { type GetPageHomeQuery } from '~/src/__generated__/graphql';
+import query from '~/graphql/apollo/home'
+
 defineI18nRoute({
   paths: {
     nl: '/',
@@ -7,11 +10,11 @@ defineI18nRoute({
 
 const { pageIds } = useAppConfig()
 
-const { data } = await useAsyncGql('GetPageHome', {
+const { data } = await useAsyncQuery<GetPageHomeQuery>(query, {
   id: pageIds.home.toString(),
 })
 
-useMeta(data.value?.page)
+// useMeta(data.value?.page)
 </script>
 
 <template>
@@ -22,14 +25,13 @@ useMeta(data.value?.page)
     >
       {{ data.page?.title }}
     </h1>
-
-    <latest-posts-section :posts="data?.posts" /> 
+    <latest-posts-section :posts="data?.posts" />
     <related-posters-section
       v-if="data?.page"
       :posters="data.page.relatedPosters"
       :title="data.page.relatedPostersGroup?.title"
     />
     <app-stores-section />
-    <related-products-section :products="data?.page?.relatedProducts" />
+    <!-- <related-products-section :products="data?.page?.relatedProducts" /> -->
   </div>
 </template>

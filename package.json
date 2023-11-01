@@ -7,11 +7,15 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "generate-images": "node ./images",
-    "lint": "eslint . --fix && stylelint . --fix"
+    "lint": "eslint . --fix && stylelint . --fix",
+    "compile": "graphql-codegen"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxt/image-edge": "latest",
+    "@nuxtjs/apollo": "^5.0.0-alpha.7",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/i18n": "^8.0.0-rc.3 ",
     "@nuxtjs/stylelint-module": "^5.1.0",
@@ -30,9 +34,11 @@
     "prettier": "3.0.3",
     "stylelint": "^15.11.0",
     "stylelint-config-recommended-vue": "^1.5.0",
-    "stylelint-config-standard": "^34.0.0"
+    "stylelint-config-standard": "^34.0.0",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@nuxt/image": "^1.0.0",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "body-scroll-lock": "^3.1.5",
