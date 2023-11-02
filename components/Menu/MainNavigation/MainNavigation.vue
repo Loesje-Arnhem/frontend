@@ -109,12 +109,11 @@ const setArrowPosition = () => {
           :title="$t('workshops')"
           :uri="localePath({ name: 'workshops' })"
         />
-
         <main-navigation-item
           v-if="pages.productCategories.edges.length"
           class="menu-item-page"
           :title="$t('shop')"
-          uri="/winkeltje/"
+          :uri="localePath({ name: 'shop' })"
           :children="pages.productCategories"
         />
       </ul>

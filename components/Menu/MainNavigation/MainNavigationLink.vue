@@ -1,17 +1,5 @@
 <template>
-  <a
-    v-if="url"
-    :href="url"
-    :class="$style.link"
-  >
-    <span
-      :class="$style.title"
-      class="title"
-      v-html="title"
-    />
-  </a>
   <nuxt-link
-    v-else
     :to="uri"
     :class="$style.link"
     @click="clear"
@@ -25,7 +13,6 @@
 </template>
 
 <script lang="ts">
-import { shopUrl } from '~/data/siteDetails'
 
 export default defineComponent({
   props: {
@@ -38,20 +25,10 @@ export default defineComponent({
       default: null,
     },
   },
-  setup(props) {
+  setup() {
     const { clear } = useLayout()
 
-    const url = computed(() => {
-      if (props.uri.includes('winkeltje')) {
-        const newUrl = `${shopUrl}${props.uri}`
-        return newUrl.replace('winkeltje/winkeltje', 'winkeltje')
-      }
-      return null
-    })
-
     return {
-      url,
-      shopUrl,
       clear,
     }
   },

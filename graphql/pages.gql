@@ -27,7 +27,7 @@ fragment PageRelatedProduct on Page_Relatedproductsgroup_relatedProductsProducts
 }
 
 fragment PageRelatedProductNode on Page_Relatedproductsgroup_relatedProductsProducts {
-    ... on Page_Relatedproductsgroup_relatedProductsProducts {
+  ... on Page_Relatedproductsgroup_relatedProductsProducts {
     product {
       ...PageRelatedProduct
     }
@@ -46,7 +46,7 @@ fragment PageDetails on Page {
   content
   featuredImage {
     ...FeaturedImage
-  }  
+  }
   videoGroup {
     youtubeId
   }
@@ -83,9 +83,13 @@ query GetPageHome($id: ID!) {
   page(id: $id, idType: DATABASE_ID) {
     ...PageDetails
   }
-  posts(first: 3, where: {
-    hasPassword: false
-  }) {
+  posts(first: 3, where: { hasPassword: false }) {
     ...PostListItems
+  }
+}
+
+query GetPageShop($id: ID!) {
+  page(id: $id, idType: DATABASE_ID) {
+    ...PageDetails
   }
 }
