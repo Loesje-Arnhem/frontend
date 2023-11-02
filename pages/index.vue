@@ -23,7 +23,7 @@ useMeta(data.value?.page)
       {{ data.page?.title }}
     </h1>
 
-    <why-donate />
+    <form-donate />
 
     <latest-posts-section :posts="data?.posts" /> 
     <related-posters-section

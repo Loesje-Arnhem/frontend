@@ -1,14 +1,19 @@
 <script setup>
-const { data } = await useAsyncData(('donations', async() =>  {
+const { data } = await useAsyncData(('donations', async () =>  {
   const response = await $fetch('https://shop.loesje.nl/wp-json/wc-donation/v1/campaign?id=111591')
-  return {
 
+  const amount = Number(response.campaign_meta.total_donation_amount) || 0
+  const target = Number(response.campaign_meta['wc-donation-goal-fixed-amount-field'][0])
+  const progress = `${(amount / target) * 100}%`
+
+  return {
     ...response,
     title: response.post_title,
-    target: Number(response.campaign_meta['wc-donation-goal-fixed-amount-field'][0]),
-    progress: '10%',
+    target,
+    progress,
     amount: 100,
     loaded: true,
+    amount,  
     steps: response.campaign_meta['pred-amount'][0].map(amount => {
       return Number(amount)
     })
@@ -38,6 +43,28 @@ const { data } = await useAsyncData(('donations', async() =>  {
                 {{ $n(data.target, 'currency') }}
               </span>
             </p>
+            
+            <fieldset>
+              <legend class="sr-only">
+                Selecteer een bedrag
+              </legend>
+              <div class="fields">
+                <div
+                  v-for="amount in data.steps"
+                  :key="amount"
+                  class="field"
+                >
+                  <input
+                    :id="`donate-${amount}`"
+                    type="radio"
+                    name="donation"
+                    :value="amount"
+                  >
+                  <label :for="`donate-${amount}`">{{ amount }}</label>
+                </div>
+              </div>
+            </fieldset>
+            
             <app-button
               href="https://whydonate.com/nl/donate/de-posters-van-loesje"
               rel="noopener"
@@ -53,33 +80,11 @@ const { data } = await useAsyncData(('donations', async() =>  {
         <h1>{{ data.title }}</h1>
         <div>
           <p>
-            Loesje wil met haar positieve, kritische posters de wereld een zetje
-            in de goede richting geven. Wil jij haar daarbij helpen? Een donatie
-            als steun in de rug is altijd welkom!
-          </p>
-          <h2>Wat wil Loesje?</h2>
-          <p>
-            Loesje is dagelijks bezig de wereld beter en mooier te maken, voor
-            haar is dat geen luchtkasteel. Al heel wat straten, kantoorruimtes
-            en studentenhuizen zijn opgevrolijkt met Loesje-posters. Maar ook op
-            social media geven haar zwart-witte posters kleur aan de dag.
-          </p>
-          <p>
-            Voor Loesje is onafhankelijk zijn belangrijk. Ze is dat al haar hele
-            leven en dat wil ze graag zo houden. Daarom maakt ze geen gebruik
-            van structurele subsidies. Om haar portemonnee gevuld te houden
-            verkoopt ze agenda’s, kalenders en boeken. Ook geeft ze workshops
-            creatief schrijven door het hele land.
-          </p>
-          <p>
-            Een bijdrage helpt haar enorm om te blijven doen waar ze goed in is:
-            posters maken die mensen aan het denken zet, laat glimlachen of
-            nieuwsgierig maakt.
+            Eenvoud siert de mens. Zo ook Loesje. Zo ook jou. Hoe leuk zou het zijn als we alle complexe dingen eens simpel aanvliegen door een keer een ander pad te kiezen? Dan zetten we samen eenvoudige én leuke stappen die onze wereld simpelweg een beetje mooier maken. Ga je mee verdwalen? Ik weet de weg. Loesje
           </p>
         </div>
       </div>
     </div>
-    <pre>{{ data }}</pre>
   </center-wrapper>
 </template>
 
@@ -100,10 +105,6 @@ const { data } = await useAsyncData(('donations', async() =>  {
   }
 }
 
-.why-donate {
-  display: none !important;
-}
-
 .text {
   order: -1;
 }
@@ -121,5 +122,11 @@ const { data } = await useAsyncData(('donations', async() =>  {
   margin-bottom: 0.5em;
   height: 0.25em;
   background-color: var(--color-black);
+}
+
+.fields {
+  display: flex;
+  gap: 0.5em;
+  margin-bottom: 1em;
 }
 </style>
