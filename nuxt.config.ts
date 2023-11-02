@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       consumerSecret: '',
     },
     public: {
-      GQL_HOST: `${apiUrl}graphql`,
+      GQL_HOST: `${process.env.NUXT_API_URL}graphql`,
     },
   },
   experimental: {
@@ -49,7 +49,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    // preset: 'netlify',
     // prerender: {
     //   interval: 3000,
     //   concurrency: 20,

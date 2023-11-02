@@ -4,7 +4,6 @@ import {
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory'
 import fetch from 'node-fetch'
-import { apiUrl } from '../data/siteDetails'
 import fetchPages from './generate/fetchPages'
 import fetchPosts from './generate/fetchPosts'
 import fetchPosters from './generate/fetchPosters'
@@ -47,7 +46,7 @@ export default {
     const cache = new InMemoryCache(config)
 
     const link = new HttpLink({
-      uri: `${apiUrl}graphql`,
+      uri: `${process.env.GQL_HOST}graphql`,
       fetch,
     })
 

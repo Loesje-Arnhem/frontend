@@ -1,7 +1,7 @@
 import { ofetch } from 'ofetch'
 
-const PAGESIZE = 30
-const FETCH_TIMEOUT = 1000
+const PAGESIZE = 99
+const FETCH_TIMEOUT = 0
 
 const pauseFetching = () => {
   return new Promise((resolve) => {
@@ -13,12 +13,13 @@ const fetchPagesByType = async (type: string) => {
   const pages = []
   let hasNextPage = true
   let page = 1
-  const baseUrl = 'https://shop.loesje.nl'
+  const baseUrl = process.env.NUXT_API_URL as string
+
 
   while (hasNextPage) {
-    const apiUrl = `${baseUrl}/wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[
+    const apiUrl = `${baseUrl}wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[
       page,
-    ]}`
+    ]}&status=publish`
     const data = await ofetch<{ link: string }[]>(apiUrl)
 
     let suffix = ''
@@ -42,7 +43,7 @@ export default async () => {
   const pages = await fetchPagesByType('pages')
   // const posters = await fetchPagesByType('posters')
   return [
-    // ...posts, 
+    // ...posts,
     ...pages,
     // ...posters
   ]
