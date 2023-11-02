@@ -23,6 +23,8 @@ useMeta(data.value?.page)
       {{ data.page?.title }}
     </h1>
 
+    <why-donate />
+
     <latest-posts-section :posts="data?.posts" /> 
     <related-posters-section
       v-if="data?.page"

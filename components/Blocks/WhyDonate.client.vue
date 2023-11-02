@@ -1,51 +1,26 @@
 <script setup>
-const donation = useDonation()
+const { data } = await useAsyncData(('donations', async() =>  {
+  const response = await $fetch('https://shop.loesje.nl/wp-json/wc-donation/v1/campaign?id=111591')
+  return {
 
-onMounted(async () => {
-  if (donation.loaded) {
-    return
-  }
-
-  const script = document.createElement('script')
-  script.type = 'text/javascript'
-  ;(script.src =
-    'https://res.cloudinary.com/dxhaja5tz/raw/upload/script_main.js'),
-    document.body.appendChild(script)
-
-  await waitForElement('.why-donate > div')
-  const plugin_ele = getPluginElement()
-  const plugin_obj = getPluginData(plugin_ele)
-  const fundraiser_response = await getFundraiserData(plugin_obj.data.slug)
-  const { data } = fundraiser_response
-  const amount = data.donation.amount
-  const target = data.amount_target
-  donation.value = {
-    amount,
-    enabled: Date.now() < new Date(data.end_date).getTime(),
-    target,
-    body: data.content,
+    ...response,
+    title: response.post_title,
+    target: Number(response.campaign_meta['wc-donation-goal-fixed-amount-field'][0]),
+    progress: '10%',
+    amount: 100,
     loaded: true,
-    progress: `${(amount / target) * 100}%`,
+    steps: response.campaign_meta['pred-amount'][0].map(amount => {
+      return Number(amount)
+    })
   }
-  const widget = document.querySelector('.why-donate')
-  if (widget) {
-    widget.remove()
-  }
-})
+}))
 </script>
 
 <template>
-  <div
-    id="de-posters-van-loesje"
-    class="widget why-donate"
-    data-slug="de-posters-van-loesje"
-    data-lang="nl"
-    data-success_url=""
-    data-fail_url=""
-    data-card="show"
-    value="donation-widget"
-  />
-  <center-wrapper size="xlg">
+  <center-wrapper
+    v-if="data"
+    size="xlg"
+  >
     <div class="wrapper">
       <div class="widget">
         <box-wrapper
@@ -53,32 +28,29 @@ onMounted(async () => {
           title="Doneren"
         >
           <div class="donate-box">
-            <app-loader v-if="!donation.loaded" />
-            <template v-else>
-              <div
-                class="progress"
-                :style="{ width: donation.progress }"
-              />
-
-              <p>
-                {{ $n(donation.amount, 'currency') }} van
-                <span class="target">
-                  {{ $n(donation.target, 'currency') }}
-                </span>
-              </p>
-            </template>
+            <div
+              class="progress"
+              :style="{ width: data.progress }"
+            />
+            <p>
+              {{ $n(data.amount, 'currency') }} van
+              <span class="target">
+                {{ $n(data.target, 'currency') }}
+              </span>
+            </p>
             <app-button
               href="https://whydonate.com/nl/donate/de-posters-van-loesje"
               rel="noopener"
               target="_blank"
             >
-              Ga naar Why Donate
+              Doneer
             </app-button>
+            {{ }}
           </div>
         </box-wrapper>
       </div>
       <div class="text">
-        <h1>Steun Loesje</h1>
+        <h1>{{ data.title }}</h1>
         <div>
           <p>
             Loesje wil met haar positieve, kritische posters de wereld een zetje
@@ -107,6 +79,7 @@ onMounted(async () => {
         </div>
       </div>
     </div>
+    <pre>{{ data }}</pre>
   </center-wrapper>
 </template>
 

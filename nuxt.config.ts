@@ -3,7 +3,6 @@ import {
   themeColor,
   baseUrl,
   facebook,
-  apiUrl,
   backgroundColor,
   title,
   twitter,
@@ -107,7 +106,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'dns-prefetch',
-          href: apiUrl,
+          href: process.env.NUXT_API_URL,
         },
         {
           rel: 'icon',
@@ -117,13 +116,13 @@ export default defineNuxtConfig({
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `${apiUrl}feed/`,
+          href: `${process.env.NUXT_API_URL}feed/`,
           title: 'Nieuws - Loesje',
         },
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `${apiUrl}feed/?post_type=poster&source=landelijke-serie`,
+          href: `${process.env.NUXT_API_URL}feed/?post_type=poster&source=landelijke-serie`,
           title: 'Posters - Loesje',
         },
         {
