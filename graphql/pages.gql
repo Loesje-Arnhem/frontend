@@ -23,7 +23,7 @@ fragment RelatedPages on PageToPageConnection {
 }
 
 fragment PageRelatedProduct on Page_Relatedproductsgroup_relatedProductsProducts_Product {
-  ...Product
+  ...RelatedProduct
 }
 
 fragment PageRelatedProductNode on Page_Relatedproductsgroup_relatedProductsProducts {

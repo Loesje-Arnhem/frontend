@@ -11,6 +11,7 @@ const { data } = await useAsyncGql('GetPageHome', {
   id: pageIds.home.toString(),
 })
 
+
 useMeta(data.value?.page)
 </script>
 
@@ -32,6 +33,9 @@ useMeta(data.value?.page)
       :title="data.page.relatedPostersGroup?.title"
     />
     <app-stores-section />
-    <related-products-section :products="data?.page?.relatedProducts" />
+    <related-products-section
+      v-if="data?.page?.relatedProducts"
+      :products="data.page.relatedProducts"
+    />
   </div>
 </template>

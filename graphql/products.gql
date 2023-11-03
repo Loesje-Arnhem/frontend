@@ -1,3 +1,7 @@
+fragment RelatedProduct on Product {
+  databaseId
+}
+
 fragment Product on Product {
   slug
   id
@@ -15,5 +19,84 @@ fragment Product on Product {
     regularPrice
     price
     salePrice
+  }
+}
+
+query GetProduct($slug: ID!) {
+  product(id: $slug, idType: SLUG) {
+    id
+    databaseId
+    title: name
+    featuredImage {
+      ...FeaturedImage
+    }
+    ... on SimpleProduct {
+      regularPrice
+      price
+      salePrice
+    }
+    ... on VariableProduct {
+      regularPrice
+      price
+      salePrice
+    }
+
+    shortDescription
+    description
+    globalAttributes {
+      nodes {
+        id
+        name
+        slug
+        variation
+        position
+        scope
+        attributeId
+        visible
+        terms {
+          nodes {
+            id
+            databaseId
+            name
+            slug
+            count
+          }
+        }
+      }
+    }
+    # galleryImages {
+    #   edges {
+    #     node {
+    #       ...mediaItem
+    #     }
+    #   }
+    # }
+
+    related(first: 12, where: { stockStatus: [IN_STOCK] }) {
+      edges {
+        node {
+          databaseId
+        }
+      }
+    }
+  }
+}
+
+query GetProducts($categoryId: Int, $featured: Boolean, $include: [Int]) {
+  products(
+    where: {
+      featured: $featured
+      include: $include
+      categoryId: $categoryId
+      stockStatus: [IN_STOCK]
+      orderby: { field: MENU_ORDER, order: ASC }
+    }
+    first: 99
+  ) {
+    edges {
+      node {
+        ...Product
+      }
+    }
   }
 }

@@ -24,11 +24,11 @@ fragment PostListItems on RootQueryToPostConnection {
 }
 
 fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {
-  ...Product
+  ...RelatedProduct
 }
 
 fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {
-    ... on Post_Relatedproductsgroup_relatedProductsProducts {
+  ... on Post_Relatedproductsgroup_relatedProductsProducts {
     product {
       ...PostRelatedProduct
     }
@@ -59,10 +59,10 @@ fragment PostDetails on Post {
   }
   relatedProducts: relatedProductsGroup {
     ...PostRelatedProducts
-  }    
+  }
   seo {
     ...seo
-  }  
+  }
 }
 
 query GetPost($slug: ID!) {
@@ -72,10 +72,11 @@ query GetPost($slug: ID!) {
 }
 
 query GetPosts($after: String, $notIn: ID) {
-  posts(first: 10, after: $after, where: {
-    notIn: [$notIn],
-    hasPassword: false
-  }) {
+  posts(
+    first: 10
+    after: $after
+    where: { notIn: [$notIn], hasPassword: false }
+  ) {
     pageInfo {
       hasNextPage
       endCursor

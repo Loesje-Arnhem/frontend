@@ -4,5 +4,14 @@ fragment seo on PostTypeSEO {
   title
   schema {
     raw
-  }  
+  }
+}
+
+fragment taxonomySeo on TaxonomySEO {
+  metaDesc
+  opengraphUrl
+  title
+  schema {
+    raw
+  }
 }

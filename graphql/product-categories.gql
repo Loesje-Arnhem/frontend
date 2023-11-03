@@ -1,0 +1,60 @@
+fragment productCategory on ProductCategory {
+  id
+  databaseId
+  title: name
+  content: description
+  seo {
+    ...taxonomySeo
+  }
+  products(
+    first: 99
+    where: {
+      stockStatus: [IN_STOCK]
+      orderby: { field: MENU_ORDER, order: ASC }
+    }
+  ) {
+    edges {
+      node {
+        id
+        slug
+        databaseId
+        title: name
+        ...Product
+      }
+    }
+  }
+}
+
+fragment categoryFields on ProductCategory {
+  id
+  name
+  uri
+  menuOrder
+}
+
+query GetProductCategory($slug: ID!) {
+  productCategory(id: $slug, idType: SLUG) {
+    ...productCategory
+  }
+}
+
+query GetProductCategories {
+  productCategories(
+    where: { hideEmpty: true, orderby: TERM_ORDER, order: ASC }
+    first: 99
+  ) {
+    edges {
+      node {
+        ...categoryFields
+        parentDatabaseId
+        children {
+          edges {
+            node {
+              ...categoryFields
+            }
+          }
+        }
+      }
+    }
+  }
+}

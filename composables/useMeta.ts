@@ -2,6 +2,7 @@ import {
   type PageDetailsFragment,
   type PostDetailsFragment,
   type PosterDetailsFragment,
+  type ProductCategoryFragment
 } from '#gql'
 
 export const useMeta = (
@@ -9,6 +10,7 @@ export const useMeta = (
     | PageDetailsFragment
     | PostDetailsFragment
     | PosterDetailsFragment
+    | ProductCategoryFragment
     | null,
 ) => {
   if (!content) {

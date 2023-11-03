@@ -6,9 +6,7 @@
       </nuxt-link>
       is weer te bestellen
     </div>
-    <client-only>
-      <shop-header-menu />
-    </client-only>
+    <shop-header-menu />
   </div>
 </template>
 

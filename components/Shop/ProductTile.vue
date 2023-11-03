@@ -2,20 +2,28 @@
 import { type ProductFragment } from '#gql'
 
 const props = defineProps<{
-  product?: ProductFragment | null
+  product?: ProductFragment
 }>()
 
-const appConfig = useAppConfig()
+const localePath = useLocalePath()
 
 const url = computed(() => {
-  return `${appConfig.shopUrl}winkeltje/${props.product?.slug}`
+  if (!props.product) {
+    return null
+  }
+  return localePath({
+    name: 'shop-product',
+    params: {
+      slug: props.product.slug as string
+    }
+  })
 })
 </script>
 
 <template>
   <clickable-list-item
-    v-if="product"
-    :href="url"
+    v-if="product && url"
+    :to="url"
     :class="$style['product-tile']"
     class="tile"
   >
@@ -28,9 +36,9 @@ const url = computed(() => {
       />
     </div>
     <div :class="$style.title">
-      <a
+      <router-link
         :class="$style.link"
-        :href="url"
+        :to="url"
         v-html="product.title"
       />
     </div>

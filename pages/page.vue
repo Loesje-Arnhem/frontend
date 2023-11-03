@@ -65,5 +65,10 @@ useMeta(data.value?.page)
       :title="data.page.relatedPostersGroup?.title"
     />
     <related-pages-section :pages="data.page.relatedPages" />
+
+    <related-products-section
+      v-if="data?.page?.relatedProducts"
+      :products="data.page.relatedProducts"
+    />
   </div>
 </template>

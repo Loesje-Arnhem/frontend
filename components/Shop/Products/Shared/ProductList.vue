@@ -1,23 +1,30 @@
 <script lang="ts" setup>
-import {
-  type PageRelatedProductNodeFragment,
-  type PostRelatedProductNodeFragment,
-} from '#gql'
+const props = withDefaults(defineProps<{
+  categoryId?: number
+  featured?: boolean,
+  productIds?: number[]
+}>(), {
+  featured: false,
+  categoryId: 0,
+  productIds: () => []
+})
 
-defineProps<{
-  products: PageRelatedProductNodeFragment[] | PostRelatedProductNodeFragment[]
-}>()
+const { data } = await useAsyncGql('GetProducts', {
+  categoryId: props.categoryId,
+  featured: props.featured,
+  include: props.productIds
+})
 </script>
 
 <template>
   <ul
-    v-if="products.length"
+    v-if="data?.products?.edges.length"
     class="list"
   >
     <product-tile
-      v-for="product in products"
-      :key="product.product?.id"
-      :product="product.product"
+      v-for="product in data.products.edges"
+      :key="product.node.id"
+      :product="product.node"
     />
   </ul>
 </template>
