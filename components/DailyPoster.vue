@@ -1,16 +1,20 @@
 <template>
-  <featured-image
-    v-if="poster.featuredImage"
-    :image="poster.featuredImage"
+  <img
+    class="image"
+    v-if="poster"
     :alt="poster.title"
+    :srcset="poster.image.srcSet"
+    :src="poster.image.src"
     :sizes="sizes"
+    :width="poster.image.mediaDetails.width"
+    :height="poster.image.mediaDetails.height"
   />
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
-import { useQuery } from '@vue/apollo-composable'
-import DailyPostersQuery from '~/graphql/Posters/DailyPoster'
+import { ref, defineComponent, useFetch } from '@nuxtjs/composition-api'
+import axios from 'axios'
+import { apiUrl } from '~/data/siteDetails'
 
 export default defineComponent({
   props: {
@@ -20,25 +24,31 @@ export default defineComponent({
     },
   },
   setup() {
-    const date = new Date()
-    const { onResult } = useQuery(DailyPostersQuery, {
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate(),
-    })
-
-    const poster = reactive({
-      featuredImage: null,
-      title: null,
-    })
-
-    onResult((result: any) => {
-      if (result.data.dailyPosters.edges.length > 0) {
-        const { node } = result.data.dailyPosters.edges[0]
-        poster.featuredImage = node.featuredImage
-        poster.title = node.title
+    const addTrailingZeroToValue = (value: number) => {
+      if (value < 9) {
+        return `0${value}`
+      } else {
+        return value.toString()
       }
+    }
+
+    const getDate = () => {
+      const date = new Date()
+      const month = addTrailingZeroToValue(date.getMonth() + 1)
+      const day = addTrailingZeroToValue(date.getDate())
+      return `${date.getFullYear()}${month}${day}`
+    }
+
+    const poster = ref(null)
+
+    const { fetch } = useFetch(async () => {
+      const { data } = await axios.get(
+        `${apiUrl}wp-content/uploads/daily-posters/${getDate()}.json`,
+      )
+      poster.value = data
     })
+
+    fetch()
 
     return {
       poster,
