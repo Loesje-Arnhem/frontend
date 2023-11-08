@@ -201,7 +201,7 @@ export default defineNuxtConfig({
     'nuxt-graphql-client',
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
-    '@nuxt/image-edge',
+    '@nuxt/image',
   ],
 
   postcss: {
