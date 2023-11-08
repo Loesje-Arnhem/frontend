@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { MediaItemFragment } from '#gql';
+
 withDefaults(
   defineProps<{
     sizes?: string
@@ -7,27 +9,34 @@ withDefaults(
     sizes: '(max-width: 375px) 100vw, 270px',
   },
 )
-const date = new Date()
+const config = useRuntimeConfig()
 
-const { data } = await useAsyncGql('GetDailyPoster', {
-  year: date.getFullYear(),
-  month: date.getMonth() + 1,
-  day: date.getDate(),
-})
+const addTrailingZeroToValue = (value: number) => {
+  if (value < 9) {
+    return  `0${value}`
+  } else {
+    return value.toString()
+  }  
+}
 
-const poster = computed(() => {
-  if (!data.value?.dailyPosters?.edges.length) {
-    return null
-  }
-  return data.value?.dailyPosters?.edges[0].node
-})
+const getDate = () => {
+  const date = new Date()
+  const month = addTrailingZeroToValue(date.getMonth() + 1)
+  const day = addTrailingZeroToValue(date.getDate())
+  return `${date.getFullYear()}${month}${day}`
+}
+
+const { data } = useFetch<{
+  title: string,
+  image: MediaItemFragment
+}>(`${config.public.apiUrl}wp-content/uploads/daily-posters/${getDate()}.json`)
 </script>
 
 <template>
   <featured-image
-    v-if="poster"
-    :image="poster.featuredImage"
-    :alt="poster.title"
+    v-if="data"
+    :image="data.image"
+    :alt="data.title"
     :sizes="sizes"
   />
 </template>

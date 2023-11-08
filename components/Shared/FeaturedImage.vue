@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { type FeaturedImageFragment } from '#gql'
+import { type MediaItemFragment } from '#gql'
 
 const props = withDefaults(
   defineProps<{
-    image: FeaturedImageFragment
+    image: MediaItemFragment
     sizes: string
     lazy?: boolean
     alt?: string
@@ -17,8 +17,8 @@ const props = withDefaults(
 const altText = computed(() => {
   if (props.alt) {
     return props.alt
-  } else if (props.image.node.alt) {
-    return props.image.node.alt
+  } else if (props.image.alt) {
+    return props.image.alt
   }
   return ''
 })
@@ -28,12 +28,12 @@ const altText = computed(() => {
   <img
     class="image"
     :alt="altText"
-    :loading="lazy ? 'lazy' : null"
-    :srcset="image.node.srcSet || undefined"
-    :src="image.node.src || undefined"
+    :loading="lazy ? 'lazy' : undefined"
+    :srcset="image.srcSet || undefined"
+    :src="image.src || undefined"
     :sizes="sizes"
-    :width="image.node.mediaDetails?.width || undefined"
-    :height="image.node.mediaDetails?.height || undefined"
+    :width="image.mediaDetails?.width || undefined"
+    :height="image.mediaDetails?.height || undefined"
   >
 </template>
 

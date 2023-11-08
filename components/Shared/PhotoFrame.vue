@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { type IFeaturedImage } from '~/types/Content'
+import type { FeaturedImageFragment } from '#gql';
 
 defineProps<{
-  image: IFeaturedImage
+  image: FeaturedImageFragment
 }>()
 </script>
 
@@ -10,7 +10,7 @@ defineProps<{
   <div class="photo-wrapper">
     <featured-image
       :lazy="false"
-      :image="image"
+      :image="image.node"
       class="featured-image"
       sizes="(max-width: 320px) 80vw, 280px"
     />

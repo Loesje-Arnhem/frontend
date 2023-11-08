@@ -49,7 +49,7 @@ const posterDate = computed(() => {
               v-if="poster.featuredImage"
               :key="poster.id"
               :lazy="false"
-              :image="poster.featuredImage"
+              :image="poster.featuredImage.node"
               sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
             />
           </fade-animation>
