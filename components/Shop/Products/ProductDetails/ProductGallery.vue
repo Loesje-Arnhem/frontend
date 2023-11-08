@@ -1,6 +1,15 @@
+<script lang="ts" setup>
+import type { MediaItemFragment } from '#gql';
+
+defineProps<{
+  images: MediaItemFragment[]
+}>()
+
+</script>
+
 <template>
   <div class="gallery">
-    <app-carousel
+    <!-- <app-carousel
       v-if="images.length > 1"
       :total-pages="images.length"
       :thumbs="images"
@@ -21,30 +30,17 @@
     <div
       v-else-if="images[0]"
       class="tile"
-    >
-      <featured-image
-        :image="images[0]"
-        class="image"
-        :lazy="false"
-        sizes="(max-width: 320px) 50vw, 150px"
-      />
-    </div>
+    > -->
+    <featured-image
+      :image="images[0]"
+      class="image"
+      :lazy="false"
+      sizes="(max-width: 320px) 50vw, 150px"
+    />
+    <!-- </div> -->
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IFeaturedImage } from '~/interfaces/IMedia'
-
-export default defineComponent({
-  props: {
-    images: {
-      type: Array as PropType<IFeaturedImage[]>,
-      required: true,
-    },
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .main-image {

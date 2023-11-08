@@ -33,8 +33,8 @@ withDefaults(
       >
         <featured-image
           :lazy="true"
-          :alt="poster.title || ''"
-          :image="poster.featuredImage"
+          :alt="poster.title"
+          :image="poster.featuredImage.node"
           :sizes="sizes"
         />
       </nuxt-link>

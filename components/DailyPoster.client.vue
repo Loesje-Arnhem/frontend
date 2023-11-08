@@ -25,8 +25,8 @@ const poster = computed(() => {
 
 <template>
   <featured-image
-    v-if="poster"
-    :image="poster.featuredImage"
+    v-if="poster?.featuredImage"
+    :image="poster.featuredImage.node"
     :alt="poster.title"
     :sizes="sizes"
   />

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineI18nRoute({
   paths: {
-    nl: '/winkeltje/:slug',
+    nl: '/winkeltje/[slug]',
   },
 })
 

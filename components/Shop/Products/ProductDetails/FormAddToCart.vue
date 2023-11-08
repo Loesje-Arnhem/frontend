@@ -1,10 +1,49 @@
+
+<script lang="ts" setup>
+// import { useAddToCart } from '~/composables/cart'
+
+const props = defineProps<{
+  product: ProductDetailsFragment
+}>()
+
+
+// export default {
+//   props: {
+//     product: {
+//       type: Object,
+//       required: true,
+//     },
+//   },
+//   setup(props) {
+//     const router = useRouter()
+//     const selectedAttribute = ref(null)
+//     const { localePath } = useContext()
+//     const { addToCart, loading, errors, quantity, onDone } = useAddToCart(
+//       props.product.databaseId,
+//     )
+
+//     onDone(() => {
+//       navigateTo(localePath({ name: 'shop-cart' }))
+//     })
+
+//     return {
+//       selectedAttribute,
+//       errors,
+//       loading,
+//       quantity,
+//       addToCart,
+//     }
+//   },
+// }
+</script>
+
 <template>
   <div class="wrapper">
     <product-prices
       :product="product"
       class="price"
     />
-
+    <!-- 
     <form
       class="form"
       @submit.prevent="addToCart"
@@ -55,42 +94,10 @@
         v-html="errors.join(', ')"
       />
     </form>
+  </div> -->
   </div>
 </template>
 
-<script>
-import { useRouter, useContext, ref } from '@nuxtjs/composition-api'
-import { useAddToCart } from '~/composables/cart'
-
-export default {
-  props: {
-    product: {
-      type: Object,
-      required: true,
-    },
-  },
-  setup(props) {
-    const router = useRouter()
-    const selectedAttribute = ref(null)
-    const { localePath } = useContext()
-    const { addToCart, loading, errors, quantity, onDone } = useAddToCart(
-      props.product.databaseId,
-    )
-
-    onDone(() => {
-      navigateTo(localePath({ name: 'shop-cart' }))
-    })
-
-    return {
-      selectedAttribute,
-      errors,
-      loading,
-      quantity,
-      addToCart,
-    }
-  },
-}
-</script>
 
 <style lang="postcss" scoped>
 .form {

@@ -1,28 +1,22 @@
-<script lang="ts">
-import { type Product } from '#gql'
+<script lang="ts" setup>
+import { type ProductDetailsFragment } from '#gql'
 
-export default defineComponent({
-  props: {
-    product: {
-      type: Object as PropType<Product>,
-      required: true,
-    },
-  },
-  // setup(props) {
-  //   const gallery = computed(() => {
-  //     const images = []
-  //     if (props.product.featuredImage) {
-  //       images.push(props.product.featuredImage)
-  //     }
-  //     if (props.product.galleryImages.edges.length) {
-  //       return [...images, ...props.product.galleryImages.edges]
-  //     }
-  //     return images
-  //   })
-  //   return {
-  //     gallery,
-  //   }
-  // },
+const props = defineProps<{
+  product: ProductDetailsFragment
+}>()
+
+const gallery = computed(() => {
+  const images = []
+  if (props.product.featuredImage) {
+    images.push(props.product.featuredImage.node)
+  }
+  if (props.product.galleryImages?.edges.length) {
+    const galleryImages = props.product.galleryImages.edges.map(image => {
+      return image.node
+    })
+    return [...images, ...galleryImages]
+  }
+  return images
 })
 </script>
 
@@ -30,7 +24,7 @@ export default defineComponent({
   <div>
     <div class="product-wrapper">
       <div class="product-details">
-        <!-- <product-gallery :images="gallery" /> -->
+        <product-gallery :images="gallery" />
         <div class="content">
           <h1>{{ product.title }}</h1>
           <div v-html="product.shortDescription" />

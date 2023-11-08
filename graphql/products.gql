@@ -22,48 +22,54 @@ fragment Product on Product {
   }
 }
 
-query GetProduct($slug: ID!) {
-  product(id: $slug, idType: SLUG) {
-    id
-    databaseId
-    title: name
-    featuredImage {
-      ...FeaturedImage
+fragment GalleryImages on ProductToMediaItemConnection {
+  edges {
+    node {
+      ...MediaItem
     }
-    ... on SimpleProduct {
-      regularPrice
-      price
-      salePrice
-    }
-    ... on VariableProduct {
-      regularPrice
-      price
-      salePrice
-    }
+  }
+}
 
-    shortDescription
-    description
-    globalAttributes {
-      nodes {
-        id
-        name
-        slug
-        variation
-        position
-        scope
-        attributeId
-        visible
-        terms {
-          nodes {
-            id
-            databaseId
-            name
-            slug
-            count
-          }
+fragment ProductDetails on Product {
+  ...Product
+  featuredImage {
+    ...FeaturedImage
+  }
+  shortDescription
+  description
+  globalAttributes {
+    nodes {
+      id
+      name
+      slug
+      variation
+      position
+      scope
+      attributeId
+      visible
+      terms {
+        nodes {
+          id
+          databaseId
+          name
+          slug
+          count
         }
       }
     }
+  }
+  galleryImages {
+    ...GalleryImages
+  }
+}
+
+query GetProduct($slug: ID!) {
+  product(id: $slug, idType: SLUG) {
+    ...ProductDetails
+    seo {
+      ...seo
+    }
+
     # galleryImages {
     #   edges {
     #     node {
