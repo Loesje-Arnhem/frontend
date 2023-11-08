@@ -27,7 +27,8 @@ export default defineNuxtConfig({
       consumerSecret: '',
     },
     public: {
-      GQL_HOST: `${process.env.NUXT_API_URL}graphql`,
+      GQL_HOST: `${process.env.NUXT_PUBLIC_API_URL}graphql`,
+      apiUrl: ''
     },
   },
   experimental: {
@@ -106,7 +107,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'dns-prefetch',
-          href: process.env.NUXT_API_URL,
+          href: process.env.NUXT_PUBLIC_API_URL,
         },
         {
           rel: 'icon',
@@ -116,13 +117,13 @@ export default defineNuxtConfig({
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `${process.env.NUXT_API_URL}feed/`,
+          href: `${process.env.NUXT_PUBLIC_API_URL}feed/`,
           title: 'Nieuws - Loesje',
         },
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `${process.env.NUXT_API_URL}feed/?post_type=poster&source=landelijke-serie`,
+          href: `${process.env.NUXT_PUBLIC_API_URL}feed/?post_type=poster&source=landelijke-serie`,
           title: 'Posters - Loesje',
         },
         {

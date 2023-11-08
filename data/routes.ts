@@ -13,7 +13,7 @@ const fetchPagesByType = async (type: string) => {
   const pages = []
   let hasNextPage = true
   let page = 1
-  const baseUrl = process.env.NUXT_API_URL as string
+  const baseUrl = process.env.NUXT_PUBLIC_API_URL as string
 
 
   while (hasNextPage) {

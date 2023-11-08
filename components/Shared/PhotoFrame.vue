@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { FeaturedImageFragment } from '#gql';
 
-
 defineProps<{
   image: FeaturedImageFragment
 }>()
