@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import type { MediaItemFragment } from '#gql';
+import type { MediaItemFragment } from '#gql'
+
+type DailyPoster = {
+  date: string
+  title: string
+  image: MediaItemFragment
+}
 
 withDefaults(
   defineProps<{
@@ -13,10 +19,10 @@ const config = useRuntimeConfig()
 
 const addTrailingZeroToValue = (value: number) => {
   if (value < 9) {
-    return  `0${value}`
+    return `0${value}`
   } else {
     return value.toString()
-  }  
+  }
 }
 
 const getDate = () => {
@@ -26,17 +32,40 @@ const getDate = () => {
   return `${date.getFullYear()}${month}${day}`
 }
 
-const { data } = useFetch<{
-  title: string,
-  image: MediaItemFragment
-}>(`${config.public.apiUrl}wp-content/uploads/daily-posters/${getDate()}.json`)
+const poster = ref<DailyPoster | null>(null)
+
+const fetchDailyPoster = async () => {
+  const data = await $fetch<DailyPoster>(
+    `${config.public.apiUrl}wp-content/uploads/daily-posters/${getDate()}.json`,
+  )
+  poster.value = data
+  await localStorage.setItem(
+    'daily-poster',
+    JSON.stringify({
+      ...data,
+      date: getDate(),
+    }),
+  )
+}
+
+const posterFromStorage = await localStorage.getItem('daily-poster')
+if (posterFromStorage) {
+  const parsedData = JSON.parse(posterFromStorage)
+  if (parsedData.date === getDate()) {
+    poster.value = parsedData
+  } else {
+    fetchDailyPoster()
+  }
+} else {
+  fetchDailyPoster()
+}
 </script>
 
 <template>
   <featured-image
-    v-if="data"
-    :image="data.image"
-    :alt="data.title"
+    v-if="poster"
+    :image="poster.image"
+    :alt="poster.title"
     :sizes="sizes"
   />
 </template>
