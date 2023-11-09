@@ -44,4 +44,10 @@ export default defineAppConfig({
   },
   mediaQueryStandAlone:
     '(display-mode: standalone), (display-mode: window-controls-overlay)',
+  rssHead: {
+    site_url: 'https://www.loesje.nl',
+    language: 'nl-NL',
+    generator: 'Loesje rss generator 3000',
+    image_url: 'https://preview.loesje.nl/icons/logo.svg'
+  }
 })

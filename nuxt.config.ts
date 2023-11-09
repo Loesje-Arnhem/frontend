@@ -61,7 +61,7 @@ export default defineNuxtConfig({
     // },
 
     prerender: {
-      routes: ['/rss.xml'],
+      routes: ['/rss.xml', '/rss-posters.xml'],
     }
   },
   hooks: {
@@ -126,13 +126,13 @@ export default defineNuxtConfig({
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `${process.env.NUXT_PUBLIC_API_URL}feed/`,
+          href: `/rss.xml`,
           title: 'Nieuws - Loesje',
         },
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `${process.env.NUXT_PUBLIC_API_URL}feed/?post_type=poster&source=landelijke-serie`,
+          href: `/rss-posters.xml`,
           title: 'Posters - Loesje',
         },
         {
