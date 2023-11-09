@@ -53,20 +53,14 @@ export default defineEventHandler(async (event) => {
       item.title.rendered,
     )
 
-    let featuredImageStr = ''
+    let description = ''
     if (featuredImage) {
-      featuredImageStr = `<img
-        src="${featuredImage.src}"
-        srcset="${featuredImage.srcSet}"
-        alt="${item.title.rendered}"
-        width="${featuredImage.width}"
-        height="${featuredImage.height}"
-      />`
+      description = `<img src="${featuredImage.src}" srcset="${featuredImage.srcSet}" alt="${item.title.rendered}" width="${featuredImage.width}" height="${featuredImage.height}" />`
     }
 
     feed.item({
       title: item.title.rendered,
-      description: featuredImageStr,
+      description: description,
       date: getPosterDate(item.acf.date) || item.date,
       url: link,
       guid: link,
