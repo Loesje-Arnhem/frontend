@@ -24,7 +24,7 @@
     immutable'''
 
 [[headers]]
-  for = "rss/*"
+  for = "/rss/*"
   [headers.values]
     'Content-Type' = 'text/plain'
 
