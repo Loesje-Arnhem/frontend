@@ -25,7 +25,7 @@ export default defineComponent({
   },
   setup() {
     const addTrailingZeroToValue = (value: number) => {
-      if (value < 9) {
+      if (value < 10) {
         return `0${value}`
       } else {
         return value.toString()
