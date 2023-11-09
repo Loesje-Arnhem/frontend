@@ -46,7 +46,7 @@ export default defineNuxtConfig({
       compilerOptions: {
         isolatedModules: true,
         esModuleInterop: true,
-        types: ['@types/body-scroll-lock', 'vite-plugin-pwa/client'],
+        types: ['@types/body-scroll-lock', 'vite-plugin-pwa/client', '@types/rss'],
       },
     },
     strict: true,
@@ -54,10 +54,15 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'netlify',
+
     // prerender: {
     //   interval: 3000,
     //   concurrency: 20,
     // },
+
+    prerender: {
+      routes: ['/rss.xml'],
+    }
   },
   hooks: {
     async 'nitro:config'(nitroConfig) {
@@ -74,7 +79,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/posters/posters/favorieten': { ssr: false },
+    '/posters/posters/favorieten': { ssr: false, },
   },
   telemetry: false,
 
