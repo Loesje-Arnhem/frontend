@@ -34,14 +34,14 @@ const config: NuxtConfig = {
         hid: 'rss:news',
         type: 'application/atom+xml',
         rel: 'alternate',
-        href: `${apiUrl}feed/`,
+        href: `/rss.xml`,
         title: 'Nieuws - Loesje',
       },
       {
         hid: 'rss:posters',
         type: 'application/atom+xml',
         rel: 'alternate',
-        href: `${apiUrl}feed/?post_type=poster&source=landelijke-serie`,
+        href: `/rss-posters.xml`,
         title: 'Posters - Loesje',
       },
       {
