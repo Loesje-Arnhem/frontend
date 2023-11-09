@@ -1,10 +1,8 @@
 <script lang="ts" setup>
 import type { MediaItemFragment } from '#gql'
 
-type DailyPoster = {
+type DailyPoster = MediaItemFragment & {
   date: string
-  title: string
-  image: MediaItemFragment
 }
 
 withDefaults(
@@ -30,6 +28,7 @@ const getDate = () => {
   const month = addTrailingZeroToValue(date.getMonth() + 1)
   const day = addTrailingZeroToValue(date.getDate())
   return `${date.getFullYear()}${month}${day}`
+
 }
 
 const poster = ref<DailyPoster | null>(null)
@@ -64,8 +63,7 @@ if (posterFromStorage) {
 <template>
   <featured-image
     v-if="poster"
-    :image="poster.image"
-    :alt="poster.title"
+    :image="poster"
     :sizes="sizes"
   />
 </template>
