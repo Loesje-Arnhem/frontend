@@ -2,12 +2,12 @@
   <img
     class="image"
     v-if="poster"
-    :alt="poster.title"
-    :srcset="poster.image.srcSet"
-    :src="poster.image.src"
+    :alt="poster.alt"
+    :srcset="poster.srcSet"
+    :src="poster.src"
     :sizes="sizes"
-    :width="poster.image.mediaDetails.width"
-    :height="poster.image.mediaDetails.height"
+    :width="poster.mediaDetails.width"
+    :height="poster.mediaDetails.height"
   />
 </template>
 
