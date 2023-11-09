@@ -24,6 +24,11 @@
     immutable'''
 
 [[headers]]
+  for = "rss/*"
+  [headers.values]
+    'Content-Type': 'text/plain'
+
+[[headers]]
   for = "/manifest.webmanifest"
   [headers.values]
     Content-Type = "application/manifest+json"
