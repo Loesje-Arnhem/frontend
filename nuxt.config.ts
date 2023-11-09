@@ -13,7 +13,11 @@ export default defineNuxtConfig({
   image: {
     densities: [1, 2, 3],
   },
-
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => ['search'].includes(tag),
+    },
+  },
   runtimeConfig: {
     newsletter: {
       api_key: '',
@@ -28,7 +32,7 @@ export default defineNuxtConfig({
     },
     public: {
       GQL_HOST: `${process.env.NUXT_PUBLIC_API_URL}graphql`,
-      apiUrl: ''
+      apiUrl: '',
     },
   },
   experimental: {
@@ -167,7 +171,7 @@ export default defineNuxtConfig({
       '~/components/Shared',
       // '~/components/Shop/Cart',
       // '~/components/Shop/Checkout',
-      // '~/components/Shop/Layout',
+      '~/components/Shop/Layout',
       '~/components/Shop/Products/ProductDetails',
       '~/components/Shop/Products/ProductList',
       '~/components/Shop/Products/RelatedProducts',
