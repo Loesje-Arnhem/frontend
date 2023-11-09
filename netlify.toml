@@ -26,7 +26,7 @@
 [[headers]]
   for = "/rss/*"
   [headers.values]
-    'Content-Type' = 'text/plain'
+    Content-Type = 'text/plain'
 
 [[headers]]
   for = "/manifest.webmanifest"
