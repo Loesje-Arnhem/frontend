@@ -1,4 +1,4 @@
-import { ResponseTerm } from '../types/ResponseTerm'
+import type { ResponseTerm } from '../types/ResponseTerm'
 import { Taxonomy } from '~/enums/taxonomy'
 
 export const getTagsByType = (

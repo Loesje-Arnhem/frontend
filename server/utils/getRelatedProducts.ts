@@ -1,5 +1,5 @@
-import { ResponsePage } from '~~/server/types/ResponsePage'
-import { ResponsePost } from '../types/ResponsePost'
+import type { ResponsePage } from '~~/server/types/ResponsePage'
+import type { ResponsePost } from '../types/ResponsePost'
 
 export default (page: ResponsePage | ResponsePost) => {
   const { related_products_products } = page.acf
