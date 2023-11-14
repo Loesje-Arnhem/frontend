@@ -13,6 +13,7 @@ const getPosterDate = (date: string) => {
 export default defineEventHandler(async (event) => {
   const { rssHead } = useAppConfig()
 
+
   const feed = new RSS({
     ...rssHead,
     title: 'Loesje Posters',
