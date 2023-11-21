@@ -1,6 +1,8 @@
 type ResponseImageSize = {
   width: number
   height: number
+  filesize: number
+  mime_type: string
   source_url: string
 }
 

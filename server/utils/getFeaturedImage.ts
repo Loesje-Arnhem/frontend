@@ -1,5 +1,5 @@
 import { type IFeaturedImage } from '~/types/Content'
-import { type ResponseImage } from '~~/server/types/Response'
+import { type ResponseImage } from '~~/server/types/ResponseImage'
 
 export default (
   featuredImage: ResponseImage[] | undefined,
