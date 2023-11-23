@@ -25,7 +25,19 @@ export const useCart = () => {
   const { result, error, loading, onError } =
     useQuery<GetCartQuery>(getCartQuery)
 
-  const cart = computed(() => result.value?.cart)
+  const cart = computed(() => {
+    const items =
+      result.value?.cart?.contents?.nodes.filter((item) => {
+        return item !== undefined
+      }) ?? []
+
+    return {
+      ...result.value?.cart,
+      contents: {
+        nodes: items,
+      },
+    }
+  })
 
   const totalProducts = computed(() => {
     if (!cart.value) {
@@ -57,7 +69,7 @@ export const useAddToCart = (productId: number) => {
   } = useMutation<AddToCartMutation>(addToCartMutation, () => ({
     variables: {
       productId,
-      quantity: quantity,
+      quantity: quantity.value,
     },
     update(cache, { data }) {
       if (data?.addToCart) {

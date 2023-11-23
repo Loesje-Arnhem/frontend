@@ -196,7 +196,7 @@ export default defineNuxtConfig({
       '~/components/Posts/Shared',
       '~/components/Posts',
       '~/components/Shared',
-      // '~/components/Shop/Cart',
+      '~/components/Shop/Cart',
       // '~/components/Shop/Checkout',
       '~/components/Shop/Layout',
       '~/components/Shop/Products/ProductDetails',
