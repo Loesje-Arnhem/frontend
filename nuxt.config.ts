@@ -50,7 +50,11 @@ export default defineNuxtConfig({
       compilerOptions: {
         isolatedModules: true,
         esModuleInterop: true,
-        types: ['@types/body-scroll-lock', 'vite-plugin-pwa/client', '@types/rss'],
+        types: [
+          '@types/body-scroll-lock',
+          'vite-plugin-pwa/client',
+          '@types/rss',
+        ],
       },
     },
     strict: true,
@@ -66,7 +70,7 @@ export default defineNuxtConfig({
 
     prerender: {
       routes: ['/rss.xml', '/rss-posters.xml'],
-    }
+    },
   },
   hooks: {
     async 'nitro:config'(nitroConfig) {
@@ -83,7 +87,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/posters/posters/favorieten': { ssr: false, },
+    '/posters/posters/favorieten': { ssr: false },
   },
   telemetry: false,
 
@@ -215,7 +219,7 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
     '@nuxt/image',
-    'nuxt-schema-org'
+    'nuxt-schema-org',
   ],
 
   postcss: {

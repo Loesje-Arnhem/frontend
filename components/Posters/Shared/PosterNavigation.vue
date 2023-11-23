@@ -29,11 +29,7 @@ const showOverview = computed(() => {
           :to="localePath({ name: 'posters' })"
           class="btn-search"
         >
-          <app-icon
-            icon="chevron-left"
-            :width="12"
-            :height="12"
-          />
+          <app-icon icon="chevron-left" :width="12" :height="12" />
           Overzicht
         </nuxt-link>
       </transition>
@@ -44,11 +40,7 @@ const showOverview = computed(() => {
           class="btn-favorites"
         >
           Jouw favorieten
-          <app-icon
-            icon="chevron-right"
-            :width="12"
-            :height="12"
-          />
+          <app-icon icon="chevron-right" :width="12" :height="12" />
         </nuxt-link>
       </transition>
     </nav>

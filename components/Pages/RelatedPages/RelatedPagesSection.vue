@@ -12,12 +12,7 @@ defineProps<{
     :class="$style['related-pages']"
     aria-labelledby="related-pages-title"
   >
-    <h2
-      id="related-pages-title"
-      class="sr-only"
-    >
-      Overige pagina's
-    </h2>
+    <h2 id="related-pages-title" class="sr-only">Overige pagina's</h2>
     <related-pages-list :pages="pages.edges" />
   </section>
 </template>

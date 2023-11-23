@@ -48,6 +48,6 @@ export default defineAppConfig({
     site_url: 'https://www.loesje.nl',
     language: 'nl-NL',
     generator: 'Loesje rss generator 3000',
-    image_url: 'https://preview.loesje.nl/icons/logo.svg'
-  }
+    image_url: 'https://preview.loesje.nl/icons/logo.svg',
+  },
 })

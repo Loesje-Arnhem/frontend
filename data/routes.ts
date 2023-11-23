@@ -15,7 +15,6 @@ const fetchPagesByType = async (type: string) => {
   let page = 1
   const baseUrl = process.env.NUXT_PUBLIC_API_URL as string
 
-
   while (hasNextPage) {
     const apiUrl = `${baseUrl}wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[
       page,
@@ -42,9 +41,5 @@ export default async () => {
   const posts = await fetchPagesByType('posts')
   const pages = await fetchPagesByType('pages')
   const posters = await fetchPagesByType('posters')
-  return [
-    ...posts,
-    ...pages,
-    ...posters
-  ]
+  return [...posts, ...pages, ...posters]
 }

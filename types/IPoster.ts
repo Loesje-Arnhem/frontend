@@ -1,7 +1,11 @@
 import { type IRelatedProducts } from './IProduct'
 import { type ITaxanomies } from './ITaxonomy'
 import { type IFeaturedImage } from './IMedia'
-import { type IBaseContent, type INodeWithUri, type IPageInfo } from '~/types/INode'
+import {
+  type IBaseContent,
+  type INodeWithUri,
+  type IPageInfo,
+} from '~/types/INode'
 
 export type IRelatedPoster = INodeWithUri & {
   featuredImage: IFeaturedImage | null

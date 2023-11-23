@@ -10,10 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <ul
-    v-if="products.length"
-    class="list"
-  >
+  <ul v-if="products.length" class="list">
     <product-tile
       v-for="product in products"
       :key="product.product?.id"

@@ -2,10 +2,7 @@
   <center-wrapper>
     <div :class="$style.wrapper">
       <aside :class="$style.sidebar">
-        <div
-          :class="$style['sidebar-item']"
-          class="tile"
-        >
+        <div :class="$style['sidebar-item']" class="tile">
           <slot name="sidebar" />
         </div>
       </aside>

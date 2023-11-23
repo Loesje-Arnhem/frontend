@@ -5,16 +5,14 @@ import {
 } from '#gql'
 
 export const useMeta = (
-
   content?:
     | PageDetailsFragment
     | PostDetailsFragment
     | PosterDetailsFragment
     | null,
 ) => {
-
   const { baseUrl } = useAppConfig()
-  const { fullPath } = useRoute();
+  const { fullPath } = useRoute()
 
   if (!content) {
     return

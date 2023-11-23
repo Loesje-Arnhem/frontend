@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-type TaxQuery ={
+type TaxQuery = {
   terms: string[]
   taxonomy: string
   operator: string
@@ -122,15 +122,9 @@ const loadMore = async () => {
 
 <template>
   <app-loader v-if="pending && !data" />
-  <section
-    v-else-if="data?.posters"
-    aria-labelledby="posters-overview-title"
-  >
+  <section v-else-if="data?.posters" aria-labelledby="posters-overview-title">
     <center-wrapper>
-      <h1
-        id="posters-overview-title"
-        class="sa-hidden"
-      >
+      <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
           {{ title }}
         </template>

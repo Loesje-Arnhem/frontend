@@ -1,10 +1,7 @@
 import { type IFeaturedImage } from '~/types/Content'
 import { type ResponseImage } from '~~/server/types/ResponseImage'
 
-export default (
-  featuredImage: ResponseImage[] | undefined,
-  title?: string,
-) => {
+export default (featuredImage: ResponseImage[] | undefined, title?: string) => {
   if (!featuredImage) {
     return undefined
   }
