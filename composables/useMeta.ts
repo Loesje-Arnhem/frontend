@@ -5,30 +5,23 @@ import {
 } from '#gql'
 
 export const useMeta = (
+
   content?:
     | PageDetailsFragment
     | PostDetailsFragment
     | PosterDetailsFragment
     | null,
 ) => {
+
+  const { baseUrl } = useAppConfig()
+  const { fullPath } = useRoute();
+
   if (!content) {
     return
   }
 
-  const schema = () => {
-    if (!content.seo?.schema?.raw) {
-      return null
-    }
-    const schemaWithBaseUrl = content.seo.schema.raw.replaceAll('shop.', 'www.')
-    const schemaWithBaseUrlAndImages = schemaWithBaseUrl.replaceAll(
-      'www.loesje.nl/wp-content',
-      'shop.loesje.nl/wp-content',
-    )
-    return JSON.parse(schemaWithBaseUrlAndImages)
-  }
-
   useServerSeoMeta({
-    ogUrl: () => content.seo?.opengraphUrl?.replaceAll('shop.', 'www.'),
+    ogUrl: () => `${baseUrl}${fullPath}`,
     ogTitle: () => content.seo?.title,
     description: () => content.seo?.metaDesc,
     ogDescription: () => content.seo?.metaDesc,
@@ -37,15 +30,5 @@ export const useMeta = (
     twitterTitle: () => content.seo?.title,
     twitterDescription: () => content.seo?.metaDesc,
     twitterImage: () => content.featuredImage?.node.src,
-  })
-
-  useHead({
-    title: content.seo?.title,
-    script: [
-      {
-        type: 'application/ld+json',
-        children: JSON.stringify(schema()),
-      },
-    ],
   })
 }

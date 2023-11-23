@@ -10,6 +10,10 @@ import {
 import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
+  site: {
+    url: baseUrl,
+    name: title,
+  },
   image: {
     densities: [1, 2, 3],
   },
@@ -211,6 +215,7 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
     '@nuxt/image',
+    'nuxt-schema-org'
   ],
 
   postcss: {
