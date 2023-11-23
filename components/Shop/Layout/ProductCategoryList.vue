@@ -8,24 +8,14 @@ const { data } = await useAsyncGql('GetProductCategories')
     aria-labelledby="categories-title"
     class="categories"
   >
-    <h2
-      id="categories-title"
-      class="sr-only"
-    >
-      Categorien
-    </h2>
-    <ul
-      class="category-list"
-    >
+    <h2 id="categories-title" class="sr-only">Categorien</h2>
+    <ul class="category-list">
       <li
         v-for="productCategory in data.productCategories.edges"
         :key="productCategory.node.id"
         class="list-item"
       >
-        <nuxt-link
-          :to="productCategory.node.uri"
-          class="link"
-        >
+        <nuxt-link :to="productCategory.node.uri" class="link">
           {{ productCategory.node.name }}
         </nuxt-link>
         <ul
@@ -37,10 +27,7 @@ const { data } = await useAsyncGql('GetProductCategories')
             :key="child.node.id"
             class="list-item"
           >
-            <nuxt-link
-              :to="child.node.uri"
-              class="link"
-            >
+            <nuxt-link :to="child.node.uri" class="link">
               {{ child.node.name }}
             </nuxt-link>
           </li>

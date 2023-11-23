@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="uri" class="link" @click="clear">
-    <span :class="$style.title" class="title" v-html="title" />
+    <span class="title" v-html="title" />
   </nuxt-link>
 </template>
 

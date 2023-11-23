@@ -18,10 +18,7 @@ useMeta(data.value?.page)
   <shop-wrapper>
     <div v-if="data.page">
       <h1>{{ data.page.title }}</h1>
-      <p
-        v-if="data.page.content"
-        v-html="data.page.content"
-      />
+      <p v-if="data.page.content" v-html="data.page.content" />
     </div>
     <product-list :featured="true" />
   </shop-wrapper>

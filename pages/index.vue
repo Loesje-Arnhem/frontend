@@ -11,7 +11,6 @@ const { data } = await useAsyncGql('GetPageHome', {
   id: pageIds.home.toString(),
 })
 
-
 useMeta(data.value?.page)
 </script>
 

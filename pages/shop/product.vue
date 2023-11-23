@@ -14,12 +14,8 @@ const { data } = await useAsyncGql('GetProduct', {
 // useMeta(data.value?.[r]y)
 </script>
 
-
 <template>
   <shop-wrapper>
-    <product-details
-      v-if="data.product"
-      :product="data.product"
-    />
+    <product-details v-if="data.product" :product="data.product" />
   </shop-wrapper>
 </template>

@@ -47,11 +47,15 @@ export default defineNuxtConfig({
   apollo: {
     clients: {
       default: {
-        httpLinkOptions: {
-          // from([createSessionLink()]),
+        inMemoryCacheOptions: {
+          typePolicies: {
+            GraphQlConfigurationOption: {
+              keyFields: ['id'],
+            },
+          },
         },
         httpEndpoint: `${process.env.NUXT_PUBLIC_API_URL}graphql`,
-      }
+      },
     },
   },
 

@@ -2,7 +2,7 @@ import {
   type PageDetailsFragment,
   type PostDetailsFragment,
   type PosterDetailsFragment,
-  type ProductCategoryFragment
+  type ProductCategoryFragment,
 } from '#gql'
 
 export const useMeta = (

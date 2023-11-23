@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { MediaItemFragment } from '#gql';
+import type { MediaItemFragment } from '#gql'
 
 const props = withDefaults(
   defineProps<{
