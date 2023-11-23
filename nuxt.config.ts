@@ -40,6 +40,16 @@ export default defineNuxtConfig({
     componentIslands: true,
     payloadExtraction: true,
   },
+  apollo: {
+    clients: {
+      default: {
+        httpLinkOptions: {
+          // from([createSessionLink()]),
+        },
+        httpEndpoint: `${process.env.NUXT_PUBLIC_API_URL}graphql`,
+      }
+    },
+  },
 
   typescript: {
     tsConfig: {
@@ -208,6 +218,7 @@ export default defineNuxtConfig({
     'nuxt-svgo',
     '@vite-pwa/nuxt',
     'nuxt-graphql-client',
+    '@nuxtjs/apollo',
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
     '@nuxt/image',

@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
+    "@nuxtjs/apollo": "^5.0.0-alpha.8",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/i18n": "^8.0.0-rc.3 ",
     "@nuxtjs/stylelint-module": "^5.1.0",
