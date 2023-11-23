@@ -1,4 +1,8 @@
-import { type IRelatedContent, type IDetailsContent, type IPageInfo } from '~/types/INode'
+import {
+  type IRelatedContent,
+  type IDetailsContent,
+  type IPageInfo,
+} from '~/types/INode'
 
 export type IRelatedPost = IRelatedContent & {
   date: string

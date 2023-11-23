@@ -14,8 +14,8 @@ const url = computed(() => {
   return localePath({
     name: 'shop-product',
     params: {
-      slug: props.product.slug as string
-    }
+      slug: props.product.slug as string,
+    },
   })
 })
 </script>
@@ -36,17 +36,9 @@ const url = computed(() => {
       />
     </div>
     <div :class="$style.title">
-      <router-link
-        :class="$style.link"
-        :to="url"
-      >
-        {{ product.title }}
-      </router-link>
+      <router-link :class="$style.link" :to="url" v-html="product.title" />
     </div>
-    <product-prices
-      :product="product"
-      :class="$style.price"
-    />
+    <product-prices :product="product" :class="$style.price" />
   </clickable-list-item>
 </template>
 

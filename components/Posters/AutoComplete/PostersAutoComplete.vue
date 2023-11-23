@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type  IAutocomplete } from '~/types/IAutocomplete'
+import { type IAutocomplete } from '~/types/IAutocomplete'
 
 const search = useSearch()
 const searchField = ref(search.value)

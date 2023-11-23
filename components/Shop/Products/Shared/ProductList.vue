@@ -1,26 +1,26 @@
 <script lang="ts" setup>
-const props = withDefaults(defineProps<{
-  categoryId?: number
-  featured?: boolean,
-  productIds?: number[]
-}>(), {
-  featured: false,
-  categoryId: 0,
-  productIds: () => []
-})
+const props = withDefaults(
+  defineProps<{
+    categoryId?: number
+    featured?: boolean
+    productIds?: number[]
+  }>(),
+  {
+    featured: false,
+    categoryId: 0,
+    productIds: () => [],
+  },
+)
 
 const { data } = await useAsyncGql('GetProducts', {
   categoryId: props.categoryId,
   featured: props.featured,
-  include: props.productIds
+  include: props.productIds,
 })
 </script>
 
 <template>
-  <ul
-    v-if="data?.products?.edges.length"
-    class="list"
-  >
+  <ul v-if="data.products?.edges.length" class="list">
     <product-tile
       v-for="product in data.products.edges"
       :key="product.node.id"

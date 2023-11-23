@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import { type PageRelatedProductsFragment, type PostRelatedProductsFragment } from '#gql'
+import {
+  type PageRelatedProductsFragment,
+  type PostRelatedProductsFragment,
+} from '#gql'
 
 const localePath = useLocalePath()
 

@@ -25,6 +25,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "nuxt": "^3.8.2",
+    "nuxt-schema-org": "^3.2.1",
     "nuxt-svgo": "^3.6.0",
     "postcss-html": "^1.5.0",
     "postcss-mixins": "^9.0.4",

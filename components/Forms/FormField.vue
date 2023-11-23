@@ -24,16 +24,10 @@ const errorMessage = computed(() => {
 
 <template>
   <div class="field">
-    <label
-      :for="id"
-      class="label"
-    >{{ title }}</label>
+    <label :for="id" class="label">{{ title }}</label>
     <slot />
     <form-error-message :error="errorMessage" />
-    <div
-      v-if="description"
-      class="description"
-    >
+    <div v-if="description" class="description">
       {{ description }}
     </div>
   </div>

@@ -7,4 +7,3 @@ export const useSelectedTags = () =>
 export const useDateBefore = () => useState<string>('dateBefore', () => '')
 export const useDateAfter = () => useState<string>('dateAfter', () => '')
 export const useSearch = () => useState<string>('search', () => '')
-

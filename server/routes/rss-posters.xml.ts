@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
       bazen, politici of ouders. Door haar posters op straat en online te
       verspreiden, geeft Loesje de wereld een zetje in de goede richting.`,
     custom_namespaces: {
-      media: "http://search.yahoo.com/mrss/",
+      media: 'http://search.yahoo.com/mrss/',
     },
   })
 
@@ -34,23 +34,24 @@ export default defineEventHandler(async (event) => {
     pageSize: 20,
   })
 
-  const data = await $fetch< {
-  id: number
-  date: string
-  title: {
-    rendered: string
-  }
-  slug: string
-  _embedded: {
-    'wp:featuredmedia'?: ResponseImage[]
-  }
-  acf: {
-    date: string
-  }
-}[]>(url)
+  const data = await $fetch<
+    {
+      id: number
+      date: string
+      title: {
+        rendered: string
+      }
+      slug: string
+      _embedded: {
+        'wp:featuredmedia'?: ResponseImage[]
+      }
+      acf: {
+        date: string
+      }
+    }[]
+  >(url)
 
-
-  data.forEach(item => {
+  data.forEach((item) => {
     const link = `https://www.loesje.nl/posters/${item.slug}`
     const images = item._embedded['wp:featuredmedia']
 
@@ -87,16 +88,16 @@ export default defineEventHandler(async (event) => {
               width: image.width,
               height: image.height,
               type: image.mime_type,
-              fileSize: image.filesize
-            }
-          }
+              fileSize: image.filesize,
+            },
+          },
         },
         {
-          'media:title': item.title.rendered
-        }
-      ]
+          'media:title': item.title.rendered,
+        },
+      ],
     })
-  });
+  })
 
   const feedString = feed.xml({ indent: true })
   event.res.setHeader('content-type', 'text/xml')

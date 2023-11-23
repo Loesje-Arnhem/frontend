@@ -19,10 +19,7 @@ const title = props.title || t('posters')
     aria-labelledby="related-posters-title"
   >
     <center-wrapper>
-      <h1
-        id="related-posters-title"
-        class="title"
-      >
+      <h1 id="related-posters-title" class="title">
         {{ title }}
       </h1>
     </center-wrapper>

@@ -1,14 +1,7 @@
 <template>
   <div>
-    <button @click="openVideo">
-      Open video
-    </button>
-    <video
-      ref="video"
-      :width="640"
-      :height="480"
-      autoplay
-    />
+    <button @click="openVideo">Open video</button>
+    <video ref="video" :width="640" :height="480" autoplay />
   </div>
 </template>
 
