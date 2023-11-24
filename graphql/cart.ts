@@ -156,8 +156,8 @@ export const getCartQuery = gql(`
     feeTotal
     discountTax
     discountTotal
-    }
   }
+}
 `)
 
 export const addToCartMutation = gql(`

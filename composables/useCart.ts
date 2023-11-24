@@ -1,7 +1,6 @@
-import type { AddToCartMutation, GetCartQuery } from '#gql'
-
 import type { ApolloCache } from '@apollo/client'
 import { getCartQuery, addToCartMutation } from '~/graphql/cart'
+import type { GetCartQuery } from '~/types/__generated__/graphql'
 
 export const updateCartCache = (
   cache: ApolloCache<typeof getCartQuery>,
@@ -15,9 +14,7 @@ export const updateCartCache = (
   if (cart) {
     cache.writeQuery({
       query: getCartQuery,
-      data: {
-        cart,
-      },
+      data,
     })
   }
 }
@@ -66,7 +63,7 @@ export const useAddToCart = (productId: number) => {
     loading,
     onError,
     onDone,
-  } = useMutation<AddToCartMutation>(addToCartMutation, () => ({
+  } = useMutation(addToCartMutation, () => ({
     variables: {
       productId,
       quantity: quantity.value,
