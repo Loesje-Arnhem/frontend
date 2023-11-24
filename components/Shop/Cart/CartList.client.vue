@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-const { cart } = useCart()
+const { cart, loading } = useCart()
 </script>
 
 <template>
-  <div v-if="cart?.contents.nodes.length">
+  <app-loader v-if="loading" />
+  <div v-else-if="cart.contents.nodes.length">
     <table class="list table-large">
       <thead>
         <tr>

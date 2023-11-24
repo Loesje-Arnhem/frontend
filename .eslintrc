@@ -2,6 +2,7 @@
   "root": true,
   "extends": ["@nuxt/eslint-config", "plugin:prettier/recommended", "prettier"],
   "plugins": ["prettier"],
+  "ignorePatterns": ["types/__generated/**/*"],
   "rules": {
     "vue/no-v-html": 0,
     "vue/no-v-text-v-html-on-component": 0,

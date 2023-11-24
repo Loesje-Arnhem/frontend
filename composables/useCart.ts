@@ -1,4 +1,5 @@
 import type { AddToCartMutation, GetCartQuery } from '#gql'
+
 import type { ApolloCache } from '@apollo/client'
 import { getCartQuery, addToCartMutation } from '~/graphql/cart'
 
@@ -22,8 +23,7 @@ export const updateCartCache = (
 }
 
 export const useCart = () => {
-  const { result, error, loading, onError } =
-    useQuery<GetCartQuery>(getCartQuery)
+  const { result, error, loading, onError } = useQuery(getCartQuery)
 
   const cart = computed(() => {
     const items =
