@@ -1,17 +1,9 @@
 <template>
-  <nav
-    class="quicklinks"
-    aria-labelledby="quicklinks-title"
-  >
-    <h2 id="quicklinks-title">
-      Handige links
-    </h2>
+  <nav class="quicklinks" aria-labelledby="quicklinks-title">
+    <h2 id="quicklinks-title">Handige links</h2>
     <ul class="list">
       <li>
-        <nuxt-link
-          to="/workshops/"
-          class="link"
-        >
+        <nuxt-link to="/workshops/" class="link">
           <app-icon
             icon="chevron-right"
             :width="12"
@@ -22,10 +14,7 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link
-          to="/doe-mee/lokale-groepen/"
-          class="link"
-        >
+        <nuxt-link to="/doe-mee/lokale-groepen/" class="link">
           <app-icon
             icon="chevron-right"
             :width="12"
@@ -36,10 +25,7 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link
-          to="/over-loesje/internationaal/"
-          class="link"
-        >
+        <nuxt-link to="/over-loesje/internationaal/" class="link">
           <app-icon
             icon="chevron-right"
             :width="12"
@@ -50,10 +36,7 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link
-          to="/doe-mee"
-          class="link"
-        >
+        <nuxt-link to="/doe-mee" class="link">
           <app-icon
             icon="chevron-right"
             :width="12"
@@ -64,10 +47,7 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link
-          to="/doe-mee/donateur/"
-          class="link"
-        >
+        <nuxt-link to="/doe-mee/donateur/" class="link">
           <app-icon
             icon="chevron-right"
             :width="12"

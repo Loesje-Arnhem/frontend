@@ -28,7 +28,6 @@ const getDate = () => {
   const month = addTrailingZeroToValue(date.getMonth() + 1)
   const day = addTrailingZeroToValue(date.getDate())
   return `${date.getFullYear()}${month}${day}`
-
 }
 
 const poster = ref<DailyPoster | null>(null)
@@ -61,9 +60,5 @@ if (posterFromStorage) {
 </script>
 
 <template>
-  <featured-image
-    v-if="poster"
-    :image="poster"
-    :sizes="sizes"
-  />
+  <featured-image v-if="poster" :image="poster" :sizes="sizes" />
 </template>

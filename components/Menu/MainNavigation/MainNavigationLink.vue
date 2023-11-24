@@ -1,19 +1,10 @@
 <template>
-  <nuxt-link
-    :to="uri"
-    :class="$style.link"
-    @click="clear"
-  >
-    <span
-      :class="$style.title"
-      class="title"
-      v-html="title"
-    />
+  <nuxt-link :to="uri" class="link" @click="clear">
+    <span class="title" v-html="title" />
   </nuxt-link>
 </template>
 
 <script lang="ts">
-
 export default defineComponent({
   props: {
     uri: {
@@ -35,7 +26,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .link {
   @mixin hover-with-title;
 }

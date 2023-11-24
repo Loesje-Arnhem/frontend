@@ -8,6 +8,6 @@
         <product-category-list />
       </template>
       <slot />
-    </page-with-sidebar> 
+    </page-with-sidebar>
   </div>
 </template>

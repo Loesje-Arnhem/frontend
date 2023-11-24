@@ -6,14 +6,8 @@ defineProps<{
 </script>
 
 <template>
-  <div
-    v-if="show"
-    class="alert"
-  >
-    <div
-      class="wrapper"
-      role="alert"
-    >
+  <div v-if="show" class="alert">
+    <div class="wrapper" role="alert">
       {{ text }}
       <slot />
     </div>

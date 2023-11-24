@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { MediaItemFragment } from '#gql';
+import type { MediaItemFragment } from '#gql'
 
 const props = withDefaults(
   defineProps<{
@@ -34,7 +34,7 @@ const altText = computed(() => {
     :sizes="sizes"
     :width="image.mediaDetails?.width || undefined"
     :height="image.mediaDetails?.height || undefined"
-  >
+  />
 </template>
 
 <style lang="postcss" scoped>

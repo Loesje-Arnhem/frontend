@@ -11,22 +11,18 @@ const { data } = await useAsyncGql('GetPageHome', {
   id: pageIds.home.toString(),
 })
 
-
 useMeta(data.value?.page)
 </script>
 
 <template>
   <div>
-    <h1
-      v-if="data?.page"
-      class="sr-only"
-    >
+    <h1 v-if="data?.page" class="sr-only">
       {{ data.page?.title }}
     </h1>
 
     <form-donate />
 
-    <latest-posts-section :posts="data?.posts" /> 
+    <latest-posts-section :posts="data?.posts" />
     <related-posters-section
       v-if="data?.page"
       :posters="data.page.relatedPosters"

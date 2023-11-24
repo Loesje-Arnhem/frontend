@@ -44,13 +44,31 @@ export default defineNuxtConfig({
     componentIslands: true,
     payloadExtraction: true,
   },
+  apollo: {
+    clients: {
+      default: {
+        inMemoryCacheOptions: {
+          typePolicies: {
+            GraphQlConfigurationOption: {
+              keyFields: ['id'],
+            },
+          },
+        },
+        httpEndpoint: `${process.env.NUXT_PUBLIC_API_URL}graphql`,
+      },
+    },
+  },
 
   typescript: {
     tsConfig: {
       compilerOptions: {
         isolatedModules: true,
         esModuleInterop: true,
-        types: ['@types/body-scroll-lock', 'vite-plugin-pwa/client', '@types/rss'],
+        types: [
+          '@types/body-scroll-lock',
+          'vite-plugin-pwa/client',
+          '@types/rss',
+        ],
       },
     },
     strict: true,
@@ -66,7 +84,7 @@ export default defineNuxtConfig({
 
     prerender: {
       routes: ['/rss.xml', '/rss-posters.xml'],
-    }
+    },
   },
   hooks: {
     async 'nitro:config'(nitroConfig) {
@@ -83,7 +101,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/posters/posters/favorieten': { ssr: false, },
+    '/posters/posters/favorieten': { ssr: false },
   },
   telemetry: false,
 
@@ -178,7 +196,7 @@ export default defineNuxtConfig({
       '~/components/Posts/Shared',
       '~/components/Posts',
       '~/components/Shared',
-      // '~/components/Shop/Cart',
+      '~/components/Shop/Cart',
       // '~/components/Shop/Checkout',
       '~/components/Shop/Layout',
       '~/components/Shop/Products/ProductDetails',
@@ -212,10 +230,11 @@ export default defineNuxtConfig({
     'nuxt-svgo',
     '@vite-pwa/nuxt',
     'nuxt-graphql-client',
+    '@nuxtjs/apollo',
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
     '@nuxt/image',
-    'nuxt-schema-org'
+    'nuxt-schema-org',
   ],
 
   postcss: {

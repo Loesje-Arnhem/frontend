@@ -7,10 +7,7 @@ const updateTheme = () => {
 </script>
 
 <template>
-  <section
-    class="app-stores"
-    aria-labelledby="app-stores-title"
-  >
+  <section class="app-stores" aria-labelledby="app-stores-title">
     <center-wrapper size="lg">
       <div class="wrapper">
         <div class="image-wrapper">
@@ -21,10 +18,7 @@ const updateTheme = () => {
             :height="560"
           />
 
-          <button
-            class="btn-theme"
-            @click="updateTheme"
-          >
+          <button class="btn-theme" @click="updateTheme">
             <app-image
               src="/images/arcarde-button.png"
               :width="36"
@@ -34,9 +28,7 @@ const updateTheme = () => {
           </button>
         </div>
         <div class="text">
-          <h1 id="app-stores-title">
-            Loesje als App
-          </h1>
+          <h1 id="app-stores-title">Loesje als App</h1>
           <p>
             De posters van Loesje ken je vooral van op prullenbakken in de stad
             of een elektriciteitskastje bij je om de hoek, maar Loesje wil de
@@ -49,10 +41,7 @@ const updateTheme = () => {
           </p>
           <div class="buttons">
             <client-only>
-              <app-button
-                v-if="$pwa.showInstallPrompt"
-                @click="$pwa.install()"
-              >
+              <app-button v-if="$pwa.showInstallPrompt" @click="$pwa.install()">
                 Installeer de app
               </app-button>
             </client-only>

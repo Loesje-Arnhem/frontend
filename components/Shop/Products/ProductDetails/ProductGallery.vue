@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import type { MediaItemFragment } from '#gql';
+import type { MediaItemFragment } from '#gql'
 
 defineProps<{
   images: MediaItemFragment[]
 }>()
-
 </script>
 
 <template>
@@ -40,7 +39,6 @@ defineProps<{
     <!-- </div> -->
   </div>
 </template>
-
 
 <style lang="postcss" scoped>
 .main-image {

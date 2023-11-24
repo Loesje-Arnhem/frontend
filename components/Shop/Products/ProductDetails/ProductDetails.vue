@@ -11,7 +11,7 @@ const gallery = computed(() => {
     images.push(props.product.featuredImage.node)
   }
   if (props.product.galleryImages?.edges.length) {
-    const galleryImages = props.product.galleryImages.edges.map(image => {
+    const galleryImages = props.product.galleryImages.edges.map((image) => {
       return image.node
     })
     return [...images, ...galleryImages]
@@ -32,16 +32,11 @@ const gallery = computed(() => {
         </div>
       </div>
       <h2>Beschrijving</h2>
-      <div
-        class="description"
-        v-html="product.description"
-      />
+      <div class="description" v-html="product.description" />
     </div>
     <!-- <product-list-section :products="product.related" /> -->
   </div>
 </template>
-
-
 
 <style lang="postcss" scoped>
 .product-wrapper {

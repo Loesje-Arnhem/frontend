@@ -15,5 +15,7 @@ useMeta(data.value?.page)
 </script>
 
 <template>
-  <div />
+  <div>
+    <cart-list />
+  </div>
 </template>

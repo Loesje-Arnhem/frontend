@@ -18,7 +18,7 @@ const { data } = await usePageById(pageIds.workshops)
     />
     <form-workshop />
     <related-posters-section :posters="data.page.relatedPosters" />
-    
+
     <related-products-section
       v-if="data?.page?.relatedProducts"
       :products="data.page.relatedProducts"

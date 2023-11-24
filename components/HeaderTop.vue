@@ -7,7 +7,11 @@ const localePath = useLocalePath()
     <div class="wrapper">
       <div class="text">
         <h1>Steun Loesje!</h1>
-        <p>Loesje wil met haar positieve, kritische posters de wereld een zetje in de goede richting geven. Wil jij haar daarbij helpen? Een donatie als steun in de rug is altijd welkom!</p>
+        <p>
+          Loesje wil met haar positieve, kritische posters de wereld een zetje
+          in de goede richting geven. Wil jij haar daarbij helpen? Een donatie
+          als steun in de rug is altijd welkom!
+        </p>
         <app-button
           href="https://whydonate.com/nl/fundraising/het-lijkt-simpel"
           rel="noopener"

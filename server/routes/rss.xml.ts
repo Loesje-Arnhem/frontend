@@ -2,7 +2,6 @@ import RSS from 'rss'
 import type { ResponsePosts } from '../types/ResponsePosts'
 
 export default defineEventHandler(async (event) => {
-
   const { rssHead } = useAppConfig()
 
   const feed = new RSS({
@@ -20,12 +19,12 @@ export default defineEventHandler(async (event) => {
     type: 'posts',
     fields: ['title', 'slug', 'date', 'excerpt'],
     pageSize: 20,
-    image: true
+    image: true,
   })
 
   const data = await $fetch<ResponsePosts[]>(url)
 
-  data.forEach(item => {
+  data.forEach((item) => {
     const link = `https://www.loesje.nl/over-loesje/nieuws/${item.slug}`
     feed.item({
       title: item.title.rendered,
@@ -35,7 +34,7 @@ export default defineEventHandler(async (event) => {
       guid: link,
       author: 'Loesje',
     })
-  });
+  })
 
   const feedString = feed.xml({ indent: true })
   event.res.setHeader('content-type', 'text/xml')

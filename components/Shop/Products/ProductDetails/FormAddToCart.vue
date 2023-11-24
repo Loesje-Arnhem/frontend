@@ -1,53 +1,25 @@
-
 <script lang="ts" setup>
-// import { useAddToCart } from '~/composables/cart'
+import type { ProductDetailsFragment } from '#gql'
 
 const props = defineProps<{
   product: ProductDetailsFragment
 }>()
 
+const localePath = useLocalePath()
 
-// export default {
-//   props: {
-//     product: {
-//       type: Object,
-//       required: true,
-//     },
-//   },
-//   setup(props) {
-//     const router = useRouter()
-//     const selectedAttribute = ref(null)
-//     const { localePath } = useContext()
-//     const { addToCart, loading, errors, quantity, onDone } = useAddToCart(
-//       props.product.databaseId,
-//     )
+const { addToCart, loading, quantity, errors, onDone } = useAddToCart(
+  props.product.databaseId,
+)
 
-//     onDone(() => {
-//       navigateTo(localePath({ name: 'shop-cart' }))
-//     })
-
-//     return {
-//       selectedAttribute,
-//       errors,
-//       loading,
-//       quantity,
-//       addToCart,
-//     }
-//   },
-// }
+onDone(() => {
+  navigateTo(localePath({ name: 'shop-cart' }))
+})
 </script>
 
 <template>
   <div class="wrapper">
-    <product-prices
-      :product="product"
-      class="price"
-    />
-    <!-- 
-    <form
-      class="form"
-      @submit.prevent="addToCart"
-    >
+    <product-prices :product="product" class="price" />
+    <form class="form" @submit.prevent="addToCart">
       <form-fieldset title="In winkelmandje">
         <form-input-text
           id="quantity"
@@ -58,7 +30,7 @@ const props = defineProps<{
           name="quantity"
         />
 
-        <div
+        <!-- <div
           v-if="
             product.globalAttributes && product.globalAttributes.nodes.length
           "
@@ -68,7 +40,7 @@ const props = defineProps<{
             :key="attribute.id"
           >
             <form-select
-              v-if="attribute.terms.nodes.length"
+              v-if="attribute.terms?.nodes.length"
               :id="attribute.slug"
               v-model="selectedAttribute"
               :name="attribute.slug"
@@ -80,24 +52,15 @@ const props = defineProps<{
               "
             />
           </div>
-        </div>
+        </div> -->
       </form-fieldset>
-      <app-button
-        :disabled="loading"
-        type="submit"
-        class="btn-add-to-cart"
-      >
+      <app-button type="submit" class="btn-add-to-cart" :loading="loading">
         In winkelmandje
       </app-button>
-      <div
-        v-if="errors.length"
-        v-html="errors.join(', ')"
-      />
+      <div v-if="errors.length" v-html="errors.join(', ')" />
     </form>
-  </div> -->
   </div>
 </template>
-
 
 <style lang="postcss" scoped>
 .form {

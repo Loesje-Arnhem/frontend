@@ -2,11 +2,10 @@ import {
   type PageDetailsFragment,
   type PostDetailsFragment,
   type PosterDetailsFragment,
-  type ProductCategoryFragment
+  type ProductCategoryFragment,
 } from '#gql'
 
 export const useMeta = (
-
   content?:
     | PageDetailsFragment
     | PostDetailsFragment
@@ -14,9 +13,8 @@ export const useMeta = (
     | ProductCategoryFragment
     | null,
 ) => {
-
   const { baseUrl } = useAppConfig()
-  const { fullPath } = useRoute();
+  const { fullPath } = useRoute()
 
   if (!content) {
     return

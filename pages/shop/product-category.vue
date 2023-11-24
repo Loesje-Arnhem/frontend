@@ -8,7 +8,8 @@ defineI18nRoute({
 const route = useRoute()
 
 const { data } = await useAsyncGql('GetProductCategory', {
-  slug: route.params.subcategory as string || route.params.category as string,
+  slug:
+    (route.params.subcategory as string) || (route.params.category as string),
 })
 
 useMeta(data.value?.productCategory)
@@ -23,7 +24,7 @@ useMeta(data.value?.productCategory)
         v-html="data.productCategory.content"
       />
     </div>
-   
+
     <product-list :category-id="data.productCategory?.databaseId" />
   </shop-wrapper>
 </template>

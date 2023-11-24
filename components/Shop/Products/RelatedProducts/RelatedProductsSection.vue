@@ -1,14 +1,20 @@
 <script lang="ts" setup>
-import { type PageRelatedProductsFragment, type PostRelatedProductsFragment } from '#gql'
+import {
+  type PageRelatedProductsFragment,
+  type PostRelatedProductsFragment,
+} from '#gql'
 
 const localePath = useLocalePath()
 
 const props = defineProps<{
-  products: PageRelatedProductsFragment | PostRelatedProductsFragment,
+  products: PageRelatedProductsFragment | PostRelatedProductsFragment
 }>()
 
 const productIds = computed(() => {
-  const products = props.products.products?.filter((product) => product?.product?.databaseId) || []
+  const products =
+    props.products.products?.filter(
+      (product) => product?.product?.databaseId,
+    ) || []
   return products.map((product) => product?.product?.databaseId)
 })
 </script>
