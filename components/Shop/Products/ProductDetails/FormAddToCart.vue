@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ProductDetailsFragment } from '#gql'
+import type { ProductDetailsFragment } from '~/types/__generated__/graphql'
 
 const props = defineProps<{
   product: ProductDetailsFragment

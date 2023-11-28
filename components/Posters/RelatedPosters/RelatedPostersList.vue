@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type PosterNodeFragment } from '#gql'
+import { type PosterNodeFragment } from '~/types/__generated__/graphql'
 
 defineProps<{
   posters: PosterNodeFragment[]

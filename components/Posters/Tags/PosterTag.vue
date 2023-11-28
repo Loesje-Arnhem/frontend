@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import { type SourceFragment, type SubjectFragment } from '#gql'
+import {
+  type SourceFragment,
+  type SubjectFragment,
+} from '~/types/__generated__/graphql'
 
 const props = defineProps<{
   tag: SubjectFragment | SourceFragment

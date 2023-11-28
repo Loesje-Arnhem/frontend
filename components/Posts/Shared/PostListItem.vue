@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type PostListItemFragment } from '#gql'
+import { type PostListItemFragment } from '~/types/__generated__/graphql'
 
 const localePath = useLocalePath()
 

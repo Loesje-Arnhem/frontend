@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// import PageByByUri from '~/graphql/Pages/PageByUri.gql'
-// import { Endpoints } from '~~/enums/endpoints';
+import { GetPageByUri } from '~/graphql2/pages'
 
 defineI18nRoute({
   paths: {
@@ -11,64 +10,44 @@ defineI18nRoute({
 const route = useRoute()
 
 const uri = computed(() => {
-  const slugs = route.params.slug.filter((slug) => slug !== '')
-  return slugs.at(-1)
+  if (Array.isArray(route.params.slug)) {
+    const slugs = route.params.slug.filter((slug) => slug !== '')
+    return slugs.at(-1) ?? ''
+  } else {
+    return route.params.slug
+  }
 })
 
-// const { data, pending } = await useAsyncData(
-//   'page',
-//   () => GqlGetPageByByUri({ uri: uri.value, }))
-// )
-
-const { data, error } = await useAsyncGql('GetPageByUri', {
+const { result, error } = await useQuery(GetPageByUri, {
   uri: uri.value,
 })
 
-// onError((error) => {
-//   throw createError({
-//     statusCode: 404,
-//     message: error.message,
-//     fatal: true,
-//   })
-// })
-
-// onResult((response) => {
-//   console.log(!response.data)
-//   if (!response.data) {
-//     throw createError({
-//       statusCode: 404,
-//       fatal: true,
-//     })
-//   }
-//   useMeta(response.data)
-// })
-
-if (data.value?.page === null || error.value) {
+if (result.value?.page === null || error.value) {
   throw createError({
     statusCode: 404,
     fatal: true,
   })
 }
 
-useMeta(data.value?.page)
+useMeta(result.value?.page)
 </script>
 
 <template>
-  <div v-if="data?.page">
+  <div v-if="result?.page">
     <app-content
-      :title="data.page.title"
-      :content="data.page.content"
-      :video="data.page?.videoGroup?.youtubeId"
+      :title="result.page.title"
+      :content="result.page.content"
+      :video="result.page?.videoGroup?.youtubeId"
     />
     <related-posters-section
-      :posters="data.page.relatedPosters"
-      :title="data.page.relatedPostersGroup?.title"
+      :posters="result.page.relatedPosters"
+      :title="result.page.relatedPostersGroup?.title"
     />
-    <related-pages-section :pages="data.page.relatedPages" />
+    <related-pages-section :pages="result.page.relatedPages" />
 
     <related-products-section
-      v-if="data?.page?.relatedProducts"
-      :products="data.page.relatedProducts"
+      v-if="result?.page?.relatedProducts"
+      :products="result.page.relatedProducts"
     />
   </div>
 </template>
