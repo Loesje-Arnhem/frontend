@@ -24,7 +24,7 @@
     "@types/rss": "^0.0.32",
     "@types/throttle-debounce": "^5.0.2",
     "@types/workbox-window": "^4.3.4",
-    "@vite-pwa/nuxt": "^0.2.3",
+    "@vite-pwa/nuxt": "^0.3.2",
     "@vue/apollo-composable": "~4.0.0-beta.11",
     "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",

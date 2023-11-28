@@ -5,4 +5,4 @@ node_modules
 images.js
 backup
 public
-types/__generated/**/*"
+types/__generated__
