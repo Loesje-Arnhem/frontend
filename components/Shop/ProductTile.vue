@@ -36,7 +36,9 @@ const url = computed(() => {
       />
     </div>
     <div :class="$style.title">
-      <router-link :class="$style.link" :to="url" v-html="product.title" />
+      <router-link :class="$style.link" :to="url">
+        <span v-html="product.title" />
+      </router-link>
     </div>
     <product-prices :product="product" :class="$style.price" />
   </clickable-list-item>

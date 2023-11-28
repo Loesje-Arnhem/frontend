@@ -12,7 +12,7 @@ const removeItemsFromCart = () => {}
 const updateItemQuantities = () => {}
 
 const quantity = ref(1)
-const loading = ref(false)
+// const loading = ref(false)
 
 // export default defineComponent({
 //   components: { ProductPrices },
