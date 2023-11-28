@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { GetProduct } from '~/graphql2/products'
+
 defineI18nRoute({
   paths: {
     nl: '/winkeltje/[slug]',
@@ -7,7 +9,7 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data } = await useAsyncGql('GetProduct', {
+const { data } = await useAsyncQuery(GetProduct, {
   slug: route.params.slug as string,
 })
 

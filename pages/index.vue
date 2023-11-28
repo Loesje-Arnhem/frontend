@@ -9,31 +9,31 @@ defineI18nRoute({
 
 const { pageIds } = useAppConfig()
 
-const { result } = useQuery(GetPageHome, {
+const { data } = useAsyncQuery(GetPageHome, {
   id: pageIds.home.toString(),
 })
 
-useMeta(result.value?.page)
+useMeta(data.value?.page)
 </script>
 
 <template>
   <div>
-    <h1 v-if="result?.page" class="sr-only">
-      {{ result.page?.title }}
+    <h1 v-if="data.page" class="sr-only">
+      {{ data.page?.title }}
     </h1>
 
     <form-donate />
 
-    <latest-posts-section :posts="result?.posts" />
+    <latest-posts-section :posts="data.posts" />
     <related-posters-section
-      v-if="result?.page"
-      :posters="result.page.relatedPosters"
-      :title="result.page.relatedPostersGroup?.title"
+      v-if="data.page"
+      :posters="data.page.relatedPosters"
+      :title="data.page.relatedPostersGroup?.title"
     />
     <app-stores-section />
     <related-products-section
-      v-if="result?.page?.relatedProducts"
-      :products="result.page.relatedProducts"
+      v-if="data.page?.relatedProducts"
+      :products="data.page.relatedProducts"
     />
   </div>
 </template>

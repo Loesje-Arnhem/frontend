@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const { data } = await useAsyncGql('GetProductCategories')
+import { GetProductCategories } from '~/graphql2/productCategories'
+
+const { data } = await useAsyncQuery(GetProductCategories)
 </script>
 
 <template>

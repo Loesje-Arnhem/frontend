@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { GetProductCategory } from '~/graphql2/productCategories'
+
 defineI18nRoute({
   paths: {
     nl: '/winkeltje/categorie/[category]/[[subcategory]]',
@@ -7,7 +9,7 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data } = await useAsyncGql('GetProductCategory', {
+const { data } = await useAsyncQuery(GetProductCategory, {
   slug:
     (route.params.subcategory as string) || (route.params.category as string),
 })

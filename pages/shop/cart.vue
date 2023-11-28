@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { GetPageByID } from '~/graphql2/pages'
+
 defineI18nRoute({
   paths: {
     nl: '/winkeltje/winkelwagen',
@@ -8,7 +10,7 @@ defineI18nRoute({
 const { pageIds } = useAppConfig()
 const localePath = useLocalePath()
 
-const { data } = await useAsyncGql('GetPageByID', {
+const { data } = await useAsyncQuery(GetPageByID, {
   id: pageIds.cart.toString(),
 })
 

@@ -18,36 +18,29 @@ const uri = computed(() => {
   }
 })
 
-const { result, error } = await useQuery(GetPageByUri, {
+const { data } = await useAsyncQuery(GetPageByUri, {
   uri: uri.value,
 })
 
-if (result.value?.page === null || error.value) {
-  throw createError({
-    statusCode: 404,
-    fatal: true,
-  })
-}
-
-useMeta(result.value?.page)
+useMeta(data.value.page)
 </script>
 
 <template>
-  <div v-if="result?.page">
+  <div v-if="data.page">
     <app-content
-      :title="result.page.title"
-      :content="result.page.content"
-      :video="result.page?.videoGroup?.youtubeId"
+      :title="data.page.title"
+      :content="data.page.content"
+      :video="data.page.videoGroup?.youtubeId"
     />
     <related-posters-section
-      :posters="result.page.relatedPosters"
-      :title="result.page.relatedPostersGroup?.title"
+      :posters="data.page.relatedPosters"
+      :title="data.page.relatedPostersGroup?.title"
     />
-    <related-pages-section :pages="result.page.relatedPages" />
+    <related-pages-section :pages="data.page.relatedPages" />
 
     <related-products-section
-      v-if="result?.page?.relatedProducts"
-      :products="result.page.relatedProducts"
+      v-if="data.page?.relatedProducts"
+      :products="data.page.relatedProducts"
     />
   </div>
 </template>

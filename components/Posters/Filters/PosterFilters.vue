@@ -1,24 +1,26 @@
 <script lang="ts" setup>
+import { GetTaxonomies } from '~/graphql2/taxonomy'
+
 const { selectedSourceIds, selectedSubjectIds } = useTags()
 const activeOverlays = reactive({
   sources: false,
   subjects: false,
 })
 
-const { data } = await useAsyncGql('GetTaxonomies')
+const { result } = await useQuery(GetTaxonomies)
 
 const subjects = computed(() => {
-  if (!data.value?.subjects) {
+  if (!result.value?.subjects) {
     return []
   }
-  return data.value.subjects.edges.map((subject) => subject.node)
+  return result.value.subjects.edges.map((subject) => subject.node)
 })
 
 const sources = computed(() => {
-  if (!data.value?.sources) {
+  if (!result.value?.sources) {
     return []
   }
-  return data.value.sources.edges.map((subject) => subject.node)
+  return result.value.sources.edges.map((subject) => subject.node)
 })
 
 const dateBefore = useDateBefore()

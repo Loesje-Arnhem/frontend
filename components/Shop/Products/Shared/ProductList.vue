@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { GetProducts } from '~/graphql2/products'
+
 const props = withDefaults(
   defineProps<{
     categoryId?: number
@@ -12,7 +14,7 @@ const props = withDefaults(
   },
 )
 
-const { data } = await useAsyncGql('GetProducts', {
+const { data } = await useAsyncQuery(GetProducts, {
   categoryId: props.categoryId,
   featured: props.featured,
   include: props.productIds,
