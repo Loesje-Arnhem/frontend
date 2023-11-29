@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { GetPosts } from '~/graphql2/posts'
+
 const props = withDefaults(
   defineProps<{
     exclude?: number
@@ -8,38 +10,39 @@ const props = withDefaults(
   },
 )
 
-const { data, pending } = await useAsyncGql('GetPosts', {
+const { result, loading, fetchMore } = useQuery(GetPosts, {
   notIn: props.exclude.toString(),
 })
 
 const loadMore = async () => {
-  if (!data.value?.posts?.edges.length) {
-    return
-  }
-
-  pending.value = true
-  const result = await GqlGetPosts({
-    notIn: props.exclude.toString(),
-    after: data.value.posts.pageInfo.endCursor,
-  })
-
-  if (!result.posts?.edges.length) {
-    return
-  }
-
-  data.value = {
-    posts: {
-      pageInfo: result.posts.pageInfo,
-      edges: [...data.value.posts.edges, ...result.posts.edges],
+  fetchMore({
+    variables: {
+      after: result.value?.posts?.pageInfo.endCursor,
     },
-  }
-  pending.value = false
+
+    updateQuery: (previousResult, { fetchMoreResult }) => {
+      // No new feed posts
+      if (!fetchMoreResult?.posts) return previousResult
+      if (!previousResult?.posts) return previousResult
+
+      // Concat previous feed with new feed posts
+      return {
+        ...previousResult,
+        posts: {
+          edges: [
+            ...previousResult.posts.edges,
+            ...fetchMoreResult.posts.edges
+          ]
+        }
+      }
+    })
+
 }
 </script>
 
 <template>
   <section
-    v-if="data?.posts"
+    v-if="result?.posts"
     class="posts-overview"
     aria-labelledby="posts-overview-title"
   >
@@ -52,11 +55,11 @@ const loadMore = async () => {
           {{ $t('posts') }}
         </template>
       </h1>
-      <posts-overview-list :posts="data.posts" />
+      <posts-overview-list :posts="result.posts" />
       <center-wrapper>
         <load-more-by-click
-          v-if="data.posts.pageInfo.hasNextPage"
-          :loading="pending"
+          v-if="result.posts.pageInfo.hasNextPage"
+          :loading="loading"
           @load-more="loadMore"
         />
       </center-wrapper>
