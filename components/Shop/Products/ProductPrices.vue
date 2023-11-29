@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type ProductFragment } from '~/types/__generated__/graphql'
+import { type ProductFragment } from '~/graphql/__generated__/graphql'
 
 defineProps<{
   product: ProductFragment

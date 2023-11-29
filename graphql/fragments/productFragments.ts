@@ -1,4 +1,4 @@
-import { gql } from '~/types/__generated__'
+import { gql } from '~/graphql/__generated__'
 
 export const RelatedProduct = gql(`fragment RelatedProduct on Product {
   databaseId

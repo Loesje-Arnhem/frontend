@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GetPoster } from '~/graphql2/posters'
+import { GetPoster } from '~/graphql/posters'
 
 defineI18nRoute({
   paths: {

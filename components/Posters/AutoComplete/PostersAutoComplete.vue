@@ -1,12 +1,13 @@
 <script lang="ts" setup>
-import { SearchPoster } from '~/graphql2/posters'
+import { SearchPoster } from '~/graphql/posters'
 
-const searchField = ref('')
 const search = useSearch()
-const route = useRoute()
-const localePath = useLocalePath()
+const searchField = ref(search.value)
 
 const enabled = computed(() => searchField.value.length > 2)
+
+const route = useRoute()
+const localePath = useLocalePath()
 
 const { result } = useQuery(
   SearchPoster,
@@ -42,6 +43,7 @@ onMounted(() => {
   const { q } = route.query
   if (q) {
     searchField.value = q.toString()
+    search.value = q.toString()
   }
 })
 

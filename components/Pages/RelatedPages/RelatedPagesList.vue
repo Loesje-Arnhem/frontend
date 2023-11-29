@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type RelatedPageNodeFragment } from '~/types/__generated__/graphql'
+import { type RelatedPageNodeFragment } from '~/graphql/__generated__/graphql'
 
 defineProps<{
   pages: RelatedPageNodeFragment[]

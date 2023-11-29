@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GetPost } from '~/graphql2/posts'
+import { GetPost } from '~/graphql/posts'
 
 defineI18nRoute({
   paths: {

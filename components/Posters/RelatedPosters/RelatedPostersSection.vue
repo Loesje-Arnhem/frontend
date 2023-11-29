@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type RelatedPostersFragment } from '~/types/__generated__/graphql'
+import { type RelatedPostersFragment } from '~/graphql/__generated__/graphql'
 
 const localePath = useLocalePath()
 const { t } = useI18n()

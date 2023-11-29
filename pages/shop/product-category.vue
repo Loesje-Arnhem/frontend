@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GetProductCategory } from '~/graphql2/productCategories'
+import { GetProductCategory } from '~/graphql/productCategories'
 
 defineI18nRoute({
   paths: {

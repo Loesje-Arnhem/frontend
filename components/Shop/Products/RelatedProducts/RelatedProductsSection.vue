@@ -2,7 +2,7 @@
 import {
   type PageRelatedProductsFragment,
   type PostRelatedProductsFragment,
-} from '~/types/__generated__/graphql'
+} from '~/graphql/__generated__/graphql'
 
 const localePath = useLocalePath()
 

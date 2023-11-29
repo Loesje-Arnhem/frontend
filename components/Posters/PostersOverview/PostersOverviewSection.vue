@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GetPosters } from '~/graphql2/posters'
+import { GetPosters } from '~/graphql/posters'
 
 type TaxQuery = {
   terms: string[]

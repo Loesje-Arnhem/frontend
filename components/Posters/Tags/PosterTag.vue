@@ -2,7 +2,7 @@
 import {
   type SourceFragment,
   type SubjectFragment,
-} from '~/types/__generated__/graphql'
+} from '~/graphql/__generated__/graphql'
 
 const props = defineProps<{
   tag: SubjectFragment | SourceFragment

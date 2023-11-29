@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GetProducts } from '~/graphql2/products'
+import { GetProducts } from '~/graphql/products'
 
 const props = withDefaults(
   defineProps<{

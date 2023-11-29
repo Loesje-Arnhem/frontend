@@ -1,6 +1,6 @@
 import type { ApolloCache } from '@apollo/client'
-import { getCartQuery, addToCartMutation } from '~/graphql2/cart'
-import type { GetCartQuery } from '~/types/__generated__/graphql'
+import { getCartQuery, addToCartMutation } from '~/graphql/cart'
+import type { GetCartQuery } from '~/graphql/__generated__/graphql'
 
 export const updateCartCache = (
   cache: ApolloCache<typeof getCartQuery>,

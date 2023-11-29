@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GetTaxonomies } from '~/graphql2/taxonomy'
+import { GetTaxonomies } from '~/graphql/taxonomy'
 
 const { selectedSourceIds, selectedSubjectIds } = useTags()
 const activeOverlays = reactive({

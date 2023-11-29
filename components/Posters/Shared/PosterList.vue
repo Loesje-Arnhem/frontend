@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type PostersFragment } from '~/types/__generated__/graphql'
+import { type PostersFragment } from '~/graphql/__generated__/graphql'
 
 defineProps<{
   posters: PostersFragment

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GetPosts } from '~/graphql2/posts'
+import { GetPosts } from '~/graphql/posts'
 
 const props = withDefaults(
   defineProps<{

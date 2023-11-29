@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GetPageByID } from '~/graphql2/pages'
+import { GetPageByID } from '~/graphql/pages'
 
 defineI18nRoute({
   paths: {

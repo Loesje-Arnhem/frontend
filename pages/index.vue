@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GetPageHome } from '~/graphql2/pages'
+import { GetPageHome } from '~/graphql/pages'
 
 defineI18nRoute({
   paths: {

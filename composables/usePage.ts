@@ -1,4 +1,4 @@
-import { GetPageByID } from '~/graphql2/pages'
+import { GetPageByID } from '~/graphql/pages'
 
 export const usePageById = async (id: number) => {
   const { data, pending, error } = await useAsyncQuery(GetPageByID, {

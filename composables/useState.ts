@@ -1,7 +1,7 @@
 import {
   type SourceFragment,
   type SubjectFragment,
-} from '~/types/__generated__/graphql'
+} from '~/graphql/__generated__/graphql'
 
 export const useMenu = () => useState<boolean>('menuIsOpen', () => false)
 export const useFavoriteIds = () => useState<number[]>('favorites', () => [])

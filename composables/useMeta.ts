@@ -3,7 +3,7 @@ import {
   type PostDetailsFragment,
   type PosterDetailsFragment,
   type ProductCategoryFragment,
-} from '~/types/__generated__/graphql'
+} from '~/graphql/__generated__/graphql'
 
 export const useMeta = (
   content?:

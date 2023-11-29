@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { MediaItemFragment } from '~/types/__generated__/graphql'
+import type { MediaItemFragment } from '~/graphql/__generated__/graphql'
 
 defineProps<{
   images: MediaItemFragment[]

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type PostListItemNodeFragment } from '~/types/__generated__/graphql'
+import { type PostListItemNodeFragment } from '~/graphql/__generated__/graphql'
 defineProps<{
   posts: PostListItemNodeFragment[]
 }>()
