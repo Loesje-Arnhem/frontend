@@ -31,12 +31,6 @@ const props = withDefaults(
   },
 )
 
-type Date = {
-  year: number
-  month: number
-  day: number
-}
-
 const createTaxArray = (ids: number[], key: string) => {
   return {
     terms: ids.map(String),
