@@ -9,9 +9,9 @@ export const GetPoster = gql(`
       # }
 
 
-      # seo {
-      #   ...seo
-      # }
+      seo {
+        ...seo
+      }
     }
   }
 `)
@@ -42,24 +42,6 @@ export const GetPosters = gql(`
         startCursor
       }
       ...Posters
-    }
-  }
-`)
-
-export const GetDailyPoster = gql(`
-  query GetDailyPoster($year: Int, $month: Int, $day: Int) {
-    dailyPosters(
-      first: 1
-      where: { posterDateEquals: { year: $year, month: $month, day: $day } }
-    ) {
-      edges {
-        node {
-          title
-          featuredImage {
-            ...FeaturedImage
-          }
-        }
-      }
     }
   }
 `)

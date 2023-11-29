@@ -20,7 +20,8 @@ export const useMeta = (
     return
   }
 
-  useServerSeoMeta({
+  useSeoMeta({
+    title: () => content.seo?.title ?? '',
     ogUrl: () => `${baseUrl}${fullPath}`,
     ogTitle: () => content.seo?.title,
     description: () => content.seo?.metaDesc,

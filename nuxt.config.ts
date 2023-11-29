@@ -35,7 +35,6 @@ export default defineNuxtConfig({
       consumerSecret: '',
     },
     public: {
-      // GQL_HOST: `${process.env.NUXT_PUBLIC_API_URL}graphql`,
       apiUrl: '',
     },
   },
@@ -229,7 +228,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'nuxt-svgo',
     '@vite-pwa/nuxt',
-    // 'nuxt-graphql-client',
     '@nuxtjs/apollo',
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
