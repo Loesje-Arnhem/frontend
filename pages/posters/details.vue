@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { GetPoster } from '~/graphql2/posters'
+
 defineI18nRoute({
   paths: {
     nl: '/posters/[slug]',
@@ -7,7 +9,7 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data } = await useAsyncGql('GetPoster', {
+const { data } = await useAsyncQuery(GetPoster, {
   slug: route.params.slug.toString(),
 })
 

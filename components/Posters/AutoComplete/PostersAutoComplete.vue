@@ -1,30 +1,29 @@
 <script lang="ts" setup>
-import { type IAutocomplete } from '~/types/IAutocomplete'
+import { SearchPoster } from '~/graphql2/posters'
 
+const searchField = ref('')
 const search = useSearch()
-const searchField = ref(search.value)
 const route = useRoute()
 const localePath = useLocalePath()
 
-const submit = () => {
-  search.value = searchField.value
-}
+const enabled = computed(() => searchField.value.length > 2)
 
-const posters: Ref<IAutocomplete[]> = ref([])
-
-watch(searchField, async () => {
-  if (searchField.value.length < 2) {
-    posters.value = []
-    return
-  }
-  const result = await GqlSearchPoster({
+const { result } = useQuery(
+  SearchPoster,
+  () => ({
     search: searchField.value,
-  })
-  if (!result.posters) {
-    posters.value = []
-    return
+  }),
+  {
+    enabled,
+    debounce: 200,
+  },
+)
+
+const posters = computed(() => {
+  if (searchField.value.length < 2) {
+    return []
   }
-  posters.value = result.posters.edges.map((poster) => {
+  return result.value?.posters?.edges.map((poster) => {
     const uri = localePath({
       name: 'posters-details',
       params: {
@@ -43,9 +42,12 @@ onMounted(() => {
   const { q } = route.query
   if (q) {
     searchField.value = q.toString()
-    search.value = q.toString()
   }
 })
+
+const submit = () => {
+  search.value = searchField.value
+}
 </script>
 
 <template>

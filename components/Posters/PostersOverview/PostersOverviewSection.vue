@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { GetPosters } from '~/graphql2/posters'
+
 type TaxQuery = {
   terms: string[]
   taxonomy: string
@@ -29,6 +31,12 @@ const props = withDefaults(
   },
 )
 
+type Date = {
+  year: number
+  month: number
+  day: number
+}
+
 const createTaxArray = (ids: number[], key: string) => {
   return {
     terms: ids.map(String),
@@ -37,92 +45,96 @@ const createTaxArray = (ids: number[], key: string) => {
   }
 }
 
-const where = computed(() => {
-  if (props.include.length) {
-    return {
-      in: props.include,
-    }
+const include = computed(() => {
+  if (!props.include.length) {
+    return undefined
   }
-  const taxQuery: { taxArray: TaxQuery[] } = {
+  return props.include.map((id) => id.toString())
+})
+
+const posterDateAfter = computed(() => {
+  if (!props.dateAfter) {
+    return undefined
+  }
+  const splittedDate = props.dateAfter.split('-')
+  return {
+    year: parseInt(splittedDate[0], 10),
+    month: parseInt(splittedDate[1], 10),
+    day: parseInt(splittedDate[2], 10),
+  }
+})
+
+const posterDateBefore = computed(() => {
+  if (!props.dateBefore) {
+    return undefined
+  }
+  const splittedDate = props.dateBefore.split('-')
+  return {
+    year: parseInt(splittedDate[0], 10),
+    month: parseInt(splittedDate[1], 10),
+    day: parseInt(splittedDate[2], 10),
+  }
+})
+
+const notIn = computed(() => {
+  if (!props.exclude) {
+    return undefined
+  }
+  return [props.exclude.toString()]
+})
+
+const taxQuery = computed(() => {
+  const query: { taxArray: TaxQuery[] } = {
     taxArray: [],
   }
   if (props.subjectIds.length) {
     const taxArray = createTaxArray(props.subjectIds, 'SUBJECT')
-    taxQuery.taxArray.push(taxArray)
+    query.taxArray.push(taxArray)
   }
   if (props.sourceIds.length) {
     const taxArray = createTaxArray(props.sourceIds, 'SOURCE')
-    taxQuery.taxArray.push(taxArray)
+    query.taxArray.push(taxArray)
   }
-  let posterDateAfter = null
-  if (props.dateAfter) {
-    const splittedDate = props.dateAfter.split('-')
-    posterDateAfter = {
-      year: parseInt(splittedDate[0], 10),
-      month: parseInt(splittedDate[1], 10),
-      day: parseInt(splittedDate[2], 10),
-    }
-  }
-  let posterDateBefore = null
-  if (props.dateBefore) {
-    const splittedDate = props.dateBefore.split('-')
-    posterDateBefore = {
-      year: parseInt(splittedDate[0], 10),
-      month: parseInt(splittedDate[1], 10),
-      day: parseInt(splittedDate[2], 10),
-    }
-  }
-  return {
-    notIn: props.exclude,
+  return query
+})
+
+const { result, loading, fetchMore } = useQuery(GetPosters, () => ({
+  where: {
+    in: include.value,
+    taxQuery: taxQuery.value,
+    posterDateAfter: posterDateAfter.value,
+    posterDateBefore: posterDateBefore.value,
+    notIn: notIn.value,
     search: props.search,
-    taxQuery: taxQuery.taxArray.length ? taxQuery : null,
-    posterDateBefore,
-    posterDateAfter,
-  }
-})
-
-const { data, pending } = await useAsyncGql('GetPosters', {
-  where: where.value,
-})
-
-watch(where, async () => {
-  pending.value = true
-  data.value = null
-
-  data.value = await GqlGetPosters({
-    where: where.value,
-  })
-
-  pending.value = false
-})
-
+  },
+}))
 const loadMore = async () => {
-  if (!data.value?.posters?.edges.length) {
-    return
-  }
-
-  pending.value = true
-  const result = await GqlGetPosters({
-    where: where.value,
-  })
-
-  if (!result.posters?.edges.length) {
-    return
-  }
-
-  data.value = {
-    posters: {
-      pageInfo: result.posters.pageInfo,
-      edges: [...data.value.posters.edges, ...result.posters.edges],
+  await fetchMore({
+    variables: {
+      after: result.value?.posters?.pageInfo.endCursor,
     },
-  }
-  pending.value = false
+
+    updateQuery: (previousResult, { fetchMoreResult }) => {
+      if (!previousResult?.posters?.edges.length) return previousResult
+      if (!fetchMoreResult?.posters?.edges.length) return previousResult
+      return {
+        ...fetchMoreResult,
+        posters: {
+          ...fetchMoreResult.posters,
+          edges: [
+            ...previousResult.posters.edges,
+            ...fetchMoreResult.posters.edges,
+          ],
+        },
+      }
+    },
+  })
 }
 </script>
 
 <template>
-  <app-loader v-if="pending && !data" />
-  <section v-else-if="data?.posters" aria-labelledby="posters-overview-title">
+  <app-loader v-if="loading && !result" />
+  <section v-else-if="result?.posters" aria-labelledby="posters-overview-title">
     <center-wrapper>
       <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
@@ -133,18 +145,16 @@ const loadMore = async () => {
         </template>
       </h1>
     </center-wrapper>
-    <template v-if="data">
-      <poster-list :posters="data.posters" />
-      <center-wrapper>
-        <load-more-by-scroll
-          v-if="data.posters.pageInfo.hasNextPage"
-          :loading="pending"
-          @load-more="loadMore"
-        />
-        <p v-if="data.posters.edges.length === 0 && !pending">
-          Geen posters gevonden
-        </p>
-      </center-wrapper>
-    </template>
+    <poster-list :posters="result.posters" />
+    <center-wrapper>
+      <load-more-by-scroll
+        v-if="result.posters.pageInfo.hasNextPage"
+        :loading="loading"
+        @load-more="loadMore"
+      />
+      <p v-if="result.posters.edges.length === 0 && !loading">
+        Geen posters gevonden
+      </p>
+    </center-wrapper>
   </section>
 </template>

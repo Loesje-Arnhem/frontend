@@ -7,14 +7,14 @@ defineProps<{
 </script>
 
 <template>
-  <list-animation v-if="posts.edges.length" class="list">
+  <ul v-if="posts.edges.length" class="list">
     <post-list-item
       v-for="post in posts.edges"
       :key="post.node.id"
       :post="post.node"
       class="list-item"
     />
-  </list-animation>
+  </ul>
 </template>
 
 <style lang="postcss" scoped>

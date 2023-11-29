@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { GetPost } from '~/graphql2/posts'
+
 defineI18nRoute({
   paths: {
     nl: '/over-loesje/nieuws/[slug]',
@@ -7,7 +9,7 @@ defineI18nRoute({
 
 const route = useRoute()
 
-const { data } = await useAsyncGql('GetPost', {
+const { data } = await useAsyncQuery(GetPost, {
   slug: route.params.slug.toString(),
 })
 

@@ -15,28 +15,26 @@ const { result, loading, fetchMore } = useQuery(GetPosts, {
 })
 
 const loadMore = async () => {
-  fetchMore({
+  await fetchMore({
     variables: {
       after: result.value?.posts?.pageInfo.endCursor,
     },
 
     updateQuery: (previousResult, { fetchMoreResult }) => {
-      // No new feed posts
-      if (!fetchMoreResult?.posts) return previousResult
-      if (!previousResult?.posts) return previousResult
-
-      // Concat previous feed with new feed posts
+      if (!previousResult?.posts?.edges.length) return previousResult
+      if (!fetchMoreResult?.posts?.edges.length) return previousResult
       return {
-        ...previousResult,
+        ...fetchMoreResult,
         posts: {
+          ...fetchMoreResult.posts,
           edges: [
             ...previousResult.posts.edges,
-            ...fetchMoreResult.posts.edges
-          ]
-        }
+            ...fetchMoreResult.posts.edges,
+          ],
+        },
       }
-    })
-
+    },
+  })
 }
 </script>
 

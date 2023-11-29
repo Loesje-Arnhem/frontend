@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <div class="wrapper">
     <center-wrapper>
-      <list-animation class="list">
+      <ul class="list">
         <li
           v-for="poster in posters.edges"
           :key="poster.node.id"
@@ -17,7 +17,7 @@ defineProps<{
         >
           <poster-tile :poster="poster.node" />
         </li>
-      </list-animation>
+      </ul>
     </center-wrapper>
   </div>
 </template>
