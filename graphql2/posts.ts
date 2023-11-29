@@ -1,7 +1,7 @@
 import { gql } from '~/types/__generated__'
 
 export const GetPost = gql(`
-  GetPost($slug: ID!) {
+  query GetPost($slug: ID!) {
     post(id: $slug, idType: URI) {
       ...PostDetails
     }
@@ -9,7 +9,7 @@ export const GetPost = gql(`
 `)
 
 export const GetPosts = gql(`
-  GetPosts($after: String, $notIn: ID) {
+  query GetPosts($after: String, $notIn: ID) {
     posts(
       first: 10
       after: $after

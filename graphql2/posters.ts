@@ -1,7 +1,7 @@
 import { gql } from '~/types/__generated__'
 
 export const GetPoster = gql(`
-  GetPoster($slug: ID!) {
+  query GetPoster($slug: ID!) {
     poster(id: $slug, idType: SLUG) {
       ...PosterDetails
       # relatedProducts: relatedProductsGroup {
@@ -17,7 +17,7 @@ export const GetPoster = gql(`
 `)
 
 export const SearchPoster = gql(`
-  SearchPoster($search: String) {
+  query SearchPoster($search: String) {
     posters(where: { search: $search }, first: 10) {
       edges {
         node {
@@ -30,7 +30,7 @@ export const SearchPoster = gql(`
 `)
 
 export const GetPosters = gql(`
-  GetPosters(
+  query GetPosters(
     $after: String
     $where: RootQueryToPosterConnectionWhereArgs
   ) {
@@ -47,7 +47,7 @@ export const GetPosters = gql(`
 `)
 
 export const GetDailyPoster = gql(`
-  GetDailyPoster($year: Int, $month: Int, $day: Int) {
+  query GetDailyPoster($year: Int, $month: Int, $day: Int) {
     dailyPosters(
       first: 1
       where: { posterDateEquals: { year: $year, month: $month, day: $day } }
