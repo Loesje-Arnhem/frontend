@@ -48,6 +48,18 @@ onMounted(() => {
 })
 
 const submit = () => {
+  navigateTo(
+    {
+      ...route,
+      query: {
+        ...route.query,
+        q: searchField.value,
+      },
+    },
+    {
+      replace: true,
+    },
+  )
   search.value = searchField.value
 }
 </script>

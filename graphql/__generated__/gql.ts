@@ -51,8 +51,8 @@ const documents = {
     "fragment Product on Product {\n  slug\n  id\n  databaseId\n  title: name\n  featuredImage {\n    ...FeaturedImage\n  }\n  ... on SimpleProduct {\n    regularPrice\n    price\n    salePrice\n  }\n  ... on VariableProduct {\n    regularPrice\n    price\n    salePrice\n  }\n}\n": types.ProductFragmentDoc,
     "fragment GalleryImages on ProductToMediaItemConnection {\n  edges {\n    node {\n      ...MediaItem\n    }\n  }\n}\n": types.GalleryImagesFragmentDoc,
     "fragment ProductDetails on Product {\n  ...Product\n  featuredImage {\n    ...FeaturedImage\n  }\n  shortDescription\n  description\n  globalAttributes {\n    nodes {\n      id\n      name\n      slug\n      variation\n      position\n      scope\n      attributeId\n      visible\n      terms {\n        nodes {\n          id\n          databaseId\n          name\n          slug\n          count\n        }\n      }\n    }\n  }\n  galleryImages {\n    ...GalleryImages\n  }\n}\n": types.ProductDetailsFragmentDoc,
-    "\n  fragment seo on PostTypeSEO {\n    metaDesc\n    opengraphUrl\n    title\n    schema {\n      raw\n    }\n  }\n": types.SeoFragmentDoc,
-    "\n  fragment taxonomySeo on TaxonomySEO {\n    metaDesc\n    opengraphUrl\n    title\n    schema {\n      raw\n    }\n  }\n": types.TaxonomySeoFragmentDoc,
+    "\n  fragment seo on PostTypeSEO {\n    metaDesc\n    title\n  }\n": types.SeoFragmentDoc,
+    "\n  fragment taxonomySeo on TaxonomySEO {\n    metaDesc\n    title\n  }\n": types.TaxonomySeoFragmentDoc,
     "fragment Source on Source {\n  id\n  databaseId\n  title: name\n  taxonomy {\n    node {\n      name\n    }\n  }\n}\n": types.SourceFragmentDoc,
     "fragment Subject on Subject {\n  id\n  databaseId\n  title: name\n  taxonomy {\n    node {\n      name\n    }\n  }\n}\n": types.SubjectFragmentDoc,
     "fragment SourceNode on PosterToSourceConnectionEdge {\n  node {\n    ...Source\n  }\n}\n": types.SourceNodeFragmentDoc,
@@ -244,11 +244,11 @@ export function gql(source: "fragment ProductDetails on Product {\n  ...Product\
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  fragment seo on PostTypeSEO {\n    metaDesc\n    opengraphUrl\n    title\n    schema {\n      raw\n    }\n  }\n"): (typeof documents)["\n  fragment seo on PostTypeSEO {\n    metaDesc\n    opengraphUrl\n    title\n    schema {\n      raw\n    }\n  }\n"];
+export function gql(source: "\n  fragment seo on PostTypeSEO {\n    metaDesc\n    title\n  }\n"): (typeof documents)["\n  fragment seo on PostTypeSEO {\n    metaDesc\n    title\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  fragment taxonomySeo on TaxonomySEO {\n    metaDesc\n    opengraphUrl\n    title\n    schema {\n      raw\n    }\n  }\n"): (typeof documents)["\n  fragment taxonomySeo on TaxonomySEO {\n    metaDesc\n    opengraphUrl\n    title\n    schema {\n      raw\n    }\n  }\n"];
+export function gql(source: "\n  fragment taxonomySeo on TaxonomySEO {\n    metaDesc\n    title\n  }\n"): (typeof documents)["\n  fragment taxonomySeo on TaxonomySEO {\n    metaDesc\n    title\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
