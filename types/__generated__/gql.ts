@@ -27,14 +27,14 @@ const documents = {
     "fragment PageRelatedProductNode on Page_Relatedproductsgroup_relatedProductsProducts {\n  ... on Page_Relatedproductsgroup_relatedProductsProducts {\n    product {\n      ...PageRelatedProduct\n    }\n  }\n}\n": types.PageRelatedProductNodeFragmentDoc,
     "fragment PageRelatedProducts on Page_Relatedproductsgroup {\n  title: relatedProductsTitle\n  products: relatedProductsProducts {\n    ...PageRelatedProductNode\n  }\n}\n": types.PageRelatedProductsFragmentDoc,
     "fragment PageDetails on Page {\n  ...PageBase\n  content\n  featuredImage {\n    ...FeaturedImage\n  }\n  videoGroup {\n    youtubeId\n  }\n  relatedPages {\n    ...RelatedPages\n  }\n  relatedPostersGroup {\n    title: relatedPostersTitle\n  }\n  relatedPosters(first: 7) {\n    ...RelatedPosters\n  }\n  relatedProducts: relatedProductsGroup {\n    ...PageRelatedProducts\n  }\n  seo {\n    ...seo\n  }\n}\n": types.PageDetailsFragmentDoc,
-    "fragment PostBase on Post {\n  id\n  databaseId\n  date\n  title\n}\n": types.PostBaseFragmentDoc,
-    "fragment PostListItem on Post {\n  ...PostBase\n  excerpt\n  slug\n}\n": types.PostListItemFragmentDoc,
-    "fragment PostListItemNode on RootQueryToPostConnectionEdge {\n  node {\n    ...PostListItem\n  }\n}\n": types.PostListItemNodeFragmentDoc,
-    "fragment PostListItems on RootQueryToPostConnection {\n  edges {\n    ...PostListItemNode\n  }\n}\n": types.PostListItemsFragmentDoc,
-    "fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {\n  ...RelatedProduct\n}\n": types.PostRelatedProductFragmentDoc,
-    "fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {\n  ... on Post_Relatedproductsgroup_relatedProductsProducts {\n    product {\n      ...PostRelatedProduct\n    }\n  }\n}\n": types.PostRelatedProductNodeFragmentDoc,
-    "fragment PostRelatedProducts on Post_Relatedproductsgroup {\n  title: relatedProductsTitle\n  products: relatedProductsProducts {\n    ...PostRelatedProductNode\n  }\n}\n": types.PostRelatedProductsFragmentDoc,
-    "fragment PostDetails on Post {\n  ...PostBase\n  content\n  videoGroup {\n    youtubeId\n  }\n  featuredImage {\n    ...FeaturedImage\n  }\n  relatedPostersGroup {\n    title: relatedPostersTitle\n  }\n  relatedPosters(first: 7) {\n    ...RelatedPosters\n  }\n  relatedProducts: relatedProductsGroup {\n    ...PostRelatedProducts\n  }\n  seo {\n    ...seo\n  }\n}\n": types.PostDetailsFragmentDoc,
+    "\nfragment PostBase on Post {\n  id\n  databaseId\n  date\n  title\n}\n": types.PostBaseFragmentDoc,
+    "\nfragment PostListItem on Post {\n  ...PostBase\n  excerpt\n  slug\n}\n": types.PostListItemFragmentDoc,
+    "\n  fragment PostListItemNode on RootQueryToPostConnectionEdge {\n  node {\n    ...PostListItem\n  }\n}\n": types.PostListItemNodeFragmentDoc,
+    "\n  fragment PostListItems on RootQueryToPostConnection {\n    edges {\n      ...PostListItemNode\n    }\n  }\n": types.PostListItemsFragmentDoc,
+    "\n  fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {\n  ...RelatedProduct\n}\n": types.PostRelatedProductFragmentDoc,
+    "\n  fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {\n  ... on Post_Relatedproductsgroup_relatedProductsProducts {\n    product {\n      ...PostRelatedProduct\n    }\n  }\n}\n": types.PostRelatedProductNodeFragmentDoc,
+    "\n  fragment PostRelatedProducts on Post_Relatedproductsgroup {\n  title: relatedProductsTitle\n  products: relatedProductsProducts {\n    ...PostRelatedProductNode\n  }\n}\n": types.PostRelatedProductsFragmentDoc,
+    "\nfragment PostDetails on Post {\n  ...PostBase\n  content\n  videoGroup {\n    youtubeId\n  }\n  featuredImage {\n    ...FeaturedImage\n  }\n  relatedPostersGroup {\n    title: relatedPostersTitle\n  }\n  relatedPosters(first: 7) {\n    ...RelatedPosters\n  }\n  relatedProducts: relatedProductsGroup {\n    ...PostRelatedProducts\n  }\n  seo {\n    ...seo\n  }\n}\n": types.PostDetailsFragmentDoc,
     "fragment PosterBase on Poster {\n  id\n  databaseId\n  title\n}\n": types.PosterBaseFragmentDoc,
     "fragment Poster on Poster {\n  ...PosterBase\n  uri\n  slug\n  featuredImage {\n    ...FeaturedImage\n  }\n}": types.PosterFragmentDoc,
     "fragment RelatedPosterNode on ContentNodeToPosterConnectionEdge {\n  node {\n    ...Poster\n  }\n}\n": types.RelatedPosterNodeFragmentDoc,
@@ -59,10 +59,10 @@ const documents = {
     "fragment Sources on PosterToSourceConnection {\n  edges {\n    ...SourceNode\n  }\n}\n": types.SourcesFragmentDoc,
     "fragment SubjectNode on PosterToSubjectConnectionEdge {\n  node {\n    ...Subject\n  }\n}\n": types.SubjectNodeFragmentDoc,
     "fragment Subjects on PosterToSubjectConnection {\n  edges {\n    ...SubjectNode\n  }\n}\n": types.SubjectsFragmentDoc,
-    "query GetPageByUri($uri: ID!) {\n  page(id: $uri, idType: URI) {\n    ...PageDetails\n  }\n}\n": types.GetPageByUriDocument,
-    "query GetPageByID($id: ID!) {\n  page(id: $id, idType: DATABASE_ID) {\n    ...PageDetails\n  }\n}\n": types.GetPageByIdDocument,
-    "query GetPageHome($id: ID!) {\n  page(id: $id, idType: DATABASE_ID) {\n    ...PageDetails\n  }\n  posts(first: 3, where: { hasPassword: false }) {\n    ...PostListItems\n  }\n}\n": types.GetPageHomeDocument,
-    "query GetPageShop($id: ID!) {\n  page(id: $id, idType: DATABASE_ID) {\n    ...PageDetails\n  }\n}\n": types.GetPageShopDocument,
+    "\n  query GetPageByUri($uri: ID!) {\n    page(id: $uri, idType: URI) {\n      ...PageDetails\n    }\n  }\n": types.GetPageByUriDocument,
+    "\n  query GetPageByID($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n": types.GetPageByIdDocument,
+    "\n  query GetPageHome($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n    posts(first: 3, where: { hasPassword: false }) {\n      ...PostListItems\n    }\n  }\n": types.GetPageHomeDocument,
+    "\n  query GetPageShop($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n": types.GetPageShopDocument,
     "\n  query GetProductCategory($slug: ID!) {\n    productCategory(id: $slug, idType: SLUG) {\n      ...productCategory\n    }\n  }\n": types.GetProductCategoryDocument,
     "\n  query GetProductCategories {\n    productCategories(\n      where: { hideEmpty: true, orderby: TERM_ORDER, order: ASC }\n      first: 99\n    ) {\n      edges {\n        node {\n          ...categoryFields\n          parentDatabaseId\n          children {\n            edges {\n              node {\n                ...categoryFields\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n": types.GetProductCategoriesDocument,
     "\n  query GetProduct($slug: ID!) {\n    product(id: $slug, idType: SLUG) {\n      ...ProductDetails\n      seo {\n        ...seo\n      }\n\n      # galleryImages {\n      #   edges {\n      #     node {\n      #       ...mediaItem\n      #     }\n      #   }\n      # }\n\n      related(first: 12, where: { stockStatus: [IN_STOCK] }) {\n        edges {\n          node {\n            databaseId\n          }\n        }\n      }\n    }\n  }\n": types.GetProductDocument,
@@ -143,35 +143,35 @@ export function gql(source: "fragment PageDetails on Page {\n  ...PageBase\n  co
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment PostBase on Post {\n  id\n  databaseId\n  date\n  title\n}\n"): (typeof documents)["fragment PostBase on Post {\n  id\n  databaseId\n  date\n  title\n}\n"];
+export function gql(source: "\nfragment PostBase on Post {\n  id\n  databaseId\n  date\n  title\n}\n"): (typeof documents)["\nfragment PostBase on Post {\n  id\n  databaseId\n  date\n  title\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment PostListItem on Post {\n  ...PostBase\n  excerpt\n  slug\n}\n"): (typeof documents)["fragment PostListItem on Post {\n  ...PostBase\n  excerpt\n  slug\n}\n"];
+export function gql(source: "\nfragment PostListItem on Post {\n  ...PostBase\n  excerpt\n  slug\n}\n"): (typeof documents)["\nfragment PostListItem on Post {\n  ...PostBase\n  excerpt\n  slug\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment PostListItemNode on RootQueryToPostConnectionEdge {\n  node {\n    ...PostListItem\n  }\n}\n"): (typeof documents)["fragment PostListItemNode on RootQueryToPostConnectionEdge {\n  node {\n    ...PostListItem\n  }\n}\n"];
+export function gql(source: "\n  fragment PostListItemNode on RootQueryToPostConnectionEdge {\n  node {\n    ...PostListItem\n  }\n}\n"): (typeof documents)["\n  fragment PostListItemNode on RootQueryToPostConnectionEdge {\n  node {\n    ...PostListItem\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment PostListItems on RootQueryToPostConnection {\n  edges {\n    ...PostListItemNode\n  }\n}\n"): (typeof documents)["fragment PostListItems on RootQueryToPostConnection {\n  edges {\n    ...PostListItemNode\n  }\n}\n"];
+export function gql(source: "\n  fragment PostListItems on RootQueryToPostConnection {\n    edges {\n      ...PostListItemNode\n    }\n  }\n"): (typeof documents)["\n  fragment PostListItems on RootQueryToPostConnection {\n    edges {\n      ...PostListItemNode\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {\n  ...RelatedProduct\n}\n"): (typeof documents)["fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {\n  ...RelatedProduct\n}\n"];
+export function gql(source: "\n  fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {\n  ...RelatedProduct\n}\n"): (typeof documents)["\n  fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {\n  ...RelatedProduct\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {\n  ... on Post_Relatedproductsgroup_relatedProductsProducts {\n    product {\n      ...PostRelatedProduct\n    }\n  }\n}\n"): (typeof documents)["fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {\n  ... on Post_Relatedproductsgroup_relatedProductsProducts {\n    product {\n      ...PostRelatedProduct\n    }\n  }\n}\n"];
+export function gql(source: "\n  fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {\n  ... on Post_Relatedproductsgroup_relatedProductsProducts {\n    product {\n      ...PostRelatedProduct\n    }\n  }\n}\n"): (typeof documents)["\n  fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {\n  ... on Post_Relatedproductsgroup_relatedProductsProducts {\n    product {\n      ...PostRelatedProduct\n    }\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment PostRelatedProducts on Post_Relatedproductsgroup {\n  title: relatedProductsTitle\n  products: relatedProductsProducts {\n    ...PostRelatedProductNode\n  }\n}\n"): (typeof documents)["fragment PostRelatedProducts on Post_Relatedproductsgroup {\n  title: relatedProductsTitle\n  products: relatedProductsProducts {\n    ...PostRelatedProductNode\n  }\n}\n"];
+export function gql(source: "\n  fragment PostRelatedProducts on Post_Relatedproductsgroup {\n  title: relatedProductsTitle\n  products: relatedProductsProducts {\n    ...PostRelatedProductNode\n  }\n}\n"): (typeof documents)["\n  fragment PostRelatedProducts on Post_Relatedproductsgroup {\n  title: relatedProductsTitle\n  products: relatedProductsProducts {\n    ...PostRelatedProductNode\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment PostDetails on Post {\n  ...PostBase\n  content\n  videoGroup {\n    youtubeId\n  }\n  featuredImage {\n    ...FeaturedImage\n  }\n  relatedPostersGroup {\n    title: relatedPostersTitle\n  }\n  relatedPosters(first: 7) {\n    ...RelatedPosters\n  }\n  relatedProducts: relatedProductsGroup {\n    ...PostRelatedProducts\n  }\n  seo {\n    ...seo\n  }\n}\n"): (typeof documents)["fragment PostDetails on Post {\n  ...PostBase\n  content\n  videoGroup {\n    youtubeId\n  }\n  featuredImage {\n    ...FeaturedImage\n  }\n  relatedPostersGroup {\n    title: relatedPostersTitle\n  }\n  relatedPosters(first: 7) {\n    ...RelatedPosters\n  }\n  relatedProducts: relatedProductsGroup {\n    ...PostRelatedProducts\n  }\n  seo {\n    ...seo\n  }\n}\n"];
+export function gql(source: "\nfragment PostDetails on Post {\n  ...PostBase\n  content\n  videoGroup {\n    youtubeId\n  }\n  featuredImage {\n    ...FeaturedImage\n  }\n  relatedPostersGroup {\n    title: relatedPostersTitle\n  }\n  relatedPosters(first: 7) {\n    ...RelatedPosters\n  }\n  relatedProducts: relatedProductsGroup {\n    ...PostRelatedProducts\n  }\n  seo {\n    ...seo\n  }\n}\n"): (typeof documents)["\nfragment PostDetails on Post {\n  ...PostBase\n  content\n  videoGroup {\n    youtubeId\n  }\n  featuredImage {\n    ...FeaturedImage\n  }\n  relatedPostersGroup {\n    title: relatedPostersTitle\n  }\n  relatedPosters(first: 7) {\n    ...RelatedPosters\n  }\n  relatedProducts: relatedProductsGroup {\n    ...PostRelatedProducts\n  }\n  seo {\n    ...seo\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -271,19 +271,19 @@ export function gql(source: "fragment Subjects on PosterToSubjectConnection {\n 
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query GetPageByUri($uri: ID!) {\n  page(id: $uri, idType: URI) {\n    ...PageDetails\n  }\n}\n"): (typeof documents)["query GetPageByUri($uri: ID!) {\n  page(id: $uri, idType: URI) {\n    ...PageDetails\n  }\n}\n"];
+export function gql(source: "\n  query GetPageByUri($uri: ID!) {\n    page(id: $uri, idType: URI) {\n      ...PageDetails\n    }\n  }\n"): (typeof documents)["\n  query GetPageByUri($uri: ID!) {\n    page(id: $uri, idType: URI) {\n      ...PageDetails\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query GetPageByID($id: ID!) {\n  page(id: $id, idType: DATABASE_ID) {\n    ...PageDetails\n  }\n}\n"): (typeof documents)["query GetPageByID($id: ID!) {\n  page(id: $id, idType: DATABASE_ID) {\n    ...PageDetails\n  }\n}\n"];
+export function gql(source: "\n  query GetPageByID($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n"): (typeof documents)["\n  query GetPageByID($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query GetPageHome($id: ID!) {\n  page(id: $id, idType: DATABASE_ID) {\n    ...PageDetails\n  }\n  posts(first: 3, where: { hasPassword: false }) {\n    ...PostListItems\n  }\n}\n"): (typeof documents)["query GetPageHome($id: ID!) {\n  page(id: $id, idType: DATABASE_ID) {\n    ...PageDetails\n  }\n  posts(first: 3, where: { hasPassword: false }) {\n    ...PostListItems\n  }\n}\n"];
+export function gql(source: "\n  query GetPageHome($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n    posts(first: 3, where: { hasPassword: false }) {\n      ...PostListItems\n    }\n  }\n"): (typeof documents)["\n  query GetPageHome($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n    posts(first: 3, where: { hasPassword: false }) {\n      ...PostListItems\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query GetPageShop($id: ID!) {\n  page(id: $id, idType: DATABASE_ID) {\n    ...PageDetails\n  }\n}\n"): (typeof documents)["query GetPageShop($id: ID!) {\n  page(id: $id, idType: DATABASE_ID) {\n    ...PageDetails\n  }\n}\n"];
+export function gql(source: "\n  query GetPageShop($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n"): (typeof documents)["\n  query GetPageShop($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

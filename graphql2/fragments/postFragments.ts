@@ -1,6 +1,7 @@
 import { gql } from '~/types/__generated__'
 
-export const PostBase = gql(`fragment PostBase on Post {
+export const PostBase = gql(`
+fragment PostBase on Post {
   id
   databaseId
   date
@@ -8,37 +9,38 @@ export const PostBase = gql(`fragment PostBase on Post {
 }
 `)
 
-export const PostListItem = gql(`fragment PostListItem on Post {
+export const PostListItem = gql(`
+fragment PostListItem on Post {
   ...PostBase
   excerpt
   slug
 }
 `)
 
-export const PostListItemNode =
-  gql(`fragment PostListItemNode on RootQueryToPostConnectionEdge {
+export const PostListItemNode = gql(`
+  fragment PostListItemNode on RootQueryToPostConnectionEdge {
   node {
     ...PostListItem
   }
 }
 `)
 
-export const PostListItems =
-  gql(`fragment PostListItems on RootQueryToPostConnection {
-  edges {
-    ...PostListItemNode
+export const PostListItems = gql(`
+  fragment PostListItems on RootQueryToPostConnection {
+    edges {
+      ...PostListItemNode
+    }
   }
-}
 `)
 
-export const PostRelatedProduct =
-  gql(`fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {
+export const PostRelatedProduct = gql(`
+  fragment PostRelatedProduct on Post_Relatedproductsgroup_relatedProductsProducts_Product {
   ...RelatedProduct
 }
 `)
 
-export const PostRelatedProductNode =
-  gql(`fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {
+export const PostRelatedProductNode = gql(`
+  fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {
   ... on Post_Relatedproductsgroup_relatedProductsProducts {
     product {
       ...PostRelatedProduct
@@ -47,8 +49,8 @@ export const PostRelatedProductNode =
 }
 `)
 
-export const PostRelatedProducts =
-  gql(`fragment PostRelatedProducts on Post_Relatedproductsgroup {
+export const PostRelatedProducts = gql(`
+  fragment PostRelatedProducts on Post_Relatedproductsgroup {
   title: relatedProductsTitle
   products: relatedProductsProducts {
     ...PostRelatedProductNode
@@ -56,7 +58,8 @@ export const PostRelatedProducts =
 }
 `)
 
-export const PostDetails = gql(`fragment PostDetails on Post {
+export const PostDetails = gql(`
+fragment PostDetails on Post {
   ...PostBase
   content
   videoGroup {
