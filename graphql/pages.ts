@@ -26,11 +26,3 @@ export const GetPageHome = gql(`
     }
   }
 `)
-
-export const GetPageShop = gql(`
-  query GetPageShop($id: ID!) {
-    page(id: $id, idType: DATABASE_ID) {
-      ...PageDetails
-    }
-  }
-`)

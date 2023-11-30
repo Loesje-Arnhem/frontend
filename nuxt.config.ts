@@ -100,6 +100,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    '/doe-mee/doe-mee': { ssr: false },
     '/posters/posters/favorieten': { ssr: false },
   },
   telemetry: false,
@@ -231,7 +232,7 @@ export default defineNuxtConfig({
     '@nuxtjs/apollo',
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
-    '@nuxt/image',
+    // '@nuxt/image',
     'nuxt-schema-org',
   ],
 
@@ -260,7 +261,7 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       // Only precache these files - html should be excluded
-      globPatterns: ['**/*.{js,css}'],
+      // globPatterns: ['**/*.{js,css}'],
 
       // Don't fallback on document based (e.g. `/some-page`) requests
       // Even though this says `null` by default, I had to set this specifically to `null` to make it work

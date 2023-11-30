@@ -62,7 +62,6 @@ const documents = {
     "\n  query GetPageByUri($uri: ID!) {\n    page(id: $uri, idType: URI) {\n      ...PageDetails\n    }\n  }\n": types.GetPageByUriDocument,
     "\n  query GetPageByID($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n": types.GetPageByIdDocument,
     "\n  query GetPageHome($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n    posts(first: 3, where: { hasPassword: false }) {\n      ...PostListItems\n    }\n  }\n": types.GetPageHomeDocument,
-    "\n  query GetPageShop($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n": types.GetPageShopDocument,
     "\n  query GetPoster($slug: ID!) {\n    poster(id: $slug, idType: SLUG) {\n      ...PosterDetails\n      # relatedProducts: relatedProductsGroup {\n      #   ...posterRelatedProducts\n      # }\n\n\n      seo {\n        ...seo\n      }\n    }\n  }\n": types.GetPosterDocument,
     "\n  query SearchPoster($search: String) {\n    posters(where: { search: $search }, first: 10) {\n      edges {\n        node {\n          ...PosterBase\n          slug\n        }\n      }\n    }\n  }\n": types.SearchPosterDocument,
     "\n  query GetPosters(\n    $after: String\n    $where: RootQueryToPosterConnectionWhereArgs\n  ) {\n    posters(first: 20, after: $after, where: $where) {\n      pageInfo {\n        hasNextPage\n        endCursor\n        hasPreviousPage\n        startCursor\n      }\n      ...Posters\n    }\n  }\n": types.GetPostersDocument,
@@ -285,10 +284,6 @@ export function gql(source: "\n  query GetPageByID($id: ID!) {\n    page(id: $id
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GetPageHome($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n    posts(first: 3, where: { hasPassword: false }) {\n      ...PostListItems\n    }\n  }\n"): (typeof documents)["\n  query GetPageHome($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n    posts(first: 3, where: { hasPassword: false }) {\n      ...PostListItems\n    }\n  }\n"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "\n  query GetPageShop($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n"): (typeof documents)["\n  query GetPageShop($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
