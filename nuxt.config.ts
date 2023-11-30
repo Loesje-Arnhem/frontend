@@ -76,12 +76,9 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
 
-    // prerender: {
-    //   interval: 3000,
-    //   concurrency: 20,
-    // },
-
     prerender: {
+      interval: 3000,
+      concurrency: 20,
       routes: ['/rss.xml', '/rss-posters.xml'],
     },
   },
@@ -90,9 +87,9 @@ export default defineNuxtConfig({
       if (nitroConfig.dev) {
         return
       }
-      if (process.env.NUXT_SSR === 'false') {
-        return
-      }
+      // if (process.env.NUXT_SSR === 'false') {
+      //   return
+      // }
       const pages = await getAllRoutes()
       if (nitroConfig?.prerender?.routes) {
         nitroConfig.prerender.routes.push(...pages)
@@ -232,7 +229,7 @@ export default defineNuxtConfig({
     '@nuxtjs/apollo',
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
-    // '@nuxt/image',
+    '@nuxt/image',
     'nuxt-schema-org',
   ],
 
