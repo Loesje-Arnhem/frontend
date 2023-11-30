@@ -11,35 +11,36 @@ const pauseFetching = () => {
 
 const fetchPagesByType = async (type: string) => {
   const pages = []
-  // const hasNextPage = true
+  let hasNextPage = true
   let page = 1
   const baseUrl = process.env.NUXT_PUBLIC_API_URL as string
 
-  // while (hasNextPage) {
-  const apiUrl = `${baseUrl}wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[
-    page,
-  ]}&status=publish`
-  const data = await ofetch<{ link: string }[]>(apiUrl)
+  while (hasNextPage) {
+    const apiUrl = `${baseUrl}wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[
+      page,
+    ]}&status=publish`
+    const data = await ofetch<{ link: string }[]>(apiUrl)
 
-  let suffix = ''
-  if (type === 'posts') {
-    suffix = `/over-loesje/nieuws/`
+    let suffix = ''
+    if (type === 'posts') {
+      suffix = `/over-loesje/nieuws/`
+    }
+
+    const urls = data.map((r) => r.link.replace(baseUrl, suffix))
+    pages.push(...urls)
+    if (urls.length !== PAGESIZE) {
+      hasNextPage = false
+    }
+    page = page + 1
+    pauseFetching()
   }
-
-  const urls = data.map((r) => r.link.replace(baseUrl, suffix))
-  pages.push(...urls)
-  // if (urls.length !== PAGESIZE) {
-  //   hasNextPage = false
-  // }
-  page = page + 1
-  pauseFetching()
-  // }
   return pages
 }
 
 export default async () => {
-  const posts = await fetchPagesByType('posts')
+  // const posts = await fetchPagesByType('posts')
   const pages = await fetchPagesByType('pages')
-  const posters = await fetchPagesByType('posters')
-  return [...posts, ...pages, ...posters]
+  // const posters = await fetchPagesByType('posters')
+  return pages
+  // return [...posts, ...pages, ...posters]
 }
