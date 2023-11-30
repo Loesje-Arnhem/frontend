@@ -3,7 +3,51 @@ import { gql } from '~/graphql/__generated__'
 export const GetProduct = gql(`
   query GetProduct($slug: ID!) {
     product(id: $slug, idType: SLUG) {
-      ...ProductDetails
+      slug
+      id
+      databaseId
+      title: name
+      featuredImage {
+        ...FeaturedImage
+      }
+      shortDescription
+      description
+      globalAttributes {
+        nodes {
+          id
+          name
+          slug
+          variation
+          position
+          scope
+          attributeId
+          visible
+          terms {
+            nodes {
+              id
+              databaseId
+              name
+              slug
+              count
+            }
+          }
+        }
+      }      
+      ... on SimpleProduct {
+        regularPrice
+        price
+        salePrice
+      }
+      ... on VariableProduct {
+        regularPrice
+        price
+        salePrice
+      } 
+      ... on ExternalProduct {
+        regularPrice
+        price
+        salePrice
+      } 
       seo {
         ...seo
       }

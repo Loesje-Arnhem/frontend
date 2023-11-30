@@ -3,6 +3,7 @@ import {
   type PostDetailsFragment,
   type PosterDetailsFragment,
   type ProductCategoryFragment,
+  type Product,
 } from '~/graphql/__generated__/graphql'
 
 export const useMeta = (
@@ -11,6 +12,7 @@ export const useMeta = (
     | PostDetailsFragment
     | PosterDetailsFragment
     | ProductCategoryFragment
+    | Product
     | null,
 ) => {
   const { baseUrl } = useAppConfig()

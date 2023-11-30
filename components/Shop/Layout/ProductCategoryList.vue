@@ -17,11 +17,15 @@ const { data } = await useAsyncQuery(GetProductCategories)
         :key="productCategory.node.id"
         class="list-item"
       >
-        <nuxt-link :to="productCategory.node.uri" class="link">
+        <nuxt-link
+          v-if="productCategory.node.uri"
+          :to="productCategory.node.uri"
+          class="link"
+        >
           {{ productCategory.node.name }}
         </nuxt-link>
         <ul
-          v-if="productCategory.node.children.edges.length"
+          v-if="productCategory.node.children?.edges.length"
           class="category-list"
         >
           <li

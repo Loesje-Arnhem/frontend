@@ -18,7 +18,7 @@ const url = computed(() => {
 </script>
 
 <template>
-  <clickable-list-item :url="url" class="list-item">
+  <clickable-list-item :to="url" class="list-item">
     <h2 class="title">
       <nuxt-link :to="url" class="link">
         {{ post.title }}

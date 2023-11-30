@@ -44,35 +44,57 @@ export const GalleryImages =
 `)
 
 export const ProductDetails = gql(`fragment ProductDetails on Product {
-  ...Product
-  featuredImage {
-    ...FeaturedImage
-  }
-  shortDescription
-  description
-  globalAttributes {
-    nodes {
-      id
-      name
-      slug
-      variation
-      position
-      scope
-      attributeId
-      visible
-      terms {
-        nodes {
-          id
-          databaseId
-          name
-          slug
-          count
-        }
-      }
+
+  ... on SimpleProduct {
+    slug
+    id
+    databaseId
+    title: name
+    featuredImage {
+      ...FeaturedImage
     }
+    regularPrice
+    price
+    salePrice
   }
-  galleryImages {
-    ...GalleryImages
-  }
+  ... on VariableProduct {
+    slug
+    id
+    databaseId
+    title: name
+    featuredImage {
+      ...FeaturedImage
+    }
+    regularPrice
+    price
+    salePrice
+  } 
+
+#   shortDescription
+#   description
+#   globalAttributes {
+#     nodes {
+#       id
+#       name
+#       slug
+#       variation
+#       position
+#       scope
+#       attributeId
+#       visible
+#       terms {
+#         nodes {
+#           id
+#           databaseId
+#           name
+#           slug
+#           count
+#         }
+#       }
+#     }
+#   }
+#   galleryImages {
+#     ...GalleryImages
+#   }
 }
 `)

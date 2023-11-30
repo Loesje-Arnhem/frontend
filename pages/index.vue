@@ -22,7 +22,7 @@ useMeta(data.value?.page)
       {{ data.page?.title }}
     </h1>
 
-    <!-- <form-donate />
+    <form-donate />
 
     <latest-posts-section :posts="data.posts" />
     <related-posters-section
@@ -34,6 +34,6 @@ useMeta(data.value?.page)
     <related-products-section
       v-if="data.page?.relatedProducts"
       :products="data.page.relatedProducts"
-    /> -->
+    />
   </div>
 </template>

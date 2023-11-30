@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { type ProductDetailsFragment } from '~/graphql/__generated__/graphql'
+import { type Product } from '~/graphql/__generated__/graphql'
 
 const props = defineProps<{
-  product: ProductDetailsFragment
+  product: Product
 }>()
 
 const gallery = computed(() => {
@@ -34,7 +34,6 @@ const gallery = computed(() => {
       <h2>Beschrijving</h2>
       <div class="description" v-html="product.description" />
     </div>
-    <!-- <product-list-section :products="product.related" /> -->
   </div>
 </template>
 
