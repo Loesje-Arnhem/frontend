@@ -1,28 +1,36 @@
 import { gql } from '~/graphql/__generated__'
 
-export const RelatedProduct = gql(`fragment RelatedProduct on Product {
-  databaseId
-}
+export const RelatedProduct = gql(`
+  fragment RelatedProduct on Product {
+    ...Product
+  }
 `)
 
 export const Product = gql(`fragment Product on Product {
-  slug
-  id
-  databaseId
-  title: name
-  featuredImage {
-    ...FeaturedImage
-  }
-  ... on SimpleProduct {
-    regularPrice
-    price
-    salePrice
-  }
-  ... on VariableProduct {
-    regularPrice
-    price
-    salePrice
-  }
+    ... on SimpleProduct {
+      slug
+      id
+      databaseId
+      title: name
+      featuredImage {
+        ...FeaturedImage
+      }
+      regularPrice
+      price
+      salePrice
+    }
+    ... on VariableProduct {
+      slug
+      id
+      databaseId
+      title: name
+      featuredImage {
+        ...FeaturedImage
+      }
+      regularPrice
+      price
+      salePrice
+    }  
 }
 `)
 export const GalleryImages =

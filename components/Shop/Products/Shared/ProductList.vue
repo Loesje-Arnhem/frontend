@@ -8,8 +8,8 @@ const props = withDefaults(
     productIds?: number[]
   }>(),
   {
-    featured: false,
-    categoryId: 0,
+    featured: undefined,
+    categoryId: undefined,
     productIds: () => [],
   },
 )

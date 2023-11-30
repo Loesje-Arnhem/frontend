@@ -41,7 +41,30 @@ export const GetProducts = gql(`
     ) {
       edges {
         node {
-          ...Product
+          ... on SimpleProduct {
+            slug
+            id
+            databaseId
+            title: name
+            featuredImage {
+              ...FeaturedImage
+            }
+            regularPrice
+            price
+            salePrice
+          }
+          ... on VariableProduct {
+            slug
+            id
+            databaseId
+            title: name
+            featuredImage {
+              ...FeaturedImage
+            }
+            regularPrice
+            price
+            salePrice
+          }  
         }
       }
     }

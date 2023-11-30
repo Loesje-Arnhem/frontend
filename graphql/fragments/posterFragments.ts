@@ -40,7 +40,12 @@ export const PosterRelatedProductNode =
   gql(`fragment PosterRelatedProductNode on Poster_Relatedproductsgroup_relatedProductsProducts {
     ... on Poster_Relatedproductsgroup_relatedProductsProducts {
     product {
-      ...PosterRelatedProduct
+      ... on SimpleProduct {
+        databaseId
+      }
+      ... on VariableProduct {
+        databaseId
+      }  
     }
   }
 }`)

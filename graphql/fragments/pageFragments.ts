@@ -1,4 +1,4 @@
-import { gql } from '~/graphql/__generated__'
+import { gql } from '~/types/__generated__'
 
 export const PageBase = gql(`fragment PageBase on Page {
   id
@@ -31,15 +31,20 @@ export const RelatedPages = gql(`fragment RelatedPages on PageToPageConnection {
 
 export const PageRelatedProduct =
   gql(`fragment PageRelatedProduct on Page_Relatedproductsgroup_relatedProductsProducts_Product {
-  ...RelatedProduct
-}
+    ...RelatedProduct
+  }
 `)
 
 export const PageRelatedProductNode =
   gql(`fragment PageRelatedProductNode on Page_Relatedproductsgroup_relatedProductsProducts {
   ... on Page_Relatedproductsgroup_relatedProductsProducts {
     product {
-      ...PageRelatedProduct
+      ... on SimpleProduct {
+        databaseId
+      }
+      ... on VariableProduct {
+        databaseId
+      }  
     }
   }
 }

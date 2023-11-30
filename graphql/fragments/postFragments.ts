@@ -43,7 +43,12 @@ export const PostRelatedProductNode = gql(`
   fragment PostRelatedProductNode on Post_Relatedproductsgroup_relatedProductsProducts {
   ... on Post_Relatedproductsgroup_relatedProductsProducts {
     product {
-      ...PostRelatedProduct
+      ... on SimpleProduct {
+        databaseId
+      }
+      ... on VariableProduct {
+        databaseId
+      }  
     }
   }
 }

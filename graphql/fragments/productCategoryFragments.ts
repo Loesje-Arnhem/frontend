@@ -9,23 +9,6 @@ export const productCategory = gql(`
     seo {
       ...taxonomySeo
     }
-    products(
-      first: 99
-      where: {
-        stockStatus: [IN_STOCK]
-        orderby: { field: MENU_ORDER, order: ASC }
-      }
-    ) {
-      edges {
-        node {
-          id
-          slug
-          databaseId
-          title: name
-          ...Product
-        }
-      }
-    }
   }
 `)
 
