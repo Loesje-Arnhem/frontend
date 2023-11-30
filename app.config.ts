@@ -30,6 +30,7 @@ export default defineAppConfig({
     instagramUrl: 'https://instagram.com/loesjevdposters',
     pinterestUrl: 'https://www.pinterest.com/loesjenl/',
     linkedinUrl: 'https://www.linkedin.com/company/loesje/',
+    youtubeUrl: 'https://www.youtube.com/user/LoesjeNederland',
   },
   pageIds: {
     home: 6434,

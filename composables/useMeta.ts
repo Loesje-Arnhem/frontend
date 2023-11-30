@@ -18,20 +18,16 @@ export const useMeta = (
   const { baseUrl } = useAppConfig()
   const { fullPath } = useRoute()
 
-  if (!content) {
-    return
-  }
-
   useSeoMeta({
-    title: () => content.seo?.title ?? '',
+    title: () => content?.seo?.title ?? '',
     ogUrl: () => `${baseUrl}${fullPath}`,
-    ogTitle: () => content.seo?.title,
-    description: () => content.seo?.metaDesc,
-    ogDescription: () => content.seo?.metaDesc,
+    ogTitle: () => content?.seo?.title,
+    description: () => content?.seo?.metaDesc,
+    ogDescription: () => content?.seo?.metaDesc,
     ogType: () => 'article',
-    ogImage: () => content.featuredImage?.node.src,
-    twitterTitle: () => content.seo?.title,
-    twitterDescription: () => content.seo?.metaDesc,
-    twitterImage: () => content.featuredImage?.node.src,
+    ogImage: () => content?.featuredImage?.node.src,
+    twitterTitle: () => content?.seo?.title,
+    twitterDescription: () => content?.seo?.metaDesc,
+    twitterImage: () => content?.featuredImage?.node.src,
   })
 }

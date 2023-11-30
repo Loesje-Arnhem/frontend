@@ -13,6 +13,19 @@ const { data } = useAsyncQuery(GetPageHome, {
   id: pageIds.home.toString(),
 })
 
+// if (!data.value.page) {
+//   throw createError({
+//     statusCode: 404,
+//     statusMessage: 'Page Not Found',
+//   })
+// }
+
+// useSchemaOrg(
+//   defineWebPage({
+//     description: data.value.page,
+//   }),
+// )
+
 useMeta(data.value?.page)
 </script>
 

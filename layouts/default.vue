@@ -1,7 +1,15 @@
 <script setup lang="ts">
 /* eslint-disable vue/component-name-in-template-casing */
 
-const { title } = useAppConfig()
+const { title, socialMedia } = useAppConfig()
+const {
+  twitterUrl,
+  facebookUrl,
+  instagramUrl,
+  pinterestUrl,
+  linkedinUrl,
+  youtubeUrl,
+} = socialMedia
 
 const head = useLocaleHead({
   addDirAttribute: true,
@@ -32,12 +40,12 @@ useSchemaOrg([
       '@id': 'https://www.loesje.nl/#/schema/logo/image/',
     },
     sameAs: [
-      'https://www.facebook.com/Loesjevdposters',
-      'https://twitter.com/LoesjeNL',
-      'https://www.instagram.com/loesjevdposters',
-      'https://www.linkedin.com/company/loesje',
-      'https://nl.pinterest.com/loesjenl/',
-      'https://www.youtube.com/user/LoesjeNederland',
+      twitterUrl,
+      facebookUrl,
+      instagramUrl,
+      pinterestUrl,
+      linkedinUrl,
+      youtubeUrl,
     ],
   }),
   defineWebSite({

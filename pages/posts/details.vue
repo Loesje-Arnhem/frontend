@@ -14,6 +14,13 @@ const { data } = await useAsyncQuery(GetPost, {
 })
 
 useMeta(data.value?.post)
+
+useSchemaOrg(
+  defineArticle({
+    datePublished: data.value.post?.date,
+    headline: data.value.post?.title,
+  }),
+)
 </script>
 
 <template>
@@ -25,7 +32,6 @@ useMeta(data.value?.post)
       :date="data.post.date"
       :video="data.post?.videoGroup?.youtubeId"
     />
-
     <related-posters-section
       :posters="data.post.relatedPosters"
       :title="data.post.relatedPostersGroup?.title"

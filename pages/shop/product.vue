@@ -21,7 +21,12 @@ const productIds = computed(() => {
   return products.map((product) => product?.node.databaseId)
 })
 
-useMeta(data.value.product)
+useSchemaOrg(
+  defineProduct({
+    name: data.value.product?.title,
+  }),
+)
+// useMeta(data.value.product)
 </script>
 
 <template>
