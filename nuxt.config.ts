@@ -79,7 +79,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify_builder',
+    preset: 'netlify',
     prerender: {
       interval: 3000,
       concurrency: 20,
