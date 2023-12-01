@@ -15,9 +15,6 @@ export default defineNuxtConfig({
     name: title,
   },
 
-  image: {
-    densities: [1, 2, 3],
-  },
 
   vue: {
     compilerOptions: {
@@ -109,7 +106,7 @@ export default defineNuxtConfig({
   },
 
   build: {
-    transpile: ['tslib']
+    transpile: ['tslib'],
   },
 
   telemetry: false,
@@ -270,6 +267,7 @@ export default defineNuxtConfig({
     registerWebManifestInRouteRules: true,
     registerType: 'autoUpdate',
     workbox: {
+      importScripts: ['/badge.js'],
       // Only precache these files - html should be excluded
       // globPatterns: ['**/*.{js,css}'],
 

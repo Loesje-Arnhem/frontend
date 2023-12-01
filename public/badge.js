@@ -31,7 +31,7 @@ const setAppBadge = async () => {
 
   const difference = total - storedTotal
 
-  navigator.setAppBadge(difference)
+  await avigator.setAppBadge(difference)
 }
 
 self.addEventListener('periodicsync', (event) => {
