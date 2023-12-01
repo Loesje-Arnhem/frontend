@@ -1,4 +1,5 @@
-import useVuelidate, { ValidationArgs } from '@vuelidate/core'
+import useVuelidate from '@vuelidate/core'
+import type { ValidationArgs } from '@vuelidate/core'
 import { Endpoints } from '~/enums/endpoints'
 
 export default (
@@ -12,9 +13,16 @@ export default (
   const error = ref('')
   const v$ = useVuelidate(rules, formData)
 
-  const submit = async () => {
-    error.value = ''
 
+  watch(() => v$.value.$invalid,
+    (invalid) => {
+    if (!invalid) {
+      error.value = ''
+    }
+  })
+
+
+  const submit = async () => {
     const isFormCorrect = await v$.value.$validate()
     if (!isFormCorrect) {
       error.value = t('invalidForm')
@@ -38,9 +46,9 @@ export default (
     }
   }
   return {
+    error,
     submit,
     v$,
-    error,
     submitted,
     loading,
   }

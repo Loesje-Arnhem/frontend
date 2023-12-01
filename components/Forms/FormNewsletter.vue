@@ -23,6 +23,8 @@ const { v$, loading, error, submit, submitted } = useForm(
 </script>
 
 <template>
+  <div>test{{ v$ }}</div>
+
   <div v-if="submitted" class="success">
     <p>
       Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe ik
