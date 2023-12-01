@@ -42,7 +42,12 @@ export default {
 <template>
   <div ref="balloon" class="balloon-x" :class="{ animate }">
     <div class="balloon-y" :class="{ animate }">
-      <app-image :width="159" :height="243" src="/images/air-balloon.png" />
+      <app-image
+        :width="159"
+        :height="243"
+        src="/images/air-balloon.png"
+        sizes="xs:159px sm:358px"
+      />
     </div>
   </div>
 </template>
