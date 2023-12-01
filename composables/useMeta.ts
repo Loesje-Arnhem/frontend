@@ -31,5 +31,9 @@ export const useMeta = (
     twitterImage: () => content?.featuredImage?.node.src,
   })
 
-
+  useSchemaOrg([
+    defineWebPage({
+      description: content?.seo?.metaDesc,
+    }),
+  ])
 }

@@ -51,7 +51,6 @@ useSchemaOrg([
   defineWebSite({
     name: title,
   }),
-  defineWebPage(),
 ])
 </script>
 
