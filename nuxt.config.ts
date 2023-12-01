@@ -96,14 +96,15 @@ export default defineNuxtConfig({
       if (process.env.NUXT_SSR === 'false') {
         return
       }
-      // const pages = await getAllRoutes()
-      // if (nitroConfig?.prerender?.routes) {
-      //   nitroConfig.prerender.routes.push(...pages)
-      // }
+      const pages = await getAllRoutes()
+      if (nitroConfig?.prerender?.routes) {
+        nitroConfig.prerender.routes.push(...pages)
+      }
     },
   },
 
   routeRules: {
+    '/': { prerender: true },
     '/doe-mee/doe-mee': { ssr: false },
     '/posters/posters/favorieten': { ssr: false },
   },
