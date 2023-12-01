@@ -14,14 +14,17 @@ export default defineNuxtConfig({
     url: baseUrl,
     name: title,
   },
+
   image: {
     densities: [1, 2, 3],
   },
+
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => ['search'].includes(tag),
     },
   },
+
   runtimeConfig: {
     newsletter: {
       api_key: '',
@@ -38,11 +41,13 @@ export default defineNuxtConfig({
       apiUrl: '',
     },
   },
+
   experimental: {
     headNext: true,
     componentIslands: true,
     payloadExtraction: true,
   },
+
   apollo: {
     clients: {
       default: {
@@ -74,7 +79,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    // preset: 'netlify',
 
     prerender: {
       interval: 3000,
@@ -82,24 +87,31 @@ export default defineNuxtConfig({
       routes: ['/rss.xml', '/rss-posters.xml'],
     },
   },
+
   hooks: {
     async 'nitro:config'(nitroConfig) {
       if (nitroConfig.dev) {
         return
       }
-      // if (process.env.NUXT_SSR === 'false') {
-      //   return
-      // }
-      const pages = await getAllRoutes()
-      if (nitroConfig?.prerender?.routes) {
-        nitroConfig.prerender.routes.push(...pages)
+      if (process.env.NUXT_SSR === 'false') {
+        return
       }
+      // const pages = await getAllRoutes()
+      // if (nitroConfig?.prerender?.routes) {
+      //   nitroConfig.prerender.routes.push(...pages)
+      // }
     },
   },
+
   routeRules: {
     '/doe-mee/doe-mee': { ssr: false },
     '/posters/posters/favorieten': { ssr: false },
   },
+
+  build: {
+    transpile: ['tslib']
+  },
+
   telemetry: false,
 
   app: {
@@ -222,6 +234,7 @@ export default defineNuxtConfig({
       },
     ],
   },
+
   modules: [
     '@nuxtjs/i18n',
     'nuxt-svgo',
@@ -356,5 +369,9 @@ export default defineNuxtConfig({
         },
       ],
     },
+  },
+
+  devtools: {
+    enabled: true,
   },
 })

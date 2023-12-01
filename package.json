@@ -22,7 +22,6 @@
     "@nuxtjs/stylelint-module": "^5.1.0",
     "@types/body-scroll-lock": "^3.1.2",
     "@types/rss": "^0.0.32",
-    "@types/throttle-debounce": "^5.0.2",
     "@types/workbox-window": "^4.3.4",
     "@vite-pwa/nuxt": "^0.3.2",
     "@vue/apollo-composable": "~4.0.0-beta.12",
@@ -51,8 +50,7 @@
     "node-fetch": "^3.3.2",
     "nuxt-graphql-client": "^0.2.31",
     "postcss-import": "^15.1.0",
-    "rss": "^1.2.2",
-    "throttle-debounce": "^5.0.0"
+    "rss": "^1.2.2"
   },
   "pnpm": {
     "overrides": {

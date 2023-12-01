@@ -1,14 +1,17 @@
 <script setup lang="ts">
-defineProps({
-  error: Object,
-})
-
-const handleError = () => clearError({ redirect: '/' })
+defineProps<{
+  error: {
+    url: string
+    statusCode: number
+    statusMessage: string
+    message: string
+    description: string
+  }
+}>()
 </script>
 
 <template>
   <div>
     <h2>{{ error.statusCode }}</h2>
-    <button @click="handleError">Clear errors</button>
   </div>
 </template>
