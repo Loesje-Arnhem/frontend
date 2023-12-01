@@ -15,7 +15,6 @@ export default defineNuxtConfig({
     name: title,
   },
 
-
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => ['search'].includes(tag),
