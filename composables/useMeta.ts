@@ -30,4 +30,6 @@ export const useMeta = (
     twitterDescription: () => content?.seo?.metaDesc,
     twitterImage: () => content?.featuredImage?.node.src,
   })
+
+
 }

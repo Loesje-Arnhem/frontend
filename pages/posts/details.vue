@@ -19,6 +19,7 @@ useSchemaOrg(
   defineArticle({
     datePublished: data.value.post?.date,
     headline: data.value.post?.title,
+    description: data.value.post?.seo?.metaDesc,
   }),
 )
 </script>
