@@ -181,6 +181,7 @@ export default defineNuxtConfig({
       // '~/components/Carousel',
       '~/components/Footer',
       '~/components/Forms/Fields',
+      '~/components/Forms/Forms',
       '~/components/Forms',
       '~/components/Layout',
       '~/components/LoadMore',

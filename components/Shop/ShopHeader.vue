@@ -1,6 +1,6 @@
 <template>
-  <div :class="$style.header">
-    <div :class="$style.promotion">
+  <div class="header">
+    <div class="promotion">
       <nuxt-link to="/winkeltje/loesje-scheurkalender-2023/">
         De nieuwe scheurkalender
       </nuxt-link>
@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<style module lang="postcss">
+<style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
 .header {

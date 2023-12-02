@@ -4,8 +4,8 @@ const { cart, loading } = useCart()
 
 <template>
   <app-loader v-if="loading" />
-  <div v-else-if="cart.contents.nodes.length">
-    <table class="list table-large">
+  <div v-else>
+    <table v-if="cart.contents.nodes.length" class="list table-large">
       <thead>
         <tr>
           <th />
@@ -24,16 +24,17 @@ const { cart, loading } = useCart()
         />
       </tbody>
     </table>
-    <!-- <ul v-if="cart.appliedCoupons">
+    <p v-else>Je winkelmand is momenteel leeg.</p>
+
+    <ul v-if="cart.appliedCoupons">
       <coupon-list-item
-        v-for="coupon in cart.appliedCoupons"
-        :key="coupon.code"
+        v-for="(coupon, index) in cart.appliedCoupons"
+        :key="coupon?.code ?? index"
         :coupon="coupon"
       />
-    </ul> -->
-    <!-- <coupon-form v-else /> -->
+    </ul>
+    <form-coupon v-else />
   </div>
-  <p v-else>Je winkelmand is momenteel leeg.</p>
 </template>
 
 <style scoped lang="postcss">

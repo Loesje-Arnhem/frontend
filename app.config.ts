@@ -51,4 +51,8 @@ export default defineAppConfig({
     generator: 'Loesje rss generator 3000',
     image_url: 'https://preview.loesje.nl/icons/logo.svg',
   },
+  newsletterLists: {
+    website: 'website',
+    products: 'products',
+  },
 })

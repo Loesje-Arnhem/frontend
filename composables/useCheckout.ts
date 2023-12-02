@@ -1,36 +1,33 @@
-import { useMutation } from '@vue/apollo-composable'
-import { ref, reactive } from '@nuxtjs/composition-api'
-import { v4 } from 'uuid'
-import CheckoutQuery from '~/graphql/Shop/Checkout/Checkout.gql'
-import CartQuery from '~/graphql/Shop/Cart/Cart.gql'
-import useNewsletter from '~/composables/useNewsletter'
-import { NewsletterList } from '~/enums/newsletterList'
-import { Endpoints } from '~/enums/endpoints'
+import {
+  CountriesEnum,
+  type CustomerAddressInput,
+} from '~/graphql/__generated__/graphql'
+import { submitCheckoutMutation } from '~/graphql/checkout'
+import { getCartQuery } from '~/graphql/cart'
 
 export const useCheckout = () => {
   const errors = ref([])
   const paymentMethod = ref('cod')
   const shipToDifferentAddress = ref(false)
   const addToNewsletter = ref(false)
-  const { addToNewsletter: submitToNewsletter, form: newsletterForm } =
-    useNewsletter()
-  const billing = reactive({
+  const billing = reactive<CustomerAddressInput>({
     address1: '',
     address2: '',
     city: '',
     company: '',
-    country: '',
+    country: CountriesEnum.Nl,
     email: '',
     firstName: '',
     lastName: '',
     postcode: '',
   })
-  const shipping = reactive({
+
+  const shipping = reactive<CustomerAddressInput>({
     address1: '',
     address2: '',
     city: '',
     company: '',
-    country: '',
+    country: CountriesEnum.Nl,
     email: '',
     firstName: '',
     lastName: '',
@@ -41,15 +38,14 @@ export const useCheckout = () => {
     loading,
     onError,
     onDone,
-  } = useMutation(CheckoutQuery, () => ({
+  } = useMutation(submitCheckoutMutation, () => ({
     variables: {
-      clientMutationId: v4(),
       paymentMethod: paymentMethod.value,
       shipToDifferentAddress: shipToDifferentAddress.value,
       billing,
       shipping,
     },
-    refetchQueries: [{ query: CartQuery }],
+    refetchQueries: [{ query: getCartQuery }],
   }))
   onError(({ graphQLErrors }) => {
     errors.value = graphQLErrors.map((err) => err.message)
@@ -60,12 +56,12 @@ export const useCheckout = () => {
     if (!addToNewsletter.value) {
       return
     }
-    newsletterForm.email = billing.email
-    newsletterForm.firstName = billing.firstName
-    newsletterForm.lastName = billing.lastName
-    newsletterForm.list = NewsletterList.Products
+    // newsletterForm.email = billing.email
+    // newsletterForm.firstName = billing.firstName
+    // newsletterForm.lastName = billing.lastName
+    // newsletterForm.list = NewsletterList.Products
 
-    submitToNewsletter()
+    // submitToNewsletter()
   })
   return {
     shipping,

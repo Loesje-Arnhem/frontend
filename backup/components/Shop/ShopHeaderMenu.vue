@@ -1,6 +1,11 @@
+<script lang="ts" setup>
+const localePath = useLocalePath()
+const { totalProducts } = useCart()
+</script>
+
 <template>
-  <nav :class="$style.nav">
-    <ul :class="$style.list">
+  <nav class="nav">
+    <ul class="list">
       <li>
         <nuxt-link :to="localePath({ name: 'shop-account' })">
           Mijn account
@@ -9,6 +14,7 @@
       <li>
         <nuxt-link :to="localePath({ name: 'shop-cart' })">
           Winkelwagen
+          {{ totalProducts }}
           <span v-if="totalProducts">({{ totalProducts }})</span>
         </nuxt-link>
       </li>
@@ -16,19 +22,7 @@
   </nav>
 </template>
 
-<script>
-import { useCart } from '~/composables/cart'
-export default {
-  setup() {
-    const { totalProducts } = useCart()
-    return {
-      totalProducts,
-    }
-  },
-}
-</script>
-
-<style module lang="postcss">
+<style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
 .list {
@@ -44,6 +38,6 @@ export default {
 }
 
 .nav {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
 }
 </style>

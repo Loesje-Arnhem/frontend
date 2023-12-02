@@ -13,14 +13,14 @@ export default (
   const error = ref('')
   const v$ = useVuelidate(rules, formData)
 
-
-  watch(() => v$.value.$invalid,
+  watch(
+    () => v$.value.$invalid,
     (invalid) => {
-    if (!invalid) {
-      error.value = ''
-    }
-  })
-
+      if (!invalid) {
+        error.value = ''
+      }
+    },
+  )
 
   const submit = async () => {
     const isFormCorrect = await v$.value.$validate()

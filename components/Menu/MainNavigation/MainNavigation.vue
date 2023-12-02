@@ -116,6 +116,14 @@ const setArrowPosition = () => {
   </nav>
 </template>
 
+<style lang="postcss">
+@container header state(stuck: top) {
+  nav {
+    background-color: #f0f;
+  }
+}
+</style>
+
 <style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
@@ -125,6 +133,12 @@ const setArrowPosition = () => {
 
   @media (--show-full-navigation) {
     margin-bottom: 0;
+  }
+}
+
+@container header state(stuck: top) {
+  nav {
+    background-color: #f0f;
   }
 }
 
