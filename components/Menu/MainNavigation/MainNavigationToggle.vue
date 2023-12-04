@@ -8,14 +8,14 @@ withDefaults(
   },
 )
 
-const { mobileMenuIsOpen } = useLayout()
+const menuIsOpen = useMenu()
 
 defineEmits(['toggle-menu'])
 </script>
 
 <template>
   <button
-    :aria-expanded="mobileMenuIsOpen ? 'true' : 'false'"
+    :aria-expanded="menuIsOpen ? 'true' : 'false'"
     :class="$style.btn"
     @click="$emit('toggle-menu')"
   >

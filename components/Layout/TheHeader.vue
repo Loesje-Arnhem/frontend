@@ -9,13 +9,9 @@
         @after-enter="afterEnter"
         @after-leave="afterLeave"
       >
-        <div v-show="mobileMenuIsOpen" :class="$style.background">
+        <div v-show="menuIsOpen" :class="$style.background">
           <transition name="fade">
-            <div
-              v-show="mobileMenuIsOpen"
-              ref="content"
-              :class="$style.content"
-            >
+            <div v-show="menuIsOpen" ref="content" :class="$style.content">
               <main-navigation-toggle
                 :close="true"
                 :class="$style.toggle"
@@ -35,7 +31,10 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 export default defineComponent({
   setup() {
-    const { closeMobileMenu, mobileMenuIsOpen } = useLayout()
+    const { closeMobileMenu } = useLayout()
+
+    const menuIsOpen = useMenu()
+
     const content: Ref<HTMLDivElement | null> = ref(null)
 
     const afterEnter = () => {
@@ -57,7 +56,7 @@ export default defineComponent({
 
     return {
       content,
-      mobileMenuIsOpen,
+      menuIsOpen,
       afterEnter,
       afterLeave,
       closeMobileMenu,

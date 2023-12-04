@@ -4,6 +4,7 @@ export const getCartQuery = gql(`
   query GetCart {
     cart {
       ...cartFragment
+
     }
   }
 `)

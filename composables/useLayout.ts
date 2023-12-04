@@ -1,6 +1,6 @@
 export const useLayout = () => {
   const openMenus = ref([] as string[])
-  const mobileMenuIsOpen = ref(false)
+  const menuIsOpen = useMenu()
 
   const add = (menuId: string) => {
     if (openMenus.value.includes(menuId)) {
@@ -10,11 +10,11 @@ export const useLayout = () => {
   }
 
   const openMobileMenu = () => {
-    mobileMenuIsOpen.value = true
+    menuIsOpen.value = true
   }
 
   const closeMobileMenu = () => {
-    mobileMenuIsOpen.value = false
+    menuIsOpen.value = false
   }
 
   const remove = (menuId: string) => {
@@ -32,6 +32,5 @@ export const useLayout = () => {
     clear,
     openMobileMenu,
     closeMobileMenu,
-    mobileMenuIsOpen,
   }
 }
