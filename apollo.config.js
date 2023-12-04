@@ -4,6 +4,6 @@ module.exports = {
       name: 'loesje',
       url: `https://shop.loesje.nl/graphql`,
     },
-    includes: ['./graphql/**/*.ts'],
+    includes: ['graphql/**/*.ts'],
   },
 }

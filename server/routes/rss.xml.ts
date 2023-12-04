@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
   const feed = new RSS({
     ...rssHead,
-    title: 'Loesje',
+    title: 'Loesje nieuws',
     feed_url: `https://www.loesje.nl/rss.xml`,
     description: `
       Loesje's posters vind je overal. Met haar positief-kritische teksten
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
 
   const url = getUrl({
     type: 'posts',
-    fields: ['title', 'slug', 'date', 'excerpt'],
+    fields: ['title', 'slug', 'date', 'content'],
     pageSize: 20,
     image: true,
   })
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
     const link = `https://www.loesje.nl/over-loesje/nieuws/${item.slug}`
     feed.item({
       title: item.title.rendered,
-      description: item.excerpt.rendered,
+      description: item.content.rendered,
       date: item.date,
       url: link,
       guid: link,
