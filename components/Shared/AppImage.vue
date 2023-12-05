@@ -33,7 +33,7 @@ const loading = computed(() => {
     :height="height"
     class="image"
     fit="inside"
-    format="avif"
+    format="avif,webp"
   />
 </template>
 
