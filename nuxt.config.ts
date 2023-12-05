@@ -278,7 +278,7 @@ export default defineNuxtConfig({
       // Don't fallback on document based (e.g. `/some-page`) requests
       // Even though this says `null` by default, I had to set this specifically to `null` to make it work
       navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,json,avif,webp,png}'],
+      globPatterns: ['**/*.{js,css,html,json}', '_ipx/**.*'],
     },
     manifest: {
       background_color: backgroundColor,

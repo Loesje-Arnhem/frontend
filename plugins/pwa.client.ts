@@ -3,6 +3,9 @@ export default defineNuxtPlugin((nuxtApp) => {
   const route = useRoute()
   const { mediaQueryStandAlone } = useAppConfig()
 
+  const brands = navigator.userAgentData
+  const isInSidebar = brands.find((b) => b.brand === 'Edge Side Panel')
+
   const setBodyClass = () => {
     document.documentElement.classList.add('standalone')
   }
@@ -21,7 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     })
   }
 
-  if (window.matchMedia(mediaQueryStandAlone).matches) {
+  if (window.matchMedia(mediaQueryStandAlone).matches || isInSidebar) {
     setBodyClass()
     redirectToPostersPageOnStandalone()
   }
