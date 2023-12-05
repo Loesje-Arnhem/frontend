@@ -290,6 +290,7 @@ export default defineNuxtConfig({
       description:
         'Ook zo benieuwd wat Loesje allemaal al heeft gezegd? Met deze app kan je lekker door al haar posters heen kuieren.',
       short_name: title,
+      edge_side_panel: {},
       icons: [
         {
           src: '/icons/manifest-icon-192.png',
