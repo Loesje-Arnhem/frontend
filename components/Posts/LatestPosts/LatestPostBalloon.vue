@@ -46,7 +46,7 @@ export default {
         :width="159"
         :height="243"
         src="/images/air-balloon.png"
-        sizes="xs:159px sm:358px"
+        sizes="xs:159px"
       />
     </div>
   </div>

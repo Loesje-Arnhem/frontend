@@ -9,7 +9,7 @@
               :width="565"
               :height="600"
               class="mood"
-              sizes="sm:100vw md:80vw lg:565 xl:800"
+              sizes="sm:100vw md:80vw lg:565"
             />
           </div>
           <div class="text">

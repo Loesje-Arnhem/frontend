@@ -25,7 +25,7 @@ const updateTheme = () => {
               :width="36"
               :height="34"
               alt="Play"
-              sizes="xs:36 sm:72"
+              sizes="xs:36"
             />
           </button>
         </div>

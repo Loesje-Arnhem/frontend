@@ -21,7 +21,7 @@ defineProps<{
       class="frame"
       :width="355"
       :height="456"
-      sizes="xs:100vw md:355px lg:710px"
+      sizes="xs:100vw md:355px"
     />
   </div>
 </template>
