@@ -25,7 +25,7 @@ const altText = computed(() => {
 </script>
 
 <template>
-  <nuxt-picture
+  <img
     class="image"
     :alt="altText"
     :loading="lazy ? 'lazy' : undefined"

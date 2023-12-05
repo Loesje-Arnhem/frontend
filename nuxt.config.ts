@@ -21,6 +21,10 @@ export default defineNuxtConfig({
     },
   },
 
+  image: {
+    densities: [1, 2],
+  },
+
   runtimeConfig: {
     newsletter: {
       api_key: '',
