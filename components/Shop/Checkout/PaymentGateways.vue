@@ -1,26 +1,45 @@
+<script lang="ts" setup>
+import type { ErrorObject } from '@vuelidate/core'
+import { GetPaymentGatewaysQueryDocument } from '~/graphql/__generated__/graphql'
+
+const { result } = useQuery(GetPaymentGatewaysQueryDocument)
+
+withDefaults(
+  defineProps<{
+    modelValue: string
+    errors?: ErrorObject[]
+  }>(),
+  {
+    errors: () => [],
+  },
+)
+
+defineEmits(['update:modelValue', 'change'])
+</script>
+
 <template>
-  <form-fieldset :title="$t('paymentGateways')">
-    <ul v-if="paymentGateways.length" :class="$style.list">
+  <form-fieldset v-if="result?.paymentGateways" :title="$t('paymentGateways')">
+    <ul v-if="result.paymentGateways.edges.length" class="list">
       <li
-        v-for="paymentGateway in paymentGateways"
+        v-for="paymentGateway in result.paymentGateways.edges"
         :key="paymentGateway.node.id"
-        :class="$style['list-item']"
+        class="list-item"
       >
         <input
           :id="`payment-${paymentGateway.node.id}`"
           type="radio"
           :value="paymentGateway.node.id"
           name="payment-gateways"
-          :class="$style.input"
-          :checked="paymentGateway.node.id == value"
-          @change="$emit('input', paymentGateway.node.id)"
+          class="input"
+          :checked="paymentGateway.node.id == modelValue"
+          @change="$emit('update:modelValue', paymentGateway.node.id)"
         />
         <div
           v-if="paymentGateway.node.icon"
-          :class="$style.icon"
+          class="icon"
           v-html="paymentGateway.node.icon"
         />
-        <label :for="`payment-${paymentGateway.node.id}`" :class="$style.label">
+        <label :for="`payment-${paymentGateway.node.id}`" class="label">
           {{ paymentGateway.node.title }}
         </label>
       </li>
@@ -28,23 +47,7 @@
   </form-fieldset>
 </template>
 
-<script>
-export default {
-  props: {
-    paymentGateways: {
-      type: Array,
-      required: true,
-    },
-    value: {
-      type: String,
-      default: '',
-    },
-  },
-  emits: ['input'],
-}
-</script>
-
-<style module lang="postcss">
+<style lang="postcss" scoped>
 .list {
   @mixin list-reset;
 }

@@ -1,5 +1,10 @@
 import type { ApolloCache } from '@apollo/client'
-import { getCartQuery, addToCartMutation } from '~/graphql/cart'
+import {
+  getCartQuery,
+  addToCartMutation,
+  removeItemsFromCartMutation,
+  updateItemQuantitiesMutation,
+} from '~/graphql/cart'
 import type { GetCartQuery } from '~/graphql/__generated__/graphql'
 
 export const updateCartCache = (
@@ -84,5 +89,31 @@ export const useAddToCart = (productId: number) => {
     loading,
     addToCart,
     onDone,
+  }
+}
+
+export const useRemoveItemsFromCart = () => {
+  const { mutate, loading } = useMutation(removeItemsFromCartMutation, () => ({
+    update(cache, { data }) {
+      updateCartCache(cache, data?.removeItemsFromCart)
+    },
+  }))
+
+  return {
+    loading,
+    mutate,
+  }
+}
+
+export const useUpdateItemQuantities = () => {
+  const { mutate, loading } = useMutation(updateItemQuantitiesMutation, () => ({
+    update(cache, { data }) {
+      updateCartCache(cache, data?.updateItemQuantities)
+    },
+  }))
+
+  return {
+    loading,
+    mutate,
   }
 }

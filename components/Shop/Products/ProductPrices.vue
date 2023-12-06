@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div v-if="product.price" class="price">
-    <template v-if="product.regularPrice">
+    <template v-if="product.salePrice">
       <span class="price-old">{{ product.regularPrice }}</span>
       {{ product.salePrice }}
     </template>

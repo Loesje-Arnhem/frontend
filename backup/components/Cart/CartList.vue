@@ -18,7 +18,18 @@
           :item="item"
         />
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6"><h2>Totalen winkelwagen</h2></td>
+        </tr>
+        <tr>
+          
+          <td colspan="6">Subtotaal {{ cart.contents.subtotal }}</td>
+          
+        </tr>
+      </tfoot>
     </table>
+    {{ cart }}
     <ul v-if="cart.appliedCoupons">
       <coupon-list-item
         v-for="coupon in cart.appliedCoupons"
@@ -27,6 +38,15 @@
       />
     </ul>
     <coupon-form v-else />
+
+Subtotaal 	€38.43
+Verzending 	
+
+    Vast Tarief: €3.94	
+
+Verzenden naar Bevrijdingsstraat 10, 6703 AA Wageningen.
+Adres wijzigen
+Totaal 	€42.37 (inclusief €4.23 BTW 21%, €1.48 BTW 9%)
   </div>
   <p v-else>Je winkelmand is momenteel leeg.</p>
 </template>

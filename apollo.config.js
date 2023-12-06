@@ -6,6 +6,6 @@ module.exports = {
       name: 'loesje',
       url: `${apiUrl}graphql`,
     },
-    includes: ['graphql/**/*.gql'],
+    includes: ['graphql/**/*.ts'],
   },
 }

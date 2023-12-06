@@ -8,7 +8,6 @@ defineI18nRoute({
 })
 
 const { pageIds } = useAppConfig()
-const localePath = useLocalePath()
 
 const { data } = await useAsyncQuery(GetPageByID, {
   id: pageIds.cart.toString(),
@@ -24,8 +23,5 @@ useMeta(data.value?.page)
     <client-only>
       <cart-list />
     </client-only>
-    <app-button :to="localePath({ name: 'shop-checkout' })">
-      Doorgaan met afrekenen
-    </app-button>
   </center-wrapper>
 </template>

@@ -13,7 +13,7 @@ const { totalProducts } = useCart()
       </li>
       <li>
         <nuxt-link :to="localePath({ name: 'shop-cart' })">
-          Winkelwagen
+          Winkelwagenaaa
           {{ totalProducts }}
           <span v-if="totalProducts">({{ totalProducts }})</span>
         </nuxt-link>

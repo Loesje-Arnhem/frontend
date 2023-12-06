@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { type ErrorObject } from '@vuelidate/core'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 withDefaults(
   defineProps<{
     title: string

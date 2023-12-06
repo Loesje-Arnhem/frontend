@@ -203,7 +203,7 @@ export default defineNuxtConfig({
       '~/components/Posts',
       '~/components/Shared',
       '~/components/Shop/Cart',
-      // '~/components/Shop/Checkout',
+      '~/components/Shop/Checkout',
       '~/components/Shop/Layout',
       '~/components/Shop/Products/ProductDetails',
       '~/components/Shop/Products/ProductList',

@@ -7,6 +7,8 @@ defineI18nRoute({
   },
 })
 
+const payment = ref('')
+
 const { pageIds } = useAppConfig()
 
 const { data } = await useAsyncQuery(GetPageByID, {
@@ -43,9 +45,8 @@ const {
         v-model:last-name="billing.lastName"
         v-model:company="billing.company"
       />
+      <payment-gateways v-model="payment" />
     </app-form>
-
-    <div class="checkout"></div>
   </center-wrapper>
 </template>
 

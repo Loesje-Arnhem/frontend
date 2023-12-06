@@ -1,12 +1,44 @@
+<script lang="ts" setup>
+import type { ErrorObject } from '@vuelidate/core'
+import { type Option } from '~/types/Option'
+
+defineOptions({
+  inheritAttrs: false,
+})
+
+withDefaults(
+  defineProps<{
+    title: string
+    description?: string | null
+    id: string
+    modelValue: string | number
+    errors?: ErrorObject[]
+    options: Option[]
+  }>(),
+  {
+    description: null,
+    errors: () => [],
+  },
+)
+
+defineEmits(['update:modelValue', 'change', 'blur'])
+</script>
+
 <template>
-  <form-field :id="id" :errors="errors" :title="title" class="field">
+  <form-field
+    :id="id"
+    :errors="errors"
+    :title="title"
+    class="field"
+    :description="description"
+  >
     <div class="form-select">
       <select
         :id="id"
         v-bind="$attrs"
-        :value="value"
-        @input="$emit('input', $event.target.value)"
-        @change="$emit('change')"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+        @change="$emit('change', $event.target.value)"
       >
         <slot />
         <option
@@ -21,36 +53,6 @@
     </div>
   </form-field>
 </template>
-
-<script lang="ts">
-import { type IOption } from '~/types/IOption'
-export default defineComponent({
-  inheritAttrs: false,
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    id: {
-      type: String,
-      required: true,
-    },
-    value: {
-      type: String || Number,
-      default: '',
-    },
-    errors: {
-      type: Array,
-      default: () => [],
-    },
-    options: {
-      type: Array as PropType<IOption[]>,
-      default: () => [],
-    },
-  },
-  emits: ['change', 'input'],
-})
-</script>
 
 <style lang="postcss" scoped>
 .form-select {

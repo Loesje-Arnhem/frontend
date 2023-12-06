@@ -17,3 +17,23 @@ export const addToCartMutation = gql(`
     }
   }
 `)
+
+export const removeItemsFromCartMutation = gql(`
+  mutation RemoveItemsFromCart($keys: [ID]) {
+    removeItemsFromCart(input: { keys: $keys }) {
+      cart {
+        ...cartFragment
+      }
+    }
+  }
+`)
+
+export const updateItemQuantitiesMutation = gql(`
+  mutation UpdateItemQuantities($items: [CartItemQuantityInput]) {
+    updateItemQuantities(input: { items: $items }) {
+      cart {
+        ...cartFragment
+      }
+    }
+  }
+`)

@@ -1,56 +1,46 @@
 <script lang="ts" setup>
-// import { defineComponent } from '@nuxtjs/composition-api'
-import type { IOption } from '~/types/IOption'
+import type { Option } from '~/types/Option'
+import type { CartItem } from '~/graphql/__generated__/graphql'
 import ProductPrices from '../Products/ProductPrices.vue'
-// import { IOption } from '~/interfaces/IOption'
 
-defineProps<{
-  item: Object
+const props = defineProps<{
+  item: CartItem
 }>()
 
-const removeItemsFromCart = () => {}
-const updateItemQuantities = () => {}
+const { mutate: removeItem, loading } = useRemoveItemsFromCart()
+const { mutate: updateItemQuantity } = useUpdateItemQuantities()
+const quantity = ref(props.item.quantity?.toString() ?? '1')
 
-const quantity = ref(1)
-// const loading = ref(false)
+const removeItemsFromCart = async () => {
+  await removeItem({
+    keys: [props.item.key ?? ''],
+  })
+}
+const updateQuantity = async () => {
+  await updateItemQuantity({
+    items: [
+      {
+        key: props.item.key,
+        quantity: Number(quantity.value),
+      },
+    ],
+  })
+}
 
-// export default defineComponent({
-//   components: { ProductPrices },
-//   props: {
-//     item: {
-//       type: Object,
-//       required: true,
-//     },
-//   },
-//   setup(props) {
-//     const { updateItemQuantities, loading, quantity } = useUpdateItemQuantities(
-//       props.item,
-//     )
-//     const { removeItemsFromCart } = useRemoveItemsFromCart(props.item)
-
-const options: IOption[] = [...Array(9).keys()].map((index) => {
+const options: Option[] = [...Array(9).keys()].map((index) => {
   const amount = index + 1
   return {
     value: amount,
     title: amount.toString(),
   }
 })
-
-//     return {
-//       options,
-//       loading,
-//       updateItemQuantities,
-//       quantity,
-//       removeItemsFromCart,
-//     }
-//   },
-// })
 </script>
 
 <template>
-  <tr>
+  <tr v-if="item?.product">
     <td class="remove-wrapper">
-      <button @click="removeItemsFromCart">
+      <app-loader v-if="loading" />
+      <button v-else @click="removeItemsFromCart">
         <app-icon icon="close" title="Verwijderen" />
       </button>
     </td>
@@ -59,9 +49,8 @@ const options: IOption[] = [...Array(9).keys()].map((index) => {
         <img class="image" :src="item.product.node.image.medium" alt="" />
       </div>
     </td>
-    <td class="title">
-      {{ item.product.node.name }}
-    </td>
+    <td class="title">{{ item.product.node.name }} {{ item.quantity }}</td>
+
     <td class="price">
       <product-prices :product="item.product.node" />
     </td>
@@ -73,7 +62,7 @@ const options: IOption[] = [...Array(9).keys()].map((index) => {
         :name="`quantity-${item.product.node.databaseId}`"
         :options="options"
         title="Aantal"
-        @change="updateItemQuantities"
+        @change="updateQuantity"
       />
     </td>
     <td class="price">

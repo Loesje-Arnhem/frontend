@@ -1,9 +1,10 @@
+import type { ErrorObject } from '@vuelidate/core'
 import { updateCartCache } from '~/composables/useCart'
 import { addCouponMutation, removeCouponMutation } from '~/graphql/coupon'
 
 export const useAddCoupon = () => {
   const code = ref('kortenleding')
-  const errors = ref([])
+  const errors: Ref<ErrorObject[]> = ref([])
 
   const { mutate, loading, onError } = useMutation(addCouponMutation, () => ({
     variables: {
