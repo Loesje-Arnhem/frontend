@@ -26,6 +26,12 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    postcode: {
+      api: {
+        secret: '',
+        key: '',
+      },
+    },
     newsletter: {
       api_key: '',
       list: {

@@ -2,25 +2,34 @@
 import useVuelidate from '@vuelidate/core'
 import type { CustomerAddressInput } from '~/graphql/__generated__/graphql'
 
+defineEmits(['update:firstName', 'update:lastName', 'update:company'])
+
 const props = defineProps<
   CustomerAddressInput & {
     id: string
   }
 >()
+
+const { data, execute, pending } = useFetch('/api/address', {
+  query: {
+    postcode: '671a5JH',
+    houseNumber: '42',
+  },
+  immediate: false,
+})
+
 const { required } = useValidators()
 
 const rules = {
   firstName: { required },
   lastName: { required },
 }
-
 const v$ = useVuelidate(rules, props)
-
-defineEmits(['update:firstName', 'update:lastName', 'update:company'])
 </script>
 
 <template>
   <form-fieldset title="Factuurgegevens" class="fields">
+    <button @click="execute()">fetchAddress {{ pending }} {{ data }}</button>
     <form-input-text
       :id="`${id}-firstName`"
       :model-value="firstName ?? ''"

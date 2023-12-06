@@ -14,7 +14,7 @@ withDefaults(
   },
 )
 
-defineEmits(['update:modelValue', 'change'])
+defineEmits(['update:modelValue'])
 </script>
 
 <template>
