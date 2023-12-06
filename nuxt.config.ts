@@ -21,6 +21,10 @@ export default defineNuxtConfig({
     },
   },
 
+  image: {
+    densities: [1, 2],
+  },
+
   runtimeConfig: {
     newsletter: {
       api_key: '',
@@ -273,7 +277,8 @@ export default defineNuxtConfig({
 
       // Don't fallback on document based (e.g. `/some-page`) requests
       // Even though this says `null` by default, I had to set this specifically to `null` to make it work
-      navigateFallback: null,
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,json}', '_ipx/**.*'],
     },
     manifest: {
       background_color: backgroundColor,
@@ -285,6 +290,7 @@ export default defineNuxtConfig({
       description:
         'Ook zo benieuwd wat Loesje allemaal al heeft gezegd? Met deze app kan je lekker door al haar posters heen kuieren.',
       short_name: title,
+      edge_side_panel: {},
       icons: [
         {
           src: '/icons/manifest-icon-192.png',

@@ -74,7 +74,8 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { openMenus, add, remove, mobileMenuIsOpen } = useLayout()
+    const { openMenus, add, remove } = useLayout()
+    const menuIsOpen = useMenu()
     let timer = null as number | null
     const link = ref<ComponentPublicInstance<HTMLAnchorElement> | null>(null)
 
@@ -97,8 +98,8 @@ export default defineComponent({
       add(props.title)
     }
 
-    watch(mobileMenuIsOpen, () => {
-      if (mobileMenuIsOpen.value) {
+    watch(menuIsOpen, () => {
+      if (menuIsOpen.value) {
         setActiveSubmenu()
       }
     })

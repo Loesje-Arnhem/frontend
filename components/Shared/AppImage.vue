@@ -20,18 +20,10 @@ const loading = computed(() => {
   }
   return 'eager'
 })
-
-const densities = computed(() => {
-  if (!props.sizes) {
-    return 'x1 x2'
-  }
-  return undefined
-})
 </script>
 
 <template>
-  <img
-    :densities="densities"
+  <nuxt-picture
     :sizes="sizes"
     :alt="alt ? alt : ''"
     :loading="loading"
@@ -41,7 +33,7 @@ const densities = computed(() => {
     :height="height"
     class="image"
     fit="inside"
-    format="avif"
+    format="avif,webp"
   />
 </template>
 

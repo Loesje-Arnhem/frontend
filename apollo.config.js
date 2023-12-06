@@ -1,10 +1,8 @@
-import { apiUrl } from './data/siteDetails'
-
 module.exports = {
   client: {
     service: {
       name: 'loesje',
-      url: `${apiUrl}graphql`,
+      url: `https://shop.loesje.nl/graphql`,
     },
     includes: ['graphql/**/*.ts'],
   },
