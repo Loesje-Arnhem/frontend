@@ -29,7 +29,7 @@ const submit = async () => {
     @submit="submit"
   >
     <form-fieldset title="Coupon">
-      <form-input-text
+      <input-text-field
         id="coupon"
         v-model="code"
         autocomplete="false"

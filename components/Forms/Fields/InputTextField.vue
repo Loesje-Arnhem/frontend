@@ -1,10 +1,6 @@
 <script lang="ts" setup>
 import { type ErrorObject } from '@vuelidate/core'
 
-defineOptions({
-  inheritAttrs: false,
-})
-
 withDefaults(
   defineProps<{
     title: string
@@ -34,7 +30,6 @@ defineEmits(['keyup-down', 'keyup-up', 'update:modelValue', 'change', 'blur'])
   >
     <input
       :id="id"
-      v-bind="$attrs"
       :value="modelValue"
       :type="type"
       class="input"

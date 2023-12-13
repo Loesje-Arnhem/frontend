@@ -76,7 +76,7 @@ const today = () => {
         </template>
       </poster-filter-toggle>
       <div class="filter-item">
-        <form-input-text
+        <input-text-field
           id="date-before"
           v-model="dateBefore"
           class="date"
@@ -88,7 +88,7 @@ const today = () => {
         />
       </div>
       <div class="filter-item">
-        <form-input-text
+        <input-text-field
           id="date-after"
           v-model="dateAfter"
           class="date"

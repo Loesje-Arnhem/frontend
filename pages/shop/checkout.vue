@@ -15,6 +15,7 @@ const { data } = await useAsyncQuery(GetPageByID, {
   id: pageIds.checkout.toString(),
 })
 
+const submit = () => {}
 useMeta(data.value?.page)
 
 const {
@@ -39,12 +40,21 @@ const {
       @submit="submit"
     >
       <h1 v-if="data">{{ data.page?.title }}</h1>
-      <address-fields
+      <personal-info-fields
         id="billing"
         v-model:firstName="billing.firstName"
         v-model:last-name="billing.lastName"
         v-model:company="billing.company"
       />
+
+      <address-fields
+        id="billing"
+        v-model:city="billing.city"
+        v-model:street="billing.street"
+        v-model:houseNumber="billing.houseNumber"
+        v-model:postcode="billing.postcode"
+      />
+
       <payment-gateways v-model="payment" />
     </app-form>
   </center-wrapper>

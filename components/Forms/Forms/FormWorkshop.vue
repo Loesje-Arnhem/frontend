@@ -85,7 +85,7 @@ onMounted(() => {
         @submit="submit"
       >
         <form-fieldset title="Bedrijfsgegevens">
-          <form-input-text
+          <input-text-field
             id="name"
             v-model="formData.name"
             :errors="v$.name.$errors"
@@ -93,14 +93,14 @@ onMounted(() => {
             autocomplete="name"
             @blur="v$.name.$touch"
           />
-          <form-input-text
+          <input-text-field
             id="company-name"
             v-model="formData.companyName"
             :errors="v$.companyName.$errors"
             title="Bedrijfsnaam of naam organisatie"
             @blur="v$.companyName.$touch"
           />
-          <form-input-text
+          <input-text-field
             id="email"
             v-model="formData.email"
             :errors="v$.email.$errors"
@@ -109,7 +109,7 @@ onMounted(() => {
             autocomplete="email"
             @blur="v$.email.$touch"
           />
-          <form-input-text
+          <input-text-field
             id="phone-number"
             v-model="formData.phoneNumber"
             :errors="v$.phoneNumber.$errors"
@@ -119,7 +119,7 @@ onMounted(() => {
             @blur="v$.phoneNumber.$touch"
           />
 
-          <form-input-text
+          <input-text-field
             id="address"
             v-model="formData.address"
             description="Waar jij of je bedrijf gevestigd is, dit kan afwijken van waar de workshop gegeven moet worden"
@@ -127,14 +127,14 @@ onMounted(() => {
             title="Straat en huisnummer"
             @blur="v$.address.$touch"
           />
-          <form-input-text
+          <input-text-field
             id="zipcode"
             v-model="formData.zipcode"
             :errors="v$.zipcode.$errors"
             title="Postcode"
             @blur="v$.zipcode.$touch"
           />
-          <form-input-text
+          <input-text-field
             id="city"
             v-model="formData.city"
             :errors="v$.city.$errors"
@@ -148,7 +148,7 @@ onMounted(() => {
             in een keer aanvragen. Wil je meerdere workshops op meerdere dagen,
             vul dan dit formulier voor elke dag apart in.
           </div>
-          <form-input-text
+          <input-text-field
             id="date"
             v-model="formData.date"
             title="Wanneer wil je de workshop volgen?"
@@ -157,7 +157,7 @@ onMounted(() => {
             type="date"
             @blur="v$.date.$touch"
           />
-          <form-input-text
+          <input-text-field
             id="time"
             v-model="formData.time"
             type="time"
@@ -166,7 +166,7 @@ onMounted(() => {
             @blur="v$.time.$touch"
           />
 
-          <form-input-text
+          <input-text-field
             id="total-attendees"
             v-model.number="formData.totalAttendees"
             type="number"
@@ -176,7 +176,7 @@ onMounted(() => {
             @blur="v$.totalAttendees.$touch"
           />
 
-          <form-input-text
+          <input-text-field
             id="location"
             v-model="formData.location"
             :errors="v$.location.$errors"
@@ -184,7 +184,7 @@ onMounted(() => {
             description="Volledig adres van de workshoplocatie"
             @blur="v$.location.$touch"
           />
-          <form-input-text
+          <input-text-field
             id="total-workshops"
             v-model.number="formData.totalWorkshops"
             type="number"
@@ -194,14 +194,14 @@ onMounted(() => {
             @blur="v$.totalWorkshops.$touch"
           />
 
-          <form-input-text
+          <input-text-field
             id="theme"
             v-model="formData.theme"
             :errors="v$.theme.$errors"
             title="Wil je over een bepaald thema schrijven?"
             @blur="v$.theme.$touch"
           />
-          <form-textarea
+          <textarea-field
             id="motivation"
             v-model="formData.motivation"
             rows="5"

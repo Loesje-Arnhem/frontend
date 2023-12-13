@@ -65,7 +65,7 @@ const submit = () => {
 </script>
 
 <template>
-  <form-auto-complete
+  <autocomplete-field
     v-model="searchField"
     :results="posters"
     :title="$t('searchPosters')"

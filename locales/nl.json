@@ -39,8 +39,9 @@
   "visitOurShop": "Bezoek ons winkeltje",
   "workshops": "Workshops",
   "validations": {
-    "required": "Het veld {property} is verplicht",
-    "email": "Dit is geen geldig e-mailadres"
+    "required": "Dit veld is verplicht",
+    "email": "Dit is geen geldig e-mailadres",
+    "numeric": "Vul een nummer in"
   },
   "invalidForm": "Niet alle velden zijn correct ingevuld",
   "invalidParameters": "Niet alle velden zijn correct ingevuld",

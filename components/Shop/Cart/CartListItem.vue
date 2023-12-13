@@ -55,7 +55,7 @@ const options: Option[] = [...Array(9).keys()].map((index) => {
       <product-prices :product="item.product.node" />
     </td>
     <td>
-      <form-select
+      <select-field
         :id="`quantity-${item.product.node.databaseId}`"
         v-model="quantity"
         class="select"

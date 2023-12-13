@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query GetCart {\n    cart {\n      ...cartFragment\n    }\n  }\n": types.GetCartDocument,
+    "\n  query GetCart {\n    cart {\n      ...cartFragment\n\n    }\n  }\n": types.GetCartDocument,
     "\n  mutation AddToCart($productId: Int!, $quantity: Int) {\n    addToCart(input: { productId: $productId, quantity: $quantity }) {\n      cart {\n        ...cartFragment\n      }\n    }\n  }\n": types.AddToCartDocument,
     "\n  mutation RemoveItemsFromCart($keys: [ID]) {\n    removeItemsFromCart(input: { keys: $keys }) {\n      cart {\n        ...cartFragment\n      }\n    }\n  }\n": types.RemoveItemsFromCartDocument,
     "\n  mutation UpdateItemQuantities($items: [CartItemQuantityInput]) {\n    updateItemQuantities(input: { items: $items }) {\n      cart {\n        ...cartFragment\n      }\n    }\n  }\n": types.UpdateItemQuantitiesDocument,
@@ -97,7 +97,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetCart {\n    cart {\n      ...cartFragment\n    }\n  }\n"): (typeof documents)["\n  query GetCart {\n    cart {\n      ...cartFragment\n    }\n  }\n"];
+export function gql(source: "\n  query GetCart {\n    cart {\n      ...cartFragment\n\n    }\n  }\n"): (typeof documents)["\n  query GetCart {\n    cart {\n      ...cartFragment\n\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

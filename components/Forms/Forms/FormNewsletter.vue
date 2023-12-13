@@ -42,7 +42,7 @@ const { v$, loading, error, submit, submitted } = useForm(
     @submit="submit"
   >
     <form-fieldset title="Meld je aan voor de nieuwbrief">
-      <form-input-text
+      <input-text-field
         id="email"
         v-model="formData.email"
         :errors="v$.email.$errors"

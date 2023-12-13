@@ -10,9 +10,9 @@ export const useCheckout = () => {
   const paymentMethod = ref('cod')
   const shipToDifferentAddress = ref(false)
   const addToNewsletter = ref(false)
-  const billing = reactive<CustomerAddressInput>({
-    address1: '',
-    address2: '',
+  const billing = reactive({
+    street: '',
+    houseNumber: '',
     city: '',
     company: '',
     country: CountriesEnum.Nl,

@@ -10,14 +10,6 @@ const props = defineProps<
   }
 >()
 
-const { data, execute, pending } = useFetch('/api/address', {
-  query: {
-    postcode: '671a5JH',
-    houseNumber: '42',
-  },
-  immediate: false,
-})
-
 const { required } = useValidators()
 
 const rules = {
@@ -29,8 +21,7 @@ const v$ = useVuelidate(rules, props)
 
 <template>
   <form-fieldset title="Factuurgegevens" class="fields">
-    <button @click="execute()">fetchAddress {{ pending }} {{ data }}</button>
-    <form-input-text
+    <input-text-field
       :id="`${id}-firstName`"
       :model-value="firstName ?? ''"
       title="Voornaam"
@@ -41,7 +32,7 @@ const v$ = useVuelidate(rules, props)
       @input="$emit('update:firstName', $event.target.value)"
       @change="$emit('update:firstName', $event.target.value)"
     />
-    <form-input-text
+    <input-text-field
       :id="`${id}-lastName`"
       :model-value="lastName ?? ''"
       title="Achternaam"
@@ -52,7 +43,7 @@ const v$ = useVuelidate(rules, props)
       @input="$emit('update:lastName', $event.target.value)"
       @change="$emit('update:lastName', $event.target.value)"
     />
-    <form-input-text
+    <input-text-field
       :id="`${id}-companyName`"
       :model-value="company ?? ''"
       class="company-name"
@@ -62,3 +53,15 @@ const v$ = useVuelidate(rules, props)
     />
   </form-fieldset>
 </template>
+
+<style lang="postcss" scoped>
+.fields {
+  & :deep(.fields) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.company-name {
+  grid-column: span 2;
+}
+</style>

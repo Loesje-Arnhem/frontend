@@ -96,7 +96,7 @@ export default defineComponent({
         {{ $t('search') }}
       </legend>
       <div class="input-wrapper">
-        <form-input-text
+        <input-text-field
           id="search"
           type="search"
           name="search"

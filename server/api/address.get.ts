@@ -4,7 +4,8 @@ export default defineEventHandler(async (event) => {
 
   const { key, secret } = config.postcode.api
   const credentials = btoa(`${key}:${secret}`)
-  const { street, city } = await $fetch<{
+
+  const response = await $fetch<{
     street: string
     city: string
   }>(
@@ -14,9 +15,23 @@ export default defineEventHandler(async (event) => {
         Authorization: `Basic ${credentials}`,
       },
     },
-  )
-  return {
-    street,
-    city,
+  ).catch((err) => {
+    const errorCode = err.data.statusMessage
+    if (errorCode === 'MEMBER_EXISTS_WITH_EMAIL_ADDRESS') {
+      return 1
+    }
+    throw createError({
+      statusCode: 400,
+      statusMessage: err,
+    })
+  })
+
+  if (typeof response === 'number') {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'errorCode',
+    })
   }
+
+  return response
 })

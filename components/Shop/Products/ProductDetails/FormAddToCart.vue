@@ -21,7 +21,7 @@ onDone(() => {
     <product-prices :product="product" class="price" />
     <form class="form" @submit.prevent="addToCart">
       <form-fieldset title="In winkelmandje">
-        <form-input-text
+        <input-text-field
           id="quantity"
           v-model="quantity"
           title="Aantal"
@@ -39,7 +39,7 @@ onDone(() => {
             v-for="attribute in product.globalAttributes.nodes"
             :key="attribute.id"
           >
-            <form-select
+            <select-field
               v-if="attribute.terms?.nodes.length"
               :id="attribute.slug"
               v-model="selectedAttribute"
