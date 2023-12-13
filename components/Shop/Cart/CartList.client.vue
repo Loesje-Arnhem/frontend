@@ -58,7 +58,6 @@ const localePath = useLocalePath()
         </app-button>
       </div>
     </div>
-    {{ cart }}
   </div>
 </template>
 

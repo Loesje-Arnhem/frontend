@@ -75,11 +75,10 @@ const today = () => {
           ({{ selectedSubjectIds.length }})
         </template>
       </poster-filter-toggle>
-      <div class="filter-item">
+      <div class="filter-item date">
         <input-text-field
           id="date-before"
           v-model="dateBefore"
-          class="date"
           type="date"
           :title="$t('from')"
           name="date-before"
@@ -87,11 +86,10 @@ const today = () => {
           :max="dateAfter ? dateAfter : today()"
         />
       </div>
-      <div class="filter-item">
+      <div class="filter-item date">
         <input-text-field
           id="date-after"
           v-model="dateAfter"
-          class="date"
           type="date"
           :title="$t('until')"
           name="date-after"
@@ -165,9 +163,11 @@ const today = () => {
 }
 
 .date {
-  display: flex;
-  align-items: center;
-  gap: 0.25em;
+  & :deep(.field) {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+  }
 
   & :deep(.label) {
     margin: 0;

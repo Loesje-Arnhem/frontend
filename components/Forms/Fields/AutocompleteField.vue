@@ -95,20 +95,23 @@ export default defineComponent({
       <legend class="sr-only">
         {{ $t('search') }}
       </legend>
-      <div class="input-wrapper">
-        <input-text-field
-          id="search"
-          type="search"
-          name="search"
-          autocomplete="off"
-          :model-value="modelValue"
-          class="search"
-          :title="$t('search')"
-          v-bind="$attrs"
-          @input="input"
-          @keyup-down="onArrowDown"
-          @keyup-up="onArrowUp"
-        />
+      <div class="wrapper">
+        <div class="input-wrapper">
+          <input-text-field
+            id="search"
+            type="search"
+            name="search"
+            autocomplete="off"
+            :model-value="modelValue"
+            class="search"
+            :title="$t('search')"
+            v-bind="$attrs"
+            @input="input"
+            @keyup-down="onArrowDown"
+            @keyup-up="onArrowUp"
+          />
+        </div>
+
         <div class="buttons">
           <button
             v-if="modelValue.length"
@@ -150,7 +153,7 @@ export default defineComponent({
   margin-bottom: 1em;
 }
 
-.input-wrapper {
+.wrapper {
   position: relative;
 }
 
@@ -178,7 +181,7 @@ export default defineComponent({
   border-width: 0 2px 2px;
 }
 
-.search {
+.input-wrapper {
   & :deep(.label) {
     @mixin sr-only;
   }

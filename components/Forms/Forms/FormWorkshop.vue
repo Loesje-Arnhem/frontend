@@ -201,15 +201,16 @@ onMounted(() => {
             title="Wil je over een bepaald thema schrijven?"
             @blur="v$.theme.$touch"
           />
-          <textarea-field
-            id="motivation"
-            v-model="formData.motivation"
-            rows="5"
-            class="motivation"
-            description="Motiveer je aanvraag: Waarom wil je graag een Loesje-workshop aanvragen? (Optioneel)"
-            :errors="v$.motivation.$errors"
-            title="Motiveer je aanvraag"
-          />
+          <div class="motivation">
+            <textarea-field
+              id="motivation"
+              v-model="formData.motivation"
+              rows="5"
+              description="Motiveer je aanvraag: Waarom wil je graag een Loesje-workshop aanvragen? (Optioneel)"
+              :errors="v$.motivation.$errors"
+              title="Motiveer je aanvraag"
+            />
+          </div>
         </form-fieldset>
         <app-image
           class="image"

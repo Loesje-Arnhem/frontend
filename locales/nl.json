@@ -47,6 +47,7 @@
   "invalidParameters": "Niet alle velden zijn correct ingevuld",
   "emailAlreadyExists": "Dit is geen geldig e-mailadres",
   "formError": "Er ging iets mis bij het versturen. Probeer het later nog een keer.",
+  "addressNotFound": "We konden deze combinatie van postcode en huisnummer niet vinden. Klopt deze wél? Vul dan je straatnaam en woonplaats in.",
   "errors": {
     "error404": "test"
   }

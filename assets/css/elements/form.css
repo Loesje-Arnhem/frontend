@@ -13,13 +13,6 @@ fieldset {
   margin-bottom: 1rem;
 }
 
-.error-message {
-  display: block;
-  margin-top: 0.25rem;
-  color: var(--color-danger);
-  font-size: 0.8em;
-}
-
 input[type="text"],
 input[type="search"],
 input[type="number"],
@@ -49,8 +42,8 @@ select {
     color: var(--gray-light);
   }
 
-  &:readonly {
-    background-color: var(--color-gray-light);
+  &[readonly] {
+    background-color: var(--color-gray-lighter);
     cursor: default;
     pointer-events: none;
   }
