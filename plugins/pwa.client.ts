@@ -3,16 +3,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   const route = useRoute()
   const { mediaQueryStandAlone } = useAppConfig()
 
-  // Whether the app is running in the Microsoft Edge sidebar.
-  const isSidebarPWA = (() => {
-    if (navigator.userAgentData) {
-      return navigator.userAgentData.brands.some((b) => {
-        return b.brand === 'Edge Side Panel'
-      })
-    }
-    return false
-  })()
-
   const setBodyClass = () => {
     document.documentElement.classList.add('standalone')
   }
@@ -31,7 +21,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     })
   }
 
-  if (window.matchMedia(mediaQueryStandAlone).matches || isSidebarPWA) {
+  if (window.matchMedia(mediaQueryStandAlone).matches) {
     setBodyClass()
     redirectToPostersPageOnStandalone()
   }
