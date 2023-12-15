@@ -1,35 +1,55 @@
-<script setup>
-const { data } = await useAsyncData(
-  ('donations',
-  async () => {
-    const response = await $fetch(
-      'https://shop.loesje.nl/wp-json/wc-donation/v1/campaign?id=111591',
-    )
+<script setup lang="ts">
+const dialog = ref<HTMLDialogElement | null>(null)
 
-    const amount = Number(response.campaign_meta.total_donation_amount) || 0
-    const target = Number(
-      response.campaign_meta['wc-donation-goal-fixed-amount-field'][0],
-    )
-    const progress = `${(amount / target) * 100}%`
+const { data } = await useLazyAsyncData('donations', async () => {
+  const response = await $fetch(
+    'https://shop.loesje.nl/wp-json/wc-donation/v1/campaign?id=111591',
+  )
+  if (!response) {
+    return
+  }
 
-    return {
-      ...response,
-      title: response.post_title,
-      target,
-      progress,
-      amount: 100,
-      loaded: true,
-      amount,
-      steps: response.campaign_meta['pred-amount'][0].map((amount) => {
-        return Number(amount)
-      }),
-    }
-  }),
-)
+  const amount = Number(response.campaign_meta.total_donation_amount) || 0
+  const target = Number(
+    response.campaign_meta['wc-donation-goal-fixed-amount-field'][0],
+  )
+  const progress = `${(amount / target) * 100}%`
+
+  return {
+    ...response,
+    title: response.post_title,
+    target,
+    progress,
+    amount: 100,
+    loaded: true,
+    amount,
+    steps: response.campaign_meta['pred-amount'][0].map((amount) => {
+      return Number(amount)
+    }),
+  }
+})
+
+const openDialog = () => {
+  if (!dialog.value) {
+    return
+  }
+  dialog.value.showModal()
+}
+
+const closeDialog = () => {
+  if (!dialog.value) {
+    return
+  }
+  dialog.value.close()
+}
 </script>
 
 <template>
   <center-wrapper v-if="data" size="xlg">
+    <dialog ref="dialog" class="dialog">
+      <form-checkout />
+      <app-button @click="closeDialog">Sluiten</app-button>
+    </dialog>
     <div class="wrapper">
       <div class="widget">
         <box-wrapper id="donate" title="Doneren">
@@ -56,15 +76,7 @@ const { data } = await useAsyncData(
                 </div>
               </div>
             </fieldset>
-
-            <app-button
-              href="https://whydonate.com/nl/donate/de-posters-van-loesje"
-              rel="noopener"
-              target="_blank"
-            >
-              Doneer
-            </app-button>
-            {{}}
+            <app-button @click="openDialog"> Doneer </app-button>
           </div>
         </box-wrapper>
       </div>
@@ -96,6 +108,7 @@ const { data } = await useAsyncData(
   @media (--viewport-md) {
     grid-template-columns: 1fr 2fr;
   }
+
   @media (--viewport-lg) {
     grid-template-columns: 1fr 3fr;
   }
@@ -114,6 +127,7 @@ const { data } = await useAsyncData(
 .target {
   font-weight: var(--font-weight-bold);
 }
+
 .progress {
   margin-bottom: 0.5em;
   height: 0.25em;
@@ -124,5 +138,12 @@ const { data } = await useAsyncData(
   display: flex;
   gap: 0.5em;
   margin-bottom: 1em;
+}
+</style>
+
+<style>
+::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
 }
 </style>

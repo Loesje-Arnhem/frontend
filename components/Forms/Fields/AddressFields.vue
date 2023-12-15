@@ -52,29 +52,31 @@ const { execute, error } = useFetch('/api/address', {
 
 <template>
   <form-fieldset title="Adresgegevens" class="fields">
-    {{ error?.statusMessage }}
-    <input-text-field
-      :id="`${id}-postcode`"
-      :model-value="v$.postcode.$model"
-      title="Postcode"
-      class="postcode"
-      name="postcode"
-      :errors="v$.postcode.$silentErrors"
-      autocomplete="postcode"
-      @input="$emit('update:postcode', $event.target.value)"
-      @blur="fetchAdress"
-    />
-    <input-text-field
-      :id="`${id}-house-number`"
-      :model-value="houseNumber"
-      title="Huisnummer"
-      class="house-number"
-      name="house-number"
-      :errors="v$.houseNumber.$silentErrors"
-      autocomplete="house-number"
-      @input="$emit('update:house-number', $event.target.value)"
-      @blur="fetchAdress"
-    />
+    <div class="postcode">
+      <input-text-field
+        :id="`${id}-postcode`"
+        :model-value="v$.postcode.$model"
+        title="Postcode"
+        class="postcode"
+        name="postcode"
+        :errors="v$.postcode.$silentErrors"
+        autocomplete="postcode"
+        @input="$emit('update:postcode', $event.target.value)"
+        @blur="fetchAdress"
+      />
+    </div>
+    <div class="house-number">
+      <input-text-field
+        :id="`${id}-house-number`"
+        :model-value="houseNumber"
+        title="Huisnummer"
+        name="house-number"
+        :errors="v$.houseNumber.$silentErrors"
+        autocomplete="house-number"
+        @input="$emit('update:house-number', $event.target.value)"
+        @blur="fetchAdress"
+      />
+    </div>
     <!-- <input-text-field
       :id="`${id}-house-number-addition`"
       :model-value="houseNumberAddition"
@@ -83,24 +85,36 @@ const { execute, error } = useFetch('/api/address', {
       name="house-number-addition"
       @blur="fetchAdress"
     /> -->
-    <input-text-field
-      :id="`${id}-city`"
-      :model-value="city"
-      title="Plaats"
-      class="city"
-      name="city"
-      :errors="v$.city.$silentErrors"
-      autocomplete="city"
-      @input="$emit('update:city', $event.target.value)"
-    />
-    <input-text-field
-      :id="`${id}-street`"
-      :model-value="street"
-      title="Straat"
-      class="street"
-      name="street"
-      autocomplete="street"
-      @input="$emit('update:street', $event.target.value)"
+    <div class="city">
+      <input-text-field
+        :id="`${id}-city`"
+        :model-value="city"
+        title="Plaats"
+        class="city"
+        name="city"
+        :errors="v$.city.$silentErrors"
+        autocomplete="city"
+        :readonly="error ? undefined : 'readonly'"
+        @input="$emit('update:city', $event.target.value)"
+      />
+    </div>
+    <div class="street">
+      <input-text-field
+        :id="`${id}-street`"
+        :model-value="street"
+        title="Straat"
+        class="street"
+        name="street"
+        autocomplete="street"
+        :readonly="error ? undefined : 'readonly'"
+        @input="$emit('update:street', $event.target.value)"
+      />
+    </div>
+
+    <form-error-message
+      v-if="error?.statusMessage"
+      class="error-message"
+      :error="$t(error.statusMessage)"
     />
   </form-fieldset>
 </template>
@@ -116,5 +130,9 @@ const { execute, error } = useFetch('/api/address', {
 .street,
 .city {
   grid-column: span 2;
+}
+
+.error-message {
+  grid-column: span 4;
 }
 </style>
