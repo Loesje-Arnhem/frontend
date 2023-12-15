@@ -114,6 +114,10 @@ export default defineNuxtConfig({
     '/posters/posters/favorieten': { ssr: false },
   },
 
+  build: {
+    transpile: ['tslib'],
+  },
+
   telemetry: false,
 
   app: {
