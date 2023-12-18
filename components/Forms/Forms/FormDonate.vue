@@ -20,7 +20,6 @@ const { data } = await useLazyAsyncData('donations', async () => {
     title: response.post_title,
     target,
     progress,
-    amount: 100,
     loaded: true,
     amount,
     steps: response.campaign_meta['pred-amount'][0].map((amount) => {
