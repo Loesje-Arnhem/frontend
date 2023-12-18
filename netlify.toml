@@ -29,7 +29,7 @@
     Content-Type = "application/manifest+json"
 
 [[headers]]
-  for = "/*.rss"
+  for = "/*.xml"
   [headers.values]
     Content-Type = "text/xml"
 
