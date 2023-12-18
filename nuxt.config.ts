@@ -116,6 +116,11 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/doe-mee/doe-mee': { ssr: false },
     '/posters/posters/favorieten': { ssr: false },
+    '/rss.xml': {
+      headers: {
+        'content-type': 'text/xml'
+      },
+    }
   },
 
   telemetry: false,
