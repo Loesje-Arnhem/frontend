@@ -37,6 +37,4 @@ export default defineEventHandler(async (event) => {
   })
   event.headers.set('content-type', 'text/xml')
   return feed.xml({ indent: true })
-  // event.res.setHeader('content-type', 'text/xml')
-  // event.res.end(feedString)
 })
