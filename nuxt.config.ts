@@ -118,9 +118,9 @@ export default defineNuxtConfig({
     '/posters/posters/favorieten': { ssr: false },
     '/rss.xml': {
       headers: {
-        'content-type': 'text/xml'
+        'content-type': 'text/xml',
       },
-    }
+    },
   },
 
   telemetry: false,
@@ -281,16 +281,16 @@ export default defineNuxtConfig({
     strategies: 'generateSW',
     registerWebManifestInRouteRules: true,
     registerType: 'autoUpdate',
-    workbox: {
-      importScripts: ['/badge.js'],
-      // Only precache these files - html should be excluded
-      // globPatterns: ['**/*.{js,css}'],
+    // workbox: {
+    //   importScripts: ['/badge.js'],
+    //   // Only precache these files - html should be excluded
+    //   // globPatterns: ['**/*.{js,css}'],
 
-      // Don't fallback on document based (e.g. `/some-page`) requests
-      // Even though this says `null` by default, I had to set this specifically to `null` to make it work
-      navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,json}', '_ipx/**.*'],
-    },
+    //   // Don't fallback on document based (e.g. `/some-page`) requests
+    //   // Even though this says `null` by default, I had to set this specifically to `null` to make it work
+    //   navigateFallback: '/',
+    //   globPatterns: ['**/*.{js,css,html,json}', '_ipx/**.*'],
+    // },
     manifest: {
       background_color: backgroundColor,
       theme_color: themeColor,
