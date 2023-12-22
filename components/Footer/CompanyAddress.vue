@@ -36,6 +36,6 @@ const { email, emailShop } = appConfig.address
 }
 
 .icon {
-  transform: translateY(0.3em);
+  transform: translateY(0.2em);
 }
 </style>

@@ -4,23 +4,13 @@
     <ul class="list">
       <li>
         <a class="link" href="/rss.xml">
-          <app-icon
-            icon="chevron-right"
-            :width="12"
-            :height="12"
-            class="icon"
-          />
+          <app-icon icon="rss" :width="16" :height="16" class="icon" />
           Nieuws
         </a>
       </li>
       <li>
         <a class="link" href="/rss-posters.xml">
-          <app-icon
-            icon="chevron-right"
-            :width="12"
-            :height="12"
-            class="icon"
-          />
+          <app-icon icon="rss" :width="16" :height="16" class="icon" />
           Posters
         </a>
       </li>
@@ -35,11 +25,11 @@
 
 .link {
   display: flex;
-  margin-bottom: 0.25em;
-  gap: 0.25em;
+  margin-bottom: 0.5em;
+  gap: 0.5em;
 }
 
 .icon {
-  transform: translateY(0.25em);
+  transform: translateY(0.15em);
 }
 </style>
