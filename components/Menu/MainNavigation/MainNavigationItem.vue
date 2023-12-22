@@ -28,19 +28,17 @@
       </span>
     </button>
 
-    <template v-if="hasChildren">
-      <slide-in-animation>
-        <ul v-if="isOpen" class="submenu tile">
-          <li
-            v-for="subItem in item.children"
-            :key="subItem.url"
-            class="submenu-item"
-          >
-            <main-navigation-link :item="subItem" class="submenu-link" />
-          </li>
-        </ul>
-      </slide-in-animation>
-    </template>
+    <slide-in-animation>
+      <ul v-show="isOpen" class="submenu tile">
+        <li
+          v-for="subItem in item.children"
+          :key="subItem.url"
+          class="submenu-item"
+        >
+          <main-navigation-link :item="subItem" class="submenu-link" />
+        </li>
+      </ul>
+    </slide-in-animation>
   </li>
 </template>
 
