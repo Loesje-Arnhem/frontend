@@ -26,7 +26,7 @@ export default defineAppConfig({
   },
   socialMedia: {
     twitterUrl: 'https://twitter.com/LoesjeNL',
-    facebookUrl: 'https://twitter.com/LoesjeNL',
+    facebookUrl: 'https://www.facebook.com/loesjevdposters/',
     instagramUrl: 'https://instagram.com/loesjevdposters',
     pinterestUrl: 'https://www.pinterest.com/loesjenl/',
     linkedinUrl: 'https://www.linkedin.com/company/loesje/',

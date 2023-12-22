@@ -1,60 +1,45 @@
+<script lang="ts" setup>
+import type { MenuItem } from '~/types/MenuItem'
+import { GetFooterMenu } from '~/graphql/menu'
+
+const items = ref<MenuItem[]>([])
+
+const { onResult } = useQuery(GetFooterMenu)
+
+onResult(({ data }) => {
+  if (!data.menu?.menuItems?.edges.length) {
+    return []
+  }
+
+  const menuItems = data.menu.menuItems.edges.map((item) => {
+    return {
+      id: item.node.id,
+      url: item.node.uri ?? '',
+      title: item.node.label ?? '',
+    }
+  })
+
+  items.value = menuItems
+})
+</script>
+
 <template>
-  <nav class="quicklinks" aria-labelledby="quicklinks-title">
+  <nav
+    v-if="items.length"
+    class="quicklinks"
+    aria-labelledby="quicklinks-title"
+  >
     <h2 id="quicklinks-title">Handige links</h2>
     <ul class="list">
-      <li>
-        <nuxt-link to="/workshops/" class="link">
+      <li v-for="item in items" :key="item.id">
+        <nuxt-link :to="item.url" class="link">
           <app-icon
             icon="chevron-right"
             :width="12"
             :height="12"
             class="icon"
           />
-          Workshops
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/doe-mee/lokale-groepen/" class="link">
-          <app-icon
-            icon="chevron-right"
-            :width="12"
-            :height="12"
-            class="icon"
-          />
-          Lokale groepen
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/over-loesje/internationaal/" class="link">
-          <app-icon
-            icon="chevron-right"
-            :width="12"
-            :height="12"
-            class="icon"
-          />
-          Loesje internationaal
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/doe-mee" class="link">
-          <app-icon
-            icon="chevron-right"
-            :width="12"
-            :height="12"
-            class="icon"
-          />
-          Doe mee
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/doe-mee/donateur/" class="link">
-          <app-icon
-            icon="chevron-right"
-            :width="12"
-            :height="12"
-            class="icon"
-          />
-          Word donateur
+          {{ item.title }}
         </nuxt-link>
       </li>
     </ul>

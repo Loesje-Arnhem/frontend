@@ -1,7 +1,65 @@
 <script lang="ts" setup>
-import pages from '~/data/menu'
+import { GetHeaderMenu } from '~/graphql/menu'
 
+import type { MenuItemWithChildren } from '~/types/MenuItem'
+
+const items = ref<MenuItemWithChildren[]>([])
+
+const { t } = useI18n()
+
+const { onResult } = useQuery(GetHeaderMenu)
 const localePath = useLocalePath()
+
+onResult(({ data }) => {
+  if (!data.menu?.menuItems?.edges.length) {
+    return []
+  }
+
+  const baseItems = [
+    {
+      title: t('home'),
+      id: 'home',
+      url: localePath({ name: 'index' }),
+    },
+    {
+      title: t('posters'),
+      id: 'posters',
+      url: localePath({ name: 'posters' }),
+    },
+  ]
+
+  const menuItems = data.menu.menuItems.edges.map((item) => {
+    return {
+      id: item.node.id,
+      url: item.node.uri ?? '',
+      title: item.node.label ?? '',
+      children: item.node.childItems?.edges.map((subItem) => {
+        return {
+          id: subItem.node.id,
+          url: subItem.node.uri ?? '',
+          title: subItem.node.label ?? '',
+        }
+      }),
+    }
+  })
+
+  const productCategories = data.productCategories?.edges.map((item) => {
+    return {
+      id: item.node.id,
+      url: item.node.uri ?? '',
+      title: item.node.name ?? '',
+    }
+  })
+
+  const shop = {
+    title: t('shop'),
+    id: 'shop',
+    url: localePath({ name: 'shop' }),
+    children: productCategories ?? [],
+  }
+
+  items.value = [...baseItems, ...menuItems, shop]
+})
 
 const menu: Ref<HTMLAnchorElement | null> = ref(null)
 const arrowPosition: Ref<string | undefined> = ref(undefined)
@@ -23,6 +81,7 @@ const getMainLink = () => {
   if (!menu.value) {
     return null
   }
+
   const activeLink = menu.value.querySelector(
     '.router-link-active',
   ) as HTMLAnchorElement | null
@@ -70,41 +129,14 @@ const setArrowPosition = () => {
     <h2 id="menu" class="sr-only" tabindex="-1">
       {{ $t('mainMenu') }}
     </h2>
+
     <div ref="menu">
-      <ul v-if="pages" class="menu">
+      <ul v-if="items.length" class="menu">
         <main-navigation-item
+          v-for="item in items"
+          :key="item.id"
           class="menu-item-page"
-          :title="$t('home')"
-          :uri="localePath({ name: 'index' })"
-        />
-        <main-navigation-item
-          class="menu-item-page"
-          :title="$t('posters')"
-          :uri="localePath({ name: 'posters' })"
-        />
-        <main-navigation-item
-          class="menu-item-page"
-          :title="pages.aboutPage.title"
-          :uri="pages.aboutPage.uri"
-          :children="pages.aboutPageChildren"
-        />
-        <main-navigation-item
-          class="menu-item-page"
-          :title="pages.joinPage.title"
-          :uri="pages.joinPage.uri"
-          :children="pages.joinPageChildren"
-        />
-        <main-navigation-item
-          class="menu-item-page"
-          :title="$t('workshops')"
-          :uri="localePath({ name: 'workshops' })"
-        />
-        <main-navigation-item
-          v-if="pages.productCategories.edges.length"
-          class="menu-item-page"
-          :title="$t('shop')"
-          :uri="localePath({ name: 'shop' })"
-          :children="pages.productCategories"
+          :item="item"
         />
       </ul>
       <div
@@ -116,14 +148,6 @@ const setArrowPosition = () => {
   </nav>
 </template>
 
-<style lang="postcss">
-@container header state(stuck: top) {
-  nav {
-    background-color: #f0f;
-  }
-}
-</style>
-
 <style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
@@ -133,12 +157,6 @@ const setArrowPosition = () => {
 
   @media (--show-full-navigation) {
     margin-bottom: 0;
-  }
-}
-
-@container header state(stuck: top) {
-  nav {
-    background-color: #f0f;
   }
 }
 

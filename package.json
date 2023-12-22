@@ -27,7 +27,7 @@
     "@vue/apollo-composable": "~4.0.0-beta.12",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.0",
+    "eslint-plugin-prettier": "^5.1.1",
     "nuxt": "^3.8.2",
     "nuxt-schema-org": "^3.3.0",
     "nuxt-svgo": "^3.7.0",

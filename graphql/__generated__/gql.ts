@@ -24,6 +24,8 @@ const documents = {
     "\n  fragment cartFragment on Cart {\n    contents {\n      nodes {\n        key\n        product {\n          node {\n            id\n            databaseId\n            name\n            image {\n              id\n              altText\n              thumbnail: sourceUrl(size: THUMBNAIL)\n              medium: sourceUrl(size: MEDIUM)\n              mediumLarge: sourceUrl(size: MEDIUM_LARGE)\n            }\n            ... on SimpleProduct {\n              id\n              regularPrice\n              price\n              salePrice\n            }\n            ... on VariableProduct {\n              id\n              regularPrice\n              price\n              salePrice\n            }\n          }\n        }\n        variation {\n          node {\n            id\n            databaseId\n            name\n            description\n            type\n            onSale\n            price\n            regularPrice\n            salePrice\n            image {\n              id\n              sourceUrl\n              srcSet\n              altText\n              title\n            }\n          }\n          attributes {\n            id\n            name\n            value\n          }\n        }\n        quantity\n        total\n        subtotal\n        subtotalTax\n      }\n    }\n    appliedCoupons {\n      code\n      discountAmount\n    }\n    subtotal\n    subtotalTax\n    shippingTax\n    shippingTotal\n    total\n    totalTax\n    feeTax\n    feeTotal\n    discountTax\n    discountTotal\n  }\n": types.CartFragmentFragmentDoc,
     "\n  fragment MediaItem on MediaItem {\n    id\n    srcSet\n    alt: altText\n    src: mediaItemUrl\n    mediaDetails {\n      width\n      height\n    }\n  }\n": types.MediaItemFragmentDoc,
     "\n  fragment FeaturedImage on NodeWithFeaturedImageToMediaItemConnectionEdge {\n    node {\n      ...MediaItem\n    }\n  }\n": types.FeaturedImageFragmentDoc,
+    "fragment MenuItem on MenuItem {\n  id\n  uri\n  label\n}\n": types.MenuItemFragmentDoc,
+    "fragment MenuItemWithChildren on MenuItem {\n  ...MenuItem\n  childItems {\n    edges {\n      node {\n        ...MenuItem\n      }\n    }\n  }\n}\n": types.MenuItemWithChildrenFragmentDoc,
     "fragment PageBase on Page {\n  id\n  databaseId\n  title\n}\n": types.PageBaseFragmentDoc,
     "fragment RelatedPage on Page {\n  ...PageBase\n  excerpt\n  uri\n}\n": types.RelatedPageFragmentDoc,
     "fragment RelatedPageNode on PageToPageConnectionEdge {\n  node {\n    ...RelatedPage\n  }\n}\n": types.RelatedPageNodeFragmentDoc,
@@ -64,6 +66,8 @@ const documents = {
     "fragment Sources on PosterToSourceConnection {\n  edges {\n    ...SourceNode\n  }\n}\n": types.SourcesFragmentDoc,
     "fragment SubjectNode on PosterToSubjectConnectionEdge {\n  node {\n    ...Subject\n  }\n}\n": types.SubjectNodeFragmentDoc,
     "fragment Subjects on PosterToSubjectConnection {\n  edges {\n    ...SubjectNode\n  }\n}\n": types.SubjectsFragmentDoc,
+    "\n  query GetHeaderMenu {\n    menu(id: \"header-menu-frontend\", idType: LOCATION) {\n      id\n      menuItems(\n        first: 99,\n        where: {\n          parentDatabaseId: 0\n        }\n      ) {\n        edges {\n          node {\n            ...MenuItemWithChildren\n          }\n        }\n      }\n    }\n    productCategories(where:{childless:false}) {\n      edges {\n        node {\n          id\n          name\n          uri\n        }\n      }\n    }\n  }\n\n\n": types.GetHeaderMenuDocument,
+    "\n  query GetFooterMenu {\n    menu(id: \"footer-menu\", idType: LOCATION) {\n      id\n      menuItems(\n        first: 99,\n        where: {\n          parentDatabaseId: 0\n        }\n      ) {\n        edges {\n          node {\n            ...MenuItem\n          }\n        }\n      }\n    }\n  }\n": types.GetFooterMenuDocument,
     "\n  query GetPageByUri($uri: ID!) {\n    page(id: $uri, idType: URI) {\n      ...PageDetails\n    }\n  }\n": types.GetPageByUriDocument,
     "\n  query GetPageByID($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n  }\n": types.GetPageByIdDocument,
     "\n  query GetPageHome($id: ID!) {\n    page(id: $id, idType: DATABASE_ID) {\n      ...PageDetails\n    }\n    posts(first: 3, where: { hasPassword: false }) {\n      ...PostListItems\n    }\n  }\n": types.GetPageHomeDocument,
@@ -138,6 +142,14 @@ export function gql(source: "\n  fragment MediaItem on MediaItem {\n    id\n    
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  fragment FeaturedImage on NodeWithFeaturedImageToMediaItemConnectionEdge {\n    node {\n      ...MediaItem\n    }\n  }\n"): (typeof documents)["\n  fragment FeaturedImage on NodeWithFeaturedImageToMediaItemConnectionEdge {\n    node {\n      ...MediaItem\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment MenuItem on MenuItem {\n  id\n  uri\n  label\n}\n"): (typeof documents)["fragment MenuItem on MenuItem {\n  id\n  uri\n  label\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment MenuItemWithChildren on MenuItem {\n  ...MenuItem\n  childItems {\n    edges {\n      node {\n        ...MenuItem\n      }\n    }\n  }\n}\n"): (typeof documents)["fragment MenuItemWithChildren on MenuItem {\n  ...MenuItem\n  childItems {\n    edges {\n      node {\n        ...MenuItem\n      }\n    }\n  }\n}\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -298,6 +310,14 @@ export function gql(source: "fragment SubjectNode on PosterToSubjectConnectionEd
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "fragment Subjects on PosterToSubjectConnection {\n  edges {\n    ...SubjectNode\n  }\n}\n"): (typeof documents)["fragment Subjects on PosterToSubjectConnection {\n  edges {\n    ...SubjectNode\n  }\n}\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetHeaderMenu {\n    menu(id: \"header-menu-frontend\", idType: LOCATION) {\n      id\n      menuItems(\n        first: 99,\n        where: {\n          parentDatabaseId: 0\n        }\n      ) {\n        edges {\n          node {\n            ...MenuItemWithChildren\n          }\n        }\n      }\n    }\n    productCategories(where:{childless:false}) {\n      edges {\n        node {\n          id\n          name\n          uri\n        }\n      }\n    }\n  }\n\n\n"): (typeof documents)["\n  query GetHeaderMenu {\n    menu(id: \"header-menu-frontend\", idType: LOCATION) {\n      id\n      menuItems(\n        first: 99,\n        where: {\n          parentDatabaseId: 0\n        }\n      ) {\n        edges {\n          node {\n            ...MenuItemWithChildren\n          }\n        }\n      }\n    }\n    productCategories(where:{childless:false}) {\n      edges {\n        node {\n          id\n          name\n          uri\n        }\n      }\n    }\n  }\n\n\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetFooterMenu {\n    menu(id: \"footer-menu\", idType: LOCATION) {\n      id\n      menuItems(\n        first: 99,\n        where: {\n          parentDatabaseId: 0\n        }\n      ) {\n        edges {\n          node {\n            ...MenuItem\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetFooterMenu {\n    menu(id: \"footer-menu\", idType: LOCATION) {\n      id\n      menuItems(\n        first: 99,\n        where: {\n          parentDatabaseId: 0\n        }\n      ) {\n        edges {\n          node {\n            ...MenuItem\n          }\n        }\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

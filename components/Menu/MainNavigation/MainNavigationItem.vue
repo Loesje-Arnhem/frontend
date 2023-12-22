@@ -1,54 +1,42 @@
 <template>
   <li
-    :class="[$style['menu-item'], { 'has-popup': hasChildren }]"
+    :class="{ 'has-popup': hasChildren }"
     class="menu-item"
     @mouseover="mouseover"
     @mouseout="mouseout"
   >
     <main-navigation-link
       ref="link"
-      :uri="uri"
-      :title="title"
+      :item="item"
       :aria-haspopup="hasChildren"
-      :class="$style['menu-link']"
       class="menu-link"
     />
 
     <button
       v-if="hasChildren"
       :aria-expanded="isOpen ? 'true' : 'false'"
-      :class="$style['btn-show-submenu']"
+      class="btn-show-submenu"
       @click="toggleMenu"
     >
-      <app-icon
-        icon="chevron-down"
-        :width="16"
-        :height="16"
-        :class="$style['icon']"
-      />
+      <app-icon icon="chevron-down" :width="16" :height="16" class="icon" />
       <span class="sr-only">
         {{
           $t('showSubmenuFor', {
-            title: title,
+            title: item.title,
           })
         }}
       </span>
     </button>
+
     <template v-if="hasChildren">
       <slide-in-animation>
-        <ul v-if="isOpen" :class="$style.submenu" class="tile">
+        <ul v-if="isOpen" class="submenu tile">
           <li
-            v-for="subItem in children.edges"
-            :key="subItem.node.uri"
-            :class="$style['submenu-item']"
+            v-for="subItem in item.children"
+            :key="subItem.url"
             class="submenu-item"
           >
-            <main-navigation-link
-              :uri="subItem.node.uri"
-              :title="subItem.node.title"
-              :class="$style['submenu-link']"
-              class="submenu-link"
-            />
+            <main-navigation-link :item="subItem" class="submenu-link" />
           </li>
         </ul>
       </slide-in-animation>
@@ -56,89 +44,67 @@
   </li>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  props: {
-    uri: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    children: {
-      type: Object,
-      default: () => {},
-    },
-  },
+<script lang="ts" setup>
+import type { MenuItemWithChildren } from '~/types/MenuItem'
 
-  setup(props) {
-    const { openMenus, add, remove } = useLayout()
-    const menuIsOpen = useMenu()
-    let timer = null as number | null
-    const link = ref<ComponentPublicInstance<HTMLAnchorElement> | null>(null)
+const props = defineProps<{
+  item: MenuItemWithChildren
+}>()
 
-    const isOpen = computed(() => openMenus.value.includes(props.title))
+const { openMenus, add, remove } = useLayout()
+const menuIsOpen = useMenu()
+let timer = null as number | null
+const link = ref<ComponentPublicInstance<HTMLAnchorElement> | null>(null)
 
-    const toggleMenu = () => {
-      if (isOpen.value) {
-        remove(props.title)
-      } else {
-        add(props.title)
-      }
-    }
+const isOpen = computed(() => openMenus.value.includes(props.item.title))
 
-    const setActiveSubmenu = () => {
-      if (!isSmallScreen()) return
-      if (!link.value) return
-      if (!link.value.$el.classList.contains('nuxt-link-active')) {
-        return
-      }
-      add(props.title)
-    }
+const toggleMenu = () => {
+  if (isOpen.value) {
+    remove(props.item.title)
+  } else {
+    add(props.item.title)
+  }
+}
 
-    watch(menuIsOpen, () => {
-      if (menuIsOpen.value) {
-        setActiveSubmenu()
-      }
-    })
+const setActiveSubmenu = () => {
+  if (!isSmallScreen()) return
+  if (!link.value) return
+  if (!link.value.$el.classList.contains('nuxt-link-active')) {
+    return
+  }
+  add(props.item.title)
+}
 
-    const hasChildren = computed(() => {
-      return props.children?.edges?.length > 0
-    })
-
-    const mouseover = () => {
-      if (isSmallScreen()) return
-      if (!hasChildren.value) return
-      if (!timer) return
-      add(props.title)
-      clearTimeout(timer)
-    }
-
-    const mouseout = () => {
-      if (isSmallScreen()) return
-      timer = window.setTimeout(() => {
-        remove(props.title)
-      }, 150)
-    }
-    const isSmallScreen = () => {
-      return window.innerWidth < 768
-    }
-
-    return {
-      link,
-      toggleMenu,
-      mouseover,
-      mouseout,
-      isOpen,
-      hasChildren,
-    }
-  },
+watch(menuIsOpen, () => {
+  if (menuIsOpen.value) {
+    setActiveSubmenu()
+  }
 })
+
+const hasChildren = computed(() => {
+  return props.item.children ? true : false
+})
+
+const mouseover = () => {
+  if (isSmallScreen()) return
+  if (!hasChildren.value) return
+  if (!timer) return
+  add(props.item.title)
+  clearTimeout(timer)
+}
+
+const mouseout = () => {
+  if (isSmallScreen()) return
+  timer = window.setTimeout(() => {
+    remove(props.item.title)
+  }, 150)
+}
+const isSmallScreen = () => {
+  return window.innerWidth < 768
+}
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
 .menu-item {
