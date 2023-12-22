@@ -66,7 +66,6 @@ defineProps<{
 .list {
   @mixin list-reset;
 
-  padding-top: 0.5em;
   display: flex;
   gap: 0.5em;
 }

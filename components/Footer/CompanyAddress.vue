@@ -27,8 +27,6 @@ const { email, emailShop } = appConfig.address
 <style lang="postcss" scoped>
 .list {
   @mixin list-reset;
-
-  padding-top: 0.5em;
 }
 
 .link {

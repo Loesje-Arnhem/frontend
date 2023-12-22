@@ -6,6 +6,10 @@ export default (featuredImage: ResponseImage[] | undefined, title?: string) => {
     return undefined
   }
   const image = featuredImage[0]
+
+  if (image.code) {
+    return undefined
+  }
   const srcSet = Object.values(image.media_details.sizes).map((size) => {
     return `${size?.source_url} ${size?.width}w`
   })
@@ -15,6 +19,7 @@ export default (featuredImage: ResponseImage[] | undefined, title?: string) => {
   } else if (image.alt_text) {
     alt = image.alt_text
   }
+
   const result: IFeaturedImage = {
     alt,
     width: image.media_details.width,

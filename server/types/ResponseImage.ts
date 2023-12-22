@@ -20,4 +20,5 @@ export type ResponseImage = {
       medium_large?: ResponseImageSize
     }
   }
+  code?: string
 }

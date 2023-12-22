@@ -49,8 +49,6 @@ onResult(({ data }) => {
 <style lang="postcss" scoped>
 .list {
   @mixin list-reset;
-
-  padding-top: 0.5em;
 }
 
 .link {
@@ -60,6 +58,6 @@ onResult(({ data }) => {
 }
 
 .icon {
-  transform: translateY(0.5em);
+  transform: translateY(0.25em);
 }
 </style>

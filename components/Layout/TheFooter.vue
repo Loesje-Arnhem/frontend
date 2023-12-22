@@ -11,6 +11,8 @@ const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
         <quick-links />
 
         <company-address />
+        <rss-feed-links />
+        <app-stores />
 
         <div :class="$style['follow-us']">
           <social-media-links
@@ -44,6 +46,10 @@ const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
   @mixin color-negative;
 
   position: relative;
+
+  h2 {
+    margin-bottom: var(--spacing-xs);
+  }
 }
 
 .wrapper {
@@ -56,7 +62,7 @@ const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
   }
 
   @media (--viewport-md) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 

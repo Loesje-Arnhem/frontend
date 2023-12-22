@@ -1,0 +1,45 @@
+<template>
+  <div class="app">
+    <h2>Rss feeds</h2>
+    <ul class="list">
+      <li>
+        <a class="link" href="/rss.xml">
+          <app-icon
+            icon="chevron-right"
+            :width="12"
+            :height="12"
+            class="icon"
+          />
+          Nieuws
+        </a>
+      </li>
+      <li>
+        <a class="link" href="/rss-posters.xml">
+          <app-icon
+            icon="chevron-right"
+            :width="12"
+            :height="12"
+            class="icon"
+          />
+          Posters
+        </a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<style lang="postcss" scoped>
+.list {
+  @mixin list-reset;
+}
+
+.link {
+  display: flex;
+  margin-bottom: 0.25em;
+  gap: 0.25em;
+}
+
+.icon {
+  transform: translateY(0.25em);
+}
+</style>
