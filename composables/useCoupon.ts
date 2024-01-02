@@ -3,13 +3,15 @@ import { updateCartCache } from '~/composables/useCart'
 import { addCouponMutation, removeCouponMutation } from '~/graphql/coupon'
 
 export const useAddCoupon = () => {
-  const code = ref('kortenleding')
+  const formData = reactive({
+    code: 'kortenleding',
+  })
   const errors: Ref<ErrorObject[]> = ref([])
 
   const { mutate, loading, onError } = useMutation(addCouponMutation, () => ({
     variables: {
       // clientMutationId: v4(),
-      code: code.value,
+      code: formData.code,
     },
     update(cache, { data }) {
       updateCartCache(cache, data?.applyCoupon)
@@ -21,7 +23,7 @@ export const useAddCoupon = () => {
 
   return {
     errors,
-    code,
+    formData,
     loading,
     mutate,
   }

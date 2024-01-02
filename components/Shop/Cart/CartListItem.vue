@@ -94,9 +94,5 @@ const options: Option[] = [...Array(9).keys()].map((index) => {
 
 .select {
   transform: translateY(-0.4em);
-
-  & :global(label) {
-    @mixin sr-only;
-  }
 }
 </style>

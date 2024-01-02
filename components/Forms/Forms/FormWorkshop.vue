@@ -91,14 +91,12 @@ onMounted(() => {
             :errors="v$.name.$errors"
             title="Naam"
             autocomplete="name"
-            @blur="v$.name.$touch"
           />
           <input-text-field
             id="company-name"
             v-model="formData.companyName"
             :errors="v$.companyName.$errors"
             title="Bedrijfsnaam of naam organisatie"
-            @blur="v$.companyName.$touch"
           />
           <input-text-field
             id="email"
@@ -107,7 +105,6 @@ onMounted(() => {
             title="E-mailadres"
             type="email"
             autocomplete="email"
-            @blur="v$.email.$touch"
           />
           <input-text-field
             id="phone-number"
@@ -116,7 +113,6 @@ onMounted(() => {
             title="Telefoonnummer"
             type="tel"
             autocomplete="tel"
-            @blur="v$.phoneNumber.$touch"
           />
 
           <input-text-field
@@ -125,21 +121,18 @@ onMounted(() => {
             description="Waar jij of je bedrijf gevestigd is, dit kan afwijken van waar de workshop gegeven moet worden"
             :errors="v$.address.$errors"
             title="Straat en huisnummer"
-            @blur="v$.address.$touch"
           />
           <input-text-field
             id="zipcode"
             v-model="formData.zipcode"
             :errors="v$.zipcode.$errors"
             title="Postcode"
-            @blur="v$.zipcode.$touch"
           />
           <input-text-field
             id="city"
             v-model="formData.city"
             :errors="v$.city.$errors"
             title="Woonplaats"
-            @blur="v$.city.$touch"
           />
         </form-fieldset>
         <form-fieldset title="De workshop">
@@ -155,7 +148,6 @@ onMounted(() => {
             :errors="v$.date.$errors"
             :min="minDate"
             type="date"
-            @blur="v$.date.$touch"
           />
           <input-text-field
             id="time"
@@ -163,7 +155,6 @@ onMounted(() => {
             type="time"
             :errors="v$.time.$errors"
             title="Hoe laat wil je beginnen?"
-            @blur="v$.time.$touch"
           />
 
           <input-text-field
@@ -173,7 +164,6 @@ onMounted(() => {
             min="1"
             :errors="v$.totalAttendees.$errors"
             title="Hoeveel deelnemers verwacht je?"
-            @blur="v$.totalAttendees.$touch"
           />
 
           <input-text-field
@@ -182,7 +172,6 @@ onMounted(() => {
             :errors="v$.location.$errors"
             title="Waar wil je de workshop volgen?"
             description="Volledig adres van de workshoplocatie"
-            @blur="v$.location.$touch"
           />
           <input-text-field
             id="total-workshops"
@@ -191,7 +180,6 @@ onMounted(() => {
             min="1"
             :errors="v$.totalWorkshops.$errors"
             title="Hoeveel workshops wil je aanvragen?"
-            @blur="v$.totalWorkshops.$touch"
           />
 
           <input-text-field
@@ -199,7 +187,6 @@ onMounted(() => {
             v-model="formData.theme"
             :errors="v$.theme.$errors"
             title="Wil je over een bepaald thema schrijven?"
-            @blur="v$.theme.$touch"
           />
           <div class="motivation">
             <textarea-field

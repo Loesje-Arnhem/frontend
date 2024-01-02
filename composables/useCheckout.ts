@@ -6,7 +6,7 @@ import { submitCheckoutMutation } from '~/graphql/checkout'
 import { getCartQuery } from '~/graphql/cart'
 
 export const useCheckout = () => {
-  const errors = ref([])
+  const errors = ref<string[]>([])
   const paymentMethod = ref('cod')
   const shipToDifferentAddress = ref(false)
   const addToNewsletter = ref(false)

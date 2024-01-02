@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
 import { GetPageByID } from '~/graphql/pages'
 
 defineI18nRoute({
@@ -15,11 +16,12 @@ const { data } = await useAsyncQuery(GetPageByID, {
   id: pageIds.checkout.toString(),
 })
 
-const submit = () => {}
 useMeta(data.value?.page)
 
+const v$ = useVuelidate()
+
 const {
-  // checkout,
+  checkout,
   // paymentMethod,
   billing,
   // shipping,
@@ -28,45 +30,59 @@ const {
   loading,
   errors,
 } = useCheckout()
+
+const submit = async () => {
+  const isFormCorrect = await v$.value.$validate()
+  if (!isFormCorrect) {
+    return
+  }
+
+  await checkout({ billing })
+}
 </script>
 
 <template>
   <center-wrapper>
-    <app-form
-      class="form"
-      button-title="Bestelling plaatsen"
-      :loading="loading"
-      :error="errors.join('')"
-      @submit="submit"
-    >
-      <h1 v-if="data">{{ data.page?.title }}</h1>
-      <personal-info-fields
-        id="billing"
-        v-model:firstName="billing.firstName"
-        v-model:last-name="billing.lastName"
-        v-model:company="billing.company"
-      />
+    <h1 v-if="data">{{ data.page.title }}</h1>
+    <div class="checkout">
+      <app-form
+        class="form"
+        button-title="Bestelling plaatsen"
+        :loading="loading"
+        :error="errors.join('')"
+        @submit="submit"
+      >
+        <personal-info-fields
+          id="billing"
+          v-model:firstName="billing.firstName"
+          v-model:last-name="billing.lastName"
+          v-model:company="billing.company"
+        />
 
-      <address-fields
-        id="billing"
-        v-model:city="billing.city"
-        v-model:street="billing.street"
-        v-model:houseNumber="billing.houseNumber"
-        v-model:postcode="billing.postcode"
-      />
+        <address-fields
+          id="billing"
+          v-model:city="billing.city"
+          v-model:street="billing.street"
+          v-model:houseNumber="billing.houseNumber"
+          v-model:postcode="billing.postcode"
+        />
 
-      <payment-gateways v-model="payment" />
-    </app-form>
+        <payment-gateways v-model="payment" />
+      </app-form>
+      <mini-cart />
+    </div>
   </center-wrapper>
 </template>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .checkout {
   display: grid;
   grid-gap: 1em;
 
   @media (--viewport-lg) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr 1fr;
   }
 }
 </style>

@@ -8,7 +8,7 @@ const geti18nErrorKey = (key: string) => {
 }
 
 export default defineEventHandler(async (event) => {
-  const { postcode, houseNumber } = getQuery(event)
+  const { postcode, houseNumber, houseNumberSuffix } = getQuery(event)
   const config = useRuntimeConfig()
 
   const { key, secret } = config.postcode.api
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     street: string
     city: string
   }>(
-    `https://api.postcode.eu/nl/v1/addresses/postcode/${postcode}/${houseNumber}/`,
+    `https://api.postcode.eu/nl/v1/addresses/postcode/${postcode}/${houseNumber}/${houseNumberSuffix}`,
     {
       headers: {
         Authorization: `Basic ${credentials}`,

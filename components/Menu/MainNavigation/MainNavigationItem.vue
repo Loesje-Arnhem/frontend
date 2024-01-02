@@ -11,7 +11,6 @@
       :aria-haspopup="hasChildren"
       class="menu-link"
     />
-
     <button
       v-if="hasChildren"
       :aria-expanded="isOpen ? 'true' : 'false'"
@@ -80,7 +79,7 @@ watch(menuIsOpen, () => {
 })
 
 const hasChildren = computed(() => {
-  return props.item.children ? true : false
+  return props.item.children?.length ? true : false
 })
 
 const mouseover = () => {
