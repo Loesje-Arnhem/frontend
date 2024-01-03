@@ -1,14 +1,6 @@
 <script setup lang="ts">
-import { useVuelidate } from '@vuelidate/core'
-
-defineI18nRoute({
-  paths: {
-    nl: '/winkeltje/afrekenen',
-  },
-})
-
 const {
-  checkout,
+  submit,
   paymentMethod,
   billing,
   // shipping,
@@ -17,17 +9,6 @@ const {
   loading,
   errors,
 } = useCheckout()
-
-const v$ = useVuelidate()
-
-const submit = async () => {
-  const isFormCorrect = await v$.value.$validate()
-  if (!isFormCorrect) {
-    return
-  }
-
-  await checkout({ billing })
-}
 </script>
 
 <template>
@@ -52,6 +33,6 @@ const submit = async () => {
       v-model:houseNumberSuffix="billing.houseNumberSuffix"
       v-model:postcode="billing.postcode"
     />
-    <payment-gateways v-model="paymentMethod" />
+    <payment-gateways v-model="paymentMethod" ways />
   </app-form>
 </template>

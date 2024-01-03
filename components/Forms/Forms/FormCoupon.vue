@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useVuelidate } from '@vuelidate/core'
-const { mutate, loading, errors, formData } = useAddCoupon()
+const { submit, loading, errors, formData } = useAddCoupon()
 
 const { required, email } = useValidators()
 
@@ -9,15 +9,6 @@ const rules = {
 }
 
 const v$ = useVuelidate(rules, formData)
-
-const submit = async () => {
-  const isFormCorrect = await v$.value.$validate()
-  if (!isFormCorrect) {
-    return
-  }
-
-  await mutate({ code: formData.code })
-}
 </script>
 
 <template>

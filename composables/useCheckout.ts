@@ -4,6 +4,7 @@ import {
 } from '~/graphql/__generated__/graphql'
 import { submitCheckoutMutation } from '~/graphql/checkout'
 import { getCartQuery } from '~/graphql/cart'
+import { useVuelidate } from '@vuelidate/core'
 
 export const useCheckout = () => {
   const errors = ref<string[]>([])
@@ -34,20 +35,18 @@ export const useCheckout = () => {
     lastName: '',
     postcode: '',
   })
-  const {
-    mutate: checkout,
-    loading,
-    onError,
-    onDone,
-  } = useMutation(submitCheckoutMutation, () => ({
-    variables: {
-      paymentMethod: paymentMethod.value,
-      shipToDifferentAddress: shipToDifferentAddress.value,
-      billing,
-      shipping,
-    },
-    refetchQueries: [{ query: getCartQuery }],
-  }))
+  const { mutate, loading, onError, onDone } = useMutation(
+    submitCheckoutMutation,
+    () => ({
+      variables: {
+        paymentMethod: paymentMethod.value,
+        shipToDifferentAddress: shipToDifferentAddress.value,
+        billing,
+        shipping,
+      },
+      refetchQueries: [{ query: getCartQuery }],
+    }),
+  )
   onError(({ graphQLErrors }) => {
     errors.value = graphQLErrors.map((err) => err.message)
   })
@@ -64,6 +63,16 @@ export const useCheckout = () => {
 
     // submitToNewsletter()
   })
+  const v$ = useVuelidate()
+
+  const submit = async () => {
+    const isFormCorrect = await v$.value.$validate()
+    if (!isFormCorrect) {
+      return
+    }
+
+    await mutate({ billing })
+  }
   return {
     shipping,
     billing,
@@ -71,7 +80,7 @@ export const useCheckout = () => {
     paymentMethod,
     errors,
     loading,
-    checkout,
+    submit,
     addToNewsletter,
   }
 }

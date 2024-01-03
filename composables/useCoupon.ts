@@ -21,11 +21,20 @@ export const useAddCoupon = () => {
     errors.value = graphQLErrors.map((err) => err.message)
   })
 
+  const submit = async () => {
+    const isFormCorrect = await v$.value.$validate()
+    if (!isFormCorrect) {
+      return
+    }
+
+    await mutate({ code: formData.code })
+  }
+
   return {
     errors,
     formData,
     loading,
-    mutate,
+    submit,
   }
 }
 

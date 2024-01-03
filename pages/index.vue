@@ -35,7 +35,7 @@ useMeta(data.value?.page)
       {{ data.page?.title }}
     </h1>
 
-    <form-donate />
+    <block-donate />
 
     <latest-posts-section :posts="data.posts" />
     <related-posters-section
