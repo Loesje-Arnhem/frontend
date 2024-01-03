@@ -45,6 +45,7 @@ defineEmits(['update:modelValue', 'change', 'blur'])
           v-for="option in options"
           :key="option.value"
           :value="option.value"
+          :selected="option.value === modelValue"
         >
           {{ option.title }}
         </option>

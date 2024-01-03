@@ -10,6 +10,8 @@ const emits = defineEmits([
   'update:house-number',
   'update:city',
   'update:house-number-suffix',
+  'update:address1',
+  'update:address2',
 ])
 
 const props = defineProps<{
@@ -20,6 +22,8 @@ const props = defineProps<{
   houseNumber: string
   country: string
   houseNumberSuffix: string
+  address1: string
+  address2: string
 }>()
 
 const formData = toRefs(props)
@@ -119,6 +123,33 @@ const streetFieldsAreReadonly = computed(() => {
         @blur="fetchAdress"
       />
     </template>
+    <template v-else>
+      <div class="address1">
+        <input-text-field
+          :id="`${id}-address1`"
+          :model-value="address1"
+          title="address1"
+          class="address1"
+          name="address1"
+          autocomplete="address1"
+          @input="$emit('update:address1', $event.target.value)"
+          @blur="fetchAdress"
+        />
+      </div>
+      <div class="address2">
+        <input-text-field
+          :id="`${id}-address2`"
+          :model-value="address2"
+          title="address2"
+          class="address2"
+          name="address2"
+          autocomplete="address2"
+          @input="$emit('update:address2', $event.target.value)"
+          @blur="fetchAdress"
+        />
+      </div>
+    </template>
+
     <div class="city">
       <input-text-field
         :id="`${id}-city`"
@@ -160,6 +191,8 @@ const streetFieldsAreReadonly = computed(() => {
   }
 }
 
+.address1,
+.address2,
 .postcode,
 .street,
 .city {

@@ -18,7 +18,7 @@ export const useValidators = () => {
 
   // wrap each validator.
   // https://github.com/vuelidate/vuelidate/blob/next/packages/validators/src/withMessages/numeric.js
-  const required = withI18nMessage({ ...requiredDefault })
+  const required = withI18nMessage(requiredDefault)
   const email = withI18nMessage(emailDefault)
   const numeric = withI18nMessage(numericDefault)
 

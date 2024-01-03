@@ -1,20 +1,27 @@
 <script lang="ts" setup>
 import { useVuelidate } from '@vuelidate/core'
 
-defineEmits(['update:firstName', 'update:lastName', 'update:company'])
+defineEmits([
+  'update:firstName',
+  'update:lastName',
+  'update:email',
+  'update:company',
+])
 
 const props = defineProps<{
   firstName: string
   lastName: string
   company: string
+  email: string
   id: string
 }>()
 
-const { required } = useValidators()
+const { required, email: emailValidator } = useValidators()
 
 const rules = {
   firstName: { required },
   lastName: { required },
+  email: { required, emailValidator },
 }
 const v$ = useVuelidate(rules, props)
 </script>
@@ -42,6 +49,17 @@ const v$ = useVuelidate(rules, props)
       autocomplete="family-name"
       @input="$emit('update:lastName', $event.target.value)"
       @change="$emit('update:lastName', $event.target.value)"
+    />
+    <input-text-field
+      :id="`${id}-email`"
+      type="email"
+      :model-value="email"
+      class="email"
+      title="E-mailadres"
+      name="email"
+      :errors="v$.email.$errors"
+      autocomplete="email"
+      @input="$emit('update:email', $event.target.value)"
     />
     <input-text-field
       :id="`${id}-companyName`"
