@@ -24,9 +24,10 @@ export const useCheckout = () => {
     postcode: '',
   })
 
-  const shipping = reactive<CustomerAddressInput>({
-    address1: '',
-    address2: '',
+  const shipping = reactive({
+    street: '',
+    houseNumber: '',
+    houseNumberSuffix: '',
     city: '',
     company: '',
     country: CountriesEnum.Nl,

@@ -70,7 +70,10 @@ defineEmits(['update:modelValue'])
 }
 
 .input {
+  flex: 0 0 auto;
   transform: translateY(-0.25em);
+  width: 1.25em;
+  aspect-ratio: 1 / 1;
 }
 
 .label {

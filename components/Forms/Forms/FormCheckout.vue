@@ -3,9 +3,9 @@ const {
   submit,
   paymentMethod,
   billing,
-  // shipping,
-  // shipToDifferentAddress,
-  // addToNewsletter,
+  shipping,
+  shipToDifferentAddress,
+  addToNewsletter,
   loading,
   errors,
 } = useCheckout()
@@ -13,7 +13,6 @@ const {
 
 <template>
   <app-form
-    class="form"
     button-title="Bestelling plaatsen"
     :loading="loading"
     :error="errors.join('')"
@@ -32,7 +31,31 @@ const {
       v-model:houseNumber="billing.houseNumber"
       v-model:houseNumberSuffix="billing.houseNumberSuffix"
       v-model:postcode="billing.postcode"
+      v-model:country="billing.country"
     />
+    <checkbox-field
+      id="add-to-newsletter"
+      v-model="addToNewsletter"
+      title="Ik meld me aan voor de nieuwbrief"
+    />
+    <checkbox-field
+      id="ship-to-different-address"
+      v-model="shipToDifferentAddress"
+      title="Verzenden naar een ander adres?"
+    />
+    <slide-in-animation>
+      <address-fields
+        v-if="shipToDifferentAddress"
+        id="shipping"
+        v-model:city="shipping.city"
+        v-model:street="shipping.street"
+        v-model:houseNumber="shipping.houseNumber"
+        v-model:houseNumberSuffix="shipping.houseNumberSuffix"
+        v-model:postcode="shipping.postcode"
+        v-model:country="shipping.country"
+      />
+    </slide-in-animation>
+
     <payment-gateways v-model="paymentMethod" ways />
   </app-form>
 </template>
