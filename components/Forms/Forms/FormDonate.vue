@@ -138,11 +138,16 @@ const closeDialog = () => {
   gap: 0.5em;
   margin-bottom: 1em;
 }
+
+.dialog {
+  max-width: 36em;
+  width: calc(100vw - var(--gutter) * 2);
+}
 </style>
 
 <style>
 ::backdrop {
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
 }
 </style>
