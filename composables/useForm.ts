@@ -1,4 +1,4 @@
-import useVuelidate from '@vuelidate/core'
+import { useVuelidate } from '@vuelidate/core'
 import type { ValidationArgs } from '@vuelidate/core'
 import { Endpoints } from '~/enums/endpoints'
 

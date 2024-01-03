@@ -7,13 +7,9 @@ defineI18nRoute({
   },
 })
 
-const payment = ref('')
-
-const houseNumberSuffix = ref('')
-
 const {
-  // checkout,
-  // paymentMethod,
+  checkout,
+  paymentMethod,
   billing,
   // shipping,
   // shipToDifferentAddress,
@@ -29,6 +25,8 @@ const submit = async () => {
   if (!isFormCorrect) {
     return
   }
+
+  await checkout({ billing })
 }
 </script>
 
@@ -40,23 +38,20 @@ const submit = async () => {
     :error="errors.join('')"
     @submit="submit"
   >
-    {{ houseNumberSuffix }}
     <personal-info-fields
       id="billing"
       v-model:firstName="billing.firstName"
       v-model:last-name="billing.lastName"
       v-model:company="billing.company"
-      v-model:houseNumberSuffix="houseNumberSuffix"
     />
-
-    <!-- <address-fields
+    <address-fields
       id="billing"
       v-model:city="billing.city"
       v-model:street="billing.street"
       v-model:houseNumber="billing.houseNumber"
+      v-model:houseNumberSuffix="billing.houseNumberSuffix"
       v-model:postcode="billing.postcode"
-    />-->
-
-    <payment-gateways v-model="payment" />
+    />
+    <payment-gateways v-model="paymentMethod" />
   </app-form>
 </template>

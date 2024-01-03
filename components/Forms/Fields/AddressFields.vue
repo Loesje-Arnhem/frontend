@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import useVuelidate from '@vuelidate/core'
+import { useVuelidate } from '@vuelidate/core'
 
 const emits = defineEmits([
   'update:postcode',
   'update:street',
   'update:house-number',
   'update:city',
-  'update:house-number-addition',
+  'update:house-number-suffix',
 ])
 
 const props = defineProps<{
@@ -15,10 +15,10 @@ const props = defineProps<{
   postcode: string
   street: string
   houseNumber: string
+  houseNumberSuffix: string
 }>()
 
-const postcode = toRef(props, 'postcode')
-const houseNumber = toRef(props, 'houseNumber')
+const formData = toRefs(props)
 
 const fetchAdress = async () => {
   if (v$.value.postcode.$invalid || v$.value.houseNumber.$invalid) {
@@ -39,9 +39,11 @@ const v$ = useVuelidate(rules, props)
 
 const { execute, error } = useFetch('/api/address', {
   params: {
-    postcode,
-    houseNumber,
+    postcode: formData.postcode,
+    houseNumber: formData.houseNumber,
+    houseNumberSuffix: formData.houseNumberSuffix,
   },
+  immediate: false,
   watch: false,
   onResponse: ({ response }) => {
     emits('update:city', response._data.city)
@@ -55,36 +57,35 @@ const { execute, error } = useFetch('/api/address', {
     <div class="postcode">
       <input-text-field
         :id="`${id}-postcode`"
-        :model-value="v$.postcode.$model"
+        :model-value="postcode"
         title="Postcode"
         class="postcode"
         name="postcode"
-        :errors="v$.postcode.$silentErrors"
+        :errors="v$.postcode.$errors"
         autocomplete="postcode"
         @input="$emit('update:postcode', $event.target.value)"
         @blur="fetchAdress"
       />
     </div>
-    <div class="house-number">
-      <input-text-field
-        :id="`${id}-house-number`"
-        :model-value="houseNumber"
-        title="Huisnummer"
-        name="house-number"
-        :errors="v$.houseNumber.$silentErrors"
-        autocomplete="house-number"
-        @input="$emit('update:house-number', $event.target.value)"
-        @blur="fetchAdress"
-      />
-    </div>
-    <!-- <input-text-field
-      :id="`${id}-house-number-addition`"
-      :model-value="houseNumberAddition"
-      title="Toevoeging"
-      class="house-number-addition"
-      name="house-number-addition"
+    <input-text-field
+      :id="`${id}-house-number`"
+      :model-value="houseNumber"
+      title="Huisnummer"
+      name="house-number"
+      :errors="v$.houseNumber.$errors"
+      autocomplete="house-number"
+      @input="$emit('update:house-number', $event.target.value)"
       @blur="fetchAdress"
-    /> -->
+    />
+    <input-text-field
+      :id="`${id}-house-number-suffix`"
+      :model-value="houseNumberSuffix"
+      title="Toevoeging"
+      class="house-number-suffix"
+      name="house-number-suffix"
+      @input="$emit('update:house-number-suffix', $event.target.value)"
+      @blur="fetchAdress"
+    />
     <div class="city">
       <input-text-field
         :id="`${id}-city`"
@@ -92,7 +93,7 @@ const { execute, error } = useFetch('/api/address', {
         title="Plaats"
         class="city"
         name="city"
-        :errors="v$.city.$silentErrors"
+        :errors="v$.city.$errors"
         autocomplete="city"
         :readonly="error ? undefined : 'readonly'"
         @input="$emit('update:city', $event.target.value)"

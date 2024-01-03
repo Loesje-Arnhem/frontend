@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import useVuelidate from '@vuelidate/core'
+import { useVuelidate } from '@vuelidate/core'
 
 defineEmits(['update:firstName', 'update:lastName', 'update:company'])
 

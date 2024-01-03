@@ -13,6 +13,7 @@ export const useCheckout = () => {
   const billing = reactive({
     street: '',
     houseNumber: '',
+    houseNumberSuffix: '',
     city: '',
     company: '',
     country: CountriesEnum.Nl,
