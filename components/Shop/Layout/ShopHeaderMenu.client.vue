@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const localePath = useLocalePath()
-// const { totalProducts } = useCart()
+const { totalProducts } = useCart()
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const localePath = useLocalePath()
       <li>
         <nuxt-link :to="localePath({ name: 'shop-cart' })">
           Winkelwagen
-          <!-- <span v-if="totalProducts">({{ totalProducts }})</span> -->
+          <span v-if="totalProducts">({{ totalProducts }})</span>
         </nuxt-link>
       </li>
     </ul>

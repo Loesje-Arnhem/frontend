@@ -128,7 +128,7 @@ const streetFieldsAreReadonly = computed(() => {
         <input-text-field
           :id="`${id}-address1`"
           :model-value="address1"
-          title="address1"
+          title="Straat en huisnummer"
           class="address1"
           name="address1"
           autocomplete="address1"

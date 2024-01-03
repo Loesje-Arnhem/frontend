@@ -11,13 +11,7 @@ export const useCheckout = () => {
   const paymentMethod = ref('cod')
   const shipToDifferentAddress = ref(false)
   const addToNewsletter = ref(false)
-  const billing = reactive<
-    CustomerAddressInput & {
-      street: string
-      houseNumber: ''
-      houseNumberSuffix: ''
-    }
-  >({
+  const billing = reactive({
     street: '',
     houseNumber: '',
     houseNumberSuffix: '',
@@ -32,13 +26,7 @@ export const useCheckout = () => {
     address2: '',
   })
 
-  const shipping = reactive<
-    CustomerAddressInput & {
-      street: string
-      houseNumber: ''
-      houseNumberSuffix: ''
-    }
-  >({
+  const shipping = reactive({
     street: '',
     houseNumber: '',
     houseNumberSuffix: '',
