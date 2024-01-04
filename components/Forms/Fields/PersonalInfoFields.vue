@@ -73,13 +73,13 @@ const v$ = useVuelidate(rules, props)
 </template>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .fields {
   & :deep(.fields) {
-    grid-template-columns: repeat(2, 1fr);
+    @media (--viewport-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
-}
-
-.company-name {
-  grid-column: span 2;
 }
 </style>

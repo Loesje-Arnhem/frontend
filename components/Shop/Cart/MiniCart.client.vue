@@ -17,7 +17,6 @@ const { cart } = useCart()
           <div class="title">
             <span class="quantity">{{ item.quantity }}x</span>
             {{ item.product.node.name }}
-            {{ item.product.node.name }}
           </div>
         </td>
         <td class="price">

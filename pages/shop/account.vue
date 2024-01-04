@@ -17,5 +17,7 @@ useMeta(data.value?.page)
 </script>
 
 <template>
-  <div />
+  <center-wrapper size="sm">
+    <form-login />
+  </center-wrapper>
 </template>

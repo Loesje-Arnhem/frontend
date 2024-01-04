@@ -24,6 +24,7 @@ const {
       v-model:firstName="billing.firstName"
       v-model:last-name="billing.lastName"
       v-model:company="billing.company"
+      v-model:email="billing.email"
     />
 
     <payment-gateways v-model="paymentMethod" />
