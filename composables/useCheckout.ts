@@ -1,6 +1,6 @@
 import {
   CountriesEnum,
-  type CustomerAddressInput,
+  // type CustomerAddressInput,
 } from '~/graphql/__generated__/graphql'
 import { submitCheckoutMutation } from '~/graphql/checkout'
 import { getCartQuery } from '~/graphql/cart'

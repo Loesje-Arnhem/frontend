@@ -28,9 +28,9 @@
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
-    "nuxt": "^3.9.0",
-    "nuxt-schema-org": "^3.3.0",
-    "nuxt-svgo": "^3.7.0",
+    "nuxt": "^3.9.1",
+    "nuxt-schema-org": "^3.3.2",
+    "nuxt-svgo": "^4.0.0",
     "postcss-html": "^1.5.0",
     "postcss-mixins": "^9.0.4",
     "postcss-preset-env": "^9.3.0",
@@ -49,7 +49,7 @@
     "graphql-tag": "^2.12.6",
     "node-fetch": "^3.3.2",
     "nuxt-graphql-client": "^0.2.31",
-    "postcss-import": "^15.1.0",
+    "postcss-import": "^16.0.0",
     "rss": "^1.2.2"
   },
   "pnpm": {
