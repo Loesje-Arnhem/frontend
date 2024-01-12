@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: '/workshops',
+    nl: '/workshop-creatief-schrijven',
   },
 })
 const { pageIds } = useAppConfig()

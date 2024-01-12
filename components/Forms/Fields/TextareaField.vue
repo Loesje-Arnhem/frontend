@@ -24,14 +24,14 @@ defineEmits(['keyup-down', 'keyup-up', 'input', 'change', 'blur'])
 
 <template>
   <form-field
-    :id="id"
+    :id
     :errors="errors"
     :title="title"
     class="field"
     :description="description"
   >
     <textarea
-      :id="id"
+      :id
       v-bind="$attrs"
       :model-value="modelValue"
       @keyup.down="$emit('keyup-down')"

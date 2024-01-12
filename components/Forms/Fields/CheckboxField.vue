@@ -15,7 +15,7 @@ defineEmits(['update:modelValue'])
   <div class="field">
     <input
       v-bind="$attrs"
-      :id="id"
+      :id
       :checked="modelValue"
       type="checkbox"
       class="input"

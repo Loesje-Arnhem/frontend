@@ -3,6 +3,7 @@
   "extends": ["@nuxt/eslint-config", "plugin:prettier/recommended", "prettier"],
   "plugins": ["prettier"],
   "rules": {
+    "vue/valid-v-bind": 0,
     "vue/no-v-html": 0,
     "vue/no-v-text-v-html-on-component": 0,
     "vue/no-multiple-template-root": 0,

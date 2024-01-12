@@ -26,7 +26,7 @@ defineEmits(['update:modelValue', 'change', 'blur'])
 
 <template>
   <form-field
-    :id="id"
+    :id
     :errors="errors"
     :title="title"
     class="field"
@@ -34,7 +34,7 @@ defineEmits(['update:modelValue', 'change', 'blur'])
   >
     <div class="form-select">
       <select
-        :id="id"
+        :id
         v-bind="$attrs"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"

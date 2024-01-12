@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { type ErrorObject } from '@vuelidate/core'
+
 defineOptions({
   inheritAttrs: false,
 })
@@ -19,26 +20,21 @@ withDefaults(
     errors: () => [],
   },
 )
+defineEmits(['keyup-down', 'keyup-up', 'change', 'blur'])
 
-defineEmits(['keyup-down', 'keyup-up', 'update:modelValue', 'change', 'blur'])
+const model = defineModel()
 </script>
 
 <template>
-  <form-field
-    :id="id"
-    :errors="errors"
-    :title="title"
-    :description="description"
-  >
+  <form-field :id :errors="errors" :title="title" :description="description">
     <input
       v-bind="$attrs"
-      :id="id"
-      :value="modelValue"
-      :type="type"
+      :id
+      v-model="model"
+      :type
       class="input"
       @keyup.down="$emit('keyup-down')"
       @keyup.up="$emit('keyup-up')"
-      @input="$emit('update:modelValue', $event.target.value)"
       @change="$emit('change', $event.target.value)"
       @blur="$emit('blur')"
     />
