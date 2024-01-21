@@ -8,6 +8,7 @@ export default (
   endpoint: Endpoints.FormNewsletter | Endpoints.FormWorkshop,
 ) => {
   const { t } = useI18n()
+
   const loading = ref(false)
   const submitted = ref(false)
   const error = ref('')
