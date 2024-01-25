@@ -10,7 +10,7 @@
     />
 
     <related-posters-section :posters="post.relatedPosters" />
-    <related-products-section :related-products="post.relatedProducts" />
+    <!-- <related-products-section :related-products="post.relatedProducts" /> -->
     <posts-overview-section
       :posts="post.relatedPosts"
       :not-in="post.databaseId"
