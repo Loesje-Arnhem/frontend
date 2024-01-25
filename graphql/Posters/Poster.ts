@@ -2,7 +2,6 @@ import { gql } from '@apollo/client/core'
 import seo from '../Fragments/Seo'
 import featuredImage from '../Media/Fragments/FeaturedImage'
 import posterBase from './Fragments/PosterBase'
-import posterRelatedProducts from './Fragments/PosterRelatedProducts'
 import relatedPosters from './Fragments/RelatedPosters'
 import posters from './Fragments/Posters'
 import sourceDetails from './Fragments/SourceDetails'
@@ -20,9 +19,9 @@ const posterDetails = gql`
     featuredImage {
       ...featuredImage
     }
-    relatedProducts: relatedProductsGroup {
-      ...posterRelatedProducts
-    }
+    # relatedProducts: relatedProductsGroup {
+    #   ...posterRelatedProducts
+    # }
     PosterMetaGroup {
       date
       pdf {
@@ -57,7 +56,6 @@ const posterDetails = gql`
   ${featuredImage}
   ${posterBase}
   ${relatedPosters}
-  ${posterRelatedProducts}
   ${subjectDetails}
   ${sourceDetails}
   ${seo}
