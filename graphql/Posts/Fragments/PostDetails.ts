@@ -4,7 +4,7 @@ import {
   PAGE_SIZE_POSTS,
 } from './../../../data/pageSizes'
 import postBase from './PostBase'
-import postRelatedProductsGroup from './PostRelatedProductsGroup'
+// import postRelatedProductsGroup from './PostRelatedProductsGroup'
 import relatedPosts from './RelatedPosts'
 import relatedPosters from './../../Posters/Fragments/RelatedPosters'
 import seo from './../../Fragments/Seo'
@@ -20,9 +20,9 @@ export default gql`
     featuredImage {
       ...featuredImage
     }
-    relatedProducts: relatedProductsGroup {
-      ...postRelatedProductsGroup
-    }
+    # relatedProducts: relatedProductsGroup {
+    #   ...postRelatedProductsGroup
+    # }
     relatedPosts(first: ${PAGE_SIZE_POSTS}) {
       ...relatedPosts
     }
@@ -34,7 +34,6 @@ export default gql`
     }
   }
   ${postBase}
-  ${postRelatedProductsGroup}
   ${relatedPosts}
   ${relatedPosters}
   ${seo}
