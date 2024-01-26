@@ -6,19 +6,33 @@ defineI18nRoute({
 })
 
 const route = useRoute()
-const { data } = useFetch('/api/posts/post', {
-  query: {
-    slug: route.params.slug.toString(),
-  },
-})
 
-// useMeta(data.value)
+const { data } = await useAsyncData(
+  `posts-${route.params.slug.toString()}`,
+  () =>
+    $fetch('/api/posts/post', {
+      params: {
+        slug: route.params.slug.toString(),
+      },
+    }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found  asds',
+  })
+}
+
+useMeta({
+  title: data.value.title ?? '',
+})
 
 useSchemaOrg(
   defineArticle({
-    datePublished: data.value?.date,
-    headline: data.value?.title,
-    description: data.value?.seo?.metaDesc,
+    datePublished: data.value.date,
+    headline: data.value.title,
+    description: data.value.seo?.metaDesc,
   }),
 )
 </script>
@@ -32,6 +46,13 @@ useSchemaOrg(
       :date="data.date"
       :video="data.youtubeId"
     />
+    <related-posters-section
+      :poster-ids="data.relatedPosters.posterIds"
+      :search="data.relatedPosters.search"
+      :subjects="data.relatedPosters.subjects"
+      :title="data.relatedPosters.title"
+    />
+    <!-- <posts-overview-section :exclude="data.id" /> -->
   </div>
   <!--
     <div v-if="data?.post">
@@ -49,6 +70,6 @@ useSchemaOrg(
   /> -->
   <!--
     <related-products-section :products="data?.post?.relatedProducts" />
-    <posts-overview-section :exclude="data.post.databaseId" />
+    
   </div>-->
 </template>

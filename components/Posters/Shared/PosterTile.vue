@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { type PosterFragment } from '~/graphql/__generated__/graphql'
+import type { IPosterListItem } from '~/types/Content'
 
 const localePath = useLocalePath()
 
 withDefaults(
   defineProps<{
-    poster: PosterFragment
+    poster: IPosterListItem
     sizes?: string
   }>(),
   {
@@ -26,7 +26,7 @@ withDefaults(
         :to="
           localePath({
             name: 'posters-details',
-            params: { slug: poster.slug || '' },
+            params: { slug: poster.slug },
           })
         "
         class="link"
@@ -34,7 +34,7 @@ withDefaults(
         <featured-image
           :lazy="true"
           :alt="poster.title"
-          :image="poster.featuredImage.node"
+          :image="poster.featuredImage"
           :sizes="sizes"
         />
       </nuxt-link>

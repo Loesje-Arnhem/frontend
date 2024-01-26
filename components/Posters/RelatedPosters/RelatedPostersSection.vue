@@ -1,20 +1,29 @@
 <script lang="ts" setup>
-import { type RelatedPostersFragment } from '~/graphql/__generated__/graphql'
-
 const localePath = useLocalePath()
 const { t } = useI18n()
 
 const props = defineProps<{
-  posters?: RelatedPostersFragment | null
-  title?: string | null
+  title: string | null
+  search: string | null
+  subjects: number[]
+  posterIds: number[]
 }>()
+
+const { data } = useFetch('/api/posters/posters', {
+  query: {
+    include: props.posterIds.join(','),
+    search: props.search,
+    subjects: props.subjects,
+    pageSize: 7,
+  },
+})
 
 const title = props.title || t('posters')
 </script>
 
 <template>
   <section
-    v-if="posters?.edges.length"
+    v-if="data?.length"
     class="related-posters"
     aria-labelledby="related-posters-title"
   >
@@ -25,7 +34,7 @@ const title = props.title || t('posters')
     </center-wrapper>
 
     <center-wrapper size="full">
-      <related-posters-list :posters="posters.edges" />
+      <related-posters-list :posters="data" />
     </center-wrapper>
     <center-wrapper class="btn-wrapper">
       <app-button :to="localePath({ name: 'posters' })">

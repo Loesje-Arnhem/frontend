@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { GetPageHome } from '~/graphql/pages'
-
 defineI18nRoute({
   paths: {
     nl: '/',
@@ -9,44 +7,45 @@ defineI18nRoute({
 
 const { pageIds } = useAppConfig()
 
-const { data } = useAsyncQuery(GetPageHome, {
-  id: pageIds.home.toString(),
+const { data } = await useAsyncData(`page-home`, () =>
+  $fetch('/api/pages/page', {
+    params: {
+      id: pageIds.home,
+    },
+  }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found  asds',
+  })
+}
+
+useMeta({
+  title: data.value.title ?? '',
 })
-
-// if (!data.value.page) {
-//   throw createError({
-//     statusCode: 404,
-//     statusMessage: 'Page Not Found',
-//   })
-// }
-
-// useSchemaOrg(
-//   defineWebPage({
-//     description: data.value.page,
-//   }),
-// )
-
-useMeta(data.value?.page)
 </script>
-
 <template>
   <div>
-    <h1 v-if="data.page" class="sr-only">
-      {{ data.page?.title }}
+    <h1 v-if="data" class="sr-only">
+      {{ data.title }}
     </h1>
 
-    <block-donate />
+    <!-- <block-donate /> -->
 
-    <latest-posts-section :posts="data.posts" />
+    <latest-posts-section />
     <related-posters-section
-      v-if="data.page"
-      :posters="data.page.relatedPosters"
-      :title="data.page.relatedPostersGroup?.title"
+      v-if="data"
+      :poster-ids="data.relatedPosters.posterIds"
+      :search="data.relatedPosters.search"
+      :subjects="data.relatedPosters.subjects"
+      :title="data.relatedPosters.title"
     />
     <app-stores-section />
-    <related-products-section
+    <!-- <related-products-section
       v-if="data.page?.relatedProducts"
       :products="data.page.relatedProducts"
-    />
+    /> -->
   </div>
 </template>

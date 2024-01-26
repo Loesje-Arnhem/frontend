@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import type { PostListItemsFragment } from '~/graphql/__generated__/graphql'
-
-defineProps<{
-  posts?: PostListItemsFragment | null
-}>()
+const { data } = useFetch('/api/posts/posts', {
+  query: {
+    pageSize: 3,
+  },
+})
 
 const localePath = useLocalePath()
 </script>
 
 <template>
   <section
-    v-if="posts?.edges.length"
+    v-if="data?.items.length"
     class="latest-posts"
     aria-labelledby="latest-posts-title"
   >
@@ -20,7 +20,7 @@ const localePath = useLocalePath()
           <h1 id="latest-posts-title">
             {{ $t('posts') }}
           </h1>
-          <latest-posts-list :posts="posts.edges" />
+          <latest-posts-list :posts="data.items" />
           <app-button :to="localePath({ name: 'posts' })">
             {{ $t('morePosts') }}
           </app-button>

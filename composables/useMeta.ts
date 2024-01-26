@@ -1,39 +1,33 @@
-import {
-  type PageDetailsFragment,
-  type PostDetailsFragment,
-  type PosterDetailsFragment,
-  type ProductCategoryFragment,
-  type Product,
-} from '~/graphql/__generated__/graphql'
+import type { FeaturedImage } from '~/types/Content'
 
-export const useMeta = (
-  content?:
-    | PageDetailsFragment
-    | PostDetailsFragment
-    | PosterDetailsFragment
-    | ProductCategoryFragment
-    | Product
-    | null,
-) => {
+export const useMeta = ({
+  title,
+  description,
+  image,
+}: {
+  title: string
+  description?: string
+  image?: FeaturedImage
+}) => {
   const { baseUrl } = useAppConfig()
   const { fullPath } = useRoute()
 
   useSeoMeta({
-    title: () => content?.seo?.title ?? '',
+    title: () => title,
     ogUrl: () => `${baseUrl}${fullPath}`,
-    ogTitle: () => content?.seo?.title,
-    description: () => content?.seo?.metaDesc,
-    ogDescription: () => content?.seo?.metaDesc,
+    ogTitle: () => title,
+    description: () => description,
+    ogDescription: () => description,
     ogType: () => 'article',
-    ogImage: () => content?.featuredImage?.node.src,
-    twitterTitle: () => content?.seo?.title,
-    twitterDescription: () => content?.seo?.metaDesc,
-    twitterImage: () => content?.featuredImage?.node.src,
+    ogImage: () => image?.src,
+    twitterTitle: () => title,
+    twitterDescription: () => description,
+    twitterImage: () => image?.src,
   })
 
   useSchemaOrg([
     defineWebPage({
-      description: content?.seo?.metaDesc,
+      description,
     }),
   ])
 }

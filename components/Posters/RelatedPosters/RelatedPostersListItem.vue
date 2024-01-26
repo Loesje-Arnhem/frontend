@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { type PosterFragment } from '~/graphql/__generated__/graphql'
+import type { IPosterListItem } from '~/types/Content'
 
 defineProps<{
-  poster: PosterFragment
+  poster: IPosterListItem
 }>()
 
 const transform: Ref<string | undefined> = ref(undefined)

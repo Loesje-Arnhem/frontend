@@ -21,7 +21,7 @@ export const GetPageHome = gql(`
     page(id: $id, idType: DATABASE_ID) {
       ...PageDetails
     }
-    posts(first: 3, where: { hasPassword: false }) {
+    posts(first: 3, where: { hasPassword: false, status: PUBLISH }) {
       ...PostListItems
     }
   }

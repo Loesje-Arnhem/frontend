@@ -1,5 +1,5 @@
 import { type ResponsePage } from '~~/server/types/ResponsePage'
-import { type IRelatedPosters } from '~~/type/Content'
+import { type IRelatedPosters } from '~~/types/Content'
 import { type ResponsePost } from '../types/ResponsePost'
 
 export default (page: ResponsePage | ResponsePost) => {

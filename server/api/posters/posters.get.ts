@@ -1,5 +1,5 @@
-import { IPosterListItem } from '~~/interfaces/IContent'
-import { IResponsePosters } from '~/server/types/IResponsePosters'
+import { type IPosterListItem } from '~~/types/Content'
+import { type ResponsePosters } from '~/server/types/ResponsePosters'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
     search: query.search || null,
   })
 
-  const response = await $fetch<IResponsePosters[]>(url, {})
+  const response = await $fetch<ResponsePosters[]>(url, {})
   const items: IPosterListItem[] = response.map((item) => {
     const featuredImage = getFeaturedImage(
       item._embedded['wp:featuredmedia'],
@@ -31,6 +31,7 @@ export default defineEventHandler(async (event) => {
       id: item.id,
       slug: item.slug,
       featuredImage,
+      title: item.title.rendered,
     }
   })
   return items

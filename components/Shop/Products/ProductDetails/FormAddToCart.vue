@@ -14,6 +14,8 @@ const { addToCart, loading, quantity, errors, onDone } = useAddToCart(
 onDone(() => {
   navigateTo(localePath({ name: 'shop-cart' }))
 })
+
+const selectedAttribute = ref('')
 </script>
 
 <template>
@@ -29,12 +31,12 @@ onDone(() => {
           class="quantity"
           name="quantity"
         />
-
-        <!-- <div
+        <div
           v-if="
             product.globalAttributes && product.globalAttributes.nodes.length
           "
         >
+          {{ selectedAttribute }}
           <div
             v-for="attribute in product.globalAttributes.nodes"
             :key="attribute.id"
@@ -52,7 +54,7 @@ onDone(() => {
               "
             />
           </div>
-        </div> -->
+        </div>
       </form-fieldset>
       <app-button type="submit" class="btn-add-to-cart" :loading="loading">
         In winkelmandje

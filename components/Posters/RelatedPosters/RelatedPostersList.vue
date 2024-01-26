@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { type PosterNodeFragment } from '~/graphql/__generated__/graphql'
+import type { IPosterListItem } from '~/types/Content'
 
 defineProps<{
-  posters: PosterNodeFragment[]
+  posters: IPosterListItem[]
 }>()
 </script>
 
@@ -10,8 +10,8 @@ defineProps<{
   <ul class="list">
     <related-posters-list-item
       v-for="poster in posters"
-      :key="poster.node.id"
-      :poster="poster.node"
+      :key="poster.id"
+      :poster="poster"
     />
   </ul>
 </template>

@@ -32,7 +32,7 @@ export type IPage = IBase & {
   seo: ISEO
   relatedProducts: number[]
   youtubeId: string | null
-  featuredImage?: IFeaturedImage
+  featuredImage?: FeaturedImage
   relatedPosters: IRelatedPosters
 }
 
@@ -41,7 +41,7 @@ export type IPost = IBase & {
   date: string
   content: string
   youtubeId: string | null
-  featuredImage?: IFeaturedImage
+  featuredImage?: FeaturedImage
   relatedPosters: IRelatedPosters
   relatedProducts: number[]
 }
@@ -54,7 +54,7 @@ export type ITag = IBase & {
 export type IPoster = IBase & {
   slug: string
   date: string
-  featuredImage?: IFeaturedImage
+  featuredImage?: FeaturedImage
   pdf: string
   sources: ITag[]
   subjects: ITag[]
@@ -75,14 +75,15 @@ export type IProductListItem = IBase & {
 
 export type IPosterListItem = {
   id: number
+  title: string
   slug: string
-  featuredImage?: IFeaturedImage
+  featuredImage?: FeaturedImage
 }
 
 export type IDailyPoster = {
   id: number
   slug: string
-  featuredImage?: IFeaturedImage
+  featuredImage?: FeaturedImage
 }
 
 export type IPostersSearchResult = IBase & {

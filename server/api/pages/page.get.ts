@@ -1,4 +1,4 @@
-import { IPage } from '~~/interfaces/Content'
+import { type IPage } from '~~/types/Content'
 import { type ResponsePage } from '~/server/types/ResponsePage'
 
 export default defineEventHandler(async (event) => {
@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   let id: undefined | number = undefined
   const query = getQuery(event)
   if (query?.slug) {
-    slug = query.slug
+    slug = query.slug.toString()
   }
   if (query?.id) {
     id = Number(query.id)

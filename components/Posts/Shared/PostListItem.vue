@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import { type PostListItemFragment } from '~/graphql/__generated__/graphql'
+import type { IPostListItem } from '~/types/Content'
 
 const localePath = useLocalePath()
 
 const props = defineProps<{
-  post: PostListItemFragment
+  post: IPostListItem
 }>()
 
 const url = computed(() => {
   return localePath({
     name: 'posts-details',
     params: {
-      slug: props.post.slug || '',
+      slug: props.post.slug,
     },
   })
 })

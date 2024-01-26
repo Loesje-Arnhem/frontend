@@ -13,7 +13,7 @@ export const GetPosts = gql(`
     posts(
       first: 10
       after: $after
-      where: { notIn: [$notIn], hasPassword: false }
+      where: { notIn: [$notIn], hasPassword: false, status: PUBLISH }
     ) {
       pageInfo {
         hasNextPage
