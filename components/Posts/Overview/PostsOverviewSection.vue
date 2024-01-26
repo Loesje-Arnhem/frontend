@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { GetPosts } from '~/graphql/posts'
-
 const props = withDefaults(
   defineProps<{
     exclude?: number
@@ -10,37 +8,40 @@ const props = withDefaults(
   },
 )
 
-const { result, loading, fetchMore } = useQuery(GetPosts, {
-  notIn: props.exclude.toString(),
+const page = ref(1)
+
+const { data, pending } = useFetch('/api/posts/posts', {
+  query: {
+    exclude: props.exclude.toString(),
+  },
 })
 
-const loadMore = async () => {
-  await fetchMore({
-    variables: {
-      after: result.value?.posts?.pageInfo.endCursor,
-    },
-
-    updateQuery: (previousResult, { fetchMoreResult }) => {
-      if (!previousResult?.posts?.edges.length) return previousResult
-      if (!fetchMoreResult?.posts?.edges.length) return previousResult
-      return {
-        ...fetchMoreResult,
-        posts: {
-          ...fetchMoreResult.posts,
-          edges: [
-            ...previousResult.posts.edges,
-            ...fetchMoreResult.posts.edges,
-          ],
-        },
-      }
-    },
-  })
+const loadMore = () => {
+  // await fetchMore({
+  //   variables: {
+  //     after: result.value?.posts?.pageInfo.endCursor,
+  //   },
+  //   updateQuery: (previousResult, { fetchMoreResult }) => {
+  //     if (!previousResult?.posts?.edges.length) return previousResult
+  //     if (!fetchMoreResult?.posts?.edges.length) return previousResult
+  //     return {
+  //       ...fetchMoreResult,
+  //       posts: {
+  //         ...fetchMoreResult.posts,
+  //         edges: [
+  //           ...previousResult.posts.edges,
+  //           ...fetchMoreResult.posts.edges,
+  //         ],
+  //       },
+  //     }
+  //   },
+  // })
 }
 </script>
 
 <template>
   <section
-    v-if="result?.posts"
+    v-if="data?.items.length"
     class="posts-overview"
     aria-labelledby="posts-overview-title"
   >
@@ -53,11 +54,11 @@ const loadMore = async () => {
           {{ $t('posts') }}
         </template>
       </h1>
-      <posts-overview-list :posts="result.posts" />
+      <posts-overview-list :posts="data.items" />
       <center-wrapper>
         <load-more-by-click
-          v-if="result.posts.pageInfo.hasNextPage"
-          :loading="loading"
+          v-if="page < data.total"
+          :loading="pending"
           @load-more="loadMore"
         />
       </center-wrapper>

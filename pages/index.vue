@@ -18,14 +18,15 @@ const { data } = await useAsyncData(`page-home`, () =>
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Page Not Found  asds',
+    statusMessage: 'Page Not Found',
   })
 }
 
 useMeta({
-  title: data.value.title ?? '',
+  title: data.value.title,
 })
 </script>
+
 <template>
   <div>
     <h1 v-if="data" class="sr-only">

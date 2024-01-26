@@ -20,12 +20,12 @@ const { data } = await useAsyncData(
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Page Not Found  asds',
+    statusMessage: 'Page Not Found',
   })
 }
 
 useMeta({
-  title: data.value.title ?? '',
+  title: data.value.title,
 })
 
 useSchemaOrg(
@@ -52,7 +52,7 @@ useSchemaOrg(
       :subjects="data.relatedPosters.subjects"
       :title="data.relatedPosters.title"
     />
-    <!-- <posts-overview-section :exclude="data.id" /> -->
+    <posts-overview-section :exclude="data.id" />
   </div>
   <!--
     <div v-if="data?.post">

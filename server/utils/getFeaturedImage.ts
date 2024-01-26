@@ -10,6 +10,11 @@ export default (featuredImage: ResponseImage[] | undefined, title?: string) => {
   if (image.code) {
     return undefined
   }
+
+  if (!image.media_details.sizes) {
+    return undefined
+  }
+
   const srcSet = Object.values(image.media_details.sizes).map((size) => {
     return `${size?.source_url} ${size?.width}w`
   })

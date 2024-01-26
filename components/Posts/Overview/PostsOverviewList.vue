@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import { type PostListItemsFragment } from '~/graphql/__generated__/graphql'
+import type { IPostListItem } from '~/types/Content'
 
 defineProps<{
-  posts: PostListItemsFragment
+  posts: IPostListItem[]
 }>()
 </script>
 
 <template>
-  <ul v-if="posts.edges.length" class="list">
+  <ul v-if="posts.length" class="list">
     <post-list-item
-      v-for="post in posts.edges"
-      :key="post.node.id"
-      :post="post.node"
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
       class="list-item"
     />
   </ul>

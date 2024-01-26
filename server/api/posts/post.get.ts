@@ -1,4 +1,5 @@
 import { type ResponsePost } from '~/server/types/ResponsePost'
+import type { IPost } from '~/types/Content'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -20,7 +21,7 @@ export default defineEventHandler(async (event) => {
       youtubeId = item.acf.youtube_id
     }
 
-    return {
+    const post: IPost = {
       id: item.id,
       date: item.date,
       title: item.title.rendered,
@@ -31,6 +32,7 @@ export default defineEventHandler(async (event) => {
       relatedPosters: getRelatedPosters(item),
       relatedProducts: getRelatedProducts(item),
     }
+    return post
   }
   return null
 })
