@@ -2,16 +2,14 @@
 import type { MenuItem } from '~/types/MenuItem'
 import { GetFooterMenu } from '~/graphql/menu'
 
-const items = ref<MenuItem[]>([])
+const { data } = await useAsyncQuery(GetFooterMenu)
 
-const { onResult } = useQuery(GetFooterMenu)
-
-onResult(({ data }) => {
-  if (!data.menu?.menuItems?.edges.length) {
+const items = computed<MenuItem[]>(() => {
+  if (!data.value?.menu?.menuItems?.edges.length) {
     return []
   }
 
-  const menuItems = data.menu.menuItems.edges.map((item) => {
+  const menuItems = data.value.menu.menuItems.edges.map((item) => {
     return {
       id: item.node.id,
       url: item.node.uri ?? '',
@@ -19,7 +17,7 @@ onResult(({ data }) => {
     }
   })
 
-  items.value = menuItems
+  return menuItems
 })
 </script>
 

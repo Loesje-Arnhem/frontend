@@ -1,17 +1,14 @@
 <script lang="ts" setup>
 import { GetHeaderMenu } from '~/graphql/menu'
-
 import type { MenuItemWithChildren } from '~/types/MenuItem'
-
-const items = ref<MenuItemWithChildren[]>([])
 
 const { t } = useI18n()
 
-const { onResult } = useQuery(GetHeaderMenu)
+const { data } = await useAsyncQuery(GetHeaderMenu)
 const localePath = useLocalePath()
 
-onResult(({ data }) => {
-  if (!data.menu?.menuItems?.edges.length) {
+const items = computed<MenuItemWithChildren[]>(() => {
+  if (!data.value.menu?.menuItems?.edges.length) {
     return []
   }
 
@@ -28,7 +25,7 @@ onResult(({ data }) => {
     },
   ]
 
-  const menuItems = data.menu.menuItems.edges.map((item) => {
+  const menuItems = data.value.menu.menuItems.edges.map((item) => {
     return {
       id: item.node.id,
       url: item.node.uri ?? '',
@@ -43,7 +40,7 @@ onResult(({ data }) => {
     }
   })
 
-  const productCategories = data.productCategories?.edges.map((item) => {
+  const productCategories = data.value.productCategories?.edges.map((item) => {
     return {
       id: item.node.id,
       url: item.node.uri ?? '',
@@ -58,7 +55,7 @@ onResult(({ data }) => {
     children: productCategories ?? [],
   }
 
-  items.value = [...baseItems, ...menuItems, shop]
+  return [...baseItems, ...menuItems, shop]
 })
 
 const menu: Ref<HTMLAnchorElement | null> = ref(null)

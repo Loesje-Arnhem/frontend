@@ -1,4 +1,4 @@
-import { type IFeaturedImage } from '~/types/Content'
+import { type FeaturedImage } from '~/types/Content'
 import { type ResponseImage } from '~~/server/types/ResponseImage'
 
 export default (featuredImage: ResponseImage[] | undefined, title?: string) => {
@@ -20,7 +20,7 @@ export default (featuredImage: ResponseImage[] | undefined, title?: string) => {
     alt = image.alt_text
   }
 
-  const result: IFeaturedImage = {
+  const result: FeaturedImage = {
     alt,
     width: image.media_details.width,
     height: image.media_details.height,

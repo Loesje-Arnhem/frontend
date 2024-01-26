@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { MediaItemFragment } from '~/graphql/__generated__/graphql'
+import type { FeaturedImage } from '~/types/Content'
 
 const props = withDefaults(
   defineProps<{
-    image: MediaItemFragment
+    image: FeaturedImage
     sizes: string
     lazy?: boolean
     alt?: string | null
@@ -29,11 +29,11 @@ const altText = computed(() => {
     class="image"
     :alt="altText"
     :loading="lazy ? 'lazy' : undefined"
-    :srcset="image.srcSet || undefined"
-    :src="image.src || undefined"
+    :srcset="image.srcSet"
+    :src="image.src"
     :sizes="sizes"
-    :width="image.mediaDetails?.width || undefined"
-    :height="image.mediaDetails?.height || undefined"
+    :width="image.width"
+    :height="image.height"
   />
 </template>
 

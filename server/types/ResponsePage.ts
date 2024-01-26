@@ -1,4 +1,4 @@
-import { type ISEO } from '~~/types/ISEO'
+import { type SEO } from '~~/types/SEO'
 import { type ResponseImage } from './ResponseImage'
 import { type ResponseRelatedPoster } from './ResponseRelatedPoster'
 import { type ResponseRelatedProduct } from './ResponseRelatedProduct'
@@ -12,7 +12,7 @@ export type ResponsePage = {
     rendered: string
   }
   parent: number
-  yoast_head_json: ISEO
+  yoast_head_json: SEO
   acf: {
     youtube_id: string
     related_posters_title: string

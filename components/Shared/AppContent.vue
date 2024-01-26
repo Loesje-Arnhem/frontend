@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { type FeaturedImageFragment } from '~/graphql/__generated__/graphql'
+import type { FeaturedImage } from '~/types/Content'
 
 const props = defineProps<{
-  title?: string | null
-  image?: FeaturedImageFragment | null
-  video?: string | null
-  content?: string | null
-  date?: string | null
+  title: string
+  image?: FeaturedImage
+  video?: string
+  content?: string
+  date?: string
 }>()
 
 const hasMedia = computed(() => {

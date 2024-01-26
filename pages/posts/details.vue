@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { GetPost } from '~/graphql/posts'
-
 defineI18nRoute({
   paths: {
     nl: '/over-loesje/nieuws/[slug]',
@@ -8,24 +6,35 @@ defineI18nRoute({
 })
 
 const route = useRoute()
-
-const { data } = await useAsyncQuery(GetPost, {
-  slug: route.params.slug.toString(),
+const { data } = useFetch('/api/posts/post', {
+  query: {
+    slug: route.params.slug.toString(),
+  },
 })
 
-useMeta(data.value?.post)
+// useMeta(data.value)
 
 useSchemaOrg(
   defineArticle({
-    datePublished: data.value.post?.date,
-    headline: data.value.post?.title,
-    description: data.value.post?.seo?.metaDesc,
+    datePublished: data.value?.date,
+    headline: data.value?.title,
+    description: data.value?.seo?.metaDesc,
   }),
 )
 </script>
 
 <template>
-  <div v-if="data?.post">
+  <div v-if="data">
+    <app-content
+      :image="data.featuredImage"
+      :title="data.title"
+      :content="data.content"
+      :date="data.date"
+      :video="data.youtubeId"
+    />
+  </div>
+  <!--
+    <div v-if="data?.post">
     <app-content
       :image="data.post.featuredImage"
       :title="data.post.title"
@@ -33,11 +42,13 @@ useSchemaOrg(
       :date="data.post.date"
       :video="data.post?.videoGroup?.youtubeId"
     />
-    <related-posters-section
-      :posters="data.post.relatedPosters"
-      :title="data.post.relatedPostersGroup?.title"
-    />
+    -->
+  <!-- <related-posters-section
+    :posters="data.relatedPosters"
+    :title="data.relatedPostersGroup?.title"
+  /> -->
+  <!--
     <related-products-section :products="data?.post?.relatedProducts" />
     <posts-overview-section :exclude="data.post.databaseId" />
-  </div>
+  </div>-->
 </template>

@@ -85,15 +85,13 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    // preset: 'netlify',
     prerender: {
+      crawlLinks: false,
       // failOnError: false,
       interval: 3000,
       concurrency: 20,
-      routes: [
-        '/rss.xml',
-        // '/rss-posters.xml'
-      ],
+      routes: ['/rss.xml', '/rss-posters.xml'],
     },
   },
 
@@ -113,10 +111,13 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { prerender: true },
-    '/doe-mee/doe-mee': { ssr: false },
     '/posters/posters/favorieten': { ssr: false },
     '/rss.xml': {
+      headers: {
+        'content-type': 'text/xml',
+      },
+    },
+    '/rss-posters.xml': {
       headers: {
         'content-type': 'text/xml',
       },

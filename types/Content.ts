@@ -1,7 +1,7 @@
 import { Taxonomy } from '~~/enums/taxonomy'
-import { ISEO } from './ISEO'
+import { type ISEO } from './ISEO'
 
-export type IFeaturedImage = {
+export type FeaturedImage = {
   srcSet: string
   src: string
   alt: string

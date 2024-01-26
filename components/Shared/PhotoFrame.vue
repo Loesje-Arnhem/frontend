@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { FeaturedImageFragment } from '~/graphql/__generated__/graphql'
+import type { FeaturedImage } from '~/types/Content'
 
 defineProps<{
-  image: FeaturedImageFragment
+  image: FeaturedImage
 }>()
 </script>
 
@@ -10,7 +10,7 @@ defineProps<{
   <div class="photo-wrapper">
     <featured-image
       :lazy="false"
-      :image="image.node"
+      :image="image"
       class="featured-image"
       sizes="(max-width: 320px) 80vw, 280px"
     />

@@ -1,6 +1,7 @@
 import { ofetch } from 'ofetch'
 
-const PAGESIZE = 99
+const PAGESIZE = 20
+// const PAGESIZE = 99
 const FETCH_TIMEOUT = 0
 
 const pauseFetching = () => {
@@ -31,6 +32,7 @@ const fetchPagesByType = async (type: string) => {
     if (urls.length !== PAGESIZE) {
       hasNextPage = false
     }
+    hasNextPage = false
     page = page + 1
     pauseFetching()
   }
@@ -39,7 +41,7 @@ const fetchPagesByType = async (type: string) => {
 
 export default async () => {
   // const posts = await fetchPagesByType('posts')
-  const pages = await fetchPagesByType('pages')
+  const pages = await fetchPagesByType('posts')
   // const posters = await fetchPagesByType('posters')
   return pages
   // return [...posts, ...pages, ...posters]

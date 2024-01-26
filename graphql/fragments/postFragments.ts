@@ -48,7 +48,7 @@ export const PostRelatedProductNode = gql(`
       }
       ... on VariableProduct {
         databaseId
-      }  
+      }
     }
   }
 }
@@ -78,9 +78,6 @@ fragment PostDetails on Post {
   }
   relatedPosters(first: 7) {
     ...RelatedPosters
-  }
-  relatedProducts: relatedProductsGroup {
-    ...PostRelatedProducts
   }
   seo {
     ...seo
