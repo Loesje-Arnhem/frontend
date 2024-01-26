@@ -32,7 +32,6 @@ const fetchPagesByType = async (type: string) => {
     if (urls.length !== PAGESIZE) {
       hasNextPage = false
     }
-    hasNextPage = false
     page = page + 1
     pauseFetching()
   }
