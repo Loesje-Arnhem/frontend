@@ -37,6 +37,7 @@ export default defineEventHandler(async (event) => {
       subjects,
       slug: item.slug,
       sources,
+      relatedProducts: getRelatedProducts(item),
     }
     return poster
   }

@@ -2,6 +2,7 @@
 const localePath = useLocalePath()
 
 defineProps<{
+  title?: string
   productIds: number[]
 }>()
 </script>
@@ -14,12 +15,12 @@ defineProps<{
   >
     <center-wrapper>
       <h1 id="featured-products">
-        <!-- <template v-if="products.title">
-          {{ products.title }}
-        </template> -->
-        <!-- <template v-else> -->
-        {{ $t('theShop') }}
-        <!-- </template> -->
+        <template v-if="title">
+          {{ title }}
+        </template>
+        <template v-else>
+          {{ $t('theShop') }}
+        </template>
       </h1>
       <product-list :product-ids="productIds" />
       <app-button :to="localePath({ name: 'shop' })">

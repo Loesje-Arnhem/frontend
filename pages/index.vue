@@ -45,8 +45,9 @@ useMeta({
     />
     <app-stores-section />
     <related-products-section
-      v-if="data?.relatedProducts.length"
-      :product-ids="data.relatedProducts"
+      v-if="data?.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
     />
   </div>
 </template>

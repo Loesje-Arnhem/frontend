@@ -31,12 +31,18 @@ export default defineEventHandler(async (event) => {
         src: item.images[0].src,
       }
     }
+
+    let regularPrice = null
+
+    if (item.regular_price && item.price !== item.regular_price) {
+      regularPrice = Number(item.regular_price)
+    }
     return {
       id: item.id,
       slug: item.slug,
       title: item.name,
       price: Number(item.price) || null,
-      regularPrice: Number(item.regular_price) || null,
+      regularPrice,
       externalUrl: item.external_url || null,
       image,
     }

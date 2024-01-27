@@ -83,5 +83,6 @@ export default ({
     url.searchParams.set('consumer_secret', consumerSecret)
     url.searchParams.set('consumer_key', consumerKey)
   }
+
   return url.toString()
 }

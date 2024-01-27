@@ -21,6 +21,11 @@ export type IRelatedPosters = {
   title: string | null
 }
 
+export type IRelatedProducts = {
+  productIds: number[]
+  title: string | undefined
+}
+
 export type IRelatedPage = IBase & {
   excerpt: string
   uri: string
@@ -30,10 +35,10 @@ export type IPage = IBase & {
   parentId: number
   content: string
   seo: ISEO
-  relatedProducts: number[]
   youtubeId?: string
   featuredImage?: FeaturedImage
   relatedPosters: IRelatedPosters
+  relatedProducts?: IRelatedProducts
 }
 
 export type IPost = IBase & {
@@ -43,7 +48,7 @@ export type IPost = IBase & {
   youtubeId?: string
   featuredImage?: FeaturedImage
   relatedPosters: IRelatedPosters
-  relatedProducts: number[]
+  relatedProducts?: IRelatedProducts
 }
 
 export type ITag = IBase & {
@@ -58,6 +63,7 @@ export type IPoster = IBase & {
   pdf: string
   sources: ITag[]
   subjects: ITag[]
+  relatedProducts?: IRelatedProducts
 }
 
 export type IPostListItem = IBase & {

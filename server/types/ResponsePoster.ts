@@ -1,4 +1,5 @@
 import { type ResponseImage } from './ResponseImage'
+import { ResponseRelatedProduct } from './ResponseRelatedProduct'
 
 export type ResponsePoster = {
   id: number
@@ -12,5 +13,7 @@ export type ResponsePoster = {
   acf: {
     pdf: string
     date: string
+    related_products_title: string | null
+    related_products_products: ResponseRelatedProduct[] | false
   }
 }

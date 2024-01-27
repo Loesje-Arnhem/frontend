@@ -42,7 +42,11 @@ useSchemaOrg(
     <center-wrapper>
       <poster-details :poster="data" />
     </center-wrapper>
-    <!-- <related-products-section :products="data.poster?.relatedProducts" /> -->
+    <related-products-section
+      v-if="data.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
+    />
     <posters-overview-section
       :exclude="data.id"
       :subject-ids="data.subjects.map((subject) => subject.id)"

@@ -64,9 +64,10 @@ const relatedPagesParentId = computed(() => {
       :exclude="data.id"
       :parent-id="relatedPagesParentId"
     />
-    <!--<related-products-section
-      v-if="data?.relatedProducts"
-      :products="data.relatedProducts"
-    /> -->
+    <related-products-section
+      v-if="data.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
+    />
   </div>
 </template>

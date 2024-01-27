@@ -46,6 +46,11 @@ useSchemaOrg(
       :date="data.date"
       :video="data.youtubeId"
     />
+    <related-products-section
+      v-if="data.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
+    />
     <related-posters-section
       :poster-ids="data.relatedPosters.posterIds"
       :search="data.relatedPosters.search"
@@ -54,22 +59,4 @@ useSchemaOrg(
     />
     <posts-overview-section :exclude="data.id" />
   </div>
-  <!--
-    <div v-if="data?.post">
-    <app-content
-      :image="data.post.featuredImage"
-      :title="data.post.title"
-      :content="data.post.content"
-      :date="data.post.date"
-      :video="data.post?.videoGroup?.youtubeId"
-    />
-    -->
-  <!-- <related-posters-section
-    :posters="data.relatedPosters"
-    :title="data.relatedPostersGroup?.title"
-  /> -->
-  <!--
-    <related-products-section :products="data?.post?.relatedProducts" />
-    
-  </div>-->
 </template>
