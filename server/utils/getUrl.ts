@@ -47,6 +47,7 @@ export default ({
     fields.push('_embedded')
   }
   const allFields = ['id', ...fields]
+  url.searchParams.set('status', 'publish')
   url.searchParams.set('_fields', allFields.join(','))
   if (fields.includes('acf')) {
     url.searchParams.set('acf_format', 'standard')
@@ -82,6 +83,5 @@ export default ({
     url.searchParams.set('consumer_secret', consumerSecret)
     url.searchParams.set('consumer_key', consumerKey)
   }
-  // console.log(url)
   return url.toString()
 }

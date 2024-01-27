@@ -8,7 +8,7 @@ defineI18nRoute({
 const route = useRoute()
 
 const { data } = await useAsyncData(
-  `posts-${route.params.slug.toString()}`,
+  `post-${route.params.slug.toString()}`,
   () =>
     $fetch('/api/posts/post', {
       params: {

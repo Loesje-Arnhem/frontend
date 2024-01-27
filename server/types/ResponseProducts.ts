@@ -1,3 +1,8 @@
+export type ResponseProductImage = {
+  src: string
+  alt: string
+}
+
 export type ResponseProducts = {
   id: number
   name: string
@@ -5,4 +10,5 @@ export type ResponseProducts = {
   price: string
   regular_price: string
   external_url: string
+  images: ResponseProductImage[]
 }

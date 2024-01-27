@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { type RelatedPageNodeFragment } from '~/graphql/__generated__/graphql'
+import type { IRelatedPage } from '~/types/Content'
 
 defineProps<{
-  pages: RelatedPageNodeFragment[]
+  pages: IRelatedPage[]
 }>()
 </script>
 
@@ -11,8 +11,8 @@ defineProps<{
     <ul :class="$style.list">
       <related-pages-list-item
         v-for="page in pages"
-        :key="page.node.id"
-        :page="page.node"
+        :key="page.id"
+        :page="page"
         :class="$style['list-item']"
       />
     </ul>

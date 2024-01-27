@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import { type PosterDetailsFragment } from '~/graphql/__generated__/graphql'
+import type { IPoster } from '~/types/Content'
 
 const props = defineProps<{
-  poster: PosterDetailsFragment
+  poster: IPoster
 }>()
 const favorites = useFavoriteIds()
 
 const { add, remove } = useFavorites()
 
 const isInFavorites = computed(() => {
-  return favorites.value.includes(props.poster.databaseId)
+  return favorites.value.includes(props.poster.id)
 })
 
 const toggleFavorite = () => {
   if (isInFavorites.value) {
-    remove(props.poster.databaseId)
+    remove(props.poster.id)
   } else {
-    add(props.poster.databaseId)
+    add(props.poster.id)
   }
 }
 </script>

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { GetProducts } from '~/graphql/products'
-
 const props = withDefaults(
   defineProps<{
     categoryId?: number
@@ -14,19 +12,19 @@ const props = withDefaults(
   },
 )
 
-const { data } = await useAsyncQuery(GetProducts, {
-  categoryId: props.categoryId,
-  featured: props.featured,
-  include: props.productIds,
+const { data } = useFetch('/api/products/products', {
+  query: {
+    productIds: props.productIds.join(','),
+  },
 })
 </script>
 
 <template>
-  <ul v-if="data.products?.edges.length" class="list">
+  <ul v-if="data?.length" class="list">
     <product-tile
-      v-for="product in data.products.edges"
-      :key="product.node.id"
-      :product="product.node"
+      v-for="product in data"
+      :key="product.id"
+      :product="product"
     />
   </ul>
 </template>

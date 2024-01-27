@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import {
-  type SourceFragment,
-  type SubjectFragment,
-} from '~/graphql/__generated__/graphql'
+import type { ITag } from '~/types/Content'
 
 defineProps<{
-  list: (SubjectFragment | SourceFragment)[]
+  list: ITag[]
 }>()
 </script>
 

@@ -33,13 +33,15 @@ useMeta(data.value.page)
       :video="data.page.videoGroup?.youtubeId"
     />
     <related-posters-section
-      :posters="data.page.relatedPosters"
-      :title="data.page.relatedPostersGroup?.title"
+      :poster-ids="data.relatedPosters.posterIds"
+      :search="data.relatedPosters.search"
+      :subjects="data.relatedPosters.subjects"
+      :title="data.relatedPosters.title"
     />
-    <related-pages-section :pages="data.page.relatedPages" />
+    <!-- <related-pages-section :pages="data.page.relatedPages" />
     <related-products-section
       v-if="data.page?.relatedProducts"
       :products="data.page.relatedProducts"
-    />
+    /> -->
   </div>
 </template>

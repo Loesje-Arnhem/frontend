@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
     response = await $fetch<ResponsePage>(url)
   }
   if (response) {
-    let youtubeId: string | null = null
+    let youtubeId: string | undefined = undefined
     if (response.acf.youtube_id) {
       youtubeId = response.acf.youtube_id
     }

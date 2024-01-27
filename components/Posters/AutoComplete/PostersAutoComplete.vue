@@ -1,39 +1,35 @@
 <script lang="ts" setup>
-import { SearchPoster } from '~/graphql/posters'
-
 const search = useSearch()
 const searchField = ref(search.value)
-
-const enabled = computed(() => searchField.value.length > 2)
 
 const route = useRoute()
 const localePath = useLocalePath()
 
-const { result } = useQuery(
-  SearchPoster,
-  () => ({
+const { data } = useFetch('/api/posters/search', {
+  query: {
     search: searchField.value,
-  }),
-  {
-    enabled,
-    debounce: 200,
   },
-)
+  watch: [searchField],
+  immediate: false,
+})
 
 const posters = computed(() => {
   if (searchField.value.length < 2) {
     return []
   }
-  return result.value?.posters?.edges.map((poster) => {
+  if (!data.value) {
+    return []
+  }
+  return data.value.map((poster) => {
     const uri = localePath({
       name: 'posters-details',
       params: {
-        slug: poster.node.slug?.toString() || '',
+        slug: poster.slug,
       },
     })
     return {
-      id: poster.node.databaseId,
-      title: poster.node.title || '',
+      id: poster.id,
+      title: poster.title,
       uri,
     }
   })

@@ -1,36 +1,9 @@
 <script lang="ts" setup>
-import { type PosterDetailsFragment } from '~/graphql/__generated__/graphql'
+import type { IPoster } from '~/types/Content'
 
-const props = defineProps<{
-  poster: PosterDetailsFragment
+defineProps<{
+  poster: IPoster
 }>()
-
-const subjects = computed(() => {
-  if (!props.poster.subjects) {
-    return []
-  }
-  return props.poster.subjects.edges.map((subject) => subject.node)
-})
-
-const sources = computed(() => {
-  if (!props.poster.sources) {
-    return []
-  }
-  return props.poster.sources.edges.map((source) => source.node)
-})
-
-const posterDate = computed(() => {
-  if (!props.poster.PosterMetaGroup?.date) {
-    return null
-  }
-  const { date } = props.poster.PosterMetaGroup
-  const pattern = /(\d{2})\/(\d{2})\/(\d{4})/ // date via posters is 24/03/2010
-  const regex = RegExp(pattern)
-  if (!regex.test(date)) {
-    return null
-  }
-  return date.replace(pattern, '$3-$2-$1')
-})
 </script>
 
 <template>
@@ -46,7 +19,7 @@ const posterDate = computed(() => {
               v-if="poster.featuredImage"
               :key="poster.id"
               :lazy="false"
-              :image="poster.featuredImage.node"
+              :image="poster.featuredImage"
               sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
             />
           </fade-animation>
@@ -57,29 +30,29 @@ const posterDate = computed(() => {
       <dl class="definition-list">
         <dt class="definition-title">Publicatiedatum</dt>
         <dd class="definition-item">
-          <app-date v-if="posterDate" :date="posterDate" />
+          <app-date :date="poster.date" />
         </dd>
 
-        <template v-if="subjects.length">
+        <template v-if="poster.subjects.length">
           <dt class="definition-title">Onderwerpen:</dt>
           <dd class="definition-item">
-            <poster-tags-list :list="subjects" class="tags-list" />
+            <poster-tags-list :list="poster.subjects" class="tags-list" />
           </dd>
         </template>
 
-        <template v-if="sources.length">
+        <template v-if="poster.sources.length">
           <dt class="definition-title">Bronnen:</dt>
           <dd class="definition-item">
-            <poster-tags-list :list="sources" class="tags-list" />
+            <poster-tags-list :list="poster.sources" class="tags-list" />
           </dd>
         </template>
       </dl>
       <div class="buttons">
         <poster-favorites :poster="poster" />
         <app-button
-          v-if="poster.PosterMetaGroup?.pdf"
+          v-if="poster.pdf"
           :is-primary="false"
-          :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
+          :href="poster.pdf"
           target="_blank"
           download
         >
@@ -91,7 +64,7 @@ const posterDate = computed(() => {
         <share-this
           v-if="poster.featuredImage"
           :title="poster.title"
-          :image="poster.featuredImage.node.src"
+          :image="poster.featuredImage.src"
         />
       </div>
     </div>

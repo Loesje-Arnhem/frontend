@@ -1,39 +1,24 @@
 <script lang="ts" setup>
-import { type ProductFragment } from '~/graphql/__generated__/graphql'
+import type { IProductListItem } from '~/types/Content'
 
 const props = defineProps<{
-  product?: ProductFragment
+  product: IProductListItem
 }>()
 
 const localePath = useLocalePath()
 
-const url = computed(() => {
-  if (!props.product) {
-    return null
-  }
-  return localePath({
-    name: 'shop-product',
-    params: {
-      slug: props.product.slug as string,
-    },
-  })
+const url = localePath({
+  name: 'shop-product',
+  params: {
+    slug: props.product.slug,
+  },
 })
 </script>
 
 <template>
-  <clickable-list-item
-    v-if="product && url"
-    :to="url"
-    :class="$style['product-tile']"
-    class="tile"
-  >
+  <clickable-list-item :to="url" :class="$style['product-tile']" class="tile">
     <div :class="$style['image-wrapper']">
-      <featured-image
-        v-if="product.featuredImage"
-        :image="product.featuredImage.node"
-        :class="$style.image"
-        sizes="(max-width: 375px) 50vw, (max-width: 720px) 33vw, (max-width: 1024px) 25vw, 200px"
-      />
+      <img v-if="product.image" :src="product.image.src" />
     </div>
     <div :class="$style.title">
       <router-link :class="$style.link" :to="url">

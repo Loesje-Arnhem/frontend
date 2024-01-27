@@ -1,6 +1,6 @@
 import { Taxonomy } from '~~/enums/taxonomy'
-import { IPoster, ITag } from '~~/interfaces/IContent'
-import { IResponsePoster } from '~/server/types/IResponsePoster'
+import type { IPoster, ITag } from '~~/types/Content'
+import type { ResponsePoster } from '~/server/types/ResponsePoster'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     type: 'posters',
     fields: ['title', 'yoast_head_json', 'slug', 'acf'],
   })
-  const response = await $fetch<IResponsePoster[]>(url)
+  const response = await $fetch<ResponsePoster[]>(url)
   if (response.length) {
     const item = response[0]
     const featuredImage = getFeaturedImage(

@@ -1,20 +1,17 @@
 <script lang="ts" setup>
-import { type ProductFragment } from '~/graphql/__generated__/graphql'
+import type { IProductListItem } from '~/types/Content'
 
 defineProps<{
-  product: ProductFragment
+  product: IProductListItem
 }>()
 </script>
 
 <template>
   <div v-if="product.price" class="price">
-    <template v-if="product.salePrice">
-      <span class="price-old">{{ product.regularPrice }}</span>
-      {{ product.salePrice }}
-    </template>
-    <template v-else>
-      {{ product.price }}
-    </template>
+    <span v-if="product.regularPrice" class="price-old">
+      {{ $n(product.regularPrice, 'currency') }}
+    </span>
+    {{ $n(product.price, 'currency') }}
   </div>
 </template>
 

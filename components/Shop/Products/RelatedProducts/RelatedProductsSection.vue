@@ -1,22 +1,9 @@
 <script lang="ts" setup>
-import {
-  type PageRelatedProductsFragment,
-  type PostRelatedProductsFragment,
-} from '~/graphql/__generated__/graphql'
-
 const localePath = useLocalePath()
 
-const props = defineProps<{
-  products: PageRelatedProductsFragment | PostRelatedProductsFragment
+defineProps<{
+  productIds: number[]
 }>()
-
-const productIds = computed(() => {
-  const products =
-    props.products.products?.filter(
-      (product) => product?.product?.databaseId,
-    ) || []
-  return products.map((product) => product?.product?.databaseId)
-})
 </script>
 
 <template>
@@ -27,12 +14,12 @@ const productIds = computed(() => {
   >
     <center-wrapper>
       <h1 id="featured-products">
-        <template v-if="products.title">
+        <!-- <template v-if="products.title">
           {{ products.title }}
-        </template>
-        <template v-else>
-          {{ $t('theShop') }}
-        </template>
+        </template> -->
+        <!-- <template v-else> -->
+        {{ $t('theShop') }}
+        <!-- </template> -->
       </h1>
       <product-list :product-ids="productIds" />
       <app-button :to="localePath({ name: 'shop' })">

@@ -1,19 +1,31 @@
 <script lang="ts" setup>
-import { type RelatedPagesFragment } from '~/graphql/__generated__/graphql'
+const props = withDefaults(
+  defineProps<{
+    parentId: number
+    exclude: number
+  }>(),
+  {
+    parentId: 0,
+    exclude: 0,
+  },
+)
 
-defineProps<{
-  pages?: RelatedPagesFragment | null
-}>()
+const { data } = useFetch('/api/pages/related-pages', {
+  query: {
+    parentId: props.parentId,
+    exclude: props.exclude,
+  },
+})
 </script>
 
 <template>
   <section
-    v-if="pages?.edges.length"
+    v-if="data?.length"
     :class="$style['related-pages']"
     aria-labelledby="related-pages-title"
   >
     <h2 id="related-pages-title" class="sr-only">Overige pagina's</h2>
-    <related-pages-list :pages="pages.edges" />
+    <related-pages-list :pages="data" />
   </section>
 </template>
 

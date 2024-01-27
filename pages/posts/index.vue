@@ -7,7 +7,7 @@ defineI18nRoute({
 
 const { pageIds } = useAppConfig()
 
-const { data } = await useAsyncData(`page-news`, () =>
+const { data } = await useAsyncData(`posts`, () =>
   $fetch('/api/pages/page', {
     params: {
       id: pageIds.posts,

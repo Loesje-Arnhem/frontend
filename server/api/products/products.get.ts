@@ -1,9 +1,8 @@
-import { IProductListItem } from '~~/interfaces/IContent'
-import { IResponseProducts } from '~~/server/types/IResponseProducts'
+import type { IProductImage, IProductListItem } from '~~/types/Content'
+import type { ResponseProducts } from '~~/server/types/ResponseProducts'
 
 export default defineEventHandler(async (event) => {
-  const { woocommerceConsumerKey, woocommerceConsumerSecret } =
-    useRuntimeConfig()
+  const { woocommerce } = useRuntimeConfig()
   const query = getQuery(event)
 
   const url = getUrl({
@@ -18,13 +17,20 @@ export default defineEventHandler(async (event) => {
       'external_url',
     ],
     image: true,
-    include: query.productIds || null,
-    consumerKey: woocommerceConsumerKey,
-    consumerSecret: woocommerceConsumerSecret,
+    include: query.productIds?.toString() || undefined,
+    consumerKey: woocommerce.consumerKey,
+    consumerSecret: woocommerce.consumerSecret,
   })
 
-  const response = await $fetch<IResponseProducts[]>(url)
+  const response = await $fetch<ResponseProducts[]>(url)
   const items: IProductListItem[] = response.map((item) => {
+    let image: IProductImage | undefined = undefined
+    if (item.images.length) {
+      image = {
+        alt: item.images[0].alt,
+        src: item.images[0].src,
+      }
+    }
     return {
       id: item.id,
       slug: item.slug,
@@ -32,6 +38,7 @@ export default defineEventHandler(async (event) => {
       price: Number(item.price) || null,
       regularPrice: Number(item.regular_price) || null,
       externalUrl: item.external_url || null,
+      image,
     }
   })
   return items

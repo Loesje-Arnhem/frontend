@@ -1,16 +1,15 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: '/',
+    nl: '/workshop-creatief-schrijven',
   },
 })
-
 const { pageIds } = useAppConfig()
 
-const { data } = await useAsyncData(`page-home`, () =>
+const { data } = await useAsyncData(`page-workshop`, () =>
   $fetch('/api/pages/page', {
     params: {
-      id: pageIds.home,
+      id: pageIds.workshops,
     },
   }),
 )
@@ -28,25 +27,22 @@ useMeta({
 </script>
 
 <template>
-  <div>
-    <h1 v-if="data" class="sr-only">
-      {{ data.title }}
-    </h1>
-
-    <!-- <block-donate /> -->
-
-    <latest-posts-section />
+  <div v-if="data">
+    <app-content
+      :title="data.title"
+      :content="data.content"
+      :video="data.youtubeId"
+    />
+    <form-workshop />
     <related-posters-section
-      v-if="data"
       :poster-ids="data.relatedPosters.posterIds"
       :search="data.relatedPosters.search"
       :subjects="data.relatedPosters.subjects"
       :title="data.relatedPosters.title"
     />
-    <app-stores-section />
-    <related-products-section
-      v-if="data?.relatedProducts.length"
-      :product-ids="data.relatedProducts"
-    />
+    <!-- <related-products-section
+      v-if="data?.page?.relatedProducts"
+      :products="data.page.relatedProducts"
+    /> -->
   </div>
 </template>

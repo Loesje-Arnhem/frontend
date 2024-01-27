@@ -39,9 +39,9 @@ const fetchPagesByType = async (type: string) => {
 }
 
 export default async () => {
-  // const posts = await fetchPagesByType('posts')
+  const posts = await fetchPagesByType('posts')
   const pages = await fetchPagesByType('posts')
   // const posters = await fetchPagesByType('posters')
-  return pages
-  // return [...posts, ...pages, ...posters]
+  // return pages
+  return [...posts, ...pages]
 }

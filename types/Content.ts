@@ -31,7 +31,7 @@ export type IPage = IBase & {
   content: string
   seo: ISEO
   relatedProducts: number[]
-  youtubeId: string | null
+  youtubeId?: string
   featuredImage?: FeaturedImage
   relatedPosters: IRelatedPosters
 }
@@ -66,11 +66,17 @@ export type IPostListItem = IBase & {
   excerpt: string
 }
 
+export type IProductImage = {
+  src: string
+  alt: string
+}
+
 export type IProductListItem = IBase & {
   slug: string
   price: number | null
   regularPrice: number | null
   externalUrl: string | null
+  image?: IProductImage
 }
 
 export type IPosterListItem = {

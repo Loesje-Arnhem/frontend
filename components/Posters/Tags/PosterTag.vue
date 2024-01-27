@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import {
-  type SourceFragment,
-  type SubjectFragment,
-} from '~/graphql/__generated__/graphql'
+import type { ITag } from '~/types/Content'
 
 const props = defineProps<{
-  tag: SubjectFragment | SourceFragment
+  tag: ITag
 }>()
 
 const selectedTags = useSelectedTags()
@@ -14,7 +11,7 @@ const localePath = useLocalePath()
 
 const isSelected = computed(() => {
   return selectedTags.value.some((selectedTag) => {
-    return selectedTag.databaseId === props.tag.databaseId
+    return selectedTag.id === props.tag.id
   })
 })
 
@@ -25,7 +22,7 @@ const remove = () => {
   const tags = [...selectedTags.value]
 
   selectedTags.value = tags.filter(
-    (selectedTag) => selectedTag.databaseId !== props.tag.databaseId,
+    (selectedTag) => selectedTag.id !== props.tag.id,
   )
 }
 
