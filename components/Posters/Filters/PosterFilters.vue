@@ -1,27 +1,11 @@
 <script lang="ts" setup>
-import { GetTaxonomies } from '~/graphql/taxonomy'
-
 const { selectedSourceIds, selectedSubjectIds } = useTags()
 const activeOverlays = reactive({
   sources: false,
   subjects: false,
 })
 
-const { result } = await useQuery(GetTaxonomies)
-
-const subjects = computed(() => {
-  if (!result.value?.subjects) {
-    return []
-  }
-  return result.value.subjects.edges.map((subject) => subject.node)
-})
-
-const sources = computed(() => {
-  if (!result.value?.sources) {
-    return []
-  }
-  return result.value.sources.edges.map((subject) => subject.node)
-})
+const { data } = useFetch('/api/posters/taxonomies')
 
 const dateBefore = useDateBefore()
 const dateAfter = useDateAfter()
@@ -53,9 +37,10 @@ const today = () => {
 </script>
 
 <template>
-  <div class="filter">
+  <div v-if="data" class="filter">
     <div class="buttons">
       <poster-filter-toggle
+        v-if="data.sources.length"
         :is-active="activeOverlays.sources"
         class="filter-item"
         @toggle="toggleOverlay('sources')"
@@ -66,6 +51,7 @@ const today = () => {
         </template>
       </poster-filter-toggle>
       <poster-filter-toggle
+        v-if="data.subjects.length"
         :is-active="activeOverlays.subjects"
         class="filter-item"
         @toggle="toggleOverlay('subjects')"
@@ -106,8 +92,8 @@ const today = () => {
         class="tags"
         tabindex="-1"
       >
-        <center-wrapper v-if="sources">
-          <poster-tags-list :list="sources" />
+        <center-wrapper>
+          <poster-tags-list :list="data.sources" />
         </center-wrapper>
       </div>
 
@@ -117,8 +103,8 @@ const today = () => {
         class="tags"
         tabindex="-1"
       >
-        <center-wrapper v-if="subjects">
-          <poster-tags-list :list="subjects" />
+        <center-wrapper>
+          <poster-tags-list :list="data.subjects" />
         </center-wrapper>
       </div>
     </slide-in-animation>

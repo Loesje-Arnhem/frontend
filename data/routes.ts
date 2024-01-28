@@ -32,6 +32,7 @@ const fetchPagesByType = async (type: string) => {
     if (urls.length !== PAGESIZE) {
       hasNextPage = false
     }
+    // hasNextPage = false
     page = page + 1
     pauseFetching()
   }
@@ -40,7 +41,7 @@ const fetchPagesByType = async (type: string) => {
 
 export default async () => {
   const posts = await fetchPagesByType('posts')
-  const pages = await fetchPagesByType('posts')
+  const pages = await fetchPagesByType('pages')
   // const posters = await fetchPagesByType('posters')
   // return pages
   return [...posts, ...pages]

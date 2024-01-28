@@ -14,7 +14,7 @@ defineI18nRoute({
 <template>
   <center-wrapper>
     <posters-auto-complete />
-    <!-- <poster-filters /> -->
+    <poster-filters />
     <poster-tags-list :list="selectedTags" />
   </center-wrapper>
   <posters-overview-section
