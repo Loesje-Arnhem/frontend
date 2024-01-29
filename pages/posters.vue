@@ -7,6 +7,10 @@ defineI18nRoute({
 definePageMeta({
   key: (route) => route.fullPath,
 })
+
+useMeta({
+  title: 'Posters',
+})
 </script>
 
 <template>

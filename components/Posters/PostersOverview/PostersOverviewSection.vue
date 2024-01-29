@@ -23,70 +23,72 @@ const props = withDefaults(
   },
 )
 
-const posterDateAfter = computed(() => {
-  if (!props.dateAfter) {
-    return undefined
-  }
-  const splittedDate = props.dateAfter.split('-')
-  return {
-    year: parseInt(splittedDate[0], 10),
-    month: parseInt(splittedDate[1], 10),
-    day: parseInt(splittedDate[2], 10),
-  }
-})
+// const posterDateAfter = computed(() => {
+//   if (!props.dateAfter) {
+//     return undefined
+//   }
+//   const splittedDate = props.dateAfter.split('-')
+//   return {
+//     year: parseInt(splittedDate[0], 10),
+//     month: parseInt(splittedDate[1], 10),
+//     day: parseInt(splittedDate[2], 10),
+//   }
+// })
 
-const posterDateBefore = computed(() => {
-  if (!props.dateBefore) {
-    return undefined
-  }
-  const splittedDate = props.dateBefore.split('-')
-  return {
-    year: parseInt(splittedDate[0], 10),
-    month: parseInt(splittedDate[1], 10),
-    day: parseInt(splittedDate[2], 10),
-  }
-})
+// const posterDateBefore = computed(() => {
+//   if (!props.dateBefore) {
+//     return undefined
+//   }
+//   const splittedDate = props.dateBefore.split('-')
+//   return {
+//     year: parseInt(splittedDate[0], 10),
+//     month: parseInt(splittedDate[1], 10),
+//     day: parseInt(splittedDate[2], 10),
+//   }
+// })
 
-const search2 = toRef(props, 'search')
+const searchFromProp = toRef(props, 'search')
+const subjectIdsFromProp = computed(() => props.subjectIds.join(','))
+const sourceIdsFromProp = computed(() => props.sourceIds.join(','))
 
 const { data, pending } = useFetch('/api/posters/posters', {
   query: {
-    subjectIds: props.subjectIds,
-    sourceIds: props.sourceIds,
+    subjectIds: subjectIdsFromProp,
+    sourceIds: sourceIdsFromProp,
     include: props.include,
     // posterDateAfter: posterDateAfter.value,
     // posterDateBefore: posterDateBefore.value,
     exclude: props.exclude,
-    search: search2.value,
+    search: searchFromProp,
   },
-  watch: [search2],
+  watch: [subjectIdsFromProp, sourceIdsFromProp, searchFromProp],
 })
-const loadMore = () => {
-  // await fetchMore({
-  //   variables: {
-  //     after: result.value?.posters?.pageInfo.endCursor,
-  //   },
-  //   updateQuery: (previousResult, { fetchMoreResult }) => {
-  //     if (!previousResult?.posters?.edges.length) return previousResult
-  //     if (!fetchMoreResult?.posters?.edges.length) return previousResult
-  //     return {
-  //       ...fetchMoreResult,
-  //       posters: {
-  //         ...fetchMoreResult.posters,
-  //         edges: [
-  //           ...previousResult.posters.edges,
-  //           ...fetchMoreResult.posters.edges,
-  //         ],
-  //       },
-  //     }
-  //   },
-  // })
-}
+
+// const loadMore = () => {
+//   // await fetchMore({
+//   //   variables: {
+//   //     after: result.value?.posters?.pageInfo.endCursor,
+//   //   },
+//   //   updateQuery: (previousResult, { fetchMoreResult }) => {
+//   //     if (!previousResult?.posters?.edges.length) return previousResult
+//   //     if (!fetchMoreResult?.posters?.edges.length) return previousResult
+//   //     return {
+//   //       ...fetchMoreResult,
+//   //       posters: {
+//   //         ...fetchMoreResult.posters,
+//   //         edges: [
+//   //           ...previousResult.posters.edges,
+//   //           ...fetchMoreResult.posters.edges,
+//   //         ],
+//   //       },
+//   //     }
+//   //   },
+//   // })
+// }
 </script>
 
 <template>
-  {{ search2 }}
-  <app-loader v-if="pending && !data?.length" />
+  <app-loader v-if="pending" />
   <section v-else-if="data?.length" aria-labelledby="posters-overview-title">
     <center-wrapper>
       <h1 id="posters-overview-title" class="sa-hidden">

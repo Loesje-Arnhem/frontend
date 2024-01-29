@@ -23,7 +23,7 @@ if (!data.value) {
 }
 
 useMeta({
-  title: data.value.title,
+  title: 'Blijf plakken',
 })
 </script>
 

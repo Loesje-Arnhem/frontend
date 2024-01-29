@@ -1,3 +1,11 @@
+<script setup lang="ts">
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} | Loesje` : 'Loesje'
+  },
+})
+</script>
+
 <template>
   <div>
     <header-top class="page-header-top sa-hidden" />
