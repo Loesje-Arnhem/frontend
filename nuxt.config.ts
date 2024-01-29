@@ -55,21 +55,6 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  apollo: {
-    clients: {
-      default: {
-        inMemoryCacheOptions: {
-          typePolicies: {
-            GraphQlConfigurationOption: {
-              keyFields: ['id'],
-            },
-          },
-        },
-        httpEndpoint: `${process.env.NUXT_PUBLIC_API_URL}graphql`,
-      },
-    },
-  },
-
   typescript: {
     tsConfig: {
       compilerOptions: {
@@ -253,7 +238,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'nuxt-svgo',
     '@vite-pwa/nuxt',
-    '@nuxtjs/apollo',
     '@nuxtjs/eslint-module',
     // '@nuxtjs/stylelint-module',
     '@nuxt/image',

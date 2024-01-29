@@ -14,7 +14,6 @@ const { data, pending } = useFetch('/api/posts/posts', {
   query: {
     exclude: props.exclude.toString(),
   },
-  server: false,
 })
 
 const loadMore = () => {
