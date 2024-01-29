@@ -77,7 +77,7 @@ export default defineNuxtConfig({
       // failOnError: false,
       interval: 3000,
       concurrency: 20,
-      routes: ['/rss.xml', '/rss-posters.xml'],
+      routes: ['/rss.xml', '/rss-posters.xml', '/posters'],
     },
   },
 

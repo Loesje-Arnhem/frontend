@@ -7,6 +7,7 @@ defineProps<{
 
 const { t } = useI18n()
 
+const handleError = () => clearError({ redirect: '/' })
 useHead({
   title: t('errors.error404'),
 })
@@ -14,9 +15,10 @@ useHead({
 
 <template>
   <nuxt-layout>
-    <div>
+    <center-wrapper>
       <h1>404</h1>
       <p>{{ error.message }}</p>
-    </div>
+      <button @click="handleError">Clear errors</button>
+    </center-wrapper>
   </nuxt-layout>
 </template>
