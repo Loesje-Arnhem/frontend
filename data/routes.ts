@@ -22,17 +22,17 @@ const fetchPagesByType = async (type: string) => {
     ]}&status=publish`
     const data = await ofetch<{ link: string }[]>(apiUrl)
 
-    let suffix = ''
+    let suffix = '/'
     if (type === 'posts') {
       suffix = `/over-loesje/nieuws/`
     }
 
     const urls = data.map((r) => r.link.replace(baseUrl, suffix))
+    console.log({ urls })
     pages.push(...urls)
     if (urls.length !== PAGESIZE) {
       hasNextPage = false
     }
-    // hasNextPage = false
     page = page + 1
     pauseFetching()
   }
@@ -43,6 +43,5 @@ export default async () => {
   const posts = await fetchPagesByType('posts')
   const pages = await fetchPagesByType('pages')
   // const posters = await fetchPagesByType('posters')
-  // return pages
   return [...posts, ...pages]
 }

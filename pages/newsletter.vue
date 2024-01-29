@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: '/workshop-creatief-schrijven',
+    nl: '/doe-mee/blijf-op-hoogte',
   },
 })
 const { pageIds } = useAppConfig()
@@ -9,7 +9,7 @@ const { pageIds } = useAppConfig()
 const { data } = await useAsyncData(`page-workshop`, () =>
   $fetch('/api/pages/page', {
     params: {
-      id: pageIds.workshops,
+      id: pageIds.newsletter,
     },
   }),
 )
@@ -33,7 +33,9 @@ useMeta({
       :content="data.content"
       :video="data.youtubeId"
     />
-    <form-workshop />
+    <center-wrapper size="md">
+      <form-newsletter class="newsletter" />
+    </center-wrapper>
     <related-products-section
       v-if="data.relatedProducts"
       :title="data.relatedProducts.title"
@@ -47,3 +49,10 @@ useMeta({
     />
   </div>
 </template>
+
+<style lang="postcss" scoped>
+.newsletter {
+  max-width: var(--container-width-sm);
+  margin-bottom: 4em;
+}
+</style>
