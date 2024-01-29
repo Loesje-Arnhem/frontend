@@ -28,11 +28,12 @@ defineProps<{
     </article>
     <div class="meta-data">
       <dl class="definition-list">
-        <dt class="definition-title">Publicatiedatum</dt>
-        <dd class="definition-item">
-          <app-date :date="poster.date" />
-        </dd>
-
+        <template v-if="poster.date">
+          <dt class="definition-title">Publicatiedatum</dt>
+          <dd class="definition-item">
+            <app-date :date="poster.date" />
+          </dd>
+        </template>
         <template v-if="poster.subjects.length">
           <dt class="definition-title">Onderwerpen:</dt>
           <dd class="definition-item">

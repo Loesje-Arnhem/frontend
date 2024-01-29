@@ -28,9 +28,11 @@ const fetchPagesByType = async (type: string) => {
     }
 
     const urls = data.map((r) => r.link.replace(baseUrl, suffix))
-    console.log({ urls })
     pages.push(...urls)
     if (urls.length !== PAGESIZE) {
+      hasNextPage = false
+    }
+    if (page > 5) {
       hasNextPage = false
     }
     page = page + 1
@@ -40,8 +42,9 @@ const fetchPagesByType = async (type: string) => {
 }
 
 export default async () => {
-  const posts = await fetchPagesByType('posts')
-  const pages = await fetchPagesByType('pages')
-  // const posters = await fetchPagesByType('posters')
-  return [...posts, ...pages]
+  // const posts = await fetchPagesByType('posts')
+  // const pages = await fetchPagesByType('pages')
+  const posters = await fetchPagesByType('posters')
+  return posters
+  // return [...posts, ...pages]
 }

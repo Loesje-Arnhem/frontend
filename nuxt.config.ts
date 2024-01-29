@@ -53,7 +53,6 @@ export default defineNuxtConfig({
     componentIslands: true,
     payloadExtraction: true,
     typedPages: true,
-    sharedPrerenderData: true,
   },
 
   apollo: {

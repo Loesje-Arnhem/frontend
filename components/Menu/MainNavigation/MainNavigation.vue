@@ -1,62 +1,5 @@
 <script lang="ts" setup>
-import { GetHeaderMenu } from '~/graphql/menu'
-import type { MenuItemWithChildren } from '~/types/MenuItem'
-
-const { t } = useI18n()
-
-const { data } = await useAsyncQuery(GetHeaderMenu)
-const localePath = useLocalePath()
-
-const items = computed<MenuItemWithChildren[]>(() => {
-  if (!data.value.menu?.menuItems?.edges.length) {
-    return []
-  }
-
-  const baseItems = [
-    {
-      title: t('home'),
-      id: 'home',
-      url: localePath({ name: 'index' }),
-    },
-    {
-      title: t('posters'),
-      id: 'posters',
-      url: localePath({ name: 'posters' }),
-    },
-  ]
-
-  const menuItems = data.value.menu.menuItems.edges.map((item) => {
-    return {
-      id: item.node.id,
-      url: item.node.uri ?? '',
-      title: item.node.label ?? '',
-      children: item.node.childItems?.edges.map((subItem) => {
-        return {
-          id: subItem.node.id,
-          url: subItem.node.uri ?? '',
-          title: subItem.node.label ?? '',
-        }
-      }),
-    }
-  })
-
-  const productCategories = data.value.productCategories?.edges.map((item) => {
-    return {
-      id: item.node.id,
-      url: item.node.uri ?? '',
-      title: item.node.name ?? '',
-    }
-  })
-
-  const shop = {
-    title: t('shop'),
-    id: 'shop',
-    url: localePath({ name: 'shop' }),
-    children: productCategories ?? [],
-  }
-
-  return [...baseItems, ...menuItems, shop]
-})
+import { mainNavigation as items } from '~/data/menu'
 
 const menu: Ref<HTMLAnchorElement | null> = ref(null)
 const arrowPosition: Ref<string | undefined> = ref(undefined)
@@ -126,7 +69,6 @@ const setArrowPosition = () => {
     <h2 id="menu" class="sr-only" tabindex="-1">
       {{ $t('mainMenu') }}
     </h2>
-
     <div ref="menu">
       <ul v-if="items.length" class="menu">
         <main-navigation-item

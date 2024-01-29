@@ -25,13 +25,17 @@ export default defineEventHandler(async (event) => {
       subjects = getTagsByType(tags, Taxonomy.Subject)
       sources = getTagsByType(tags, Taxonomy.Source)
     }
+    console.log(item.acf.date)
 
     const pattern = /(\d{4})(\d{2})(\d{2})/
-    const date = new Date(item.acf.date.replace(pattern, '$1-$2-$3'))
+    let date = undefined
+    if (item.acf.date) {
+      date = new Date(item.acf.date?.replace(pattern, '$1-$2-$3')).toString()
+    }
     const poster: IPoster = {
       id: item.id,
       title: item.title.rendered,
-      date: date.toString(),
+      date: date,
       pdf: item.acf.pdf,
       featuredImage,
       subjects,

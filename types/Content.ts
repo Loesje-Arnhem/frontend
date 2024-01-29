@@ -58,7 +58,7 @@ export type ITag = IBase & {
 
 export type IPoster = IBase & {
   slug: string
-  date: string
+  date?: string
   featuredImage?: FeaturedImage
   pdf: string
   sources: ITag[]

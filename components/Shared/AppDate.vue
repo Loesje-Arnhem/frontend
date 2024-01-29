@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const props = defineProps<{
-  date?: string | null
+  date: string
 }>()
 
 const formattedDate = computed(() => {

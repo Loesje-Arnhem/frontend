@@ -1,35 +1,16 @@
 <script lang="ts" setup>
-import type { MenuItem } from '~/types/MenuItem'
-import { GetFooterMenu } from '~/graphql/menu'
-
-const { data } = await useAsyncQuery(GetFooterMenu)
-
-const items = computed<MenuItem[]>(() => {
-  if (!data.value?.menu?.menuItems?.edges.length) {
-    return []
-  }
-
-  const menuItems = data.value.menu.menuItems.edges.map((item) => {
-    return {
-      id: item.node.id,
-      url: item.node.uri ?? '',
-      title: item.node.label ?? '',
-    }
-  })
-
-  return menuItems
-})
+import { quickLinks } from '~/data/menu'
 </script>
 
 <template>
   <nav
-    v-if="items.length"
+    v-if="quickLinks.length"
     class="quicklinks"
     aria-labelledby="quicklinks-title"
   >
     <h2 id="quicklinks-title">Handige links</h2>
     <ul class="list">
-      <li v-for="item in items" :key="item.id">
+      <li v-for="item in quickLinks" :key="item.id">
         <nuxt-link :to="item.url" class="link">
           <app-icon
             icon="chevron-right"
