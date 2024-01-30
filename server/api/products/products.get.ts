@@ -1,5 +1,5 @@
 import type { IProductImage, IProductListItem } from '~~/types/Content'
-import type { ResponseProducts } from '~~/server/types/ResponseProducts'
+import type { ResponseProducts } from '~/server/types/ResponseProducts'
 
 export default defineEventHandler(async (event) => {
   const { woocommerce } = useRuntimeConfig()
@@ -16,7 +16,9 @@ export default defineEventHandler(async (event) => {
       'images',
       'external_url',
     ],
+    pageSize: 99,
     image: true,
+    featured: query.featured === 'true',
     include: query.productIds?.toString() || undefined,
     consumerKey: woocommerce.consumerKey,
     consumerSecret: woocommerce.consumerSecret,

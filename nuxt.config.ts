@@ -71,13 +71,22 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    // preset: 'netlify',
+    preset: 'netlify',
     prerender: {
       crawlLinks: false,
       // failOnError: false,
       interval: 3000,
       concurrency: 20,
       routes: ['/rss.xml', '/rss-posters.xml', '/posters'],
+    },
+    storage: {
+      redis: {
+        driver: 'redis',
+        port: process.env.REDIS_PORT,
+        host: process.env.REDIS_HOST,
+        username: process.env.REDIS_USERNAME,
+        password: process.env.REDIS_PASSWORD,
+      },
     },
   },
 

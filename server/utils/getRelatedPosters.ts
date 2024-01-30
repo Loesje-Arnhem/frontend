@@ -1,4 +1,4 @@
-import { type ResponsePage } from '~~/server/types/ResponsePage'
+import { type ResponsePage } from '~/server/types/ResponsePage'
 import { type IRelatedPosters } from '~~/types/Content'
 import { type ResponsePost } from '../types/ResponsePost'
 

@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import type { MediaItemFragment } from '~/graphql/__generated__/graphql'
-
-type DailyPoster = MediaItemFragment & {
-  date: string
-}
+import type { IPosterListItem } from '~/types/Content'
 
 withDefaults(
   defineProps<{
@@ -13,7 +9,6 @@ withDefaults(
     sizes: '(max-width: 375px) 100vw, 270px',
   },
 )
-const config = useRuntimeConfig()
 
 const addTrailingZeroToValue = (value: number) => {
   if (value < 10) {
@@ -30,12 +25,10 @@ const getDate = () => {
   return `${date.getFullYear()}${month}${day}`
 }
 
-const poster = ref<DailyPoster | null>(null)
+const poster = ref<IPosterListItem | null>(null)
 
 const fetchDailyPoster = async () => {
-  const data = await $fetch<DailyPoster>(
-    `${config.public.apiUrl}wp-content/uploads/daily-posters/${getDate()}.json`,
-  )
+  const data = await $fetch('/api/posters/daily-poster')
   poster.value = data
   await localStorage.setItem(
     'daily-poster',

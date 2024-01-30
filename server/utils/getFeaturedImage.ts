@@ -1,5 +1,5 @@
 import { type FeaturedImage } from '~/types/Content'
-import { type ResponseImage } from '~~/server/types/ResponseImage'
+import { type ResponseImage } from '~/server/types/ResponseImage'
 
 export default (featuredImage: ResponseImage[] | undefined, title?: string) => {
   if (!featuredImage) {

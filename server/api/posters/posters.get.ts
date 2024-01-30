@@ -1,9 +1,19 @@
 import { type IPosterListItem } from '~~/types/Content'
 import { type ResponsePosters } from '~/server/types/ResponsePosters'
+import { getStorageKey } from '~/server/utils/getStorageKey'
 
 export default defineEventHandler(async (event) => {
+  const storage = useStorage('redis')
+
   const query = getQuery(event)
   let pageSize = 20
+
+  const key = getStorageKey(query, 'posters')
+
+  if (await storage.getItem(key)) {
+    return await storage.getItem(key)
+  }
+
   if (query.pageSize) {
     pageSize = query.pageSize
   }
@@ -34,5 +44,7 @@ export default defineEventHandler(async (event) => {
       title: item.title.rendered,
     }
   })
+  await storage.setItem(key, items)
+
   return items
 })

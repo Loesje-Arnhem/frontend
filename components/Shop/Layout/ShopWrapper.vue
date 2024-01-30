@@ -5,7 +5,7 @@
     </center-wrapper>
     <page-with-sidebar>
       <template #sidebar>
-        <product-category-list />
+        <!-- <product-category-list /> -->
       </template>
       <slot />
     </page-with-sidebar>

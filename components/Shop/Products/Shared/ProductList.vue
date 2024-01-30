@@ -15,6 +15,7 @@ const props = withDefaults(
 const { data } = useFetch('/api/products/products', {
   query: {
     productIds: props.productIds.join(','),
+    featured: props.featured,
   },
 })
 </script>

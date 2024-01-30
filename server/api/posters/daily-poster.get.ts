@@ -1,27 +1,36 @@
-import { IDailyPoster } from '~~/interfaces/IContent'
-import { IResponseDailyPoster } from '~/server/types/IResponseDailyPoster'
+import { IPosterListItem } from '~/types/Content'
+
+const addTrailingZeroToValue = (value: number) => {
+  if (value < 10) {
+    return `0${value}`
+  } else {
+    return value.toString()
+  }
+}
+
+const getDate = () => {
+  const date = new Date()
+  const month = addTrailingZeroToValue(date.getMonth() + 1)
+  const day = addTrailingZeroToValue(date.getDate())
+  return `${date.getFullYear()}${month}${day}`
+}
 
 export default defineEventHandler(async () => {
-  const url = getUrl({
-    type: 'daily-posters',
-    fields: ['title', 'slug', 'id'],
-    image: true,
-    pageSize: 1,
-  })
+  const config = useRuntimeConfig()
+  const storage = useStorage('redis')
 
-  const response = await $fetch<IResponseDailyPoster[]>(url, {})
-  if (response.length) {
-    const item = response[0]
+  const key = `daily-poster-${getDate()}`
 
-    const featuredImage = getFeaturedImage(
-      item._embedded['wp:featuredmedia'],
-      item.title.rendered,
-    )
-    const poster: IDailyPoster = {
-      id: item.id,
-      slug: item.slug,
-      featuredImage,
-    }
-    return poster
+  if (await storage.getItem(key)) {
+    return await storage.getItem<IPosterListItem>(key)
   }
+
+  const response = await $fetch<IPosterListItem>(
+    `${config.public.apiUrl}wp-content/uploads/daily-posters/${getDate()}.json`,
+    {},
+  )
+
+  await storage.setItem(key, response)
+
+  return response
 })

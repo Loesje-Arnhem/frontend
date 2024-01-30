@@ -14,6 +14,8 @@ export default ({
   parent,
   consumerKey,
   consumerSecret,
+  productCategory,
+  featured = false,
 }: {
   fields: string[]
   type: string
@@ -30,6 +32,8 @@ export default ({
   parent?: Number
   consumerKey?: string
   consumerSecret?: string
+  productCategory?: string
+  featured?: boolean
 }) => {
   const { apiUrl, woocommerceApiUrl } = useAppConfig()
 
@@ -79,6 +83,21 @@ export default ({
   if (pageSize) {
     url.searchParams.set('per_page', pageSize.toString())
   }
+
+  if (productCategory) {
+    url.searchParams.set('category', productCategory.toString())
+  }
+
+  if (type === 'products') {
+    url.searchParams.set('orderby', 'menu_order')
+    url.searchParams.set('order', 'asc')
+    url.searchParams.set('stock_status', 'instock')
+  }
+
+  if (featured) {
+    url.searchParams.set('featured', 'true')
+  }
+
   if (consumerKey && consumerSecret) {
     url.searchParams.set('consumer_secret', consumerSecret)
     url.searchParams.set('consumer_key', consumerKey)
