@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { IPostListItem } from '~/types/Content'
+
 const props = withDefaults(
   defineProps<{
     exclude?: number
@@ -9,39 +11,29 @@ const props = withDefaults(
 )
 
 const page = ref(1)
+const posts = ref<IPostListItem[]>([])
+const hasNextPage = ref(false)
 
-const { data, pending } = useFetch('/api/posts/posts', {
+const { pending } = useFetch('/api/posts/posts', {
   query: {
     exclude: props.exclude.toString(),
+    page,
   },
+  transform(response) {
+    hasNextPage.value = response.hasNextPage
+    posts.value = [...posts.value, ...response.items]
+  },
+  watch: [page],
 })
 
 const loadMore = () => {
-  // await fetchMore({
-  //   variables: {
-  //     after: result.value?.posts?.pageInfo.endCursor,
-  //   },
-  //   updateQuery: (previousResult, { fetchMoreResult }) => {
-  //     if (!previousResult?.posts?.edges.length) return previousResult
-  //     if (!fetchMoreResult?.posts?.edges.length) return previousResult
-  //     return {
-  //       ...fetchMoreResult,
-  //       posts: {
-  //         ...fetchMoreResult.posts,
-  //         edges: [
-  //           ...previousResult.posts.edges,
-  //           ...fetchMoreResult.posts.edges,
-  //         ],
-  //       },
-  //     }
-  //   },
-  // })
+  page.value = page.value + 1
 }
 </script>
 
 <template>
   <section
-    v-if="data?.items.length"
+    v-if="posts.length"
     class="posts-overview"
     aria-labelledby="posts-overview-title"
   >
@@ -54,10 +46,10 @@ const loadMore = () => {
           {{ $t('posts') }}
         </template>
       </h1>
-      <posts-overview-list :posts="data.items" />
+      <posts-overview-list :posts="posts" />
       <center-wrapper>
         <load-more-by-click
-          v-if="page < data.total"
+          v-if="hasNextPage"
           :loading="pending"
           @load-more="loadMore"
         />

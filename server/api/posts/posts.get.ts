@@ -7,17 +7,19 @@ export default defineEventHandler(async (event) => {
   if (query.pageSize) {
     pageSize = Number(query.pageSize)
   }
+  const page = query.page ? Number(query.page) : 1
 
   const url = getUrl({
     type: 'posts',
     fields: ['title', 'excerpt', 'date', 'slug'],
     pageSize,
+    page,
     image: true,
     exclude: query.exclude || null,
   })
 
   const response = await $fetch.raw(url).catch((error) => error.data)
-  const total = Number(response.headers.get('X-WP-TotalPages'))
+  const totalPages = Number(response.headers.get('X-WP-TotalPages'))
   const items = response._data.map((item: ResponsePosts) => {
     return {
       slug: item.slug,
@@ -27,7 +29,7 @@ export default defineEventHandler(async (event) => {
     }
   }) as IPostListItem[]
   return {
-    total,
+    hasNextPage: page < totalPages,
     items,
   }
 })
