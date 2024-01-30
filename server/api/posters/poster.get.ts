@@ -4,12 +4,12 @@ import type { ResponsePoster } from '~/server/types/ResponsePoster'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
-  const storage = useStorage('redis')
-  const key = `poster-${query.slug}`
+  // const storage = useStorage('redis')
+  // const key = `poster-${query.slug}`
 
-  if (await storage.getItem(key)) {
-    return await storage.getItem(key)
-  }
+  // if (await storage.getItem(key)) {
+  //   return await storage.getItem(key)
+  // }
   const url = getUrl({
     slug: query.slug,
     image: true,
@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
       sources,
       relatedProducts: getRelatedProducts(item),
     }
-    await storage.setItem(key, poster)
+    // await storage.setItem(key, poster)
     return poster
   }
   return null

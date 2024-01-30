@@ -17,20 +17,20 @@ const getDate = () => {
 
 export default defineEventHandler(async () => {
   const config = useRuntimeConfig()
-  const storage = useStorage('redis')
+  // const storage = useStorage('redis')
 
-  const key = `daily-poster-${getDate()}`
+  // const key = `daily-poster-${getDate()}`
 
-  if (await storage.getItem(key)) {
-    return await storage.getItem<IPosterListItem>(key)
-  }
+  // if (await storage.getItem(key)) {
+  //   return await storage.getItem<IPosterListItem>(key)
+  // }
 
   const response = await $fetch<IPosterListItem>(
     `${config.public.apiUrl}wp-content/uploads/daily-posters/${getDate()}.json`,
     {},
   )
 
-  await storage.setItem(key, response)
+  // await storage.setItem(key, response)
 
   return response
 })
