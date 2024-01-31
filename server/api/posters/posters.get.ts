@@ -4,8 +4,8 @@ import { getStorageKey } from '~/server/utils/getStorageKey'
 import { z } from 'zod'
 
 const querySchema = z.object({
-  pageSize: z.number().default(20),
-  page: z.number().default(1),
+  pageSize: z.string().default('20'),
+  page: z.string().default('1'),
   include: z.string().optional(),
   search: z.string().optional(),
 })
@@ -26,17 +26,20 @@ export default defineEventHandler(async (event) => {
   //   return await storage.getItem(key)
   // }
 
+  const pageSize = Number(query.data.pageSize)
+  const page = Number(query.data.page)
+
   const url = getUrl({
     type: 'posters',
     fields: ['title', 'slug', 'id'],
     image: true,
-    pageSize: query.data.pageSize,
+    pageSize,
     include: query.data.include,
     exclude: query.exclude || null,
     subjectIds: query.subjectIds || null,
     sourceIds: query.sourceIds || null,
     search: query.data.search,
-    page: query.data.page,
+    page,
   })
 
   const response = await $fetch.raw(url).catch((error) => error.data)
