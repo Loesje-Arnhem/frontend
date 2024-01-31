@@ -50,10 +50,12 @@ export default defineEventHandler(async (event) => {
       }
     },
   )
-  // await storage.setItem(key, items)
 
-  return {
+  const data = {
     hasNextPage: page < totalPages,
     items,
   }
+  // await storage.setItem(key, data)
+
+  return data
 })

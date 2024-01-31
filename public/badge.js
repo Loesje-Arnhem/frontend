@@ -4,9 +4,7 @@ const TOTAL_POSTERS_KEY = 'posters-badge-v2'
 
 const fetchTotalPosts = async () => {
   try {
-    const response = await fetch(
-      `https://shop.loesje.nl/wp-content/uploads/posters/total-posters.json`,
-    )
+    const response = await fetch(`/api/posters/total`)
     if (!response.ok) {
       return
     }
