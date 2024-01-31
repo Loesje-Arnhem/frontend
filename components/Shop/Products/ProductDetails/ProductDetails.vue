@@ -4,20 +4,6 @@ import type { IProduct } from '~/types/Content'
 const props = defineProps<{
   product: IProduct
 }>()
-
-// const gallery = computed(() => {
-//   const images = []
-//   if (props.product.featuredImage) {
-//     images.push(props.product.featuredImage.node)
-//   }
-//   if (props.product.galleryImages?.edges.length) {
-//     const galleryImages = props.product.galleryImages.edges.map((image) => {
-//       return image.node
-//     })
-//     return [...images, ...galleryImages]
-//   }
-//   return images
-// })
 </script>
 
 <template>
@@ -28,7 +14,7 @@ const props = defineProps<{
         <div class="content">
           <h1>{{ product.title }}</h1>
           <div v-html="product.excerpt" />
-          <!-- <form-add-to-cart :product="product" /> -->
+          <form-add-to-cart :product="product" />
         </div>
       </div>
       <h2>Beschrijving</h2>

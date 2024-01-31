@@ -50,7 +50,7 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    let regularPrice = null
+    let regularPrice = undefined
 
     if (item.regular_price && item.price !== item.regular_price) {
       regularPrice = Number(item.regular_price)
@@ -59,7 +59,7 @@ export default defineEventHandler(async (event) => {
       id: item.id,
       slug: item.slug,
       title: item.name,
-      price: Number(item.price) || null,
+      price: Number(item.price) || undefined,
       regularPrice,
       externalUrl: item.external_url || null,
       image,

@@ -2,16 +2,17 @@
 import type { IProductListItem } from '~/types/Content'
 
 defineProps<{
-  product: IProductListItem
+  price: number
+  regularPrice?: number
 }>()
 </script>
 
 <template>
-  <div v-if="product.price" class="price">
-    <span v-if="product.regularPrice" class="price-old">
-      {{ $n(product.regularPrice, 'currency') }}
+  <div class="price">
+    <span v-if="regularPrice" class="price-old">
+      {{ $n(regularPrice, 'currency') }}
     </span>
-    {{ $n(product.price, 'currency') }}
+    {{ $n(price, 'currency') }}
   </div>
 </template>
 

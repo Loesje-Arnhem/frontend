@@ -1,26 +1,34 @@
 <script lang="ts" setup>
-import type { ProductDetailsFragment } from '~/graphql/__generated__/graphql'
+import type { IProduct } from '~/types/Content'
 
 const props = defineProps<{
-  product: ProductDetailsFragment
+  product: IProduct
 }>()
 
-const localePath = useLocalePath()
+// const { addToCart, loading, quantity, errors, onDone } = useAddToCart(
+//   props.product.databaseId,
+// )
 
-const { addToCart, loading, quantity, errors, onDone } = useAddToCart(
-  props.product.databaseId,
-)
+// onDone(() => {
+//   navigateTo(localePath({ name: 'shop-cart' }))
+// })
 
-onDone(() => {
-  navigateTo(localePath({ name: 'shop-cart' }))
-})
+const addToCart = () => {}
+
+const loading = ref(false)
+const quantity = ref(1)
 
 const selectedAttribute = ref('')
 </script>
 
 <template>
   <div class="wrapper">
-    <product-prices :product="product" class="price" />
+    <product-prices
+      v-if="product.price"
+      :price="product.price"
+      :regularPrice="product.regularPrice"
+      class="price"
+    />
     <form class="form" @submit.prevent="addToCart">
       <form-fieldset title="In winkelmandje">
         <input-text-field
@@ -31,7 +39,7 @@ const selectedAttribute = ref('')
           class="quantity"
           name="quantity"
         />
-        <div
+        <!-- <div
           v-if="
             product.globalAttributes && product.globalAttributes.nodes.length
           "
@@ -54,12 +62,12 @@ const selectedAttribute = ref('')
               "
             />
           </div>
-        </div>
+        </div> -->
       </form-fieldset>
       <app-button type="submit" class="btn-add-to-cart" :loading="loading">
         In winkelmandje
       </app-button>
-      <div v-if="errors.length" v-html="errors.join(', ')" />
+      <!-- <div v-if="errors.length" v-html="errors.join(', ')" /> -->
     </form>
   </div>
 </template>
