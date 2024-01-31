@@ -1,34 +1,34 @@
 <script lang="ts" setup>
-import { type Product } from '~/graphql/__generated__/graphql'
+import type { IProduct } from '~/types/Content'
 
 const props = defineProps<{
-  product: Product
+  product: IProduct
 }>()
 
-const gallery = computed(() => {
-  const images = []
-  if (props.product.featuredImage) {
-    images.push(props.product.featuredImage.node)
-  }
-  if (props.product.galleryImages?.edges.length) {
-    const galleryImages = props.product.galleryImages.edges.map((image) => {
-      return image.node
-    })
-    return [...images, ...galleryImages]
-  }
-  return images
-})
+// const gallery = computed(() => {
+//   const images = []
+//   if (props.product.featuredImage) {
+//     images.push(props.product.featuredImage.node)
+//   }
+//   if (props.product.galleryImages?.edges.length) {
+//     const galleryImages = props.product.galleryImages.edges.map((image) => {
+//       return image.node
+//     })
+//     return [...images, ...galleryImages]
+//   }
+//   return images
+// })
 </script>
 
 <template>
   <div>
     <div class="product-wrapper">
       <div class="product-details">
-        <product-gallery :images="gallery" />
+        <product-gallery :images="product.images" />
         <div class="content">
           <h1>{{ product.title }}</h1>
-          <div v-html="product.shortDescription" />
-          <form-add-to-cart :product="product" />
+          <div v-html="product.excerpt" />
+          <!-- <form-add-to-cart :product="product" /> -->
         </div>
       </div>
       <h2>Beschrijving</h2>

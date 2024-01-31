@@ -85,6 +85,15 @@ export type IProductListItem = IBase & {
   image?: IProductImage
 }
 
+export type IProduct = IBase & {
+  price: number | null
+  regularPrice: number | null
+  excerpt: string
+  description: string
+  images: IProductImage[]
+  relatedProductIds: number[]
+}
+
 export type IPosterListItem = {
   id: number
   title: string

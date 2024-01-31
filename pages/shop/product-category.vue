@@ -19,7 +19,16 @@ const { data } = await useAsyncData(
     }),
 )
 
-// useMeta(data.value?.productCategory)
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: data.value.title,
+})
 </script>
 
 <template>

@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import type { MediaItemFragment } from '~/graphql/__generated__/graphql'
+import type { IProductImage } from '~/types/Content'
 
 defineProps<{
-  images: MediaItemFragment[]
+  images: IProductImage[]
 }>()
 </script>
 
 <template>
-  <div class="gallery">
+  <div class="gallery" v-if="images.length">
     <!-- <app-carousel
       v-if="images.length > 1"
       :total-pages="images.length"
@@ -30,8 +30,9 @@ defineProps<{
       v-else-if="images[0]"
       class="tile"
     > -->
-    <featured-image
-      :image="images[0]"
+    <img
+      :src="images[0].src"
+      :alt="images[0].alt"
       class="image"
       :lazy="false"
       sizes="(max-width: 320px) 50vw, 150px"
