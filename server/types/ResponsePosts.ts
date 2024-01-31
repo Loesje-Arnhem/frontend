@@ -2,7 +2,7 @@ export type ResponsePosts = {
   title: {
     rendered: string
   }
-  content: {
+  excerpt: {
     rendered: string
   }
   slug: string
