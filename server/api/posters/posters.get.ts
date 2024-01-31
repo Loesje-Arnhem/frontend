@@ -7,6 +7,7 @@ export default defineEventHandler(async (event) => {
 
   const query = getQuery(event)
   let pageSize = 20
+  const page = query.page ? Number(query.page) : 1
 
   // const key = getStorageKey(query, 'posters')
 
@@ -28,23 +29,31 @@ export default defineEventHandler(async (event) => {
     subjectIds: query.subjectIds || null,
     sourceIds: query.sourceIds || null,
     search: query.search || null,
+    page,
   })
 
-  const response = await $fetch<ResponsePosters[]>(url, {})
-  const items: IPosterListItem[] = response.map((item) => {
-    const featuredImage = getFeaturedImage(
-      item._embedded['wp:featuredmedia'],
-      item.title.rendered,
-    )
+  const response = await $fetch.raw(url).catch((error) => error.data)
+  const totalPages = Number(response.headers.get('X-WP-TotalPages'))
 
-    return {
-      id: item.id,
-      slug: item.slug,
-      featuredImage,
-      title: item.title.rendered,
-    }
-  })
+  const items: IPosterListItem[] = response._data.map(
+    (item: ResponsePosters) => {
+      const featuredImage = getFeaturedImage(
+        item._embedded['wp:featuredmedia'],
+        item.title.rendered,
+      )
+
+      return {
+        id: item.id,
+        slug: item.slug,
+        featuredImage,
+        title: item.title.rendered,
+      }
+    },
+  )
   // await storage.setItem(key, items)
 
-  return items
+  return {
+    hasNextPage: page < totalPages,
+    items,
+  }
 })

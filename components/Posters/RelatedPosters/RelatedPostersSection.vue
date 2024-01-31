@@ -23,7 +23,7 @@ const title = props.title || t('posters')
 
 <template>
   <section
-    v-if="data?.length"
+    v-if="data?.items.length"
     class="related-posters"
     aria-labelledby="related-posters-title"
   >
@@ -34,7 +34,7 @@ const title = props.title || t('posters')
     </center-wrapper>
 
     <center-wrapper size="full">
-      <related-posters-list :posters="data" />
+      <related-posters-list :posters="data.items" />
     </center-wrapper>
     <center-wrapper class="btn-wrapper">
       <app-button :to="localePath({ name: 'posters' })">

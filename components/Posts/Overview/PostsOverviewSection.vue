@@ -47,12 +47,8 @@ const loadMore = () => {
         </template>
       </h1>
       <posts-overview-list :posts="posts" />
-      <center-wrapper>
-        <load-more-by-click
-          v-if="hasNextPage"
-          :loading="pending"
-          @load-more="loadMore"
-        />
+      <center-wrapper v-if="hasNextPage">
+        <load-more-by-click :loading="pending" @load-more="loadMore" />
       </center-wrapper>
     </center-wrapper>
   </section>

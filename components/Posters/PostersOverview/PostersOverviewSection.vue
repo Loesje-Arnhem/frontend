@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { IPosterListItem } from '~/types/Content'
+
 const props = withDefaults(
   defineProps<{
     title?: string
@@ -51,7 +53,11 @@ const searchFromProp = toRef(props, 'search')
 const subjectIdsFromProp = computed(() => props.subjectIds.join(','))
 const sourceIdsFromProp = computed(() => props.sourceIds.join(','))
 
-const { data, pending } = useFetch('/api/posters/posters', {
+const page = ref(1)
+const posters = ref<IPosterListItem[]>([])
+const hasNextPage = ref(false)
+
+const { pending } = useFetch('/api/posters/posters', {
   query: {
     subjectIds: subjectIdsFromProp,
     sourceIds: sourceIdsFromProp,
@@ -60,36 +66,23 @@ const { data, pending } = useFetch('/api/posters/posters', {
     // posterDateBefore: posterDateBefore.value,
     exclude: props.exclude,
     search: searchFromProp,
+    page,
   },
-  watch: [subjectIdsFromProp, sourceIdsFromProp, searchFromProp],
+  transform(response) {
+    hasNextPage.value = response.hasNextPage
+    posters.value = [...posters.value, ...response.items]
+  },
+  watch: [subjectIdsFromProp, sourceIdsFromProp, searchFromProp, page],
 })
 
-// const loadMore = () => {
-//   // await fetchMore({
-//   //   variables: {
-//   //     after: result.value?.posters?.pageInfo.endCursor,
-//   //   },
-//   //   updateQuery: (previousResult, { fetchMoreResult }) => {
-//   //     if (!previousResult?.posters?.edges.length) return previousResult
-//   //     if (!fetchMoreResult?.posters?.edges.length) return previousResult
-//   //     return {
-//   //       ...fetchMoreResult,
-//   //       posters: {
-//   //         ...fetchMoreResult.posters,
-//   //         edges: [
-//   //           ...previousResult.posters.edges,
-//   //           ...fetchMoreResult.posters.edges,
-//   //         ],
-//   //       },
-//   //     }
-//   //   },
-//   // })
-// }
+const loadMore = () => {
+  page.value = page.value + 1
+}
 </script>
 
 <template>
-  <app-loader v-if="pending" />
-  <section v-else-if="data?.length" aria-labelledby="posters-overview-title">
+  <app-loader v-if="pending && !posters.length" />
+  <section v-else-if="posters.length" aria-labelledby="posters-overview-title">
     <center-wrapper>
       <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
@@ -100,14 +93,10 @@ const { data, pending } = useFetch('/api/posters/posters', {
         </template>
       </h1>
     </center-wrapper>
-    <poster-list :posters="data" />
-    <center-wrapper>
-      <!-- <load-more-by-scroll
-        v-if="result.posters.pageInfo.hasNextPage"
-        :loading="loading"
-        @load-more="loadMore"
-      /> -->
-      <p v-if="data.length === 0 && !pending">Geen posters gevonden</p>
+    <poster-list :posters="posters" />
+    <center-wrapper v-if="hasNextPage">
+      <load-more-by-scroll :loading="pending" @load-more="loadMore" />
     </center-wrapper>
   </section>
+  <p v-if="!posters.length && !pending">Geen posters gevonden</p>
 </template>
