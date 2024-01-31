@@ -16,6 +16,7 @@ export default ({
   consumerSecret,
   productCategory,
   featured = false,
+  categoryId
 }: {
   fields: string[]
   type: string
@@ -34,6 +35,7 @@ export default ({
   consumerSecret?: string
   productCategory?: string
   featured?: boolean
+  categoryId?: string
 }) => {
   const { apiUrl, woocommerceApiUrl } = useAppConfig()
 
@@ -97,6 +99,11 @@ export default ({
   if (featured) {
     url.searchParams.set('featured', 'true')
   }
+
+  if (categoryId) {
+    url.searchParams.set('category', categoryId)
+  }
+
 
   if (consumerKey && consumerSecret) {
     url.searchParams.set('consumer_secret', consumerSecret)

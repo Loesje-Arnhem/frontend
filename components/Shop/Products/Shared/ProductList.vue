@@ -16,6 +16,7 @@ const { data } = useFetch('/api/products/products', {
   query: {
     productIds: props.productIds.join(','),
     featured: props.featured,
+    categoryId: props.categoryId,
   },
 })
 </script>

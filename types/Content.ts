@@ -117,3 +117,7 @@ export type IProductCategoryList = Array<
     children: Array<IBase & { slug: string }>
   }
 >
+
+export type IProductCategory = IBase & {
+  content: string
+}

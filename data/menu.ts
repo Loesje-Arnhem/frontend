@@ -64,7 +64,7 @@ export const mainNavigation = [
   {
     title: 'Winkeltje',
     id: 'shop',
-    url: '',
+    url: '/winkeltje',
     children: [
       {
         id: 'dGVybTozNzU=',
