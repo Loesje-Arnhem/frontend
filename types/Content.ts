@@ -110,3 +110,10 @@ export type IPosts = {
   pageInfo: { hasNextPage: boolean; endCursor: string }
   edges: IPostNode[]
 }
+
+export type IProductCategoryList = Array<
+  IBase & {
+    slug: string
+    children: Array<IBase & { slug: string }>
+  }
+>

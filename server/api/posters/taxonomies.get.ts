@@ -1,5 +1,5 @@
 import { type ITag } from '~~/types/Content'
-import { type ResponseTags } from '~/server/types/ResponseTags'
+import { type ResponseTag } from '~/server/types/ResponseTags'
 import { Taxonomy } from '~/enums/taxonomy'
 
 export default defineEventHandler(() => {
@@ -12,7 +12,7 @@ export default defineEventHandler(() => {
       ...baseProps,
       type: 'sources',
     })
-    $fetch<ResponseTags[]>(url, {}).then((data) => {
+    $fetch<ResponseTag[]>(url, {}).then((data) => {
       const items: ITag[] = data.map((item) => {
         return {
           id: item.id,
@@ -30,7 +30,7 @@ export default defineEventHandler(() => {
       ...baseProps,
       type: 'subjects',
     })
-    $fetch<ResponseTags[]>(url, {}).then((data) => {
+    $fetch<ResponseTag[]>(url, {}).then((data) => {
       const items: ITag[] = data.map((item) => {
         return {
           id: item.id,

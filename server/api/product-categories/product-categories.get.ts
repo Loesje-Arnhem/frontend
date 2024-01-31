@@ -1,5 +1,9 @@
-import type { IProductImage, IProductListItem } from '~~/types/Content'
-import type { ResponseProducts } from '~/server/types/ResponseProducts'
+import type { ResponseProductCategories } from '~/server/types/ResponseProductCategories'
+import { IProductCategoryList } from '~/types/Content'
+
+const sortByOrder = (items: ResponseProductCategories) => {
+  return items.sort((a, b) => a.menu_order - b.menu_order)
+}
 
 export default defineEventHandler(async (event) => {
   const { woocommerce } = useRuntimeConfig()
@@ -12,30 +16,27 @@ export default defineEventHandler(async (event) => {
     consumerSecret: woocommerce.consumerSecret,
   })
 
-  const response = await $fetch<ResponseProducts[]>(url)
-  // const items: IProductListItem[] = response.map((item) => {
-  //   let image: IProductImage | undefined = undefined
-  //   if (item.images.length) {
-  //     image = {
-  //       alt: item.images[0].alt,
-  //       src: item.images[0].src,
-  //     }
-  //   }
+  const response = await $fetch<ResponseProductCategories>(url)
 
-  //   let regularPrice = null
+  const sortedItems = sortByOrder(response)
 
-  //   if (item.regular_price && item.price !== item.regular_price) {
-  //     regularPrice = Number(item.regular_price)
-  //   }
-  //   return {
-  //     id: item.id,
-  //     slug: item.slug,
-  //     title: item.name,
-  //     price: Number(item.price) || null,
-  //     regularPrice,
-  //     externalUrl: item.external_url || null,
-  //     image,
-  //   }
-  // })
-  return response
+  const parents = sortedItems.filter((item) => item.parent === 0)
+
+  const parentsWithChildren: IProductCategoryList = parents.map((item) => {
+    const children = response.filter((child) => child.parent === item.id)
+    return {
+      id: item.id,
+      title: item.name,
+      slug: item.slug,
+      children: children.map((child) => {
+        return {
+          id: child.id,
+          title: child.name,
+          slug: child.slug,
+        }
+      }),
+    }
+  })
+
+  return parentsWithChildren
 })

@@ -21,7 +21,12 @@ export default defineNuxtPlugin((nuxtApp) => {
     })
   }
 
-  if (window.matchMedia(mediaQueryStandAlone).matches) {
+  const isInSideBar = () => {
+    const brands = navigator.userAgentData.brands;
+    return brands.find(b => b.brand === "Edge Side Panel");
+  }
+
+  if (window.matchMedia(mediaQueryStandAlone).matches || isInSideBar()) {
     setBodyClass()
     redirectToPostersPageOnStandalone()
   }

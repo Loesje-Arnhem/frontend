@@ -1,40 +1,35 @@
 <script lang="ts" setup>
-import { GetProductCategories } from '~/graphql/productCategories'
-
-const { data } = await useAsyncQuery(GetProductCategories)
+const { data } = useFetch('/api/product-categories/product-categories')
 </script>
 
 <template>
   <nav
-    v-if="data.productCategories"
+    v-if="data?.length"
     aria-labelledby="categories-title"
     class="categories"
   >
     <h2 id="categories-title" class="sr-only">Categorien</h2>
     <ul class="category-list">
       <li
-        v-for="productCategory in data.productCategories.edges"
-        :key="productCategory.node.id"
+        v-for="productCategory in data"
+        :key="productCategory.id"
         class="list-item"
       >
         <nuxt-link
-          v-if="productCategory.node.uri"
-          :to="productCategory.node.uri"
+          v-if="productCategory.slug"
+          :to="productCategory.slug"
           class="link"
         >
-          {{ productCategory.node.name }}
+          {{ productCategory.title }}
         </nuxt-link>
-        <ul
-          v-if="productCategory.node.children?.edges.length"
-          class="category-list"
-        >
+        <ul v-if="productCategory.children.length" class="category-list">
           <li
-            v-for="child in productCategory.node.children.edges"
-            :key="child.node.id"
+            v-for="child in productCategory.children"
+            :key="child.id"
             class="list-item"
           >
-            <nuxt-link :to="child.node.uri" class="link">
-              {{ child.node.name }}
+            <nuxt-link :to="child.slug" class="link">
+              {{ child.title }}
             </nuxt-link>
           </li>
         </ul>

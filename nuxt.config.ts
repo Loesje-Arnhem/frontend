@@ -53,6 +53,7 @@ export default defineNuxtConfig({
     componentIslands: true,
     payloadExtraction: true,
     typedPages: true,
+    sharedPrerenderData: true,
   },
 
   typescript: {
@@ -217,7 +218,6 @@ export default defineNuxtConfig({
       '~/components/Shop/Checkout',
       '~/components/Shop/Layout',
       '~/components/Shop/Products/ProductDetails',
-      '~/components/Shop/Products/ProductList',
       '~/components/Shop/Products/RelatedProducts',
       '~/components/Shop/Products/Shared',
       '~/components/Shop/Products',

@@ -1,13 +1,24 @@
 import { type IPosterListItem } from '~~/types/Content'
 import { type ResponsePosters } from '~/server/types/ResponsePosters'
 import { getStorageKey } from '~/server/utils/getStorageKey'
+import { z } from 'zod'
+
+const querySchema = z.object({
+  pageSize: z.number().default(20),
+  page: z.number().default(1),
+  include: z.string().optional(),
+  search: z.string().optional(),
+})
 
 export default defineEventHandler(async (event) => {
-  // const storage = useStorage('redis')
+  const query = await getValidatedQuery(event, (body) =>
+    querySchema.safeParse(body),
+  )
 
-  const query = getQuery(event)
-  let pageSize = 20
-  const page = query.page ? Number(query.page) : 1
+  if (!query.success) {
+    throw query.error.issues
+  }
+  // const storage = useStorage('redis')
 
   // const key = getStorageKey(query, 'posters')
 
@@ -15,21 +26,17 @@ export default defineEventHandler(async (event) => {
   //   return await storage.getItem(key)
   // }
 
-  if (query.pageSize) {
-    pageSize = query.pageSize
-  }
-
   const url = getUrl({
     type: 'posters',
     fields: ['title', 'slug', 'id'],
     image: true,
-    pageSize,
-    include: query.include || null,
+    pageSize: query.data.pageSize,
+    include: query.data.include,
     exclude: query.exclude || null,
     subjectIds: query.subjectIds || null,
     sourceIds: query.sourceIds || null,
-    search: query.search || null,
-    page,
+    search: query.data.search,
+    page: query.data.page,
   })
 
   const response = await $fetch.raw(url).catch((error) => error.data)

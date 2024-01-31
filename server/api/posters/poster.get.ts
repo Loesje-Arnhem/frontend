@@ -1,9 +1,21 @@
 import { Taxonomy } from '~~/enums/taxonomy'
 import type { IPoster, ITag } from '~~/types/Content'
 import type { ResponsePoster } from '~/server/types/ResponsePoster'
+import { z } from 'zod'
+
+const querySchema = z.object({
+  slug: z.string(),
+})
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event)
+  const query = await getValidatedQuery(event, (body) =>
+    querySchema.safeParse(body),
+  )
+
+  if (!query.success) {
+    throw query.error.issues
+  }
+
   // const storage = useStorage('redis')
   // const key = `poster-${query.slug}`
 
@@ -11,7 +23,7 @@ export default defineEventHandler(async (event) => {
   //   return await storage.getItem(key)
   // }
   const url = getUrl({
-    slug: query.slug,
+    slug: query.data.slug,
     image: true,
     type: 'posters',
     fields: ['title', 'yoast_head_json', 'slug', 'acf'],
