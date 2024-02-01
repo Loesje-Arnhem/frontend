@@ -23,6 +23,12 @@ export default defineNuxtConfig({
 
   image: {
     densities: [1, 2],
+    providers: {
+      netlifyCdn: {
+        name: 'netlifyCdn',
+        provider: '~/providers/netlify-cdn',
+      },
+    },
   },
 
   runtimeConfig: {
@@ -78,7 +84,7 @@ export default defineNuxtConfig({
       // failOnError: false,
       interval: 3000,
       concurrency: 20,
-      routes: ['/rss.xml', '/rss-posters.xml', '/posters'],
+      routes: ['/rss.xml', '/rss-posters.xml', '/posters', '/'],
     },
     storage: {
       redis: {
