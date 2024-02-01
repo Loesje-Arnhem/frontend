@@ -12,4 +12,10 @@ export type ResponseProduct = {
   short_description: string
   images: ResponseProductImage[]
   related_ids: number[]
+  attributes: {
+    slug: string
+    id: number
+    name: string
+    options: string[]
+  }[]
 }

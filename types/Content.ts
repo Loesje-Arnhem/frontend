@@ -92,6 +92,13 @@ export type IProduct = IBase & {
   description: string
   images: IProductImage[]
   relatedProductIds: number[]
+  attributes: {
+    id: number
+    name: string
+    options: string[]
+    slug: string
+
+  }[]
 }
 
 export type IPosterListItem = {
