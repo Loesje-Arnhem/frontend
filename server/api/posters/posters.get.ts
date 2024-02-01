@@ -7,7 +7,10 @@ const querySchema = z.object({
   pageSize: z.string().default('20'),
   page: z.string().default('1'),
   include: z.string().optional(),
+  exclude: z.string().optional(),
   search: z.string().optional(),
+  subjectIds: z.string().optional(),
+  sourceIds: z.string().optional(),
 })
 
 export default defineEventHandler(async (event) => {
@@ -33,21 +36,13 @@ export default defineEventHandler(async (event) => {
     type: 'posters',
     fields: ['title', 'slug', 'id'],
     image: true,
-<<<<<<< HEAD
     pageSize,
-=======
-    pageSize: Number(query.data.pageSize),
->>>>>>> rest
     include: query.data.include,
-    exclude: query.exclude || null,
-    subjectIds: query.subjectIds || null,
-    sourceIds: query.sourceIds || null,
+    exclude: query.data.exclude,
+    subjectIds: query.data.subjectIds,
+    sourceIds: query.data.sourceIds,
     search: query.data.search,
-<<<<<<< HEAD
     page,
-=======
-    page: Number(query.data.page),
->>>>>>> rest
   })
 
   const response = await $fetch.raw(url).catch((error) => error.data)
@@ -70,7 +65,7 @@ export default defineEventHandler(async (event) => {
   )
 
   const data = {
-    hasNextPage: Number(query.data.page) < totalPages,
+    hasNextPage: page < totalPages,
     items,
   }
   // await storage.setItem(key, data)

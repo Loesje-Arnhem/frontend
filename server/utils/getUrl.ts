@@ -16,21 +16,21 @@ export default ({
   consumerSecret,
   productCategory,
   featured = false,
-  categoryId
+  categoryId,
 }: {
   fields: string[]
   type: string
   id?: number
   slug?: string
   page?: number
-  image?: Boolean
+  image?: boolean
   include?: string
   exclude?: string
-  subjectIds?: string | null
-  sourceIds?: string | null
+  subjectIds?: string
+  sourceIds?: string
   pageSize?: number
   search?: string
-  parent?: Number
+  parent?: number
   consumerKey?: string
   consumerSecret?: string
   productCategory?: string
@@ -103,7 +103,6 @@ export default ({
   if (categoryId) {
     url.searchParams.set('category', categoryId)
   }
-
 
   if (consumerKey && consumerSecret) {
     url.searchParams.set('consumer_secret', consumerSecret)
