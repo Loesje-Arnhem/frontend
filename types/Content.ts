@@ -79,10 +79,19 @@ export type IProductImage = {
 
 export type IProductListItem = IBase & {
   slug: string
-  price: number | null
-  regularPrice: number | null
+  price?: number
+  regularPrice?: number
   externalUrl: string | null
   image?: IProductImage
+}
+
+export type IProduct = IBase & {
+  price?: number
+  regularPrice?: number
+  excerpt: string
+  description: string
+  images: IProductImage[]
+  relatedProductIds: number[]
 }
 
 export type IPosterListItem = {
@@ -117,3 +126,7 @@ export type IProductCategoryList = Array<
     children: Array<IBase & { slug: string }>
   }
 >
+
+export type IProductCategory = IBase & {
+  content: string
+}

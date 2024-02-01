@@ -1,9 +1,24 @@
 import type { IProductImage, IProductListItem } from '~~/types/Content'
 import type { ResponseProducts } from '~/server/types/ResponseProducts'
+import { z } from 'zod'
+
+const querySchema = z.object({
+  featured: z.string().optional(),
+  productIds: z.string().optional(),
+  categoryId: z.string().optional(),
+})
 
 export default defineEventHandler(async (event) => {
   const { woocommerce } = useRuntimeConfig()
-  const query = getQuery(event)
+
+  const query = await getValidatedQuery(event, (body) =>
+    querySchema.safeParse(body),
+  )
+
+  if (!query.success) {
+    throw query.error.issues
+  }
+
 
   const url = getUrl({
     type: 'products',
@@ -18,8 +33,9 @@ export default defineEventHandler(async (event) => {
     ],
     pageSize: 99,
     image: true,
-    featured: query.featured === 'true',
-    include: query.productIds?.toString() || undefined,
+    featured: query.data.featured === 'true',
+    include: query.data.productIds,
+    categoryId: query.data.categoryId,
     consumerKey: woocommerce.consumerKey,
     consumerSecret: woocommerce.consumerSecret,
   })
@@ -34,7 +50,7 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    let regularPrice = null
+    let regularPrice = undefined
 
     if (item.regular_price && item.price !== item.regular_price) {
       regularPrice = Number(item.regular_price)
@@ -43,7 +59,7 @@ export default defineEventHandler(async (event) => {
       id: item.id,
       slug: item.slug,
       title: item.name,
-      price: Number(item.price) || null,
+      price: Number(item.price) || undefined,
       regularPrice,
       externalUrl: item.external_url || null,
       image,

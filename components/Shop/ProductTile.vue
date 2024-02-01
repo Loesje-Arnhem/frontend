@@ -25,7 +25,13 @@ const url = localePath({
         <span v-html="product.title" />
       </router-link>
     </div>
-    <product-prices :product="product" :class="$style.price" />
+
+    <product-prices
+      v-if="product.price"
+      :price="product.price"
+      :regularPrice="product.regularPrice"
+      :class="$style.price"
+    />
   </clickable-list-item>
 </template>
 

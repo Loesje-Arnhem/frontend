@@ -33,13 +33,21 @@ export default defineEventHandler(async (event) => {
     type: 'posters',
     fields: ['title', 'slug', 'id'],
     image: true,
+<<<<<<< HEAD
     pageSize,
+=======
+    pageSize: Number(query.data.pageSize),
+>>>>>>> rest
     include: query.data.include,
     exclude: query.exclude || null,
     subjectIds: query.subjectIds || null,
     sourceIds: query.sourceIds || null,
     search: query.data.search,
+<<<<<<< HEAD
     page,
+=======
+    page: Number(query.data.page),
+>>>>>>> rest
   })
 
   const response = await $fetch.raw(url).catch((error) => error.data)
@@ -62,7 +70,7 @@ export default defineEventHandler(async (event) => {
   )
 
   const data = {
-    hasNextPage: page < totalPages,
+    hasNextPage: Number(query.data.page) < totalPages,
     items,
   }
   // await storage.setItem(key, data)

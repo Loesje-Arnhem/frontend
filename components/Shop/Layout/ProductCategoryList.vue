@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { data } = useFetch('/api/product-categories/product-categories')
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -16,8 +17,14 @@ const { data } = useFetch('/api/product-categories/product-categories')
         class="list-item"
       >
         <nuxt-link
-          v-if="productCategory.slug"
-          :to="productCategory.slug"
+          :to="
+            localePath({
+              name: 'shop-product-category',
+              params: {
+                category: productCategory.slug,
+              },
+            })
+          "
           class="link"
         >
           {{ productCategory.title }}
@@ -28,7 +35,18 @@ const { data } = useFetch('/api/product-categories/product-categories')
             :key="child.id"
             class="list-item"
           >
-            <nuxt-link :to="child.slug" class="link">
+            <nuxt-link
+              :to="
+                localePath({
+                  name: 'shop-product-category',
+                  params: {
+                    category: productCategory.slug,
+                    subcategory: child.slug,
+                  },
+                })
+              "
+              class="link"
+            >
               {{ child.title }}
             </nuxt-link>
           </li>
@@ -64,7 +82,7 @@ const { data } = useFetch('/api/product-categories/product-categories')
 .link {
   @mixin link-reset;
 
-  &.nuxt-link-exact-active,
+  &.router-link-active,
   &:focus,
   &:hover {
     box-shadow: 0 2px 0 0 currentcolor;
