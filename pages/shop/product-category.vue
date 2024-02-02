@@ -34,7 +34,7 @@ useMeta({
 <template>
   <shop-wrapper v-if="data">
     <div>
-      <h1>{{ data.title }}</h1>
+      <h1 v-html="data.title" />
       <p v-if="data.content" v-html="data.content" />
     </div>
 

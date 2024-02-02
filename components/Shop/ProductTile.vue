@@ -16,12 +16,17 @@ const url = localePath({
 </script>
 
 <template>
-  <clickable-list-item :to="url" :class="$style['product-tile']" class="tile">
-    <div :class="$style['image-wrapper']">
-      <img v-if="product.image" :src="product.image.src" />
+  <clickable-list-item :to="url" class="product-tile tile">
+    <div class="image-wrapper">
+      <featured-image
+        sizes="(max-width: 375px) 50vw, (max-width: 720px) 33vw, (max-width: 1024px) 25vw, 200px"
+        :image="product.image"
+        v-if="product.image"
+        class="image"
+      />
     </div>
-    <div :class="$style.title">
-      <router-link :class="$style.link" :to="url">
+    <div class="title">
+      <router-link class="link" :to="url">
         <span v-html="product.title" />
       </router-link>
     </div>
@@ -30,12 +35,12 @@ const url = localePath({
       v-if="product.price"
       :price="product.price"
       :regularPrice="product.regularPrice"
-      :class="$style.price"
+      class="price"
     />
   </clickable-list-item>
 </template>
 
-<style module lang="postcss">
+<style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
 
 .product-tile {

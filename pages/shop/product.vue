@@ -32,7 +32,7 @@ useMeta({
 <template>
   <shop-wrapper v-if="data">
     <product-details :product="data" />
-    <section aria-labelledby="featured-products">
+    <section aria-labelledby="featured-products" v-if="data.relatedProductIds">
       <h1 id="featured-products">Gerelateerde producten</h1>
       <product-list :product-ids="data.relatedProductIds" />
     </section>

@@ -1,4 +1,4 @@
-import type { IProduct, IProductImage, IProductListItem } from '~~/types/Content'
+import type { FeaturedImage, IProduct, IProductImage, IProductListItem } from '~~/types/Content'
 import { z } from 'zod'
 import type { ResponseProduct } from '~/server/types/ResponseProduct'
 import { title } from '~/data/siteDetails'
@@ -8,7 +8,6 @@ const querySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  const { woocommerce } = useRuntimeConfig()
 
   const query = await getValidatedQuery(event, (body) =>
     querySchema.safeParse(body),
@@ -34,8 +33,7 @@ export default defineEventHandler(async (event) => {
     ],
     image: true,
     slug: query.data.slug,
-    consumerKey: woocommerce.consumerKey,
-    consumerSecret: woocommerce.consumerSecret,
+    isCommerce: true
   })
 
   const response = await $fetch<ResponseProduct[]>(url)
@@ -44,10 +42,11 @@ export default defineEventHandler(async (event) => {
     return null
   }
 
-  const images: IProductImage[] = response[0].images.map(image => {
+  const images: FeaturedImage[] = response[0].images.map(image => {
     return {
       alt: image.alt,
       src: image.src,
+      srcSet: image.srcset
     }
   })
 

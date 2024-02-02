@@ -12,12 +12,12 @@ export default ({
   pageSize,
   search,
   parent,
-  consumerKey,
-  consumerSecret,
   productCategory,
   featured = false,
   categoryId,
+  isCommerce = false
 }: {
+
   fields: string[]
   type: string
   id?: string
@@ -31,18 +31,17 @@ export default ({
   pageSize?: number
   search?: string
   parent?: number
-  consumerKey?: string
-  consumerSecret?: string
   productCategory?: string
   featured?: boolean
-  categoryId?: string
+  categoryId?: string,
+  isCommerce?: boolean
 }) => {
   const { apiUrl, woocommerceApiUrl } = useAppConfig()
 
   let baseUrl = `${apiUrl}${type}/`
   if (id) {
     baseUrl = `${baseUrl}${id}`
-  } else if (consumerKey && consumerSecret) {
+  } else if (isCommerce) {
     baseUrl = `${woocommerceApiUrl}${type}/`
   }
 
@@ -103,11 +102,7 @@ export default ({
   if (categoryId) {
     url.searchParams.set('category', categoryId)
   }
-
-  if (consumerKey && consumerSecret) {
-    url.searchParams.set('consumer_secret', consumerSecret)
-    url.searchParams.set('consumer_key', consumerKey)
-  }
+  console.log(url.href)
 
   return url.toString()
 }

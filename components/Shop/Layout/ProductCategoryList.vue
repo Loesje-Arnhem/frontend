@@ -27,7 +27,7 @@ const localePath = useLocalePath()
           "
           class="link"
         >
-          {{ productCategory.title }}
+          <span v-html="productCategory.title" />
         </nuxt-link>
         <ul v-if="productCategory.children.length" class="category-list">
           <li
@@ -47,7 +47,7 @@ const localePath = useLocalePath()
               "
               class="link"
             >
-              {{ child.title }}
+              <span v-html="child.title" />
             </nuxt-link>
           </li>
         </ul>

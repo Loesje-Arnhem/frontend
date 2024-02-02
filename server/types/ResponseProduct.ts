@@ -1,6 +1,7 @@
 export type ResponseProductImage = {
   src: string
   alt: string
+  srcset: string
 }
 
 export type ResponseProduct = {

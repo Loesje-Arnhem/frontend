@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { IProductImage } from '~/types/Content'
+import type { FeaturedImage } from '~/types/Content'
 
 defineProps<{
-  images: IProductImage[]
+  images: FeaturedImage[]
 }>()
 </script>
 
@@ -30,12 +30,11 @@ defineProps<{
       v-else-if="images[0]"
       class="tile"
     > -->
-    <img
-      :src="images[0].src"
-      :alt="images[0].alt"
+    <featured-image
+      :image="images[0]"
       class="image"
       :lazy="false"
-      sizes="(max-width: 320px) 50vw, 150px"
+      sizes="(max-width: 560px) 100vw, (max-width: 560px) 50vw, (max-width: 1024px) 33vw, 460px"
     />
     <!-- </div> -->
   </div>

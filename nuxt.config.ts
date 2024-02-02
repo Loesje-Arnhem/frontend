@@ -45,10 +45,6 @@ export default defineNuxtConfig({
         website: '',
       },
     },
-    woocommerce: {
-      consumerKey: '',
-      consumerSecret: '',
-    },
     public: {
       apiUrl: '',
     },

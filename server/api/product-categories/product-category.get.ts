@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { ResponseProductCategories } from '~/server/types/ResponseProductCategories'
 import type { ResponseProductCategory } from '~/server/types/ResponseProductCategory'
 import { IProductCategory } from '~/types/Content'
 
@@ -7,8 +8,6 @@ const querySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-
-  const { woocommerce } = useRuntimeConfig()
 
   const query = await getValidatedQuery(event, (body) =>
     querySchema.safeParse(body),
@@ -20,22 +19,23 @@ export default defineEventHandler(async (event) => {
 
   const url = getUrl({
     type: 'products/categories',
-    fields: ['name', 'id', 'description'],
+    fields: ['name', 'id', 'description', 'slug'],
     slug: query.data.slug,
-    consumerKey: woocommerce.consumerKey,
-    consumerSecret: woocommerce.consumerSecret,
+    isCommerce: true
   })
 
   const response = await $fetch<ResponseProductCategory>(url)
   if (!response.length) {
     return null
   }
-  const { id, name, description } = response[0]
-
+  const category = response.find(item => item.slug === query.data.slug)
+  if (!category) {
+    return null
+  }
   const item: IProductCategory = {
-    id,
-    title: name,
-    content: description
+    id: category.id,
+    title: category.name,
+    content: category.description
   }
 
 

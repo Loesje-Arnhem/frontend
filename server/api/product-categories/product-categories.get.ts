@@ -6,14 +6,11 @@ const sortByOrder = (items: ResponseProductCategories) => {
 }
 
 export default defineEventHandler(async (event) => {
-  const { woocommerce } = useRuntimeConfig()
-
   const url = getUrl({
     type: 'products/categories',
     fields: ['name', 'id', 'slug', 'parent', 'menu_order'],
     pageSize: 99,
-    consumerKey: woocommerce.consumerKey,
-    consumerSecret: woocommerce.consumerSecret,
+    isCommerce: true
   })
 
   const response = await $fetch<ResponseProductCategories>(url)

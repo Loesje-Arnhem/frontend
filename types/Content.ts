@@ -5,8 +5,8 @@ export type FeaturedImage = {
   srcSet: string
   src: string
   alt: string
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
 export type IBase = {
@@ -72,17 +72,12 @@ export type IPostListItem = IBase & {
   excerpt: string
 }
 
-export type IProductImage = {
-  src: string
-  alt: string
-}
-
 export type IProductListItem = IBase & {
   slug: string
   price?: number
   regularPrice?: number
   externalUrl: string | null
-  image?: IProductImage
+  image?: FeaturedImage
 }
 
 export type IProduct = IBase & {
@@ -90,7 +85,7 @@ export type IProduct = IBase & {
   regularPrice?: number
   excerpt: string
   description: string
-  images: IProductImage[]
+  images: FeaturedImage[]
   relatedProductIds: number[]
   attributes: {
     id: number

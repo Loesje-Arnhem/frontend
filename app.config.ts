@@ -6,7 +6,7 @@ export default defineAppConfig({
   // apiUrl: 'http://localhost:8000/',
   wpUrl: 'https://shop.loesje.nl',
   apiUrl: 'https://shop.loesje.nl/wp-json/wp/v2/',
-  woocommerceApiUrl: 'https://shop.loesje.nl/wp-json/wc/v3/',
+  woocommerceApiUrl: 'https://shop.loesje.nl/wp-json/wc/store/v1/',
   baseUrl: 'https://www.loesje.nl',
   categories: ['politics'],
   facebook: 'https://www.facebook.com/loesjevdposters/',

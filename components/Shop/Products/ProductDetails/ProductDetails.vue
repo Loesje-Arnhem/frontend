@@ -12,7 +12,7 @@ const props = defineProps<{
       <div class="product-details">
         <product-gallery :images="product.images" />
         <div class="content">
-          <h1>{{ product.title }}</h1>
+          <h1 v-html="product.title" />
           <div v-html="product.excerpt" />
           <form-add-to-cart :product="product" />
         </div>

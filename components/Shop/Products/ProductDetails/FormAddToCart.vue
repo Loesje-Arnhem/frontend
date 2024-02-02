@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import MainNavigation from '~/components/Menu/MainNavigation/MainNavigation.vue'
 import type { IProduct } from '~/types/Content'
 const props = defineProps<{
   product: IProduct
@@ -12,15 +13,28 @@ const props = defineProps<{
 //   navigateTo(localePath({ name: 'shop-cart' }))
 // })
 const id = useId()
+const cookie = useCookie('name')
+const nonce = ref('')
 
 const addToCart = async () => {
-  const url = 'https://shop.loesje.nl/wp-json/wc/store/v1/cart'
-  // const data = await $fetch('https://shop.loesje.nl/wp-json/wc/store/v1/cart')
-  // console.log({ data })
-
-  const response = await $fetch.raw(url).catch((error) => error.data)
+  const response = await $fetch
+    .raw('/api/cart/cart', {
+      method: 'POST',
+      body: {
+        id: props.product.id,
+        quantity: 10,
+      },
+      headers: {
+        nonce: nonce.value,
+      },
+    })
+    .catch((error) => error.data)
   // const totalPages = Number(response.headers.get('nonce'))
   console.log({ response })
+  if (response.headers.get('nonce')) {
+    cookie.value = response.headers.get('nonce')
+  }
+  nonce.value = response._data.nonce
 }
 
 const loading = ref(false)
@@ -31,6 +45,8 @@ const selectedAttribute = ref('')
 
 <template>
   <div class="wrapper">
+    nonce={{ cookie }}
+    <p>{{ nonce }}</p>
     <product-prices
       v-if="product.price"
       :price="product.price"

@@ -44,7 +44,7 @@ const { data } = useFetch('/api/products/products', {
 
   @media (--viewport-sm) {
     grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   }
 }
 </style>
