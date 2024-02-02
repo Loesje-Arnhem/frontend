@@ -1,24 +1,30 @@
-type ResponseImageSize = {
-  width: number
-  height: number
-  filesize: number
-  mime_type: string
-  source_url: string
-}
+import { z } from 'zod'
 
-export type ResponseImage = {
-  alt_text: string
-  source_url: string
-  media_details: {
-    width: number
-    height: number
-    sizes: {
-      thumbnail: ResponseImageSize
-      full: ResponseImageSize
-      medium?: ResponseImageSize
-      large?: ResponseImageSize
-      medium_large?: ResponseImageSize
-    }
-  }
-  code?: string
-}
+const ResponseImageSizeSchema = z.object({
+  width: z.number(),
+  height: z.number(),
+  filesize: z.number().optional(),
+  mime_type: z.string(),
+  source_url: z.string(),
+})
+
+export const ResponseImageSchema = z.array(
+  z.object({
+    alt_text: z.string(),
+    source_url: z.string(),
+    media_details: z.object({
+      width: z.number(),
+      height: z.number(),
+      sizes: z.object({
+        thumbnail: ResponseImageSizeSchema,
+        full: ResponseImageSizeSchema.optional(),
+        medium: ResponseImageSizeSchema.optional(),
+        large: ResponseImageSizeSchema.optional(),
+        medium_large: ResponseImageSizeSchema.optional(),
+      }),
+    }),
+    code: z.string().optional(),
+  }),
+)
+
+export type ResponseImageType = z.infer<typeof ResponseImageSchema>

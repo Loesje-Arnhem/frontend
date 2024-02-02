@@ -1,25 +1,30 @@
 import { type IPage } from '~~/types/Content'
 import { type ResponsePage } from '~/server/types/ResponsePage'
+import { z } from 'zod'
+
+const querySchema = z.object({
+  slug: z.string().optional(),
+  id: z.string().optional(),
+})
 
 export default defineEventHandler(async (event) => {
-  let slug: undefined | string = undefined
-  let id: undefined | number = undefined
-  const query = getQuery(event)
-  if (query?.slug) {
-    slug = query.slug.toString()
+  const query = await getValidatedQuery(event, (body) =>
+    querySchema.safeParse(body),
+  )
+
+  if (!query.success) {
+    throw query.error.issues
   }
-  if (query?.id) {
-    id = Number(query.id)
-  }
+
   const url = getUrl({
-    slug,
-    id,
+    slug: query.data.slug,
+    id: query.data.id,
     image: true,
     type: 'pages',
     fields: ['title', 'content', 'yoast_head_json', 'parent', 'acf'],
   })
   let response: ResponsePage | null = null
-  if (slug) {
+  if (query.data.slug) {
     const items = await $fetch<ResponsePage[]>(url)
     if (items.length) {
       response = items[0]
@@ -27,6 +32,7 @@ export default defineEventHandler(async (event) => {
   } else {
     response = await $fetch<ResponsePage>(url)
   }
+
   if (response) {
     let youtubeId: string | undefined = undefined
     if (response.acf.youtube_id) {

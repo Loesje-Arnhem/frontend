@@ -20,7 +20,7 @@ export default ({
 }: {
   fields: string[]
   type: string
-  id?: number
+  id?: string
   slug?: string
   page?: number
   image?: boolean

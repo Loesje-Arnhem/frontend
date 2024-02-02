@@ -1,7 +1,7 @@
 import { type IPosterListItem } from '~~/types/Content'
-import { type ResponsePosters } from '~/server/types/ResponsePosters'
 import { getStorageKey } from '~/server/utils/getStorageKey'
 import { z } from 'zod'
+import { ResponseImageSchema } from '~/server/types/ResponseImage'
 
 const querySchema = z.object({
   pageSize: z.string().default('20'),
@@ -12,6 +12,19 @@ const querySchema = z.object({
   subjectIds: z.string().optional(),
   sourceIds: z.string().optional(),
 })
+
+const responseSchema = z.array(
+  z.object({
+    id: z.number(),
+    slug: z.string(),
+    title: z.object({
+      rendered: z.string(),
+    }),
+    _embedded: z.object({
+      'wp:featuredmedia': ResponseImageSchema,
+    }),
+  }),
+)
 
 export default defineEventHandler(async (event) => {
   const query = await getValidatedQuery(event, (body) =>
@@ -48,21 +61,25 @@ export default defineEventHandler(async (event) => {
   const response = await $fetch.raw(url).catch((error) => error.data)
   const totalPages = Number(response.headers.get('X-WP-TotalPages'))
 
-  const items: IPosterListItem[] = response._data.map(
-    (item: ResponsePosters) => {
-      const featuredImage = getFeaturedImage(
-        item._embedded['wp:featuredmedia'],
-        item.title.rendered,
-      )
+  const parsed = responseSchema.safeParse(response._data)
 
-      return {
-        id: item.id,
-        slug: item.slug,
-        featuredImage,
-        title: item.title.rendered,
-      }
-    },
-  )
+  if (!parsed.success) {
+    throw parsed.error.issues
+  }
+
+  const items: IPosterListItem[] = parsed.data.map((item) => {
+    const featuredImage = getFeaturedImage(
+      item._embedded['wp:featuredmedia'],
+      item.title.rendered,
+    )
+
+    return {
+      id: item.id,
+      slug: item.slug,
+      featuredImage,
+      title: item.title.rendered,
+    }
+  })
 
   const data = {
     hasNextPage: page < totalPages,

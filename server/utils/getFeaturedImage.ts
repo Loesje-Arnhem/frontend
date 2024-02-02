@@ -1,7 +1,10 @@
 import { type FeaturedImage } from '~/types/Content'
-import { type ResponseImage } from '~/server/types/ResponseImage'
+import { type ResponseImageType } from '~/server/types/ResponseImage'
 
-export default (featuredImage: ResponseImage[] | undefined, title?: string) => {
+export default (
+  featuredImage: ResponseImageType | undefined,
+  title?: string,
+) => {
   if (!featuredImage) {
     return undefined
   }
@@ -16,8 +19,9 @@ export default (featuredImage: ResponseImage[] | undefined, title?: string) => {
   }
 
   const srcSet = Object.values(image.media_details.sizes).map((size) => {
-    return `${size?.source_url} ${size?.width}w`
+    return `${size.source_url} ${size.width}w`
   })
+
   let alt = ''
   if (title) {
     alt = title

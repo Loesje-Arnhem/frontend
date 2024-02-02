@@ -6,6 +6,16 @@ const querySchema = z.object({
   search: z.string(),
 })
 
+const responseSchema = z.array(
+  z.object({
+    id: z.number(),
+    slug: z.string(),
+    title: z.object({
+      rendered: z.string(),
+    }),
+  }),
+)
+
 export default defineEventHandler(async (event) => {
   const query = await getValidatedQuery(event, (body) =>
     querySchema.safeParse(body),
@@ -22,8 +32,14 @@ export default defineEventHandler(async (event) => {
     search: query.data.search,
   })
 
-  const response = await $fetch<ResponsePostersSearchResult[]>(url, {})
-  const items: IPostersSearchResult[] = response.map((item) => {
+  const response = await $fetch(url)
+  const parsed = responseSchema.safeParse(response)
+
+  if (!parsed.success) {
+    throw parsed.error.issues
+  }
+
+  const items: IPostersSearchResult[] = parsed.data.map((item) => {
     return {
       id: item.id,
       slug: item.slug,
