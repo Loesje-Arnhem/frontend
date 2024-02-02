@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineI18nRoute({
   paths: {
-    nl: '/winkeltje',
+    nl: '/winkeltje/winkelwagen',
   },
 })
 
@@ -14,7 +14,7 @@ const { pageIds } = useAppConfig()
 const { data } = await useAsyncData(`page-home`, () =>
   $fetch('/api/pages/page', {
     params: {
-      id: pageIds.shop,
+      id: pageIds.cart,
     },
   }),
 )
@@ -32,11 +32,9 @@ useMeta({
 </script>
 
 <template>
-  <shop-wrapper v-if="data">
-    <div v-if="data">
-      <h1>{{ data.title }}</h1>
-      <p v-if="data.content" v-html="data.content" />
-    </div>
-    <product-list :featured="true" />
-  </shop-wrapper>
+  <center-wrapper v-if="data">
+    <shop-header />
+    <h1>{{ data.title }}</h1>
+    <cart-list />
+  </center-wrapper>
 </template>

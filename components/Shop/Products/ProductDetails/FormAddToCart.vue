@@ -4,39 +4,36 @@ const props = defineProps<{
   product: IProduct
 }>()
 
-// const { addToCart, loading, quantity, errors, onDone } = useAddToCart(
-//   props.product.databaseId,
-// )
-
-// onDone(() => {
-//   navigateTo(localePath({ name: 'shop-cart' }))
-// })
 const nonce = useCookie('nonce')
 const token = useCookie('token')
 
-const cart = useCart()
+const cartState = useCartState()
+
+const quantity = ref(1)
+
+const { execute, status } = useFetch('/api/cart/addItem', {
+  method: 'POST',
+  body: {
+    id: props.product.id,
+    quantity: quantity.value,
+  },
+  headers: {
+    nonce: nonce.value ?? '',
+    token: token.value ?? '',
+  },
+  immediate: false,
+  transform: (response) => {
+    cartState.value = response
+  },
+})
 
 const addToCart = async () => {
   if (!token.value || !nonce.value) {
     return
   }
-  const response = await $fetch('/api/cart/addItem', {
-    method: 'POST',
-    body: {
-      id: props.product.id,
-      quantity: quantity.value,
-    },
-    headers: {
-      nonce: nonce.value,
-      token: token.value,
-    },
-  }).catch((error) => error.data)
-  console.log(response)
-  cart.value = response
-}
 
-const loading = ref(false)
-const quantity = ref(1)
+  await execute()
+}
 
 const selectedAttribute = ref('')
 </script>
@@ -75,12 +72,15 @@ const selectedAttribute = ref('')
           </div>
         </div>
       </form-fieldset>
-      <app-button type="submit" class="btn-add-to-cart" :loading="loading">
+      <app-button
+        type="submit"
+        class="btn-add-to-cart"
+        :loading="status === 'pending'"
+      >
         In winkelmandje
       </app-button>
       <!-- <div v-if="errors.length" v-html="errors.join(', ')" /> -->
     </form>
-    {{ cart }}
   </div>
 </template>
 

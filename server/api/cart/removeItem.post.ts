@@ -11,10 +11,9 @@ export default defineEventHandler(async (event) => {
     return
   }
 
-  const response = await $fetch(`${woocommerceApiUrl}cart/add-item`, {
+  const response = await $fetch(`${woocommerceApiUrl}cart/remove-item`, {
     params: {
-      id: body.id,
-      quantity: body.quantity,
+      key: body.key,
     },
     method: 'POST',
     headers: {

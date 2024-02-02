@@ -12,16 +12,14 @@ export default defineEventHandler(async (event) => {
   const nonce = response.headers.get('nonce')
   const cartToken = response.headers.get('cart-token')
 
-  // return response._data
+  const parsed = CartSchema.safeParse(response._data)
 
-  // const parsed = CartSchema.safeParse(response._data)
-
-  // if (!parsed.success) {
-  //   throw parsed.error.issues
-  // }
+  if (!parsed.success) {
+    throw parsed.error.issues
+  }
 
   event.node.res.setHeader('nonce', nonce ?? '')
   event.node.res.setHeader('token', cartToken ?? '')
 
-  return response._data
+  return parsed.data
 })

@@ -1,31 +1,49 @@
 <script lang="ts" setup>
 import type { Option } from '~/types/Option'
-import type { CartItem } from '~/graphql/__generated__/graphql'
-import ProductPrices from '../Products/ProductPrices.vue'
+import type { CartItem } from '~/types/Cart'
 
 const props = defineProps<{
   item: CartItem
 }>()
 
-const { mutate: removeItem, loading } = useRemoveItemsFromCart()
-const { mutate: updateItemQuantity } = useUpdateItemQuantities()
-const quantity = ref(props.item.quantity?.toString() ?? '1')
+const loading = ref(false)
+const quantity = toRef(props.item.quantity)
 
-const removeItemsFromCart = async () => {
-  await removeItem({
-    keys: [props.item.key ?? ''],
-  })
-}
-const updateQuantity = async () => {
-  await updateItemQuantity({
-    items: [
-      {
-        key: props.item.key,
-        quantity: Number(quantity.value),
-      },
-    ],
-  })
-}
+const nonce = useCookie('nonce')
+const token = useCookie('token')
+
+const cartState = useCartState()
+
+useFetch('/api/cart/updateItem', {
+  method: 'POST',
+  body: {
+    key: props.item.key,
+    quantity: quantity,
+  },
+  headers: {
+    nonce: nonce.value ?? '',
+    token: token.value ?? '',
+  },
+  immediate: false,
+  transform: (response) => {
+    cartState.value = response
+  },
+})
+
+const { execute } = useFetch('/api/cart/removeItem', {
+  method: 'POST',
+  body: {
+    key: props.item.key,
+  },
+  headers: {
+    nonce: nonce.value ?? '',
+    token: token.value ?? '',
+  },
+  immediate: false,
+  transform: (response) => {
+    cartState.value = response
+  },
+})
 
 const options: Option[] = [...Array(9).keys()].map((index) => {
   const amount = index + 1
@@ -34,39 +52,48 @@ const options: Option[] = [...Array(9).keys()].map((index) => {
     title: amount.toString(),
   }
 })
+
+const removeItemFromCard = async () => {
+  await execute()
+}
 </script>
 
 <template>
-  <tr v-if="item?.product">
+  <tr>
     <td class="remove-wrapper">
       <app-loader v-if="loading" />
-      <button v-else @click="removeItemsFromCart">
+      <button v-else @click="removeItemFromCard">
         <app-icon icon="close" title="Verwijderen" />
       </button>
     </td>
     <td class="image-wrapper">
-      <div class="tile">
-        <img class="image" :src="item.product.node.image.medium" alt="" />
+      <div v-if="item.images.length" class="tile">
+        <img class="image" :src="item.images[0].src" alt="" />
       </div>
     </td>
-    <td class="title">{{ item.product.node.name }} {{ item.quantity }}</td>
+    <td class="title">
+      <span v-html="item.name" />
+      {{ item.quantity }}
+    </td>
 
     <td class="price">
-      <product-prices :product="item.product.node" />
+      <product-prices
+        :price="Number(item.prices.price) / 100"
+        :regular-price="Number(item.prices.regular_price) / 100"
+      />
     </td>
     <td>
       <select-field
-        :id="`quantity-${item.product.node.databaseId}`"
+        :id="`quantity-${item.id}`"
         v-model="quantity"
         class="select"
-        :name="`quantity-${item.product.node.databaseId}`"
+        :name="`quantity-${item.id}`"
         :options="options"
         title="Aantal"
-        @change="updateQuantity"
       />
     </td>
     <td class="price">
-      {{ item.total }}
+      {{ item.totals.line_total }}
     </td>
   </tr>
 </template>

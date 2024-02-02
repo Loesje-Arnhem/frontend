@@ -15,6 +15,6 @@ export default defineNuxtRouteMiddleware(async () => {
   nonce.value = response.headers.get('nonce')
   token.value = response.headers.get('token')
 
-  const cart = useCart()
+  const cart = useCartState()
   cart.value = response._data
 })

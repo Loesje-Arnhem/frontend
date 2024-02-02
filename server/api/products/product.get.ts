@@ -1,4 +1,9 @@
-import type { FeaturedImage, IProduct, IProductImage, IProductListItem } from '~~/types/Content'
+import type {
+  FeaturedImage,
+  IProduct,
+  IProductImage,
+  IProductListItem,
+} from '~~/types/Content'
 import { z } from 'zod'
 import type { ResponseProduct } from '~/server/types/ResponseProduct'
 import { title } from '~/data/siteDetails'
@@ -8,7 +13,6 @@ const querySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-
   const query = await getValidatedQuery(event, (body) =>
     querySchema.safeParse(body),
   )
@@ -16,7 +20,6 @@ export default defineEventHandler(async (event) => {
   if (!query.success) {
     throw query.error.issues
   }
-
 
   const url = getUrl({
     type: 'products',
@@ -33,7 +36,7 @@ export default defineEventHandler(async (event) => {
     ],
     image: true,
     slug: query.data.slug,
-    isCommerce: true
+    isCommerce: true,
   })
 
   const response = await $fetch<ResponseProduct[]>(url)
@@ -42,21 +45,28 @@ export default defineEventHandler(async (event) => {
     return null
   }
 
-  const images: FeaturedImage[] = response[0].images.map(image => {
+  const images: FeaturedImage[] = response[0].images.map((image) => {
     return {
       alt: image.alt,
       src: image.src,
-      srcSet: image.srcset
+      srcSet: image.srcset,
     }
   })
 
-
-  const { id, name, price, regular_price, description, short_description, related_ids, attributes } = response[0]
+  const {
+    id,
+    name,
+    price,
+    regular_price,
+    description,
+    short_description,
+    related_ids,
+    attributes,
+  } = response[0]
   let regularPrice = undefined
   if (regular_price && price !== regular_price) {
     regularPrice = Number(regular_price)
   }
-
 
   const item: IProduct = {
     id,
@@ -67,7 +77,7 @@ export default defineEventHandler(async (event) => {
     relatedProductIds: related_ids,
     excerpt: short_description,
     images,
-    attributes
+    attributes,
   }
 
   return item

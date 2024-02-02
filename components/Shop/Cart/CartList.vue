@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-const { cart, loading } = useCart()
+const cart = useCartState()
 const localePath = useLocalePath()
 </script>
 
 <template>
-  <app-loader v-if="loading" />
-  <div v-else>
+  <div v-if="cart">
     <div class="cart">
-      <table v-if="cart.contents.nodes.length" class="list table-large">
+      <table v-if="cart.items.length" class="list table-large">
         <thead>
           <tr>
             <th />
@@ -20,7 +19,7 @@ const localePath = useLocalePath()
         </thead>
         <tbody>
           <cart-list-item
-            v-for="item in cart.contents.nodes"
+            v-for="item in cart.items"
             :key="item.key"
             :item="item"
           />
@@ -34,31 +33,36 @@ const localePath = useLocalePath()
       <div class="prices">
         <div class="label">Subtotaal</div>
 
-        <div class="value">{{ cart.subtotal }}</div>
+        <div class="value">{{ cart.totals.total_items }}</div>
 
         <div class="label">Verzenden</div>
-        <div class="value">{{ cart.shippingTotal }}</div>
+        <div class="value">{{ cart.totals.total_shipping }}</div>
         <div class="label">Totaal</div>
         <div class="value">
-          {{ cart.total }} (inclusief {{ cart.totalTax }} BTW 21%)
+          {{ cart.totals.total_price }} (inclusief
+          <span v-if="cart.totals.tax_lines.length">
+            {{ cart.totals.tax_lines[0].price }} BTW
+            {{ cart.totals.tax_lines[0].rate }})
+          </span>
         </div>
       </div>
 
       <div class="coupon-form">
-        <ul v-if="cart.appliedCoupons">
+        <!-- <ul v-if="cart.appliedCoupons">
           <coupon-list-item
             v-for="(coupon, index) in cart.appliedCoupons"
             :key="coupon?.code ?? index"
             :coupon="coupon"
           />
         </ul>
-        <form-coupon v-else />
+        <form-coupon v-else /> -->
         <app-button v-if="cart" :to="localePath({ name: 'shop-checkout' })">
           Doorgaan met afrekenen
         </app-button>
       </div>
     </div>
   </div>
+  <!-- <app-loader v-else /> -->
 </template>
 
 <style scoped lang="postcss">
