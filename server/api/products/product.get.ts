@@ -29,7 +29,8 @@ export default defineEventHandler(async (event) => {
       'images',
       'description',
       'short_description',
-      'related_ids'
+      'related_ids',
+      'attributes',
     ],
     image: true,
     slug: query.data.slug,
@@ -51,7 +52,7 @@ export default defineEventHandler(async (event) => {
   })
 
 
-  const { id, name, price, regular_price, description, short_description, related_ids } = response[0]
+  const { id, name, price, regular_price, description, short_description, related_ids, attributes } = response[0]
   let regularPrice = undefined
   if (regular_price && price !== regular_price) {
     regularPrice = Number(regular_price)
@@ -66,7 +67,8 @@ export default defineEventHandler(async (event) => {
     description,
     relatedProductIds: related_ids,
     excerpt: short_description,
-    images
+    images,
+    attributes
   }
 
   return item

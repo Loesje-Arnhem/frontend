@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { IProduct } from '~/types/Content'
-
 const props = defineProps<{
   product: IProduct
 }>()
@@ -12,8 +11,17 @@ const props = defineProps<{
 // onDone(() => {
 //   navigateTo(localePath({ name: 'shop-cart' }))
 // })
+const id = useId()
 
-const addToCart = () => {}
+const addToCart = async () => {
+  const url = 'https://shop.loesje.nl/wp-json/wc/store/v1/cart'
+  // const data = await $fetch('https://shop.loesje.nl/wp-json/wc/store/v1/cart')
+  // console.log({ data })
+
+  const response = await $fetch.raw(url).catch((error) => error.data)
+  // const totalPages = Number(response.headers.get('nonce'))
+  console.log({ response })
+}
 
 const loading = ref(false)
 const quantity = ref(1)
@@ -39,30 +47,22 @@ const selectedAttribute = ref('')
           class="quantity"
           name="quantity"
         />
-        <!-- <div
-          v-if="
-            product.globalAttributes && product.globalAttributes.nodes.length
-          "
-        >
-          {{ selectedAttribute }}
-          <div
-            v-for="attribute in product.globalAttributes.nodes"
-            :key="attribute.id"
-          >
+
+        <div v-if="product.attributes.length">
+          <div v-for="attribute in product.attributes" :key="attribute.id">
             <select-field
-              v-if="attribute.terms?.nodes.length"
               :id="attribute.slug"
               v-model="selectedAttribute"
               :name="attribute.slug"
               :title="attribute.name"
               :options="
-                attribute.terms.nodes.map((o) => {
-                  return { value: o.databaseId, title: o.name }
+                attribute.options.map((option) => {
+                  return { value: option, title: option }
                 })
               "
             />
           </div>
-        </div> -->
+        </div>
       </form-fieldset>
       <app-button type="submit" class="btn-add-to-cart" :loading="loading">
         In winkelmandje
