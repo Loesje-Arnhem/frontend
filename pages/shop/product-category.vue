@@ -5,6 +5,10 @@ defineI18nRoute({
   },
 })
 
+definePageMeta({
+  middleware: ['cart'],
+})
+
 const route = useRoute()
 
 const { data } = await useAsyncData(

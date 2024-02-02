@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import MainNavigation from '~/components/Menu/MainNavigation/MainNavigation.vue'
 import type { IProduct } from '~/types/Content'
 const props = defineProps<{
   product: IProduct
@@ -12,29 +11,28 @@ const props = defineProps<{
 // onDone(() => {
 //   navigateTo(localePath({ name: 'shop-cart' }))
 // })
-const id = useId()
-const cookie = useCookie('name')
-const nonce = ref('')
+const nonce = useCookie('nonce')
+const token = useCookie('token')
+
+const cart = useCart()
 
 const addToCart = async () => {
-  const response = await $fetch
-    .raw('/api/cart/cart', {
-      method: 'POST',
-      body: {
-        id: props.product.id,
-        quantity: 10,
-      },
-      headers: {
-        nonce: nonce.value,
-      },
-    })
-    .catch((error) => error.data)
-  // const totalPages = Number(response.headers.get('nonce'))
-  console.log({ response })
-  if (response.headers.get('nonce')) {
-    cookie.value = response.headers.get('nonce')
+  if (!token.value || !nonce.value) {
+    return
   }
-  nonce.value = response._data.nonce
+  const response = await $fetch('/api/cart/addItem', {
+    method: 'POST',
+    body: {
+      id: props.product.id,
+      quantity: quantity.value,
+    },
+    headers: {
+      nonce: nonce.value,
+      token: token.value,
+    },
+  }).catch((error) => error.data)
+  console.log(response)
+  cart.value = response
 }
 
 const loading = ref(false)
@@ -45,12 +43,10 @@ const selectedAttribute = ref('')
 
 <template>
   <div class="wrapper">
-    nonce={{ cookie }}
-    <p>{{ nonce }}</p>
     <product-prices
       v-if="product.price"
       :price="product.price"
-      :regularPrice="product.regularPrice"
+      :regular-price="product.regularPrice"
       class="price"
     />
     <form class="form" @submit.prevent="addToCart">
@@ -63,7 +59,6 @@ const selectedAttribute = ref('')
           class="quantity"
           name="quantity"
         />
-
         <div v-if="product.attributes.length">
           <div v-for="attribute in product.attributes" :key="attribute.id">
             <select-field
@@ -85,6 +80,7 @@ const selectedAttribute = ref('')
       </app-button>
       <!-- <div v-if="errors.length" v-html="errors.join(', ')" /> -->
     </form>
+    {{ cart }}
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const cartSchema = z.object({
+export const CartSchema = z.object({
   items: z.array(
     z.object({
       key: z.string(),
@@ -11,7 +11,7 @@ export const cartSchema = z.object({
         minimum: z.number(),
         maximum: z.number(),
         multiple_of: z.number(),
-        editable: z.boolean()
+        editable: z.boolean(),
       }),
       name: z.string(),
       short_description: z.string(),
@@ -30,8 +30,8 @@ export const cartSchema = z.object({
           srcset: z.string(),
           sizes: z.string(),
           name: z.string(),
-          alt: z.string()
-        })
+          alt: z.string(),
+        }),
       ),
       variation: z.array(z.unknown()),
       item_data: z.array(z.unknown()),
@@ -51,8 +51,8 @@ export const cartSchema = z.object({
           precision: z.number(),
           price: z.string(),
           regular_price: z.string(),
-          sale_price: z.string()
-        })
+          sale_price: z.string(),
+        }),
       }),
       totals: z.object({
         line_subtotal: z.string(),
@@ -65,7 +65,7 @@ export const cartSchema = z.object({
         currency_decimal_separator: z.string(),
         currency_thousand_separator: z.string(),
         currency_prefix: z.string(),
-        currency_suffix: z.string()
+        currency_suffix: z.string(),
       }),
       catalog_visibility: z.string(),
       extensions: z.object({
@@ -79,10 +79,10 @@ export const cartSchema = z.object({
           sign_up_fees_tax: z.null(),
           is_resubscribe: z.null(),
           switch_type: z.null(),
-          synchronization: z.null()
-        })
-      })
-    })
+          synchronization: z.null(),
+        }),
+      }),
+    }),
   ),
   coupons: z.array(z.unknown()),
   fees: z.array(z.unknown()),
@@ -98,7 +98,7 @@ export const cartSchema = z.object({
     total_price: z.string(),
     total_tax: z.string(),
     tax_lines: z.array(
-      z.object({ name: z.string(), price: z.string(), rate: z.string() })
+      z.object({ name: z.string(), price: z.string(), rate: z.string() }),
     ),
     currency_code: z.string(),
     currency_symbol: z.string(),
@@ -106,7 +106,7 @@ export const cartSchema = z.object({
     currency_decimal_separator: z.string(),
     currency_thousand_separator: z.string(),
     currency_prefix: z.string(),
-    currency_suffix: z.string()
+    currency_suffix: z.string(),
   }),
   shipping_address: z.object({
     first_name: z.string(),
@@ -118,7 +118,7 @@ export const cartSchema = z.object({
     state: z.string(),
     postcode: z.string(),
     country: z.string(),
-    phone: z.string()
+    phone: z.string(),
   }),
   billing_address: z.object({
     first_name: z.string(),
@@ -131,7 +131,7 @@ export const cartSchema = z.object({
     postcode: z.string(),
     country: z.string(),
     email: z.string(),
-    phone: z.string()
+    phone: z.string(),
   }),
   needs_payment: z.boolean(),
   needs_shipping: z.boolean(),
@@ -147,10 +147,10 @@ export const cartSchema = z.object({
         city: z.string(),
         state: z.string(),
         postcode: z.string(),
-        country: z.string()
+        country: z.string(),
       }),
       items: z.array(
-        z.object({ key: z.string(), name: z.string(), quantity: z.number() })
+        z.object({ key: z.string(), name: z.string(), quantity: z.number() }),
       ),
       shipping_rates: z.array(
         z.object({
@@ -170,15 +170,15 @@ export const cartSchema = z.object({
           currency_decimal_separator: z.string(),
           currency_thousand_separator: z.string(),
           currency_prefix: z.string(),
-          currency_suffix: z.string()
-        })
-      )
-    })
+          currency_suffix: z.string(),
+        }),
+      ),
+    }),
   ),
   items_count: z.number(),
   items_weight: z.number(),
   cross_sells: z.array(z.unknown()),
   errors: z.array(z.unknown()),
   payment_methods: z.array(z.string()),
-  extensions: z.object({ subscriptions: z.array(z.unknown()) })
+  extensions: z.object({ subscriptions: z.array(z.unknown()) }),
 })

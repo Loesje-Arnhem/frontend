@@ -15,9 +15,8 @@ export default ({
   productCategory,
   featured = false,
   categoryId,
-  isCommerce = false
+  isCommerce = false,
 }: {
-
   fields: string[]
   type: string
   id?: string
@@ -33,7 +32,7 @@ export default ({
   parent?: number
   productCategory?: string
   featured?: boolean
-  categoryId?: string,
+  categoryId?: string
   isCommerce?: boolean
 }) => {
   const { apiUrl, woocommerceApiUrl } = useAppConfig()
@@ -102,7 +101,6 @@ export default ({
   if (categoryId) {
     url.searchParams.set('category', categoryId)
   }
-  console.log(url.href)
 
   return url.toString()
 }

@@ -5,6 +5,10 @@ defineI18nRoute({
   },
 })
 
+definePageMeta({
+  middleware: ['cart'],
+})
+
 const route = useRoute()
 
 const { data } = await useAsyncData(
@@ -32,7 +36,7 @@ useMeta({
 <template>
   <shop-wrapper v-if="data">
     <product-details :product="data" />
-    <section aria-labelledby="featured-products" v-if="data.relatedProductIds">
+    <section v-if="data.relatedProductIds" aria-labelledby="featured-products">
       <h1 id="featured-products">Gerelateerde producten</h1>
       <product-list :product-ids="data.relatedProductIds" />
     </section>
