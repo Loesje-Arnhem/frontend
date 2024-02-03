@@ -9,6 +9,8 @@ const token = useCookie('token')
 
 const cartState = useCartState()
 
+const localPath = useLocalePath()
+
 const quantity = ref(1)
 
 const { execute, status } = useFetch('/api/cart/addItem', {
@@ -22,8 +24,13 @@ const { execute, status } = useFetch('/api/cart/addItem', {
     token: token.value ?? '',
   },
   immediate: false,
-  transform: (response) => {
+  transform: async (response) => {
     cartState.value = response
+    await navigateTo(
+      localPath({
+        name: 'shop-cart',
+      }),
+    )
   },
 })
 

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useVuelidate } from '@vuelidate/core'
-import { CountriesEnum } from '~/graphql/__generated__/graphql'
 import type { Option } from '~/types/Option'
 
 const emits = defineEmits([
@@ -60,11 +59,11 @@ const { execute, error } = useFetch('/api/address', {
 })
 
 const countries: Option[] = [
-  { value: CountriesEnum.Be, title: 'België' },
-  { value: CountriesEnum.Dk, title: 'Denemarken' },
-  { value: CountriesEnum.Fr, title: 'Frankrijk' },
-  { value: CountriesEnum.Nl, title: 'Nederland' },
-  { value: CountriesEnum.At, title: 'Oostenrijk' },
+  // { value: CountriesEnum.Be, title: 'België' },
+  // { value: CountriesEnum.Dk, title: 'Denemarken' },
+  // { value: CountriesEnum.Fr, title: 'Frankrijk' },
+  // { value: CountriesEnum.Nl, title: 'Nederland' },
+  // { value: CountriesEnum.At, title: 'Oostenrijk' },
 ]
 
 const streetFieldsAreReadonly = computed(() => {

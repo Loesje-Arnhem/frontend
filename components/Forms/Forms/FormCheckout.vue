@@ -1,14 +1,40 @@
 <script setup lang="ts">
-const {
-  submit,
-  paymentMethod,
-  billing,
-  shipping,
-  shipToDifferentAddress,
-  addToNewsletter,
-  loading,
-  errors,
-} = useCheckout()
+const billing = reactive({
+  street: '',
+  houseNumber: '',
+  houseNumberSuffix: '',
+  city: '',
+  company: '',
+  country: '',
+  email: '',
+  firstName: '',
+  lastName: '',
+  postcode: '',
+  address1: '',
+  address2: '',
+})
+
+const shipping = reactive({
+  street: '',
+  houseNumber: '',
+  houseNumberSuffix: '',
+  city: '',
+  company: '',
+  country: '',
+  email: '',
+  firstName: '',
+  lastName: '',
+  postcode: '',
+  address1: '',
+  address2: '',
+})
+
+const loading = ref(false)
+const errors = ref([])
+const submit = () => {}
+const shipToDifferentAddress = ref(false)
+const addToNewsletter = ref(false)
+const paymentMethod = ref('')
 </script>
 
 <template>
@@ -62,6 +88,6 @@ const {
       />
     </slide-in-animation>
 
-    <payment-gateways v-model="paymentMethod" ways />
+    <!-- <payment-gateways v-model="paymentMethod" ways /> -->
   </app-form>
 </template>

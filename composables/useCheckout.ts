@@ -1,9 +1,3 @@
-import {
-  CountriesEnum,
-  // type CustomerAddressInput,
-} from '~/graphql/__generated__/graphql'
-import { submitCheckoutMutation } from '~/graphql/checkout'
-import { getCartQuery } from '~/graphql/cart'
 import { useVuelidate } from '@vuelidate/core'
 
 export const useCheckout = () => {
@@ -17,7 +11,7 @@ export const useCheckout = () => {
     houseNumberSuffix: '',
     city: '',
     company: '',
-    country: CountriesEnum.Nl,
+    country: '',
     email: '',
     firstName: '',
     lastName: '',

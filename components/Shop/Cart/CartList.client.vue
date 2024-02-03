@@ -56,9 +56,9 @@ const localePath = useLocalePath()
           />
         </ul>
         <form-coupon v-else />
-        <!-- <app-button v-if="cart" :to="localePath({ name: 'shop-checkout' })">
+        <app-button v-if="cart" :to="localePath({ name: 'shop-checkout' })">
           Doorgaan met afrekenen
-        </app-button> -->
+        </app-button>
       </div>
     </div>
   </div>

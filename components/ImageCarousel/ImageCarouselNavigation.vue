@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-const previousSlideEnabled = ref(false)
-const nextSlideEnabled = ref(true)
-const goToPreviousSlide = () => {}
-const goToNextSlide = () => {}
+defineProps<{
+  previousSlideEnabled: boolean
+  nextSlideEnabled: boolean
+}>()
+
+defineEmits(['next', 'previous'])
 </script>
 
 <template>
@@ -10,14 +12,14 @@ const goToNextSlide = () => {}
     <button
       class="btn-previous"
       :disabled="!previousSlideEnabled"
-      @click="goToPreviousSlide"
+      @click="$emit('previous')"
     >
       <app-icon icon="chevron-left" title="Vorige slide" />
     </button>
     <button
       class="btn-next"
       :disabled="!nextSlideEnabled"
-      @click="goToNextSlide"
+      @click="$emit('next')"
     >
       <app-icon icon="chevron-right" title="Volgende slide" />
     </button>

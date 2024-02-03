@@ -1,12 +1,6 @@
-import type {
-  FeaturedImage,
-  IProduct,
-  IProductImage,
-  IProductListItem,
-} from '~~/types/Content'
+import type { FeaturedImage, IProduct } from '~~/types/Content'
 import { z } from 'zod'
 import type { ResponseProduct } from '~/server/types/ResponseProduct'
-import { title } from '~/data/siteDetails'
 
 const querySchema = z.object({
   slug: z.string(),
@@ -26,8 +20,7 @@ export default defineEventHandler(async (event) => {
     fields: [
       'name',
       'id',
-      'price',
-      'regular_price',
+      'prices',
       'images',
       'description',
       'short_description',
@@ -56,22 +49,23 @@ export default defineEventHandler(async (event) => {
   const {
     id,
     name,
-    price,
-    regular_price,
+    prices,
     description,
     short_description,
     related_ids,
     attributes,
   } = response[0]
   let regularPrice = undefined
+
+  const { regular_price, price } = prices
   if (regular_price && price !== regular_price) {
-    regularPrice = Number(regular_price)
+    regularPrice = Number(regular_price) / 100
   }
 
   const item: IProduct = {
     id,
     title: name,
-    price: Number(price) || undefined,
+    price: Number(price) / 100,
     regularPrice,
     description,
     relatedProductIds: related_ids,
