@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { IProduct } from '~/types/Content'
 
-const props = defineProps<{
+defineProps<{
   product: IProduct
 }>()
 </script>

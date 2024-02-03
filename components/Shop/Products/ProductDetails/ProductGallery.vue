@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="gallery" v-if="images.length">
+  <div v-if="images.length" class="gallery">
     <!-- <app-carousel
       v-if="images.length > 1"
       :total-pages="images.length"
@@ -30,12 +30,13 @@ defineProps<{
       v-else-if="images[0]"
       class="tile"
     > -->
-    <featured-image
+    <image-carousel :images="images" />
+    <!-- <featured-image
       :image="images[0]"
       class="image"
       :lazy="false"
       sizes="(max-width: 560px) 100vw, (max-width: 560px) 50vw, (max-width: 1024px) 33vw, 460px"
-    />
+    /> -->
     <!-- </div> -->
   </div>
 </template>

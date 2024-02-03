@@ -1,23 +1,41 @@
 <script lang="ts" setup>
-import type { AppliedCoupon } from '~/graphql/__generated__/graphql'
+import type { Coupon } from '~/types/Cart'
 
 const props = defineProps<{
-  coupon: AppliedCoupon
+  coupon: Coupon
 }>()
 
-const { mutate } = useRemoveCoupon()
+const nonce = useCookie('nonce')
+const token = useCookie('token')
 
-const removeCoupon = () => {
-  mutate({
-    codes: [props.coupon.code],
-  })
+const cartState = useCartState()
+
+const { data, execute, status } = useFetch('/api/coupons/remove', {
+  method: 'DELETE',
+  body: {
+    code: props.coupon.code,
+  },
+  headers: {
+    nonce: nonce.value ?? '',
+    token: token.value ?? '',
+  },
+  immediate: false,
+  transform: (response) => {
+    cartState.value = response
+  },
+})
+
+// const { mutate } = useRemoveCoupon()
+
+const removeCoupon = async () => {
+  await execute()
 }
 </script>
 
 <template>
   <li>
     {{ coupon.code }}
-    -{{ coupon.discountAmount }}
+    -{{ coupon.totals.total_discount }}
     <button @click="removeCoupon">remove</button>
   </li>
 </template>

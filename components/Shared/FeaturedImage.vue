@@ -13,21 +13,12 @@ const props = withDefaults(
     alt: '',
   },
 )
-
-const altText = computed(() => {
-  if (props.alt) {
-    return props.alt
-  } else if (props.image.alt) {
-    return props.image.alt
-  }
-  return ''
-})
 </script>
 
 <template>
   <img
     class="image"
-    :alt="altText"
+    :alt="alt || image.alt"
     :loading="lazy ? 'lazy' : undefined"
     :srcset="image.srcSet"
     :src="image.src"

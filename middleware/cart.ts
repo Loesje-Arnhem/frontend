@@ -5,6 +5,11 @@ export default defineNuxtRouteMiddleware(async () => {
 
   const nonce = useCookie('nonce')
   const token = useCookie('token')
+  const cart = useCartState()
+
+  if (cart.value) {
+    return
+  }
 
   const response = await $fetch.raw('/api/cart/cart', {
     headers: {
@@ -15,6 +20,5 @@ export default defineNuxtRouteMiddleware(async () => {
   nonce.value = response.headers.get('nonce')
   token.value = response.headers.get('token')
 
-  const cart = useCartState()
   cart.value = response._data
 })

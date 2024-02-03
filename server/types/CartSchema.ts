@@ -1,5 +1,23 @@
 import { z } from 'zod'
 
+export const CouponScheme = z.object({
+  code: z.string(),
+  discount_type: z.string(),
+  totals: z.object({
+    total_discount: z.string(),
+    total_discount_tax: z.string(),
+    currency_code: z.string(),
+    currency_symbol: z.string(),
+    currency_minor_unit: z.number(),
+    currency_decimal_separator: z.string(),
+    currency_thousand_separator: z.string(),
+    currency_prefix: z.string(),
+    currency_suffix: z.string(),
+  }),
+})
+
+export const CouponsScheme = z.array(CouponScheme)
+
 export const CartItemScheme = z.object({
   key: z.string(),
   id: z.number(),
@@ -84,7 +102,7 @@ export const CartItemScheme = z.object({
 
 export const CartSchema = z.object({
   items: z.array(CartItemScheme),
-  coupons: z.array(z.unknown()),
+  coupons: CouponsScheme,
   fees: z.array(z.unknown()),
   totals: z.object({
     total_items: z.string(),

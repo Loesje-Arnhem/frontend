@@ -48,21 +48,21 @@ const localePath = useLocalePath()
       </div>
 
       <div class="coupon-form">
-        <!-- <ul v-if="cart.appliedCoupons">
+        <ul v-if="cart.coupons.length">
           <coupon-list-item
-            v-for="(coupon, index) in cart.appliedCoupons"
-            :key="coupon?.code ?? index"
+            v-for="coupon in cart.coupons"
+            :key="coupon.code"
             :coupon="coupon"
           />
         </ul>
-        <form-coupon v-else /> -->
-        <app-button v-if="cart" :to="localePath({ name: 'shop-checkout' })">
+        <form-coupon v-else />
+        <!-- <app-button v-if="cart" :to="localePath({ name: 'shop-checkout' })">
           Doorgaan met afrekenen
-        </app-button>
+        </app-button> -->
       </div>
     </div>
   </div>
-  <!-- <app-loader v-else /> -->
+  <app-loader v-else />
 </template>
 
 <style scoped lang="postcss">
