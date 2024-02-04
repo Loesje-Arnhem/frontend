@@ -19,6 +19,9 @@ export type ResponseProduct = {
     slug: string
     id: number
     name: string
-    options: string[]
+    terms: {
+      id: number
+      name: string
+    }[]
   }[]
 }

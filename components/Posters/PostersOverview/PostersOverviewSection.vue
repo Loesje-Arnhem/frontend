@@ -72,7 +72,6 @@ const { pending } = useFetch('/api/posters/posters', {
     hasNextPage.value = response.hasNextPage
     posters.value = [...posters.value, ...response.items]
   },
-  watch: [subjectIdsFromProp, sourceIdsFromProp, searchFromProp, page],
 })
 
 const loadMore = () => {

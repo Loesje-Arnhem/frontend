@@ -51,6 +51,8 @@ onUnmounted(() => {
 <style lang="postcss" scoped>
 .list-item {
   scroll-snap-align: center;
+  display: flex;
+  align-items: center;
   flex: 0 0 auto;
   width: 100%;
 }

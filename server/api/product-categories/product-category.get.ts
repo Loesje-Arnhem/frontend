@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import { ResponseProductCategories } from '~/server/types/ResponseProductCategories'
 import type { ResponseProductCategory } from '~/server/types/ResponseProductCategory'
 import { IProductCategory } from '~/types/Content'
 
@@ -8,10 +7,17 @@ const querySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-
   const query = await getValidatedQuery(event, (body) =>
     querySchema.safeParse(body),
   )
+
+  const storage = useStorage('redis')
+
+  const key = getStorageKey(query, 'posters')
+
+  if (await storage.getItem(key)) {
+    return await storage.getItem(key)
+  }
 
   if (!query.success) {
     throw query.error.issues
@@ -21,23 +27,23 @@ export default defineEventHandler(async (event) => {
     type: 'products/categories',
     fields: ['name', 'id', 'description', 'slug'],
     slug: query.data.slug,
-    isCommerce: true
+    isCommerce: true,
   })
 
   const response = await $fetch<ResponseProductCategory>(url)
   if (!response.length) {
     return null
   }
-  const category = response.find(item => item.slug === query.data.slug)
+  const category = response.find((item) => item.slug === query.data.slug)
   if (!category) {
     return null
   }
   const item: IProductCategory = {
     id: category.id,
     title: category.name,
-    content: category.description
+    content: category.description,
   }
-
+  await storage.setItem(key, item)
 
   return item
 })

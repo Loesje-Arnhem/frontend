@@ -4,12 +4,7 @@ export default defineEventHandler(async (event) => {
   const { woocommerceApiUrl } = useAppConfig()
 
   const body = await readBody(event)
-  const nonce = event.headers.get('nonce')
-  const token = event.headers.get('token')
-
-  if (!token || !nonce) {
-    return
-  }
+  const cookies = parseCookies(event)
 
   const response = await $fetch(`${woocommerceApiUrl}cart/remove-item`, {
     params: {
@@ -17,8 +12,8 @@ export default defineEventHandler(async (event) => {
     },
     method: 'POST',
     headers: {
-      nonce,
-      'cart-token': token,
+      nonce: cookies.nonce,
+      'cart-token': cookies.token,
     },
   })
 

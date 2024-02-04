@@ -18,6 +18,20 @@ export const CouponScheme = z.object({
 
 export const CouponsScheme = z.array(CouponScheme)
 
+export const PersonalDetails = z.object({
+  first_name: z.string(),
+  last_name: z.string(),
+  company: z.string(),
+  address_1: z.string(),
+  address_2: z.string(),
+  city: z.string(),
+  state: z.string(),
+  postcode: z.string(),
+  country: z.string(),
+  email: z.string(),
+  phone: z.string(),
+})
+
 export const CartItemScheme = z.object({
   key: z.string(),
   id: z.number(),

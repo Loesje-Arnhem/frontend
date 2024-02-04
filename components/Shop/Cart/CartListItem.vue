@@ -9,9 +9,6 @@ const props = defineProps<{
 const loading = ref(false)
 const quantity = toRef(props.item.quantity)
 
-const nonce = useCookie('nonce')
-const token = useCookie('token')
-
 const cartState = useCartState()
 
 useFetch('/api/cart/updateItem', {
@@ -20,10 +17,7 @@ useFetch('/api/cart/updateItem', {
     key: props.item.key,
     quantity: quantity,
   },
-  headers: {
-    nonce: nonce.value ?? '',
-    token: token.value ?? '',
-  },
+
   immediate: false,
   transform: (response) => {
     cartState.value = response
@@ -35,10 +29,7 @@ const { execute } = useFetch('/api/cart/removeItem', {
   body: {
     key: props.item.key,
   },
-  headers: {
-    nonce: nonce.value ?? '',
-    token: token.value ?? '',
-  },
+
   immediate: false,
   transform: (response) => {
     cartState.value = response

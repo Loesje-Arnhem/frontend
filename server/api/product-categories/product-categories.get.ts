@@ -5,12 +5,20 @@ const sortByOrder = (items: ResponseProductCategories) => {
   return items.sort((a, b) => a.menu_order - b.menu_order)
 }
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async () => {
+  const storage = useStorage('redis')
+
+  const key = 'categories'
+
+  if (await storage.getItem(key)) {
+    return await storage.getItem(key)
+  }
+
   const url = getUrl({
     type: 'products/categories',
     fields: ['name', 'id', 'slug', 'parent', 'menu_order'],
     pageSize: 99,
-    isCommerce: true
+    isCommerce: true,
   })
 
   const response = await $fetch<ResponseProductCategories>(url)
@@ -34,6 +42,7 @@ export default defineEventHandler(async (event) => {
       }),
     }
   })
+  await storage.setItem(key, parentsWithChildren)
 
   return parentsWithChildren
 })

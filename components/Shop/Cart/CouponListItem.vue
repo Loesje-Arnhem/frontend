@@ -5,9 +5,6 @@ const props = defineProps<{
   coupon: Coupon
 }>()
 
-const nonce = useCookie('nonce')
-const token = useCookie('token')
-
 const cartState = useCartState()
 
 const { data, execute, status } = useFetch('/api/coupons/remove', {
@@ -15,10 +12,7 @@ const { data, execute, status } = useFetch('/api/coupons/remove', {
   body: {
     code: props.coupon.code,
   },
-  headers: {
-    nonce: nonce.value ?? '',
-    token: token.value ?? '',
-  },
+
   immediate: false,
   transform: (response) => {
     cartState.value = response

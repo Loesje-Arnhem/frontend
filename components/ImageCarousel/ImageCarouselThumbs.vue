@@ -14,7 +14,7 @@ defineProps<{
     <li
       v-for="(image, index) in images"
       :key="`thumb-${image.src}`"
-      class="tile"
+      class="tile list-item"
       @click="$emit('update-active-card-index', index)"
     >
       <featured-image
@@ -36,12 +36,15 @@ defineProps<{
   grid-template-columns: repeat(auto-fill, minmax(6em, 1fr));
 }
 
+.list-item {
+  display: flex;
+  align-items: center;
+}
+
 .image {
   display: block;
   opacity: 0.5;
   transition: opacity var(--animation);
-  height: 100%;
-  object-fit: cover;
 
   &.active {
     opacity: 1;

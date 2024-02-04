@@ -4,24 +4,17 @@ const props = defineProps<{
   product: IProduct
 }>()
 
-const nonce = useCookie('nonce')
-const token = useCookie('token')
-
 const cartState = useCartState()
 
 const localPath = useLocalePath()
 
 const quantity = ref(1)
 
-const { execute, status } = useFetch('/api/cart/addItem', {
+const { execute, status, error } = useFetch('/api/cart/addItem', {
   method: 'POST',
   body: {
     id: props.product.id,
     quantity: quantity.value,
-  },
-  headers: {
-    nonce: nonce.value ?? '',
-    token: token.value ?? '',
   },
   immediate: false,
   transform: async (response) => {
@@ -35,10 +28,6 @@ const { execute, status } = useFetch('/api/cart/addItem', {
 })
 
 const addToCart = async () => {
-  if (!token.value || !nonce.value) {
-    return
-  }
-
   await execute()
 }
 
@@ -71,8 +60,8 @@ const selectedAttribute = ref('')
               :name="attribute.slug"
               :title="attribute.name"
               :options="
-                attribute.options.map((option) => {
-                  return { value: option, title: option }
+                attribute.terms.map((option) => {
+                  return { value: option.id, title: option.name }
                 })
               "
             />
@@ -86,7 +75,9 @@ const selectedAttribute = ref('')
       >
         In winkelmandje
       </app-button>
-      <!-- <div v-if="errors.length" v-html="errors.join(', ')" /> -->
+      <div v-if="error">
+        {{ error.statusMessage }}
+      </div>
     </form>
   </div>
 </template>

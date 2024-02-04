@@ -11,12 +11,7 @@ export default defineNuxtRouteMiddleware(async () => {
     return
   }
 
-  const response = await $fetch.raw('/api/cart/cart', {
-    headers: {
-      nonce: nonce.value ?? '',
-      token: token.value ?? '',
-    },
-  })
+  const response = await $fetch.raw('/api/cart/cart')
   nonce.value = response.headers.get('nonce')
   token.value = response.headers.get('token')
 

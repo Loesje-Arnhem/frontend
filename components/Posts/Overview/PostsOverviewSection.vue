@@ -23,7 +23,6 @@ const { pending } = useFetch('/api/posts/posts', {
     hasNextPage.value = response.hasNextPage
     posts.value = [...posts.value, ...response.items]
   },
-  watch: [page],
 })
 
 const loadMore = () => {

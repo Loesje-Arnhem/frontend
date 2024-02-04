@@ -3,10 +3,11 @@ import { CartSchema } from '~~/server/types/CartSchema'
 export default defineEventHandler(async (event) => {
   const { woocommerceApiUrl } = useAppConfig()
 
+  const cookies = parseCookies(event)
   const response = await $fetch.raw(`${woocommerceApiUrl}cart`, {
     headers: {
-      nonce: event.headers.get('nonce') ?? '',
-      'cart-token': event.headers.get('token') ?? '',
+      nonce: cookies.nonce,
+      'cart-token': cookies.token,
     },
   })
   const nonce = response.headers.get('nonce')
