@@ -4,18 +4,26 @@ const props = defineProps<{
   product: IProduct
 }>()
 
+type Attributes = {
+  attribute: string
+  value: string
+}[]
+
 const cartState = useCartState()
 
 const localPath = useLocalePath()
 
 const quantity = ref(1)
+const selectedAttributes = ref<Attributes>([])
 
 const { execute, status, error } = useFetch('/api/cart/addItem', {
   method: 'POST',
   body: {
     id: props.product.id,
-    quantity: quantity.value,
+    quantity: quantity,
+    variation: selectedAttributes,
   },
+  watch: false,
   immediate: false,
   transform: async (response) => {
     cartState.value = response
@@ -31,7 +39,14 @@ const addToCart = async () => {
   await execute()
 }
 
-const selectedAttribute = ref('')
+onMounted(() => {
+  selectedAttributes.value = props.product.attributes.map((a) => {
+    return {
+      attribute: a.taxonomy,
+      value: a.terms[0].slug,
+    }
+  })
+})
 </script>
 
 <template>
@@ -52,11 +67,17 @@ const selectedAttribute = ref('')
           class="quantity"
           name="quantity"
         />
-        <div v-if="product.attributes.length">
-          <div v-for="attribute in product.attributes" :key="attribute.id">
-            <select-field
+        <div v-if="product.attributes.length && selectedAttributes.length">
+          {{ selectedAttributes }}
+
+          {{ product.attributes }}
+          <div
+            v-for="(attribute, index) in product.attributes"
+            :key="attribute.id"
+          >
+            <!-- <select-field
               :id="attribute.slug"
-              v-model="selectedAttribute"
+              :model-value="selectedAttributes[index].value"
               :name="attribute.slug"
               :title="attribute.name"
               :options="
@@ -64,7 +85,7 @@ const selectedAttribute = ref('')
                   return { value: option.id, title: option.name }
                 })
               "
-            />
+            /> -->
           </div>
         </div>
       </form-fieldset>

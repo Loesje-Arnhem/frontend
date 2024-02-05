@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 import type { ErrorObject } from '@vuelidate/core'
-import { GetPaymentGatewaysQueryDocument } from '~/graphql/__generated__/graphql'
-
-const { result } = useQuery(GetPaymentGatewaysQueryDocument)
 
 withDefaults(
   defineProps<{
@@ -14,33 +11,37 @@ withDefaults(
   },
 )
 
+const { data } = await useAsyncData(`payment-gateways`, () =>
+  $fetch('/api/store/payment-gateways'),
+)
+
 defineEmits(['update:modelValue'])
 </script>
 
 <template>
-  <form-fieldset v-if="result?.paymentGateways" :title="$t('paymentGateways')">
-    <ul v-if="result.paymentGateways.edges.length" class="list">
+  <form-fieldset v-if="data?.length" :title="$t('paymentGateways')">
+    <ul class="list">
       <li
-        v-for="paymentGateway in result.paymentGateways.edges"
-        :key="paymentGateway.node.id"
+        v-for="paymentGateway in data"
+        :key="paymentGateway.id"
         class="list-item"
       >
         <input
-          :id="`payment-${paymentGateway.node.id}`"
+          :id="`payment-${paymentGateway.id}`"
           type="radio"
-          :value="paymentGateway.node.id"
+          :value="paymentGateway.id"
           name="payment-gateways"
           class="input"
-          :checked="paymentGateway.node.id == modelValue"
-          @change="$emit('update:modelValue', paymentGateway.node.id)"
+          :checked="paymentGateway.id == modelValue"
+          @change="$emit('update:modelValue', paymentGateway.id)"
         />
-        <div
-          v-if="paymentGateway.node.icon"
+        <!-- <div
+          v-if="paymentGateway.icon"
           class="icon"
-          v-html="paymentGateway.node.icon"
-        />
-        <label :for="`payment-${paymentGateway.node.id}`" class="label">
-          {{ paymentGateway.node.title }}
+          v-html="paymentGateway.icon"
+        /> -->
+        <label :for="`payment-${paymentGateway.id}`" class="label">
+          {{ paymentGateway.title }}
         </label>
       </li>
     </ul>

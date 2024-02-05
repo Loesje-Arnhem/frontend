@@ -18,7 +18,20 @@ export const CouponScheme = z.object({
 
 export const CouponsScheme = z.array(CouponScheme)
 
-export const PersonalDetails = z.object({
+export const ShippingAdressSchema = z.object({
+  first_name: z.string(),
+  last_name: z.string(),
+  company: z.string(),
+  address_1: z.string(),
+  address_2: z.string(),
+  city: z.string(),
+  state: z.string(),
+  postcode: z.string(),
+  country: z.string(),
+  phone: z.string(),
+})
+
+export const BillingAdressSchema = z.object({
   first_name: z.string(),
   last_name: z.string(),
   company: z.string(),
@@ -140,31 +153,8 @@ export const CartSchema = z.object({
     currency_prefix: z.string(),
     currency_suffix: z.string(),
   }),
-  shipping_address: z.object({
-    first_name: z.string(),
-    last_name: z.string(),
-    company: z.string(),
-    address_1: z.string(),
-    address_2: z.string(),
-    city: z.string(),
-    state: z.string(),
-    postcode: z.string(),
-    country: z.string(),
-    phone: z.string(),
-  }),
-  billing_address: z.object({
-    first_name: z.string(),
-    last_name: z.string(),
-    company: z.string(),
-    address_1: z.string(),
-    address_2: z.string(),
-    city: z.string(),
-    state: z.string(),
-    postcode: z.string(),
-    country: z.string(),
-    email: z.string(),
-    phone: z.string(),
-  }),
+  shipping_address: ShippingAdressSchema,
+  billing_address: BillingAdressSchema,
   needs_payment: z.boolean(),
   needs_shipping: z.boolean(),
   payment_requirements: z.array(z.string()),

@@ -13,14 +13,14 @@ export default defineEventHandler(async (event) => {
 
   const storage = useStorage('redis')
 
-  const key = getStorageKey(query, 'posters')
+  if (!query.success) {
+    throw query.error.issues
+  }
+
+  const key = getStorageKey(query.data, 'product-category')
 
   if (await storage.getItem(key)) {
     return await storage.getItem(key)
-  }
-
-  if (!query.success) {
-    throw query.error.issues
   }
 
   const url = getUrl({

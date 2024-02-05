@@ -62,12 +62,12 @@ const countries: Option[] = [
   // { value: CountriesEnum.Be, title: 'België' },
   // { value: CountriesEnum.Dk, title: 'Denemarken' },
   // { value: CountriesEnum.Fr, title: 'Frankrijk' },
-  // { value: CountriesEnum.Nl, title: 'Nederland' },
+  // { value: "CountriesEnum.Nl", title: 'Nederland' },
   // { value: CountriesEnum.At, title: 'Oostenrijk' },
 ]
 
 const streetFieldsAreReadonly = computed(() => {
-  if (props.country === CountriesEnum.Nl && !error.value) {
+  if (props.country === 'nl' && !error.value) {
     return 'readonly'
   }
   return undefined
@@ -88,7 +88,7 @@ const streetFieldsAreReadonly = computed(() => {
         @input="$emit('update:country', $event.target.value)"
       />
     </div>
-    <template v-if="country === CountriesEnum.Nl">
+    <template v-if="country === 'Nl'">
       <div class="postcode">
         <input-text-field
           :id="`${id}-postcode`"
@@ -123,6 +123,18 @@ const streetFieldsAreReadonly = computed(() => {
       />
     </template>
     <template v-else>
+      <div class="postcode">
+        <input-text-field
+          :id="`${id}-postcode`"
+          :model-value="postcode"
+          title="Postcode"
+          class="postcode"
+          name="postcode"
+          :errors="v$.postcode.$errors"
+          autocomplete="postcode"
+          @input="$emit('update:postcode', $event.target.value)"
+        />
+      </div>
       <div class="address1">
         <input-text-field
           :id="`${id}-address1`"

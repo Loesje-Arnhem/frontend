@@ -38,6 +38,10 @@ export default defineNuxtConfig({
         key: '',
       },
     },
+    woocommerce: {
+      consumerKey: '',
+      consumerSecret: '',
+    },
     newsletter: {
       api_key: '',
       list: {
