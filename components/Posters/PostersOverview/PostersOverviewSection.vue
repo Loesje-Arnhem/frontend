@@ -25,30 +25,8 @@ const props = withDefaults(
   },
 )
 
-// const posterDateAfter = computed(() => {
-//   if (!props.dateAfter) {
-//     return undefined
-//   }
-//   const splittedDate = props.dateAfter.split('-')
-//   return {
-//     year: parseInt(splittedDate[0], 10),
-//     month: parseInt(splittedDate[1], 10),
-//     day: parseInt(splittedDate[2], 10),
-//   }
-// })
-
-// const posterDateBefore = computed(() => {
-//   if (!props.dateBefore) {
-//     return undefined
-//   }
-//   const splittedDate = props.dateBefore.split('-')
-//   return {
-//     year: parseInt(splittedDate[0], 10),
-//     month: parseInt(splittedDate[1], 10),
-//     day: parseInt(splittedDate[2], 10),
-//   }
-// })
-
+const posterDateAfter = toRef(props, 'dateAfter')
+const posterDateBefore = toRef(props, 'dateBefore')
 const searchFromProp = toRef(props, 'search')
 const subjectIdsFromProp = computed(() => props.subjectIds.join(','))
 const sourceIdsFromProp = computed(() => props.sourceIds.join(','))
@@ -57,21 +35,23 @@ const page = ref(1)
 const posters = ref<IPosterListItem[]>([])
 const hasNextPage = ref(false)
 
-const { pending } = useFetch('/api/posters/posters', {
+const { pending, data } = useFetch('/api/posters/posters', {
   query: {
     subjectIds: subjectIdsFromProp,
     sourceIds: sourceIdsFromProp,
     include: props.include,
-    // posterDateAfter: posterDateAfter.value,
+    // posterDateAfter: posterDateAfter.value,pnp
     // posterDateBefore: posterDateBefore.value,
+    dateAfter: posterDateAfter,
+    dateBefore: posterDateBefore,
     exclude: props.exclude,
     search: searchFromProp,
     page,
   },
-  transform(response) {
-    hasNextPage.value = response.hasNextPage
-    posters.value = [...posters.value, ...response.items]
-  },
+  // transform(response) {
+  //   hasNextPage.value = response.hasNextPage
+  //   data.value = [...data.value, ...response.items]
+  // },
 })
 
 const loadMore = () => {
@@ -80,8 +60,11 @@ const loadMore = () => {
 </script>
 
 <template>
-  <app-loader v-if="pending && !posters.length" />
-  <section v-else-if="posters.length" aria-labelledby="posters-overview-title">
+  <app-loader v-if="pending" />
+  <section
+    v-else-if="data?.items.length"
+    aria-labelledby="posters-overview-title"
+  >
     <center-wrapper>
       <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
@@ -92,10 +75,13 @@ const loadMore = () => {
         </template>
       </h1>
     </center-wrapper>
-    <poster-list :posters="posters" />
-    <center-wrapper v-if="hasNextPage">
+    <poster-list :posters="data.items" />
+    <!-- <center-wrapper v-if="hasNextPage">
       <load-more-by-scroll :loading="pending" @load-more="loadMore" />
-    </center-wrapper>
+    </center-wrapper> -->
   </section>
-  <p v-if="!posters.length && !pending">Geen posters gevonden</p>
+
+  <center-wrapper v-if="!data?.items.length && !pending">
+    <p>Geen posters gevonden</p>
+  </center-wrapper>
 </template>

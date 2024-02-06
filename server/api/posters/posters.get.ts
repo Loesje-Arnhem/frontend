@@ -2,6 +2,7 @@ import { type IPosterListItem } from '~~/types/Content'
 import { getStorageKey } from '~/server/utils/getStorageKey'
 import { z } from 'zod'
 import { ResponseImageSchema } from '~/server/types/ResponseImage'
+import { getDate } from '~/server/utils/getDate'
 
 const querySchema = z.object({
   pageSize: z.string().default('20'),
@@ -11,6 +12,8 @@ const querySchema = z.object({
   search: z.string().optional(),
   subjectIds: z.string().optional(),
   sourceIds: z.string().optional(),
+  dateBefore: z.string().optional(),
+  dateAfter: z.string().optional(),
 })
 
 const responseSchema = z.array(
@@ -20,6 +23,7 @@ const responseSchema = z.array(
     title: z.object({
       rendered: z.string(),
     }),
+
     _embedded: z.object({
       'wp:featuredmedia': ResponseImageSchema,
     }),
@@ -45,6 +49,14 @@ export default defineEventHandler(async (event) => {
   const pageSize = Number(query.data.pageSize)
   const page = Number(query.data.page)
 
+  const dateBefore = query.data.dateBefore
+    ? getDate(query.data.dateBefore)
+    : undefined
+
+  const dateAfter = query.data.dateAfter
+    ? getDate(query.data.dateAfter)
+    : undefined
+
   const url = getUrl({
     type: 'posters',
     fields: ['title', 'slug', 'id'],
@@ -56,6 +68,8 @@ export default defineEventHandler(async (event) => {
     sourceIds: query.data.sourceIds,
     search: query.data.search,
     page,
+    dateBefore,
+    dateAfter,
   })
 
   const response = await $fetch.raw(url).catch((error) => error.data)

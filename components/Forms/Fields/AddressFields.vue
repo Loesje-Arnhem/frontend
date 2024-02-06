@@ -58,16 +58,19 @@ const { execute, error } = useFetch('/api/address', {
   },
 })
 
-const countries: Option[] = [
-  // { value: CountriesEnum.Be, title: 'België' },
-  // { value: CountriesEnum.Dk, title: 'Denemarken' },
-  // { value: CountriesEnum.Fr, title: 'Frankrijk' },
-  // { value: "CountriesEnum.Nl", title: 'Nederland' },
-  // { value: CountriesEnum.At, title: 'Oostenrijk' },
-]
+const { data } = await useAsyncData('countries', async () => {
+  const response = await $fetch('/api/store/countries')
+  const options: Option[] = response.map((item) => {
+    return {
+      value: item.code,
+      title: item.name,
+    }
+  })
+  return options
+})
 
 const streetFieldsAreReadonly = computed(() => {
-  if (props.country === 'nl' && !error.value) {
+  if (props.country === 'NL' && !error.value) {
     return 'readonly'
   }
   return undefined
@@ -78,9 +81,10 @@ const streetFieldsAreReadonly = computed(() => {
   <form-fieldset title="Adresgegevens" class="fields">
     <div class="country">
       <select-field
+        v-if="data"
         :id="`${id}-country`"
         :model-value="country"
-        :options="countries"
+        :options="data"
         title="Land"
         class="country"
         name="country"
@@ -88,7 +92,7 @@ const streetFieldsAreReadonly = computed(() => {
         @input="$emit('update:country', $event.target.value)"
       />
     </div>
-    <template v-if="country === 'Nl'">
+    <template v-if="country === 'NL'">
       <div class="postcode">
         <input-text-field
           :id="`${id}-postcode`"

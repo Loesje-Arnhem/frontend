@@ -1,20 +1,6 @@
 import { ResponsePoster } from '~/server/types/ResponsePoster'
+import { getDate } from '~/server/utils/getDate'
 import { FeaturedImage } from '~/types/Content'
-
-const addTrailingZeroToValue = (value: number) => {
-  if (value < 10) {
-    return `0${value}`
-  } else {
-    return value.toString()
-  }
-}
-
-const getDate = () => {
-  const date = new Date()
-  const month = addTrailingZeroToValue(date.getMonth() + 1)
-  const day = addTrailingZeroToValue(date.getDate())
-  return `${date.getFullYear()}${month}${day}`
-}
 
 export default defineEventHandler(async () => {
   const storage = useStorage('redis')

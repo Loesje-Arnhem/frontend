@@ -25,8 +25,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     if (!navigator.userAgentData) {
       return false
     }
-    const brands = navigator.userAgentData.brands;
-    return brands.find(b => b.brand === "Edge Side Panel");
+    const brands = navigator.userAgentData.brands
+    return brands.find((b) => b.brand === 'Edge Side Panel')
   }
 
   if (window.matchMedia(mediaQueryStandAlone).matches || isInSideBar()) {

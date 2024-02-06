@@ -17,6 +17,8 @@ export default ({
   categoryId,
   isCommerce = false,
   date,
+  dateBefore,
+  dateAfter,
 }: {
   fields: string[]
   type: string
@@ -36,6 +38,8 @@ export default ({
   categoryId?: string
   isCommerce?: boolean
   date?: string
+  dateBefore?: string
+  dateAfter?: string
 }) => {
   const { apiUrl, woocommerceApiUrl } = useAppConfig()
 
@@ -84,6 +88,12 @@ export default ({
   }
   if (date) {
     url.searchParams.set('date', date)
+  }
+  if (dateBefore) {
+    url.searchParams.set('date_before', dateBefore)
+  }
+  if (dateAfter) {
+    url.searchParams.set('date_after', dateAfter)
   }
   if (pageSize) {
     url.searchParams.set('per_page', pageSize.toString())
