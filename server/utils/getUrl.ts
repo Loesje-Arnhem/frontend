@@ -16,6 +16,7 @@ export default ({
   featured = false,
   categoryId,
   isCommerce = false,
+  date,
 }: {
   fields: string[]
   type: string
@@ -34,6 +35,7 @@ export default ({
   featured?: boolean
   categoryId?: string
   isCommerce?: boolean
+  date?: string
 }) => {
   const { apiUrl, woocommerceApiUrl } = useAppConfig()
 
@@ -79,6 +81,9 @@ export default ({
   }
   if (page) {
     url.searchParams.set('page', page.toString())
+  }
+  if (date) {
+    url.searchParams.set('date', date)
   }
   if (pageSize) {
     url.searchParams.set('per_page', pageSize.toString())

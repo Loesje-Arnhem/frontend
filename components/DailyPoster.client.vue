@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { IPosterListItem } from '~/types/Content'
+import type { FeaturedImage } from '~/types/Content'
 
 withDefaults(
   defineProps<{
@@ -25,31 +25,37 @@ const getDate = () => {
   return `${date.getFullYear()}${month}${day}`
 }
 
-const poster = ref<IPosterListItem | null>(null)
+const poster = ref<FeaturedImage | null>(null)
 
-const fetchDailyPoster = async () => {
-  const data = await $fetch('/api/posters/daily-poster')
-  poster.value = data
-  await localStorage.setItem(
-    'daily-poster',
-    JSON.stringify({
-      ...data,
-      date: getDate(),
-    }),
-  )
-}
+const { execute } = useFetch('/api/posters/daily-poster', {
+  immediate: false,
+  watch: false,
+  transform: async (value) => {
+    poster.value = value
+    await localStorage.setItem(
+      'daily-poster',
+      JSON.stringify({
+        ...value,
+        date: getDate(),
+      }),
+    )
+  },
+})
 
-const posterFromStorage = await localStorage.getItem('daily-poster')
-if (posterFromStorage) {
-  const parsedData = JSON.parse(posterFromStorage)
-  if (parsedData.date === getDate()) {
-    poster.value = parsedData
-  } else {
-    fetchDailyPoster()
-  }
-} else {
-  fetchDailyPoster()
-}
+onMounted(async () => {
+  // const posterFromStorage = await localStorage.getItem('daily-poster')
+  // if (posterFromStorage) {
+  //   const parsedData = JSON.parse(posterFromStorage)
+  //   if (parsedData.date === getDate()) {
+  //     poster.value = parsedData
+  //   } else {
+  //     execute()
+  //   }
+  // } else {
+  //   execute()
+  // }
+  execute()
+})
 </script>
 
 <template>
