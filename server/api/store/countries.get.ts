@@ -9,6 +9,15 @@ const sortByOrder = (items: { name: string; order: number }[]) => {
 
 export default defineEventHandler(async () => {
   const config = useRuntimeConfig()
+  const storage = useStorage('redis')
+
+  const key = `countries`
+
+  const storedData = await storage.getItem(key)
+
+  if (storedData) {
+    return storedData
+  }
 
   const getCountries: Promise<{ code: string; name: string }[]> = new Promise(
     (resolve, reject) => {
@@ -68,7 +77,12 @@ export default defineEventHandler(async () => {
           code: code ? code.code : '',
         }
       })
-      return shippingZonesWithCode.filter((shippingZode) => shippingZode.code)
+      const items = shippingZonesWithCode.filter(
+        (shippingZode) => shippingZode.code,
+      )
+      storage.setItem(key, items).then(() => {
+        return items
+      })
     },
   )
 })

@@ -19,9 +19,9 @@ const url = localePath({
   <clickable-list-item :to="url" class="product-tile tile">
     <div class="image-wrapper">
       <featured-image
+        v-if="product.image"
         sizes="(max-width: 375px) 50vw, (max-width: 720px) 33vw, (max-width: 1024px) 25vw, 200px"
         :image="product.image"
-        v-if="product.image"
         class="image"
       />
     </div>
@@ -34,7 +34,7 @@ const url = localePath({
     <product-prices
       v-if="product.price"
       :price="product.price"
-      :regularPrice="product.regularPrice"
+      :regular-price="product.regularPrice"
       class="price"
     />
   </clickable-list-item>
