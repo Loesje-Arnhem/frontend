@@ -1,17 +1,43 @@
 import { z } from 'zod'
 import {
   BillingAdressSchema,
-  CartItemScheme,
-  CartSchema,
-  CouponScheme,
-  CouponsScheme,
   ShippingAdressSchema,
 } from '~/server/types/CartSchema'
+import type { FeaturedImage } from './Content'
 
-export type Cart = z.infer<typeof CartSchema>
-
-export type CartItem = z.infer<typeof CartItemScheme>
-export type Coupons = z.infer<typeof CouponsScheme>
-export type Coupon = z.infer<typeof CouponScheme>
 export type ShippingAddress = z.infer<typeof ShippingAdressSchema>
 export type BillingAdress = z.infer<typeof BillingAdressSchema>
+
+export type CartItem = {
+  variation: {
+    value: string
+    attribute: string
+  }[]
+  image?: FeaturedImage
+  key: string
+  id: number
+  quantity: number
+  quantityMax: number
+  title: string
+  price: number
+  regularPrice: number | undefined
+  priceTotal: number
+}
+
+export type Coupon = {
+  code: string
+  price: number
+}
+
+export type Cart = {
+  items: CartItem[]
+  prices: {
+    totalItems: number
+    totalTax: number
+    totalShipping: number
+    totalPrice: number
+  }
+  paymentMethods: string[]
+  coupons: Coupon[]
+  itemsCount: number
+}

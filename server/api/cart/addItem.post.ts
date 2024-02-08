@@ -1,3 +1,4 @@
+import { createCart } from '~/server/utils/createCart'
 import { CartSchema } from '~~/server/types/CartSchema'
 
 export default defineEventHandler(async (event) => {
@@ -8,9 +9,10 @@ export default defineEventHandler(async (event) => {
 
   try {
     const response = await $fetch(`${woocommerceApiUrl}cart/add-item`, {
-      params: {
+      body: {
         id: body.id,
         quantity: body.quantity,
+        variation: body.variation,
       },
       method: 'POST',
       headers: {
@@ -19,16 +21,7 @@ export default defineEventHandler(async (event) => {
       },
     })
 
-    const parsed = CartSchema.safeParse(response)
-
-    if (!parsed.success) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: 'Something went wrong',
-      })
-    }
-
-    return parsed.data
+    return createCart(response)
   } catch (error) {
     throw createError({
       statusCode: 400,

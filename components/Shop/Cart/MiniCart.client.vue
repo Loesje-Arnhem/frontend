@@ -16,36 +16,36 @@ const cart = useCartState()
         <td>
           <div class="title">
             <span class="quantity">{{ item.quantity }}x</span>
-            <span v-html="item.name" />
+            <cart-title :item="item" />
           </div>
         </td>
         <td class="price">
-          {{ item.totals.line_total }}
+          {{ $n(item.priceTotal, 'currency') }}
         </td>
       </tr>
       <tfoot>
         <tr>
           <td class="label">Subtotaal</td>
           <td class="price">
-            {{ cart.totals.total_items }}
+            {{ $n(cart.prices.totalItems, 'currency') }}
           </td>
         </tr>
         <template v-if="cart.coupons">
           <tr v-for="coupon in cart.coupons" :key="coupon.code">
             <td class="label">Kortingsbon: {{ coupon.code }}</td>
-            <td class="price">- {{ coupon.totals.total_discount }}</td>
+            <td class="price">- {{ $n(coupon.price, 'currency') }}</td>
           </tr>
         </template>
         <tr>
           <td class="label">Verzending</td>
           <td class="price">
-            {{ cart.totals.total_shipping }}
+            {{ $n(cart.prices.totalShipping, 'currency') }}
           </td>
         </tr>
         <tr>
           <td class="total">Totaal</td>
           <td class="price total">
-            {{ cart.totals.total_price }}
+            {{ $n(cart.prices.totalPrice, 'currency') }}
           </td>
         </tr>
       </tfoot>
@@ -57,6 +57,10 @@ const cart = useCartState()
 .price {
   font-variant-numeric: tabular-nums;
   text-align: right;
+}
+
+td {
+  padding-block: 0.25em;
 }
 
 .title {

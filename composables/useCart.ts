@@ -5,7 +5,7 @@ export default () => {
     if (!cartState.value) {
       return 0
     }
-    return cartState.value.items_count
+    return cartState.value.itemsCount
   })
 
   return {

@@ -4,17 +4,17 @@ const props = defineProps<{
   product: IProduct
 }>()
 
-type Attributes = {
+type Attribute = {
   attribute: string
   value: string
-}[]
+}
 
 const cartState = useCartState()
 
 const localPath = useLocalePath()
 
 const quantity = ref(1)
-const selectedAttributes = ref<Attributes>([])
+const selectedAttributes = ref<Attribute[]>([])
 
 const { execute, status, error } = useFetch('/api/cart/addItem', {
   method: 'POST',
@@ -34,6 +34,10 @@ const { execute, status, error } = useFetch('/api/cart/addItem', {
     )
   },
 })
+
+const updateSelectedAttribute = (index: number, value: string) => {
+  selectedAttributes.value[index].value = value
+}
 
 const addToCart = async () => {
   await execute()
@@ -67,25 +71,28 @@ onMounted(() => {
           class="quantity"
           name="quantity"
         />
-        <div v-if="product.attributes.length && selectedAttributes.length">
-          {{ selectedAttributes }}
-
-          {{ product.attributes }}
+        <div
+          v-if="
+            product.attributes.length &&
+            selectedAttributes.length === product.attributes.length
+          "
+        >
           <div
             v-for="(attribute, index) in product.attributes"
             :key="attribute.id"
           >
-            <!-- <select-field
-              :id="attribute.slug"
+            <select-field
+              :id="attribute.taxonomy"
               :model-value="selectedAttributes[index].value"
-              :name="attribute.slug"
+              :name="attribute.taxonomy"
               :title="attribute.name"
               :options="
                 attribute.terms.map((option) => {
-                  return { value: option.id, title: option.name }
+                  return { value: option.slug, title: option.name }
                 })
               "
-            /> -->
+              @change="updateSelectedAttribute(index, $event.target.value)"
+            />
           </div>
         </div>
       </form-fieldset>
@@ -96,9 +103,7 @@ onMounted(() => {
       >
         In winkelmandje
       </app-button>
-      <div v-if="error">
-        {{ error.statusMessage }}
-      </div>
+      <form-error-message :error="error?.statusMessage" />
     </form>
   </div>
 </template>

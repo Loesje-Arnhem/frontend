@@ -36,7 +36,9 @@ const { execute } = useFetch('/api/cart/removeItem', {
   },
 })
 
-const options: Option[] = [...Array(9).keys()].map((index) => {
+const max = props.item.quantityMax < 10 ? props.item.quantityMax : 9
+
+const options: Option[] = [...Array(max).keys()].map((index) => {
   const amount = index + 1
   return {
     value: amount,
@@ -58,20 +60,16 @@ const removeItemFromCard = async () => {
       </button>
     </td>
     <td class="image-wrapper">
-      <div v-if="item.images.length" class="tile">
-        <img class="image" :src="item.images[0].src" alt="" />
+      <div v-if="item.image" class="tile">
+        <featured-image sizes="200px" :image="item.image" />
       </div>
     </td>
     <td class="title">
-      <span v-html="item.name" />
-      {{ item.quantity }}
+      <cart-title :item="item" />
     </td>
 
     <td class="price">
-      <product-prices
-        :price="Number(item.prices.price) / 100"
-        :regular-price="Number(item.prices.regular_price) / 100"
-      />
+      <product-prices :price="item.price" :regular-price="item.regularPrice" />
     </td>
     <td>
       <select-field
@@ -84,7 +82,7 @@ const removeItemFromCard = async () => {
       />
     </td>
     <td class="price">
-      {{ item.totals.line_total }}
+      {{ $n(item.priceTotal, 'currency') }}
     </td>
   </tr>
 </template>

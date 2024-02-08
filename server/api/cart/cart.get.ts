@@ -1,4 +1,4 @@
-import { CartSchema } from '~~/server/types/CartSchema'
+import { createCart } from '~/server/utils/createCart'
 
 export default defineEventHandler(async (event) => {
   const { woocommerceApiUrl } = useAppConfig()
@@ -13,14 +13,10 @@ export default defineEventHandler(async (event) => {
   const nonce = response.headers.get('nonce')
   const cartToken = response.headers.get('cart-token')
 
-  const parsed = CartSchema.safeParse(response._data)
-
-  if (!parsed.success) {
-    throw parsed.error.issues
-  }
+  const cart = createCart(response._data)
 
   event.node.res.setHeader('nonce', nonce ?? '')
   event.node.res.setHeader('token', cartToken ?? '')
 
-  return parsed.data
+  return cart
 })

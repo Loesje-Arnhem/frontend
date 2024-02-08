@@ -11,9 +11,7 @@ withDefaults(
 
 <template>
   <span aria-live="assertive" class="error">
-    <template v-if="error">
-      {{ error }}
-    </template>
+    <span v-if="error" v-html="error" />
   </span>
 </template>
 

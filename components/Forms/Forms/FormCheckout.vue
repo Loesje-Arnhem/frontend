@@ -111,7 +111,6 @@ onMounted(() => {
       v-model:address1="billing.address_1"
       v-model:address2="billing.address_2"
     />
-
     <checkbox-field
       id="add-to-newsletter"
       v-model="addToNewsletter"

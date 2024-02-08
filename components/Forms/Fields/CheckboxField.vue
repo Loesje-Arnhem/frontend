@@ -6,9 +6,8 @@ defineOptions({
 const props = defineProps<{
   title: string
   id: string
-  modelValue: boolean
 }>()
-defineEmits(['update:modelValue'])
+const model = defineModel({ required: true })
 </script>
 
 <template>
@@ -16,12 +15,12 @@ defineEmits(['update:modelValue'])
     <input
       v-bind="$attrs"
       :id
+      v-model="model"
       :checked="modelValue"
       type="checkbox"
       class="input"
       :true-value="true"
       :false-value="false"
-      @change="$emit('update:modelValue', !props.modelValue)"
     />
     <label :for="id">{{ title }}</label>
   </div>

@@ -1,3 +1,4 @@
+import { createCart } from '~/server/utils/createCart'
 import { CartSchema } from '~~/server/types/CartSchema'
 
 export default defineEventHandler(async (event) => {
@@ -17,11 +18,5 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  const parsed = CartSchema.safeParse(response)
-
-  if (!parsed.success) {
-    throw parsed.error.issues
-  }
-
-  return parsed.data
+  return createCart(response)
 })

@@ -29,7 +29,7 @@ const removeCoupon = async () => {
 <template>
   <li>
     {{ coupon.code }}
-    -{{ coupon.totals.total_discount }}
+    -{{ $n(coupon.price, 'currency') }}
     <button @click="removeCoupon">remove</button>
   </li>
 </template>

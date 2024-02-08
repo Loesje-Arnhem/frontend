@@ -22,7 +22,7 @@ withDefaults(
 )
 defineEmits(['keyup-down', 'keyup-up', 'change', 'blur'])
 
-const model = defineModel()
+const model = defineModel({ required: true })
 </script>
 
 <template>

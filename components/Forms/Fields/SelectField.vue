@@ -11,7 +11,6 @@ withDefaults(
     title: string
     description?: string | null
     id: string
-    modelValue: string | number
     errors?: ErrorObject[]
     options: Option[]
   }>(),
@@ -21,7 +20,7 @@ withDefaults(
   },
 )
 
-defineEmits(['update:modelValue', 'change', 'blur'])
+const model = defineModel({ required: true })
 </script>
 
 <template>
@@ -33,13 +32,7 @@ defineEmits(['update:modelValue', 'change', 'blur'])
     :description="description"
   >
     <div class="form-select">
-      <select
-        :id
-        v-bind="$attrs"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-        @change="$emit('change', $event.target.value)"
-      >
+      <select :id v-bind="$attrs" v-model="model">
         <slot />
         <option
           v-for="option in options"

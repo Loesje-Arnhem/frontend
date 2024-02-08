@@ -1,4 +1,5 @@
 import { CartSchema } from '~/server/types/CartSchema'
+import { createCart } from '~/server/utils/createCart'
 
 export default defineEventHandler(async (event) => {
   const { woocommerceApiUrl } = useAppConfig()
@@ -17,17 +18,7 @@ export default defineEventHandler(async (event) => {
         'cart-token': cookies.token,
       },
     })
-
-    const parsed = CartSchema.safeParse(response)
-
-    if (!parsed.success) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: 'Something went wrong',
-      })
-    }
-
-    return parsed.data
+    return createCart(response)
   } catch (error) {
     throw createError({
       statusCode: 400,

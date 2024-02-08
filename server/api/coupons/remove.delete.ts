@@ -1,3 +1,5 @@
+import { createCart } from '~/server/utils/createCart'
+
 export default defineEventHandler(async (event) => {
   const { woocommerceApiUrl } = useAppConfig()
 
@@ -15,5 +17,5 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  return response
+  return createCart(response)
 })

@@ -76,8 +76,8 @@ export const CartItemScheme = z.object({
       alt: z.string(),
     }),
   ),
-  variation: z.array(z.unknown()),
-  item_data: z.array(z.unknown()),
+  variation: z.array(z.object({ attribute: z.string(), value: z.string() })),
+
   prices: z.object({
     price: z.string(),
     regular_price: z.string(),
@@ -130,7 +130,7 @@ export const CartItemScheme = z.object({
 export const CartSchema = z.object({
   items: z.array(CartItemScheme),
   coupons: CouponsScheme,
-  fees: z.array(z.unknown()),
+
   totals: z.object({
     total_items: z.string(),
     total_items_tax: z.string(),
@@ -199,8 +199,5 @@ export const CartSchema = z.object({
   ),
   items_count: z.number(),
   items_weight: z.number(),
-  cross_sells: z.array(z.unknown()),
-  errors: z.array(z.unknown()),
   payment_methods: z.array(z.string()),
-  extensions: z.object({ subscriptions: z.array(z.unknown()) }),
 })

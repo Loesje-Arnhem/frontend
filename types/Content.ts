@@ -88,11 +88,11 @@ export type IProduct = IBase & {
   images: FeaturedImage[]
   relatedProductIds: number[]
   attributes: {
-    slug: string
+    taxonomy: string
     id: number
     name: string
     terms: {
-      id: number
+      slug: string
       name: string
     }[]
   }[]

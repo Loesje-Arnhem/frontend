@@ -33,17 +33,14 @@ const localePath = useLocalePath()
       <div class="prices">
         <div class="label">Subtotaal</div>
 
-        <div class="value">{{ cart.totals.total_items }}</div>
+        <div class="value">{{ $n(cart.prices.totalItems, 'currency') }}</div>
 
         <div class="label">Verzenden</div>
-        <div class="value">{{ cart.totals.total_shipping }}</div>
+        <div class="value">{{ $n(cart.prices.totalShipping, 'currency') }}</div>
         <div class="label">Totaal</div>
         <div class="value">
-          {{ cart.totals.total_price }} (inclusief
-          <span v-if="cart.totals.tax_lines.length">
-            {{ cart.totals.tax_lines[0].price }} BTW
-            {{ cart.totals.tax_lines[0].rate }})
-          </span>
+          {{ $n(cart.prices.totalPrice, 'currency') }} (inclusief
+          {{ $n(cart.prices.totalTax, 'currency') }} BTW)
         </div>
       </div>
 
