@@ -50,7 +50,14 @@ const { execute, status, error } = useFetch('/api/checkout/checkout', {
   watch: false,
   immediate: false,
   transform: (response) => {
-    cartState.value = response
+    if (!cartState.value) {
+      return
+    }
+    cartState.value.billing_address = response.billing_address
+    cartState.value.shipping_address = response.shipping_address
+
+    Object.assign(billing, response.billing_address)
+    Object.assign(shipping, response.shipping_address)
   },
 })
 

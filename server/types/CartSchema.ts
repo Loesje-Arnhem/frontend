@@ -201,3 +201,19 @@ export const CartSchema = z.object({
   items_weight: z.number(),
   payment_methods: z.array(z.string()),
 })
+
+export const CheckoutSchema = z.object({
+  order_id: z.number(),
+  status: z.string(),
+  order_key: z.string(),
+  customer_note: z.string(),
+  customer_id: z.number(),
+  shipping_address: ShippingAdressSchema,
+  billing_address: BillingAdressSchema,
+  payment_method: z.string(),
+  payment_result: z.object({
+    payment_status: z.string(),
+    payment_details: z.array(z.unknown()),
+    redirect_url: z.string(),
+  }),
+})

@@ -1,0 +1,40 @@
+import { z } from 'zod'
+
+export const schema = z.object({
+  order_id: z.number(),
+  status: z.string(),
+  order_key: z.string(),
+  customer_note: z.string(),
+  customer_id: z.number(),
+  billing_address: z.object({
+    first_name: z.string(),
+    last_name: z.string(),
+    company: z.string(),
+    address_1: z.string(),
+    address_2: z.string(),
+    city: z.string(),
+    state: z.string(),
+    postcode: z.string(),
+    country: z.string(),
+    email: z.string(),
+    phone: z.string(),
+  }),
+  shipping_address: z.object({
+    first_name: z.string(),
+    last_name: z.string(),
+    company: z.string(),
+    address_1: z.string(),
+    address_2: z.string(),
+    city: z.string(),
+    state: z.string(),
+    postcode: z.string(),
+    country: z.string(),
+    phone: z.string(),
+  }),
+  payment_method: z.string(),
+  payment_result: z.object({
+    payment_status: z.string(),
+    payment_details: z.array(z.unknown()),
+    redirect_url: z.string(),
+  }),
+})

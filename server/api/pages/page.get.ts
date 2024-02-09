@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
     id: query.data.id,
     image: true,
     type: 'pages',
-    fields: ['title', 'content', 'yoast_head_json', 'parent', 'acf'],
+    fields: ['title', 'content', 'yoast_head_json', 'parent', 'acf', 'excerpt'],
   })
   let response: ResponsePage | null = null
   if (query.data.slug) {
@@ -45,6 +45,7 @@ export default defineEventHandler(async (event) => {
       id: response.id,
       parentId: response.parent || response.id,
       title: response.title.rendered,
+      excerpt: response.excerpt.rendered,
       content: response.content.rendered,
       seo: response.yoast_head_json,
       relatedProducts: getRelatedProducts(response),

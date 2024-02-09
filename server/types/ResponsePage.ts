@@ -1,5 +1,5 @@
 import { type SEO } from '~~/types/SEO'
-import { type ResponseImage } from './ResponseImage'
+import { type ResponseImageType } from './ResponseImage'
 import { type ResponseRelatedPoster } from './ResponseRelatedPoster'
 import { type ResponseRelatedProduct } from './ResponseRelatedProduct'
 
@@ -9,6 +9,9 @@ export type ResponsePage = {
     rendered: string
   }
   content: {
+    rendered: string
+  }
+  excerpt: {
     rendered: string
   }
   parent: number
@@ -23,6 +26,6 @@ export type ResponsePage = {
     related_products_products: ResponseRelatedProduct[] | false
   }
   _embedded: {
-    'wp:featuredmedia'?: ResponseImage[]
+    'wp:featuredmedia'?: ResponseImageType[]
   }
 }
