@@ -58,6 +58,8 @@ export const createCart = (response: unknown) => {
       }
     }),
     itemsCount: data.items_count,
+    shipping_address: data.shipping_address,
+    billing_address: data.billing_address,
   }
   return cart
 }

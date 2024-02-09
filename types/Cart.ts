@@ -40,4 +40,6 @@ export type Cart = {
   paymentMethods: string[]
   coupons: Coupon[]
   itemsCount: number
+  shipping_address: ShippingAddress
+  billing_address: BillingAdress
 }

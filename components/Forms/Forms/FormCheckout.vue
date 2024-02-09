@@ -54,36 +54,10 @@ const { execute, status, error } = useFetch('/api/checkout/checkout', {
   },
 })
 
-onMounted(() => {
-  if (!cartState.value) {
-    return
-  }
+if (cartState.value) {
   Object.assign(billing, cartState.value.billing_address)
   Object.assign(shipping, cartState.value.shipping_address)
-
-  billing.first_name = 'first_name'
-  billing.last_name = 'last_name'
-  billing.company = 'company'
-  billing.address_1 = 'address_1'
-  billing.address_2 = 'address_2'
-  billing.city = 'city'
-  billing.state = 'state'
-  billing.postcode = 'postcode'
-  billing.country = 'DE'
-  billing.email = 'email@michielkoning.nl'
-  billing.phone = 'phone'
-
-  shipping.first_name = 'first_name'
-  shipping.last_name = 'last_name'
-  shipping.company = 'company'
-  shipping.address_1 = 'address_1'
-  shipping.address_2 = 'address_2'
-  shipping.city = 'city'
-  shipping.state = 'state'
-  shipping.postcode = 'postcode'
-  shipping.country = 'DE'
-  shipping.phone = 'phone'
-})
+}
 </script>
 
 <template>
