@@ -7,6 +7,7 @@
       class="btn-store"
       rel="noopener"
     >
+      <span class="sr-only">Bekijk de Posters App in de App Store</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 119.664 40"
