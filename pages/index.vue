@@ -24,6 +24,7 @@ if (!data.value) {
 
 useMeta({
   title: 'Blijf plakken',
+  description: data.value.description,
 })
 </script>
 

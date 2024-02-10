@@ -7,6 +7,7 @@ const props = defineProps<{
 
 const activeItemIndex = ref(0)
 const list = ref<HTMLUListElement | null>(null)
+const shouldAnimate = ref(true)
 
 const previousSlideEnabled = computed(() => {
   return activeItemIndex.value > 0
@@ -23,6 +24,10 @@ const goToPreviousSlide = () => {
 const goToNextSlide = () => {
   if (!nextSlideEnabled.value) return
   activeItemIndex.value = activeItemIndex.value + 1
+}
+
+const goToSlide = (index: number) => {
+  activeItemIndex.value = index
 }
 
 const navigateByKeyboard = (event: KeyboardEvent) => {
@@ -51,20 +56,26 @@ const getActiveSlidePosition = () => {
 }
 
 watch(activeItemIndex, () => {
+  if (!shouldAnimate.value) {
+    return
+  }
   scrollToSelectedSlide()
+  shouldAnimate.value = false
+
+  setTimeout(() => {
+    shouldAnimate.value = true
+  }, 300)
 })
 
 const scrollToSelectedSlide = () => {
-  nextTick(() => {
-    if (!list.value) {
-      return
-    }
+  if (!list.value) {
+    return
+  }
 
-    list.value.scrollTo({
-      top: 0,
-      left: getActiveSlidePosition(),
-      behavior: 'smooth',
-    })
+  list.value.scrollTo({
+    top: 0,
+    left: getActiveSlidePosition(),
+    behavior: 'smooth',
   })
 }
 
@@ -100,7 +111,7 @@ onUnmounted(() => {
     <image-carousel-thumbs
       :images="images"
       :active-item-index="activeItemIndex"
-      @update-active-card-index="(value) => (activeItemIndex = value)"
+      @update-active-card-index="(value) => goToSlide(value)"
     />
   </div>
 </template>

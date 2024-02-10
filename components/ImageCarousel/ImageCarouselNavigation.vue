@@ -34,6 +34,10 @@ defineEmits(['next', 'previous'])
   margin-top: -0.75em;
   touch-action: manipulation;
   z-index: 9;
+
+  &[disabled] {
+    opacity: 0.5;
+  }
 }
 
 .btn-next {

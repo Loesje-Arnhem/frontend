@@ -33,7 +33,7 @@ if (!data.value) {
 
 useMeta({
   title: data.value.title,
-  description: data.value.excerpt,
+  description: data.value.description,
 })
 
 const relatedPagesParentId = computed(() => {

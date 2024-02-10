@@ -35,6 +35,7 @@ export type IPage = IBase & {
   parentId: number
   content: string
   seo: ISEO
+  description: string
   youtubeId?: string
   featuredImage?: FeaturedImage
   relatedPosters: IRelatedPosters

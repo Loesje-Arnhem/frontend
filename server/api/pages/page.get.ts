@@ -1,6 +1,7 @@
 import { type IPage } from '~~/types/Content'
 import { type ResponsePage } from '~/server/types/ResponsePage'
 import { z } from 'zod'
+import { stripHtmlTags } from '~/server/utils/stripHtmlTags'
 
 const querySchema = z.object({
   slug: z.string().optional(),
@@ -45,7 +46,7 @@ export default defineEventHandler(async (event) => {
       id: response.id,
       parentId: response.parent || response.id,
       title: response.title.rendered,
-      excerpt: response.excerpt.rendered,
+      description: stripHtmlTags(response.excerpt.rendered),
       content: response.content.rendered,
       seo: response.yoast_head_json,
       relatedProducts: getRelatedProducts(response),
