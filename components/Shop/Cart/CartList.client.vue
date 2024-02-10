@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 const cart = useCartState()
 const localePath = useLocalePath()
+
+const loading = ref(false)
 </script>
 
 <template>
@@ -18,10 +20,14 @@ const localePath = useLocalePath()
           </tr>
         </thead>
         <tbody>
+          {{
+            loading
+          }}
           <cart-list-item
             v-for="item in cart.items"
             :key="item.key"
             :item="item"
+            @is-loading="(value) => (loading = value)"
           />
         </tbody>
       </table>
@@ -53,7 +59,11 @@ const localePath = useLocalePath()
           />
         </ul>
         <form-coupon v-else />
-        <app-button v-if="cart" :to="localePath({ name: 'shop-checkout' })">
+        <app-button
+          v-if="cart"
+          :to="localePath({ name: 'shop-checkout' })"
+          :loading="loading"
+        >
           Doorgaan met afrekenen
         </app-button>
       </div>

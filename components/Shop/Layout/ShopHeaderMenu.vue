@@ -7,11 +7,6 @@ const { totalProducts } = useCart()
   <nav class="nav">
     <ul class="list">
       <li>
-        <nuxt-link :to="localePath({ name: 'shop-account' })">
-          Mijn account
-        </nuxt-link>
-      </li>
-      <li>
         <nuxt-link :to="localePath({ name: 'shop-cart' })">
           Winkelwagen
           <client-only>

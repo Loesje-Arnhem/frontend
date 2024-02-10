@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { IProduct } from '~/types/Content'
+import type { Option } from '~/types/Option'
 const props = defineProps<{
   product: IProduct
 }>()
@@ -10,37 +11,41 @@ type Attribute = {
 }
 
 const cartState = useCartState()
-
 const localPath = useLocalePath()
 
 const quantity = ref(1)
 const selectedAttributes = ref<Attribute[]>([])
+const pending = ref(false)
+const errorMessage = ref<string | null>(null)
 
-const { execute, status, error } = useFetch('/api/cart/addItem', {
-  method: 'POST',
-  body: {
-    id: props.product.id,
-    quantity: quantity,
-    variation: selectedAttributes,
-  },
-  watch: false,
-  immediate: false,
-  transform: async (response) => {
+const addToCart = async () => {
+  pending.value = true
+  errorMessage.value = null
+
+  try {
+    const response = await $fetch('/api/cart/addItem', {
+      method: 'POST',
+      body: {
+        id: props.product.id,
+        quantity: quantity.value,
+        variation: selectedAttributes.value,
+      },
+    })
     cartState.value = response
     await navigateTo(
       localPath({
         name: 'shop-cart',
       }),
     )
-  },
-})
+  } catch (error: any) {
+    errorMessage.value = error.statusMessage
+  } finally {
+    pending.value = false
+  }
+}
 
 const updateSelectedAttribute = (index: number, value: string) => {
   selectedAttributes.value[index].value = value
-}
-
-const addToCart = async () => {
-  await execute()
 }
 
 onMounted(() => {
@@ -50,6 +55,14 @@ onMounted(() => {
       value: a.terms[0].slug,
     }
   })
+})
+
+const options: Option[] = [...Array(10).keys()].map((index) => {
+  const amount = index + 1
+  return {
+    value: amount,
+    title: amount.toString(),
+  }
 })
 </script>
 
@@ -61,15 +74,21 @@ onMounted(() => {
       :regular-price="product.regularPrice"
       class="price"
     />
-    <form class="form" @submit.prevent="addToCart">
+    <app-form
+      class="form"
+      :error="errorMessage"
+      button-title="In winkelmandje"
+      :loading="pending"
+      @submit="addToCart"
+    >
       <form-fieldset title="In winkelmandje">
-        <input-text-field
+        <select-field
           id="quantity"
           v-model="quantity"
+          class="select"
+          :name="quantity"
+          :options="options"
           title="Aantal"
-          type="number"
-          class="quantity"
-          name="quantity"
         />
         <div
           v-if="
@@ -96,15 +115,7 @@ onMounted(() => {
           </div>
         </div>
       </form-fieldset>
-      <app-button
-        type="submit"
-        class="btn-add-to-cart"
-        :loading="status === 'pending'"
-      >
-        In winkelmandje
-      </app-button>
-      <form-error-message :error="error?.statusMessage" />
-    </form>
+    </app-form>
   </div>
 </template>
 
@@ -112,7 +123,6 @@ onMounted(() => {
 .form {
   & :deep(.fields) {
     grid-gap: 0.5em;
-    margin-bottom: 0.5em;
   }
 
   & :deep(.field) {
@@ -123,6 +133,10 @@ onMounted(() => {
 
   & :deep(legend) {
     @mixin sr-only;
+  }
+  & :deep(button) {
+    width: 100%;
+    max-width: none;
   }
 }
 
@@ -137,10 +151,5 @@ onMounted(() => {
 .wrapper {
   padding: 0.5em 1em 1em;
   background: #eee;
-}
-
-.btn-add-to-cart {
-  width: 100%;
-  max-width: none;
 }
 </style>

@@ -2,38 +2,49 @@
 import { useVuelidate } from '@vuelidate/core'
 
 const formData = reactive({
-  code: 'jorrit1zz0',
+  code: '',
 })
 
+const pending = ref(false)
+const errorMessage = ref<string | null>(null)
 const cartState = useCartState()
-const { execute, status, error } = useFetch('/api/coupons/add', {
-  method: 'POST',
-  body: formData,
-  watch: false,
-  immediate: false,
-  transform: (response) => {
-    cartState.value = response
-  },
-})
 
-const { required, email } = useValidators()
+const { required } = useValidators()
 
 const rules = {
-  code: { required, email },
+  code: { required },
 }
 
 const v$ = useVuelidate(rules, formData)
 
 const submit = async () => {
-  await execute()
+  const isFormCorrect = await v$.value.$validate()
+  if (!isFormCorrect) {
+    return
+  }
+
+  pending.value = true
+  errorMessage.value = null
+
+  try {
+    const response = await $fetch('/api/coupons/add', {
+      method: 'POST',
+      body: formData,
+    })
+    cartState.value = response
+  } catch (error: any) {
+    errorMessage.value = error.statusMessage
+  } finally {
+    pending.value = false
+  }
 }
 </script>
 
 <template>
   <app-form
-    :loading="status === 'pending'"
+    :loading="pending"
     button-title="Waardebon toepassen"
-    :error="error?.statusMessage"
+    :error="errorMessage"
     @submit="submit"
   >
     <form-fieldset title="Coupon">

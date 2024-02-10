@@ -2,39 +2,38 @@
 import type { Option } from '~/types/Option'
 import type { CartItem } from '~/types/Cart'
 
+const emit = defineEmits(['is-loading'])
+
 const props = defineProps<{
   item: CartItem
 }>()
 
 const loading = ref(false)
+
 const quantity = toRef(props.item.quantity)
 
+const errorMessage = ref<string | null>(null)
 const cartState = useCartState()
 
-useFetch('/api/cart/updateItem', {
-  method: 'POST',
-  body: {
-    key: props.item.key,
-    quantity: quantity,
-  },
+const updateQuantity = async () => {
+  emit('is-loading', true)
+  errorMessage.value = null
 
-  immediate: false,
-  transform: (response) => {
+  try {
+    const response = await $fetch('/api/cart/updateItem', {
+      method: 'POST',
+      body: {
+        key: props.item.key,
+        quantity: quantity.value,
+      },
+    })
     cartState.value = response
-  },
-})
-
-const { execute } = useFetch('/api/cart/removeItem', {
-  method: 'POST',
-  body: {
-    key: props.item.key,
-  },
-
-  immediate: false,
-  transform: (response) => {
-    cartState.value = response
-  },
-})
+  } catch (error: any) {
+    errorMessage.value = error.statusMessage
+  } finally {
+    emit('is-loading', false)
+  }
+}
 
 const max = props.item.quantityMax < 10 ? props.item.quantityMax : 9
 
@@ -47,7 +46,23 @@ const options: Option[] = [...Array(max).keys()].map((index) => {
 })
 
 const removeItemFromCard = async () => {
-  await execute()
+  emit('is-loading', true)
+
+  errorMessage.value = null
+
+  try {
+    const response = await $fetch('/api/cart/removeItem', {
+      method: 'POST',
+      body: {
+        key: props.item.key,
+      },
+    })
+    cartState.value = response
+  } catch (error: any) {
+    errorMessage.value = error.statusMessage
+  } finally {
+    emit('is-loading', false)
+  }
 }
 </script>
 
@@ -79,6 +94,7 @@ const removeItemFromCard = async () => {
         :name="`quantity-${item.id}`"
         :options="options"
         title="Aantal"
+        @change="updateQuantity"
       />
     </td>
     <td class="price">

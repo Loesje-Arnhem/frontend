@@ -1,7 +1,6 @@
+await navigateTo(response.payment_result.redirect_url)
 <script setup lang="ts">
 import type { BillingAdress, ShippingAddress } from '~/types/Cart'
-
-const cartState = useCartState()
 
 const billing = reactive<BillingAdress>({
   first_name: '',
@@ -30,48 +29,60 @@ const shipping = reactive<ShippingAddress>({
   phone: '',
 })
 
-const errors = ref([])
 const shipToDifferentAddress = ref(false)
 const addToNewsletter = ref(false)
 const paymentMethod = ref('')
 
+const cartState = useCartState()
+
 const houseNumberSuffix = ref('')
 
-const submit = async () => {
-  await execute()
-}
+const pending = ref(false)
+const errorMessage = ref<string | null>(null)
 
-const { execute, status, error } = useFetch('/api/checkout/checkout', {
-  method: 'POST',
-  body: {
-    shipping_address: shipping,
-    billing_address: billing,
-  },
-  watch: false,
-  immediate: false,
-  transform: (response) => {
+const submit = async () => {
+  pending.value = true
+  errorMessage.value = null
+
+  try {
+    const response = await $fetch('/api/checkout/checkout', {
+      method: 'POST',
+      body: {
+        shipping_address: shipping,
+        billing_address: billing,
+        payment_method: paymentMethod.value,
+      },
+    })
+
     if (!cartState.value) {
       return
     }
+
     cartState.value.billing_address = response.billing_address
     cartState.value.shipping_address = response.shipping_address
 
     Object.assign(billing, response.billing_address)
     Object.assign(shipping, response.shipping_address)
-  },
-})
+
+    await navigateTo(response.payment_result.redirect_url, { external: true })
+  } catch (error: any) {
+    errorMessage.value = error.statusMessage
+  } finally {
+    pending.value = false
+  }
+}
 
 if (cartState.value) {
-  Object.assign(billing, cartState.value.billing_address)
-  Object.assign(shipping, cartState.value.shipping_address)
+  // Object.assign(billing, cartState.value.billing_address)
+  // Object.assign(shipping, cartState.value.shipping_address)
 }
 </script>
 
 <template>
   <app-form
     button-title="Bestelling plaatsen"
-    :loading="status === 'pending'"
-    :error="errors.join('')"
+    :loading="pending"
+    :error="errorMessage"
     @submit="submit"
   >
     <personal-info-fields

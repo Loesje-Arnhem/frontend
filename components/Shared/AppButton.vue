@@ -53,6 +53,8 @@ const generatedType = computed(() => {
 
 <template>
   <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
+    <app-loader v-if="loading" class="loader" />
+
     <span class="title"><slot /></span>
   </nuxt-link>
 
