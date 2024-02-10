@@ -1,5 +1,6 @@
 await navigateTo(response.payment_result.redirect_url)
 <script setup lang="ts">
+import useVuelidate from '@vuelidate/core'
 import type { BillingAdress, ShippingAddress } from '~/types/Cart'
 
 const billing = reactive<BillingAdress>({
@@ -29,6 +30,8 @@ const shipping = reactive<ShippingAddress>({
   phone: '',
 })
 
+const v$ = useVuelidate()
+
 const shipToDifferentAddress = ref(false)
 const addToNewsletter = ref(false)
 const paymentMethod = ref('')
@@ -41,6 +44,11 @@ const pending = ref(false)
 const errorMessage = ref<string | null>(null)
 
 const submit = async () => {
+  const isFormCorrect = await v$.value.$validate()
+  if (!isFormCorrect) {
+    return
+  }
+
   pending.value = true
   errorMessage.value = null
 
@@ -51,6 +59,7 @@ const submit = async () => {
         shipping_address: shipping,
         billing_address: billing,
         payment_method: paymentMethod.value,
+        shipToDifferentAddress: shipToDifferentAddress.value,
       },
     })
 
@@ -64,7 +73,7 @@ const submit = async () => {
     Object.assign(billing, response.billing_address)
     Object.assign(shipping, response.shipping_address)
 
-    await navigateTo(response.payment_result.redirect_url, { external: true })
+    // await navigateTo(response.payment_result.redirect_url, { external: true })
   } catch (error: any) {
     errorMessage.value = error.statusMessage
   } finally {
@@ -73,8 +82,8 @@ const submit = async () => {
 }
 
 if (cartState.value) {
-  // Object.assign(billing, cartState.value.billing_address)
-  // Object.assign(shipping, cartState.value.shipping_address)
+  Object.assign(billing, cartState.value.billing_address)
+  Object.assign(shipping, cartState.value.shipping_address)
 }
 </script>
 

@@ -20,9 +20,6 @@ const loading = ref(false)
           </tr>
         </thead>
         <tbody>
-          {{
-            loading
-          }}
           <cart-list-item
             v-for="item in cart.items"
             :key="item.key"

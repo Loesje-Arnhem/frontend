@@ -160,10 +160,10 @@ onMounted(() => {
           <input-text-field
             id="total-attendees"
             v-model.number="formData.totalAttendees"
-            type="number"
             min="1"
             :errors="v$.totalAttendees.$errors"
             title="Hoeveel deelnemers verwacht je?"
+            inputmode="numeric"
           />
 
           <input-text-field
@@ -176,10 +176,10 @@ onMounted(() => {
           <input-text-field
             id="total-workshops"
             v-model.number="formData.totalWorkshops"
-            type="number"
             min="1"
             :errors="v$.totalWorkshops.$errors"
             title="Hoeveel workshops wil je aanvragen?"
+            inputmode="numeric"
           />
 
           <input-text-field

@@ -9,6 +9,7 @@ const bodySchema = z.object({
   billing_address: BillingAdressSchema,
   shipping_address: ShippingAdressSchema,
   payment_method: z.string(),
+  shipToDifferentAddress: z.boolean(),
 })
 
 export default defineEventHandler(async (event) => {
@@ -27,8 +28,24 @@ export default defineEventHandler(async (event) => {
 
   const cookies = parseCookies(event)
 
-  const { shipping_address, billing_address, payment_method } = formData.data
+  const {
+    shipping_address,
+    billing_address,
+    payment_method,
+    shipToDifferentAddress,
+  } = formData.data
 
+  if (!shipToDifferentAddress) {
+    shipping_address.first_name = billing_address.first_name
+    shipping_address.last_name = billing_address.last_name
+    shipping_address.company = billing_address.company
+    shipping_address.address_1 = billing_address.address_1
+    shipping_address.address_2 = billing_address.address_2
+    shipping_address.city = billing_address.city
+    shipping_address.state = billing_address.state
+    shipping_address.postcode = billing_address.postcode
+    shipping_address.country = billing_address.country
+  }
   try {
     const response = await $fetch(`${woocommerceApiUrl}checkout`, {
       body: {
@@ -44,7 +61,6 @@ export default defineEventHandler(async (event) => {
           postcode: billing_address.postcode,
           country: billing_address.country,
           email: billing_address.email,
-          phone: '0123123',
         },
         shipping_address: {
           first_name: shipping_address.first_name,
@@ -56,7 +72,6 @@ export default defineEventHandler(async (event) => {
           state: shipping_address.state,
           postcode: shipping_address.postcode,
           country: shipping_address.country,
-          phone: shipping_address.phone,
         },
       },
       method: 'POST',
@@ -80,7 +95,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     throw createError({
       statusCode: 400,
-      statusMessage: error.data.message + '---',
+      statusMessage: error.data.message,
     })
   }
 })

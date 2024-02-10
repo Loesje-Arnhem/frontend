@@ -27,34 +27,30 @@ const getDate = () => {
 
 const poster = ref<FeaturedImage | null>(null)
 
-const { execute } = useFetch('/api/posters/daily-poster', {
-  immediate: false,
-  watch: false,
-  transform: async (value) => {
-    poster.value = value
-    await localStorage.setItem(
-      'daily-poster',
-      JSON.stringify({
-        ...value,
-        date: getDate(),
-      }),
-    )
-  },
-})
+const fetchDailyPoster = async () => {
+  const response = await $fetch('/api/posters/daily-poster')
+  poster.value = response
+  await localStorage.setItem(
+    'daily-poster',
+    JSON.stringify({
+      ...response,
+      date: getDate(),
+    }),
+  )
+}
 
 onMounted(async () => {
-  // const posterFromStorage = await localStorage.getItem('daily-poster')
-  // if (posterFromStorage) {
-  //   const parsedData = JSON.parse(posterFromStorage)
-  //   if (parsedData.date === getDate()) {
-  //     poster.value = parsedData
-  //   } else {
-  //     execute()
-  //   }
-  // } else {
-  //   execute()
-  // }
-  execute()
+  const posterFromStorage = await localStorage.getItem('daily-poster')
+  if (posterFromStorage) {
+    const parsedData = JSON.parse(posterFromStorage)
+    if (parsedData.date === getDate()) {
+      poster.value = parsedData
+    } else {
+      await fetchDailyPoster()
+    }
+  } else {
+    await fetchDailyPoster()
+  }
 })
 </script>
 

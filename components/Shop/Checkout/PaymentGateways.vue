@@ -10,12 +10,17 @@ withDefaults(
     errors: () => [],
   },
 )
+const emit = defineEmits(['update:modelValue'])
 
 const { data } = await useAsyncData(`payment-gateways`, () =>
   $fetch('/api/store/payment-gateways'),
 )
 
-defineEmits(['update:modelValue'])
+onMounted(() => {
+  if (data.value?.length) {
+    emit('update:modelValue', data.value[0].id)
+  }
+})
 </script>
 
 <template>

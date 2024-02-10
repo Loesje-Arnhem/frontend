@@ -27,11 +27,36 @@ const props = defineProps<{
 
 const formData = toRefs(props)
 
+const pending = ref(false)
+const errorMessage = ref<string | null>(null)
+
 const fetchAdress = async () => {
+  emits('update:city', '')
+  emits('update:street', '')
+
   if (v$.value.postcode.$invalid || v$.value.houseNumber.$invalid) {
     return
   }
-  await execute()
+
+  pending.value = true
+  errorMessage.value = null
+
+  try {
+    const response = await $fetch('/api/address', {
+      params: {
+        postcode: formData.postcode.value,
+        houseNumber: formData.houseNumber.value,
+        houseNumberSuffix: formData.houseNumberSuffix.value,
+      },
+    })
+
+    emits('update:city', response.city)
+    emits('update:street', response.street)
+  } catch (error: any) {
+    errorMessage.value = error.statusMessage
+  } finally {
+    pending.value = false
+  }
 }
 
 const { required, numeric } = useValidators()
@@ -43,20 +68,6 @@ const rules = {
   street: { required },
 }
 const v$ = useVuelidate(rules, props)
-
-const { execute, error } = useFetch('/api/address', {
-  params: {
-    postcode: formData.postcode,
-    houseNumber: formData.houseNumber,
-    houseNumberSuffix: formData.houseNumberSuffix,
-  },
-  immediate: false,
-  watch: false,
-  onResponse: ({ response }) => {
-    emits('update:city', response._data.city)
-    emits('update:street', response._data.street)
-  },
-})
 
 const { data } = await useAsyncData('countries', async () => {
   const response = await $fetch('/api/store/countries')
@@ -70,7 +81,7 @@ const { data } = await useAsyncData('countries', async () => {
 })
 
 const streetFieldsAreReadonly = computed(() => {
-  if (props.country === 'NL' && !error.value) {
+  if (props.country === 'NL' && !errorMessage.value) {
     return 'readonly'
   }
   return undefined
@@ -113,6 +124,7 @@ const streetFieldsAreReadonly = computed(() => {
         name="house-number"
         :errors="v$.houseNumber.$errors"
         autocomplete="house-number"
+        inputmode="numeric"
         @input="$emit('update:house-number', $event.target.value)"
         @blur="fetchAdress"
       />
@@ -191,11 +203,7 @@ const streetFieldsAreReadonly = computed(() => {
       />
     </div>
 
-    <form-error-message
-      v-if="error?.statusMessage"
-      class="error-message"
-      :error="$t(error.statusMessage)"
-    />
+    <form-error-message class="error-message" :error="errorMessage" />
   </form-fieldset>
 </template>
 

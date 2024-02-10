@@ -5,24 +5,27 @@ const props = defineProps<{
   coupon: Coupon
 }>()
 
+const pending = ref(false)
+const errorMessage = ref<string | null>(null)
 const cartState = useCartState()
 
-const { data, execute, status } = useFetch('/api/coupons/remove', {
-  method: 'DELETE',
-  body: {
-    code: props.coupon.code,
-  },
-
-  immediate: false,
-  transform: (response) => {
-    cartState.value = response
-  },
-})
-
-// const { mutate } = useRemoveCoupon()
-
 const removeCoupon = async () => {
-  await execute()
+  pending.value = true
+  errorMessage.value = null
+
+  try {
+    const response = await $fetch('/api/coupons/remove', {
+      method: 'DELETE',
+      body: {
+        code: props.coupon.code,
+      },
+    })
+    cartState.value = response
+  } catch (error: any) {
+    errorMessage.value = error.statusMessage
+  } finally {
+    pending.value = false
+  }
 }
 </script>
 
