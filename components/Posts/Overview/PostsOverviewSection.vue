@@ -12,16 +12,15 @@ const props = withDefaults(
 
 const page = ref(1)
 const posts = ref<IPostListItem[]>([])
-const hasNextPage = ref(false)
 
-const { pending } = useFetch('/api/posts/posts', {
+const { pending, data } = useFetch('/api/posts/posts', {
   query: {
     exclude: props.exclude.toString(),
     page,
   },
   transform(response) {
-    hasNextPage.value = response.hasNextPage
     posts.value = [...posts.value, ...response.items]
+    return response
   },
 })
 
@@ -32,7 +31,7 @@ const loadMore = () => {
 
 <template>
   <section
-    v-if="posts.length"
+    v-if="data"
     class="posts-overview"
     aria-labelledby="posts-overview-title"
   >
@@ -46,7 +45,7 @@ const loadMore = () => {
         </template>
       </h1>
       <posts-overview-list :posts="posts" />
-      <center-wrapper v-if="hasNextPage">
+      <center-wrapper v-if="data.hasNextPage">
         <load-more-by-click :loading="pending" @load-more="loadMore" />
       </center-wrapper>
     </center-wrapper>
