@@ -30,7 +30,13 @@ if (!data.value) {
 
 useMeta({
   title: data.value.title,
-  description: data.value.description,
+  description: data.value.excerpt,
+})
+
+defineProduct({
+  name: data.value.title,
+  offers: [{ price: data.value.price }],
+  description: data.value.excerpt,
 })
 </script>
 

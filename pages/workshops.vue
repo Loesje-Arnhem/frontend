@@ -24,6 +24,7 @@ if (!data.value) {
 useMeta({
   title: data.value.title,
   description: data.value.description,
+  image: data.value.featuredImage,
 })
 </script>
 

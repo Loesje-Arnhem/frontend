@@ -29,5 +29,9 @@ export const useMeta = ({
     defineWebPage({
       description,
     }),
+    defineImage({
+      contentUrl: image?.src,
+      caption: image?.alt,
+    }),
   ])
 }
