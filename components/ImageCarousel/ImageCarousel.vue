@@ -64,7 +64,7 @@ watch(activeItemIndex, () => {
 
   setTimeout(() => {
     shouldAnimate.value = true
-  }, 300)
+  }, 500)
 })
 
 const scrollToSelectedSlide = () => {
@@ -92,7 +92,8 @@ onUnmounted(() => {
   <div>
     <div class="wrapper">
       <div class="tile">
-        <ul ref="list" class="list">
+        {{ shouldAnimate }}
+        <ul ref="list" class="list" @scrollend="shouldAnimate = true">
           <image-carousel-card
             v-for="(image, index) in images"
             :key="image.src"

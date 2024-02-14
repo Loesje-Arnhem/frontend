@@ -8,7 +8,7 @@ defineProps<{
 const $emits = defineEmits(['is-active'])
 
 const item: Ref<HTMLLIElement | null> = ref(null)
-const threshold = 0.7
+const threshold = 1
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
