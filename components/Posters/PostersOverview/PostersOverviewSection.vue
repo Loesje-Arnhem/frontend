@@ -25,56 +25,73 @@ const props = withDefaults(
   },
 )
 
-const page = ref(1)
-const posters = ref<IPosterListItem[]>([])
-const hasNextPage = ref(false)
-const isLoading = ref(false)
+const posterDateAfterProp = toRef(props, 'dateAfter')
+const posterDateBeforeProp = toRef(props, 'dateBefore')
+const searchProp = toRef(props, 'search')
+const subjectIdsProp = computed(() => props.subjectIds.join(','))
+const sourceIdsProp = computed(() => props.sourceIds.join(','))
 
-const fetchPosters = async () => {
-  isLoading.value = true
-  const response = await $fetch('/api/posters/posters', {
-    query: {
-      subjectIds: props.subjectIds.join(','),
-      sourceIds: props.sourceIds.join(','),
-      include: props.include,
-      dateAfter: props.dateAfter,
-      dateBefore: props.dateBefore,
-      exclude: props.exclude,
-      search: props.search,
-      page: page.value,
-    },
-  })
-  posters.value = [...posters.value, ...response.items]
-  hasNextPage.value = response.hasNextPage
-  isLoading.value = false
-}
-await fetchPosters()
+const page = ref(1)
+
+const { pending, data, refresh } = useFetch('/api/posters/posters', {
+  query: {
+    subjectIds: subjectIdsProp,
+    sourceIds: sourceIdsProp,
+    include: props.include,
+    dateAfter: posterDateAfterProp,
+    dateBefore: posterDateBeforeProp,
+    exclude: props.exclude,
+    search: searchProp,
+    page,
+  },
+  watch: false,
+  transform(response) {
+    if (!data.value) {
+      return response
+    }
+
+    if (page.value === 1) {
+      return response
+    }
+
+    const items: {
+      items: IPosterListItem[]
+      hasNextPage: boolean
+    } = {
+      items: [...data.value.items, ...response.items],
+      hasNextPage: response.hasNextPage,
+    }
+    return items
+  },
+})
 
 watch(
   [
-    () => props.search,
-    () => props.sourceIds,
-    () => props.subjectIds,
-    () => props.dateAfter,
-    () => props.dateBefore,
+    subjectIdsProp,
+    sourceIdsProp,
+    posterDateAfterProp,
+    posterDateBeforeProp,
+    searchProp,
   ],
   async () => {
-    posters.value = []
-    hasNextPage.value = false
+    data.value = null
     page.value = 1
-    await fetchPosters()
+    refresh()
   },
 )
 
 const loadMore = async () => {
   page.value = page.value + 1
-  await fetchPosters()
+  refresh()
 }
 </script>
 
 <template>
-  <app-loader v-if="isLoading && !posters.length" />
-  <section v-else-if="posters.length" aria-labelledby="posters-overview-title">
+  <app-loader v-if="pending && !data" />
+  <section
+    v-else-if="data?.items.length"
+    aria-labelledby="posters-overview-title"
+  >
     <center-wrapper>
       <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
@@ -85,13 +102,13 @@ const loadMore = async () => {
         </template>
       </h1>
     </center-wrapper>
-    <poster-list :posters="posters" />
-    <center-wrapper v-if="hasNextPage">
-      <load-more-by-scroll :loading="isLoading" @load-more="loadMore" />
+    <poster-list :posters="data.items" />
+    <center-wrapper v-if="data.hasNextPage">
+      <load-more-by-scroll :loading="pending" @load-more="loadMore" />
     </center-wrapper>
   </section>
 
-  <center-wrapper v-else-if="!posters.length && !isLoading">
+  <center-wrapper v-if="!data?.items.length && !pending">
     <p>Geen posters gevonden</p>
   </center-wrapper>
 </template>

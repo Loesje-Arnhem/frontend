@@ -20,7 +20,7 @@ const url = computed(() => {
 <template>
   <clickable-list-item :to="url" class="list-item">
     <h2 class="title">
-      <nuxt-link :to="url" class="link" v-html="post.title" />
+      <nuxt-link :to="url" class="link"><span v-html="post.title" /></nuxt-link>
     </h2>
     <post-date :date="post.date" class="date" />
     <div class="text" v-html="post.excerpt" />
