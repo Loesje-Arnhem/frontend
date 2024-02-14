@@ -25,8 +25,6 @@ const props = withDefaults(
   },
 )
 
-const searchFromProp = toRef(props, 'search')
-
 const page = ref(1)
 const posters = ref<IPosterListItem[]>([])
 const hasNextPage = ref(false)
@@ -42,7 +40,7 @@ const fetchPosters = async () => {
       dateAfter: props.dateAfter,
       dateBefore: props.dateBefore,
       exclude: props.exclude,
-      search: searchFromProp.value,
+      search: props.search,
       page: page.value,
     },
   })
@@ -54,6 +52,7 @@ await fetchPosters()
 
 watch(
   [
+    () => props.search,
     () => props.sourceIds,
     () => props.subjectIds,
     () => props.dateAfter,
@@ -74,8 +73,8 @@ const loadMore = async () => {
 </script>
 
 <template>
-  <!-- <app-loader v-if="pending && !data" /> -->
-  <section v-if="posters.length" aria-labelledby="posters-overview-title">
+  <app-loader v-if="isLoading && !posters.length" />
+  <section v-else-if="posters.length" aria-labelledby="posters-overview-title">
     <center-wrapper>
       <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
@@ -92,7 +91,7 @@ const loadMore = async () => {
     </center-wrapper>
   </section>
 
-  <center-wrapper v-if="!posters.length && !isLoading">
+  <center-wrapper v-else-if="!posters.length && !isLoading">
     <p>Geen posters gevonden</p>
   </center-wrapper>
 </template>

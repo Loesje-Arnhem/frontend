@@ -46,6 +46,7 @@ export type IPost = IBase & {
   seo: ISEO
   date: string
   content: string
+  description: string
   youtubeId?: string
   featuredImage?: FeaturedImage
   relatedPosters: IRelatedPosters

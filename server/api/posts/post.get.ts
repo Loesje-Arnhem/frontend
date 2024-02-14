@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     slug: query.slug?.toString(),
     image: true,
     type: 'posts',
-    fields: ['title', 'content', 'yoast_head_json', 'date', 'acf'],
+    fields: ['title', 'content', 'yoast_head_json', 'date', 'acf', 'excerpt'],
   })
   const response = await $fetch<ResponsePost[]>(url)
 
@@ -27,6 +27,7 @@ export default defineEventHandler(async (event) => {
       title: item.title.rendered,
       content: item.content.rendered,
       seo: item.yoast_head_json,
+      description: stripHtmlTags(item.excerpt.rendered),
       featuredImage,
       youtubeId,
       relatedPosters: getRelatedPosters(item),

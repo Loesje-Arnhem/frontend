@@ -19,7 +19,7 @@ const hasMedia = computed(() => {
     <div class="content-wrapper">
       <article :class="{ 'has-media': hasMedia }">
         <div class="content">
-          <h1>{{ title }}</h1>
+          <h1 v-html="title" />
           <post-date v-if="date" :date="date" class="date" />
           <div class="text" v-html="content" />
         </div>

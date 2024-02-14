@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
     return {
       slug: item.slug,
       title: item.title.rendered,
+
       excerpt: item.excerpt.rendered,
       date: item.date,
     }

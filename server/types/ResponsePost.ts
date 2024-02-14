@@ -1,5 +1,5 @@
 import { type ISEO } from '~~/types/ISEO'
-import { type ResponseImage } from './ResponseImage'
+import { type ResponseImageType } from './ResponseImage'
 import { type ResponseRelatedPoster } from './ResponseRelatedPoster'
 import { type ResponseRelatedProduct } from './ResponseRelatedProduct'
 
@@ -11,10 +11,13 @@ export type ResponsePost = {
   content: {
     rendered: string
   }
+  excerpt: {
+    rendered: string
+  }
   yoast_head_json: ISEO
   date: string
   _embedded: {
-    'wp:featuredmedia'?: ResponseImage[]
+    'wp:featuredmedia'?: ResponseImageType[]
   }
   acf: {
     youtube_id: string
