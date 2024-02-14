@@ -25,11 +25,7 @@ const props = withDefaults(
   },
 )
 
-const posterDateAfter = toRef(props, 'dateAfter')
-const posterDateBefore = toRef(props, 'dateBefore')
 const searchFromProp = toRef(props, 'search')
-const subjectIdsFromProp = computed(() => props.subjectIds.join(','))
-const sourceIdsFromProp = computed(() => props.sourceIds.join(','))
 
 const page = ref(1)
 const posters = ref<IPosterListItem[]>([])
@@ -40,13 +36,11 @@ const fetchPosters = async () => {
   isLoading.value = true
   const response = await $fetch('/api/posters/posters', {
     query: {
-      subjectIds: props.sourceIds,
-      sourceIds: props.sourceIds,
+      subjectIds: props.subjectIds.join(','),
+      sourceIds: props.sourceIds.join(','),
       include: props.include,
-      // posterDateAfter: posterDateAfter.value,pnp
-      // posterDateBefore: posterDateBefore.value,
-      dateAfter: posterDateAfter.value,
-      dateBefore: posterDateBefore.value,
+      dateAfter: props.dateAfter,
+      dateBefore: props.dateBefore,
       exclude: props.exclude,
       search: searchFromProp.value,
       page: page.value,
@@ -58,23 +52,20 @@ const fetchPosters = async () => {
 }
 await fetchPosters()
 
-// const { pending, data } = useFetch('/api/posters/posters', {
-//   query: {
-//     subjectIds: subjectIdsFromProp,
-//     sourceIds: sourceIdsFromProp,
-//     include: props.include,
-//     // posterDateAfter: posterDateAfter.value,pnp
-//     // posterDateBefore: posterDateBefore.value,
-//     dateAfter: posterDateAfter,
-//     dateBefore: posterDateBefore,
-//     exclude: props.exclude,
-//     search: searchFromProp,
-//     page,
-//   },
-//   transform(response) {
-//     posters.value = [...posters.value, ...response.items]
-//   },
-// })
+watch(
+  [
+    () => props.sourceIds,
+    () => props.subjectIds,
+    () => props.dateAfter,
+    () => props.dateBefore,
+  ],
+  async () => {
+    posters.value = []
+    hasNextPage.value = false
+    page.value = 1
+    await fetchPosters()
+  },
+)
 
 const loadMore = async () => {
   page.value = page.value + 1
@@ -96,7 +87,6 @@ const loadMore = async () => {
       </h1>
     </center-wrapper>
     <poster-list :posters="posters" />
-    {{ hasNextPage }}
     <center-wrapper v-if="hasNextPage">
       <load-more-by-scroll :loading="isLoading" @load-more="loadMore" />
     </center-wrapper>
