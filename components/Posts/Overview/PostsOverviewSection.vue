@@ -11,33 +11,36 @@ const props = withDefaults(
 )
 
 const page = ref(1)
-const posts = ref<IPostListItem[]>([])
-const hasNextPage = ref(false)
-const isLoading = ref(false)
 
-const fetchPosts = async () => {
-  isLoading.value = true
-  const response = await $fetch('/api/posts/posts', {
-    query: {
-      exclude: props.exclude,
-      page: page.value,
-    },
-  })
-  posts.value = [...posts.value, ...response.items]
-  hasNextPage.value = response.hasNextPage
-  isLoading.value = false
-}
-await fetchPosts()
+const { pending, data } = useFetch('/api/posts/posts', {
+  query: {
+    exclude: props.exclude.toString(),
+    page,
+  },
+  transform(response) {
+    if (!data.value) {
+      return response
+    }
 
-const loadMore = async () => {
+    const items: {
+      items: IPostListItem[]
+      hasNextPage: boolean
+    } = {
+      items: [...data.value.items, ...response.items],
+      hasNextPage: response.hasNextPage,
+    }
+    return items
+  },
+})
+
+const loadMore = () => {
   page.value = page.value + 1
-  await fetchPosts()
 }
 </script>
 
 <template>
   <section
-    v-if="posts.length"
+    v-if="data?.items.length"
     class="posts-overview"
     aria-labelledby="posts-overview-title"
   >
@@ -50,9 +53,9 @@ const loadMore = async () => {
           {{ $t('posts') }}
         </template>
       </h1>
-      <posts-overview-list :posts="posts" />
-      <center-wrapper v-if="hasNextPage">
-        <load-more-by-click :loading="isLoading" @load-more="loadMore" />
+      <posts-overview-list :posts="data.items" />
+      <center-wrapper v-if="data.hasNextPage">
+        <load-more-by-click :loading="pending" @load-more="loadMore" />
       </center-wrapper>
     </center-wrapper>
   </section>

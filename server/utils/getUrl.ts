@@ -117,6 +117,5 @@ export default ({
     url.searchParams.set('category', categoryId)
   }
 
-  console.log(url.href)
   return url.toString()
 }
