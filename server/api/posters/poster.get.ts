@@ -1,27 +1,25 @@
 import { Taxonomy } from '~~/enums/taxonomy'
 import type { IPoster, ITag } from '~~/types/Content'
-import type { ResponsePoster } from '~/server/types/ResponsePoster'
 import { z } from 'zod'
-
-const querySchema = z.object({
-  slug: z.string(),
-})
+import { PosterQuerySchema, PosterSchema } from '~/server/schemas/PosterSchema'
 
 export default defineEventHandler(async (event) => {
+  const storage = useStorage('redis')
+
   const query = await getValidatedQuery(event, (body) =>
-    querySchema.safeParse(body),
+    PosterQuerySchema.safeParse(body),
   )
 
   if (!query.success) {
     throw query.error.issues
   }
 
-  // const storage = useStorage('redis')
-  // const key = `poster-${query.slug}`
+  const key = getStorageKey(query.data, 'poster')
 
-  // if (await storage.getItem(key)) {
-  //   return await storage.getItem(key)
-  // }
+  if (await storage.getItem(key)) {
+    return await storage.getItem(key)
+  }
+
   const url = getUrl({
     slug: query.data.slug,
     image: true,
@@ -29,9 +27,19 @@ export default defineEventHandler(async (event) => {
     fields: ['title', 'yoast_head_json', 'slug', 'acf'],
   })
 
-  const response = await $fetch<ResponsePoster[]>(url)
-  if (response.length) {
-    const item = response[0]
+  const response = await $fetch(url)
+
+  const parsed = PosterSchema.safeParse(response)
+
+  if (!parsed.success) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Something went wrong',
+    })
+  }
+
+  if (parsed.data.length) {
+    const item = parsed.data[0]
     const featuredImage = getFeaturedImage(
       item._embedded['wp:featuredmedia'],
       item.title.rendered,
@@ -50,6 +58,7 @@ export default defineEventHandler(async (event) => {
     if (item.acf.date) {
       date = new Date(item.acf.date?.replace(pattern, '$1-$2-$3')).toString()
     }
+
     const poster: IPoster = {
       id: item.id,
       title: item.title.rendered,
@@ -59,9 +68,9 @@ export default defineEventHandler(async (event) => {
       subjects,
       slug: item.slug,
       sources,
-      relatedProducts: getRelatedProducts(item),
+      // relatedProducts: getRelatedProducts(item),
     }
-    // await storage.setItem(key, poster)
+    await storage.setItem(key, poster)
     return poster
   }
   return null

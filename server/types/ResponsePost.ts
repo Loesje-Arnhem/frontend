@@ -1,5 +1,5 @@
 import { type ISEO } from '~~/types/ISEO'
-import { type ResponseImageType } from './ResponseImage'
+import { type ResponseImageType } from './FeaturedImageResponseType'
 import { type ResponseRelatedPoster } from './ResponseRelatedPoster'
 import { type ResponseRelatedProduct } from './ResponseRelatedProduct'
 

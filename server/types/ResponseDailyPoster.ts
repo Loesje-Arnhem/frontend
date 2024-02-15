@@ -1,4 +1,4 @@
-import { type ResponseImage } from './ResponseImage'
+import { type ResponseImage } from './FeaturedImageResponseType'
 
 export type ResponseDailyPoster = {
   id: number

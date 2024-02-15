@@ -1,4 +1,4 @@
-import { type ResponseImage } from './ResponseImage'
+import { type ResponseImage } from './FeaturedImageResponseType'
 import { ResponseRelatedProduct } from './ResponseRelatedProduct'
 
 export type ResponsePoster = {

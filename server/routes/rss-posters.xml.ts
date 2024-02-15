@@ -1,5 +1,5 @@
 import RSS from 'rss'
-import type { ResponseImage } from '../types/ResponseImage'
+import type { ResponseImage } from '../types/FeaturedImageResponseType'
 
 const getPosterDate = (date: string) => {
   const pattern = /(\d{4})(\d{2})(\d{2})/ // date via posters is 24/03/2010
