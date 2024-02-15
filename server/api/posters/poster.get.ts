@@ -1,6 +1,5 @@
 import { Taxonomy } from '~~/enums/taxonomy'
 import type { IPoster, ITag } from '~~/types/Content'
-import { z } from 'zod'
 import { PosterQuerySchema, PosterSchema } from '~/server/schemas/PosterSchema'
 
 export default defineEventHandler(async (event) => {

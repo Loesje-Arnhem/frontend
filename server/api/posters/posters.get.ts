@@ -1,6 +1,5 @@
 import { type IPosterListItem } from '~~/types/Content'
 import { getStorageKey } from '~/server/utils/getStorageKey'
-import { z } from 'zod'
 import { getDate } from '~/server/utils/getDate'
 import {
   PostersSchema,
