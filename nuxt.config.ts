@@ -7,17 +7,11 @@ import {
   title,
   twitter,
 } from './data/siteDetails'
-import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
-  site: {
-    url: baseUrl,
-    name: title,
-  },
-
   vue: {
     compilerOptions: {
-      isCustomElement: (tag) => ['search'].includes(tag),
+      isCustomElement: (tag: string) => ['search'].includes(tag),
     },
   },
 
@@ -87,18 +81,6 @@ export default defineNuxtConfig({
         username: process.env.REDIS_USERNAME,
         password: process.env.REDIS_PASSWORD,
       },
-    },
-  },
-
-  hooks: {
-    async 'nitro:config'(nitroConfig) {
-      if (nitroConfig.dev) {
-        return
-      }
-      const pages = await getAllRoutes()
-      if (nitroConfig?.prerender?.routes) {
-        nitroConfig.prerender.routes.push(...pages)
-      }
     },
   },
 

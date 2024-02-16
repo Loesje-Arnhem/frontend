@@ -33,7 +33,8 @@ const fetchPagesByType = async (type: string) => {
     )
     pages.push(...urls)
 
-    hasNextPage = page < totalPages && process.env.NUXT_SSR !== 'false'
+    // hasNextPage = page < totalPages && process.env.NUXT_SSR !== 'false'
+    hasNextPage = false
 
     page = page + 1
     pauseFetching()
@@ -42,8 +43,31 @@ const fetchPagesByType = async (type: string) => {
 }
 
 export default async () => {
-  const posts = await fetchPagesByType('posts')
+  // const posts = await fetchPagesByType('posts')
   const pages = await fetchPagesByType('pages')
+
+  return [
+    '/doneer/',
+    '/postergebruiken/',
+    // '/eindredacteur/',
+    // '/doe-mee/masterclass/',
+    // '/instagram/',
+    // '/zorgagenda2021/',
+    // '/houd-het-hart-warm/',
+    // '/doe-mee/doe-mee/',
+    // '/nieuwsbrief/',
+    // '/zeggenwatjedenkt/',
+    // '/over-loesje/privacy/',
+    // '/wees-radicaal-jezelf/',
+    // '/persbericht/',
+    // '/mijn-account/',
+    // '/afrekenen/',
+    // '/winkelmand/',
+    // '/winkeltje/',
+    // '/verkiezingen/',
+    // '/docentenagenda/',
+    // '/over-loesje/het-huishoudboekje-van-loesje/',
+  ]
   // const posters = await fetchPagesByType('posters')
-  return [...posts, ...pages]
+  // return [...posts, ...pages]
 }
