@@ -15,7 +15,7 @@ const defaultPages = [
   '/rss',
   '/rss/posters',
   '/',
-  '/posters',
+  '/posters/',
   '/doe-mee/',
   '/doe-mee/masterclass/',
   '/doe-mee/donateur/',

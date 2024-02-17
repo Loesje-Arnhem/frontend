@@ -1,6 +1,6 @@
 export const mainNavigation = [
   { title: 'Home', id: 'home', url: '/' },
-  { title: 'Posters', id: 'posters', url: '/posters' },
+  { title: 'Posters', id: 'posters', url: '/posters/' },
   {
     id: 'cG9zdDoxMTMxMDc=',
     url: '/doe-mee/',
@@ -64,7 +64,7 @@ export const mainNavigation = [
   {
     title: 'Winkeltje',
     id: 'shop',
-    url: '/winkeltje',
+    url: '/winkeltje/',
     children: [
       {
         id: 'dGVybTozNzU=',

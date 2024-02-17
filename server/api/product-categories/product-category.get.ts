@@ -11,16 +11,8 @@ export default defineEventHandler(async (event) => {
     querySchema.safeParse(body),
   )
 
-  const storage = useStorage('redis')
-
   if (!query.success) {
     throw query.error.issues
-  }
-
-  const key = getStorageKey(query.data, 'product-category')
-
-  if (await storage.getItem(key)) {
-    return await storage.getItem(key)
   }
 
   const url = getUrl({
@@ -43,7 +35,6 @@ export default defineEventHandler(async (event) => {
     title: category.name,
     content: category.description,
   }
-  await storage.setItem(key, item)
 
   return item
 })
