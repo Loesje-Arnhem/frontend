@@ -45,29 +45,8 @@ const fetchPagesByType = async (type: string) => {
 export default async () => {
   // const posts = await fetchPagesByType('posts')
   const pages = await fetchPagesByType('pages')
-
-  return [
-    '/doneer/',
-    '/postergebruiken/',
-    // '/eindredacteur/',
-    // '/doe-mee/masterclass/',
-    // '/instagram/',
-    // '/zorgagenda2021/',
-    // '/houd-het-hart-warm/',
-    // '/doe-mee/doe-mee/',
-    // '/nieuwsbrief/',
-    // '/zeggenwatjedenkt/',
-    // '/over-loesje/privacy/',
-    // '/wees-radicaal-jezelf/',
-    // '/persbericht/',
-    // '/mijn-account/',
-    // '/afrekenen/',
-    // '/winkelmand/',
-    // '/winkeltje/',
-    // '/verkiezingen/',
-    // '/docentenagenda/',
-    // '/over-loesje/het-huishoudboekje-van-loesje/',
-  ]
+  console.log({ pages })
+  return pages
   // const posters = await fetchPagesByType('posters')
   // return [...posts, ...pages]
 }

@@ -20,6 +20,9 @@ export const useMeta = ({
     ogDescription: () => description,
     ogType: () => 'article',
     ogImage: () => image?.src,
+    ogImageHeight: () => image?.height,
+    ogImageWidth: () => image?.width,
+    ogImageAlt: () => image?.alt,
     twitterTitle: () => title,
     twitterDescription: () => description,
     twitterImage: () => image?.src,
@@ -28,10 +31,6 @@ export const useMeta = ({
   useSchemaOrg([
     defineWebPage({
       description,
-    }),
-    defineImage({
-      contentUrl: image?.src,
-      caption: image?.alt,
     }),
   ])
 }
