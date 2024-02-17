@@ -107,19 +107,19 @@ export default defineNuxtConfig({
   //     if (!nuxt.options._prepare) process.exit()
   //   },
   // },
-  routeRules: {
-    '/posters/posters/favorieten': { ssr: false },
-    '/rss.xml': {
-      headers: {
-        'content-type': 'text/xml',
-      },
-    },
-    '/rss-posters.xml': {
-      headers: {
-        'content-type': 'text/xml',
-      },
-    },
-  },
+  // routeRules: {
+  //   '/posters/posters/favorieten': { ssr: false },
+  //   '/rss.xml': {
+  //     headers: {
+  //       'content-type': 'text/xml',
+  //     },
+  //   },
+  //   '/rss-posters.xml': {
+  //     headers: {
+  //       'content-type': 'text/xml',
+  //     },
+  //   },
+  // },
 
   telemetry: false,
 
