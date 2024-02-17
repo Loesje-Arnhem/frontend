@@ -13,6 +13,10 @@ const pauseFetching = () => {
 
 export default defineNuxtModule({
   async setup() {
+    // if (process.env.NUXT_SSR === 'false') {
+    //   return
+    // }
+
     const fetchPagesByType = async (type: string) => {
       let hasNextPage = true
       let page = 1
