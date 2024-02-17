@@ -40,7 +40,6 @@ export default defineNuxtModule({
         addPrerenderRoutes(urls)
 
         hasNextPage = page < totalPages && process.env.NUXT_SSR !== 'false'
-        hasNextPage = true
 
         page = page + 1
         pauseFetching()
