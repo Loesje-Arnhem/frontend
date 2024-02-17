@@ -82,7 +82,7 @@ export default defineNuxtModule({
       }
       await fetchPagesByType('posts')
       // await fetchPagesByType('pages')
-      prerenderRoutes(defaultPages)
+      addPrerenderRoutes(defaultPages)
     },
 
     close: (nuxt) => {
