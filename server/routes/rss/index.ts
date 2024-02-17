@@ -1,5 +1,5 @@
 import RSS from 'rss'
-import type { ResponsePosts } from '../types/ResponsePosts'
+import type { ResponsePosts } from '@/server/types/ResponsePosts'
 
 export default defineEventHandler(async (event) => {
   const { rssHead } = useAppConfig()

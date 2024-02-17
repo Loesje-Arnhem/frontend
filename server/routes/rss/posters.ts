@@ -1,5 +1,5 @@
 import RSS from 'rss'
-import type { ResponseImage } from '../types/FeaturedImageResponseType'
+import type { FeaturedImageResponseType } from '@/server/types/FeaturedImageResponseType'
 
 const getPosterDate = (date: string) => {
   const pattern = /(\d{4})(\d{2})(\d{2})/ // date via posters is 24/03/2010
@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
       }
       slug: string
       _embedded: {
-        'wp:featuredmedia'?: ResponseImage[]
+        'wp:featuredmedia'?: FeaturedImageResponseType[]
       }
       acf: {
         date: string

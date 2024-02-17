@@ -81,11 +81,10 @@ export default defineNuxtConfig({
 
     storage: {
       redis: {
-        driver: 'redis',
-        port: process.env.REDIS_PORT,
-        host: process.env.REDIS_HOST,
-        username: process.env.REDIS_USERNAME,
-        password: process.env.REDIS_PASSWORD,
+        driver: 'netlifyBlobs',
+        name: 'loesje',
+        siteID: process.env.NETLIFY_SITE_ID,
+        token: process.env.NETLIFY_TOKEN,
       },
     },
   },
@@ -107,19 +106,19 @@ export default defineNuxtConfig({
   //     if (!nuxt.options._prepare) process.exit()
   //   },
   // },
-  // routeRules: {
-  //   '/posters/posters/favorieten': { ssr: false },
-  //   '/rss.xml': {
-  //     headers: {
-  //       'content-type': 'text/xml',
-  //     },
-  //   },
-  //   '/rss-posters.xml': {
-  //     headers: {
-  //       'content-type': 'text/xml',
-  //     },
-  //   },
-  // },
+  routeRules: {
+    '/posters/posters/favorieten': { ssr: false },
+    '/rss': {
+      headers: {
+        'content-type': 'text/xml',
+      },
+    },
+    '/rss/posters': {
+      headers: {
+        'content-type': 'text/xml',
+      },
+    },
+  },
 
   telemetry: false,
 

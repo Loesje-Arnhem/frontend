@@ -3,13 +3,13 @@
     <h2>Rss feeds</h2>
     <ul class="list">
       <li>
-        <a class="link" href="/rss.xml">
+        <a class="link" href="/rss">
           <app-icon icon="rss" :width="16" :height="16" class="icon" />
           Nieuws
         </a>
       </li>
       <li>
-        <a class="link" href="/rss-posters.xml">
+        <a class="link" href="/rss/posters">
           <app-icon icon="rss" :width="16" :height="16" class="icon" />
           Posters
         </a>
