@@ -16,11 +16,10 @@ const props = withDefaults(
 </script>
 
 <template>
-  <img
+  <app-image
     class="image"
     :alt="alt || image.alt"
-    :loading="lazy ? 'lazy' : undefined"
-    :srcset="image.srcSet"
+    :lazy="lazy"
     :src="image.src"
     :sizes="sizes"
     :width="image.width"
