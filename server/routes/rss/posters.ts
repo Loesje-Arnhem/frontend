@@ -16,15 +16,12 @@ export default defineEventHandler(async (event) => {
   const feed = new RSS({
     ...rssHead,
     title,
-    feed_url: `https://www.loesje.nl/rss-posters.xml`,
+    feed_url: `https://www.loesje.nl/rss/posters`,
     description: `
       Loesje's posters vind je overal. Met haar positief-kritische teksten
       wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan
       bazen, politici of ouders. Door haar posters op straat en online te
       verspreiden, geeft Loesje de wereld een zetje in de goede richting.`,
-    custom_namespaces: {
-      media: 'http://search.yahoo.com/mrss/',
-    },
   })
 
   const url = getUrl({
@@ -99,6 +96,5 @@ export default defineEventHandler(async (event) => {
     })
   })
 
-  event.headers.set('content-type', 'text/xml')
   return feed.xml({ indent: true })
 })

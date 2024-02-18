@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
   const feed = new RSS({
     ...rssHead,
     title: 'Loesje nieuws',
-    feed_url: `https://www.loesje.nl/rss.xml`,
+    feed_url: `https://www.loesje.nl/rss`,
     description: `
       Loesje's posters vind je overal. Met haar positief-kritische teksten
       wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan
@@ -35,6 +35,5 @@ export default defineEventHandler(async (event) => {
       author: 'Loesje',
     })
   })
-  event.headers.set('content-type', 'text/xml')
   return feed.xml({ indent: true })
 })

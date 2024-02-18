@@ -7,7 +7,6 @@ import {
   title,
   twitter,
 } from './data/siteDetails'
-import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
   vue: {
@@ -17,11 +16,15 @@ export default defineNuxtConfig({
   },
 
   image: {
+    provider: 'netlifyCdn',
     densities: [1, 2],
     providers: {
       netlifyCdn: {
         name: 'netlifyCdn',
         provider: '~/providers/netlify-cdn',
+        options: {
+          baseURL: 'https://preview.loesje.nl/.netlify/images',
+        },
       },
     },
   },
@@ -73,7 +76,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    // preset: 'netlify',
+    preset: 'netlify',
     prerender: {
       interval: 3000,
       concurrency: 5,
@@ -88,26 +91,8 @@ export default defineNuxtConfig({
       },
     },
   },
-  // hooks: {
-  //   async 'nitro:config'(nitroConfig) {
-  //     console.log({ nitroConfig })
-  //     if (nitroConfig.dev) {
-  //       return
-  //     }
-  //     if (process.env.NUXT_SSR === 'false') {
-  //       return
-  //     }
-  //     const pages = await getAllRoutes()
-  //     if (nitroConfig?.prerender?.routes) {
-  //       nitroConfig.prerender.routes.push(...pages)
-  //     }
-  //   },
-  //   close: (nuxt) => {
-  //     if (!nuxt.options._prepare) process.exit()
-  //   },
-  // },
+
   routeRules: {
-    '/posters/posters/favorieten': { ssr: false },
     '/rss': {
       headers: {
         'content-type': 'text/xml',

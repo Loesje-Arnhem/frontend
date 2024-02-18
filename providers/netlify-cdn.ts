@@ -1,97 +1,56 @@
+import { encodeQueryItem } from 'ufo'
 import { createOperationsGenerator } from '#image'
-import { joinURL } from 'ufo'
 import type { ProviderGetImage } from '@nuxt/image'
-export const getImage: ProviderGetImage = (src, options = {}) => {
-  if (!options.baseURL) {
-    options.baseURL = '/.netlify/images'
+
+// https://docs.netlify.com/image-cdn/overview/
+export const operationsGenerator = createOperationsGenerator({
+  keyMap: {
+    width: 'w',
+    height: 'h',
+    format: 'fm',
+    quality: 'q',
+    position: 'position',
+    fit: 'fit',
+  },
+  valueMap: {
+    fit: {
+      fill: 'fill',
+      cover: 'cover',
+      contain: 'contain',
+    },
+    format: {
+      avif: 'avif',
+      gif: 'gif',
+      jpg: 'jpg',
+      png: 'png',
+      webp: 'webp',
+    },
+    position: {
+      top: 'top',
+      right: 'right',
+      bottom: 'bottom',
+      left: 'left',
+      center: 'center',
+    },
+  },
+  joinWith: '&',
+  formatter: (key, value) => encodeQueryItem(key, value),
+})
+
+export const getImage: ProviderGetImage = (
+  src,
+  { modifiers = {}, baseURL } = {},
+) => {
+  const mods: Record<string, string> = { ...modifiers }
+  mods.url = src
+  if (modifiers.width) {
+    mods.width = modifiers.width.toString()
   }
-  const supportedFits = ['contain', 'cover', 'fill'] as const
-  const supportedFormats = [
-    'avif',
-    'blurhash',
-    'gif',
-    'jpg',
-    'png',
-    'webp',
-  ] as const
-  const supportedModifiers = [
-    'fit',
-    'format',
-    'height',
-    'position',
-    'quality',
-    'width',
-  ] as const
-  function checkSupport(
-    supportArray: ReadonlyArray<string>,
-    stringToCheck: string,
-    typeOfCheck: 'fit' | 'format' | 'modifier',
-    callback?: () => void,
-  ) {
-    if (!supportArray.includes(stringToCheck)) {
-      console.error(
-        `${typeOfCheck}: ${stringToCheck} is not supported by Netlify Image CDN.`,
-      )
-    } else if (callback) {
-      callback()
-    }
+  if (modifiers.height) {
+    mods.height = modifiers.height.toString()
   }
-  function generateValueMap(
-    arrayOfValues: ReadonlyArray<string>,
-  ): Record<string, string> {
-    return arrayOfValues.reduce(
-      (generatedConfig, currentConfigItem) => {
-        const currentConfig = generatedConfig
-        currentConfig[currentConfigItem] = currentConfigItem
-        return currentConfig
-      },
-      {} as Record<string, string>,
-    )
-  }
-  if (options.modifiers) {
-    Object.keys(options.modifiers).forEach((modifier) => {
-      checkSupport(supportedModifiers, modifier.toLowerCase(), 'modifier')
-    })
-    if (options.modifiers.fit) {
-      checkSupport(
-        supportedFits,
-        options.modifiers.fit.toLowerCase(),
-        'fit',
-        () => {
-          console.warn(
-            'fit in Nuxt Image and Netlify Image CDN works differently. Please refer to appropriate docs to find the correct value.',
-          )
-        },
-      )
-    }
-    if (options.modifiers.format) {
-      checkSupport(
-        supportedFormats,
-        options.modifiers.format.toLowerCase(),
-        'format',
-      )
-    }
-  }
+  const operations = operationsGenerator(mods)
   return {
-    url: joinURL(
-      options.baseURL,
-      `?url=${src}&${createOperationsGenerator({
-        formatter: (key: string, value: string) => {
-          return `${key}=${value}`
-        },
-        joinWith: '&',
-        keyMap: {
-          fit: 'fit',
-          format: 'fm',
-          height: 'h',
-          quality: 'q',
-          width: 'w',
-        },
-        valueMap: {
-          fit: generateValueMap(supportedFormats),
-          format: generateValueMap(supportedFormats),
-        },
-      })(options.modifiers)}`,
-    ),
+    url: `${baseURL || '/.netlify/images'}?${operations}`,
   }
 }
