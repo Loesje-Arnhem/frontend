@@ -264,7 +264,7 @@ export default defineNuxtConfig({
     workbox: {
       importScripts: ['/badge.js'],
 
-      globPatterns: ['**/*.{js,css,html,png,svg,ico,avif,webp}'],
+      // globPatterns: ['**/*.{js,css,html,png,svg,ico,avif,webp,json}'],
       // Only precache these files - html should be excluded
       // globPatterns: ['**/*.{js,css}'],
 
@@ -284,6 +284,7 @@ export default defineNuxtConfig({
         'Ook zo benieuwd wat Loesje allemaal al heeft gezegd? Met deze app kan je lekker door al haar posters heen kuieren.',
       short_name: title,
       edge_side_panel: {},
+      dir: 'ltr',
       icons: [
         {
           src: '/icons/manifest-icon-192.png',
