@@ -1,4 +1,4 @@
-import RSS from 'rss'
+import RSS, { EnclosureObject } from 'rss'
 import type { FeaturedImageResponseType } from '@/server/types/FeaturedImageResponseType'
 
 const getPosterDate = (date: string) => {
@@ -63,11 +63,16 @@ export default defineEventHandler(async (event) => {
 
     const image = images[0].media_details.sizes.medium_large
 
-    if (!image) {
-      return
-    }
-
     const description = `<img src="${featuredImage.src}" srcset="${featuredImage.srcSet}" alt="${item.title.rendered}" width="${featuredImage.width}" height="${featuredImage.height}" />`
+
+    let enclosure: EnclosureObject | undefined = undefined
+    if (image) {
+      enclosure = {
+        url: image.source_url,
+        type: image.mime_type,
+        size: image.filesize,
+      }
+    }
 
     feed.item({
       title: item.title.rendered,
@@ -76,23 +81,7 @@ export default defineEventHandler(async (event) => {
       guid: link,
       author: 'Loesje',
       description,
-      custom_elements: [
-        {
-          'media:content': {
-            _attr: {
-              medium: 'image',
-              href: image.source_url,
-              width: image.width,
-              height: image.height,
-              type: image.mime_type,
-              fileSize: image.filesize,
-            },
-          },
-        },
-        {
-          'media:title': item.title.rendered,
-        },
-      ],
+      enclosure,
     })
   })
 
