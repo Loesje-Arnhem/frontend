@@ -63,8 +63,6 @@ export default defineEventHandler(async (event) => {
 
     const image = images[0].media_details.sizes.medium_large
 
-    const description = `<img src="${featuredImage.src}" srcset="${featuredImage.srcSet}" alt="${item.title.rendered}" width="${featuredImage.width}" height="${featuredImage.height}" />`
-
     let enclosure: EnclosureObject | undefined = undefined
     if (image) {
       enclosure = {
@@ -80,7 +78,7 @@ export default defineEventHandler(async (event) => {
       url: link,
       guid: link,
       author: 'Loesje',
-      description,
+      description: item.title.rendered,
       enclosure,
     })
   })
