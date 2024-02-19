@@ -40,7 +40,7 @@ const localePath = useLocalePath()
           class="background"
           :width="270"
           :height="360"
-          sizes="xs:100vw md:270px"
+          sizes="100vw xs:270px"
         />
       </div>
     </div>

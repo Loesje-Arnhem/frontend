@@ -34,7 +34,6 @@ const loading = computed(() => {
     :width="width"
     :height="height"
     class="image"
-    format="avif,webp"
   />
 </template>
 

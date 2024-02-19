@@ -20,7 +20,7 @@ const url = localePath({
     <div class="image-wrapper">
       <featured-image
         v-if="product.image"
-        sizes="(max-width: 375px) 50vw, (max-width: 720px) 33vw, (max-width: 1024px) 25vw, 200px"
+        sizes="50vw xs:33vw md:25vw lg:300px"
         :image="product.image"
         class="image"
       />
