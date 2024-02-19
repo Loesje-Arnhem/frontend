@@ -84,14 +84,14 @@ export default defineNuxtModule({
           addPrerenderRoutes(urls)
 
           hasNextPage = page < totalPages && process.env.NUXT_SSR !== 'false'
-          hasNextPage = false
 
           page = page + 1
           pauseFetching()
         }
       }
-      // await fetchPagesByType('posts')
+      await fetchPagesByType('posts')
       await fetchPagesByType('pages')
+      await fetchPagesByType('posters')
       addPrerenderRoutes(defaultPages)
     },
 

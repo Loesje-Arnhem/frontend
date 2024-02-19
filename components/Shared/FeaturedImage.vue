@@ -22,6 +22,7 @@ withDefaults(
     :sizes="sizes"
     :width="image.width"
     :height="image.height"
+    format="avif,webp"
   />
 </template>
 
