@@ -150,14 +150,14 @@ export default defineNuxtConfig({
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `/rss.xml`,
-          title: 'Nieuws - Loesje',
+          href: `/rss`,
+          title: 'Loesje - Nieuws',
         },
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `/rss-posters.xml`,
-          title: 'Posters - Loesje',
+          href: `/rss/posters`,
+          title: 'Loesje - Posters',
         },
         {
           type: 'application/opensearchdescription+xml',
