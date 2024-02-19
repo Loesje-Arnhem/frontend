@@ -33,7 +33,6 @@ withDefaults(
       >
         <featured-image
           :lazy="true"
-          :alt="poster.title"
           :image="poster.featuredImage"
           :sizes="sizes"
         />
