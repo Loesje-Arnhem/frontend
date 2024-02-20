@@ -39,7 +39,7 @@ onMounted(() => {
   <li class="list-item" :style="{ transform }">
     <poster-tile
       :poster="poster"
-      sizes="(max-width: 480px) 50vw, (max-width: 640px) 33vw, (max-width: 768px) 25vw, (max-width: 1024px) 20vw, 200px"
+      sizes="50vw xs:33vw md:25vw lg:20vw lg:200px"
     />
   </li>
 </template>

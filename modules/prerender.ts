@@ -12,8 +12,10 @@ const pauseFetching = () => {
 }
 
 const defaultPages = [
+  '/rss',
+  '/rss/posters',
   '/',
-  '/posters',
+  '/posters/',
   '/doe-mee/',
   '/doe-mee/masterclass/',
   '/doe-mee/donateur/',
@@ -25,17 +27,22 @@ const defaultPages = [
   '/over-loesje/contact/',
   '/over-loesje/het-huishoudboekje-van-loesje/',
   '/workshop-creatief-schrijven/',
-  '/winkeltje',
-  '/winkeltje/categorie/aanbieding/',
-  '/winkeltje/categorie/diversen/badhanddoeken/',
-  '/winkeltje/categorie/boeken/',
-  '/winkeltje/categorie/kleding-loesje/dames/',
-  '/winkeltje/categorie/diversen/',
-  '/winkeltje/categorie/kleding-loesje/heren/',
-  '/winkeltje/categorie/kaarten/',
-  '/winkeltje/categorie/kalenders/',
-  '/winkeltje/categorie/kleding-loesje/',
-  '/winkeltje/categorie/loesjes-kringloopwinkel/',
+  '/winkeltje/',
+  '/winkeltje/categorie/aanbieding',
+  '/winkeltje/categorie/aanbieding/opruimingpockets',
+  '/winkeltje/categorie/aanbieding/opruiming-t-shirts',
+  '/winkeltje/categorie/boeken',
+  '/winkeltje/categorie/diversen',
+  '/winkeltje/categorie/diversen/badhanddoeken',
+  '/winkeltje/categorie/diversen/mokken',
+  '/winkeltje/categorie/kaarten',
+  '/winkeltje/categorie/kalenders',
+  '/winkeltje/categorie/kleding-loesje',
+  '/winkeltje/categorie/kleding-loesje/dames',
+  '/winkeltje/categorie/kleding-loesje/heren',
+  '/winkeltje/categorie/loesjes-kringloopwinkel',
+  '/winkeltje/categorie/tassen-loesje',
+  '/winkeltje/categorie/zeggen-wat-je-denkt',
   '/workshop-creatief-schrijven/',
   '/doe-mee/',
   '/over-loesje/nieuws/',
@@ -51,6 +58,9 @@ export default defineNuxtModule({
   },
   hooks: {
     'build:before': async () => {
+      if (process.env.NODE_ENV === 'development') {
+        return
+      }
       const fetchPagesByType = async (type: string) => {
         let hasNextPage = true
         let page = 1
@@ -74,7 +84,6 @@ export default defineNuxtModule({
           addPrerenderRoutes(urls)
 
           hasNextPage = page < totalPages && process.env.NUXT_SSR !== 'false'
-          hasNextPage = false
 
           page = page + 1
           pauseFetching()
@@ -82,6 +91,7 @@ export default defineNuxtModule({
       }
       await fetchPagesByType('posts')
       // await fetchPagesByType('pages')
+      await fetchPagesByType('posters')
       addPrerenderRoutes(defaultPages)
     },
 

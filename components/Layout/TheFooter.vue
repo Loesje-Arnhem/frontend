@@ -8,8 +8,6 @@ const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
   <footer :class="$style.footer">
     <center-wrapper>
       <div :class="$style.wrapper">
-        <quick-links />
-
         <company-address />
         <rss-feed-links />
         <app-stores />
@@ -62,7 +60,7 @@ const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
   }
 
   @media (--viewport-md) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 

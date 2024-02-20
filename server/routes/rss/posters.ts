@@ -1,5 +1,7 @@
-import RSS from 'rss'
-import type { ResponseImage } from '../types/FeaturedImageResponseType'
+import RSS, { EnclosureObject } from 'rss'
+import type { FeaturedImageResponseType } from '@/server/types/FeaturedImageResponseType'
+import { Taxonomy } from '~/enums/taxonomy'
+import { ITag } from '~/types/Content'
 
 const getPosterDate = (date: string) => {
   const pattern = /(\d{4})(\d{2})(\d{2})/ // date via posters is 24/03/2010
@@ -15,16 +17,13 @@ export default defineEventHandler(async (event) => {
 
   const feed = new RSS({
     ...rssHead,
-    title,
-    feed_url: `https://www.loesje.nl/rss-posters.xml`,
+    title: 'Loesje - Posters',
+    feed_url: `https://www.loesje.nl/rss/posters`,
     description: `
       Loesje's posters vind je overal. Met haar positief-kritische teksten
       wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan
       bazen, politici of ouders. Door haar posters op straat en online te
       verspreiden, geeft Loesje de wereld een zetje in de goede richting.`,
-    custom_namespaces: {
-      media: 'http://search.yahoo.com/mrss/',
-    },
   })
 
   const url = getUrl({
@@ -43,7 +42,7 @@ export default defineEventHandler(async (event) => {
       }
       slug: string
       _embedded: {
-        'wp:featuredmedia'?: ResponseImage[]
+        'wp:featuredmedia'?: FeaturedImageResponseType[]
       }
       acf: {
         date: string
@@ -54,6 +53,12 @@ export default defineEventHandler(async (event) => {
   data.forEach((item) => {
     const link = `https://www.loesje.nl/posters/${item.slug}`
     const images = item._embedded['wp:featuredmedia']
+
+    let subjects: ITag[] = []
+    if (item._embedded['wp:term']) {
+      const tags = item._embedded['wp:term'].flat()
+      subjects = getTagsByType(tags, Taxonomy.Subject)
+    }
 
     const featuredImage = getFeaturedImage(
       item._embedded['wp:featuredmedia'],
@@ -66,11 +71,14 @@ export default defineEventHandler(async (event) => {
 
     const image = images[0].media_details.sizes.medium_large
 
-    if (!image) {
-      return
+    let enclosure: EnclosureObject | undefined = undefined
+    if (image) {
+      enclosure = {
+        url: image.source_url,
+        type: image.mime_type,
+        size: image.filesize,
+      }
     }
-
-    const description = `<img src="${featuredImage.src}" srcset="${featuredImage.srcSet}" alt="${item.title.rendered}" width="${featuredImage.width}" height="${featuredImage.height}" />`
 
     feed.item({
       title: item.title.rendered,
@@ -78,27 +86,11 @@ export default defineEventHandler(async (event) => {
       url: link,
       guid: link,
       author: 'Loesje',
-      description,
-      custom_elements: [
-        {
-          'media:content': {
-            _attr: {
-              medium: 'image',
-              href: image.source_url,
-              width: image.width,
-              height: image.height,
-              type: image.mime_type,
-              fileSize: image.filesize,
-            },
-          },
-        },
-        {
-          'media:title': item.title.rendered,
-        },
-      ],
+      description: item.title.rendered,
+      enclosure,
+      categories: subjects.map((s) => s.title),
     })
   })
 
-  event.headers.set('content-type', 'text/xml')
   return feed.xml({ indent: true })
 })

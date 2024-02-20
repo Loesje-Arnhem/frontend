@@ -6,7 +6,7 @@ withDefaults(
     sizes?: string
   }>(),
   {
-    sizes: '(max-width: 375px) 100vw, 270px',
+    sizes: '100vw xs:270px',
   },
 )
 

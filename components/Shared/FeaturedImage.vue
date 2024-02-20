@@ -1,30 +1,28 @@
 <script lang="ts" setup>
 import type { FeaturedImage } from '~/types/Content'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     image: FeaturedImage
     sizes: string
     lazy?: boolean
-    alt?: string | null
   }>(),
   {
     lazy: true,
-    alt: '',
   },
 )
 </script>
 
 <template>
-  <img
+  <app-image
     class="image"
-    :alt="alt || image.alt"
-    :loading="lazy ? 'lazy' : undefined"
-    :srcset="image.srcSet"
+    :alt="image.alt"
+    :lazy="lazy"
     :src="image.src"
     :sizes="sizes"
     :width="image.width"
     :height="image.height"
+    format="avif,webp"
   />
 </template>
 

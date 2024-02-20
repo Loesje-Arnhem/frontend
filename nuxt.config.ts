@@ -7,7 +7,6 @@ import {
   title,
   twitter,
 } from './data/siteDetails'
-import getAllRoutes from './data/routes'
 
 export default defineNuxtConfig({
   vue: {
@@ -17,11 +16,15 @@ export default defineNuxtConfig({
   },
 
   image: {
+    provider: 'netlifyCdn',
     densities: [1, 2],
     providers: {
       netlifyCdn: {
         name: 'netlifyCdn',
         provider: '~/providers/netlify-cdn',
+        options: {
+          baseURL: 'https://preview.loesje.nl/.netlify/images',
+        },
       },
     },
   },
@@ -73,7 +76,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    // preset: 'netlify',
+    preset: 'netlify',
     prerender: {
       interval: 3000,
       concurrency: 5,
@@ -81,40 +84,21 @@ export default defineNuxtConfig({
 
     storage: {
       redis: {
-        driver: 'redis',
-        port: process.env.REDIS_PORT,
-        host: process.env.REDIS_HOST,
-        username: process.env.REDIS_USERNAME,
-        password: process.env.REDIS_PASSWORD,
+        driver: 'netlifyBlobs',
+        name: 'loesje',
+        siteID: process.env.NETLIFY_SITE_ID,
+        token: process.env.NETLIFY_TOKEN,
       },
     },
   },
-  // hooks: {
-  //   async 'nitro:config'(nitroConfig) {
-  //     console.log({ nitroConfig })
-  //     if (nitroConfig.dev) {
-  //       return
-  //     }
-  //     if (process.env.NUXT_SSR === 'false') {
-  //       return
-  //     }
-  //     const pages = await getAllRoutes()
-  //     if (nitroConfig?.prerender?.routes) {
-  //       nitroConfig.prerender.routes.push(...pages)
-  //     }
-  //   },
-  //   close: (nuxt) => {
-  //     if (!nuxt.options._prepare) process.exit()
-  //   },
-  // },
+
   routeRules: {
-    '/posters/posters/favorieten': { ssr: false },
-    '/rss.xml': {
+    '/rss': {
       headers: {
         'content-type': 'text/xml',
       },
     },
-    '/rss-posters.xml': {
+    '/rss/posters': {
       headers: {
         'content-type': 'text/xml',
       },
@@ -166,14 +150,14 @@ export default defineNuxtConfig({
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `/rss.xml`,
-          title: 'Nieuws - Loesje',
+          href: `/rss`,
+          title: 'Loesje - Nieuws',
         },
         {
           type: 'application/atom+xml',
           rel: 'alternate',
-          href: `/rss-posters.xml`,
-          title: 'Posters - Loesje',
+          href: `/rss/posters`,
+          title: 'Loesje - Posters',
         },
         {
           type: 'application/opensearchdescription+xml',
@@ -280,6 +264,8 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       importScripts: ['/badge.js'],
+
+      // globPatterns: ['**/*.{js,css,html,png,svg,ico,avif,webp,json}'],
       // Only precache these files - html should be excluded
       // globPatterns: ['**/*.{js,css}'],
 
@@ -299,6 +285,7 @@ export default defineNuxtConfig({
         'Ook zo benieuwd wat Loesje allemaal al heeft gezegd? Met deze app kan je lekker door al haar posters heen kuieren.',
       short_name: title,
       edge_side_panel: {},
+      dir: 'ltr',
       icons: [
         {
           src: '/icons/manifest-icon-192.png',
