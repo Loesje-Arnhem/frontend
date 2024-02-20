@@ -252,6 +252,7 @@ export default defineNuxtConfig({
     // '@nuxtjs/stylelint-module',
     '@nuxt/image',
     'nuxt-schema-org',
+    '@nuxtjs/sitemap',
   ],
 
   postcss: {
