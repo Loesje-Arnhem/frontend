@@ -1,3 +1,5 @@
+Sitemap: https://www.loesje.nl/sitemap.xml
+
 User-agent: CCBot
 Disallow: /
 
@@ -14,4 +16,6 @@ User-agent: FacebookBot
 Disallow: /
 
 User-agent: Omgilibot
+Disallow: /
+
 Disallow: /

@@ -52,6 +52,26 @@ export default defineNuxtConfig({
     },
   },
 
+  sitemap: {
+    sitemaps: {
+      posts: {
+        sources: ['/api/sitemap/posts'],
+      },
+      posters: {
+        sources: ['/api/sitemap/posters'],
+      },
+      pages: {
+        sources: ['/api/sitemap/pages'],
+      },
+      products: {
+        sources: ['/api/sitemap/product'],
+      },
+      'product-categories': {
+        sources: ['/api/sitemap/product_cat'],
+      },
+    },
+  },
+
   experimental: {
     headNext: true,
     componentIslands: true,
@@ -76,7 +96,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    // preset: 'netlify',
     prerender: {
       interval: 3000,
       concurrency: 5,
