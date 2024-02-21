@@ -12,7 +12,7 @@ export const createSitemap = async (
   while (hasNextPage) {
     const url = getUrl({
       type,
-      fields: ['link'],
+      fields: ['link', 'modified'],
       pageSize: 99,
       page,
       image: true,
@@ -57,6 +57,7 @@ export const createSitemap = async (
 
         return {
           loc,
+          modified: new Date(item.modified),
           images: image ? [image] : undefined,
         }
       },

@@ -4,6 +4,7 @@ import { FeaturedImageSchema } from './FeaturedImageSchema'
 export const SitemapSchema = z.array(
   z.object({
     link: z.string(),
+    modified: z.string(),
     // _embedded: z
     //   .object({
     //     'wp:featuredmedia': z.array(FeaturedImageSchema).optional(),

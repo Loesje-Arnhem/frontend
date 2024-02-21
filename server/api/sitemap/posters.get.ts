@@ -11,7 +11,7 @@ export default defineSitemapEventHandler(async () => {
   while (hasNextPage) {
     const url = getUrl({
       type: 'posters',
-      fields: ['link'],
+      fields: ['link', 'modified'],
       pageSize: 99,
       page,
       image: true,
@@ -56,6 +56,7 @@ export default defineSitemapEventHandler(async () => {
 
         return {
           loc,
+          modified: new Date(item.modified),
           images: image ? [image] : undefined,
         }
       },
