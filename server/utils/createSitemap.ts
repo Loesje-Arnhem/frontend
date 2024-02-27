@@ -23,6 +23,7 @@ export const createSitemap = async (
     const parsed = SitemapSchema.safeParse(response._data)
 
     if (!parsed.success) {
+      console.error(parsed.error.issues)
       throw parsed.error.issues
     }
 
@@ -30,27 +31,27 @@ export const createSitemap = async (
 
     const items2 = <ReturnType<typeof asSitemapUrl>[]>parsed.data.map(
       (item) => {
-        const image:
+        let image:
           | {
-              loc: string
-              caption: string
-              title: string
-            }
+            loc: string
+            caption: string
+            title: string
+          }
           | undefined = undefined
 
-        // if (item._embedded) {
-        //   const featuredImages = item._embedded['wp:featuredmedia']
+        if (item._embedded) {
+          const featuredImages = item._embedded['wp:featuredmedia']
 
-        //   const featuredImage = getFeaturedImage(featuredImages)
+          const featuredImage = getFeaturedImage(featuredImages)
 
-        //   if (featuredImage) {
-        //     image = {
-        //       loc: featuredImage.src,
-        //       title: featuredImage.alt,
-        //       caption: featuredImage.alt,
-        //     }
-        //   }
-        // }
+          if (featuredImage) {
+            image = {
+              loc: featuredImage.src,
+              title: featuredImage.alt,
+              caption: featuredImage.alt,
+            }
+          }
+        }
 
         const prefix = type === 'posts' ? '/over-loesje/nieuws/' : '/'
         const loc = item.link.replace('https://shop.loesje.nl/', prefix)

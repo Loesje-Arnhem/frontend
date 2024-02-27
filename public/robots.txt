@@ -1,4 +1,4 @@
-Sitemap: https://www.loesje.nl/sitemap.xml
+Sitemap: https://www.loesje.nl/sitemap_index.xml
 
 User-agent: CCBot
 Disallow: /

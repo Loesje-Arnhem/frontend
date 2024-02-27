@@ -111,20 +111,6 @@ export const CartItemScheme = z.object({
     currency_suffix: z.string(),
   }),
   catalog_visibility: z.string(),
-  extensions: z.object({
-    subscriptions: z.object({
-      billing_period: z.null(),
-      billing_interval: z.null(),
-      subscription_length: z.null(),
-      trial_length: z.null(),
-      trial_period: z.null(),
-      sign_up_fees: z.null(),
-      sign_up_fees_tax: z.null(),
-      is_resubscribe: z.null(),
-      switch_type: z.null(),
-      synchronization: z.null(),
-    }),
-  }),
 })
 
 export const CartSchema = z.object({
@@ -200,6 +186,16 @@ export const CartSchema = z.object({
   items_count: z.number(),
   items_weight: z.number(),
   payment_methods: z.array(z.string()),
+  // extensions: z.object({
+  //   address: z.object({
+  //     billing_street: z.string(),
+  //     billing_house_number: z.string(),
+  //     billing_house_number_addition: z.string(),
+  //     shipping_street: z.string(),
+  //     shipping_house_number: z.string(),
+  //     shipping_house_number_addition: z.string(),
+  //   }),
+  // }),
 })
 
 export const CheckoutSchema = z.object({

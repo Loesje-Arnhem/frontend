@@ -14,7 +14,11 @@ export default (
     return undefined
   }
 
-  if (!image.media_details.sizes) {
+  if (!image?.media_details?.sizes) {
+    return undefined
+  }
+
+  if (!image.source_url) {
     return undefined
   }
 

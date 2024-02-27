@@ -92,7 +92,6 @@ onUnmounted(() => {
   <div>
     <div class="wrapper">
       <div class="tile">
-        {{ shouldAnimate }}
         <ul ref="list" class="list" @scrollend="shouldAnimate = true">
           <image-carousel-card
             v-for="(image, index) in images"
