@@ -30,7 +30,6 @@ const defaultPages = [
   '/winkeltje/',
   '/winkeltje/categorie/aanbieding',
   '/winkeltje/categorie/aanbieding/opruimingpockets',
-  '/winkeltje/categorie/aanbieding/opruiming-t-shirts',
   '/winkeltje/categorie/boeken',
   '/winkeltje/categorie/diversen',
   '/winkeltje/categorie/diversen/badhanddoeken',
