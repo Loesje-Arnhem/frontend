@@ -16,17 +16,8 @@ export default defineNuxtConfig({
   },
 
   image: {
-    provider: 'netlifyCdn',
+    provider: 'netlify',
     densities: [1, 2],
-    providers: {
-      netlifyCdn: {
-        name: 'netlifyCdn',
-        provider: '~/providers/netlify-cdn',
-        options: {
-          baseURL: 'https://preview.loesje.nl/.netlify/images',
-        },
-      },
-    },
   },
 
   runtimeConfig: {
