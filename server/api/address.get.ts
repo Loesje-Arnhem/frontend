@@ -27,7 +27,9 @@ export default defineEventHandler(async (event) => {
   ).catch((err) => {
     throw createError({
       statusCode: err.statusCode,
-      statusMessage: geti18nErrorKey(err.data.exceptionId),
+      data: {
+        message: geti18nErrorKey(err.data.exceptionId),
+      },
     })
   })
 

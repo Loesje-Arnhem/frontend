@@ -88,10 +88,10 @@ export default defineNuxtModule({
           pauseFetching()
         }
       }
-      // await fetchPagesByType('posts')
-      // // await fetchPagesByType('pages')
-      // await fetchPagesByType('posters')
-      // addPrerenderRoutes(defaultPages)
+      await fetchPagesByType('posts')
+      // await fetchPagesByType('pages')
+      await fetchPagesByType('posters')
+      addPrerenderRoutes(defaultPages)
     },
 
     close: (nuxt) => {

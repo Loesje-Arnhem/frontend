@@ -29,6 +29,7 @@ const formData = toRefs(props)
 
 const pending = ref(false)
 const errorMessage = ref<string | null>(null)
+const { t } = useI18n()
 
 const fetchAdress = async () => {
   emits('update:city', '')
@@ -53,7 +54,7 @@ const fetchAdress = async () => {
     emits('update:city', response.city)
     emits('update:street', response.street)
   } catch (error: any) {
-    errorMessage.value = error.data.data.message
+    errorMessage.value = t(error.data.data.message)
   } finally {
     pending.value = false
   }
