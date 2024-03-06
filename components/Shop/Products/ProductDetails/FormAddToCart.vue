@@ -40,13 +40,7 @@ const addToCart = async () => {
       }),
     )
   } catch (error: any) {
-    console.log({ error })
-    // if (error.FetchError) {
-    //   errorMessage.value = error?.FetchError?._data?.statusMessage
-    // } else {
-    //   errorMessage.value = error.statusMessage
-    // }
-    errorMessage.value = error
+    errorMessage.value = error.data.data.message
   } finally {
     pending.value = false
   }

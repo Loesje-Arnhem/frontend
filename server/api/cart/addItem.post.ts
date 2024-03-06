@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
     return createCart(response)
   } catch (error) {
     throw createError({
-      statusMessage: error.data.message,
+      statusCode: 400,
       data: {
         message: error.data.message,
       },
