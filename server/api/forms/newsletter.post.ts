@@ -31,7 +31,9 @@ export default defineEventHandler(async (event) => {
     }
     throw createError({
       statusCode: 400,
-      statusMessage: geti18nErrorKey(errorCode),
+      data: {
+        message: geti18nErrorKey(errorCode),
+      },
     })
   })
 

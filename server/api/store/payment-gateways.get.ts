@@ -30,7 +30,9 @@ export default defineEventHandler(async () => {
     if (!parsed.success) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Something went wrong',
+        data: {
+          message: 'Something went wrong',
+        },
       })
     }
 
@@ -40,7 +42,9 @@ export default defineEventHandler(async () => {
   } catch (error) {
     throw createError({
       statusCode: 400,
-      statusMessage: error.data.message,
+      data: {
+        message: error.data.message,
+      },
     })
   }
 })

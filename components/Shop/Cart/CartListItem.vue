@@ -29,7 +29,7 @@ const updateQuantity = async () => {
     })
     cartState.value = response
   } catch (error: any) {
-    errorMessage.value = error.statusMessage
+    errorMessage.value = error.data.data.message
   } finally {
     emit('is-loading', false)
   }
@@ -59,7 +59,7 @@ const removeItemFromCard = async () => {
     })
     cartState.value = response
   } catch (error: any) {
-    errorMessage.value = error.statusMessage
+    errorMessage.value = error.data.data.message
   } finally {
     emit('is-loading', false)
   }

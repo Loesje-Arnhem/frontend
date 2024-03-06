@@ -22,7 +22,9 @@ export default defineEventHandler(async (event) => {
   if (!formData.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Something went wrong',
+      data: {
+        message: 'Something went wrong',
+      },
     })
   }
 
@@ -87,7 +89,9 @@ export default defineEventHandler(async (event) => {
     if (!parsed.success) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Something went wrong',
+        data: {
+          message: 'Something went wrong',
+        },
       })
     }
 

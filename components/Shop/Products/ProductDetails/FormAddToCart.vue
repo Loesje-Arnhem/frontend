@@ -21,7 +21,6 @@ const errorMessage = ref<string | null>(null)
 const addToCart = async () => {
   pending.value = true
   errorMessage.value = null
-  console.log('addToCart')
 
   try {
     const response = await $fetch('/api/cart/addItem', {
@@ -32,7 +31,6 @@ const addToCart = async () => {
         variation: selectedAttributes.value,
       },
     })
-    console.log({ response })
     cartState.value = response
     await navigateTo(
       localPath({

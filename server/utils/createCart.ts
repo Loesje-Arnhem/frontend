@@ -8,7 +8,9 @@ export const createCart = (response: unknown) => {
   if (!parsed.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Something went wrong',
+      data: {
+        message: 'Something went wrong',
+      },
     })
   }
 

@@ -22,7 +22,7 @@ const removeCoupon = async () => {
     })
     cartState.value = response
   } catch (error: any) {
-    errorMessage.value = error.statusMessage
+    errorMessage.value = error.data.data.message
   } finally {
     pending.value = false
   }

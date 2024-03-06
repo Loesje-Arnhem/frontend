@@ -53,7 +53,7 @@ const fetchAdress = async () => {
     emits('update:city', response.city)
     emits('update:street', response.street)
   } catch (error: any) {
-    errorMessage.value = error.statusMessage
+    errorMessage.value = error.data.data.message
   } finally {
     pending.value = false
   }

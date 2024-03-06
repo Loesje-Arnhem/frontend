@@ -23,7 +23,9 @@ export default defineEventHandler(async () => {
   if (response.length < 1) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'No Poster found',
+      data: {
+        message: 'No Poster found',
+      },
     })
   }
 
@@ -35,7 +37,9 @@ export default defineEventHandler(async () => {
   if (!featuredImage) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'No Poster found',
+      data: {
+        message: 'No Poster found',
+      },
     })
   } else {
     await storage.setItem(key, featuredImage)

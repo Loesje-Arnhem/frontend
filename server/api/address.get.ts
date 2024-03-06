@@ -34,7 +34,9 @@ export default defineEventHandler(async (event) => {
   if (typeof response === 'number') {
     throw createError({
       statusCode: 400,
-      statusMessage: 'errorCode',
+      data: {
+        message: 'errorCode',
+      },
     })
   }
 

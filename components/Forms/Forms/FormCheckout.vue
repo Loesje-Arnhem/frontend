@@ -75,7 +75,7 @@ const submit = async () => {
 
     // await navigateTo(response.payment_result.redirect_url, { external: true })
   } catch (error: any) {
-    errorMessage.value = error.statusMessage
+    errorMessage.value = error.data.data.message
   } finally {
     pending.value = false
   }
