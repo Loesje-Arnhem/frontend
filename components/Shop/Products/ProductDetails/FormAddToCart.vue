@@ -38,6 +38,7 @@ const addToCart = async () => {
       }),
     )
   } catch (error: any) {
+    console.log({ error })
     errorMessage.value = error.statusMessage
   } finally {
     pending.value = false
