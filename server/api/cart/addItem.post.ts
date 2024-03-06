@@ -20,11 +20,9 @@ export default defineEventHandler(async (event) => {
         'cart-token': cookies.token,
       },
     })
-
     return createCart(response)
   } catch (error) {
     throw createError({
-      statusCode: 400,
       statusMessage: error.data.message,
     })
   }
