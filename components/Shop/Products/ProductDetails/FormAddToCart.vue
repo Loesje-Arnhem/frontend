@@ -46,6 +46,7 @@ const addToCart = async () => {
     // } else {
     //   errorMessage.value = error.statusMessage
     // }
+    errorMessage.value = error
   } finally {
     pending.value = false
   }
