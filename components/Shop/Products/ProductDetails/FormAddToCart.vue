@@ -40,6 +40,10 @@ const addToCart = async () => {
       }),
     )
   } catch (error: any) {
+    console.log(error)
+    console.log(error?.FetchError)
+    console.log(error?.FetchError?._data)
+    console.log(error?.FetchError?._data?.statusMessage)
     if (error.FetchError) {
       errorMessage.value = error?.FetchError?._data?.statusMessage
     } else {
