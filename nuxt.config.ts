@@ -16,7 +16,6 @@ export default defineNuxtConfig({
   },
 
   image: {
-    provider: 'netlify',
     densities: [1, 2],
   },
 
