@@ -24,6 +24,9 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     throw createError({
       statusMessage: error.data.message,
+      data: {
+        message: error.data.message,
+      },
     })
   }
 })
