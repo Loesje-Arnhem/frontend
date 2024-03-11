@@ -2,9 +2,9 @@ export const mainNavigation = [
   { title: 'Home', id: 'home', url: '/' },
   { title: 'Posters', id: 'posters', url: '/posters/' },
   {
-    id: 'cG9zdDoxMTMxMDc=',
-    url: '/doe-mee/',
-    title: 'Doe mee',
+    id: 'cG9zdDoxMTMxMTI=',
+    url: '/over-loesje/',
+    title: 'Over Loesje',
     children: [
       {
         id: '/over-loesje/wie-is-loesje/',
@@ -34,9 +34,10 @@ export const mainNavigation = [
     ],
   },
   {
-    id: 'cG9zdDoxMTMxMTI=',
-    url: '/over-loesje/',
-    title: 'Over Loesje',
+    id: 'cG9zdDoxMTMxMDc=',
+    url: '/doe-mee/',
+    title: 'Doe mee',
+
     children: [
       {
         id: '/doe-mee/word-lid/',
