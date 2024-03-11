@@ -10,7 +10,7 @@ overrides:
 dependencies:
   '@nuxt/image':
     specifier: ^1.4.0
-    version: 1.4.0(@netlify/blobs@7.0.0)(rollup@4.12.0)
+    version: 1.4.0(@netlify/blobs@7.0.1)(rollup@4.12.0)
   '@vuelidate/core':
     specifier: ^2.0.3
     version: 2.0.3(vue@3.4.21)
@@ -38,8 +38,8 @@ dependencies:
 
 devDependencies:
   '@netlify/blobs':
-    specifier: ^7.0.0
-    version: 7.0.0
+    specifier: ^7.0.1
+    version: 7.0.1
   '@nuxt/eslint-config':
     specifier: ^0.2.0
     version: 0.2.0(eslint@8.57.0)
@@ -50,8 +50,8 @@ devDependencies:
     specifier: ^8.1.1
     version: 8.1.1(rollup@4.12.0)(vue@3.4.21)
   '@nuxtjs/sitemap':
-    specifier: ^5.1.1
-    version: 5.1.1(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(h3@1.11.1)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3)
+    specifier: ^5.1.2
+    version: 5.1.2(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(h3@1.11.1)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3)
   '@nuxtjs/stylelint-module':
     specifier: ^5.2.0
     version: 5.2.0(postcss@8.4.35)(rollup@4.12.0)(stylelint@16.2.1)(vite@5.1.4)(webpack@5.90.3)
@@ -78,10 +78,10 @@ devDependencies:
     version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.2.5)
   nuxt:
     specifier: ^3.10.3
-    version: 3.10.3(@netlify/blobs@7.0.0)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4)
+    version: 3.10.3(@netlify/blobs@7.0.1)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4)
   nuxt-schema-org:
-    specifier: ^3.3.4
-    version: 3.3.4(@nuxt/devtools@1.0.8)(@unhead/shared@1.8.10)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(unhead@1.8.10)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3)
+    specifier: ^3.3.6
+    version: 3.3.6(@nuxt/devtools@1.0.8)(@unhead/shared@1.8.13)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(unhead@1.8.10)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3)
   nuxt-svgo:
     specifier: ^4.0.0
     version: 4.0.0(rollup@4.12.0)(vue@3.4.21)
@@ -2546,8 +2546,8 @@ packages:
       rollup: 4.12.0
     dev: true
 
-  /@netlify/blobs@7.0.0:
-    resolution: {integrity: sha512-JHYlZzF7LNRSZv8vDoChpEtrfe/P9m+GoWkllWsy6Pn68ZWRB2FcDdXjvqq3i9psbf3BLVEECmvxYbdYDhlIGQ==}
+  /@netlify/blobs@7.0.1:
+    resolution: {integrity: sha512-TPx1QzdPcrtBLFXDsv+BOJg5ip/g4trKaot1MZIUV/uI6H0Islg3gU4AGuH5hAMZOr6VlRLWicFhGX7ihLz4eg==}
     engines: {node: ^14.16.0 || >=16.0.0}
 
   /@netlify/functions@2.6.0:
@@ -2687,7 +2687,7 @@ packages:
       '@nuxt/kit': 3.10.3(rollup@4.12.0)
       '@nuxt/schema': 3.10.3(rollup@4.12.0)
       execa: 7.2.0
-      nuxt: 3.10.3(@netlify/blobs@7.0.0)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4)
+      nuxt: 3.10.3(@netlify/blobs@7.0.1)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4)
       vite: 5.1.4
     transitivePeerDependencies:
       - rollup
@@ -2713,7 +2713,7 @@ packages:
       '@unocss/preset-icons': 0.58.5
       '@unocss/preset-mini': 0.58.5
       '@unocss/reset': 0.58.5
-      '@vueuse/core': 10.8.0(vue@3.4.21)
+      '@vueuse/core': 10.9.0(vue@3.4.21)
       '@vueuse/integrations': 10.8.0(focus-trap@7.5.4)(vue@3.4.21)
       '@vueuse/nuxt': 10.8.0(nuxt@3.10.3)(rollup@4.12.0)(vue@3.4.21)
       defu: 6.1.4
@@ -2786,7 +2786,7 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.3
-      nuxt: 3.10.3(@netlify/blobs@7.0.0)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4)
+      nuxt: 3.10.3(@netlify/blobs@7.0.1)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4)
       nypm: 0.3.6
       ohash: 1.1.3
       pacote: 17.0.6
@@ -2827,7 +2827,7 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/image@1.4.0(@netlify/blobs@7.0.0)(rollup@4.12.0):
+  /@nuxt/image@1.4.0(@netlify/blobs@7.0.1)(rollup@4.12.0):
     resolution: {integrity: sha512-ZEGHjX8UZY/Wt/jWm+66QuUQA14E0dTwdi7n9BoZ1cJdinL8QdRMm3FcbwJvCj2quvD85c9LT2wvNA8l6hOMOA==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
@@ -2842,7 +2842,7 @@ packages:
       std-env: 3.7.0
       ufo: 1.4.0
     optionalDependencies:
-      ipx: 2.1.0(@netlify/blobs@7.0.0)
+      ipx: 2.1.0(@netlify/blobs@7.0.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -3058,8 +3058,8 @@ packages:
       - vue-i18n-bridge
     dev: true
 
-  /@nuxtjs/sitemap@5.1.1(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(h3@1.11.1)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3):
-    resolution: {integrity: sha512-Qxzp8aFIrFP47xTZ4qhWr0/tXlpIU8sF/9GlNoG2EwSpoHkp4k/yiuHjV9J3jeDUlhI2pRlLrXu/PxIrIcxPsg==}
+  /@nuxtjs/sitemap@5.1.2(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(h3@1.11.1)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3):
+    resolution: {integrity: sha512-2ZLRNCAE1m+3oM6MrbcT2MrdPM7FxZqopGz9qEufwkjLH2s6C0ZS2An61OrbCUgmgwPfeL3G9stbc9zc1VMywg==}
     dependencies:
       '@nuxt/devtools-kit': 1.0.8(nuxt@3.10.3)(rollup@4.12.0)(vite@5.1.4)
       '@nuxt/devtools-ui-kit': 1.0.8(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3)
@@ -3074,11 +3074,11 @@ packages:
       ofetch: 1.3.3
       pathe: 1.1.2
       pkg-types: 1.0.3
-      radix3: 1.1.0
+      radix3: 1.1.1
       semver: 7.6.0
       shiki: 1.1.7
       sirv: 2.0.4
-      site-config-stack: 2.2.9(vue@3.4.21)
+      site-config-stack: 2.2.11(vue@3.4.21)
       ufo: 1.4.0
     transitivePeerDependencies:
       - '@nuxt/devtools'
@@ -3577,10 +3577,6 @@ packages:
     resolution: {integrity: sha512-RbhOOTCNoCrbfkRyoXODZp75MlpiHMgbE5MEBZAnnnLyQNgrigEj4p0lzsMDyc1zVsJDLrivB58tgg3emX0eEA==}
     dev: true
 
-  /@shikijs/core@1.1.6:
-    resolution: {integrity: sha512-kt9hhvrWTm0EPtRDIsoAZnSsFlIDBVBBI5CQewpA/NZCPin+MOKRXg+JiWc4y+8fZ/v0HzfDhu/UC+OTZGMt7A==}
-    dev: true
-
   /@shikijs/core@1.1.7:
     resolution: {integrity: sha512-gTYLUIuD1UbZp/11qozD3fWpUTuMqPSf3svDMMrL0UmlGU7D9dPw/V1FonwAorCUJBltaaESxq90jrSjQyGixg==}
     dev: true
@@ -3907,13 +3903,13 @@ packages:
       '@unhead/shared': 1.8.10
     dev: true
 
-  /@unhead/schema-org@1.8.10(@unhead/shared@1.8.10)(unhead@1.8.10):
-    resolution: {integrity: sha512-u2g1FCVRpMy6FSm5i2F36bKw6SbMM2B0p6Y36ztBRJ4fd0SGCTZNC4WM6A2eCFZ3aI6E5Zbs+Bo4oUMjfLWDhA==}
+  /@unhead/schema-org@1.8.13(@unhead/shared@1.8.13)(unhead@1.8.10):
+    resolution: {integrity: sha512-4S7INWfbkxrTbGKE0OqzXp+p3MCV6x9XzRaJReGX28F3HHxW0X9F9v/CFzkC6WXl+Fzq2ewEdATM6FoPbq2MHw==}
     peerDependencies:
-      '@unhead/shared': 1.8.10
-      unhead: '>=1.8.9'
+      '@unhead/shared': 1.8.13
+      unhead: '>=1.8.10'
     dependencies:
-      '@unhead/shared': 1.8.10
+      '@unhead/shared': 1.8.13
       ufo: 1.4.0
       unhead: 1.8.10
     dev: true
@@ -3925,10 +3921,23 @@ packages:
       zhead: 2.2.4
     dev: true
 
+  /@unhead/schema@1.8.13:
+    resolution: {integrity: sha512-38SMOv/RaTtldOJx2/Mezlg3xlMeAAFtyI+M7vwj8Qb0xAosRc804ct3Xta5ecFMe9bEXQbZWEIKydU6ZV6B7w==}
+    dependencies:
+      hookable: 5.5.3
+      zhead: 2.2.4
+    dev: true
+
   /@unhead/shared@1.8.10:
     resolution: {integrity: sha512-pEFryAs3EmV+ShDQx2ZBwUnt5l3RrMrXSMZ50oFf+MImKZNARVvD4+3I8fEI9wZh+Zq0JYG3UAfzo51MUP+Juw==}
     dependencies:
       '@unhead/schema': 1.8.10
+    dev: true
+
+  /@unhead/shared@1.8.13:
+    resolution: {integrity: sha512-NV/quz31oqkITx+Epwzgf01AaYMPTzvkEdg9jvGltTWeSHWKtowUeTRPfWUc3TTPtCzrYgHQQjGN8YOHdWjC7Q==}
+    dependencies:
+      '@unhead/schema': 1.8.13
     dev: true
 
   /@unhead/ssr@1.8.10:
@@ -4605,7 +4614,7 @@ packages:
       '@vueuse/core': 10.8.0(vue@3.4.21)
       '@vueuse/metadata': 10.8.0
       local-pkg: 0.5.0
-      nuxt: 3.10.3(@netlify/blobs@7.0.0)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4)
+      nuxt: 3.10.3(@netlify/blobs@7.0.1)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4)
       vue-demi: 0.14.7(vue@3.4.21)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -7209,7 +7218,7 @@ packages:
       sprintf-js: 1.1.3
     dev: true
 
-  /ipx@2.1.0(@netlify/blobs@7.0.0):
+  /ipx@2.1.0(@netlify/blobs@7.0.1):
     resolution: {integrity: sha512-AVnPGXJ8L41vjd11Z4akIF2yd14636Klxul3tBySxHA6PKfCOQPxBDkCFK5zcWh0z/keR6toh1eg8qzdBVUgdA==}
     hasBin: true
     requiresBuild: true
@@ -7228,7 +7237,7 @@ packages:
       sharp: 0.32.6
       svgo: 3.2.0
       ufo: 1.4.0
-      unstorage: 1.10.1(@netlify/blobs@7.0.0)
+      unstorage: 1.10.1(@netlify/blobs@7.0.1)
       xss: 1.0.14
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -8176,7 +8185,7 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /nitropack@2.8.1(@netlify/blobs@7.0.0):
+  /nitropack@2.8.1(@netlify/blobs@7.0.1):
     resolution: {integrity: sha512-pODv2kEEzZSDQR+1UMXbGyNgMedUDq/qUomtiAnQKQvLy52VGlecXO1xDfH3i0kP1yKEcKTnWsx1TAF5gHM7xQ==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
@@ -8249,7 +8258,7 @@ packages:
       unctx: 2.3.1
       unenv: 1.9.0
       unimport: 3.7.1(rollup@4.12.0)
-      unstorage: 1.10.1(@netlify/blobs@7.0.0)
+      unstorage: 1.10.1(@netlify/blobs@7.0.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -8479,18 +8488,18 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /nuxt-schema-org@3.3.4(@nuxt/devtools@1.0.8)(@unhead/shared@1.8.10)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(unhead@1.8.10)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3):
-    resolution: {integrity: sha512-wZVFeZxogpFlavRYOvsQXNMNxju8YYfoauXkfZ7qNow9qB90vQVHFUW8rrMU+F/rGPg/eJ79rEV+Lf4mKHggmA==}
+  /nuxt-schema-org@3.3.6(@nuxt/devtools@1.0.8)(@unhead/shared@1.8.13)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(unhead@1.8.10)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3):
+    resolution: {integrity: sha512-1HTyYmwBjXuzQ3nXpI+0l+DZbFq0hPayUazaTUFcc/BF/176OIrBTymj/5DgwsUVtZKVDglCdzDriIF8YhfIDA==}
     dependencies:
       '@nuxt/devtools-kit': 1.0.8(nuxt@3.10.3)(rollup@4.12.0)(vite@5.1.4)
       '@nuxt/devtools-ui-kit': 1.0.8(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3)
       '@nuxt/kit': 3.10.3(rollup@4.12.0)
-      '@unhead/schema-org': 1.8.10(@unhead/shared@1.8.10)(unhead@1.8.10)
+      '@unhead/schema-org': 1.8.13(@unhead/shared@1.8.13)(unhead@1.8.10)
       floating-vue: 5.2.2(@nuxt/kit@3.10.3)(vue@3.4.21)
-      nuxt-site-config: 2.2.9(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3)
-      nuxt-site-config-kit: 2.2.9(rollup@4.12.0)(vue@3.4.21)
+      nuxt-site-config: 2.2.11(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3)
+      nuxt-site-config-kit: 2.2.11(rollup@4.12.0)(vue@3.4.21)
       pathe: 1.1.2
-      shiki: 1.1.6
+      shiki: 1.1.7
       sirv: 2.0.4
     transitivePeerDependencies:
       - '@nuxt/devtools'
@@ -8534,21 +8543,6 @@ packages:
       - vue
     dev: true
 
-  /nuxt-site-config-kit@2.2.9(rollup@4.12.0)(vue@3.4.21):
-    resolution: {integrity: sha512-K3Pi7OBeztfjTxEpk0kEpbRwyhKQf15MIJQUAeqep9K2RbAdzhSygfpHZUcWc0KL2l0E5qKrvdcM14Gc/9dZdg==}
-    dependencies:
-      '@nuxt/kit': 3.10.3(rollup@4.12.0)
-      '@nuxt/schema': 3.10.3(rollup@4.12.0)
-      pkg-types: 1.0.3
-      site-config-stack: 2.2.9(vue@3.4.21)
-      std-env: 3.7.0
-      ufo: 1.4.0
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-      - vue
-    dev: true
-
   /nuxt-site-config@2.2.11(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3):
     resolution: {integrity: sha512-yYR5g9wjc3aULpyv1Ne7FlmXA8pXr1JVf2ZOx40TT7DkGY86zNntOF9RWaQjrvFgw0fTJAQyrNxdbzWJc8O+mA==}
     dependencies:
@@ -8563,46 +8557,6 @@ packages:
       shiki: 1.1.7
       sirv: 2.0.4
       site-config-stack: 2.2.11(vue@3.4.21)
-      ufo: 1.4.0
-    transitivePeerDependencies:
-      - '@nuxt/devtools'
-      - '@unocss/webpack'
-      - '@vue/compiler-core'
-      - '@vue/composition-api'
-      - async-validator
-      - axios
-      - change-case
-      - drauu
-      - fuse.js
-      - idb-keyval
-      - jwt-decode
-      - nprogress
-      - nuxt
-      - postcss
-      - qrcode
-      - rollup
-      - sortablejs
-      - supports-color
-      - universal-cookie
-      - vite
-      - vue
-      - webpack
-    dev: true
-
-  /nuxt-site-config@2.2.9(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3):
-    resolution: {integrity: sha512-oIxo7OTmVyPHi1uduAQUg1Py8W3ZM0to2z5SCffmhME47I0wK2wK8OimSY2ZpbKsNLfaxExEvR10vSbhgy9rOA==}
-    dependencies:
-      '@nuxt/devtools-kit': 1.0.8(nuxt@3.10.3)(rollup@4.12.0)(vite@5.1.4)
-      '@nuxt/devtools-ui-kit': 1.0.8(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(nuxt@3.10.3)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.4)(vue@3.4.21)(webpack@5.90.3)
-      '@nuxt/kit': 3.10.3(rollup@4.12.0)
-      '@nuxt/schema': 3.10.3(rollup@4.12.0)
-      floating-vue: 5.2.2(@nuxt/kit@3.10.3)(vue@3.4.21)
-      nuxt-site-config-kit: 2.2.9(rollup@4.12.0)(vue@3.4.21)
-      pathe: 1.1.2
-      pkg-types: 1.0.3
-      shiki: 1.1.6
-      sirv: 2.0.4
-      site-config-stack: 2.2.9(vue@3.4.21)
       ufo: 1.4.0
     transitivePeerDependencies:
       - '@nuxt/devtools'
@@ -8653,7 +8607,7 @@ packages:
       - supports-color
     dev: true
 
-  /nuxt@3.10.3(@netlify/blobs@7.0.0)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4):
+  /nuxt@3.10.3(@netlify/blobs@7.0.1)(eslint@8.57.0)(rollup@4.12.0)(stylelint@16.2.1)(typescript@5.3.3)(vite@5.1.4):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -8696,7 +8650,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.7
       mlly: 1.6.0
-      nitropack: 2.8.1(@netlify/blobs@7.0.0)
+      nitropack: 2.8.1(@netlify/blobs@7.0.1)
       nuxi: 3.10.1
       nypm: 0.3.6
       ofetch: 1.3.3
@@ -9872,6 +9826,10 @@ packages:
   /radix3@1.1.0:
     resolution: {integrity: sha512-pNsHDxbGORSvuSScqNJ+3Km6QAVqk8CfsCBIEoDgpqLrkD2f3QM4I7d1ozJJ172OmIcoUcerZaNWqtLkRXTV3A==}
 
+  /radix3@1.1.1:
+    resolution: {integrity: sha512-yUUd5VTiFtcMEx0qFUxGAv5gbMc1un4RvEO1JZdP7ZUl/RHygZK6PknIKntmQRZxnMY3ZXD2ISaw1ij8GYW1yg==}
+    dev: true
+
   /randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
     dependencies:
@@ -10325,12 +10283,6 @@ packages:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
     dev: true
 
-  /shiki@1.1.6:
-    resolution: {integrity: sha512-j4pcpvaQWHb42cHeV+W6P+X/VcK7Y2ctvEham6zB8wsuRQroT6cEMIkiUmBU2Nqg2qnHZDH6ZyRdVldcy0l6xw==}
-    dependencies:
-      '@shikijs/core': 1.1.6
-    dev: true
-
   /shiki@1.1.7:
     resolution: {integrity: sha512-9kUTMjZtcPH3i7vHunA6EraTPpPOITYTdA5uMrvsJRexktqP0s7P3s9HVK80b4pP42FRVe03D7fT3NmJv2yYhw==}
     dependencies:
@@ -10418,15 +10370,6 @@ packages:
 
   /site-config-stack@2.2.11(vue@3.4.21):
     resolution: {integrity: sha512-j3okTVJiZV1QH4XJLCeO4UgaJzv4ogtFOOkAu1TlEcKSTSDBZ7PKBvZiyaW90TLnCTaB29JAAB/jmrJK7zlxdA==}
-    peerDependencies:
-      vue: ^3
-    dependencies:
-      ufo: 1.4.0
-      vue: 3.4.21(typescript@5.3.3)
-    dev: true
-
-  /site-config-stack@2.2.9(vue@3.4.21):
-    resolution: {integrity: sha512-r3Ul70Rb7dIQBmHes8TPR/1cB2alaxIrr+0x7RDmOnOPw144ofp5/Ye9AKJ+TlqTpAQpZiV3phE7AJEjEFNuuQ==}
     peerDependencies:
       vue: ^3
     dependencies:
@@ -11418,7 +11361,7 @@ packages:
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.1
 
-  /unstorage@1.10.1(@netlify/blobs@7.0.0):
+  /unstorage@1.10.1(@netlify/blobs@7.0.1):
     resolution: {integrity: sha512-rWQvLRfZNBpF+x8D3/gda5nUCQL2PgXy2jNG4U7/Rc9BGEv9+CAJd0YyGCROUBKs9v49Hg8huw3aih5Bf5TAVw==}
     peerDependencies:
       '@azure/app-configuration': ^1.4.1
@@ -11459,7 +11402,7 @@ packages:
       idb-keyval:
         optional: true
     dependencies:
-      '@netlify/blobs': 7.0.0
+      '@netlify/blobs': 7.0.1
       anymatch: 3.1.3
       chokidar: 3.6.0
       destr: 2.0.3
