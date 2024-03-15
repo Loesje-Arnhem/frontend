@@ -15,20 +15,11 @@ withDefaults(
 
 <template>
   <app-image
-    class="image"
     :alt="image.alt"
     :lazy="lazy"
     :src="image.src"
     :sizes="sizes"
     :width="image.width"
     :height="image.height"
-    format="avif,webp"
   />
 </template>
-
-<style lang="postcss" scoped>
-.image {
-  display: block;
-  width: 100%;
-}
-</style>

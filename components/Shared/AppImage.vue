@@ -34,5 +34,13 @@ const loading = computed(() => {
     :width="width"
     :height="height"
     class="image"
+    format="avif,webp"
   />
 </template>
+
+<style lang="postcss" scoped>
+.image {
+  display: block;
+  width: 100%;
+}
+</style>
