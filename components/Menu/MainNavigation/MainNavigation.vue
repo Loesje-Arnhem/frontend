@@ -116,11 +116,15 @@ const setArrowPosition = () => {
   background: var(--color-white);
   display: none;
   position: absolute;
-  bottom: 13px;
+  bottom: 8px;
   transition: all var(--animation);
 
   @media (--show-full-navigation) {
     display: block;
+  }
+
+  @media (--viewport-lg) {
+    bottom: 13px;
   }
 }
 </style>

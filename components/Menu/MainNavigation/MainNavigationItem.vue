@@ -106,6 +106,10 @@ const isSmallScreen = () => {
 
 .menu-item {
   position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: var(--spacing-xxs);
 }
 
 /* stylelint-disable */
@@ -125,7 +129,7 @@ const isSmallScreen = () => {
   @mixin heading;
 
   margin-top: 0.1em;
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-m);
   border-bottom-width: 2px;
 
   .menu-item:first-child & {
@@ -136,13 +140,13 @@ const isSmallScreen = () => {
     }
   }
 
-  &[aria-haspopup='true'] {
-    padding-right: var(--spacing-m);
-  }
-
   @media (--show-full-navigation) {
     color: var(--color-white);
     border-bottom-width: 0;
+  }
+
+  @media (--viewport-lg) {
+    font-size: var(--font-size-xl);
   }
 }
 
@@ -166,12 +170,7 @@ const isSmallScreen = () => {
 
 .btn-show-submenu {
   display: block;
-  position: absolute;
-  width: var(--spacing-l);
-  height: var(--spacing-l);
-
-  right: calc(var(--spacing-xs) * -1);
-  top: var(--spacing-xs);
+  width: var(--spacing-m);
 
   @media (--show-full-navigation) {
     color: var(--color-white);

@@ -4,8 +4,9 @@ const props = defineProps<{
 }>()
 
 const videoThumb = computed(() => {
-  return `https://i3.ytimg.com/vi/${props.video}/hqdefault.jpg`
+  return `https://i3.ytimg.com/vi/${props.video}/maxresdefault.jpg`
 })
+
 const videoUrl = computed(() => {
   return `https://www.youtube.com/watch?v=${props.video}`
 })
