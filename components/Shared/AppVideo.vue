@@ -21,6 +21,7 @@ const videoUrl = computed(() => {
         class="image"
         :width="480"
         :height="360"
+        sizes="xs:350px"
       />
     </a>
     <a :href="videoUrl" class="btn-video" rel="noopener" target="_blank">
@@ -30,6 +31,7 @@ const videoUrl = computed(() => {
         class="icon-play"
         :width="53"
         :height="55"
+        sizes="xs:35px"
       />
     </a>
     <app-image
@@ -37,6 +39,7 @@ const videoUrl = computed(() => {
       class="frame"
       :width="300"
       :height="292"
+      sizes="xs:350px"
     />
   </div>
 </template>
