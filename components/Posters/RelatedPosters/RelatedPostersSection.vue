@@ -18,6 +18,14 @@ const { data } = useFetch('/api/posters/posters', {
   },
 })
 
+const img = useImage()
+
+const backgroundImage = computed(() =>
+  img('/images/wall.png', {
+    format: 'webp',
+  }),
+)
+
 const title = props.title || t('posters')
 </script>
 
@@ -26,6 +34,7 @@ const title = props.title || t('posters')
     v-if="data?.items.length"
     class="related-posters"
     aria-labelledby="related-posters-title"
+    :style="{ backgroundImage: `url(${backgroundImage})` }"
   >
     <center-wrapper>
       <h1 id="related-posters-title" class="title">
@@ -47,7 +56,6 @@ const title = props.title || t('posters')
 <style lang="postcss" scoped>
 .related-posters {
   padding: 3em 0;
-  background: url('/images/wall.png');
 }
 
 .title {
@@ -58,3 +66,4 @@ const title = props.title || t('posters')
   text-align: right;
 }
 </style>
+import type { backgroundColor } from '~/data/siteDetails';
