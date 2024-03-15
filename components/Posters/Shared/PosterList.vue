@@ -4,10 +4,18 @@ import type { IPosterListItem } from '~/types/Content'
 defineProps<{
   posters: IPosterListItem[]
 }>()
+
+const img = useImage()
+
+const backgroundImage = computed(() =>
+  img('/images/wall.png', {
+    format: 'webp',
+  }),
+)
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :style="{ backgroundImage: `url(${backgroundImage})` }">
     <center-wrapper>
       <ul class="list">
         <li v-for="poster in posters" :key="poster.id" class="list-item">
@@ -20,10 +28,6 @@ defineProps<{
 
 <style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
-
-.wrapper {
-  background: url('/images/wall.png');
-}
 
 .list {
   @mixin list-reset;
