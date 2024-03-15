@@ -36,7 +36,7 @@ const videoUrl = computed(() => {
       src="/images/television.png"
       class="frame"
       :width="300"
-      :height="320"
+      :height="292"
     />
   </div>
 </template>
@@ -49,6 +49,10 @@ const videoUrl = computed(() => {
   object-fit: cover;
   filter: sepia(0.75) contrast(0.75) brightness(1.25) saturate(1.4);
   cursor: pointer;
+
+  & :deep(img) {
+    width: 100%;
+  }
 }
 
 .wrapper {
@@ -57,7 +61,7 @@ const videoUrl = computed(() => {
 }
 
 .video-wrapper {
-  inset: 38% 23% auto 7%;
+  inset: 40% 5% auto 5%;
   position: absolute;
   display: block;
 }
