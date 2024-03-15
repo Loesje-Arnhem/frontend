@@ -11,7 +11,7 @@ definePageMeta({
 
 const { pageIds } = useAppConfig()
 
-const { data } = await useAsyncData(`page-home`, () =>
+const { data } = await useAsyncData(`page-cart`, () =>
   $fetch('/api/pages/page', {
     params: {
       id: pageIds.cart,
