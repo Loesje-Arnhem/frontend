@@ -6,7 +6,7 @@ defineI18nRoute({
 })
 const { pageIds } = useAppConfig()
 
-const { data } = await useAsyncData(`page-workshop`, () =>
+const { data } = await useAsyncData(`page-newsletter`, () =>
   $fetch('/api/pages/page', {
     params: {
       id: pageIds.newsletter,
