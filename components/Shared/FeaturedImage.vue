@@ -15,6 +15,7 @@ withDefaults(
 
 <template>
   <app-image
+    class="image"
     :alt="image.alt"
     :lazy="lazy"
     :src="image.src"
@@ -23,3 +24,10 @@ withDefaults(
     :height="image.height"
   />
 </template>
+
+<style lang="postcss" scoped>
+.image {
+  display: block;
+  max-width: 100%;
+}
+</style>

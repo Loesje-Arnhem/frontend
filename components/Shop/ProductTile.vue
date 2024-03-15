@@ -62,6 +62,10 @@ const url = localePath({
   @supports (grid-template-rows: subgrid) {
     grid-template-rows: subgrid;
   }
+
+  :deep(img) {
+    width: 100%;
+  }
 }
 
 .link {

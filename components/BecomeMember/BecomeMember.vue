@@ -40,6 +40,11 @@ const usps = [
   margin-bottom: 1em;
 }
 
+.check {
+  flex: 0 1 auto;
+  width: auto;
+}
+
 .list-item {
   gap: 0.25em;
   padding: 0 0 0.5rem;

@@ -39,8 +39,8 @@ const loading = computed(() => {
 </template>
 
 <style lang="postcss" scoped>
-.image {
+.image :deep(img) {
   display: block;
-  width: 100%;
+  max-width: 100%;
 }
 </style>
