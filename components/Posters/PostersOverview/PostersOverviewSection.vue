@@ -37,7 +37,7 @@ const { pending, data, refresh } = useFetch('/api/posters/posters', {
   query: {
     subjectIds: subjectIdsProp,
     sourceIds: sourceIdsProp,
-    include: props.include,
+    include: props.include.join(','),
     dateAfter: posterDateAfterProp,
     dateBefore: posterDateBeforeProp,
     exclude: props.exclude,

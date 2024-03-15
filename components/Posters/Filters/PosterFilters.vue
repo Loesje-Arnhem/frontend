@@ -63,17 +63,6 @@ const today = () => {
       </poster-filter-toggle>
       <div class="filter-item date">
         <input-text-field
-          id="date-before"
-          v-model="dateBefore"
-          type="date"
-          :title="$t('from')"
-          name="date-before"
-          min="1983-01-01"
-          :max="dateAfter ? dateAfter : today()"
-        />
-      </div>
-      <div class="filter-item date">
-        <input-text-field
           id="date-after"
           v-model="dateAfter"
           type="date"
@@ -81,6 +70,17 @@ const today = () => {
           name="date-after"
           :max="today()"
           :min="dateBefore ? dateBefore : '1983-01-01'"
+        />
+      </div>
+      <div class="filter-item date">
+        <input-text-field
+          id="date-before"
+          v-model="dateBefore"
+          type="date"
+          :title="$t('from')"
+          name="date-before"
+          min="1983-01-01"
+          :max="dateAfter ? dateAfter : today()"
         />
       </div>
     </div>
