@@ -106,10 +106,14 @@ const isSmallScreen = () => {
 
 .menu-item {
   position: relative;
-  display: flex;
-  align-items: center;
   flex: 0 0 auto;
-  gap: var(--spacing-xxs);
+
+  @media (--show-full-navigation) {
+    align-items: center;
+    flex-wrap:;
+    gap: var(--spacing-xxs);
+    display: flex;
+  }
 }
 
 /* stylelint-disable */
@@ -171,9 +175,13 @@ const isSmallScreen = () => {
 .btn-show-submenu {
   display: block;
   width: var(--spacing-m);
+  position: absolute;
+  right: 0;
+  top: var(--spacing-xs);
 
   @media (--show-full-navigation) {
     color: var(--color-white);
+    position: static;
   }
 }
 
