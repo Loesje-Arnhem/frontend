@@ -12,6 +12,7 @@ export type ResponseProducts = {
     price: string
     regular_price: string
   }
+  permalink: string
   external_url: string
   images: ResponseProductImage[]
 }

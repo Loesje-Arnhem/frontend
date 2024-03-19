@@ -75,6 +75,7 @@ export type IPostListItem = IBase & {
 }
 
 export type IProductListItem = IBase & {
+  url: string,
   slug: string
   price?: number
   regularPrice?: number

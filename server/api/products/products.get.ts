@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
   const url = getUrl({
     type: 'products',
-    fields: ['name', 'id', 'slug', 'prices', 'images', 'external_url'],
+    fields: ['name', 'id', 'slug', 'prices', 'images', 'external_url', 'permalink'],
     pageSize: 99,
     image: true,
     featured: query.data.featured === 'true',
@@ -48,6 +48,7 @@ export default defineEventHandler(async (event) => {
 
     return {
       id: item.id,
+      url: item.permalink,
       slug: item.slug,
       title: item.name,
       price: Number(price) / 100,

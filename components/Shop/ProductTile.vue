@@ -16,7 +16,11 @@ const url = localePath({
 </script>
 
 <template>
-  <clickable-list-item :to="url" class="product-tile tile">
+  <clickable-list-item
+    :to="product.url"
+    class="product-tile tile"
+    :external="true"
+  >
     <div class="image-wrapper">
       <featured-image
         v-if="product.image"
