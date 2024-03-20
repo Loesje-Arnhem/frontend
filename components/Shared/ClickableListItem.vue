@@ -1,7 +1,13 @@
 <script lang="ts" setup>
-const props = defineProps<{
-  to: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    to: string
+    external: boolean
+  }>(),
+  {
+    external: false,
+  },
+)
 
 const down: Ref<number | null> = ref(null)
 
@@ -19,7 +25,9 @@ const mouseUp = () => {
   }
   const up = +new Date()
   if (up - down.value < 200) {
-    navigateTo(props.to)
+    navigateTo(props.to, {
+      external: props.external,
+    })
   }
 }
 </script>

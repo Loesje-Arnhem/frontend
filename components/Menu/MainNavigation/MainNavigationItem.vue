@@ -133,8 +133,8 @@ const isSmallScreen = () => {
   @mixin heading;
 
   margin-top: 0.1em;
-  font-size: var(--font-size-m);
   border-bottom-width: 2px;
+  font-size: var(--font-size-xl);
 
   .menu-item:first-child & {
     border-top: 2px solid currentColor;
@@ -147,6 +147,7 @@ const isSmallScreen = () => {
   @media (--show-full-navigation) {
     color: var(--color-white);
     border-bottom-width: 0;
+    font-size: var(--font-size-m);
   }
 
   @media (--viewport-lg) {
@@ -177,7 +178,7 @@ const isSmallScreen = () => {
   width: var(--spacing-m);
   position: absolute;
   right: 0;
-  top: var(--spacing-xs);
+  top: var(--spacing-s);
 
   @media (--show-full-navigation) {
     color: var(--color-white);
