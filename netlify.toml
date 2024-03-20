@@ -44,5 +44,5 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "no-referrer"
     X-Content-Type-Options = "nosniff"
-    Content-Security-Policy = "default-src 'self';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self' data: fonts.gstatic.com;"
 
