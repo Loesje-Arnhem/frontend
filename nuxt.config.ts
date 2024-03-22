@@ -113,6 +113,9 @@ export default defineNuxtConfig({
         'content-type': 'text/xml',
       },
     },
+    '/winkeltje/**': {
+      appMiddleware: ['cart'],
+    },
   },
 
   telemetry: false,

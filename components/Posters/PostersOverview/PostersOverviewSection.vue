@@ -33,7 +33,7 @@ const sourceIdsProp = computed(() => props.sourceIds.join(','))
 
 const page = ref(1)
 
-const { pending, data, refresh } = useFetch('/api/posters/posters', {
+const { pending, data, refresh, clear } = useFetch('/api/posters/posters', {
   query: {
     subjectIds: subjectIdsProp,
     sourceIds: sourceIdsProp,
@@ -74,7 +74,7 @@ watch(
     searchProp,
   ],
   async () => {
-    data.value = null
+    clear()
     page.value = 1
     refresh()
   },
