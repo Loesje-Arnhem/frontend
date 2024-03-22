@@ -12,8 +12,8 @@ const { clear } = useLayout()
   <nuxt-link
     :to="item.url"
     class="link"
-    @click="clear"
     :external="item.external"
+    @click="clear"
   >
     <span class="title" v-html="item.title" />
   </nuxt-link>

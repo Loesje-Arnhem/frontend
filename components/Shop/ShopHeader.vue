@@ -1,8 +1,8 @@
 <template>
   <div class="header">
     <div class="promotion">
-      <nuxt-link to="/winkeltje/loesje-scheurkalender-2023/">
-        De nieuwe scheurkalender
+      <nuxt-link to="/winkeltje/loesje-docentenagenda-2024-2025-voorverkoop/">
+        De nieuwe docentenagenda
       </nuxt-link>
       is weer te bestellen
     </div>

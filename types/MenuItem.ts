@@ -2,7 +2,7 @@ export type MenuItem = {
   id: string
   title: string
   url: string
-  external?: string
+  external?: boolean
 }
 
 export type MenuItemWithChildren = MenuItem & {
