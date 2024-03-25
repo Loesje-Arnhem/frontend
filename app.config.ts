@@ -42,6 +42,7 @@ export default defineAppConfig({
     cart: 30779,
     checkout: 30780,
     newsletter: 27758,
+    school: 114505,
   },
   mediaQueryStandAlone:
     '(display-mode: standalone), (display-mode: window-controls-overlay)',
