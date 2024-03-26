@@ -11,11 +11,11 @@ const { t } = useI18n()
 const route = useRoute()
 
 const formData = reactive({
-  name: 'test',
+  schoolName: 'test',
 })
 
 const rules = {
-  name: { required },
+  schoolName: { required },
 }
 
 const v$ = useVuelidate(rules, formData)
@@ -33,7 +33,7 @@ const submit = async () => {
     const response = await $fetch(route.path, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString(),
+      body: new URLSearchParams({ ...formData, name: 'Onderwijs' }).toString(),
     }).catch((err) => {
       error.value = t(err.data.message)
     })
@@ -77,9 +77,8 @@ Gegevens klas
 -->
     <section aria-label="Meld je aan voor de workshop">
       <h1>Vraag de onderwijsmodule aan</h1>
-      aaa{{ route.path }}
       <div v-if="submitted" class="success">
-        <p>Hoi {{ formData.name }}</p>
+        <p>Hoi {{ formData.schoolName }}</p>
         <p>
           Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe
           ik ze maak! Ik heb je aanvraag in goede orde ontvangen en ik ga er
@@ -89,7 +88,7 @@ Gegevens klas
           op je gewenste datum kan of niet. Houd dus je mailbox in de gaten!
         </p>
       </div>
-      <app-form
+      <form
         v-else
         name="Onderwijs"
         netlify
@@ -98,18 +97,19 @@ Gegevens klas
         :loading="pending"
         :error="error"
         button-title="Aanmelden"
-        @submit="submit"
+        @submit.prevent="submit"
       >
-        <input name="bot-field" />
-        <form-fieldset title="Schol">
+        <input name="bot-field" type="hidden" />
+        <form-fieldset title="School">
           <input-text-field
             id="name"
-            v-model="formData.name"
-            :errors="v$.name.$errors"
+            v-model="formData.schoolName"
+            :errors="v$.schoolName.$errors"
             title="Naam school"
           />
         </form-fieldset>
-      </app-form>
+        <button type="submit">submit</button>
+      </form>
     </section>
   </center-wrapper>
 </template>

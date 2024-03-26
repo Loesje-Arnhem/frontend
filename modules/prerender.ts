@@ -15,36 +15,36 @@ const defaultPages = [
   '/rss',
   '/rss/posters',
   '/',
-  '/posters/',
-  '/doe-mee/',
-  '/over-loesje/wie-is-loesje/',
-  '/over-loesje/nieuws/',
-  '/over-loesje/privacy/',
-  '/over-loesje/copyright/',
-  '/over-loesje/contact/',
+  // '/posters/',
+  // '/doe-mee/',
+  // '/over-loesje/wie-is-loesje/',
+  // '/over-loesje/nieuws/',
+  // '/over-loesje/privacy/',
+  // '/over-loesje/copyright/',
+  // '/over-loesje/contact/',
   '/loesje-in-het-burgeronderwijs',
-  '/over-loesje/',
-  '/doe-mee/word-lid/',
-  '/doe-mee/blijf-op-hoogte/',
-  '/doe-mee/masterclass/',
-  '/doe-mee/donateur/',
-  '/doe-mee/vacatures/',
-  '/workshop-creatief-schrijven/',
-  '/winkeltje/',
-  '/winkeltje/categorie/aanbieding',
-  '/winkeltje/categorie/aanbieding/opruimingpockets',
-  '/winkeltje/categorie/boeken',
-  '/winkeltje/categorie/diversen',
-  '/winkeltje/categorie/diversen/badhanddoeken',
-  '/winkeltje/categorie/diversen/mokken',
-  '/winkeltje/categorie/kaarten',
-  '/winkeltje/categorie/kalenders',
-  '/winkeltje/categorie/kleding-loesje',
-  '/winkeltje/categorie/kleding-loesje/dames',
-  '/winkeltje/categorie/kleding-loesje/heren',
-  '/winkeltje/categorie/loesjes-kringloopwinkel',
-  '/winkeltje/categorie/tassen-loesje',
-  '/winkeltje/categorie/zeggen-wat-je-denkt',
+  // '/over-loesje/',
+  // '/doe-mee/word-lid/',
+  // '/doe-mee/blijf-op-hoogte/',
+  // '/doe-mee/masterclass/',
+  // '/doe-mee/donateur/',
+  // '/doe-mee/vacatures/',
+  // '/workshop-creatief-schrijven/',
+  // '/winkeltje/',
+  // '/winkeltje/categorie/aanbieding',
+  // '/winkeltje/categorie/aanbieding/opruimingpockets',
+  // '/winkeltje/categorie/boeken',
+  // '/winkeltje/categorie/diversen',
+  // '/winkeltje/categorie/diversen/badhanddoeken',
+  // '/winkeltje/categorie/diversen/mokken',
+  // '/winkeltje/categorie/kaarten',
+  // '/winkeltje/categorie/kalenders',
+  // '/winkeltje/categorie/kleding-loesje',
+  // '/winkeltje/categorie/kleding-loesje/dames',
+  // '/winkeltje/categorie/kleding-loesje/heren',
+  // '/winkeltje/categorie/loesjes-kringloopwinkel',
+  // '/winkeltje/categorie/tassen-loesje',
+  // '/winkeltje/categorie/zeggen-wat-je-denkt',
 ]
 
 export default defineNuxtModule({
@@ -87,9 +87,9 @@ export default defineNuxtModule({
           pauseFetching()
         }
       }
-      await fetchPagesByType('posts')
+      // await fetchPagesByType('posts')
       // await fetchPagesByType('pages')
-      await fetchPagesByType('posters')
+      // await fetchPagesByType('posters')
       addPrerenderRoutes(defaultPages)
     },
 
