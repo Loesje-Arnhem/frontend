@@ -7,7 +7,7 @@ const localePath = useLocalePath()
 
 const { data } = useFetch('/api/posters/search', {
   query: {
-    search: searchField.value,
+    search: searchField,
   },
   watch: [searchField],
   immediate: false,

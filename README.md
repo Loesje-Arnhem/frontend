@@ -25,6 +25,6 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 # generate icons
 
 ```
-npx pwa-asset-generator public/icons/logo.svg public/icons/ --portrait-only --background "#ffffff"
+npx pwa-asset-generator assets/icons/logo.svg public/icons/ --background "#ffffff"
 
 ```
