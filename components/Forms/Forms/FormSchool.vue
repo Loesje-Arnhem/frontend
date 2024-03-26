@@ -10,6 +10,8 @@ const submitted = ref(false)
 const { t } = useI18n()
 const route = useRoute()
 
+const form = ref<HTMLFormElement | null>(null)
+
 const formData = reactive({
   schoolName: 'test',
 })
@@ -21,6 +23,7 @@ const rules = {
 const v$ = useVuelidate(rules, formData)
 
 const submit = async () => {
+  // console.log(new FormData(event.target))
   const isFormCorrect = await v$.value.$validate()
   if (!isFormCorrect) {
     error.value = t('invalidForm')
@@ -93,6 +96,7 @@ Gegevens klas
       </div>
       <form
         v-else
+        ref="form"
         name="Onderwijs"
         netlify
         netlify-honeypot="bot-field"
@@ -107,6 +111,7 @@ Gegevens klas
           <input-text-field
             id="name"
             v-model="formData.schoolName"
+            name="name"
             :errors="v$.schoolName.$errors"
             title="Naam school"
           />
