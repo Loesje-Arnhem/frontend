@@ -152,10 +152,6 @@ export default defineNuxtConfig({
           sizes: '512x512',
         },
         {
-          rel: 'dns-prefetch',
-          href: process.env.NUXT_PUBLIC_API_URL,
-        },
-        {
           rel: 'icon',
           href: '/favicon.svg',
           type: 'image/svg+xml',
