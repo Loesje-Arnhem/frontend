@@ -2,7 +2,7 @@
 const props = withDefaults(
   defineProps<{
     to: string
-    external: boolean
+    external?: boolean
   }>(),
   {
     external: false,

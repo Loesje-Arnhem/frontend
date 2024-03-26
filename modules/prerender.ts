@@ -22,6 +22,7 @@ const defaultPages = [
   '/over-loesje/privacy/',
   '/over-loesje/copyright/',
   '/over-loesje/contact/',
+  '/loesje-in-het-burgeronderwijs',
   '/over-loesje/',
   '/doe-mee/word-lid/',
   '/doe-mee/blijf-op-hoogte/',
