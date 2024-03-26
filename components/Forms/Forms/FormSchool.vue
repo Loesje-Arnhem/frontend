@@ -8,6 +8,7 @@ const pending = ref(false)
 const error = ref<string | null>(null)
 const submitted = ref(false)
 const { t } = useI18n()
+const route = useRoute()
 
 const formData = reactive({
   name: 'test',
@@ -29,8 +30,9 @@ const submit = async () => {
   pending.value = true
 
   try {
-    const response = await $fetch('/', {
+    const response = await $fetch(route.path, {
       method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(formData).toString(),
     }).catch((err) => {
       error.value = t(err.data.message)
@@ -75,6 +77,7 @@ Gegevens klas
 -->
     <section aria-label="Meld je aan voor de workshop">
       <h1>Vraag de onderwijsmodule aan</h1>
+      aaa{{ route.path }}
       <div v-if="submitted" class="success">
         <p>Hoi {{ formData.name }}</p>
         <p>
