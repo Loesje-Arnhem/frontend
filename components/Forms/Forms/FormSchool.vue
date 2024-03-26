@@ -33,7 +33,10 @@ const submit = async () => {
     const response = await $fetch(route.path, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ ...formData, name: 'Onderwijs' }).toString(),
+      body: new URLSearchParams({
+        ...formData,
+        'form-name': 'Onderwijs',
+      }).toString(),
     }).catch((err) => {
       error.value = t(err.data.message)
     })
