@@ -1,54 +1,55 @@
 <script lang="ts" setup>
-import { Endpoints } from '~/enums/endpoints'
+import useVuelidate from '@vuelidate/core'
 
-const { required, numeric, email, minValue, maxValue } = useValidators()
+const { required } = useValidators()
 const minDate: Ref<string | null> = ref(null)
 
+const pending = ref(false)
+const error = ref<string | null>(null)
+const submitted = ref(false)
+const { t } = useI18n()
+const route = useRoute()
+
+const form = ref<HTMLFormElement | null>(null)
+
 const formData = reactive({
-  name: '',
-  companyName: '',
-  address: '',
-  zipcode: '',
-  city: '',
-  phoneNumber: '',
-  email: '',
-  motivation: '',
-  date: '',
-  time: '',
-  totalAttendees: 4,
-  location: '',
-  totalWorkshops: 1,
-  theme: '',
+  schoolName: 'test',
 })
 
 const rules = {
-  name: { required },
-  companyName: { required },
-  address: { required },
-  zipcode: { required },
-  city: { required },
-  phoneNumber: { required },
-  email: { required, email },
-  motivation: {},
-  date: { required },
-  time: { required },
-  totalAttendees: {
-    required,
-    numeric,
-    minValue: minValue(4),
-    maxValue: maxValue(16),
-  },
-  location: { required },
-  totalWorkshops: { required, numeric },
-  theme: {},
+  schoolName: { required },
 }
 
-const { v$, loading, error, submit, submitted } = useForm(
-  rules,
-  formData,
-  Endpoints.FormWorkshop,
-)
+const v$ = useVuelidate(rules, formData)
 
+const submit = async () => {
+  // console.log(new FormData(event.target))
+  const isFormCorrect = await v$.value.$validate()
+  if (!isFormCorrect) {
+    error.value = t('invalidForm')
+    return
+  }
+
+  pending.value = true
+
+  try {
+    const response = await $fetch(route.path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        ...formData,
+        'form-name': 'Onderwijs',
+      }).toString(),
+    }).catch((err) => {
+      error.value = t(err.data.message)
+    })
+    if (response === 1) {
+      submitted.value = true
+    }
+  } finally {
+    pending.value = false
+  }
+}
 onMounted(() => {
   if (!process.client) {
     return
@@ -83,7 +84,7 @@ Gegevens klas
     <section aria-label="Meld je aan voor de workshop">
       <h1>Vraag de onderwijsmodule aan</h1>
       <div v-if="submitted" class="success">
-        <p>Hoi {{ formData.name }}</p>
+        <p>Hoi {{ formData.schoolName }}</p>
         <p>
           Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe
           ik ze maak! Ik heb je aanvraag in goede orde ontvangen en ik ga er
@@ -93,140 +94,30 @@ Gegevens klas
           op je gewenste datum kan of niet. Houd dus je mailbox in de gaten!
         </p>
       </div>
-      <app-form
+      <form
         v-else
+        ref="form"
         name="Onderwijs"
         netlify
         netlify-honeypot="bot-field"
         class="form"
-        :loading="loading"
+        :loading="pending"
         :error="error"
         button-title="Aanmelden"
-        @submit="submit"
+        @submit.prevent="submit"
       >
-        <input name="bot-field" />
-        <form-fieldset title="Bedrijfsgegevens">
+        <input name="bot-field" type="hidden" />
+        <form-fieldset title="School">
           <input-text-field
             id="name"
-            v-model="formData.name"
-            :errors="v$.name.$errors"
-            title="Naam"
-            autocomplete="name"
-          />
-          <input-text-field
-            id="company-name"
-            v-model="formData.companyName"
-            :errors="v$.companyName.$errors"
-            title="Bedrijfsnaam of naam organisatie"
-          />
-          <input-text-field
-            id="email"
-            v-model="formData.email"
-            :errors="v$.email.$errors"
-            title="E-mailadres"
-            type="email"
-            autocomplete="email"
-          />
-          <input-text-field
-            id="phone-number"
-            v-model="formData.phoneNumber"
-            :errors="v$.phoneNumber.$errors"
-            title="Telefoonnummer"
-            type="tel"
-            autocomplete="tel"
-          />
-
-          <input-text-field
-            id="address"
-            v-model="formData.address"
-            description="Waar jij of je bedrijf gevestigd is, dit kan afwijken van waar de workshop gegeven moet worden"
-            :errors="v$.address.$errors"
-            title="Straat en huisnummer"
-          />
-          <input-text-field
-            id="zipcode"
-            v-model="formData.zipcode"
-            :errors="v$.zipcode.$errors"
-            title="Postcode"
-          />
-          <input-text-field
-            id="city"
-            v-model="formData.city"
-            :errors="v$.city.$errors"
-            title="Woonplaats"
+            v-model="formData.schoolName"
+            name="name"
+            :errors="v$.schoolName.$errors"
+            title="Naam school"
           />
         </form-fieldset>
-        <form-fieldset title="De workshop">
-          <div class="intro">
-            Let op: wil je meerdere workshops op een dag, dan kun je ze allemaal
-            in een keer aanvragen. Wil je meerdere workshops op meerdere dagen,
-            vul dan dit formulier voor elke dag apart in.
-          </div>
-          <input-text-field
-            id="date"
-            v-model="formData.date"
-            title="Wanneer wil je de workshop volgen?"
-            :errors="v$.date.$errors"
-            :min="minDate"
-            type="date"
-          />
-          <input-text-field
-            id="time"
-            v-model="formData.time"
-            type="time"
-            :errors="v$.time.$errors"
-            title="Hoe laat wil je beginnen?"
-          />
-
-          <input-text-field
-            id="total-attendees"
-            v-model.number="formData.totalAttendees"
-            min="1"
-            :errors="v$.totalAttendees.$errors"
-            title="Hoeveel deelnemers verwacht je?"
-            inputmode="numeric"
-          />
-
-          <input-text-field
-            id="location"
-            v-model="formData.location"
-            :errors="v$.location.$errors"
-            title="Waar wil je de workshop volgen?"
-            description="Volledig adres van de workshoplocatie"
-          />
-          <input-text-field
-            id="total-workshops"
-            v-model.number="formData.totalWorkshops"
-            min="1"
-            :errors="v$.totalWorkshops.$errors"
-            title="Hoeveel workshops wil je aanvragen?"
-            inputmode="numeric"
-          />
-
-          <input-text-field
-            id="theme"
-            v-model="formData.theme"
-            :errors="v$.theme.$errors"
-            title="Wil je over een bepaald thema schrijven?"
-          />
-          <div class="motivation">
-            <textarea-field
-              id="motivation"
-              v-model="formData.motivation"
-              rows="5"
-              description="Motiveer je aanvraag: Waarom wil je graag een Loesje-workshop aanvragen? (Optioneel)"
-              :errors="v$.motivation.$errors"
-              title="Motiveer je aanvraag"
-            />
-          </div>
-        </form-fieldset>
-        <app-image
-          class="image"
-          src="/images/workshops.png"
-          :width="495"
-          :height="280"
-        />
-      </app-form>
+        <button type="submit">submit</button>
+      </form>
     </section>
   </center-wrapper>
 </template>
