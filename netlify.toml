@@ -1,6 +1,3 @@
-[images]
-  remote_images = ["https://shop.loesje.nl/.*", "https://i3.ytimg.com/.*"]
-
 [build]
   command = "pnpm run build"
   publish = "dist"
