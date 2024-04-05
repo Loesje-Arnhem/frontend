@@ -117,6 +117,7 @@ export default defineNuxtConfig({
     '/winkeltje/**': {
       appMiddleware: ['cart'],
     },
+    '/posters/**': { isr: true },
   },
 
   telemetry: false,
