@@ -108,17 +108,20 @@ export default defineNuxtConfig({
       headers: {
         'content-type': 'text/xml',
       },
+      isr: true,
     },
     '/rss/posters': {
       headers: {
         'content-type': 'text/xml',
       },
+      isr: true,
     },
     '/winkeltje/**': {
       appMiddleware: ['cart'],
     },
     '/posters/**': { isr: true },
-    '/api/posters/daily-poster': { isr: true },
+    '/api/posters/**': { isr: true },
+    '/api/store/**': { isr: true },
   },
 
   telemetry: false,

@@ -12,8 +12,6 @@ const pauseFetching = () => {
 }
 
 const defaultPages = [
-  '/rss',
-  '/rss/posters',
   '/',
   // '/posters/',
   // '/doe-mee/',

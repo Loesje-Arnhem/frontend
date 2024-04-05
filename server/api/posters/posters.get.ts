@@ -1,5 +1,4 @@
 import { type IPosterListItem } from '~~/types/Content'
-import { getStorageKey } from '~/server/utils/getStorageKey'
 import { getDate } from '~/server/utils/getDate'
 import {
   PostersSchema,
@@ -7,20 +6,12 @@ import {
 } from '~/server/schemas/PostersSchema'
 
 export default defineEventHandler(async (event) => {
-  const storage = useStorage('redis')
-
   const query = await getValidatedQuery(event, (body) =>
     PostersQuerySchema.safeParse(body),
   )
 
   if (!query.success) {
     throw query.error.issues
-  }
-
-  const key = getStorageKey(query.data, 'posters')
-
-  if (await storage.getItem(key)) {
-    return await storage.getItem(key)
   }
 
   const pageSize = Number(query.data.pageSize)
@@ -76,8 +67,6 @@ export default defineEventHandler(async (event) => {
     hasNextPage: page < totalPages,
     items,
   }
-
-  await storage.setItem(key, data)
 
   return data
 })

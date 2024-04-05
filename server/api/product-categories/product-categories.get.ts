@@ -6,14 +6,6 @@ const sortByOrder = (items: ResponseProductCategories) => {
 }
 
 export default defineEventHandler(async () => {
-  const storage = useStorage('redis')
-
-  const key = 'product-categories'
-
-  if (await storage.getItem(key)) {
-    return await storage.getItem(key)
-  }
-
   const url = getUrl({
     type: 'products/categories',
     fields: ['name', 'id', 'slug', 'parent', 'menu_order'],
@@ -42,7 +34,6 @@ export default defineEventHandler(async () => {
       }),
     }
   })
-  await storage.setItem(key, parentsWithChildren)
 
   return parentsWithChildren
 })
