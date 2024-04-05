@@ -118,7 +118,7 @@ export default defineNuxtConfig({
       appMiddleware: ['cart'],
     },
     '/posters/**': { isr: true },
-    // '/api/posters/daily-poster': { isr: true },
+    '/api/posters/daily-poster': { isr: true },
   },
 
   telemetry: false,
