@@ -3,6 +3,14 @@ import { getDate } from '~/server/utils/getDate'
 import { FeaturedImage } from '~/types/Content'
 
 export default defineEventHandler(async () => {
+  const storage = useStorage('redis')
+
+  const key = `daily-poster-${getDate()}`
+
+  if (await storage.getItem(key)) {
+    return await storage.getItem<FeaturedImage>(key)
+  }
+
   const url = getUrl({
     type: 'daily-posters',
     fields: ['title'],
@@ -34,6 +42,7 @@ export default defineEventHandler(async () => {
       },
     })
   } else {
+    await storage.setItem(key, featuredImage)
     return featuredImage
   }
 })
