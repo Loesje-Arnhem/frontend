@@ -1,17 +1,26 @@
+import { getStorageKey } from '~/server/utils/getStorageKey'
 import {
   AppPostersQuerySchema,
   AppPostersSchema,
 } from '~/server/schemas/AppSchema'
-
+import { ITag } from '~/types/Content'
 import { Taxonomy } from '~/enums/taxonomy'
 
 export default defineEventHandler(async (event) => {
+  const storage = useStorage('redis')
+
   const query = await getValidatedQuery(event, (body) =>
     AppPostersQuerySchema.safeParse(body),
   )
 
   if (!query.success) {
     throw query.error.issues
+  }
+
+  const key = getStorageKey(query.data, 'app')
+
+  if (await storage.getItem(key)) {
+    return await storage.getItem(key)
   }
 
   const pageSize = Number(query.data.pageSize)
@@ -64,6 +73,8 @@ export default defineEventHandler(async (event) => {
     hasNextPage: page < totalPages,
     items,
   }
+
+  await storage.setItem(key, data)
 
   return data
 })
