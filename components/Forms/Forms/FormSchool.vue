@@ -137,9 +137,9 @@ const submit = async () => {
         <form-fieldset title="School" class="fieldset-address">
           <div class="school-name">
             <input-text-field
-              id="school-name"
+              id="schoolName"
               v-model="formData.schoolName"
-              name="school-name"
+              name="schoolName"
               :errors="v$.schoolName.$errors"
               title="Naam school"
             />
@@ -167,20 +167,20 @@ const submit = async () => {
             />
           </div>
           <input-text-field
-            id="house-number"
+            id="houseNumber"
             v-model="formData.houseNumber"
             title="Huisnummer"
-            name="house-number"
+            name="houseNumber"
             :errors="v$.houseNumber.$errors"
-            autocomplete="house-number"
+            autocomplete="houseNumber"
             inputmode="numeric"
           />
           <input-text-field
-            id="house-number-suffix"
+            id="houseNumberSuffix"
             v-model="formData.houseNumberSuffix"
             title="Toevoeging"
-            class="house-number-suffix"
-            name="house-number-suffix"
+            class="houseNumberSuffix"
+            name="houseNumberSuffix"
           />
         </form-fieldset>
 
@@ -236,7 +236,7 @@ const submit = async () => {
   }
 }
 
-.school-name,
+.schoolName,
 .postcode,
 .street,
 .city {
