@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import useVuelidate from '@vuelidate/core'
 
-const { required } = useValidators()
-const minDate: Ref<string | null> = ref(null)
+const { required, email, numeric } = useValidators()
 
 const pending = ref(false)
 const error = ref<string | null>(null)
@@ -13,11 +12,32 @@ const route = useRoute()
 const form = ref<HTMLFormElement | null>(null)
 
 const formData = reactive({
-  schoolName: 'test',
+  name: 'Michiel',
+  course: 'Wiskunde',
+  email: 'test@michielkoning.nl',
+  phoneNumber: '0612345678',
+  schoolName: 'Marnix',
+  city: 'Ede',
+  postcode: '6708RC',
+  street: 'Oudlaan',
+  houseNumber: '10',
+  houseNumberSuffix: 'b',
+  year: '2024',
+  level: 'VWO',
 })
 
 const rules = {
+  name: { required },
+  course: { required },
+  email: { required, email },
+  phoneNumber: { required },
   schoolName: { required },
+  city: { required },
+  postcode: { required },
+  street: { required },
+  houseNumber: { required, numeric },
+  year: { required },
+  level: { required },
 }
 
 const v$ = useVuelidate(rules, formData)
@@ -50,37 +70,10 @@ const submit = async () => {
     pending.value = false
   }
 }
-onMounted(() => {
-  if (!process.client) {
-    return
-  }
-  const date = new Date()
-  const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
-  const month =
-    date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
-  minDate.value = `${date.getFullYear()}-${month}-${day}`
-})
 </script>
 
 <template>
   <center-wrapper size="lg">
-    <!--
-  Gegevens school
-- naam school
-- straat en huisnummer
-- postcode
-- woonplaats
-
-Gegevens aanvrager
-- Naam
-- Welk vak geef je?
-- Telefoon nummer
-- E-mailadres
-
-Gegevens klas
-- In welk leerjaar wil je de module geven?
-- Voor welk niveau wil je de module inzetten?
--->
     <section aria-label="Meld je aan voor de workshop">
       <h1>Vraag de onderwijsmodule aan</h1>
       <div v-if="submitted" class="success">
@@ -107,13 +100,104 @@ Gegevens klas
         @submit.prevent="submit"
       >
         <input name="bot-field" type="hidden" />
-        <form-fieldset title="School">
+
+        <form-fieldset title="Aanvrager" class="fieldset-user">
           <input-text-field
             id="name"
-            v-model="formData.schoolName"
+            v-model="formData.name"
             name="name"
-            :errors="v$.schoolName.$errors"
-            title="Naam school"
+            :errors="v$.name.$errors"
+            title="Naam"
+          />
+          <input-text-field
+            id="course"
+            v-model="formData.course"
+            name="course"
+            :errors="v$.course.$errors"
+            title="Welk vak geef je?"
+          />
+          <input-text-field
+            id="email"
+            v-model="formData.email"
+            :errors="v$.email.$errors"
+            title="E-mailadres"
+            type="email"
+            autocomplete="email"
+          />
+          <input-text-field
+            id="phone-number"
+            v-model="formData.phoneNumber"
+            :errors="v$.phoneNumber.$errors"
+            title="Telefoonnummer"
+            type="tel"
+            autocomplete="tel"
+          />
+        </form-fieldset>
+
+        <form-fieldset title="School" class="fieldset-address">
+          <div class="school-name">
+            <input-text-field
+              id="school-name"
+              v-model="formData.schoolName"
+              name="school-name"
+              :errors="v$.schoolName.$errors"
+              title="Naam school"
+            />
+          </div>
+          <div class="city">
+            <input-text-field
+              id="city"
+              v-model="formData.city"
+              title="Plaats"
+              class="city"
+              name="city"
+              :errors="v$.city.$errors"
+              autocomplete="city"
+            />
+          </div>
+          <div class="postcode">
+            <input-text-field
+              id="postcode"
+              v-model="formData.postcode"
+              title="Postcode"
+              class="postcode"
+              name="postcode"
+              :errors="v$.postcode.$errors"
+              autocomplete="postcode"
+            />
+          </div>
+          <input-text-field
+            id="house-number"
+            v-model="formData.houseNumber"
+            title="Huisnummer"
+            name="house-number"
+            :errors="v$.houseNumber.$errors"
+            autocomplete="house-number"
+            inputmode="numeric"
+          />
+          <input-text-field
+            id="house-number-suffix"
+            v-model="formData.houseNumberSuffix"
+            title="Toevoeging"
+            class="house-number-suffix"
+            name="house-number-suffix"
+          />
+        </form-fieldset>
+
+        <form-fieldset title="Klas" class="fieldset-class">
+          <input-text-field
+            id="year"
+            v-model="formData.year"
+            name="year"
+            :errors="v$.year.$errors"
+            title="In welk leerjaar wil je de module geven?"
+          />
+          <input-text-field
+            id="level"
+            v-model="formData.level"
+            name="level"
+            :errors="v$.level.$errors"
+            title="Voor welk niveau wil je de module inzetten?"
           />
         </form-fieldset>
         <button type="submit">submit</button>
@@ -132,32 +216,31 @@ Gegevens klas
   @media (--viewport-lg) {
     padding: 0 15em 2em 0;
   }
+}
 
-  @media (--viewport-sm) {
-    & :deep(.fields) {
+.fieldset-address {
+  & :deep(.fields) {
+    grid-template-columns: repeat(2, 1fr);
+    @media (--viewport-sm) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.fieldset-class,
+.fieldset-user {
+  & :deep(.fields) {
+    @media (--viewport-sm) {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 }
 
-.intro,
-.motivation {
-  @media (--viewport-sm) {
-    grid-column: span 2;
-  }
-}
-
-.image {
-  display: none;
-
-  @media (--viewport-lg) {
-    pointer-events: none;
-    display: block;
-    bottom: 3em;
-    right: 3em;
-    transform: scaleX(-1);
-    position: absolute;
-  }
+.school-name,
+.postcode,
+.street,
+.city {
+  grid-column: span 2;
 }
 
 .success {
