@@ -9,21 +9,19 @@ const submitted = ref(false)
 const { t } = useI18n()
 const route = useRoute()
 
-const form = ref<HTMLFormElement | null>(null)
-
 const formData = reactive({
-  name: 'Michiel',
-  course: 'Wiskunde',
-  email: 'test@michielkoning.nl',
-  phoneNumber: '0612345678',
-  schoolName: 'Marnix',
-  city: 'Ede',
-  postcode: '6708RC',
-  street: 'Oudlaan',
-  houseNumber: '10',
-  houseNumberSuffix: 'b',
-  year: '2024',
-  level: 'VWO',
+  name: '',
+  course: '',
+  email: '',
+  phoneNumber: '',
+  schoolName: '',
+  city: '',
+  postcode: '',
+  street: '',
+  houseNumber: '',
+  houseNumberSuffix: '',
+  year: '',
+  level: '',
 })
 
 const rules = {
@@ -52,7 +50,7 @@ const submit = async () => {
   pending.value = true
 
   try {
-    const response = await $fetch(route.path, {
+    await $fetch(route.path, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
@@ -70,11 +68,11 @@ const submit = async () => {
 </script>
 
 <template>
-  <center-wrapper size="lg">
-    <section aria-label="Meld je aan voor de workshop">
-      <h1>Vraag de onderwijsmodule aan</h1>
+  <center-wrapper size="md">
+    <section aria-label-by="form-title">
+      <h1 id="form-title">Vraag de onderwijsmodule aan</h1>
       <div v-if="submitted" class="success">
-        <p>Hoi {{ formData.schoolName }}</p>
+        <p>Hoi {{ formData.name }}</p>
         <p>
           Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe
           ik ze maak! Ik heb je aanvraag in goede orde ontvangen en ik ga er
@@ -86,15 +84,12 @@ const submit = async () => {
       </div>
       <app-form
         v-else
-        ref="form"
-        name="Onderwijs"
         netlify
         netlify-honeypot="bot-field"
-        class="form"
         :loading="pending"
         :error="error"
         button-title="Aanmelden"
-        @submit.prevent="submit"
+        @submit="submit"
       >
         <input name="bot-field" type="hidden" />
 
@@ -204,15 +199,6 @@ const submit = async () => {
 
 <style lang="postcss" scoped>
 @import '~/assets/css/media-queries/media-queries.css';
-
-.form {
-  position: relative;
-  padding-bottom: 2em;
-
-  @media (--viewport-lg) {
-    padding: 0 15em 2em 0;
-  }
-}
 
 .fieldset-address {
   & :deep(.fields) {

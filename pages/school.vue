@@ -29,12 +29,12 @@ useMeta({
 
 <template>
   <div v-if="data">
-    <form-school />
     <app-content
       :title="data.title"
       :content="data.content"
       :video="data.youtubeId"
     />
+    <form-school />
     <related-products-section
       v-if="data.relatedProducts"
       :title="data.relatedProducts.title"
