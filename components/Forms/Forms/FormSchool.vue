@@ -60,7 +60,7 @@ const submit = async () => {
     })
     submitted.value = true
   } catch (err) {
-    error.value = t('invalidForm')
+    error.value = t('formError')
   } finally {
     pending.value = false
   }
@@ -144,7 +144,6 @@ const submit = async () => {
               class="city"
               name="city"
               :errors="v$.city.$errors"
-              autocomplete="city"
             />
           </div>
           <div class="postcode">
@@ -155,7 +154,6 @@ const submit = async () => {
               class="postcode"
               name="postcode"
               :errors="v$.postcode.$errors"
-              autocomplete="postcode"
             />
           </div>
           <input-text-field
@@ -164,7 +162,6 @@ const submit = async () => {
             title="Huisnummer"
             name="houseNumber"
             :errors="v$.houseNumber.$errors"
-            autocomplete="houseNumber"
             inputmode="numeric"
           />
           <input-text-field

@@ -113,7 +113,7 @@ const streetFieldsAreReadonly = computed(() => {
           class="postcode"
           name="postcode"
           :errors="v$.postcode.$errors"
-          autocomplete="postcode"
+          autocomplete="postal-code"
           @input="$emit('update:postcode', $event.target.value)"
           @blur="fetchAdress"
         />
@@ -124,7 +124,6 @@ const streetFieldsAreReadonly = computed(() => {
         title="Huisnummer"
         name="house-number"
         :errors="v$.houseNumber.$errors"
-        autocomplete="house-number"
         inputmode="numeric"
         @input="$emit('update:house-number', $event.target.value)"
         @blur="fetchAdress"
@@ -148,7 +147,7 @@ const streetFieldsAreReadonly = computed(() => {
           class="postcode"
           name="postcode"
           :errors="v$.postcode.$errors"
-          autocomplete="postcode"
+          autocomplete="postal-code"
           @input="$emit('update:postcode', $event.target.value)"
         />
       </div>
