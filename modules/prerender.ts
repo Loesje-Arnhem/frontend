@@ -11,6 +11,9 @@ const pauseFetching = () => {
   })
 }
 
+const defaultRoutes = [
+  '/posters'
+]
 
 
 export default defineNuxtModule({
@@ -23,6 +26,8 @@ export default defineNuxtModule({
       if (process.env.NUXT_SSR === 'false') {
         return
       }
+
+      addPrerenderRoutes(defaultRoutes)
 
       const fetchPagesByType = async (type: string) => {
         let hasNextPage = true
