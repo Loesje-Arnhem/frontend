@@ -46,7 +46,11 @@ export default defineNuxtModule({
           )
           addPrerenderRoutes(urls)
 
-          hasNextPage = false
+          if (page >= totalPages) {
+            hasNextPage = false
+          } else if (page > 5 && type === 'posters') {
+            hasNextPage = false
+          }
 
           page = page + 1
           pauseFetching()
