@@ -232,7 +232,7 @@ const submit = async () => {
   }
 }
 
-.schoolName,
+.school-name,
 .postcode,
 .street,
 .city {
