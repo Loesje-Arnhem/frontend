@@ -43,7 +43,6 @@ const rules = {
 const v$ = useVuelidate(rules, formData)
 
 const submit = async () => {
-  // console.log(new FormData(event.target))
   const isFormCorrect = await v$.value.$validate()
   if (!isFormCorrect) {
     error.value = t('invalidForm')
@@ -63,9 +62,7 @@ const submit = async () => {
     }).catch((err) => {
       error.value = t(err.data.message)
     })
-    if (response === 1) {
-      submitted.value = true
-    }
+    submitted.value = true
   } finally {
     pending.value = false
   }
@@ -87,7 +84,7 @@ const submit = async () => {
           op je gewenste datum kan of niet. Houd dus je mailbox in de gaten!
         </p>
       </div>
-      <form
+      <app-form
         v-else
         ref="form"
         name="Onderwijs"
@@ -200,8 +197,7 @@ const submit = async () => {
             title="Voor welk niveau wil je de module inzetten?"
           />
         </form-fieldset>
-        <button type="submit">submit</button>
-      </form>
+      </app-form>
     </section>
   </center-wrapper>
 </template>
