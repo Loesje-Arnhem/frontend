@@ -48,7 +48,7 @@ export default defineNuxtModule({
 
           if (page >= totalPages) {
             hasNextPage = false
-          } else if (page > 5 && type === 'posters') {
+          } else if (page > 2 && (type === 'posters' || type === 'posts')) {
             hasNextPage = false
           }
 

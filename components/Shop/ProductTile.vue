@@ -7,16 +7,17 @@ const props = defineProps<{
 
 const localePath = useLocalePath()
 
-const url = localePath({
-  name: 'shop-product',
-  params: {
-    slug: props.product.slug,
-  },
-})
+// const url = localePath({
+//   name: 'shop-product',
+//   params: {
+//     slug: props.product.slug,
+//   },
+// })
+const url = props.product.url
 </script>
 
 <template>
-  <clickable-list-item :to="url" class="product-tile tile">
+  <clickable-list-item :to="url" :external="true" class="product-tile tile">
     <div class="image-wrapper">
       <featured-image
         v-if="product.image"

@@ -69,7 +69,7 @@ export const mainNavigation = [
   {
     id: 'cG9zdDoxMTMxMTE=',
     url: '/workshop-creatief-schrijven/',
-    title: 'Workshop',
+    title: 'Workshops',
     children: [],
   },
   {
