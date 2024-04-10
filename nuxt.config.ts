@@ -108,11 +108,13 @@ export default defineNuxtConfig({
       headers: {
         'content-type': 'text/xml',
       },
+      prerender: true
     },
     '/rss/posters': {
       headers: {
         'content-type': 'text/xml',
       },
+      prerender: true
     },
     '/winkeltje/**': {
       appMiddleware: ['cart'],
