@@ -57,10 +57,10 @@ const submit = async () => {
         ...formData,
         'form-name': 'Onderwijs',
       }).toString(),
-    }).catch((err) => {
-      error.value = t(err.data.message)
     })
     submitted.value = true
+  } catch (err) {
+    error.value = t('invalidForm')
   } finally {
     pending.value = false
   }
