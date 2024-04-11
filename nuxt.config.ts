@@ -54,12 +54,12 @@ export default defineNuxtConfig({
       pages: {
         sources: ['/api/sitemap/pages'],
       },
-      products: {
-        sources: ['/api/sitemap/product'],
-      },
-      'product-categories': {
-        sources: ['/api/sitemap/product_cat'],
-      },
+      // products: {
+      //   sources: ['/api/sitemap/product'],
+      // },
+      // 'product-categories': {
+      //   sources: ['/api/sitemap/product_cat'],
+      // },
     },
   },
 
