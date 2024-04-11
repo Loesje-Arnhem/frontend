@@ -10,7 +10,7 @@ export const PosterSchema = z.array(
     acf: z.object({
       related_products_title: z.string(),
       related_products_products: z.boolean(),
-      pdf: z.string(),
+      pdf: z.union([z.boolean(), z.string()]),
       date: z.string(),
     }),
     _links: z.object({
