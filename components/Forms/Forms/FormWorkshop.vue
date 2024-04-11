@@ -116,6 +116,7 @@ const errorMessage = computed(() => {
       </div>
       <app-form
         v-else
+        name="Workshop"
         netlify
         netlify-honeypot="bot-field"
         :loading="pending"
