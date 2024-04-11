@@ -11,20 +11,20 @@ const { t } = useI18n()
 const route = useRoute()
 
 const formData = reactive({
-  name: '',
-  companyName: '',
-  address: '',
-  zipcode: '',
-  city: '',
-  phoneNumber: '',
-  email: '',
-  motivation: '',
-  date: '',
-  time: '',
+  name: 'test',
+  companyName: 'test',
+  address: 'test',
+  zipcode: 'test',
+  city: 'test',
+  phoneNumber: 'test',
+  email: 'test@michielkoning.nl',
+  motivation: 'test',
+  date: 'test',
+  time: '18-05-2024',
   totalAttendees: 4,
-  location: '',
+  location: 'test',
   totalWorkshops: 1,
-  theme: '',
+  theme: 'test',
 })
 
 const rules = {
