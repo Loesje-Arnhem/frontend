@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: '/loesje-in-het-burgeronderwijs',
+    nl: '/burgerschapsonderwijs',
   },
 })
 const { pageIds } = useAppConfig()
