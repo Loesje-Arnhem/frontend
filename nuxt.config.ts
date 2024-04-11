@@ -108,13 +108,13 @@ export default defineNuxtConfig({
       headers: {
         'content-type': 'text/xml',
       },
-      prerender: true
+      prerender: true,
     },
     '/rss/posters': {
       headers: {
         'content-type': 'text/xml',
       },
-      prerender: true
+      prerender: true,
     },
     '/winkeltje/**': {
       appMiddleware: ['cart'],
@@ -294,7 +294,7 @@ export default defineNuxtConfig({
       name: title,
       orientation: 'portrait-primary',
       description:
-        'Ook zo benieuwd wat Loesje allemaal al heeft gezegd? Met deze app kan je lekker door al haar posters heen kuieren.',
+        "Loesje's posters vind je overal. Met haar positief-kritische teksten wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan bazen, politici of ouders. Door haar posters op straat en online te verspreiden, geeft Loesje de wereld een zetje in de goede richting.",
       short_name: title,
       edge_side_panel: {},
       dir: 'ltr',
@@ -324,7 +324,7 @@ export default defineNuxtConfig({
           purpose: 'maskable',
         },
       ],
-      display_override: ['window-controls-overlay'],
+      // display_override: ['window-controls-overlay'],
       // start_url: `/posters?standalone=true`,
       shortcuts: [
         {
@@ -334,38 +334,38 @@ export default defineNuxtConfig({
           icons: [{ src: '/icon.png', sizes: '512x512' }],
         },
       ],
-      screenshots: [
-        {
-          src: '/screenshots/screenshot-1-wide.png',
-          sizes: '1280x800',
-          type: 'image/png',
-          platform: 'wide',
-          label:
-            'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
-        },
-        {
-          src: '/screenshots/screenshot-2-wide.png',
-          sizes: '1280x800',
-          type: 'image/png',
-          platform: 'wide',
-          label: 'Alle uitspraken van Loesje zijn hier te vinden.',
-        },
-        {
-          src: '/screenshots/screenshot-1-narrow.png',
-          sizes: '750x1334',
-          type: 'image/png',
-          platform: 'narrow',
-          label:
-            'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
-        },
-        {
-          src: '/screenshots/screenshot-1-narrow.png',
-          sizes: '750x1334',
-          type: 'image/png',
-          platform: 'narrow',
-          label: 'Alle uitspraken van Loesje zijn hier te vinden.',
-        },
-      ],
+      // screenshots: [
+      //   {
+      //     src: '/screenshots/screenshot-1-wide.png',
+      //     sizes: '1280x800',
+      //     type: 'image/png',
+      //     platform: 'wide',
+      //     label:
+      //       'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
+      //   },
+      //   {
+      //     src: '/screenshots/screenshot-2-wide.png',
+      //     sizes: '1280x800',
+      //     type: 'image/png',
+      //     platform: 'wide',
+      //     label: 'Alle uitspraken van Loesje zijn hier te vinden.',
+      //   },
+      //   {
+      //     src: '/screenshots/screenshot-1-narrow.png',
+      //     sizes: '750x1334',
+      //     type: 'image/png',
+      //     platform: 'narrow',
+      //     label:
+      //       'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
+      //   },
+      //   {
+      //     src: '/screenshots/screenshot-1-narrow.png',
+      //     sizes: '750x1334',
+      //     type: 'image/png',
+      //     platform: 'narrow',
+      //     label: 'Alle uitspraken van Loesje zijn hier te vinden.',
+      //   },
+      // ],
       // android only
       // related_applications: [
       //   {
