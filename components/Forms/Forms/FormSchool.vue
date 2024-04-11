@@ -43,7 +43,6 @@ const v$ = useVuelidate(rules, formData)
 const submit = async () => {
   const isFormCorrect = await v$.value.$validate()
   if (!isFormCorrect) {
-    error.value = t('invalidForm')
     return
   }
 
@@ -65,6 +64,15 @@ const submit = async () => {
     pending.value = false
   }
 }
+
+const errorMessage = computed(() => {
+  if (v$.value.$error) {
+    return t('invalidForm')
+  } else if (error.value) {
+    return error.value
+  }
+  return null
+})
 </script>
 
 <template>
@@ -87,7 +95,7 @@ const submit = async () => {
         netlify
         netlify-honeypot="bot-field"
         :loading="pending"
-        :error="error"
+        :error="errorMessage"
         button-title="Aanmelden"
         @submit="submit"
       >

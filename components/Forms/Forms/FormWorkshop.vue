@@ -11,20 +11,20 @@ const { t } = useI18n()
 const route = useRoute()
 
 const formData = reactive({
-  name: 'test',
-  companyName: 'test',
-  address: 'test',
-  zipcode: 'test',
-  city: 'test',
-  phoneNumber: 'test',
-  email: 'test@michielkoning.nl',
-  motivation: 'test',
-  date: 'test',
-  time: '18-05-2024',
+  name: '',
+  companyName: '',
+  address: '',
+  zipcode: '',
+  city: '',
+  phoneNumber: '',
+  email: '',
+  motivation: '',
+  date: '',
+  time: '',
   totalAttendees: 4,
-  location: 'test',
+  location: '',
   totalWorkshops: 1,
-  theme: 'test',
+  theme: '',
 })
 
 const rules = {
@@ -54,7 +54,6 @@ const v$ = useVuelidate(rules, formData)
 const submit = async () => {
   const isFormCorrect = await v$.value.$validate()
   if (!isFormCorrect) {
-    error.value = t('invalidForm')
     return
   }
 
@@ -89,6 +88,15 @@ onMounted(() => {
     date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
   minDate.value = `${date.getFullYear()}-${month}-${day}`
 })
+
+const errorMessage = computed(() => {
+  if (v$.value.$error) {
+    return t('invalidForm')
+  } else if (error.value) {
+    return error.value
+  }
+  return null
+})
 </script>
 
 <template>
@@ -111,7 +119,7 @@ onMounted(() => {
         netlify
         netlify-honeypot="bot-field"
         :loading="pending"
-        :error="error"
+        :error="errorMessage"
         button-title="Aanmelden"
         class="form"
         @submit="submit"
