@@ -156,6 +156,16 @@ const submit = async () => {
               :errors="v$.postcode.$errors"
             />
           </div>
+          <div class="street">
+            <input-text-field
+              id="street"
+              v-model="formData.street"
+              title="Straat"
+              class="street"
+              name="street"
+              :errors="v$.street.$errors"
+            />
+          </div>
           <input-text-field
             id="houseNumber"
             v-model="formData.houseNumber"
@@ -215,7 +225,13 @@ const submit = async () => {
   }
 }
 
-.school-name,
+.school-name {
+  grid-column: span 2;
+  @media (--viewport-sm) {
+    grid-column: span 4;
+  }
+}
+
 .postcode,
 .street,
 .city {
