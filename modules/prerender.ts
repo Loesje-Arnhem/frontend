@@ -12,7 +12,8 @@ const pauseFetching = () => {
 }
 
 const defaultRoutes = [
-  '/posters'
+  '/posters',
+  '/workshop-creatief-schrijven'
 ]
 
 

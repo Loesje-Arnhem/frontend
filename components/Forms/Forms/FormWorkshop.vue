@@ -1,8 +1,14 @@
 <script lang="ts" setup>
-import { Endpoints } from '~/enums/endpoints'
+import useVuelidate from '@vuelidate/core'
 
 const { required, numeric, email, minValue, maxValue } = useValidators()
 const minDate: Ref<string | null> = ref(null)
+
+const pending = ref(false)
+const error = ref<string | null>(null)
+const submitted = ref(false)
+const { t } = useI18n()
+const route = useRoute()
 
 const formData = reactive({
   name: '',
@@ -43,11 +49,35 @@ const rules = {
   theme: {},
 }
 
-const { v$, loading, error, submit, submitted } = useForm(
-  rules,
-  formData,
-  Endpoints.FormWorkshop,
-)
+const v$ = useVuelidate(rules, formData)
+
+const submit = async () => {
+  const isFormCorrect = await v$.value.$validate()
+  if (!isFormCorrect) {
+    error.value = t('invalidForm')
+    return
+  }
+
+  pending.value = true
+
+  try {
+    await $fetch(route.path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        ...formData,
+        totalWorkshops: formData.totalWorkshops.toString(),
+        totalAttendees: formData.totalAttendees.toString(),
+        'form-name': 'Workshop',
+      }).toString(),
+    })
+    submitted.value = true
+  } catch (err) {
+    error.value = t('formError')
+  } finally {
+    pending.value = false
+  }
+}
 
 onMounted(() => {
   if (!process.client) {
@@ -78,12 +108,15 @@ onMounted(() => {
       </div>
       <app-form
         v-else
-        class="form"
-        :loading="loading"
+        netlify
+        netlify-honeypot="bot-field"
+        :loading="pending"
         :error="error"
         button-title="Aanmelden"
         @submit="submit"
       >
+        <input name="bot-field" type="hidden" />
+
         <form-fieldset title="Bedrijfsgegevens">
           <input-text-field
             id="name"
