@@ -1,11 +1,11 @@
 export default defineEventHandler(async () => {
-  const storage = useStorage('redis')
+  // const storage = useStorage('redis')
 
-  const key = 'posters-total'
+  // const key = 'posters-total'
 
-  if (await storage.getItem(key)) {
-    return await storage.getItem(key)
-  }
+  // if (await storage.getItem(key)) {
+  //   return await storage.getItem(key)
+  // }
 
   const url = getUrl({
     type: 'posters',
@@ -18,7 +18,7 @@ export default defineEventHandler(async () => {
 
   const data = { total: totalPages }
 
-  await storage.setItem(key, data)
+  // await storage.setItem(key, data)
 
   return data
 })

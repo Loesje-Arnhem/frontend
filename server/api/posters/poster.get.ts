@@ -3,7 +3,7 @@ import type { IPoster, ITag } from '~~/types/Content'
 import { PosterQuerySchema, PosterSchema } from '~/server/schemas/PosterSchema'
 
 export default defineEventHandler(async (event) => {
-  const storage = useStorage('redis')
+  // const storage = useStorage('redis')
 
   const query = await getValidatedQuery(event, (body) =>
     PosterQuerySchema.safeParse(body),
@@ -15,9 +15,9 @@ export default defineEventHandler(async (event) => {
 
   const key = getStorageKey(query.data, 'poster')
 
-  if (await storage.getItem(key)) {
-    return await storage.getItem(key)
-  }
+  // if (await storage.getItem(key)) {
+  //   return await storage.getItem(key)
+  // }
 
   const url = getUrl({
     slug: query.data.slug,
@@ -71,7 +71,7 @@ export default defineEventHandler(async (event) => {
       sources,
       // relatedProducts: getRelatedProducts(item),
     }
-    await storage.setItem(key, poster)
+    // await storage.setItem(key, poster)
     return poster
   }
   return null
