@@ -16,12 +16,12 @@ const props = defineProps<{
   id: string
 }>()
 
-const { required, email: emailValidator } = useValidators()
+const { required, email } = useValidators()
 
 const rules = {
   firstName: { required },
   lastName: { required },
-  email: { required, emailValidator },
+  email: { required, email },
 }
 const v$ = useVuelidate(rules, props)
 </script>

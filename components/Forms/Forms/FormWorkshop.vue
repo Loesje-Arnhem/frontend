@@ -113,11 +113,12 @@ onMounted(() => {
         :loading="pending"
         :error="error"
         button-title="Aanmelden"
+        class="form"
         @submit="submit"
       >
         <input name="bot-field" type="hidden" />
 
-        <form-fieldset title="Bedrijfsgegevens">
+        <form-fieldset title="Bedrijfsgegevens" class="fields">
           <input-text-field
             id="name"
             v-model="formData.name"
@@ -168,7 +169,7 @@ onMounted(() => {
             title="Woonplaats"
           />
         </form-fieldset>
-        <form-fieldset title="De workshop">
+        <form-fieldset title="De workshop" class="fields">
           <div class="intro">
             Let op: wil je meerdere workshops op een dag, dan kun je ze allemaal
             in een keer aanvragen. Wil je meerdere workshops op meerdere dagen,
@@ -253,7 +254,9 @@ onMounted(() => {
   @media (--viewport-lg) {
     padding: 0 15em 2em 0;
   }
+}
 
+.fields {
   @media (--viewport-sm) {
     & :deep(.fields) {
       grid-template-columns: repeat(2, 1fr);
