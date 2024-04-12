@@ -276,8 +276,7 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       importScripts: ['/badge.js'],
-
-      // globPatterns: ['**/*.{js,css,html,png,svg,ico,avif,webp,json}'],
+      globPatterns: ['**/*.{js,css,html,png,svg,ico,avif,webp,json}'],
       // Only precache these files - html should be excluded
       // globPatterns: ['**/*.{js,css}'],
 
