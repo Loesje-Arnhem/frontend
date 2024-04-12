@@ -11,10 +11,7 @@ const pauseFetching = () => {
   })
 }
 
-const defaultRoutes = [
-  '/posters',
-]
-
+const defaultRoutes = ['/rss', '/rss/posters', '/posters']
 
 export default defineNuxtModule({
   hooks: {
@@ -53,7 +50,7 @@ export default defineNuxtModule({
 
           if (page >= totalPages) {
             hasNextPage = false
-          } else if (page > 5 && (type === 'posters')) {
+          } else if (page > 5 && type === 'posters') {
             hasNextPage = false
           }
 
