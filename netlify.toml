@@ -10,13 +10,6 @@
     immutable'''
 
 [[headers]]
-  for = "/source-images/*"
-  [headers.values]
-    cache-control = '''
-    max-age=31536000,
-    immutable'''
-
-[[headers]]
   for = "/*.css"
   [headers.values]
     cache-control = '''
