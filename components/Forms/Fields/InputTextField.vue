@@ -9,6 +9,7 @@ withDefaults(
   defineProps<{
     title: string
     description?: string | null
+    name: string
     id: string
     type?: 'text' | 'date' | 'email' | 'time' | 'password' | 'tel'
     modelValue: string | number

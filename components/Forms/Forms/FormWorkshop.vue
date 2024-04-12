@@ -130,19 +130,22 @@ const errorMessage = computed(() => {
         <form-fieldset title="Bedrijfsgegevens" class="fields">
           <input-text-field
             id="name"
+            name="name"
             v-model="formData.name"
             :errors="v$.name.$errors"
             title="Naam"
             autocomplete="name"
           />
           <input-text-field
-            id="company-name"
+            id="companyName"
+            name="companyName"
             v-model="formData.companyName"
             :errors="v$.companyName.$errors"
             title="Bedrijfsnaam of naam organisatie"
           />
           <input-text-field
             id="email"
+            name="email"
             v-model="formData.email"
             :errors="v$.email.$errors"
             title="E-mailadres"
@@ -150,7 +153,8 @@ const errorMessage = computed(() => {
             autocomplete="email"
           />
           <input-text-field
-            id="phone-number"
+            id="phoneNumber"
+            name="phoneNumber"
             v-model="formData.phoneNumber"
             :errors="v$.phoneNumber.$errors"
             title="Telefoonnummer"
@@ -160,6 +164,7 @@ const errorMessage = computed(() => {
 
           <input-text-field
             id="address"
+            name="address"
             v-model="formData.address"
             description="Waar jij of je bedrijf gevestigd is, dit kan afwijken van waar de workshop gegeven moet worden"
             :errors="v$.address.$errors"
@@ -167,12 +172,14 @@ const errorMessage = computed(() => {
           />
           <input-text-field
             id="zipcode"
+            name="zipcode"
             v-model="formData.zipcode"
             :errors="v$.zipcode.$errors"
             title="Postcode"
           />
           <input-text-field
             id="city"
+            name="city"
             v-model="formData.city"
             :errors="v$.city.$errors"
             title="Woonplaats"
@@ -186,6 +193,7 @@ const errorMessage = computed(() => {
           </div>
           <input-text-field
             id="date"
+            name="date"
             v-model="formData.date"
             title="Wanneer wil je de workshop volgen?"
             :errors="v$.date.$errors"
@@ -194,6 +202,7 @@ const errorMessage = computed(() => {
           />
           <input-text-field
             id="time"
+            name="time"
             v-model="formData.time"
             type="time"
             :errors="v$.time.$errors"
@@ -201,7 +210,8 @@ const errorMessage = computed(() => {
           />
 
           <input-text-field
-            id="total-attendees"
+            id="totalAttendees"
+            name="totalAttendees"
             v-model.number="formData.totalAttendees"
             min="1"
             :errors="v$.totalAttendees.$errors"
@@ -211,13 +221,15 @@ const errorMessage = computed(() => {
 
           <input-text-field
             id="location"
+            name="location"
             v-model="formData.location"
             :errors="v$.location.$errors"
             title="Waar wil je de workshop volgen?"
             description="Volledig adres van de workshoplocatie"
           />
           <input-text-field
-            id="total-workshops"
+            id="totalWorkshops"
+            name="totalWorkshops"
             v-model.number="formData.totalWorkshops"
             min="1"
             :errors="v$.totalWorkshops.$errors"
@@ -227,6 +239,7 @@ const errorMessage = computed(() => {
 
           <input-text-field
             id="theme"
+            name="theme"
             v-model="formData.theme"
             :errors="v$.theme.$errors"
             title="Wil je over een bepaald thema schrijven?"
@@ -234,6 +247,7 @@ const errorMessage = computed(() => {
           <div class="motivation">
             <textarea-field
               id="motivation"
+              name="motivation"
               v-model="formData.motivation"
               rows="5"
               description="Motiveer je aanvraag: Waarom wil je graag een Loesje-workshop aanvragen? (Optioneel)"
