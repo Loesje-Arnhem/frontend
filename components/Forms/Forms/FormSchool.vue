@@ -118,6 +118,7 @@ const errorMessage = computed(() => {
             title="Welk vak geef je?"
           />
           <input-text-field
+            name="email"
             id="email"
             v-model="formData.email"
             :errors="v$.email.$errors"
@@ -126,7 +127,8 @@ const errorMessage = computed(() => {
             autocomplete="email"
           />
           <input-text-field
-            id="phone-number"
+            name="phoneNumber"
+            id="phoneNumber"
             v-model="formData.phoneNumber"
             :errors="v$.phoneNumber.$errors"
             title="Telefoonnummer"
