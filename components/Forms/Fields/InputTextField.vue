@@ -32,6 +32,7 @@ const model = defineModel({ required: true })
       v-bind="$attrs"
       :id
       v-model="model"
+      :name
       :type
       class="input"
       @keyup.down="$emit('keyup-down')"

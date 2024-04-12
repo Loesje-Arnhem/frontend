@@ -9,6 +9,7 @@ withDefaults(
   defineProps<{
     title: string
     description?: string | null
+    name: string
     id: string
     errors?: ErrorObject[]
   }>(),
@@ -17,6 +18,8 @@ withDefaults(
     errors: () => [],
   },
 )
+
+defineEmits(['keyup-down', 'keyup-up', 'change', 'blur'])
 
 const model = defineModel({ required: true })
 </script>
@@ -31,6 +34,7 @@ const model = defineModel({ required: true })
   >
     <textarea
       :id
+      :name
       v-bind="$attrs"
       v-model="model"
       @keyup.down="$emit('keyup-down')"
