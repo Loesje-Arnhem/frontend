@@ -10,7 +10,7 @@
     immutable'''
 
 [[headers]]
-  for = "/.netlify/images*"
+  for = "/source-images/*"
   [headers.values]
     cache-control = '''
     max-age=31536000,
