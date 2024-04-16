@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     },
     public: {
       apiUrl: '',
+      includeShop: false,
     },
   },
 
@@ -69,7 +70,6 @@ export default defineNuxtConfig({
     payloadExtraction: true,
     typedPages: true,
     sharedPrerenderData: true,
-    appManifest: true,
   },
 
   typescript: {
@@ -275,9 +275,12 @@ export default defineNuxtConfig({
     strategies: 'generateSW',
     registerWebManifestInRouteRules: true,
     registerType: 'autoUpdate',
+
     workbox: {
       importScripts: ['/badge.js'],
-      globPatterns: ['**/*.{js,css,png,jpg,svg,ico,avif,webp,woff2}'],
+
+
+      // globPatterns: ['**/*.{js,css,html,png,svg,ico,avif,webp,json}'],
       // Only precache these files - html should be excluded
       // globPatterns: ['**/*.{js,css}'],
 

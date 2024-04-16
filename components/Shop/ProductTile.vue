@@ -1,23 +1,33 @@
 <script lang="ts" setup>
 import type { IProductListItem } from '~/types/Content'
 
+const config = useRuntimeConfig()
+
 const props = defineProps<{
   product: IProductListItem
 }>()
 
 const localePath = useLocalePath()
 
-// const url = localePath({
-//   name: 'shop-product',
-//   params: {
-//     slug: props.product.slug,
-//   },
-// })
-const url = props.product.url
+const url = computed(() => {
+  if (config.public.includeShop) {
+    return localePath({
+      name: 'shop-product',
+      params: {
+        slug: props.product.slug,
+      },
+    })
+  }
+  return props.product.url
+})
 </script>
 
 <template>
-  <clickable-list-item :to="url" :external="true" class="product-tile tile">
+  <clickable-list-item
+    :to="url"
+    :external="!config.public.includeShop"
+    class="product-tile tile"
+  >
     <div class="image-wrapper">
       <featured-image
         v-if="product.image"

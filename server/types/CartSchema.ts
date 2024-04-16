@@ -60,7 +60,7 @@ export const CartItemScheme = z.object({
   short_description: z.string(),
   description: z.string(),
   sku: z.string(),
-  low_stock_remaining: z.null(),
+  low_stock_remaining: z.number().nullable(),
   backorders_allowed: z.boolean(),
   show_backorder_badge: z.boolean(),
   sold_individually: z.boolean(),
