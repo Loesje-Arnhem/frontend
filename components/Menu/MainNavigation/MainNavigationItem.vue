@@ -28,7 +28,7 @@
     </button>
 
     <slide-in-animation>
-      <ul v-show="isOpen" class="submenu tile">
+      <ul v-if="isOpen" class="submenu tile">
         <li
           v-for="subItem in item.children"
           :key="subItem.url"
@@ -111,7 +111,6 @@ const isSmallScreen = () => {
   @media (--show-full-navigation) {
     align-items: center;
     flex-wrap:;
-    gap: var(--spacing-xxs);
     display: flex;
   }
 }
@@ -175,13 +174,14 @@ const isSmallScreen = () => {
 
 .btn-show-submenu {
   display: block;
-  width: var(--spacing-m);
+  padding: 0.5em;
   position: absolute;
   right: 0;
-  top: var(--spacing-s);
+  top: 0.25em;
 
   @media (--show-full-navigation) {
     color: var(--color-white);
+    padding: 0.25em;
     position: static;
   }
 }
