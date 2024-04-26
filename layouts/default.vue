@@ -52,6 +52,12 @@ useSchemaOrg([
     name: title,
   }),
 ])
+
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} | Loesje` : 'Loesje'
+  },
+})
 </script>
 
 <template>
@@ -77,9 +83,69 @@ useSchemaOrg([
       </Head>
       <Body>
         <vite-pwa-manifest />
-
-        <slot />
+        <div class="page">
+          <header-top class="page-header-top sa-hidden" />
+          <the-header class="page-header sa-hidden" />
+          <main id="content" class="main" tabindex="-1">
+            <slot />
+          </main>
+          <the-footer class="page-footer sa-hidden" />
+        </div>
       </Body>
     </Html>
   </div>
 </template>
+
+<style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  @supports (min-height: 100dvh) {
+    min-height: 100dvh;
+  }
+}
+
+.page-header {
+  z-index: var(--z-main-navigation);
+  top: 0;
+  position: sticky;
+}
+
+.page-header-top {
+  @mixin hide-for-print;
+}
+
+.main {
+  @mixin block;
+
+  flex: 1 0 auto;
+}
+</style>
+
+<style lang="postcss">
+.transition-to-poster-details {
+  & .page-footer,
+  & .page-header-top,
+  & .page-header {
+    contain: layout;
+  }
+
+  & .page-footer {
+    /* stylelint-disable-next-line */
+    view-transition-name: footer;
+  }
+
+  & .page-header-top {
+    /* stylelint-disable-next-line */
+    view-transition-name: header-top;
+  }
+
+  & .page-header {
+    /* stylelint-disable-next-line */
+    view-transition-name: header;
+  }
+}
+</style>

@@ -11,14 +11,22 @@ const handleError = () => clearError({ redirect: '/' })
 useHead({
   title: t('errors.error404'),
 })
+
+const content = `
+<p>
+  Een beetje ongehoorzaamheid af en toe kan geen kwaad, en dit is
+  blijkbaar een van die momenten&hellip;
+</p>
+<p>
+  Of misschien vind ik die pagina echt niet, hoe hard ik ook zoek. Kan
+  gebeuren.
+</p>
+<p>In elk geval, die pagina krijg je niet te zien. Sorry.</p>
+`
 </script>
 
 <template>
   <nuxt-layout>
-    <center-wrapper>
-      <h1>404</h1>
-      <p>{{ error.message }}</p>
-      <button @click="handleError">Clear errors</button>
-    </center-wrapper>
+    <app-content title="Huh? Pagina? Welke pagina?" :content="content" />
   </nuxt-layout>
 </template>
