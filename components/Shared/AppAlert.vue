@@ -1,42 +1,28 @@
-<template>
-  <slide-in-animation direction="down">
-    <div v-if="show" class="alert">
-      <div class="wrapper" role="alert">
-        <center-wrapper>
-          {{ text }}
-          <slot />
-        </center-wrapper>
-      </div>
-    </div>
-  </slide-in-animation>
-</template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    show: {
-      type: Boolean,
-      default: false,
-    },
-    text: {
-      type: String,
-      required: true,
-    },
-  },
-})
+<script lang="ts" setup>
+defineProps<{
+  show: boolean
+  text: string
+}>()
 </script>
 
-<style scoped lang="postcss">
+<template>
+  <div v-if="show" class="alert">
+    <div class="wrapper" role="alert">
+      {{ text }}
+      <slot />
+    </div>
+  </div>
+</template>
+
+<style lang="postcss" scoped>
 .alert {
-  z-index: var(--z-alert);
+  z-index: var(--z-index-alert);
   background-color: var(--color-white);
-  padding-block: 0.5em;
+  padding-block: 0.75em;
   line-height: 1.2;
   position: fixed;
   inset: auto 0 0;
-  border: 1px solid var(--color-black);
+  border: 1px solid currentColor;
   text-align: center;
 }
 

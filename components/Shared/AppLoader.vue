@@ -1,16 +1,16 @@
 <template>
   <div class="loader">
-    <div class="dot dot-1"></div>
-    <div class="dot dot-2"></div>
-    <div class="dot dot-3"></div>
-    <div class="dot dot-4"></div>
+    <div class="dot dot-1" />
+    <div class="dot dot-2" />
+    <div class="dot dot-3" />
+    <div class="dot dot-4" />
     <span class="sr-only" aria-live="polite" role="region">
       {{ $t('loading') }}
     </span>
   </div>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .loader {
   margin: 2em auto;
   position: relative;
@@ -79,11 +79,3 @@
   }
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "loading": "Aan het laden"
-  }
-}
-</i18n>

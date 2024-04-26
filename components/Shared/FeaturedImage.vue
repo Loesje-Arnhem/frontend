@@ -1,41 +1,29 @@
+<script lang="ts" setup>
+import type { FeaturedImage } from '~/types/Content'
+
+withDefaults(
+  defineProps<{
+    image: FeaturedImage
+    sizes: string
+    lazy?: boolean
+  }>(),
+  {
+    lazy: true,
+  },
+)
+</script>
+
 <template>
-  <img
+  <app-image
     class="image"
-    :alt="alt"
-    :loading="lazy ? 'lazy' : null"
-    :srcset="image.node.srcSet"
-    :src="image.node.src"
+    :alt="image.alt"
+    :lazy="lazy"
+    :src="image.src"
     :sizes="sizes"
-    :width="image.node.mediaDetails.width"
-    :height="image.node.mediaDetails.height"
+    :width="image.width"
+    :height="image.height"
   />
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IFeaturedImage } from '~/interfaces/IMedia'
-
-export default defineComponent({
-  props: {
-    image: {
-      type: Object as PropType<IFeaturedImage>,
-      required: true,
-    },
-    lazy: {
-      type: Boolean,
-      default: true,
-    },
-    sizes: {
-      type: String,
-      required: true,
-    },
-    alt: {
-      type: String,
-      default: '',
-    },
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .image {

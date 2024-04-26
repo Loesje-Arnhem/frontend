@@ -1,5 +1,32 @@
+<script lang="ts" setup>
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+
+const { closeMobileMenu } = useLayout()
+
+const menuIsOpen = useMenu()
+
+const content: Ref<HTMLDivElement | null> = ref(null)
+
+const afterEnter = () => {
+  lockBodyScoll(true)
+}
+const afterLeave = () => {
+  lockBodyScoll(false)
+}
+const lockBodyScoll = (isOpen: boolean) => {
+  if (!content.value) {
+    return
+  }
+  if (isOpen) {
+    disableBodyScroll(content.value)
+  } else {
+    enableBodyScroll(content.value)
+  }
+}
+</script>
+
 <template>
-  <header :class="$style.header">
+  <header class="header">
     <center-wrapper>
       <skip-links />
       <mobile-navigation />
@@ -9,19 +36,15 @@
         @after-enter="afterEnter"
         @after-leave="afterLeave"
       >
-        <div v-show="mobileMenuIsOpen" :class="$style.background">
+        <div v-show="menuIsOpen" class="background">
           <transition name="fade">
-            <div
-              v-show="mobileMenuIsOpen"
-              ref="content"
-              :class="$style.content"
-            >
+            <div v-show="menuIsOpen" ref="content" class="content">
               <main-navigation-toggle
                 :close="true"
-                :class="$style.toggle"
+                class="toggle"
                 @toggle-menu="closeMobileMenu"
               />
-              <main-navigation :class="$style['main-navigation']" />
+              <main-navigation class="main-navigation" />
             </div>
           </transition>
         </div>
@@ -30,51 +53,15 @@
   </header>
 </template>
 
-<script lang="ts">
-import { defineComponent, Ref, ref } from '@nuxtjs/composition-api'
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
-import useLayout from '~/composables/useLayout'
-
-export default defineComponent({
-  setup() {
-    const { closeMobileMenu, mobileMenuIsOpen } = useLayout()
-    const content: Ref<HTMLDivElement | null> = ref(null)
-
-    const afterEnter = () => {
-      lockBodyScoll(true)
-    }
-    const afterLeave = () => {
-      lockBodyScoll(false)
-    }
-    const lockBodyScoll = (isOpen: boolean) => {
-      if (!content.value) {
-        return
-      }
-      if (isOpen) {
-        disableBodyScroll(content.value)
-      } else {
-        enableBodyScroll(content.value)
-      }
-    }
-
-    return {
-      content,
-      mobileMenuIsOpen,
-      afterEnter,
-      afterLeave,
-      closeMobileMenu,
-    }
-  },
-})
-</script>
-
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .fade-enter-active,
 .fade-leave-active {
   transition: all var(--animation) 0.2s;
 }
 
-.fade-enter,
+.fade-enter-from,
 .fade-leave-to {
   transform: translateX(-5em);
   opacity: 0;
@@ -85,14 +72,12 @@ export default defineComponent({
   transition: all var(--animation);
 }
 
-.slide-enter,
+.slide-enter-from,
 .slide-leave-to {
   opacity: 0.8;
   transform: translateX(-100vw);
 }
-</style>
 
-<style lang="postcss" module>
 .header {
   @mixin color-negative;
 
@@ -102,10 +87,7 @@ export default defineComponent({
 .background {
   position: fixed;
   background: var(--color-black);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   height: 100vh;
   overflow: hidden;
   z-index: var(--z-main-navigation);

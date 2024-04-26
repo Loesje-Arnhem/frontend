@@ -1,26 +1,18 @@
 {
   "root": true,
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "extends": [
-    "@nuxtjs/eslint-config-typescript",
-    "plugin:nuxt/recommended",
-    "plugin:prettier/recommended",
-    "prettier"
-  ],
+  "extends": ["@nuxt/eslint-config", "plugin:prettier/recommended", "prettier"],
   "plugins": ["prettier"],
   "rules": {
+    "vue/valid-v-bind": 0,
+    "vue/no-v-html": 0,
+    "vue/no-v-text-v-html-on-component": 0,
+    "vue/no-multiple-template-root": 0,
     "vue/component-name-in-template-casing": [
       "error",
       "kebab-case",
       {
         "registeredComponentsOnly": false
       }
-    ],
-    "vue/no-deprecated-slot-scope-attribute": 1,
-    "vue/no-v-text-v-html-on-component": 0,
-    "vue/no-v-html": 0
+    ]
   }
 }

@@ -1,75 +1,67 @@
+<script lang="ts" setup>
+import type { IPostListItem } from '~/types/Content'
+
+const props = withDefaults(
+  defineProps<{
+    exclude?: number
+  }>(),
+  {
+    exclude: 0,
+  },
+)
+
+const page = ref(1)
+
+const { pending, data } = useFetch('/api/posts/posts', {
+  query: {
+    exclude: props.exclude.toString(),
+    page,
+  },
+  transform(response) {
+    if (!data.value) {
+      return response
+    }
+
+    const items: {
+      items: IPostListItem[]
+      hasNextPage: boolean
+    } = {
+      items: [...data.value.items, ...response.items],
+      hasNextPage: response.hasNextPage,
+    }
+    return items
+  },
+})
+
+const loadMore = () => {
+  page.value = page.value + 1
+}
+</script>
+
 <template>
   <section
-    v-if="relatedPosts"
-    :class="$style['posts-overview']"
+    v-if="data?.items.length"
+    class="posts-overview"
     aria-labelledby="posts-overview-title"
   >
     <center-wrapper size="md">
       <h1 id="posts-overview-title">
-        <template v-if="notIn">{{ $t('relatedTitle') }}</template>
-        <template v-else>{{ $t('title') }}</template>
+        <template v-if="exclude">
+          {{ $t('otherNews') }}
+        </template>
+        <template v-else>
+          {{ $t('posts') }}
+        </template>
       </h1>
-      <posts-overview-list
-        v-if="relatedPosts.edges.length"
-        :posts="relatedPosts.edges"
-      />
-      <load-more-by-click
-        v-if="relatedPosts.pageInfo.hasNextPage"
-        :loading="loading"
-        :title="$t('btnMore')"
-        @load-more="loadMore"
-      />
+      <posts-overview-list :posts="data.items" />
+      <center-wrapper v-if="data.hasNextPage">
+        <load-more-by-click :loading="pending" @load-more="loadMore" />
+      </center-wrapper>
     </center-wrapper>
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, PropType } from '@nuxtjs/composition-api'
-import { getRelatedPosts } from '~/graphql/Posts/Posts'
-import { useFetchMore } from '~/composables/useFetch'
-import { IPosts } from '~/interfaces/IPost'
-
-export default defineComponent({
-  props: {
-    posts: {
-      type: Object as PropType<IPosts>,
-      default: () => {},
-    },
-    notIn: {
-      type: Number,
-      default: 0,
-    },
-  },
-  setup(props) {
-    const relatedPosts = ref(props.posts)
-
-    const { fetchMore, loading } = useFetchMore()
-
-    const loadMore = async () => {
-      const { posts }: { posts: IPosts } = await fetchMore({
-        items: relatedPosts,
-        query: getRelatedPosts,
-        variables: {
-          notIn: props.notIn,
-        },
-      })
-
-      relatedPosts.value = {
-        pageInfo: posts.pageInfo,
-        edges: [...relatedPosts.value.edges, ...posts.edges],
-      }
-    }
-
-    return {
-      loadMore,
-      loading,
-      relatedPosts,
-    }
-  },
-})
-</script>
-
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .posts-overview {
   @mixin block;
 }
@@ -79,13 +71,3 @@ export default defineComponent({
   justify-content: center;
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "title": "Nieuws",
-    "relatedTitle": "Overig nieuws",
-    "btnMore": "Toon meer nieuwsartikelen"
-  }
-}
-</i18n>

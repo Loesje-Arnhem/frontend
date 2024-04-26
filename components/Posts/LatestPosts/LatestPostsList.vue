@@ -1,29 +1,22 @@
+<script lang="ts" setup>
+import type { IPostListItem } from '~/types/Content'
+defineProps<{
+  posts: IPostListItem[]
+}>()
+</script>
+
 <template>
-  <ul :class="$style.list">
+  <ul class="list">
     <post-list-item
       v-for="post in posts"
-      :key="post.node.databaseId"
-      :post="post.node"
-      :class="$style['list-item']"
+      :key="post.id"
+      :post="post"
+      class="list-item"
     />
   </ul>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPostNode } from '~/interfaces/IPost'
-
-export default defineComponent({
-  props: {
-    posts: {
-      type: Array as PropType<IRelatedPostNode[]>,
-      default: () => [],
-    },
-  },
-})
-</script>
-
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .list {
   @mixin list-reset;
 

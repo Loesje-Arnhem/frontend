@@ -1,87 +1,58 @@
+<script lang="ts" setup>
+defineI18nRoute({
+  paths: {
+    nl: '/posters/[slug]',
+  },
+})
+
+const route = useRoute()
+
+const { data } = await useAsyncData(
+  `poster-${route.params.slug.toString()}`,
+  () =>
+    $fetch('/api/posters/poster', {
+      params: {
+        slug: route.params.slug.toString(),
+      },
+    }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: data.value.title,
+  description: data.value.title,
+  image: data.value.featuredImage,
+})
+
+useSchemaOrg(
+  defineArticle({
+    datePublished: data.value.date,
+    headline: data.value.title,
+    // description: data.value.seo?.metaDesc,
+  }),
+)
+</script>
+
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="poster">
+  <div v-if="data">
     <center-wrapper>
-      <poster-details :poster="poster" />
+      <poster-details :poster="data" />
     </center-wrapper>
-    <!-- <related-products-section :related-products="poster.relatedProducts" /> -->
+    <related-products-section
+      v-if="data.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
+    />
     <posters-overview-section
-      v-if="poster"
-      :not-in="poster.databaseId"
-      :posters="poster.relatedPosters"
-      :subject-ids="subjects"
-      :title="$t('relatedTitle')"
+      :exclude="data.id"
+      :subject-ids="data.subjects.map((subject) => subject.id)"
+      :title="$t('relatedPosters')"
     />
   </div>
 </template>
-
-<script lang="ts">
-import {
-  computed,
-  defineComponent,
-  ComputedRef,
-  useRoute,
-} from '@nuxtjs/composition-api'
-import useFetch from '~/composables/useFetch'
-import { IPoster } from '~/interfaces/IPoster'
-import PosterQuery from '~/graphql/Posters/Poster'
-import useMeta from '~/composables/useMeta'
-
-export default defineComponent({
-  setup() {
-    const route = useRoute()
-    const { slug } = route.value.params
-
-    const params = computed(() => slug)
-
-    const { result, loading } = useFetch({
-      query: PosterQuery,
-      usePayload: true,
-      variables: {
-        slug,
-      },
-      params,
-      pageKey: 'poster',
-    })
-
-    const poster: ComputedRef<IPoster | null> = computed(
-      () => result.value?.poster,
-    )
-    useMeta(poster)
-
-    const subjects = computed(() => {
-      if (!poster.value) {
-        return []
-      }
-      if (poster.value.subjects.edges.length) {
-        return poster.value.subjects.edges.map(
-          (subject) => subject.node.databaseId,
-        )
-      }
-      return []
-    })
-
-    return {
-      result,
-      loading,
-      poster,
-      subjects,
-    }
-  },
-
-  head: {},
-  nuxtI18n: {
-    paths: {
-      nl: '/posters/:slug',
-    },
-  },
-})
-</script>
-
-<i18n>
-{
-  "nl": {
-    "relatedTitle": "Gerelateerde posters"
-  }
-}
-</i18n>

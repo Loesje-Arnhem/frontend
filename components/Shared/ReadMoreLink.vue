@@ -1,22 +1,15 @@
+<script lang="ts" setup>
+defineProps<{
+  to: string
+}>()
+</script>
+
 <template>
   <nuxt-link :to="to" class="read-more" aria-hidden="true" tabindex="-1">
     {{ $t('readMore') }}
-    <app-icon icon="chevron-right" class="icon" width="16" height="16" />
+    <app-icon icon="chevron-right" class="icon" :width="16" :height="16" />
   </nuxt-link>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    to: {
-      type: String,
-      default: '',
-    },
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .icon {
@@ -32,11 +25,3 @@ export default defineComponent({
   }
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "readMore": "Lees verder"
-  }
-}
-</i18n>

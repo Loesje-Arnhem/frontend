@@ -1,29 +1,39 @@
+<script lang="ts" setup>
+const { t } = useI18n()
+const usps = [
+  t('participateToActivities'),
+  t('joinWriting'),
+  t('receiveDiscountInTheShop'),
+]
+</script>
+
 <template>
-  <box-wrapper id="become-member" :title="$t('title')">
-    <ul :class="$style.list">
-      <li v-for="usp in $t('usps')" :key="usp" :class="$style['list-item']">
+  <box-wrapper id="become-member" :title="$t('becomeMember')">
+    <ul class="list">
+      <li v-for="usp in usps" :key="usp" class="list-item">
         <app-image
-          :class="$style['check']"
+          class="check"
           :width="27"
           :height="27"
           src="/images/check.png"
-          sizes="xs:27px sm:54px"
+          sizes="xs:27px"
         />
         {{ usp }}
       </li>
     </ul>
-    <app-button to="/doe-mee/word-lid/">{{ $t('btn') }}</app-button>
+    <app-button to="/doe-mee/word-lid/">
+      {{ $t('iWillJoin') }}
+    </app-button>
     <!-- <app-image
-      :class="$style.image"
+      class="image"
       :width="167"
       :height="144"
       src="/images/megaphone.png"
-      sizes="xs:167px sm:334px"
     /> -->
   </box-wrapper>
 </template>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .list {
   @mixin list-reset;
 
@@ -31,31 +41,13 @@
 }
 
 .check {
-  margin-right: 0.25em;
+  flex: 0 1 auto;
+  width: auto;
 }
 
 .list-item {
+  gap: 0.25em;
   padding: 0 0 0.5rem;
   display: flex;
 }
-
-.image {
-  position: absolute;
-  bottom: -2em;
-  right: calc(var(--gutter) * -1);
-}
 </style>
-
-<i18n>
-{
-  "nl": {
-    "title": "Word lid",
-    "btn": "Ik doe mee!",
-    "usps": [
-      "Doe mee met activiteiten",
-      "Schrijf mee",
-      "Ontvang korting in het winkeltje"
-    ]
-  }
-}
-</i18n>

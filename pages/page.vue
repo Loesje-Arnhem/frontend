@@ -1,69 +1,75 @@
-<template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page">
-    <app-content :title="page.title" :content="page.content" />
-    <related-posters-section :posters="page.relatedPosters" />
-    <related-products-section :related-products="page.relatedProducts" />
-    <related-pages-section :pages="page.relatedPages" />
-  </div>
-</template>
-
-<script lang="ts">
-import {
-  computed,
-  ComputedRef,
-  defineComponent,
-  useRoute,
-} from '@nuxtjs/composition-api'
-import PageByByUri from '~/graphql/Pages/Pages'
-import { IPage } from '~/interfaces/IPage'
-import useFetch from '~/composables/useFetch'
-import useMeta from '~/composables/useMeta'
-
-export default defineComponent({
-  setup() {
-    const route = useRoute()
-    const { slug, slug2 } = route.value.params
-    const pageKey = computed(() => {
-      if (slug2) {
-        return `${slug}--${slug2}`
-      }
-      return slug
-    })
-
-    const uri = computed(() => {
-      if (slug2) {
-        return `${slug}/${slug2}`
-      }
-      return slug
-    })
-
-    const { result, loading } = useFetch({
-      query: PageByByUri,
-      usePayload: true,
-      variables: {
-        uri: uri.value,
-      },
-      params: pageKey,
-      pageKey: 'page',
-    })
-
-    const page: ComputedRef<IPage | null> = computed(() => {
-      return result.value?.page
-    })
-    useMeta(page)
-
-    return {
-      page,
-      loading,
-    }
-  },
-  head: {},
-
-  nuxtI18n: {
-    paths: {
-      nl: '/:slug/:slug2?',
-    },
+<script setup lang="ts">
+defineI18nRoute({
+  paths: {
+    nl: '/[...slug]',
   },
 })
+
+const route = useRoute()
+
+const uri = computed(() => {
+  if (Array.isArray(route.params.slug)) {
+    const slugs = route.params.slug.filter((slug) => slug !== '')
+    return slugs.at(-1) ?? ''
+  } else {
+    return route.params.slug
+  }
+})
+
+const { data } = await useAsyncData(`page-${uri.value}`, () =>
+  $fetch('/api/pages/page', {
+    params: {
+      slug: uri.value,
+    },
+  }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: data.value.title,
+  description: data.value.description,
+  image: data.value.featuredImage,
+})
+
+const relatedPagesParentId = computed(() => {
+  if (!data.value) {
+    return 0
+  }
+  if (data.value.parentId) {
+    return data.value?.parentId
+  }
+  return data.value.id
+})
 </script>
+
+<template>
+  <div v-if="data">
+    <app-content
+      :title="data.title"
+      :content="data.content"
+      :video="data.youtubeId"
+    />
+    <related-posters-section
+      :poster-ids="data.relatedPosters.posterIds"
+      :search="data.relatedPosters.search"
+      :subjects="data.relatedPosters.subjects"
+      :title="data.relatedPosters.title"
+    />
+    <related-pages-section
+      v-if="relatedPagesParentId"
+      :exclude="data.id"
+      :parent-id="relatedPagesParentId"
+    />
+    <related-products-section
+      v-if="data.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
+    />
+  </div>
+</template>

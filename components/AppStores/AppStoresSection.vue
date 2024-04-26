@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+let themeColor = '#000'
+const updateTheme = () => {
+  themeColor = themeColor === '#000' ? '#f0f' : '#000'
+  document.documentElement.style.setProperty('--color-black', themeColor)
+}
+</script>
+
 <template>
   <section class="app-stores" aria-labelledby="app-stores-title">
     <center-wrapper size="lg">
@@ -8,7 +16,7 @@
             src="/images/arcarde.png"
             :width="500"
             :height="560"
-            sizes="sm:100vw lg:75vw xl:33v xl:500px xxl:1000px"
+            sizes="sm:100vw lg:75vw xl:33v xl:500px"
           />
 
           <button class="btn-theme" @click="updateTheme">
@@ -17,7 +25,7 @@
               :width="36"
               :height="34"
               alt="Play"
-              sizes="xs:36 sm:72"
+              sizes="xs:36"
             />
           </button>
         </div>
@@ -31,49 +39,31 @@
           </p>
           <p>
             Nu is er de officiele Loesje-app. In deze app kan je uren
-            rondstruinen op zoek de poster die jij het tofst vindt. Je vindt de
-            Loesjeapp niet in de appstores, maar je kunt hem gratis via de
-            Loesjewebsite installeren op je telefoon of tablet. Zo heb je het
-            Loesjes posterarchief altijd bij de hand.
+            rondstruinen op zoek de poster die jij het tofst vindt.
           </p>
-          <app-button v-if="installEvent" @click="install">
-            Installeer de Loesje-app
-          </app-button>
+          <div class="buttons">
+            <client-only>
+              <app-button v-if="$pwa.showInstallPrompt" @click="$pwa.install()">
+                Installeer de app
+              </app-button>
+            </client-only>
+            <app-button
+              href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Bekijk de app in de Appstore
+            </app-button>
+          </div>
         </div>
       </div>
     </center-wrapper>
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted } from '@nuxtjs/composition-api'
-import usePwa from '~/composables/usePwa'
-
-export default defineComponent({
-  setup() {
-    let themeColor = '#000'
-    const updateTheme = () => {
-      themeColor = themeColor === '#000' ? '#f0f' : '#000'
-      document.documentElement.style.setProperty('--color-black', themeColor)
-    }
-
-    const { install, isInstalled, checkIsInstalled, installEvent } = usePwa()
-
-    onMounted(() => {
-      checkIsInstalled()
-    })
-
-    return {
-      installEvent,
-      isInstalled,
-      install,
-      updateTheme,
-    }
-  },
-})
-</script>
-
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .app-stores {
   @mixin block;
   @mixin clearfix;
@@ -87,6 +77,12 @@ export default defineComponent({
   @media (--viewport-lg) {
     display: block;
   }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
 }
 
 .image-wrapper {

@@ -1,9 +1,7 @@
-import { ref } from '@nuxtjs/composition-api'
+export const useLayout = () => {
+  const openMenus = ref([] as string[])
+  const menuIsOpen = useMenu()
 
-const openMenus = ref([] as string[])
-const mobileMenuIsOpen = ref(false)
-
-export default () => {
   const add = (menuId: string) => {
     if (openMenus.value.includes(menuId)) {
       return
@@ -12,11 +10,11 @@ export default () => {
   }
 
   const openMobileMenu = () => {
-    mobileMenuIsOpen.value = true
+    menuIsOpen.value = true
   }
 
   const closeMobileMenu = () => {
-    mobileMenuIsOpen.value = false
+    menuIsOpen.value = false
   }
 
   const remove = (menuId: string) => {
@@ -34,6 +32,5 @@ export default () => {
     clear,
     openMobileMenu,
     closeMobileMenu,
-    mobileMenuIsOpen,
   }
 }

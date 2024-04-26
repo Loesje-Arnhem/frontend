@@ -1,37 +1,26 @@
+<script lang="ts" setup>
+import type { IRelatedPage } from '~/types/Content'
+
+defineProps<{
+  page: IRelatedPage
+}>()
+</script>
+
 <template>
-  <clickable-list-item
-    v-if="page.uri"
-    :url="page.uri"
-    :class="$style['related-page']"
-    class="box"
-  >
-    <h2 :class="$style.title">
-      <nuxt-link :to="page.uri" :class="$style.link">
+  <clickable-list-item v-if="page.uri" :to="page.uri" class="related-page box">
+    <h2 class="title">
+      <nuxt-link :to="page.uri" class="link">
         {{ page.title }}
       </nuxt-link>
     </h2>
-    <div :class="$style.text">
+    <div class="text">
       <div v-html="page.excerpt" />
       <read-more-link :to="page.uri" />
     </div>
   </clickable-list-item>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPage } from '~/interfaces/IPage'
-
-export default defineComponent({
-  props: {
-    page: {
-      type: Object as PropType<IRelatedPage>,
-      required: true,
-    },
-  },
-})
-</script>
-
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .title {
   @mixin color-negative;
 

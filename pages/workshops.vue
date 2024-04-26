@@ -1,36 +1,51 @@
-<template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page" class="page">
-    <app-content
-      :title="page.title"
-      :content="page.content"
-      :video="page.videoGroup.youtubeId"
-    />
-    <form-workshop />
-    <related-posters-section :posters="page.relatedPosters" />
-    <related-products-section :related-products="page.relatedProducts" />
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import { workshopsPageId } from '~/data/pages'
-import { usePageById } from '~/composables/usePage'
-
-export default defineComponent({
-  setup() {
-    const { page, loading } = usePageById(workshopsPageId)
-    return {
-      page,
-      loading,
-    }
-  },
-
-  head: {},
-  nuxtI18n: {
-    paths: {
-      nl: '/workshops',
-    },
+<script lang="ts" setup>
+defineI18nRoute({
+  paths: {
+    nl: '/workshop-creatief-schrijven',
   },
 })
+const { pageIds } = useAppConfig()
+
+const { data } = await useAsyncData(`page-workshop`, () =>
+  $fetch('/api/pages/page', {
+    params: {
+      id: pageIds.workshops,
+    },
+  }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: data.value.title,
+  description: data.value.description,
+  image: data.value.featuredImage,
+})
 </script>
+
+<template>
+  <div v-if="data">
+    <app-content
+      :title="data.title"
+      :content="data.content"
+      :video="data.youtubeId"
+    />
+    <form-workshop />
+    <related-products-section
+      v-if="data.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
+    />
+    <related-posters-section
+      :poster-ids="data.relatedPosters.posterIds"
+      :search="data.relatedPosters.search"
+      :subjects="data.relatedPosters.subjects"
+      :title="data.relatedPosters.title"
+    />
+  </div>
+</template>

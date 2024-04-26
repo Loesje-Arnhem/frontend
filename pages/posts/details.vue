@@ -1,65 +1,64 @@
-<template>
-  <app-loader v-if="loading" />
-  <div v-else-if="post">
-    <app-content
-      :image="post.featuredImage"
-      :title="post.title"
-      :content="post.content"
-      :date="post.date"
-      :video="post.videoGroup.youtubeId"
-    />
-
-    <related-posters-section :posters="post.relatedPosters" />
-    <!-- <related-products-section :related-products="post.relatedProducts" /> -->
-    <posts-overview-section
-      :posts="post.relatedPosts"
-      :not-in="post.databaseId"
-    />
-  </div>
-</template>
-
-<script lang="ts">
-import {
-  computed,
-  defineComponent,
-  useRoute,
-  ComputedRef,
-} from '@nuxtjs/composition-api'
-import { getPost } from '~/graphql/Posts/Posts'
-import { IPost } from '~/interfaces/IPost'
-import useFetch from '~/composables/useFetch'
-import useMeta from '~/composables/useMeta'
-
-export default defineComponent({
-  setup() {
-    const route = useRoute()
-    const { slug } = route.value.params
-
-    const param = computed(() => slug)
-
-    const { result, loading } = useFetch({
-      query: getPost,
-      usePayload: true,
-      variables: {
-        slug,
-      },
-      params: param,
-      pageKey: 'post',
-    })
-
-    const post: ComputedRef<IPost | null> = computed(() => result.value?.post)
-    useMeta(post)
-
-    return {
-      loading,
-      post,
-    }
-  },
-  head: {},
-  nuxtI18n: {
-    paths: {
-      nl: '/over-loesje/nieuws/:slug',
-    },
+<script lang="ts" setup>
+defineI18nRoute({
+  paths: {
+    nl: '/over-loesje/nieuws/[slug]',
   },
 })
+
+const route = useRoute()
+
+const { data } = await useAsyncData(
+  `post-${route.params.slug.toString()}`,
+  () =>
+    $fetch('/api/posts/post', {
+      params: {
+        slug: route.params.slug.toString(),
+      },
+    }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: data.value.title,
+  description: data.value.description,
+  image: data.value.featuredImage,
+})
+
+useSchemaOrg(
+  defineArticle({
+    datePublished: data.value.date,
+    headline: data.value.title,
+    description: data.value.seo?.metaDesc,
+  }),
+)
 </script>
+
+<template>
+  <div v-if="data">
+    <app-content
+      :image="data.featuredImage"
+      :title="data.title"
+      :content="data.content"
+      :date="data.date"
+      :video="data.youtubeId"
+    />
+    <related-products-section
+      v-if="data.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
+    />
+    <related-posters-section
+      :poster-ids="data.relatedPosters.posterIds"
+      :search="data.relatedPosters.search"
+      :subjects="data.relatedPosters.subjects"
+      :title="data.relatedPosters.title"
+    />
+    <posts-overview-section :exclude="data.id" />
+  </div>
+</template>

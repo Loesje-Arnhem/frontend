@@ -1,58 +1,49 @@
-<template>
-  <div v-if="showWindowControlsOverlay">
-    <div class="wrapper">
-      <app-icon icon="logo" class="logo" height="50" width="87" />
-    </div>
-    <div class="placeholder"></div>
-  </div>
-</template>
+<script lang="ts" setup>
+const showWindowControlsOverlay = ref(false)
 
-<script>
-import {
-  defineComponent,
-  onMounted,
-  onUnmounted,
-  ref,
-} from '@vue/composition-api'
+const onGeometryChange = (event: any) => {
+  showWindowControlsOverlay.value = event.visible
+}
 
-export default defineComponent({
-  setup() {
-    const showWindowControlsOverlay = ref(false)
+onMounted(() => {
+  if (!('windowControlsOverlay' in navigator)) {
+    return
+  }
+  // Window Controls Overlay is supported.
 
-    const onGeometryChange = (event) => {
-      showWindowControlsOverlay.value = event.visible
-    }
+  // @ts-ignore
+  showWindowControlsOverlay.value = navigator.windowControlsOverlay.visible
 
-    onMounted(() => {
-      if (!('windowControlsOverlay' in navigator)) {
-        return
-      }
-      // Window Controls Overlay is supported.
-      showWindowControlsOverlay.value = navigator.windowControlsOverlay.visible
+  // @ts-ignore
+  navigator.windowControlsOverlay.addEventListener(
+    'geometrychange',
+    onGeometryChange,
+  )
+})
 
-      navigator.windowControlsOverlay.addEventListener(
-        'geometrychange',
-        onGeometryChange,
-      )
-    })
+onUnmounted(() => {
+  if (!('windowControlsOverlay' in navigator)) {
+    return
+  }
 
-    onUnmounted(() => {
-      if (!('windowControlsOverlay' in navigator)) {
-        return
-      }
-      navigator.windowControlsOverlay.removeEventListener(
-        'geometrychange',
-        onGeometryChange,
-      )
-    })
-    return {
-      showWindowControlsOverlay,
-    }
-  },
+  // @ts-ignore
+  navigator.windowControlsOverlay.removeEventListener(
+    'geometrychange',
+    onGeometryChange,
+  )
 })
 </script>
 
-<style scoped lang="postcss">
+<template>
+  <div v-if="showWindowControlsOverlay">
+    <div class="wrapper">
+      <app-icon icon="logo" class="logo" :height="50" :width="87" />
+    </div>
+    <div class="placeholder" />
+  </div>
+</template>
+
+<style lang="postcss" scoped>
 .wrapper,
 .placeholder {
   height: 3em;

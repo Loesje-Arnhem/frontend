@@ -1,7 +1,46 @@
+<script lang="ts" setup>
+const { selectedSourceIds, selectedSubjectIds } = useTags()
+const activeOverlays = reactive({
+  sources: false,
+  subjects: false,
+})
+
+const { data } = useFetch('/api/posters/taxonomies')
+
+const dateBefore = useDateBefore()
+const dateAfter = useDateAfter()
+
+const toggleOverlay = (type: string) => {
+  if (type === 'subjects') {
+    activeOverlays.subjects = !activeOverlays.subjects
+    activeOverlays.sources = false
+  } else {
+    activeOverlays.sources = !activeOverlays.sources
+    activeOverlays.subjects = false
+  }
+}
+
+const today = () => {
+  const now = new Date()
+  const currentMonth = now.getMonth() + 1
+  const currentDay = now.getDate()
+  let month = `${currentMonth}`
+  if (currentMonth < 10) {
+    month = `0${currentMonth}`
+  }
+  let day = `${currentDay}`
+  if (currentDay < 10) {
+    day = `0${currentDay}`
+  }
+  return `${now.getFullYear()}-${month}-${day}`
+}
+</script>
+
 <template>
-  <div class="filter">
+  <div v-if="data" class="filter">
     <div class="buttons">
       <poster-filter-toggle
+        v-if="data.sources.length"
         :is-active="activeOverlays.sources"
         class="filter-item"
         @toggle="toggleOverlay('sources')"
@@ -12,6 +51,7 @@
         </template>
       </poster-filter-toggle>
       <poster-filter-toggle
+        v-if="data.subjects.length"
         :is-active="activeOverlays.subjects"
         class="filter-item"
         @toggle="toggleOverlay('subjects')"
@@ -21,28 +61,26 @@
           ({{ selectedSubjectIds.length }})
         </template>
       </poster-filter-toggle>
-      <div class="filter-item">
-        <form-input-text
-          id="date-before"
-          v-model="dateBefore"
-          class="date"
-          type="date"
-          :title="$t('dateBefore')"
-          name="date-before"
-          min="1983-01-01"
-          :max="dateAfter ? dateAfter : today()"
-        />
-      </div>
-      <div class="filter-item">
-        <form-input-text
+      <div class="filter-item date">
+        <input-text-field
           id="date-after"
           v-model="dateAfter"
-          class="date"
           type="date"
-          :title="$t('dateAfter')"
+          :title="$t('until')"
           name="date-after"
           :max="today()"
           :min="dateBefore ? dateBefore : '1983-01-01'"
+        />
+      </div>
+      <div class="filter-item date">
+        <input-text-field
+          id="date-before"
+          v-model="dateBefore"
+          type="date"
+          :title="$t('from')"
+          name="date-before"
+          min="1983-01-01"
+          :max="dateAfter ? dateAfter : today()"
         />
       </div>
     </div>
@@ -54,8 +92,8 @@
         class="tags"
         tabindex="-1"
       >
-        <center-wrapper v-if="sources">
-          <poster-tags-list :list="sources.edges" />
+        <center-wrapper>
+          <poster-tags-list :list="data.sources" />
         </center-wrapper>
       </div>
 
@@ -65,112 +103,39 @@
         class="tags"
         tabindex="-1"
       >
-        <center-wrapper v-if="subjects">
-          <poster-tags-list :list="subjects.edges" />
+        <center-wrapper>
+          <poster-tags-list :list="data.subjects" />
         </center-wrapper>
       </div>
     </slide-in-animation>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, PropType } from '@nuxtjs/composition-api'
-import useTags from '~/composables/useTags'
-import { ITags } from '~/interfaces/ITag'
-
-export default defineComponent({
-  props: {
-    sources: {
-      type: Object as PropType<ITags | null>,
-      default: null,
-    },
-    subjects: {
-      type: Object as PropType<ITags | null>,
-      default: null,
-    },
-  },
-  setup() {
-    const { selectedSourceIds, selectedSubjectIds, dateBefore, dateAfter } =
-      useTags()
-    const activeOverlays = reactive({
-      sources: false,
-      subjects: false,
-    })
-
-    const toggleOverlay = (type: string) => {
-      if (type === 'subjects') {
-        activeOverlays.subjects = !activeOverlays.subjects
-        activeOverlays.sources = false
-      } else {
-        activeOverlays.sources = !activeOverlays.sources
-        activeOverlays.subjects = false
-      }
-    }
-
-    const today = () => {
-      const now = new Date()
-      let month = (now.getMonth() + 1) as Number | String
-      let day = now.getDate() as Number | String
-      if (month < 10) month = '0' + month
-      if (day < 10) day = '0' + day
-      return now.getFullYear() + '-' + month + '-' + day
-    }
-    return {
-      today,
-      toggleOverlay,
-      activeOverlays,
-      selectedSourceIds,
-      selectedSubjectIds,
-      dateBefore,
-      dateAfter,
-    }
-  },
-})
-</script>
-
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .filter {
   position: relative;
 }
 
 .buttons {
   border: 2px solid var(--color-black);
-  display: flex;
+  background-color: var(--color-black);
+  display: grid;
   margin-bottom: 1em;
-  flex-wrap: wrap;
+  gap: 1px;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (--viewport-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .filter-item {
-  border-bottom: 1px solid var(--color-black);
-  flex: 0 0 auto;
-  width: 100%;
   padding-left: 1em;
   padding-right: 1em;
-
-  &:last-child {
-    border-bottom: 0;
-  }
-
-  @media (--viewport-sm) {
-    width: 50%;
-
-    &:nth-child(2n + 1) {
-      border-right: 1px solid var(--color-black);
-    }
-
-    &:nth-child(3) {
-      border-bottom: 0;
-    }
-  }
-
-  @media (--viewport-lg) {
-    width: 25%;
-    border-bottom: 0;
-
-    &:nth-child(2) {
-      border-right: 1px solid var(--color-black);
-    }
-  }
+  background-color: var(--color-white);
+  overflow: hidden;
 }
 
 .tags {
@@ -184,15 +149,17 @@ export default defineComponent({
 }
 
 .date {
-  display: flex;
-  align-items: center;
-  gap: 0.25em;
+  & :deep(.field) {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+  }
 
-  & >>> .label {
+  & :deep(.label) {
     margin: 0;
   }
 
-  & >>> .input {
+  & :deep(.input) {
     border-image-source: none !important;
     border-image-outset: 0 !important;
     flex: 1 1 auto;
@@ -200,14 +167,3 @@ export default defineComponent({
   }
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "sources": "Bronnen",
-    "subjects": "Onderwerpen",
-    "dateBefore": "Voor",
-    "dateAfter": "Van"
-  }
-}
-</i18n>

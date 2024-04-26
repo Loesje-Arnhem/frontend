@@ -1,123 +1,56 @@
-<template>
-  <center-wrapper>
-    <app-form
-      class="form"
-      button-title="Bestelling plaatsen"
-      :loading="loading"
-      :error="errors.join('')"
-      @submit="submit"
-    >
-      <h1 v-if="page">{{ page.title }}</h1>
-      <div class="checkout">
-        <div>
-          <address-fields
-            :user="billing"
-            @input="(key, value) => (billing[key] = value)"
-          />
-
-          <input
-            id="shipToDifferentAddress"
-            v-model="shipToDifferentAddress"
-            type="checkbox"
-          />
-          <label for="shipToDifferentAddress">
-            Verzenden naar een ander adres?
-          </label>
-          <slide-in-animation>
-            <address-fields
-              v-if="shipToDifferentAddress"
-              :is-shipping="true"
-              :user="shipping"
-              @input="(key, value) => (shipping[key] = value)"
-            />
-          </slide-in-animation>
-        </div>
-        <client-only>
-          <mini-cart />
-        </client-only>
-      </div>
-      <input id="addToNewsletter" v-model="addToNewsletter" type="checkbox" />
-      <label for="addToNewsletter"> Toevoegen aan niewsbrief </label>
-      <payment-gateways
-        v-if="paymentGateways"
-        v-model="paymentMethod"
-        :payment-gateways="paymentGateways.edges"
-      />
-    </app-form>
-  </center-wrapper>
-</template>
-
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
-import { useVuelidate } from '@vuelidate/core'
-import PaymentGatewaysQuery from '~/graphql/Shop/PaymentGateways'
-import { useCheckout } from '~/composables/checkout'
-import { checkoutPageId } from '~/data/pages'
-import { usePageById } from '~/composables/usePage'
-
-export default defineComponent({
-  setup() {
-    const {
-      checkout,
-      paymentMethod,
-      billing,
-      shipping,
-      shipToDifferentAddress,
-      addToNewsletter,
-      errors,
-    } = useCheckout()
-
-    const { page, loading } = usePageById(checkoutPageId)
-
-    // this will collect all nested component’s validation results
-    const v$ = useVuelidate()
-
-    const submit = async () => {
-      const isFormCorrect = await v$.value.$validate()
-      if (!isFormCorrect) return
-      checkout()
-    }
-
-    return {
-      submit,
-      v$,
-      page,
-      loading,
-      shipToDifferentAddress,
-      paymentMethod,
-      billing,
-      shipping,
-      addToNewsletter,
-      errors,
-      checkout,
-    }
+<script setup lang="ts">
+defineI18nRoute({
+  paths: {
+    nl: '/winkeltje/afrekenen',
   },
-  async asyncData({ app }) {
-    const { defaultClient } = app.apolloProvider
+})
 
-    const result = await defaultClient.query({
-      query: PaymentGatewaysQuery,
-    })
-    return {
-      paymentGateways: result.data.paymentGateways,
-    }
-  },
-  head() {},
-  nuxtI18n: {
-    paths: {
-      nl: '/winkeltje/afrekenen',
+definePageMeta({
+  middleware: ['cart'],
+})
+
+const { pageIds } = useAppConfig()
+
+const { data } = await useAsyncData(`page-home`, () =>
+  $fetch('/api/pages/page', {
+    params: {
+      id: pageIds.checkout,
     },
-  },
+  }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: data.value.title,
+  description: data.value.description,
 })
 </script>
 
-<style scoped lang="postcss">
+<template>
+  <center-wrapper>
+    <h1 v-if="data">{{ data.title }}</h1>
+    <div class="checkout">
+      <form-checkout />
+      <mini-cart />
+    </div>
+  </center-wrapper>
+</template>
+
+<style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .checkout {
   display: grid;
   grid-gap: 1em;
 
   @media (--viewport-lg) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr 1fr;
   }
 }
 </style>

@@ -1,10 +1,16 @@
+<script lang="ts" setup>
+const { socialMedia } = useAppConfig()
+const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
+  socialMedia
+</script>
+
 <template>
   <footer :class="$style.footer">
     <center-wrapper>
       <div :class="$style.wrapper">
-        <quick-links />
-
         <company-address />
+        <rss-feed-links />
+        <app-stores />
 
         <div :class="$style['follow-us']">
           <social-media-links
@@ -22,7 +28,7 @@
             :height="240"
             :class="$style.mood"
             src="/images/casette-player.png"
-            sizes="sm:50vw md:33vw lg:25vw xl:300 xxl:500"
+            sizes="sm:50vw md:33vw lg:25vw xl:300"
           />
         </div>
       </div>
@@ -30,35 +36,18 @@
   </footer>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import {
-  facebookUrl,
-  twitterUrl,
-  pinterestUrl,
-  instagramUrl,
-  linkedinUrl,
-} from '~/data/socialMedia'
-
-export default defineComponent({
-  setup() {
-    return {
-      facebookUrl,
-      twitterUrl,
-      pinterestUrl,
-      instagramUrl,
-      linkedinUrl,
-    }
-  },
-})
-</script>
-
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .footer {
   @mixin block;
   @mixin color-negative;
 
   position: relative;
+
+  h2 {
+    margin-bottom: var(--spacing-xs);
+  }
 }
 
 .wrapper {
@@ -71,7 +60,7 @@ export default defineComponent({
   }
 
   @media (--viewport-md) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -96,12 +85,3 @@ export default defineComponent({
   margin-bottom: 0.5em;
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "followMeOnNetwork": "Bekijk %{title} op",
-    "followMeOn": "Volg me op"
-  }
-}
-</i18n>

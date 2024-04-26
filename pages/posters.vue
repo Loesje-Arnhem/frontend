@@ -1,20 +1,21 @@
+<script lang="ts" setup>
+defineI18nRoute({
+  paths: {
+    nl: '/posters',
+  },
+})
+definePageMeta({
+  key: (route) => route.fullPath,
+})
+
+useMeta({
+  title: 'Posters',
+})
+</script>
+
 <template>
   <div>
     <poster-navigation />
-    <nuxt-child :key="$route.fullPath" />
+    <nuxt-page />
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-export default defineComponent({
-  key(route) {
-    return route.fullPath
-  },
-  nuxtI18n: {
-    paths: {
-      nl: '/posters',
-    },
-  },
-})
-</script>

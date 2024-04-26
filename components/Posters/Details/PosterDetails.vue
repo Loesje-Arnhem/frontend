@@ -1,15 +1,24 @@
+<script lang="ts" setup>
+import type { IPoster } from '~/types/Content'
+
+defineProps<{
+  poster: IPoster
+}>()
+</script>
+
 <template>
   <div class="poster-details">
     <article class="content">
-      <h1 class="sr-only">{{ poster.title }}</h1>
+      <h1 class="sr-only">
+        {{ poster.title }}
+      </h1>
       <div class="tile-wrapper">
         <div class="tile image-wrapper-details" :data-slug="poster.slug">
           <fade-animation>
             <featured-image
               v-if="poster.featuredImage"
-              :key="poster.featuredImage.node.id"
+              :key="poster.id"
               :lazy="false"
-              :alt="poster.title"
               :image="poster.featuredImage"
               sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
             />
@@ -19,35 +28,36 @@
     </article>
     <div class="meta-data">
       <dl class="definition-list">
-        <dt class="definition-title">Publicatiedatum</dt>
-        <dd class="definition-item">
-          <app-date :date="poster.PosterMetaGroup.date" />
-        </dd>
-
-        <template v-if="poster.subjects.edges.length">
+        <template v-if="poster.date">
+          <dt class="definition-title">Publicatiedatum</dt>
+          <dd class="definition-item">
+            <app-date :date="poster.date" />
+          </dd>
+        </template>
+        <template v-if="poster.subjects.length">
           <dt class="definition-title">Onderwerpen:</dt>
           <dd class="definition-item">
-            <poster-tags-list :list="poster.subjects.edges" class="tags-list" />
+            <poster-tags-list :list="poster.subjects" class="tags-list" />
           </dd>
         </template>
 
-        <template v-if="poster.sources.edges.length">
+        <template v-if="poster.sources.length">
           <dt class="definition-title">Bronnen:</dt>
           <dd class="definition-item">
-            <poster-tags-list :list="poster.sources.edges" class="tags-list" />
+            <poster-tags-list :list="poster.sources" class="tags-list" />
           </dd>
         </template>
       </dl>
       <div class="buttons">
         <poster-favorites :poster="poster" />
         <app-button
-          v-if="poster.PosterMetaGroup.pdf"
+          v-if="poster.pdf"
           :is-primary="false"
-          :href="poster.PosterMetaGroup.pdf.mediaItemUrl"
+          :href="poster.pdf"
           target="_blank"
-          :download="poster.slug"
+          download
         >
-          <app-icon icon="pdf" width="32" height="32" class="icon" />
+          <app-icon icon="pdf" :width="32" :height="32" class="icon" />
           Download
         </app-button>
       </div>
@@ -55,33 +65,16 @@
         <share-this
           v-if="poster.featuredImage"
           :title="poster.title"
-          :link="`${baseUrl}${poster.uri}`"
-          :image="poster.featuredImage.node.src"
+          :image="poster.featuredImage.src"
         />
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IPoster } from '~/interfaces/IPoster'
-import { baseUrl } from '~/data/siteDetails'
-
-export default defineComponent({
-  props: {
-    poster: {
-      type: Object as PropType<IPoster>,
-      required: true,
-    },
-  },
-  setup() {
-    return { baseUrl }
-  },
-})
-</script>
-
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .poster-details {
   display: grid;
   grid-gap: 1em;

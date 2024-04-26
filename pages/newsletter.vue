@@ -1,44 +1,57 @@
+<script lang="ts" setup>
+defineI18nRoute({
+  paths: {
+    nl: '/doe-mee/blijf-op-hoogte',
+  },
+})
+const { pageIds } = useAppConfig()
+
+const { data } = await useAsyncData(`page-newsletter`, () =>
+  $fetch('/api/pages/page', {
+    params: {
+      id: pageIds.newsletter,
+    },
+  }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: data.value.title,
+  description: data.value.description,
+})
+</script>
+
 <template>
-  <app-loader v-if="loading" />
-  <div v-else-if="page" class="page">
+  <div v-if="data">
     <app-content
-      :title="page.title"
-      :content="page.content"
-      :video="page.videoGroup.youtubeId"
+      :title="data.title"
+      :content="data.content"
+      :video="data.youtubeId"
     />
     <center-wrapper size="md">
       <form-newsletter class="newsletter" />
     </center-wrapper>
-    <related-posters-section :posters="page.relatedPosters" />
-    <related-products-section :related-products="page.relatedProducts" />
-    <related-pages-section :pages="page.relatedPages" />
+    <related-products-section
+      v-if="data.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
+    />
+    <related-posters-section
+      :poster-ids="data.relatedPosters.posterIds"
+      :search="data.relatedPosters.search"
+      :subjects="data.relatedPosters.subjects"
+      :title="data.relatedPosters.title"
+    />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import { newsletterPageId } from '~/data/pages'
-import { usePageById } from '~/composables/usePage'
-
-export default defineComponent({
-  setup() {
-    const { page, loading } = usePageById(newsletterPageId)
-    return {
-      page,
-      loading,
-    }
-  },
-
-  head: {},
-  nuxtI18n: {
-    paths: {
-      nl: '/doe-mee/blijf-op-hoogte/',
-    },
-  },
-})
-</script>
-
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .newsletter {
   max-width: var(--container-width-sm);
   margin-bottom: 4em;

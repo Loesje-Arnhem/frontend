@@ -1,4 +1,4 @@
-import { IOption } from '~/interfaces/IOption'
+import { type IOption } from '~/types/IOption'
 
 const countries: IOption[] = [
   {

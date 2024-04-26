@@ -1,28 +1,22 @@
+<script lang="ts" setup>
+import type { IPosterListItem } from '~/types/Content'
+
+defineProps<{
+  posters: IPosterListItem[]
+}>()
+</script>
+
 <template>
-  <ul :class="$style.list">
+  <ul class="list">
     <related-posters-list-item
       v-for="poster in posters"
-      :key="poster.node.id"
-      :poster="poster.node"
+      :key="poster.id"
+      :poster="poster"
     />
   </ul>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPoster } from '~/interfaces/IPoster'
-
-export default defineComponent({
-  props: {
-    posters: {
-      type: Array as PropType<IRelatedPoster[]>,
-      required: true,
-    },
-  },
-})
-</script>
-
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .list {
   @mixin list-reset;
 

@@ -1,3 +1,25 @@
+<script lang="ts" setup>
+const favorites = useFavoriteIds()
+const route = useRoute()
+
+const localePath = useLocalePath()
+const localeRoute = useLocaleRoute()
+
+const showFavorites = computed(() => {
+  if (!process.client) {
+    return false
+  }
+
+  const path = localeRoute({ name: 'posters-favorites' })
+  return favorites.value.length && route.name !== path?.name
+})
+
+const showOverview = computed(() => {
+  const path = localeRoute({ name: 'posters' })
+  return route.name !== path?.name
+})
+</script>
+
 <template>
   <center-wrapper>
     <nav>
@@ -7,7 +29,7 @@
           :to="localePath({ name: 'posters' })"
           class="btn-search"
         >
-          <app-icon icon="chevron-left" width="12" height="12" />
+          <app-icon icon="chevron-left" :width="12" :height="12" />
           Overzicht
         </nuxt-link>
       </transition>
@@ -18,53 +40,20 @@
           class="btn-favorites"
         >
           Jouw favorieten
-          <app-icon icon="chevron-right" width="12" height="12" />
+          <app-icon icon="chevron-right" :width="12" :height="12" />
         </nuxt-link>
       </transition>
     </nav>
   </center-wrapper>
 </template>
 
-<script lang="ts">
-import {
-  computed,
-  defineComponent,
-  useContext,
-  useRoute,
-} from '@nuxtjs/composition-api'
-import useFavorites from '~/composables/useFavorites'
-
-export default defineComponent({
-  setup() {
-    const { favorites } = useFavorites()
-    const { app } = useContext()
-    const route = useRoute()
-
-    const showFavorites = computed(() => {
-      if (!process.client) {
-        return false
-      }
-
-      const path = app.localeRoute({ name: 'posters-favorites' })
-      return favorites.value.length && route.value.name !== path?.name
-    })
-
-    const showOverview = computed(() => {
-      const path = app.localeRoute({ name: 'posters' })
-      return route.value.name !== path?.name
-    })
-    return {
-      showOverview,
-      showFavorites,
-    }
-  },
-})
-</script>
-
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 nav {
   @mixin hide-for-print;
 
+  @media (--stand-alone) {
+    padding-top: env(safe-area-inset-top);
+  }
   display: flex;
   margin: 1em 0;
   height: 1em;

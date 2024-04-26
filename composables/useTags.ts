@@ -1,18 +1,14 @@
-import { computed, ref } from '@nuxtjs/composition-api'
 import { Taxonomy } from '~/enums/taxonomy'
-import { ITag } from '~/interfaces/ITag'
+import { useSelectedTags } from './useState'
 
-const search = ref('')
-const selectedTags = ref([] as ITag[])
-const dateBefore = ref(null)
-const dateAfter = ref(null)
+export const useTags = () => {
+  const selectedTags = useSelectedTags()
 
-export default () => {
-  const getSelectedTagsByTaxonomy = (taxonomy: string) => {
-    const subjects = selectedTags.value.filter(
-      (tag) => tag.node.taxonomy.node.name === taxonomy,
-    )
-    return subjects.map((subject) => subject.node.databaseId)
+  const getSelectedTagsByTaxonomy = (
+    taxonomy: Taxonomy.Source | Taxonomy.Subject,
+  ) => {
+    const tags = selectedTags.value.filter((tag) => tag.type === taxonomy)
+    return tags.map((tag) => tag.id)
   }
 
   const selectedSourceIds = computed(() => {
@@ -24,10 +20,7 @@ export default () => {
   })
 
   return {
-    search,
     selectedTags,
-    dateBefore,
-    dateAfter,
     selectedSourceIds,
     selectedSubjectIds,
   }

@@ -1,9 +1,10 @@
-import { ref } from '@nuxtjs/composition-api'
+import { useFavoriteIds } from './useState'
 
 const FAVORITES_KEY = 'favorites'
-const favorites = ref([] as number[])
 
-export default () => {
+export const useFavorites = () => {
+  const favorites = useFavoriteIds()
+
   const add = (posterId: number) => {
     favorites.value.unshift(posterId)
     updateStorage()
@@ -38,6 +39,5 @@ export default () => {
     getFromStorage,
     add,
     remove,
-    favorites,
   }
 }

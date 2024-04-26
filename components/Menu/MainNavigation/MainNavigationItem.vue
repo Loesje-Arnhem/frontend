@@ -1,154 +1,119 @@
 <template>
   <li
-    :class="[$style['menu-item'], { 'has-popup': hasChildren }]"
+    :class="{ 'has-popup': hasChildren }"
     class="menu-item"
     @mouseover="mouseover"
     @mouseout="mouseout"
   >
     <main-navigation-link
       ref="link"
-      :uri="uri"
-      :title="title"
+      :item="item"
       :aria-haspopup="hasChildren"
-      :class="$style['menu-link']"
       class="menu-link"
     />
-
     <button
       v-if="hasChildren"
       :aria-expanded="isOpen ? 'true' : 'false'"
-      :class="$style['btn-show-submenu']"
+      class="btn-show-submenu"
       @click="toggleMenu"
     >
-      <app-icon
-        icon="chevron-down"
-        width="16"
-        height="16"
-        :class="$style['icon']"
-      />
+      <app-icon icon="chevron-down" :width="16" :height="16" class="icon" />
       <span class="sr-only">
         {{
           $t('showSubmenuFor', {
-            title: title,
+            title: item.title,
           })
         }}
       </span>
     </button>
-    <template v-if="hasChildren">
-      <slide-in-animation>
-        <ul v-show="isOpen" :class="$style.submenu" class="tile">
-          <li
-            v-for="subItem in children.edges"
-            :key="subItem.node.uri"
-            :class="$style['submenu-item']"
-            class="submenu-item"
-          >
-            <main-navigation-link
-              :uri="subItem.node.uri"
-              :title="subItem.node.title"
-              :class="$style['submenu-link']"
-              class="submenu-link"
-            />
-          </li>
-        </ul>
-      </slide-in-animation>
-    </template>
+
+    <slide-in-animation>
+      <ul v-show="isOpen" class="submenu tile">
+        <li
+          v-for="subItem in item.children"
+          :key="subItem.url"
+          class="submenu-item"
+        >
+          <main-navigation-link :item="subItem" class="submenu-link" />
+        </li>
+      </ul>
+    </slide-in-animation>
   </li>
 </template>
 
-<script lang="ts">
-import {
-  defineComponent,
-  ref,
-  computed,
-  watch,
-  ComponentPublicInstance,
-} from '@nuxtjs/composition-api'
-import useLayout from '~/composables/useLayout'
+<script lang="ts" setup>
+import type { MenuItemWithChildren } from '~/types/MenuItem'
 
-export default defineComponent({
-  props: {
-    uri: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    children: {
-      type: Object,
-      default: () => {},
-    },
-  },
+const props = defineProps<{
+  item: MenuItemWithChildren
+}>()
 
-  setup(props) {
-    const { openMenus, add, remove, mobileMenuIsOpen } = useLayout()
-    let timer = null as number | null
-    const link = ref<ComponentPublicInstance<HTMLAnchorElement> | null>(null)
+const { openMenus, add, remove } = useLayout()
+const menuIsOpen = useMenu()
+let timer = null as number | null
+const link = ref<ComponentPublicInstance<HTMLAnchorElement> | null>(null)
 
-    const isOpen = computed(() => openMenus.value.includes(props.title))
+const isOpen = computed(() => openMenus.value.includes(props.item.title))
 
-    const toggleMenu = () => {
-      if (isOpen.value) {
-        remove(props.title)
-      } else {
-        add(props.title)
-      }
-    }
+const toggleMenu = () => {
+  if (isOpen.value) {
+    remove(props.item.title)
+  } else {
+    add(props.item.title)
+  }
+}
 
-    const setActiveSubmenu = () => {
-      if (!isSmallScreen()) return
-      if (!link.value) return
-      if (!link.value.$el.classList.contains('nuxt-link-active')) {
-        return
-      }
-      add(props.title)
-    }
+const setActiveSubmenu = () => {
+  if (!isSmallScreen()) return
+  if (!link.value) return
+  if (!link.value.$el.classList.contains('nuxt-link-active')) {
+    return
+  }
+  add(props.item.title)
+}
 
-    watch(mobileMenuIsOpen, () => {
-      if (mobileMenuIsOpen.value) {
-        setActiveSubmenu()
-      }
-    })
-
-    const hasChildren = computed(() => {
-      return props.children?.edges?.length > 0
-    })
-
-    const mouseover = () => {
-      if (isSmallScreen()) return
-      if (!hasChildren.value) return
-      if (!timer) return
-      add(props.title)
-      clearTimeout(timer)
-    }
-
-    const mouseout = () => {
-      if (isSmallScreen()) return
-      timer = window.setTimeout(() => {
-        remove(props.title)
-      }, 150)
-    }
-    const isSmallScreen = () => {
-      return window.innerWidth < 768
-    }
-
-    return {
-      link,
-      toggleMenu,
-      mouseover,
-      mouseout,
-      isOpen,
-      hasChildren,
-    }
-  },
+watch(menuIsOpen, () => {
+  if (menuIsOpen.value) {
+    setActiveSubmenu()
+  }
 })
+
+const hasChildren = computed(() => {
+  return props.item.children?.length ? true : false
+})
+
+const mouseover = () => {
+  if (isSmallScreen()) return
+  if (!hasChildren.value) return
+  if (!timer) return
+  add(props.item.title)
+  clearTimeout(timer)
+}
+
+const mouseout = () => {
+  if (isSmallScreen()) return
+  timer = window.setTimeout(() => {
+    remove(props.item.title)
+  }, 150)
+}
+const isSmallScreen = () => {
+  return window.innerWidth < 768
+}
 </script>
 
-<style lang="postcss" module>
+<style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .menu-item {
   position: relative;
+  flex: 0 0 auto;
+
+  @media (--show-full-navigation) {
+    align-items: center;
+    flex-wrap:;
+    gap: var(--spacing-xxs);
+    display: flex;
+  }
 }
 
 /* stylelint-disable */
@@ -168,10 +133,10 @@ export default defineComponent({
   @mixin heading;
 
   margin-top: 0.1em;
-  font-size: var(--font-size-xl);
   border-bottom-width: 2px;
+  font-size: var(--font-size-xl);
 
-  @nest .menu-item:first-child & {
+  .menu-item:first-child & {
     border-top: 2px solid currentColor;
 
     @media (--show-full-navigation) {
@@ -179,13 +144,14 @@ export default defineComponent({
     }
   }
 
-  &[aria-haspopup='true'] {
-    padding-right: var(--spacing-m);
-  }
-
   @media (--show-full-navigation) {
     color: var(--color-white);
     border-bottom-width: 0;
+    font-size: var(--font-size-m);
+  }
+
+  @media (--viewport-lg) {
+    font-size: var(--font-size-xl);
   }
 }
 
@@ -198,7 +164,7 @@ export default defineComponent({
     padding: var(--spacing-xxs) var(--spacing-xs);
   }
 
-  @nest .submenu-item:last-child & {
+  .submenu-item:last-child & {
     border-bottom-width: 0;
   }
 
@@ -209,21 +175,20 @@ export default defineComponent({
 
 .btn-show-submenu {
   display: block;
+  width: var(--spacing-m);
   position: absolute;
-  width: var(--spacing-l);
-  height: var(--spacing-l);
-
-  right: calc(var(--spacing-xs) * -1);
-  top: var(--spacing-xs);
+  right: 0;
+  top: var(--spacing-s);
 
   @media (--show-full-navigation) {
     color: var(--color-white);
+    position: static;
   }
 }
 
 .icon {
   transition: transform var(--animation);
-  @nest [aria-expanded='true'] & {
+  [aria-expanded='true'] & {
     transform: rotate(-180deg);
 
     @media (--show-full-navigation) {
@@ -264,7 +229,7 @@ export default defineComponent({
       border-bottom: 0.5em solid var(--color-white);
     }
 
-    @nest .menu-item:last-child & {
+    .menu-item:last-child & {
       left: auto;
       right: calc(-1 * var(--spacing-xs));
       &::before {
@@ -275,11 +240,3 @@ export default defineComponent({
   }
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "showSubmenuFor": "Toon submenu voor %{title}"
-  }
-}
-</i18n>

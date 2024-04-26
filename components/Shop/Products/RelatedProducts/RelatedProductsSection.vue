@@ -1,83 +1,38 @@
+<script lang="ts" setup>
+const localePath = useLocalePath()
+
+defineProps<{
+  title?: string
+  productIds: number[]
+}>()
+</script>
+
 <template>
   <section
-    v-if="products.edges.length"
+    v-if="productIds.length"
     aria-labelledby="featured-products"
-    :class="$style['featured-products']"
+    class="featured-products"
   >
     <center-wrapper>
       <h1 id="featured-products">
-        <template v-if="relatedProducts.title">
-          {{ relatedProducts.title }}
+        <template v-if="title">
+          {{ title }}
         </template>
         <template v-else>
-          {{ $t('title') }}
+          {{ $t('theShop') }}
         </template>
       </h1>
-      <product-list :products="products" />
-      <!-- <app-button :to="localePath({ name: 'shop' })">
-        {{ $t('btn') }}
-      </app-button> -->
-
-      <shop-button>
-        {{ $t('btn') }}
-      </shop-button>
+      <product-list :product-ids="productIds" />
+      <!-- <app-button :to="localePath({ name: 'shop' })"> -->
+      <app-button href="https://shop.loesje.nl/winkeltje/">
+        {{ $t('visitOurShop') }}
+      </app-button>
     </center-wrapper>
   </section>
 </template>
 
-<script lang="ts">
-import {
-  defineComponent,
-  computed,
-  PropType,
-  ComputedRef,
-} from '@nuxtjs/composition-api'
-import {
-  IProductNode,
-  IProducts,
-  IRelatedProducts,
-} from '~/interfaces/IProduct'
-
-export default defineComponent({
-  props: {
-    relatedProducts: {
-      type: Object as PropType<IRelatedProducts>,
-      default: () => {},
-    },
-  },
-  setup(props) {
-    const products: ComputedRef<IProducts> = computed(() => {
-      let edges: IProductNode[] = []
-      if (props.relatedProducts.products?.length)
-        edges = props.relatedProducts.products.map((product) => {
-          return {
-            node: product.product,
-          }
-        })
-
-      return {
-        edges,
-      }
-    })
-
-    return {
-      products,
-    }
-  },
-})
-</script>
-
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .featured-products {
   padding: 3em 0;
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "title": "Het winkeltje",
-    "btn": "Bezoek ons winkeltje"
-  }
-}
-</i18n>

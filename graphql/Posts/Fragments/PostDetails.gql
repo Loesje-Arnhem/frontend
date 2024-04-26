@@ -1,6 +1,0 @@
-fragment postDetails2 on Post {
-  id
-  title
-  databaseId
-  date
-}

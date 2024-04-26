@@ -1,42 +1,33 @@
+<script lang="ts" setup>
+withDefaults(
+  defineProps<{
+    title?: string | null
+    loading?: boolean
+  }>(),
+  {
+    title: null,
+    loading: false,
+  },
+)
+defineEmits(['load-more'])
+</script>
+
 <template>
   <app-loader v-if="loading" />
   <div v-else :class="$style.wrapper">
     <app-button @click="$emit('load-more')">
-      {{ title }}
+      <template v-if="title">
+        {{ title }}
+      </template>
+      <template v-else>
+        {{ $t('showMore') }}
+      </template>
     </app-button>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    title: {
-      type: String,
-      default() {
-        return this.$t('title')
-      },
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  emits: ['load-more'],
-})
-</script>
 
 <style lang="postcss" module>
 .wrapper {
   text-align: center;
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "title": "Toon meer"
-  }
-}
-</i18n>

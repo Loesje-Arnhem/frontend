@@ -1,28 +1,39 @@
-<template>
-  <ul v-if="products.edges.length" class="list">
-    <product-tile
-      v-for="product in products.edges"
-      :key="product.node.id"
-      :product="product.node"
-    />
-  </ul>
-</template>
+<script lang="ts" setup>
+const props = withDefaults(
+  defineProps<{
+    categoryId?: number
+    featured?: boolean
+    productIds?: number[]
+  }>(),
+  {
+    featured: undefined,
+    categoryId: undefined,
+    productIds: () => [],
+  },
+)
 
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IProducts } from '~/interfaces/IProduct'
-
-export default defineComponent({
-  props: {
-    products: {
-      type: Object as PropType<IProducts>,
-      default: () => {},
-    },
+const { data } = useFetch('/api/products/products', {
+  query: {
+    productIds: props.productIds.join(','),
+    featured: props.featured,
+    categoryId: props.categoryId,
   },
 })
 </script>
 
-<style scoped lang="postcss">
+<template>
+  <ul v-if="data?.length" class="list">
+    <product-tile
+      v-for="product in data"
+      :key="product.id"
+      :product="product"
+    />
+  </ul>
+</template>
+
+<style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .list {
   @mixin list-reset;
 
@@ -33,7 +44,7 @@ export default defineComponent({
 
   @media (--viewport-sm) {
     grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   }
 }
 </style>

@@ -1,19 +1,12 @@
-<template>
-  <app-date :date="date" :class="$style.date" />
-</template>
-
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    date: {
-      type: String,
-      required: true,
-    },
-  },
-})
+<script lang="ts" setup>
+defineProps<{
+  date?: string | null
+}>()
 </script>
+
+<template>
+  <app-date v-if="date" :date="date" :class="$style.date" />
+</template>
 
 <style lang="postcss" module>
 .date {

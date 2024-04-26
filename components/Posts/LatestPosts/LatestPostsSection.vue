@@ -1,40 +1,40 @@
+<script lang="ts" setup>
+const { data } = useFetch('/api/posts/posts', {
+  query: {
+    pageSize: 3,
+  },
+})
+
+const localePath = useLocalePath()
+</script>
+
 <template>
   <section
-    v-if="posts.length"
-    :class="$style['latest-posts']"
+    v-if="data?.items.length"
+    class="latest-posts"
     aria-labelledby="latest-posts-title"
   >
     <center-wrapper size="lg">
-      <div :class="$style.wrapper">
-        <div :class="$style.list">
-          <h1 id="latest-posts-title">{{ $t('title') }}</h1>
-          <latest-posts-list :posts="posts" />
+      <div class="wrapper">
+        <div class="list">
+          <h1 id="latest-posts-title">
+            {{ $t('posts') }}
+          </h1>
+          <latest-posts-list :posts="data.items" />
           <app-button :to="localePath({ name: 'posts' })">
-            {{ $t('btnMore') }}
+            {{ $t('morePosts') }}
           </app-button>
         </div>
-        <become-member :class="$style['become-member']" />
-        <latest-post-balloon :class="$style.balloon" />
+        <become-member class="become-member" />
+        <latest-post-balloon class="balloon" />
       </div>
     </center-wrapper>
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPostNode } from '~/interfaces/IPost'
+<style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
 
-export default defineComponent({
-  props: {
-    posts: {
-      type: Array as PropType<IRelatedPostNode[]>,
-      default: () => [],
-    },
-  },
-})
-</script>
-
-<style lang="postcss" module>
 .latest-posts {
   @mixin block;
 }
@@ -80,12 +80,3 @@ export default defineComponent({
   grid-area: list;
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "title": "Nieuws",
-    "btnMore": "Meer nieuwsartikelen"
-  }
-}
-</i18n>

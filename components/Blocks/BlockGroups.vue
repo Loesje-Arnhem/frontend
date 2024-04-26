@@ -9,7 +9,7 @@
               :width="565"
               :height="600"
               class="mood"
-              sizes="sm:100vw md:80vw lg:565 xl:800"
+              sizes="sm:100vw md:80vw lg:565"
             />
           </div>
           <div class="text">
@@ -20,7 +20,7 @@
               regelmatig bijeen komen om te schrijven of te plakken. Ook jij kan
               je aanmelden voor zo’n groep.
             </p>
-            <app-button to="/doe-mee/lokale-groepen">Schrijf mee</app-button>
+            <app-button to="/doe-mee/lokale-groepen"> Schrijf mee </app-button>
           </div>
         </div>
       </div>
@@ -29,6 +29,8 @@
 </template>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .groups {
   @mixin block;
   @mixin clearfix;

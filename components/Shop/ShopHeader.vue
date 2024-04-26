@@ -1,18 +1,18 @@
 <template>
-  <div :class="$style.header">
-    <div :class="$style.promotion">
-      <nuxt-link to="/winkeltje/loesje-scheurkalender-2023/">
-        De nieuwe scheurkalender
+  <div class="header">
+    <div class="promotion">
+      <nuxt-link to="/winkeltje/loesje-docentenagenda-2024-2025-voorverkoop/">
+        De nieuwe docentenagenda
       </nuxt-link>
       is weer te bestellen
     </div>
-    <client-only>
-      <shop-header-menu />
-    </client-only>
+    <shop-header-menu />
   </div>
 </template>
 
-<style module lang="postcss">
+<style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .header {
   display: flex;
   padding: 0.5em 0;

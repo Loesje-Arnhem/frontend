@@ -1,32 +1,33 @@
+<script lang="ts" setup>
+import type { IPosterListItem } from '~/types/Content'
+
+defineProps<{
+  posters: IPosterListItem[]
+}>()
+
+const img = useImage()
+
+const backgroundImage = computed(() =>
+  img('/images/wall.png', {
+    format: 'webp',
+  }),
+)
+</script>
+
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :style="{ backgroundImage: `url(${backgroundImage})` }">
     <center-wrapper>
       <list-animation class="list">
-        <li v-for="poster in posters" :key="poster.node.id" class="list-item">
-          <poster-tile :poster="poster.node" />
+        <li v-for="poster in posters" :key="poster.id" class="list-item">
+          <poster-tile :poster="poster" />
         </li>
       </list-animation>
     </center-wrapper>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    posters: {
-      type: Array,
-      default: () => [],
-    },
-  },
-})
-</script>
-
 <style lang="postcss" scoped>
-.wrapper {
-  background: url('/images/wall.png');
-}
+@import '~/assets/css/media-queries/media-queries.css';
 
 .list {
   @mixin list-reset;

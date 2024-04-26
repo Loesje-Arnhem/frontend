@@ -1,43 +1,32 @@
+<script lang="ts" setup>
+withDefaults(
+  defineProps<{
+    icon: string
+    width?: number
+    height?: number
+    title?: string | null
+  }>(),
+  {
+    width: 24,
+    height: 24,
+    title: null,
+  },
+)
+</script>
+
 <template>
-  <svg-icon
-    :name="icon"
+  <component
+    :is="`svgo-${icon}`"
     class="icon"
     :width="width"
     :height="height"
-    aria-hidden="true"
-    :title="title"
+    v-bind="$attrs"
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    icon: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    width: {
-      type: [String, Number],
-      default: 24,
-    },
-    height: {
-      type: [String, Number],
-      default: 24,
-    },
-  },
-})
-</script>
-
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 .icon {
-  display: inline-block;
-  fill: currentcolor;
-  position: relative;
+  width: auto;
+  height: auto;
 }
 </style>

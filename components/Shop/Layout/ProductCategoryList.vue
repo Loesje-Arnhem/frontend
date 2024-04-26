@@ -1,62 +1,64 @@
+<script lang="ts" setup>
+const { data } = useFetch('/api/product-categories/product-categories')
+const localePath = useLocalePath()
+</script>
+
 <template>
-  <nav aria-labelledby="categories-title" class="categories">
+  <nav
+    v-if="data?.length"
+    aria-labelledby="categories-title"
+    class="categories"
+  >
     <h2 id="categories-title" class="sr-only">Categorien</h2>
-    <app-loader v-if="loading" />
-    <ul v-if="productCategories" class="category-list">
-      <template v-for="productCategory in productCategories.edges">
-        <li
-          v-if="!productCategory.node.parentDatabaseId"
-          :key="productCategory.node.id"
-          class="list-item"
+    <ul class="category-list">
+      <li
+        v-for="productCategory in data"
+        :key="productCategory.id"
+        class="list-item"
+      >
+        <nuxt-link
+          :to="
+            localePath({
+              name: 'shop-product-category',
+              params: {
+                category: productCategory.slug,
+              },
+            })
+          "
+          class="link"
         >
-          <nuxt-link :to="productCategory.node.uri" class="link">
-            {{ productCategory.node.name }}
-          </nuxt-link>
-          <ul
-            v-if="productCategory.node.children.edges.length"
-            class="category-list"
+          <span v-html="productCategory.title" />
+        </nuxt-link>
+        <ul v-if="productCategory.children.length" class="category-list">
+          <li
+            v-for="child in productCategory.children"
+            :key="child.id"
+            class="list-item"
           >
-            <li
-              v-for="child in productCategory.node.children.edges"
-              :key="child.node.id"
-              class="list-item"
+            <nuxt-link
+              :to="
+                localePath({
+                  name: 'shop-product-category',
+                  params: {
+                    category: productCategory.slug,
+                    subcategory: child.slug,
+                  },
+                })
+              "
+              class="link"
             >
-              <nuxt-link :to="child.node.uri" class="link">
-                {{ child.node.name }}
-              </nuxt-link>
-            </li>
-          </ul>
-        </li>
-      </template>
+              <span v-html="child.title" />
+            </nuxt-link>
+          </li>
+        </ul>
+      </li>
     </ul>
   </nav>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api'
-import ProductCategoriesQuery from '~/graphql/ProductCategories/ProductCategories'
-import useFetch from '~/composables/useFetch'
-
-export default defineComponent({
-  setup() {
-    const { result, loading } = useFetch({
-      query: ProductCategoriesQuery,
-      pageKey: 'product-categories',
-    })
-
-    const productCategories = computed(() => {
-      return result.value?.productCategories
-    })
-
-    return {
-      productCategories,
-      loading,
-    }
-  },
-})
-</script>
-
 <style scoped lang="postcss">
+@import '~/assets/css/media-queries/media-queries.css';
+
 .category-list {
   @mixin list-reset;
 
@@ -80,7 +82,7 @@ export default defineComponent({
 .link {
   @mixin link-reset;
 
-  &.nuxt-link-exact-active,
+  &.router-link-active,
   &:focus,
   &:hover {
     box-shadow: 0 2px 0 0 currentcolor;

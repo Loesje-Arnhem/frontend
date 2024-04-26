@@ -1,44 +1,49 @@
+<script lang="ts" setup>
+import type { IProductListItem } from '~/types/Content'
+
+const props = defineProps<{
+  product: IProductListItem
+}>()
+
+const localePath = useLocalePath()
+
+// const url = localePath({
+//   name: 'shop-product',
+//   params: {
+//     slug: props.product.slug,
+//   },
+// })
+const url = props.product.url
+</script>
+
 <template>
-  <clickable-list-item :href="url" :class="$style['product-tile']" class="tile">
-    <div :class="$style['image-wrapper']">
+  <clickable-list-item :to="url" :external="true" class="product-tile tile">
+    <div class="image-wrapper">
       <featured-image
-        v-if="product.featuredImage"
-        :image="product.featuredImage"
-        :class="$style.image"
-        sizes="(max-width: 375px) 50vw, (max-width: 720px) 33vw, (max-width: 1024px) 25vw, 200px"
+        v-if="product.image"
+        sizes="50vw xs:33vw md:25vw lg:300px"
+        :image="product.image"
+        class="image"
       />
     </div>
-    <div :class="$style.title">
-      <a :class="$style.link" :href="url" v-html="product.title" />
+    <div class="title">
+      <router-link class="link" :to="url">
+        <span v-html="product.title" />
+      </router-link>
     </div>
-    <product-prices :product="product" :class="$style.price" />
+
+    <product-prices
+      v-if="product.price"
+      :price="product.price"
+      :regular-price="product.regularPrice"
+      class="price"
+    />
   </clickable-list-item>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, PropType } from '@nuxtjs/composition-api'
-import { shopUrl } from '~/data/siteDetails'
-import { IProductTile } from '~/interfaces/IProduct'
+<style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
 
-export default defineComponent({
-  props: {
-    product: {
-      type: Object as PropType<IProductTile>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const url = computed(() => {
-      return `${shopUrl}winkeltje/${props.product.slug}`
-    })
-    return {
-      url,
-    }
-  },
-})
-</script>
-
-<style module lang="postcss">
 .product-tile {
   padding: 0 0 0.5em;
   display: grid;
@@ -57,6 +62,10 @@ export default defineComponent({
 
   @supports (grid-template-rows: subgrid) {
     grid-template-rows: subgrid;
+  }
+
+  :deep(img) {
+    width: 100%;
   }
 }
 

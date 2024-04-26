@@ -1,27 +1,14 @@
-import { computed, ComputedRef, ref } from '@nuxtjs/composition-api'
-import useFetch from '~/composables/useFetch'
-import { GetPageById } from '~/graphql/Pages/Pages'
-import { IPage } from '~/interfaces/IPage'
-import useMeta from '~/composables/useMeta'
+import { GetPageByID } from '~/graphql/pages'
 
-export const usePageById = (id: number) => {
-  const pageKey = ref(id.toString())
-
-  const { result, loading } = useFetch({
-    query: GetPageById,
-    variables: {
-      id,
-    },
-    params: pageKey,
-    pageKey: 'page',
+export const usePageById = async (id: number) => {
+  const { data, pending, error } = await useAsyncQuery(GetPageByID, {
+    id: id.toString(),
   })
-
-  const page: ComputedRef<IPage | null> = computed(() => result.value?.page)
-
-  useMeta(page)
+  useMeta(data.value.page)
 
   return {
-    loading,
-    page,
+    error,
+    pending,
+    data,
   }
 }

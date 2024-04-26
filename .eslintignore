@@ -1,0 +1,8 @@
+dist
+node_modules
+.output
+.nuxt
+images.js
+backup
+public
+graphql/__generated__

@@ -1,7 +1,0 @@
-#import "./../Fragments/Cart.gql"
-
-query GET_CART {
-  cart {
-    ...cart
-  }
-}

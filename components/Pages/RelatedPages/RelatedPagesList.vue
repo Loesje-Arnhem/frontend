@@ -1,31 +1,27 @@
+<script lang="ts" setup>
+import type { IRelatedPage } from '~/types/Content'
+
+defineProps<{
+  pages: IRelatedPage[]
+}>()
+</script>
+
 <template>
   <center-wrapper>
-    <ul v-if="pages.length" :class="$style.list">
+    <ul :class="$style.list">
       <related-pages-list-item
         v-for="page in pages"
-        :key="page.node.id"
-        :page="page.node"
+        :key="page.id"
+        :page="page"
         :class="$style['list-item']"
       />
     </ul>
   </center-wrapper>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { IRelatedPageNode } from '~/interfaces/IPage'
-
-export default defineComponent({
-  props: {
-    pages: {
-      type: Array as PropType<IRelatedPageNode[]>,
-      default: () => [],
-    },
-  },
-})
-</script>
-
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .list {
   @mixin block;
   @mixin list-reset;

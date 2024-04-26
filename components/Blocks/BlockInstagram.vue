@@ -24,7 +24,8 @@
           rel="noopener"
           href="https://instagram.com/loesjevdposters"
           target="_blank"
-          >Volg Loesje op Instagram
+        >
+          Volg Loesje op Instagram
         </app-button>
       </div>
     </center-wrapper>

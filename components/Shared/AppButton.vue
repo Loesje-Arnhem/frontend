@@ -1,5 +1,60 @@
+<script lang="ts" setup>
+const props = withDefaults(
+  defineProps<{
+    to?: string | null
+    type?: 'button' | 'submit'
+    isPrimary?: boolean
+    loading?: boolean
+    href?: string | null
+    active?: boolean
+  }>(),
+  {
+    type: 'button',
+    isPrimary: true,
+    loading: false,
+    active: false,
+    href: null,
+    to: null,
+  },
+)
+
+const tag = computed(() => {
+  if (props.href) {
+    return 'a'
+  }
+  return 'button'
+})
+
+const cssClasses = computed(() => {
+  const classes = []
+  if (props.isPrimary) {
+    classes.push('btn')
+  } else {
+    classes.push('btn-outline')
+  }
+  if (props.loading) {
+    classes.push('is-loading')
+  }
+
+  if (props.active) {
+    classes.push('is-active')
+  }
+
+  return classes
+})
+
+const generatedType = computed(() => {
+  if (tag.value === 'button') {
+    return props.type
+  }
+  return null
+})
+</script>
+
 <template>
   <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
+    <app-loader v-if="loading" class="loader" />
+
     <span class="title"><slot /></span>
   </nuxt-link>
 
@@ -8,77 +63,13 @@
     v-else
     :type="generatedType"
     :class="cssClasses"
-    :disabled="loading"
+    :disabled="loading === true ? 'true' : undefined"
     :href="href"
-    @click="$emit('click')"
   >
     <app-loader v-if="loading" class="loader" />
     <span class="title"><slot /></span>
   </component>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    to: {
-      type: String,
-      default: null,
-    },
-    type: {
-      type: String,
-      default: 'button',
-    },
-    isPrimary: {
-      type: Boolean,
-      default: true,
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    href: {
-      type: String,
-      default: null,
-    },
-  },
-  setup(props) {
-    const tag = computed(() => {
-      if (props.href) {
-        return 'a'
-      }
-      return 'button'
-    })
-
-    const cssClasses = computed(() => {
-      const classes = []
-      if (props.isPrimary) {
-        classes.push('btn')
-      } else {
-        classes.push('btn-outline')
-      }
-      if (props.loading) {
-        classes.push('is-loading')
-      }
-
-      return classes
-    })
-
-    const generatedType = computed(() => {
-      if (tag.value === 'button') {
-        return props.type
-      }
-      return null
-    })
-    return {
-      cssClasses,
-      generatedType,
-      tag,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .btn {
@@ -96,7 +87,7 @@ export default defineComponent({
   gap: 0.25em;
   position: relative;
 
-  @nest .is-loaded & {
+  .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
       border-image-outset: 0.25em 0.5em;
     }
@@ -135,11 +126,11 @@ a {
 .title {
   transition: box-shadow 0.2s ease-out;
 
-  @nest .btn:hover & {
+  .btn:hover & {
     box-shadow: 0 3px 0 0 currentcolor;
   }
 
-  @nest .btn-outline:hover & {
+  .btn-outline:hover & {
     box-shadow: 0 2px 0 0 currentcolor;
   }
 }

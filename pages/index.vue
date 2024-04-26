@@ -1,50 +1,54 @@
+<script setup lang="ts">
+defineI18nRoute({
+  paths: {
+    nl: '/',
+  },
+})
+
+const { pageIds } = useAppConfig()
+
+const { data } = await useAsyncData(`page-home`, () =>
+  $fetch('/api/pages/page', {
+    params: {
+      id: pageIds.home,
+    },
+  }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: 'Blijf plakken',
+  description: data.value.description,
+})
+</script>
+
 <template>
   <div>
-    <h1 v-if="page" class="sr-only">{{ page.title }}</h1>
-    <app-loader v-if="loading" />
-    <latest-posts-section v-if="posts" :posts="posts.edges" />
-    <related-posters-section v-if="page" :posters="page.relatedPosters" />
+    <h1 v-if="data" class="sr-only">
+      {{ data.title }}
+    </h1>
+
+    <!-- <block-donate /> -->
+
+    <latest-posts-section />
+    <related-posters-section
+      v-if="data"
+      :poster-ids="data.relatedPosters.posterIds"
+      :search="data.relatedPosters.search"
+      :subjects="data.relatedPosters.subjects"
+      :title="data.relatedPosters.title"
+    />
     <app-stores-section />
     <related-products-section
-      v-if="page"
-      :related-products="page.relatedProducts"
+      v-if="data?.relatedProducts"
+      :title="data.relatedProducts.title"
+      :product-ids="data.relatedProducts.productIds"
     />
   </div>
 </template>
-
-<script lang="ts">
-import { computed, ComputedRef, defineComponent } from '@nuxtjs/composition-api'
-import { GetPageHome } from '~/graphql/Pages/Pages'
-import useFetch from '~/composables/useFetch'
-import { IPage } from '~/interfaces/IPage'
-import { IPostsBase } from '~/interfaces/IPost'
-import useMeta from '~/composables/useMeta'
-
-export default defineComponent({
-  setup() {
-    const { result, loading } = useFetch({
-      query: GetPageHome,
-      pageKey: 'page-home',
-    })
-
-    const page: ComputedRef<IPage | null> = computed(() => result.value?.page)
-    const posts: ComputedRef<IPostsBase | null> = computed(() => {
-      return result.value?.posts
-    })
-
-    useMeta(page)
-
-    return {
-      loading,
-      posts,
-      page,
-    }
-  },
-  nuxtI18n: {
-    paths: {
-      nl: '/',
-    },
-  },
-  head: {},
-})
-</script>

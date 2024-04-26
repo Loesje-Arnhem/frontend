@@ -1,34 +1,41 @@
+<script setup lang="ts">
+defineI18nRoute({
+  paths: {
+    nl: '/winkeltje/winkelwagen',
+  },
+})
+
+definePageMeta({
+  middleware: ['cart'],
+})
+
+const { pageIds } = useAppConfig()
+
+const { data } = await useAsyncData(`page-cart`, () =>
+  $fetch('/api/pages/page', {
+    params: {
+      id: pageIds.cart,
+    },
+  }),
+)
+
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: data.value.title,
+  description: data.value.description,
+})
+</script>
+
 <template>
-  <center-wrapper>
+  <center-wrapper v-if="data">
     <shop-header />
-    <h1 v-if="page">{{ page.title }}</h1>
-    <client-only>
-      <cart-list />
-    </client-only>
-    <app-button :to="localePath({ name: 'shop-checkout' })">
-      Doorgaan met afrekenen
-    </app-button>
+    <h1>{{ data.title }}</h1>
+    <cart-list />
   </center-wrapper>
 </template>
-
-<script>
-import { usePageById } from '~/composables/usePage'
-import { cartPageId } from '~/data/pages'
-
-export default {
-  setup() {
-    const { page, loading } = usePageById(cartPageId)
-
-    return {
-      page,
-      loading,
-    }
-  },
-  nuxtI18n: {
-    paths: {
-      nl: '/winkeltje/winkelwagen',
-    },
-  },
-  head: {},
-}
-</script>

@@ -1,49 +1,59 @@
+<script lang="ts" setup>
+import type { ErrorObject } from '@vuelidate/core'
+
+withDefaults(
+  defineProps<{
+    modelValue: string
+    errors?: ErrorObject[]
+  }>(),
+  {
+    errors: () => [],
+  },
+)
+const emit = defineEmits(['update:modelValue'])
+
+const { data } = await useAsyncData(`payment-gateways`, () =>
+  $fetch('/api/store/payment-gateways'),
+)
+
+onMounted(() => {
+  if (data.value?.length) {
+    emit('update:modelValue', data.value[0].id)
+  }
+})
+</script>
+
 <template>
-  <form-fieldset :title="$t('paymentGateways')">
-    <ul v-if="paymentGateways.length" :class="$style.list">
+  <form-fieldset v-if="data?.length" :title="$t('paymentGateways')">
+    <ul class="list">
       <li
-        v-for="paymentGateway in paymentGateways"
-        :key="paymentGateway.node.id"
-        :class="$style['list-item']"
+        v-for="paymentGateway in data"
+        :key="paymentGateway.id"
+        class="list-item"
       >
         <input
-          :id="`payment-${paymentGateway.node.id}`"
+          :id="`payment-${paymentGateway.id}`"
           type="radio"
-          :value="paymentGateway.node.id"
+          :value="paymentGateway.id"
           name="payment-gateways"
-          :class="$style.input"
-          :checked="paymentGateway.node.id == value"
-          @change="$emit('input', paymentGateway.node.id)"
+          class="input"
+          :checked="paymentGateway.id == modelValue"
+          @change="$emit('update:modelValue', paymentGateway.id)"
         />
-        <div
-          v-if="paymentGateway.node.icon"
-          :class="$style.icon"
-          v-html="paymentGateway.node.icon"
-        />
-        <label :for="`payment-${paymentGateway.node.id}`" :class="$style.label">
-          {{ paymentGateway.node.title }}
+        <!-- <div
+          v-if="paymentGateway.icon"
+          class="icon"
+          v-html="paymentGateway.icon"
+        /> -->
+        <label :for="`payment-${paymentGateway.id}`" class="label">
+          {{ paymentGateway.title }}
         </label>
       </li>
     </ul>
   </form-fieldset>
 </template>
 
-<script>
-export default {
-  props: {
-    paymentGateways: {
-      type: Array,
-      required: true,
-    },
-    value: {
-      type: String,
-      default: '',
-    },
-  },
-}
-</script>
-
-<style module lang="postcss">
+<style lang="postcss" scoped>
 .list {
   @mixin list-reset;
 }
@@ -66,7 +76,10 @@ export default {
 }
 
 .input {
+  flex: 0 0 auto;
   transform: translateY(-0.25em);
+  width: 1.25em;
+  aspect-ratio: 1 / 1;
 }
 
 .label {
@@ -76,11 +89,3 @@ export default {
   flex: 1 1 auto;
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "paymentGateways": "Betaalmethoden"
-  }
-}
-</i18n>

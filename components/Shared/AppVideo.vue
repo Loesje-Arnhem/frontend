@@ -1,3 +1,17 @@
+<script lang="ts" setup>
+const props = defineProps<{
+  video: string
+}>()
+
+const videoThumb = computed(() => {
+  return `https://i3.ytimg.com/vi/${props.video}/maxresdefault.jpg`
+})
+
+const videoUrl = computed(() => {
+  return `https://www.youtube.com/watch?v=${props.video}`
+})
+</script>
+
 <template>
   <div class="wrapper">
     <a :href="videoUrl" class="video-wrapper" rel="noopener" target="_blank">
@@ -7,53 +21,28 @@
         class="image"
         :width="480"
         :height="360"
-        sizes="sm:100vw, 300px"
+        sizes="xs:350px"
       />
     </a>
     <a :href="videoUrl" class="btn-video" rel="noopener" target="_blank">
       <app-image
         src="/images/btn-video.png"
         alt="Video afspelen"
-        sizes="sm:53px"
         class="icon-play"
         :width="53"
         :height="55"
+        sizes="xs:35px"
       />
     </a>
     <app-image
       src="/images/television.png"
       class="frame"
-      sizes="sm:100vw, 300px"
       :width="300"
-      :height="320"
+      :height="292"
+      sizes="xs:350px"
     />
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, computed } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    video: {
-      type: String,
-      required: true,
-    },
-  },
-  setup(props) {
-    const videoThumb = computed(() => {
-      return `https://i3.ytimg.com/vi/${props.video}/hqdefault.jpg`
-    })
-    const videoUrl = computed(() => {
-      return `https://www.youtube.com/watch?v=${props.video}`
-    })
-    return {
-      videoThumb,
-      videoUrl,
-    }
-  },
-})
-</script>
 
 <style lang="postcss" scoped>
 .image {
@@ -63,6 +52,10 @@ export default defineComponent({
   object-fit: cover;
   filter: sepia(0.75) contrast(0.75) brightness(1.25) saturate(1.4);
   cursor: pointer;
+
+  & :deep(img) {
+    width: 100%;
+  }
 }
 
 .wrapper {
@@ -71,7 +64,7 @@ export default defineComponent({
 }
 
 .video-wrapper {
-  inset: 38% 23% auto 7%;
+  inset: 40% 5% auto 5%;
   position: absolute;
   display: block;
 }
@@ -83,7 +76,7 @@ export default defineComponent({
   width: 100%;
   height: auto;
 
-  & >>> img {
+  & :deep(img) {
     width: 100%;
   }
 }

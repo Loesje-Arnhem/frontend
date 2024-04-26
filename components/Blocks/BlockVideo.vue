@@ -1,13 +1,11 @@
 <template>
   <div>
     <button @click="openVideo">Open video</button>
-    <video ref="video" width="640" height="480" autoplay></video>
+    <video ref="video" :width="640" :height="480" autoplay />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, Ref } from '@nuxtjs/composition-api'
-
 export default defineComponent({
   setup() {
     const video: Ref<HTMLVideoElement | null> = ref(null)
@@ -21,7 +19,9 @@ export default defineComponent({
         })
         video.value.srcObject = stream
         video.value.play()
-      } catch (error) {}
+      } catch (error) {
+        //
+      }
     }
     return {
       video,

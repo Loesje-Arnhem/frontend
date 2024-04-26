@@ -1,84 +1,109 @@
+<script lang="ts" setup>
+import type { Option } from '~/types/Option'
+import type { CartItem } from '~/types/Cart'
+
+const emit = defineEmits(['is-loading'])
+
+const props = defineProps<{
+  item: CartItem
+}>()
+
+const loading = ref(false)
+
+const quantity = toRef(props.item.quantity)
+
+const errorMessage = ref<string | null>(null)
+const cartState = useCartState()
+
+const updateQuantity = async () => {
+  emit('is-loading', true)
+  errorMessage.value = null
+
+  try {
+    const response = await $fetch('/api/cart/updateItem', {
+      method: 'POST',
+      body: {
+        key: props.item.key,
+        quantity: quantity.value,
+      },
+    })
+    cartState.value = response
+  } catch (error: any) {
+    errorMessage.value = error.data.data.message
+  } finally {
+    emit('is-loading', false)
+  }
+}
+
+const max = props.item.quantityMax < 10 ? props.item.quantityMax : 9
+
+const options: Option[] = [...Array(max).keys()].map((index) => {
+  const amount = index + 1
+  return {
+    value: amount,
+    title: amount.toString(),
+  }
+})
+
+const removeItemFromCard = async () => {
+  emit('is-loading', true)
+
+  errorMessage.value = null
+
+  try {
+    const response = await $fetch('/api/cart/removeItem', {
+      method: 'POST',
+      body: {
+        key: props.item.key,
+      },
+    })
+    cartState.value = response
+  } catch (error: any) {
+    errorMessage.value = error.data.data.message
+  } finally {
+    emit('is-loading', false)
+  }
+}
+</script>
+
 <template>
   <tr>
-    <td :class="$style['remove-wrapper']">
-      <button @click="removeItemsFromCart">
+    <td class="remove-wrapper">
+      <app-loader v-if="loading" />
+      <button v-else @click="removeItemFromCard">
         <app-icon icon="close" title="Verwijderen" />
       </button>
     </td>
-    <td :class="$style['image-wrapper']">
-      <div class="tile">
-        <img
-          :class="$style.image"
-          :src="item.product.node.image.medium"
-          alt=""
-          crossorigin
-        />
+    <td class="image-wrapper">
+      <div v-if="item.image" class="tile">
+        <featured-image sizes="200px" :image="item.image" />
       </div>
     </td>
     <td class="title">
-      {{ item.product.node.name }}
+      <cart-title :item="item" />
     </td>
-    <td :class="$style.price">
-      <product-prices :product="item.product.node" />
+
+    <td class="price">
+      <product-prices :price="item.price" :regular-price="item.regularPrice" />
     </td>
     <td>
-      <form-select
-        :id="`quantity-${item.product.node.databaseId}`"
+      <select-field
+        :id="`quantity-${item.id}`"
         v-model="quantity"
-        :class="$style.select"
-        :name="`quantity-${item.product.node.databaseId}`"
+        class="select"
+        :name="`quantity-${item.id}`"
         :options="options"
         title="Aantal"
-        @change="updateItemQuantities"
+        @change="updateQuantity"
       />
     </td>
-    <td :class="$style.price">{{ item.total }}</td>
+    <td class="price">
+      {{ $n(item.priceTotal, 'currency') }}
+    </td>
   </tr>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import ProductPrices from '../Products/ProductPrices.vue'
-import {
-  useUpdateItemQuantities,
-  useRemoveItemsFromCart,
-} from '~/composables/cart'
-import { IOption } from '~/interfaces/IOption'
-
-export default defineComponent({
-  components: { ProductPrices },
-  props: {
-    item: {
-      type: Object,
-      required: true,
-    },
-  },
-  setup(props) {
-    const { updateItemQuantities, loading, quantity } = useUpdateItemQuantities(
-      props.item,
-    )
-    const { removeItemsFromCart } = useRemoveItemsFromCart(props.item)
-
-    const options: IOption[] = [...Array(9).keys()].map((index) => {
-      const amount = index + 1
-      return {
-        value: amount,
-        title: amount.toString(),
-      }
-    })
-
-    return {
-      options,
-      loading,
-      updateItemQuantities,
-      quantity,
-      removeItemsFromCart,
-    }
-  },
-})
-</script>
-
-<style lang="postcss" module>
+<style lang="postcss" scoped>
 .remove-wrapper {
   width: 1.5em;
 }
@@ -101,9 +126,5 @@ export default defineComponent({
 
 .select {
   transform: translateY(-0.4em);
-
-  & :global(label) {
-    @mixin sr-only;
-  }
 }
 </style>

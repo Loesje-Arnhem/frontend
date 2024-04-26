@@ -1,25 +1,22 @@
+<script lang="ts" setup>
+import type { IProductListItem } from '~/types/Content'
+
+defineProps<{
+  price: number
+  regularPrice?: number
+}>()
+</script>
+
 <template>
-  <div :class="$style.price">
-    <template v-if="product.salePrice">
-      <span :class="$style['price-old']">{{ product.regularPrice }}</span>
-      {{ product.salePrice }}
-    </template>
-    <template v-else>{{ product.price }}</template>
+  <div class="price">
+    <span v-if="regularPrice" class="price-old">
+      {{ $n(regularPrice, 'currency') }}
+    </span>
+    {{ $n(price, 'currency') }}
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    product: {
-      type: Object,
-      required: true,
-    },
-  },
-}
-</script>
-
-<style module lang="postcss">
+<style lang="postcss" scoped>
 .price-old {
   font-size: 1rem;
   font-weight: var(--font-weight-normal);

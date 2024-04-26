@@ -1,48 +1,44 @@
+<script lang="ts" setup>
+withDefaults(
+  defineProps<{
+    close?: boolean
+  }>(),
+  {
+    close: false,
+  },
+)
+
+const menuIsOpen = useMenu()
+
+defineEmits(['toggle-menu'])
+</script>
+
 <template>
   <button
-    :aria-expanded="mobileMenuIsOpen ? 'true' : 'false'"
+    :aria-expanded="menuIsOpen ? 'true' : 'false'"
     :class="$style.btn"
     @click="$emit('toggle-menu')"
   >
-    <app-icon :icon="icon" width="24" height="24" :class="$style.icon" />
-    <span :class="$style.title">{{ title }}</span>
+    <app-icon
+      :icon="close ? 'close' : 'bars'"
+      :width="24"
+      :height="24"
+      :class="$style.icon"
+    />
+    <span :class="$style.title">
+      <template v-if="close">
+        {{ $t('close') }}
+      </template>
+      <template v-else>
+        {{ $t('menu') }}
+      </template>
+    </span>
   </button>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
-import useLayout from '~/composables/useLayout'
-export default defineComponent({
-  props: {
-    close: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup() {
-    const { mobileMenuIsOpen } = useLayout()
-    return {
-      mobileMenuIsOpen,
-    }
-  },
-  computed: {
-    icon() {
-      if (this.close) {
-        return 'close'
-      }
-      return 'bars'
-    },
-    title() {
-      if (this.close) {
-        return this.$t('close')
-      }
-      return this.$t('menu')
-    },
-  },
-})
-</script>
-
 <style lang="postcss" module>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .title {
   transition: box-shadow 0.2s ease-out;
 }
@@ -66,12 +62,3 @@ export default defineComponent({
   fill: currentcolor;
 }
 </style>
-
-<i18n>
-{
-  "nl": {
-    "menu": "Menu",
-    "close": "Sluiten"
-  }
-}
-</i18n>

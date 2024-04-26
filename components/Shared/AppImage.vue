@@ -1,65 +1,45 @@
-<template>
-  <nuxt-picture
-    :alt="alt"
-    :loading="loading"
-    :src="src"
-    :preload="!lazy"
-    :sizes="sizes"
-    :width="width"
-    :height="height"
-    preset="base"
-    class="image"
-    format="avif"
-  />
-</template>
-
-<script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api'
-
-export default defineComponent({
-  props: {
-    src: {
-      type: String,
-      required: true,
-    },
-    width: {
-      type: Number,
-      required: true,
-    },
-    height: {
-      type: Number,
-      required: true,
-    },
-    lazy: {
-      type: Boolean,
-      default: true,
-    },
-    sizes: {
-      type: String,
-      required: true,
-    },
-    alt: {
-      type: String,
-      default: '',
-    },
+<script lang="ts" setup>
+const props = withDefaults(
+  defineProps<{
+    src: string
+    width?: number
+    height?: number
+    sizes?: string
+    lazy?: boolean
+    alt?: string
+  }>(),
+  {
+    width: undefined,
+    height: undefined,
+    sizes: undefined,
+    alt: '',
+    lazy: true,
   },
-  setup(props) {
-    const loading = computed(() => {
-      if (props.lazy) {
-        return 'lazy'
-      }
-      return null
-    })
-
-    return {
-      loading,
-    }
-  },
+)
+const loading = computed(() => {
+  if (props.lazy) {
+    return 'lazy'
+  }
+  return 'eager'
 })
 </script>
 
+<template>
+  <nuxt-picture
+    :sizes="sizes"
+    :alt="alt ? alt : ''"
+    :loading="loading"
+    :src="src"
+    :preload="loading === 'eager'"
+    :width="width"
+    :height="height"
+    class="image"
+    format="avif,webp"
+  />
+</template>
+
 <style lang="postcss" scoped>
-.image >>> img {
+.image :deep(img) {
   display: block;
   max-width: 100%;
 }

@@ -1,53 +1,51 @@
-<template>
-  <shop-wrapper>
-    <app-loader v-if="loading" />
-    <product-details v-if="product" :product="product" />
-  </shop-wrapper>
-</template>
+<script lang="ts" setup>
+defineI18nRoute({
+  paths: {
+    nl: '/winkeltje/[slug]',
+  },
+})
 
-<script lang="ts">
-import {
-  computed,
-  ComputedRef,
-  defineComponent,
-  useRoute,
-} from '@nuxtjs/composition-api'
-import useFetch from '~/composables/useFetch'
-import ProductQuery from '~/graphql/Products/Product'
-import useMeta from '~/composables/useMeta'
-import { IProduct } from '~/interfaces/IProduct'
+definePageMeta({
+  middleware: ['cart'],
+})
 
-export default defineComponent({
-  setup() {
-    const route = useRoute()
-    const { slug } = route.value.params
+const route = useRoute()
 
-    const params = computed(() => slug)
-
-    const { result, loading } = useFetch({
-      query: ProductQuery,
-      variables: {
-        slug,
+const { data } = await useAsyncData(
+  `product-${route.params.slug.toString()}}`,
+  () =>
+    $fetch('/api/products/product', {
+      params: {
+        slug: route.params.slug.toString(),
       },
-      params,
-      pageKey: 'product',
-    })
-    const product: ComputedRef<IProduct | null> = computed(() => {
-      return result.value?.product
-    })
-    useMeta(product)
+    }),
+)
 
-    return {
-      product,
-      loading,
-    }
-  },
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
 
-  nuxtI18n: {
-    paths: {
-      nl: '/winkeltje/:slug',
-    },
-  },
-  head: {},
+useMeta({
+  title: data.value.title,
+  description: data.value.excerpt,
+})
+
+defineProduct({
+  name: data.value.title,
+  offers: [{ price: data.value.price }],
+  description: data.value.excerpt,
 })
 </script>
+
+<template>
+  <shop-wrapper v-if="data">
+    <product-details :product="data" />
+    <section v-if="data.relatedProductIds" aria-labelledby="featured-products">
+      <h1 id="featured-products">Gerelateerde producten</h1>
+      <product-list :product-ids="data.relatedProductIds" />
+    </section>
+  </shop-wrapper>
+</template>

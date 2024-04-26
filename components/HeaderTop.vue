@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const localePath = useLocalePath()
+</script>
+
 <template>
   <center-wrapper :top="true">
     <div class="wrapper">
@@ -16,22 +20,27 @@
         >
           Ga naar Why Donate
         </app-button>
+        <!-- <h1>Wie zegt wat hoort</h1>
+        <p>
+          Loesje's posters vind je overal. Met haar positief-kritische teksten
+          wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan
+          bazen, politici of ouders. Door haar posters op straat en online te
+          verspreiden, geeft Loesje de wereld een zetje in de goede richting.
+        </p> -->
       </div>
       <div class="poster-daily">
         <div class="image-wrapper">
-          <client-only>
-            <nuxt-link :to="localePath({ name: 'daily-poster' })">
-              <daily-poster class="image" />
-            </nuxt-link>
-          </client-only>
+          <nuxt-link :to="localePath({ name: 'daily-poster' })">
+            <daily-poster class="image" />
+          </nuxt-link>
         </div>
         <app-image
           src="/images/electriciteitskastje.png"
           :lazy="false"
           class="background"
-          :width="540"
-          :height="726"
-          sizes="xs:100vw md:270px"
+          :width="270"
+          :height="360"
+          sizes="100vw xs:270px"
         />
       </div>
     </div>
@@ -39,6 +48,8 @@
 </template>
 
 <style lang="postcss" scoped>
+@import '~/assets/css/media-queries/media-queries.css';
+
 .wrapper {
   padding-top: var(--spacing-s);
   max-width: var(--container-width-md);
