@@ -63,10 +63,10 @@
     "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.3",
     "prettier-stylelint": "^0.4.2",
-    "stylelint": "^14.16.1",
+    "stylelint": "^16.4.0",
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-recommended-vue": "^1.4.0",
-    "stylelint-config-standard": "^29.0.0",
+    "stylelint-config-standard": "^36.0.0",
     "stylelint-prettier": "^2.0.0"
   }
 }
