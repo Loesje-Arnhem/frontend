@@ -82,12 +82,10 @@ const errorMessage = computed(() => {
       <div v-if="submitted" class="success">
         <p>Hoi {{ formData.name }}</p>
         <p>
-          Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe
-          ik ze maak! Ik heb je aanvraag in goede orde ontvangen en ik ga er
-          eens goed naar kijken, waarschijnlijk met mijn vriendenclub. Je krijgt
-          dan zo snel mogelijk een mailtje van me terug, met de vraag om meer
-          informatie mocht dat nodig zijn, en anders met daarin of ik inderdaad
-          op je gewenste datum kan of niet. Houd dus je mailbox in de gaten!
+          Wat tof dat je interesse hebt in mijn onderwijsmodule. Ik heb je
+          aanvraag in goede orde ontvangen en ik ga er eens goed naar kijken. Je
+          krijgt dan zo snel mogelijk een mailtje van me terug met alle
+          informatie en mogelijke extra vragen. Houd dus je mailbox in de gaten!
         </p>
       </div>
       <app-form
