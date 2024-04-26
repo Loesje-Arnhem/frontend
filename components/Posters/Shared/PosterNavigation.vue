@@ -21,7 +21,7 @@ const showOverview = computed(() => {
 </script>
 
 <template>
-  <center-wrapper>
+  <center-wrapper v-if="showFavorites || showOverview">
     <nav>
       <transition name="slide">
         <nuxt-link
@@ -55,8 +55,7 @@ nav {
     padding-top: env(safe-area-inset-top);
   }
   display: flex;
-  margin: 1em 0;
-  height: 1em;
+  margin-bottom: 1em;
 }
 
 a {
