@@ -36,7 +36,7 @@ const localePath = useLocalePath()
 @import '~/assets/css/media-queries/media-queries.css';
 
 .latest-posts {
-  @mixin block;
+  padding-bottom: 2em;
 }
 
 .wrapper {
