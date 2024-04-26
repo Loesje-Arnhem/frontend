@@ -11,7 +11,8 @@ import {
 export default defineNuxtConfig({
   vue: {
     compilerOptions: {
-      isCustomElement: (tag: string) => ['search'].includes(tag),
+      isCustomElement: (tag: string) =>
+        ['search', 'clubcollect-widget'].includes(tag),
     },
   },
 
