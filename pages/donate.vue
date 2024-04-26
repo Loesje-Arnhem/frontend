@@ -25,6 +25,19 @@ useHead({
   ],
 })
 
+if (!data.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page Not Found',
+  })
+}
+
+useMeta({
+  title: data.value.title,
+  description: data.value.description,
+  image: data.value.featuredImage,
+})
+
 const dialog = ref<HTMLDialogElement | null>(null)
 
 const showDialog = () => {
