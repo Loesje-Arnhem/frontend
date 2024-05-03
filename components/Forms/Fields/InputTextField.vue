@@ -12,7 +12,6 @@ withDefaults(
     name: string
     id: string
     type?: 'text' | 'date' | 'email' | 'time' | 'password' | 'tel'
-    modelValue: string | number
     errors?: ErrorObject[]
   }>(),
   {
