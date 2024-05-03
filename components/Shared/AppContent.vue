@@ -36,8 +36,6 @@ const hasMedia = computed(() => {
 @import '~/assets/css/media-queries/media-queries.css';
 
 .content-wrapper {
-  @mixin block;
-
   @media print {
     padding: 0;
   }

@@ -63,7 +63,7 @@ const loadMore = () => {
 
 <style lang="postcss" scoped>
 .posts-overview {
-  @mixin block;
+  padding-bottom: 2em;
 }
 
 .button-wrapper {
