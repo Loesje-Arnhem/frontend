@@ -39,14 +39,9 @@ const updateTheme = () => {
           </p>
           <p>
             Nu is er de officiele Loesje-app. In deze app kan je uren
-            rondstruinen op zoek de poster die jij het tofst vindt.
+            rondstruinen op zoek naar de poster die jij het tofst vindt.
           </p>
           <div class="buttons">
-            <client-only>
-              <app-button v-if="$pwa.showInstallPrompt" @click="$pwa.install()">
-                Installeer de app
-              </app-button>
-            </client-only>
             <app-button
               href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
               target="_blank"
