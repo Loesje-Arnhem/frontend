@@ -40,8 +40,6 @@ useMeta({
     <!-- <block-donate /> -->
 
     <latest-posts-section />
-
-    <latest-posts-section />
     <related-posters-section
       v-if="data"
       :poster-ids="data.relatedPosters.posterIds"
