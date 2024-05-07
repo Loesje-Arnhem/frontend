@@ -65,12 +65,22 @@ const setArrowPosition = () => {
 </script>
 
 <template>
-  <nav aria-labelledby="menu" class="nav">
-    <h2 id="menu" class="sr-only" tabindex="-1">
+  <nav
+    aria-labelledby="menu"
+    class="nav"
+  >
+    <h2
+      id="menu"
+      class="sr-only"
+      tabindex="-1"
+    >
       {{ $t('mainMenu') }}
     </h2>
     <div ref="menu">
-      <ul v-if="items.length" class="menu">
+      <ul
+        v-if="items.length"
+        class="menu"
+      >
         <main-navigation-item
           v-for="item in items"
           :key="item.id"

@@ -32,7 +32,10 @@ useMeta({
   <shop-wrapper v-if="data">
     <div v-if="data">
       <h1>{{ data.title }}</h1>
-      <p v-if="data.content" v-html="data.content" />
+      <p
+        v-if="data.content"
+        v-html="data.content"
+      />
     </div>
     <product-list :featured="true" />
   </shop-wrapper>

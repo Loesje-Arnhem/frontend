@@ -14,7 +14,7 @@ const wrapper: Ref<HTMLDivElement | null> = ref(null)
 let observer: IntersectionObserver | null
 
 onMounted(() => {
-  if (!process.client) return
+  if (!import.meta.client) return
   if (!wrapper.value) return
 
   observer = new IntersectionObserver(

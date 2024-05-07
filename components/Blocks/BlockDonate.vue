@@ -44,16 +44,30 @@ const closeDialog = () => {
 </script>
 
 <template>
-  <center-wrapper v-if="data" size="xlg">
-    <dialog ref="dialog" class="dialog">
+  <center-wrapper
+    v-if="data"
+    size="xlg"
+  >
+    <dialog
+      ref="dialog"
+      class="dialog"
+    >
       <form-donate />
-      <app-button @click="closeDialog">Sluiten</app-button>
+      <app-button @click="closeDialog">
+        Sluiten
+      </app-button>
     </dialog>
     <div class="wrapper">
       <div class="widget">
-        <box-wrapper id="donate" title="Doneren">
+        <box-wrapper
+          id="donate"
+          title="Doneren"
+        >
           <div class="donate-box">
-            <div class="progress" :style="{ width: data.progress }" />
+            <div
+              class="progress"
+              :style="{ width: data.progress }"
+            />
             <p>
               {{ $n(data.amount, 'currency') }} van
               <span class="target">
@@ -62,20 +76,28 @@ const closeDialog = () => {
             </p>
 
             <fieldset>
-              <legend class="sr-only">Selecteer een bedrag</legend>
+              <legend class="sr-only">
+                Selecteer een bedrag
+              </legend>
               <div class="fields">
-                <div v-for="amount in data.steps" :key="amount" class="field">
+                <div
+                  v-for="amount in data.steps"
+                  :key="amount"
+                  class="field"
+                >
                   <input
                     :id="`donate-${amount}`"
                     type="radio"
                     name="donation"
                     :value="amount"
-                  />
+                  >
                   <label :for="`donate-${amount}`">{{ amount }}</label>
                 </div>
               </div>
             </fieldset>
-            <app-button @click="openDialog"> Doneer </app-button>
+            <app-button @click="openDialog">
+              Doneer
+            </app-button>
           </div>
         </box-wrapper>
       </div>

@@ -10,8 +10,8 @@ export default {
   mounted() {
     this.balloon = this.$refs.balloon
     if (
-      'IntersectionObserver' in window &&
-      'IntersectionObserverEntry' in window
+      'IntersectionObserver' in window
+      && 'IntersectionObserverEntry' in window
     ) {
       this.imageObserver = new IntersectionObserver(
         (entries) => {
@@ -24,7 +24,8 @@ export default {
         },
       )
       this.imageObserver.observe(this.balloon)
-    } else {
+    }
+    else {
       this.toggleAnimation(true)
     }
   },
@@ -40,8 +41,15 @@ export default {
 </script>
 
 <template>
-  <div ref="balloon" class="balloon-x" :class="{ animate }">
-    <div class="balloon-y" :class="{ animate }">
+  <div
+    ref="balloon"
+    class="balloon-x"
+    :class="{ animate }"
+  >
+    <div
+      class="balloon-y"
+      :class="{ animate }"
+    >
       <app-image
         :width="159"
         :height="243"

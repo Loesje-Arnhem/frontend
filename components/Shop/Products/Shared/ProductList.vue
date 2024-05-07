@@ -22,7 +22,10 @@ const { data } = useFetch('/api/products/products', {
 </script>
 
 <template>
-  <ul v-if="data?.length" class="list">
+  <ul
+    v-if="data?.length"
+    class="list"
+  >
     <product-tile
       v-for="product in data"
       :key="product.id"

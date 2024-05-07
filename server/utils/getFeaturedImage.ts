@@ -1,5 +1,5 @@
-import { type FeaturedImage } from '~/types/Content'
 import { type FeaturedImageResponseType } from '../types/FeaturedImageResponseType'
+import { type FeaturedImage } from '~/types/Content'
 
 export default (
   featuredImage: FeaturedImageResponseType[] | undefined,
@@ -29,7 +29,8 @@ export default (
   let alt = ''
   if (title) {
     alt = title
-  } else if (image.alt_text) {
+  }
+  else if (image.alt_text) {
     alt = image.alt_text
   }
 

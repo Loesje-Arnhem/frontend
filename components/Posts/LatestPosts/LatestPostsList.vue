@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { IPostListItem } from '~/types/Content'
+
 defineProps<{
   posts: IPostListItem[]
 }>()

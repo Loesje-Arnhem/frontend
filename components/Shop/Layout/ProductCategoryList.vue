@@ -9,7 +9,12 @@ const localePath = useLocalePath()
     aria-labelledby="categories-title"
     class="categories"
   >
-    <h2 id="categories-title" class="sr-only">Categorien</h2>
+    <h2
+      id="categories-title"
+      class="sr-only"
+    >
+      Categorien
+    </h2>
     <ul class="category-list">
       <li
         v-for="productCategory in data"
@@ -29,7 +34,10 @@ const localePath = useLocalePath()
         >
           <span v-html="productCategory.title" />
         </nuxt-link>
-        <ul v-if="productCategory.children.length" class="category-list">
+        <ul
+          v-if="productCategory.children.length"
+          class="category-list"
+        >
           <li
             v-for="child in productCategory.children"
             :key="child.id"

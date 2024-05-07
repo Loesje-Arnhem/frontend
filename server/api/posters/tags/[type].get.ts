@@ -1,5 +1,5 @@
-import { ITag } from '~~/interfaces/IContent'
-import { IResponseTerm } from '~~/server/types/IResponseTerm'
+import type { ITag } from '~~/interfaces/IContent'
+import type { IResponseTerm } from '~~/server/types/IResponseTerm'
 
 export default defineEventHandler(async (event) => {
   const type = event.context.params?.type

@@ -1,4 +1,4 @@
-import { asSitemapUrl } from '#imports'
+import type { asSitemapUrl } from '#imports'
 import { postersSitemap } from '~/server/data/postersSitemap'
 import { SitemapSchema } from '~/server/schemas/SitemapSchema'
 
@@ -32,10 +32,10 @@ export default defineSitemapEventHandler(async () => {
       (item) => {
         const image:
           | {
-              loc: string
-              caption: string
-              title: string
-            }
+            loc: string
+            caption: string
+            title: string
+          }
           | undefined = undefined
 
         // if (item._embedded) {

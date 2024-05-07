@@ -1,4 +1,4 @@
-import { asSitemapUrl } from '#imports'
+import type { asSitemapUrl } from '#imports'
 import { SitemapSchema } from '~/server/schemas/SitemapSchema'
 
 export const createSitemap = async (

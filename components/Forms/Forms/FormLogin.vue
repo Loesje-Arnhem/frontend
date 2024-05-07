@@ -19,7 +19,8 @@ const v$ = useVuelidate(rules, formData)
 const error = computed(() => {
   if (apiError.value) {
     return apiError.value
-  } else if (v$.value.$dirty && v$.value.$invalid) {
+  }
+  else if (v$.value.$dirty && v$.value.$invalid) {
     return 'validations.form'
   }
   return null

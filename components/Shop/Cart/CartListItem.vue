@@ -28,9 +28,11 @@ const updateQuantity = async () => {
       },
     })
     cartState.value = response
-  } catch (error: any) {
+  }
+  catch (error: any) {
     errorMessage.value = error.data.data.message
-  } finally {
+  }
+  finally {
     emit('is-loading', false)
   }
 }
@@ -58,9 +60,11 @@ const removeItemFromCard = async () => {
       },
     })
     cartState.value = response
-  } catch (error: any) {
+  }
+  catch (error: any) {
     errorMessage.value = error.data.data.message
-  } finally {
+  }
+  finally {
     emit('is-loading', false)
   }
 }
@@ -70,13 +74,25 @@ const removeItemFromCard = async () => {
   <tr>
     <td class="remove-wrapper">
       <app-loader v-if="loading" />
-      <button v-else @click="removeItemFromCard">
-        <app-icon icon="close" title="Verwijderen" />
+      <button
+        v-else
+        @click="removeItemFromCard"
+      >
+        <app-icon
+          icon="close"
+          title="Verwijderen"
+        />
       </button>
     </td>
     <td class="image-wrapper">
-      <div v-if="item.image" class="tile">
-        <featured-image sizes="200px" :image="item.image" />
+      <div
+        v-if="item.image"
+        class="tile"
+      >
+        <featured-image
+          sizes="200px"
+          :image="item.image"
+        />
       </div>
     </td>
     <td class="title">
@@ -84,7 +100,10 @@ const removeItemFromCard = async () => {
     </td>
 
     <td class="price">
-      <product-prices :price="item.price" :regular-price="item.regularPrice" />
+      <product-prices
+        :price="item.price"
+        :regular-price="item.regularPrice"
+      />
     </td>
     <td>
       <select-field

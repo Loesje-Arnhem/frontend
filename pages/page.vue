@@ -9,9 +9,10 @@ const route = useRoute()
 
 const uri = computed(() => {
   if (Array.isArray(route.params.slug)) {
-    const slugs = route.params.slug.filter((slug) => slug !== '')
+    const slugs = route.params.slug.filter(slug => slug !== '')
     return slugs.at(-1) ?? ''
-  } else {
+  }
+  else {
     return route.params.slug
   }
 })

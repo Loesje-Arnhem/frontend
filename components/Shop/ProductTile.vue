@@ -17,7 +17,11 @@ const url = props.product.url
 </script>
 
 <template>
-  <clickable-list-item :to="url" :external="true" class="product-tile tile">
+  <clickable-list-item
+    :to="url"
+    :external="true"
+    class="product-tile tile"
+  >
     <div class="image-wrapper">
       <featured-image
         v-if="product.image"
@@ -27,7 +31,10 @@ const url = props.product.url
       />
     </div>
     <div class="title">
-      <router-link class="link" :to="url">
+      <router-link
+        class="link"
+        :to="url"
+      >
         <span v-html="product.title" />
       </router-link>
     </div>

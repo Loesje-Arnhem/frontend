@@ -1,6 +1,7 @@
 await navigateTo(response.payment_result.redirect_url)
 <script setup lang="ts">
 import useVuelidate from '@vuelidate/core'
+import type { NuxtError } from '#app'
 import type { BillingAdress, ShippingAddress } from '~/types/Cart'
 
 const billing = reactive<BillingAdress>({
@@ -74,9 +75,11 @@ const submit = async () => {
     Object.assign(shipping, response.shipping_address)
 
     // await navigateTo(response.payment_result.redirect_url, { external: true })
-  } catch (error: any) {
+  }
+  catch (error) {
     errorMessage.value = error.data.data.message
-  } finally {
+  }
+  finally {
     pending.value = false
   }
 }

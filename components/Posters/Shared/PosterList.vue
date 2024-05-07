@@ -15,10 +15,17 @@ const backgroundImage = computed(() =>
 </script>
 
 <template>
-  <div class="wrapper" :style="{ backgroundImage: `url(${backgroundImage})` }">
+  <div
+    class="wrapper"
+    :style="{ backgroundImage: `url(${backgroundImage})` }"
+  >
     <center-wrapper>
       <list-animation class="list">
-        <li v-for="poster in posters" :key="poster.id" class="list-item">
+        <li
+          v-for="poster in posters"
+          :key="poster.id"
+          class="list-item"
+        >
           <poster-tile :poster="poster" />
         </li>
       </list-animation>

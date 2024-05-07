@@ -10,11 +10,11 @@ export const TermsSchema = z.array(
       taxonomy: z.string(),
       acf: z.array(z.unknown()),
       _links: z.object({
-        self: z.array(z.object({ href: z.string() })),
-        collection: z.array(z.object({ href: z.string() })),
-        about: z.array(z.object({ href: z.string() })),
+        'self': z.array(z.object({ href: z.string() })),
+        'collection': z.array(z.object({ href: z.string() })),
+        'about': z.array(z.object({ href: z.string() })),
         'wp:post_type': z.array(z.object({ href: z.string() })),
-        curies: z.array(
+        'curies': z.array(
           z.object({
             name: z.string(),
             href: z.string(),

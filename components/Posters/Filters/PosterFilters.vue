@@ -14,7 +14,8 @@ const toggleOverlay = (type: string) => {
   if (type === 'subjects') {
     activeOverlays.subjects = !activeOverlays.subjects
     activeOverlays.sources = false
-  } else {
+  }
+  else {
     activeOverlays.sources = !activeOverlays.sources
     activeOverlays.subjects = false
   }
@@ -37,7 +38,10 @@ const today = () => {
 </script>
 
 <template>
-  <div v-if="data" class="filter">
+  <div
+    v-if="data"
+    class="filter"
+  >
     <div class="buttons">
       <poster-filter-toggle
         v-if="data.sources.length"

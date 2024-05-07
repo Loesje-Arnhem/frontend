@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     },
     method: 'POST',
     headers: {
-      nonce: cookies.nonce,
+      'nonce': cookies.nonce,
       'cart-token': cookies.token,
     },
   })

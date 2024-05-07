@@ -37,7 +37,10 @@ const title = props.title || t('posters')
     :style="{ backgroundImage: `url(${backgroundImage})` }"
   >
     <center-wrapper>
-      <h1 id="related-posters-title" class="title">
+      <h1
+        id="related-posters-title"
+        class="title"
+      >
         {{ title }}
       </h1>
     </center-wrapper>

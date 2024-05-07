@@ -1,6 +1,6 @@
+import { z } from 'zod'
 import { type IPage } from '~~/types/Content'
 import { type ResponsePage } from '~/server/types/ResponsePage'
-import { z } from 'zod'
 import { stripHtmlTags } from '~/server/utils/stripHtmlTags'
 
 const querySchema = z.object({
@@ -9,7 +9,7 @@ const querySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  const query = await getValidatedQuery(event, (body) =>
+  const query = await getValidatedQuery(event, body =>
     querySchema.safeParse(body),
   )
 
@@ -30,7 +30,8 @@ export default defineEventHandler(async (event) => {
     if (items.length) {
       response = items[0]
     }
-  } else {
+  }
+  else {
     response = await $fetch<ResponsePage>(url)
   }
 

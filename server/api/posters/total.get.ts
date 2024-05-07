@@ -13,7 +13,7 @@ export default defineEventHandler(async () => {
     pageSize: 1,
   })
 
-  const response = await $fetch.raw(url).catch((error) => error.data)
+  const response = await $fetch.raw(url).catch(error => error.data)
   const totalPages = Number(response.headers.get('X-WP-TotalPages'))
 
   const data = { total: totalPages }
