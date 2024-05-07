@@ -37,8 +37,6 @@ useMeta({
       {{ data.title }}
     </h1>
 
-    <!-- <block-donate /> -->
-
     <latest-posts-section />
     <related-posters-section
       v-if="data"
