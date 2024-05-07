@@ -98,7 +98,7 @@ if (cartState.value) {
       id="billing"
       v-model:firstName="billing.first_name"
       v-model:last-name="billing.last_name"
-      v-model:email="billing.email"
+      v-model:email-address="billing.email"
       v-model:company="billing.company"
     />
     <address-fields

@@ -4,7 +4,7 @@ import { useVuelidate } from '@vuelidate/core'
 defineEmits([
   'update:firstName',
   'update:lastName',
-  'update:email',
+  'update:emailAddress',
   'update:company',
 ])
 
@@ -12,7 +12,7 @@ const props = defineProps<{
   firstName: string
   lastName: string
   company: string
-  email: string
+  emailAddress: string
   id: string
 }>()
 
@@ -21,7 +21,7 @@ const { required, email } = useValidators()
 const rules = {
   firstName: { required },
   lastName: { required },
-  email: { required, email },
+  emailAddress: { required, email },
 }
 const v$ = useVuelidate(rules, props)
 </script>
@@ -53,13 +53,13 @@ const v$ = useVuelidate(rules, props)
     <input-text-field
       :id="`${id}-email`"
       type="email"
-      :model-value="email"
+      :model-value="emailAddress"
       class="email"
       title="E-mailadres"
       name="email"
-      :errors="v$.email.$errors"
+      :errors="v$.emailAddress.$errors"
       autocomplete="email"
-      @input="$emit('update:email', $event.target.value)"
+      @input="$emit('update:emailAddress', $event.target.value)"
     />
     <input-text-field
       :id="`${id}-companyName`"
