@@ -23,7 +23,7 @@
     "nuxt": "^3.11.2",
     "nuxt-schema-org": "^3.3.6",
     "nuxt-svgo": "^4.0.0",
-    "postcss-html": "^1.6.0",
+    "postcss-html": "^1.7.0",
     "postcss-mixins": "^10.0.1",
     "postcss-preset-env": "^9.5.11",
     "postcss-url": "^10.1.3",
