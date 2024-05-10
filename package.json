@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@netlify/blobs": "^7.3.0",
-    "@nuxt/eslint": "^0.3.10",
+    "@nuxt/eslint": "^0.3.12",
     "@nuxtjs/i18n": "^8.3.1",
     "@nuxtjs/sitemap": "^5.1.5",
     "@nuxtjs/stylelint-module": "^5.2.0",
