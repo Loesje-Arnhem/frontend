@@ -71,8 +71,8 @@ devDependencies:
     specifier: ^3.3.6
     version: 3.3.6(@nuxt/devtools@1.2.0)(@unhead/shared@1.9.10)(@vue/compiler-core@3.4.27)(nuxt@3.11.2)(postcss@8.4.38)(rollup@4.17.2)(unhead@1.9.10)(vite@5.2.11)(vue@3.4.27)(webpack@5.91.0)
   nuxt-svgo:
-    specifier: ^4.0.0
-    version: 4.0.0(rollup@4.17.2)(vue@3.4.27)
+    specifier: ^4.0.1
+    version: 4.0.1(rollup@4.17.2)(vue@3.4.27)
   postcss-html:
     specifier: ^1.6.0
     version: 1.6.0
@@ -9025,8 +9025,8 @@ packages:
       - webpack
     dev: true
 
-  /nuxt-svgo@4.0.0(rollup@4.17.2)(vue@3.4.27):
-    resolution: {integrity: sha512-Oeeexe6F+z64RlYl++0JaiCqiTazrnGO/Xtg8Nw1knhcb+qnzOxm12tiHKDyt8PRvbSGUo8rgjggdbRuossLxA==}
+  /nuxt-svgo@4.0.1(rollup@4.17.2)(vue@3.4.27):
+    resolution: {integrity: sha512-jN82aehGXMXMkapNnk15Vr712EXtPIfG8SX8O//m5Ls/QgD7bbIMkGRbfJKfoX6a4NZm0ojkwvv/hWex8aVY/A==}
     peerDependencies:
       svgo-loader: ^4.0.0
       vue: '>=3.2.13'
