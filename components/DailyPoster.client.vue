@@ -13,7 +13,8 @@ withDefaults(
 const addTrailingZeroToValue = (value: number) => {
   if (value < 10) {
     return `0${value}`
-  } else {
+  }
+  else {
     return value.toString()
   }
 }
@@ -45,15 +46,21 @@ onMounted(async () => {
     const parsedData = JSON.parse(posterFromStorage)
     if (parsedData.date === getDate()) {
       poster.value = parsedData
-    } else {
+    }
+    else {
       await fetchDailyPoster()
     }
-  } else {
+  }
+  else {
     await fetchDailyPoster()
   }
 })
 </script>
 
 <template>
-  <featured-image v-if="poster" :image="poster" :sizes="sizes" />
+  <featured-image
+    v-if="poster"
+    :image="poster"
+    :sizes="sizes"
+  />
 </template>

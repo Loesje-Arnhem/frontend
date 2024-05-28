@@ -1,4 +1,4 @@
-import { Taxonomy } from '~/enums/taxonomy'
+import type { Taxonomy } from '~/enums/taxonomy'
 
 export type ResponseTag = {
   id: number

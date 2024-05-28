@@ -47,7 +47,7 @@ export const useCheckout = () => {
     }),
   )
   onError(({ graphQLErrors }) => {
-    errors.value = graphQLErrors.map((err) => err.message)
+    errors.value = graphQLErrors.map(err => err.message)
   })
 
   // submits to the newsletter when checkout succeeds

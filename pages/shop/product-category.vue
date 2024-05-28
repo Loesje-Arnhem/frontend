@@ -17,8 +17,8 @@ const { data } = await useAsyncData(
     $fetch('/api/product-categories/product-category', {
       params: {
         slug:
-          route.params.subcategory.toString() ||
-          route.params.category.toString(),
+          route.params.subcategory.toString()
+          || route.params.category.toString(),
       },
     }),
 )
@@ -39,7 +39,10 @@ useMeta({
   <shop-wrapper v-if="data">
     <div>
       <h1 v-html="data.title" />
-      <p v-if="data.content" v-html="data.content" />
+      <p
+        v-if="data.content"
+        v-html="data.content"
+      />
     </div>
 
     <product-list :category-id="data.id" />

@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     exclude: query.exclude || null,
   })
 
-  const response = await $fetch.raw(url).catch((error) => error.data)
+  const response = await $fetch.raw(url).catch(error => error.data)
   const totalPages = Number(response.headers.get('X-WP-TotalPages'))
   const items = response._data.map((item: ResponsePosts) => {
     return {

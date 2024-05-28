@@ -1,5 +1,5 @@
-import type { FeaturedImage, IProduct } from '~~/types/Content'
 import { z } from 'zod'
+import type { FeaturedImage, IProduct } from '~~/types/Content'
 import type { ResponseProduct } from '~/server/types/ResponseProduct'
 
 const querySchema = z.object({
@@ -7,7 +7,7 @@ const querySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  const query = await getValidatedQuery(event, (body) =>
+  const query = await getValidatedQuery(event, body =>
     querySchema.safeParse(body),
   )
 

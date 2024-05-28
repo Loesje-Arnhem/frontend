@@ -7,7 +7,10 @@ const updateTheme = () => {
 </script>
 
 <template>
-  <section class="app-stores" aria-labelledby="app-stores-title">
+  <section
+    class="app-stores"
+    aria-labelledby="app-stores-title"
+  >
     <center-wrapper size="lg">
       <div class="wrapper">
         <div class="image-wrapper">
@@ -19,7 +22,10 @@ const updateTheme = () => {
             sizes="sm:100vw lg:75vw xl:33v xl:500px"
           />
 
-          <button class="btn-theme" @click="updateTheme">
+          <button
+            class="btn-theme"
+            @click="updateTheme"
+          >
             <app-image
               src="/images/arcarde-button.png"
               :width="36"
@@ -30,7 +36,9 @@ const updateTheme = () => {
           </button>
         </div>
         <div class="text">
-          <h1 id="app-stores-title">Loesje als App</h1>
+          <h1 id="app-stores-title">
+            Loesje als App
+          </h1>
           <p>
             De posters van Loesje ken je vooral van op prullenbakken in de stad
             of een elektriciteitskastje bij je om de hoek, maar Loesje wil de
@@ -39,14 +47,9 @@ const updateTheme = () => {
           </p>
           <p>
             Nu is er de officiele Loesje-app. In deze app kan je uren
-            rondstruinen op zoek de poster die jij het tofst vindt.
+            rondstruinen op zoek naar de poster die jij het tofst vindt.
           </p>
           <div class="buttons">
-            <client-only>
-              <app-button v-if="$pwa.showInstallPrompt" @click="$pwa.install()">
-                Installeer de app
-              </app-button>
-            </client-only>
             <app-button
               href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
               target="_blank"

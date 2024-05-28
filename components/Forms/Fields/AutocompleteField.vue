@@ -66,7 +66,8 @@ export default defineComponent({
     submit() {
       if (this.arrowCounter > -1) {
         this.selectItem(this.resultsWithHighlightText[this.arrowCounter])
-      } else {
+      }
+      else {
         this.close()
         this.$emit('submit', this.modelValue)
       }
@@ -91,7 +92,12 @@ export default defineComponent({
 
 <template>
   <search role="search">
-    <form method="get" class="form" @keyup.esc="reset" @submit.prevent="submit">
+    <form
+      method="get"
+      class="form"
+      @keyup.esc="reset"
+      @submit.prevent="submit"
+    >
       <legend class="sr-only">
         {{ $t('search') }}
       </legend>
@@ -119,10 +125,23 @@ export default defineComponent({
             class="btn-reset"
             @click="reset"
           >
-            <app-icon icon="close" :width="24" :height="24" title="Sluiten" />
+            <app-icon
+              icon="close"
+              :width="24"
+              :height="24"
+              title="Sluiten"
+            />
           </button>
-          <button type="submit" class="btn-submit">
-            <app-icon icon="search" :width="24" :height="24" title="Zoeken" />
+          <button
+            type="submit"
+            class="btn-submit"
+          >
+            <app-icon
+              icon="search"
+              :width="24"
+              :height="24"
+              title="Zoeken"
+            />
           </button>
         </div>
         <div

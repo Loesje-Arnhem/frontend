@@ -17,7 +17,12 @@
       class="btn-show-submenu"
       @click="toggleMenu"
     >
-      <app-icon icon="chevron-down" :width="16" :height="16" class="icon" />
+      <app-icon
+        icon="chevron-down"
+        :width="16"
+        :height="16"
+        class="icon"
+      />
       <span class="sr-only">
         {{
           $t('showSubmenuFor', {
@@ -28,13 +33,19 @@
     </button>
 
     <slide-in-animation>
-      <ul v-if="isOpen" class="submenu tile">
+      <ul
+        v-if="isOpen"
+        class="submenu tile"
+      >
         <li
           v-for="subItem in item.children"
           :key="subItem.url"
           class="submenu-item"
         >
-          <main-navigation-link :item="subItem" class="submenu-link" />
+          <main-navigation-link
+            :item="subItem"
+            class="submenu-link"
+          />
         </li>
       </ul>
     </slide-in-animation>
@@ -58,7 +69,8 @@ const isOpen = computed(() => openMenus.value.includes(props.item.title))
 const toggleMenu = () => {
   if (isOpen.value) {
     remove(props.item.title)
-  } else {
+  }
+  else {
     add(props.item.title)
   }
 }

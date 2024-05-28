@@ -3,13 +3,12 @@ import {
   AppPostersQuerySchema,
   AppPostersSchema,
 } from '~/server/schemas/AppSchema'
-import { ITag } from '~/types/Content'
 import { Taxonomy } from '~/enums/taxonomy'
 
 export default defineEventHandler(async (event) => {
   // const storage = useStorage('redis')
 
-  const query = await getValidatedQuery(event, (body) =>
+  const query = await getValidatedQuery(event, body =>
     AppPostersQuerySchema.safeParse(body),
   )
 
@@ -38,7 +37,7 @@ export default defineEventHandler(async (event) => {
     page,
   })
 
-  const response = await $fetch.raw(url).catch((error) => error.data)
+  const response = await $fetch.raw(url).catch(error => error.data)
   const totalPages = Number(response.headers.get('X-WP-TotalPages'))
 
   const parsed = AppPostersSchema.safeParse(response._data)
@@ -57,7 +56,7 @@ export default defineEventHandler(async (event) => {
     if (item._embedded['wp:term']) {
       const tags = item._embedded['wp:term'].flat()
       const subjects = getTagsByType(tags, Taxonomy.Subject)
-      subjectIds = subjects.map((subject) => subject.id)
+      subjectIds = subjects.map(subject => subject.id)
     }
 
     return {

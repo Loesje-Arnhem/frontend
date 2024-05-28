@@ -1,5 +1,5 @@
-import { Taxonomy } from '~/enums/taxonomy'
 import { useSelectedTags } from './useState'
+import { Taxonomy } from '~/enums/taxonomy'
 
 export const useTags = () => {
   const selectedTags = useSelectedTags()
@@ -7,8 +7,8 @@ export const useTags = () => {
   const getSelectedTagsByTaxonomy = (
     taxonomy: Taxonomy.Source | Taxonomy.Subject,
   ) => {
-    const tags = selectedTags.value.filter((tag) => tag.type === taxonomy)
-    return tags.map((tag) => tag.id)
+    const tags = selectedTags.value.filter(tag => tag.type === taxonomy)
+    return tags.map(tag => tag.id)
   }
 
   const selectedSourceIds = computed(() => {

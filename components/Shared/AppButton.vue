@@ -29,7 +29,8 @@ const cssClasses = computed(() => {
   const classes = []
   if (props.isPrimary) {
     classes.push('btn')
-  } else {
+  }
+  else {
     classes.push('btn-outline')
   }
   if (props.loading) {
@@ -52,8 +53,16 @@ const generatedType = computed(() => {
 </script>
 
 <template>
-  <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
-    <app-loader v-if="loading" class="loader" />
+  <nuxt-link
+    v-if="to"
+    :to="to"
+    :class="cssClasses"
+    :type="generatedType"
+  >
+    <app-loader
+      v-if="loading"
+      class="loader"
+    />
 
     <span class="title"><slot /></span>
   </nuxt-link>
@@ -66,7 +75,10 @@ const generatedType = computed(() => {
     :disabled="loading === true ? 'true' : undefined"
     :href="href"
   >
-    <app-loader v-if="loading" class="loader" />
+    <app-loader
+      v-if="loading"
+      class="loader"
+    />
     <span class="title"><slot /></span>
   </component>
 </template>

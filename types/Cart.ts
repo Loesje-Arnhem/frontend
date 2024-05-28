@@ -1,9 +1,9 @@
-import { z } from 'zod'
-import {
+import type { z } from 'zod'
+import type { FeaturedImage } from './Content'
+import type {
   BillingAdressSchema,
   ShippingAdressSchema,
 } from '~/server/types/CartSchema'
-import type { FeaturedImage } from './Content'
 
 export type ShippingAddress = z.infer<typeof ShippingAdressSchema>
 export type BillingAdress = z.infer<typeof BillingAdressSchema>

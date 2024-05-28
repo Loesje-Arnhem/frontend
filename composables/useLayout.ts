@@ -18,7 +18,7 @@ export const useLayout = () => {
   }
 
   const remove = (menuId: string) => {
-    openMenus.value = openMenus.value.filter((menu) => menu !== menuId)
+    openMenus.value = openMenus.value.filter(menu => menu !== menuId)
   }
 
   const clear = () => {

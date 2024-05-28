@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const cookies = parseCookies(event)
   const response = await $fetch.raw(`${woocommerceApiUrl}cart`, {
     headers: {
-      nonce: cookies.nonce,
+      'nonce': cookies.nonce,
       'cart-token': cookies.token,
     },
   })

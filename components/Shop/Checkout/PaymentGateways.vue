@@ -24,7 +24,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <form-fieldset v-if="data?.length" :title="$t('paymentGateways')">
+  <form-fieldset
+    v-if="data?.length"
+    :title="$t('paymentGateways')"
+  >
     <ul class="list">
       <li
         v-for="paymentGateway in data"
@@ -39,13 +42,16 @@ onMounted(() => {
           class="input"
           :checked="paymentGateway.id == modelValue"
           @change="$emit('update:modelValue', paymentGateway.id)"
-        />
+        >
         <!-- <div
           v-if="paymentGateway.icon"
           class="icon"
           v-html="paymentGateway.icon"
         /> -->
-        <label :for="`payment-${paymentGateway.id}`" class="label">
+        <label
+          :for="`payment-${paymentGateway.id}`"
+          class="label"
+        >
           {{ paymentGateway.title }}
         </label>
       </li>

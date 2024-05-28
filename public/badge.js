@@ -10,7 +10,8 @@ const fetchTotalPosts = async () => {
     }
     const { total } = await response.json()
     return Number(total)
-  } catch (error) {
+  }
+  catch (error) {
     // console.error(error)
   }
 }
