@@ -15,7 +15,7 @@
 
 .header {
   display: flex;
-  padding: 0.5em 0;
+  padding-bottom: 0.5em;
   border-bottom: 2px solid var(--color-black);
   margin-bottom: 1em;
 
