@@ -1,25 +1,25 @@
 <script lang="ts" setup>
-import type { IProductListItem } from '~/types/Content'
+import type { IProductListItem } from "~/types/Content";
 
-const config = useRuntimeConfig()
+const config = useRuntimeConfig();
 
 const props = defineProps<{
-  product: IProductListItem
-}>()
+  product: IProductListItem;
+}>();
 
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 
 const url = computed(() => {
   if (config.public.includeShop) {
     return localePath({
-      name: 'shop-product',
+      name: "shop-product",
       params: {
         slug: props.product.slug,
       },
-    })
+    });
   }
-  return props.product.url
-})
+  return props.product.url;
+});
 </script>
 
 <template>
@@ -52,7 +52,7 @@ const url = computed(() => {
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .product-tile {
   padding: 0 0 0.5em;

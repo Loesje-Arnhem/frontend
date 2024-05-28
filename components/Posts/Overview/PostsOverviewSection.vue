@@ -55,7 +55,10 @@ const loadMore = () => {
       </h1>
       <posts-overview-list :posts="data.items" />
       <center-wrapper v-if="data.hasNextPage">
-        <load-more-by-click :loading="pending" @load-more="loadMore" />
+        <load-more-by-click
+          :loading="pending"
+          @load-more="loadMore"
+        />
       </center-wrapper>
     </center-wrapper>
   </section>

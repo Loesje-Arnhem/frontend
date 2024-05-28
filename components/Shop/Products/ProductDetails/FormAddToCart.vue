@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { IProduct } from '~/types/Content'
 import type { Option } from '~/types/Option'
+
 const props = defineProps<{
   product: IProduct
 }>()
@@ -37,9 +38,11 @@ const addToCart = async () => {
         name: 'shop-cart',
       }),
     )
-  } catch (error: any) {
+  }
+  catch (error: any) {
     errorMessage.value = error.data.data.message
-  } finally {
+  }
+  finally {
     pending.value = false
   }
 }
@@ -92,8 +95,8 @@ const options: Option[] = [...Array(10).keys()].map((index) => {
         />
         <div
           v-if="
-            product.attributes.length &&
-            selectedAttributes.length === product.attributes.length
+            product.attributes.length
+              && selectedAttributes.length === product.attributes.length
           "
         >
           <div

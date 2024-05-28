@@ -6,11 +6,10 @@ import {
   PostersQuerySchema,
 } from '~/server/schemas/PostersSchema'
 
-
 export default defineEventHandler(async (event) => {
   // const storage = useStorage('redis')
 
-  const query = await getValidatedQuery(event, (body) =>
+  const query = await getValidatedQuery(event, body =>
     PostersQuerySchema.safeParse(body),
   )
 
@@ -50,7 +49,7 @@ export default defineEventHandler(async (event) => {
     dateAfter,
   })
 
-  const response = await $fetch.raw(url).catch((error) => error.data)
+  const response = await $fetch.raw(url).catch(error => error.data)
   const totalPages = Number(response.headers.get('X-WP-TotalPages'))
 
   const parsed = PostersSchema.safeParse(response._data)

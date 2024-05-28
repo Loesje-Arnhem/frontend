@@ -14,8 +14,8 @@ const link = computed(() => {
 })
 
 onMounted(() => {
-  /* @ts-ignore:next-line */
-  supportsShareAPI.value = process.client && window?.navigator?.canShare
+  /* @ts-expect-error:next-line */
+  supportsShareAPI.value = import.meta.client && window?.navigator?.canShare
 })
 const twitter = computed(() => {
   return `https://twitter.com/share?text=${props.title}&url=${link.value}`
@@ -37,7 +37,10 @@ const share = () => {
 </script>
 
 <template>
-  <app-button v-if="supportsShareAPI" @click="share">
+  <app-button
+    v-if="supportsShareAPI"
+    @click="share"
+  >
     Deze poster delen
   </app-button>
   <social-media-links

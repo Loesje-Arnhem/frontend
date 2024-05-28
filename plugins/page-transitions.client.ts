@@ -15,16 +15,17 @@ export default defineNuxtPlugin(() => {
   })
   router.beforeEach((to, from, next) => {
     if (
-      !process.client ||
-      !from.name ||
-      navigateByBrowserButtons ||
-      // @ts-ignore
-      !document.startViewTransition ||
-      to.name !== posterDetailsRoute?.name
+      !import.meta.client
+      || !from.name
+      || navigateByBrowserButtons
+      // @ts-expect-error
+      || !document.startViewTransition
+      || to.name !== posterDetailsRoute?.name
     ) {
       navigateByBrowserButtons = false
       next()
-    } else {
+    }
+    else {
       // back buttontrigger does not work yet
       const navigateToPoster = true
 
@@ -36,7 +37,8 @@ export default defineNuxtPlugin(() => {
           `.image-wrapper-tile[data-slug=${to.params.slug}]`,
         )
         setStyles(tile)
-      } else {
+      }
+      else {
         details = document.querySelector(
           `.image-wrapper-details[data-slug=${from.params.slug}]`,
         )
@@ -72,7 +74,8 @@ export default defineNuxtPlugin(() => {
           )
           details = element
           updateDOMOnNextPage(element)
-        } else {
+        }
+        else {
           const element = await waitForElement(
             `.image-wrapper-tile[data-slug=${from.params.slug}]`,
           )

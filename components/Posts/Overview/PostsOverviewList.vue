@@ -7,7 +7,10 @@ defineProps<{
 </script>
 
 <template>
-  <list-animation class="list" v-if="posts.length">
+  <list-animation
+    v-if="posts.length"
+    class="list"
+  >
     <post-list-item
       v-for="post in posts"
       :key="post.id"

@@ -15,7 +15,8 @@ const mouseDown = (event: MouseEvent) => {
   const target = event.target as Element
   if (target.nodeName === 'A' || target.parentNode?.nodeName === 'a') {
     down.value = null
-  } else {
+  }
+  else {
     down.value = +new Date()
   }
 }
@@ -33,7 +34,11 @@ const mouseUp = () => {
 </script>
 
 <template>
-  <li class="list-item" @mousedown.left="mouseDown" @mouseup.left="mouseUp">
+  <li
+    class="list-item"
+    @mousedown.left="mouseDown"
+    @mouseup.left="mouseUp"
+  >
     <slot />
   </li>
 </template>

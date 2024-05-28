@@ -27,7 +27,10 @@ const v$ = useVuelidate(rules, props)
 </script>
 
 <template>
-  <form-fieldset title="Factuurgegevens" class="fields">
+  <form-fieldset
+    title="Factuurgegevens"
+    class="fields"
+  >
     <input-text-field
       :id="`${id}-firstName`"
       :model-value="firstName"

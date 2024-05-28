@@ -7,7 +7,6 @@ defineProps<{
 
 const { t } = useI18n()
 
-const handleError = () => clearError({ redirect: '/' })
 useHead({
   title: t('errors.error404'),
 })
@@ -27,6 +26,9 @@ const content = `
 
 <template>
   <nuxt-layout>
-    <app-content title="Huh? Pagina? Welke pagina?" :content="content" />
+    <app-content
+      title="Huh? Pagina? Welke pagina?"
+      :content="content"
+    />
   </nuxt-layout>
 </template>

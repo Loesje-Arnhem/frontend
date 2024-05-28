@@ -1,6 +1,6 @@
-import { Cart } from '~/types/Cart'
 import { CartSchema } from '../types/CartSchema'
-import { FeaturedImage } from '~/types/Content'
+import type { Cart } from '~/types/Cart'
+import type { FeaturedImage } from '~/types/Content'
 
 export const createCart = (response: unknown) => {
   const parsed = CartSchema.safeParse(response)

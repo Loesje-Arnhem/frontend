@@ -1,6 +1,4 @@
 <script setup lang="ts">
-/* eslint-disable vue/component-name-in-template-casing */
-
 const { title, socialMedia } = useAppConfig()
 const {
   twitterUrl,
@@ -28,13 +26,13 @@ useSchemaOrg([
     name: title,
     logo: {
       '@type': 'ImageObject',
-      inLanguage: 'nl-NL',
+      'inLanguage': 'nl-NL',
       '@id': 'https://www.loesje.nl/#/schema/logo/image/',
-      url: 'https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png',
-      contentUrl: 'https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png',
-      width: 260,
-      height: 150,
-      caption: title,
+      'url': 'https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png',
+      'contentUrl': 'https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png',
+      'width': 260,
+      'height': 150,
+      'caption': title,
     },
     image: {
       '@id': 'https://www.loesje.nl/#/schema/logo/image/',
@@ -62,37 +60,50 @@ useHead({
 
 <template>
   <div>
-    <Html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir">
-      <Head>
-        <template v-for="link in head.link" :key="link.id">
-          <Link
+    <html
+      :lang="head.htmlAttrs?.lang"
+      :dir="head.htmlAttrs?.dir"
+    >
+      <head>
+        <template
+          v-for="link in head.link"
+          :key="link.id"
+        >
+          <link
             :id="link.id"
             :rel="link.rel"
             :href="link.href"
             :hreflang="link.hreflang"
-          />
+          >
         </template>
 
-        <template v-for="meta in head.meta" :key="meta.id">
-          <Meta
+        <template
+          v-for="meta in head.meta"
+          :key="meta.id"
+        >
+          <meta
             :id="meta.id"
             :property="meta.property"
             :content="meta.content"
-          />
+          >
         </template>
-      </Head>
-      <Body>
+      </head>
+      <body>
         <vite-pwa-manifest />
         <div class="page">
           <header-top class="page-header-top sa-hidden" />
           <the-header class="page-header sa-hidden" />
-          <main id="content" class="main" tabindex="-1">
+          <main
+            id="content"
+            class="main"
+            tabindex="-1"
+          >
             <slot />
           </main>
           <the-footer class="page-footer sa-hidden" />
         </div>
-      </Body>
-    </Html>
+      </body>
+    </html>
   </div>
 </template>
 

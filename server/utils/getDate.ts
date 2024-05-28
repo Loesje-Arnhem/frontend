@@ -1,7 +1,8 @@
 const addTrailingZeroToValue = (value: number) => {
   if (value < 10) {
     return `0${value}`
-  } else {
+  }
+  else {
     return value.toString()
   }
 }

@@ -1,5 +1,4 @@
 import { createCart } from '~/server/utils/createCart'
-import { CartSchema } from '~~/server/types/CartSchema'
 
 export default defineEventHandler(async (event) => {
   const { woocommerceApiUrl } = useAppConfig()
@@ -14,7 +13,7 @@ export default defineEventHandler(async (event) => {
     },
     method: 'POST',
     headers: {
-      nonce: cookies.nonce,
+      'nonce': cookies.nonce,
       'cart-token': cookies.token,
     },
   })

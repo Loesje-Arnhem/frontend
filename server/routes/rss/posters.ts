@@ -1,7 +1,8 @@
-import RSS, { EnclosureObject } from 'rss'
+import type { EnclosureObject } from 'rss'
+import RSS from 'rss'
 import type { FeaturedImageResponseType } from '@/server/types/FeaturedImageResponseType'
 import { Taxonomy } from '~/enums/taxonomy'
-import { ITag } from '~/types/Content'
+import type { ITag } from '~/types/Content'
 
 const getPosterDate = (date: string) => {
   const pattern = /(\d{4})(\d{2})(\d{2})/ // date via posters is 24/03/2010
@@ -88,7 +89,7 @@ export default defineEventHandler(async (event) => {
       author: 'Loesje',
       description: item.title.rendered,
       enclosure,
-      categories: subjects.map((s) => s.title),
+      categories: subjects.map(s => s.title),
     })
   })
 
