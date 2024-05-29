@@ -44,7 +44,7 @@ export default defineEventHandler(async () => {
 
   const getProductCategoryItems: Promise<MenuItemWithChildren[]> = new Promise((resolve) => {
     $fetch('/api/product-categories/product-categories').then((response) => {
-      const shopUrl = config.public.includeShop ? '/' : wpUrl
+      const shopUrl = config.public.includeShop ? '' : wpUrl
       const children: MenuItem[] = response.map((item) => {
         return {
           id: item.id,
