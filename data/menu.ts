@@ -56,8 +56,8 @@ export const mainNavigation = [
       },
       {
         id: '/doe-mee/donateur/',
-        url: '/doe-mee/donateur/',
-        title: 'Donateur',
+        url: '/doe-mee/vrienden-van-loesje/',
+        title: 'Steun Loesje',
       },
       {
         id: '/doe-mee/vacatures/',
