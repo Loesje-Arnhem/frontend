@@ -26,7 +26,7 @@ const localePath = useLocalePath()
             localePath({
               name: 'shop-product-category',
               params: {
-                category: productCategory.slug,
+                category: productCategory.url,
               },
             })
           "
@@ -35,7 +35,7 @@ const localePath = useLocalePath()
           <span v-html="productCategory.title" />
         </nuxt-link>
         <ul
-          v-if="productCategory.children.length"
+          v-if="productCategory.children?.length"
           class="category-list"
         >
           <li
@@ -48,8 +48,8 @@ const localePath = useLocalePath()
                 localePath({
                   name: 'shop-product-category',
                   params: {
-                    category: productCategory.slug,
-                    subcategory: child.slug,
+                    category: productCategory.url,
+                    subcategory: child.url,
                   },
                 })
               "
