@@ -3,6 +3,7 @@ import type { MenuItemWithChildren, MenuItem } from '~/types/MenuItem'
 
 export default defineEventHandler(async () => {
   const { wpUrl } = useAppConfig()
+  const config = useRuntimeConfig()
 
   const baseItems: MenuItemWithChildren[] = [
     { title: 'Home', id: 1, url: '/' },
@@ -26,6 +27,7 @@ export default defineEventHandler(async () => {
             id: subItem.ID,
             title: subItem.title,
             url: subItem.url.replace(wpUrl, ''),
+
           }
         })
 
@@ -42,15 +44,17 @@ export default defineEventHandler(async () => {
 
   const getProductCategoryItems: Promise<MenuItemWithChildren[]> = new Promise((resolve) => {
     $fetch('/api/product-categories/product-categories').then((response) => {
+      const shopUrl = config.public.includeShop ? '/' : wpUrl
       const children: MenuItem[] = response.map((item) => {
         return {
           id: item.id,
           title: item.title,
-          url: `/winkeltje/categorie/${item.url}/`,
+          url: `${shopUrl}/winkeltje/categorie/${item.url}/`,
+          external: !config.public.includeShop,
         }
       })
 
-      resolve([{ title: 'Winkeltje', id: 3, url: '/winkeltje/', children: children }])
+      resolve([{ title: 'Winkeltje', id: 3, url: `${shopUrl}/winkeltje/`, external: !config.public.includeShop, children: children }])
     })
   })
 

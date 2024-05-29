@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { mainNavigation as items } from '~/data/menu'
-
 const { data } = await useAsyncData('menu', () => $fetch('/api/menu'))
 
 const menu: Ref<HTMLAnchorElement | null> = ref(null)
