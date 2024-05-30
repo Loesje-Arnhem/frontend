@@ -19,11 +19,12 @@ export default defineEventHandler(async (event) => {
     bodySchema.safeParse(body),
   )
 
+
   if (!formData.success) {
     throw createError({
       statusCode: 400,
       data: {
-        message: 'Something went wrong',
+        message: formData.error.issues,
       },
     })
   }
@@ -65,7 +66,7 @@ export default defineEventHandler(async (event) => {
           email: billing_address.email,
         },
         shipping_address: {
-          first_name: shipping_address.first_name,
+          first_name: shipping_address.first_name + 'aa',
           last_name: shipping_address.last_name,
           company: shipping_address.company,
           address_1: shipping_address.address_1,
@@ -75,6 +76,14 @@ export default defineEventHandler(async (event) => {
           postcode: shipping_address.postcode,
           country: shipping_address.country,
         },
+        extensions: {
+          address: {
+            "billing_address_house_number": billing_address.houseNumber,
+            "billing_address_house_number_suffix": billing_address.houseNumberSuffix,
+            "shipping_address_house_number": shipping_address.houseNumber,
+            "shipping_address_house_number_suffix": shipping_address.houseNumberSuffix,
+          }
+        }
       },
       method: 'POST',
 
@@ -90,8 +99,9 @@ export default defineEventHandler(async (event) => {
       throw createError({
         statusCode: 400,
         data: {
-          message: 'Something went wrong',
+          message: parsed.error.issues,
         },
+
       })
     }
 

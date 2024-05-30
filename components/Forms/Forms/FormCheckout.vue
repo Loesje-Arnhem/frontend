@@ -4,21 +4,23 @@ import useVuelidate from '@vuelidate/core'
 import type { NuxtError } from '#app'
 import type { BillingAdress, ShippingAddress } from '~/types/Cart'
 
-const billing = reactive<BillingAdress>({
-  first_name: '',
-  last_name: '',
+const billing = reactive({
+  first_name: 'Michiel',
+  last_name: 'Koning',
   company: '',
-  address_1: '',
+  address_1: 'Oudlaan',
   address_2: '',
-  city: '',
+  city: 'Wageningen',
   state: '',
-  postcode: '',
-  country: '',
-  email: '',
-  phone: '',
+  postcode: '6708RC',
+  country: 'NL',
+  email: 'mail@michielkoning.nl',
+  phone: '06123456789',
+  houseNumber: '35',
+  houseNumberSuffix: 'b'
 })
 
-const shipping = reactive<ShippingAddress>({
+const shipping = reactive({
   first_name: '',
   last_name: '',
   company: '',
@@ -29,6 +31,9 @@ const shipping = reactive<ShippingAddress>({
   postcode: '',
   country: '',
   phone: '',
+  houseNumber: '',
+  houseNumberSuffix: ''
+
 })
 
 const v$ = useVuelidate()
@@ -84,10 +89,10 @@ const submit = async () => {
   }
 }
 
-if (cartState.value) {
-  Object.assign(billing, cartState.value.billing_address)
-  Object.assign(shipping, cartState.value.shipping_address)
-}
+// if (cartState.value) {
+//   Object.assign(billing, cartState.value.billing_address)
+//   Object.assign(shipping, cartState.value.shipping_address)
+// }
 </script>
 
 <template>
@@ -108,8 +113,8 @@ if (cartState.value) {
       id="billing"
       v-model:city="billing.city"
       v-model:street="billing.address_1"
-      v-model:houseNumber="billing.address_2"
-      v-model:houseNumberSuffix="houseNumberSuffix"
+      v-model:houseNumber="billing.houseNumber"
+      v-model:houseNumberSuffix="billing.houseNumberSuffix"
       v-model:postcode="billing.postcode"
       v-model:country="billing.country"
       v-model:address1="billing.address_1"
@@ -131,8 +136,8 @@ if (cartState.value) {
         id="shipping"
         v-model:city="shipping.city"
         v-model:street="shipping.address_1"
-        v-model:houseNumber="shipping.address_2"
-        v-model:houseNumberSuffix="houseNumberSuffix"
+        v-model:houseNumber="shipping.houseNumber"
+        v-model:houseNumberSuffix="shipping.houseNumberSuffix"
         v-model:postcode="shipping.postcode"
         v-model:country="shipping.country"
         v-model:address1="shipping.address_1"

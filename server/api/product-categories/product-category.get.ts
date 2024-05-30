@@ -22,6 +22,8 @@ export default defineEventHandler(async (event) => {
     isCommerce: true,
   })
 
+
+
   const response = await $fetch<ResponseProductCategory>(url)
   if (!response.length) {
     return null

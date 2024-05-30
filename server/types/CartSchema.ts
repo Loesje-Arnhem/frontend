@@ -29,6 +29,8 @@ export const ShippingAdressSchema = z.object({
   postcode: z.string(),
   country: z.string(),
   phone: z.string(),
+  houseNumber: z.string().optional(),
+  houseNumberSuffix: z.string().optional()
 })
 
 export const BillingAdressSchema = z.object({
@@ -43,6 +45,8 @@ export const BillingAdressSchema = z.object({
   country: z.string(),
   email: z.string(),
   phone: z.string(),
+  houseNumber: z.string().optional(),
+  houseNumberSuffix: z.string().optional()
 })
 
 export const CartItemScheme = z.object({
@@ -212,4 +216,12 @@ export const CheckoutSchema = z.object({
     payment_details: z.array(z.unknown()),
     redirect_url: z.string(),
   }),
+  // extensions: z.object({
+  //   address: z.object({
+  //     billing_address_house_number: z.string(),
+  //     billing_address_house_number_suffix: z.string(),
+  //     shipping_address_house_number: z.string(),
+  //     shipping_address_house_number_suffix: z.string(),
+  //   })
+  // })
 })

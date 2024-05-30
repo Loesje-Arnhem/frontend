@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
       'cart-token': cookies.token,
     },
   })
+  console.log(woocommerceApiUrl)
   const nonce = response.headers.get('nonce')
   const cartToken = response.headers.get('cart-token')
 
