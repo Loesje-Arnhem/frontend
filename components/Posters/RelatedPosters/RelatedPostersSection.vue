@@ -50,7 +50,7 @@ const title = props.title || t('posters')
     </center-wrapper>
     <center-wrapper class="btn-wrapper">
       <app-button :to="localePath({ name: 'posters' })">
-        {{ $t('viewAllPosters') }}
+        {{ $t("viewAllPosters") }}
       </app-button>
     </center-wrapper>
   </section>
@@ -69,4 +69,3 @@ const title = props.title || t('posters')
   text-align: right;
 }
 </style>
-import type { backgroundColor } from '~/data/siteDetails';

@@ -107,7 +107,7 @@ export default ({
   if (type === 'products') {
     url.searchParams.set('orderby', 'menu_order')
     url.searchParams.set('order', 'asc')
-    url.searchParams.set('stock_status', 'instock')
+    // url.searchParams.set('stock_status', 'instock')
   }
 
   if (featured) {
@@ -117,6 +117,5 @@ export default ({
   if (categoryId) {
     url.searchParams.set('category', categoryId)
   }
-  // console.log(url.href)
   return url.toString()
 }
