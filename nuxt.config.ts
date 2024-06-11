@@ -1,7 +1,6 @@
 import {
   categories,
   themeColor,
-  baseUrl,
   facebook,
   backgroundColor,
   title,
@@ -41,6 +40,9 @@ export default defineNuxtConfig({
     public: {
       apiUrl: '',
     },
+    i18n: {
+      baseUrl: '',
+    }
   },
 
   sitemap: {
@@ -228,7 +230,6 @@ export default defineNuxtConfig({
   css: ['~/assets/css/base.css'],
 
   i18n: {
-    baseUrl,
     defaultLocale: 'nl',
     lazy: true,
     langDir: 'locales',
