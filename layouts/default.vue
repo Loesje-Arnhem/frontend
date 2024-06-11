@@ -90,6 +90,7 @@ useHead({
       </head>
       <body>
         <vite-pwa-manifest />
+        <nuxt-route-announcer />
         <div class="page">
           <header-top class="page-header-top sa-hidden" />
           <the-header class="page-header sa-hidden" />
