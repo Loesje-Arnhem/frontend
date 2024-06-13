@@ -127,13 +127,6 @@ export type IPosts = {
   edges: IPostNode[]
 }
 
-export type IProductCategoryList = Array<
-  IBase & {
-    slug: string
-    children: Array<IBase & { slug: string }>
-  }
->
-
 export type IProductCategory = IBase & {
   content: string
 }

@@ -1,5 +1,5 @@
 export type MenuItem = {
-  id: string
+  id: number
   title: string
   url: string
   external?: boolean

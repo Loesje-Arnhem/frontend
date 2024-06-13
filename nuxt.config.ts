@@ -39,6 +39,7 @@ export default defineNuxtConfig({
     },
     public: {
       apiUrl: '',
+      includeShop: false,
     },
     i18n: {
       baseUrl: '',
