@@ -51,6 +51,9 @@ useSchemaOrg([
   }),
 ])
 
+const config = useRuntimeConfig()
+
+
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} | Loesje` : 'Loesje'
@@ -60,36 +63,37 @@ useHead({
 
 <template>
   <div>
-    <html
+    <Html
       :lang="head.htmlAttrs?.lang"
       :dir="head.htmlAttrs?.dir"
     >
-      <head>
+      <Head>
         <template
           v-for="link in head.link"
           :key="link.id"
         >
-          <link
+          <Link
             :id="link.id"
             :rel="link.rel"
             :href="link.href"
             :hreflang="link.hreflang"
-          >
+          />
         </template>
 
         <template
           v-for="meta in head.meta"
           :key="meta.id"
         >
-          <meta
+          <Meta
             :id="meta.id"
             :property="meta.property"
             :content="meta.content"
-          >
+          />
         </template>
-      </head>
-      <body>
+      </Head>
+      <Body>
         <vite-pwa-manifest />
+        <nuxt-route-announcer />
         <div class="page">
           <header-top class="page-header-top sa-hidden" />
           <the-header class="page-header sa-hidden" />
@@ -102,8 +106,8 @@ useHead({
           </main>
           <the-footer class="page-footer sa-hidden" />
         </div>
-      </body>
-    </html>
+      </Body>
+    </Html>
   </div>
 </template>
 
