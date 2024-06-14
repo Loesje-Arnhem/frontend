@@ -21,7 +21,7 @@
     "@types/workbox-window": "^4.3.4",
     "@vite-pwa/nuxt": "^0.8.0",
     "nuxt": "^3.12.1",
-    "nuxt-schema-org": "^3.3.6",
+    "nuxt-schema-org": "^3.3.7",
     "nuxt-svgo": "^4.0.1",
     "postcss-html": "^1.7.0",
     "postcss-mixins": "^10.0.1",
