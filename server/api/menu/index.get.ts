@@ -24,7 +24,7 @@ export default defineEventHandler(async () => {
 
         const children = subItems.map((subItem) => {
           return {
-            id: subItem.ID,
+            id: subItem.db_id,
             title: subItem.title,
             url: subItem.url.replace(wpUrl, ''),
 
@@ -32,7 +32,7 @@ export default defineEventHandler(async () => {
         })
 
         return {
-          id: item.ID,
+          id: item.db_id,
           title: item.title,
           url: item.url.replace(wpUrl, ''),
           children,
