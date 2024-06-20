@@ -18,7 +18,10 @@ defineProps<{
         </div>
       </div>
       <h2>Beschrijving</h2>
-      <div class="description" v-html="product.description" />
+      <div
+        class="description"
+        v-html="product.description"
+      />
     </div>
   </div>
 </template>

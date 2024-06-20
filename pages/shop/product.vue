@@ -43,8 +43,13 @@ defineProduct({
 <template>
   <shop-wrapper v-if="data">
     <product-details :product="data" />
-    <section v-if="data.relatedProductIds" aria-labelledby="featured-products">
-      <h1 id="featured-products">Gerelateerde producten</h1>
+    <section
+      v-if="data.relatedProductIds"
+      aria-labelledby="featured-products"
+    >
+      <h1 id="featured-products">
+        Gerelateerde producten
+      </h1>
       <product-list :product-ids="data.relatedProductIds" />
     </section>
   </shop-wrapper>

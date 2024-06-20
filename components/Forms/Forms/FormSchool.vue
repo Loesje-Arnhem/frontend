@@ -58,9 +58,11 @@ const submit = async () => {
       }).toString(),
     })
     submitted.value = true
-  } catch (err) {
+  }
+  catch (err) {
     error.value = t('formError')
-  } finally {
+  }
+  finally {
     pending.value = false
   }
 }
@@ -68,7 +70,8 @@ const submit = async () => {
 const errorMessage = computed(() => {
   if (v$.value.$error) {
     return t('invalidForm')
-  } else if (error.value) {
+  }
+  else if (error.value) {
     return error.value
   }
   return null
@@ -78,8 +81,13 @@ const errorMessage = computed(() => {
 <template>
   <center-wrapper size="md">
     <section aria-label-by="form-title">
-      <h1 id="form-title">Vraag de onderwijsmodule aan</h1>
-      <div v-if="submitted" class="success">
+      <h1 id="form-title">
+        Vraag de onderwijsmodule aan
+      </h1>
+      <div
+        v-if="submitted"
+        class="success"
+      >
         <p>Hoi {{ formData.name }}</p>
         <p>
           Wat tof dat je interesse hebt in mijn onderwijsmodule. Ik heb je
@@ -98,9 +106,15 @@ const errorMessage = computed(() => {
         button-title="Aanmelden"
         @submit="submit"
       >
-        <input name="bot-field" type="hidden" />
+        <input
+          name="bot-field"
+          type="hidden"
+        >
 
-        <form-fieldset title="Aanvrager" class="fieldset-user">
+        <form-fieldset
+          title="Aanvrager"
+          class="fieldset-user"
+        >
           <input-text-field
             id="name"
             v-model="formData.name"
@@ -116,18 +130,18 @@ const errorMessage = computed(() => {
             title="Welk vak geef je?"
           />
           <input-text-field
-            name="email"
             id="email"
             v-model="formData.email"
+            name="email"
             :errors="v$.email.$errors"
             title="E-mailadres"
             type="email"
             autocomplete="email"
           />
           <input-text-field
-            name="phoneNumber"
             id="phoneNumber"
             v-model="formData.phoneNumber"
+            name="phoneNumber"
             :errors="v$.phoneNumber.$errors"
             title="Telefoonnummer"
             type="tel"
@@ -135,7 +149,10 @@ const errorMessage = computed(() => {
           />
         </form-fieldset>
 
-        <form-fieldset title="School" class="fieldset-address">
+        <form-fieldset
+          title="School"
+          class="fieldset-address"
+        >
           <div class="school-name">
             <input-text-field
               id="schoolName"
@@ -192,7 +209,10 @@ const errorMessage = computed(() => {
           />
         </form-fieldset>
 
-        <form-fieldset title="Klas" class="fieldset-class">
+        <form-fieldset
+          title="Klas"
+          class="fieldset-class"
+        >
           <input-text-field
             id="year"
             v-model="formData.year"

@@ -5,7 +5,7 @@ import { PosterQuerySchema, PosterSchema } from '~/server/schemas/PosterSchema'
 export default defineEventHandler(async (event) => {
   // const storage = useStorage('redis')
 
-  const query = await getValidatedQuery(event, (body) =>
+  const query = await getValidatedQuery(event, body =>
     PosterQuerySchema.safeParse(body),
   )
 
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     throw query.error.issues
   }
 
-  const key = getStorageKey(query.data, 'poster')
+  // const key = getStorageKey(query.data, 'poster')
 
   // if (await storage.getItem(key)) {
   //   return await storage.getItem(key)

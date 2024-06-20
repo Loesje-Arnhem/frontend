@@ -1,6 +1,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import type { ValidationArgs } from '@vuelidate/core'
-import { Endpoints } from '~/enums/endpoints'
+import type { Endpoints } from '~/enums/endpoints'
 
 export default (
   rules: object,
@@ -42,7 +42,8 @@ export default (
       if (response === 1) {
         submitted.value = true
       }
-    } finally {
+    }
+    finally {
       loading.value = false
     }
   }

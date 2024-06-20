@@ -9,8 +9,14 @@ defineProps<{
 <template>
   <span>
     <span v-html="item.title" />
-    <ul v-if="item.variation.length" class="list">
-      <li v-for="variation in item.variation" :key="variation.attribute">
+    <ul
+      v-if="item.variation.length"
+      class="list"
+    >
+      <li
+        v-for="variation in item.variation"
+        :key="variation.attribute"
+      >
         {{ variation.attribute }}:
         <span v-html="variation.value" />
       </li>

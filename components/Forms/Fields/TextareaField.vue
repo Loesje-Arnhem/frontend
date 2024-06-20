@@ -34,12 +34,11 @@ const model = defineModel({ required: true })
   >
     <textarea
       :id
-      :name
       v-bind="$attrs"
       v-model="model"
+      :name
       @keyup.down="$emit('keyup-down')"
       @keyup.up="$emit('keyup-up')"
-      @input="$emit('input', $event.target.value)"
       @change="$emit('change', $event.target.value)"
       @blur="$emit('blur')"
     />

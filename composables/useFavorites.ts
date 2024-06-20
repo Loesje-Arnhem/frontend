@@ -11,12 +11,12 @@ export const useFavorites = () => {
   }
 
   const remove = (posterId: number) => {
-    favorites.value = favorites.value.filter((id) => id !== posterId)
+    favorites.value = favorites.value.filter(id => id !== posterId)
     updateStorage()
   }
 
   const updateStorage = () => {
-    if (!process.client) {
+    if (!import.meta.client) {
       return
     }
 
@@ -24,7 +24,7 @@ export const useFavorites = () => {
   }
 
   const getFromStorage = () => {
-    if (!process.client) {
+    if (!import.meta.client) {
       return
     }
     const storedFavorites = window.localStorage.getItem(FAVORITES_KEY)

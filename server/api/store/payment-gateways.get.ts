@@ -37,9 +37,10 @@ export default defineEventHandler(async () => {
     }
 
     const orderedItems = sortByOrder(parsed.data)
-    const enabledItems = orderedItems.filter((item) => item.enabled)
+    const enabledItems = orderedItems.filter(item => item.enabled)
     return enabledItems
-  } catch (error) {
+  }
+  catch (error) {
     throw createError({
       statusCode: 400,
       data: {

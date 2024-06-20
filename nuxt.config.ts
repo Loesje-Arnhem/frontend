@@ -1,7 +1,6 @@
 import {
   categories,
   themeColor,
-  baseUrl,
   facebook,
   backgroundColor,
   title,
@@ -41,7 +40,11 @@ export default defineNuxtConfig({
     },
     public: {
       apiUrl: '',
+      includeShop: false,
     },
+    i18n: {
+      baseUrl: '',
+    }
   },
 
   sitemap: {
@@ -229,7 +232,6 @@ export default defineNuxtConfig({
   css: ['~/assets/css/base.css'],
 
   i18n: {
-    baseUrl,
     defaultLocale: 'nl',
     lazy: true,
     langDir: 'locales',
@@ -246,7 +248,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'nuxt-svgo',
     '@vite-pwa/nuxt',
-    // '@nuxtjs/eslint-module',
+    '@nuxt/eslint',
     // '@nuxtjs/stylelint-module',
     '@nuxt/image',
     'nuxt-schema-org',
@@ -257,7 +259,7 @@ export default defineNuxtConfig({
     plugins: {
       'postcss-import': {},
       'postcss-url': {},
-      cssnano: true,
+      'cssnano': true,
       'postcss-mixins': {
         mixinsDir: './assets/css/mixins/',
       },
@@ -269,6 +271,11 @@ export default defineNuxtConfig({
           'media-query-ranges': true,
         },
       },
+    },
+  },
+  eslint: {
+    config: {
+      stylistic: true, // <---
     },
   },
 
@@ -295,7 +302,7 @@ export default defineNuxtConfig({
       name: title,
       orientation: 'portrait-primary',
       description:
-        "Loesje's posters vind je overal. Met haar positief-kritische teksten wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan bazen, politici of ouders. Door haar posters op straat en online te verspreiden, geeft Loesje de wereld een zetje in de goede richting.",
+        'Loesje\'s posters vind je overal. Met haar positief-kritische teksten wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan bazen, politici of ouders. Door haar posters op straat en online te verspreiden, geeft Loesje de wereld een zetje in de goede richting.',
       short_name: title,
       edge_side_panel: {},
       dir: 'ltr',

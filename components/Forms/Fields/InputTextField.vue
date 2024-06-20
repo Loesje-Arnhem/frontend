@@ -27,7 +27,12 @@ const model = defineModel({ required: true })
 </script>
 
 <template>
-  <form-field :id :errors="errors" :title="title" :description="description">
+  <form-field
+    :id
+    :errors="errors"
+    :title="title"
+    :description="description"
+  >
     <input
       v-bind="$attrs"
       :id
@@ -39,6 +44,6 @@ const model = defineModel({ required: true })
       @keyup.up="$emit('keyup-up')"
       @change="$emit('change', $event.target.value)"
       @blur="$emit('blur')"
-    />
+    >
   </form-field>
 </template>

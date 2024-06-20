@@ -10,7 +10,10 @@ defineProps<{
 </script>
 
 <template>
-  <ul v-if="images.length > 1" class="thumbs">
+  <ul
+    v-if="images.length > 1"
+    class="thumbs"
+  >
     <li
       v-for="(image, index) in images"
       :key="`thumb-${image.src}`"

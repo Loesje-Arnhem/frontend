@@ -35,7 +35,7 @@ export default defineNuxtModule({
           const apiUrl = `${baseUrl}wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[
             page,
           ]}&status=publish`
-          const response = await ofetch.raw(apiUrl).catch((error) => error.data)
+          const response = await ofetch.raw(apiUrl).catch(error => error.data)
           const totalPages = Number(response.headers.get('X-WP-TotalPages'))
 
           let suffix = '/'
@@ -50,7 +50,8 @@ export default defineNuxtModule({
 
           if (page >= totalPages) {
             hasNextPage = false
-          } else if (page > 5 && type === 'posters') {
+          }
+          else if (page > 5 && type === 'posters') {
             hasNextPage = false
           }
 
@@ -63,7 +64,7 @@ export default defineNuxtModule({
       await fetchPagesByType('posters')
     },
 
-    close: (nuxt) => {
+    'close': (nuxt) => {
       if (!nuxt.options._prepare) process.exit()
     },
   },

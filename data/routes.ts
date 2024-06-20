@@ -20,7 +20,7 @@ const fetchPagesByType = async (type: string) => {
     const apiUrl = `${baseUrl}wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[
       page,
     ]}&status=publish`
-    const response = await ofetch.raw(apiUrl).catch((error) => error.data)
+    const response = await ofetch.raw(apiUrl).catch(error => error.data)
     const totalPages = Number(response.headers.get('X-WP-TotalPages'))
 
     let suffix = '/'

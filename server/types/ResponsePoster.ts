@@ -1,5 +1,5 @@
 import { type ResponseImage } from './FeaturedImageResponseType'
-import { ResponseRelatedProduct } from './ResponseRelatedProduct'
+import type { ResponseRelatedProduct } from './ResponseRelatedProduct'
 
 export type ResponsePoster = {
   id: number

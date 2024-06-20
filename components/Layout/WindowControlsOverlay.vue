@@ -11,10 +11,10 @@ onMounted(() => {
   }
   // Window Controls Overlay is supported.
 
-  // @ts-ignore
+  // @ts-expect-error: windowControlsOverlay
   showWindowControlsOverlay.value = navigator.windowControlsOverlay.visible
 
-  // @ts-ignore
+  // @ts-expect-error: windowControlsOverlay
   navigator.windowControlsOverlay.addEventListener(
     'geometrychange',
     onGeometryChange,
@@ -26,7 +26,7 @@ onUnmounted(() => {
     return
   }
 
-  // @ts-ignore
+  // @ts-expect-error: windowControlsOverlay
   navigator.windowControlsOverlay.removeEventListener(
     'geometrychange',
     onGeometryChange,
@@ -37,7 +37,12 @@ onUnmounted(() => {
 <template>
   <div v-if="showWindowControlsOverlay">
     <div class="wrapper">
-      <app-icon icon="logo" class="logo" :height="50" :width="87" />
+      <app-icon
+        icon="logo"
+        class="logo"
+        :height="50"
+        :width="87"
+      />
     </div>
     <div class="placeholder" />
   </div>

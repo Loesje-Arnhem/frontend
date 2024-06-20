@@ -22,7 +22,7 @@ const remove = () => {
   const tags = [...selectedTags.value]
 
   selectedTags.value = tags.filter(
-    (selectedTag) => selectedTag.id !== props.tag.id,
+    selectedTag => selectedTag.id !== props.tag.id,
   )
 }
 
@@ -37,7 +37,8 @@ const goToPostersOverview = () => {
 const toggleTag = () => {
   if (isSelected.value) {
     remove()
-  } else {
+  }
+  else {
     add()
   }
   goToPostersOverview()

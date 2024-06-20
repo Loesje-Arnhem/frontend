@@ -12,7 +12,10 @@ withDefaults(
 </script>
 
 <template>
-  <transition :name="`slide-in-${direction}`" :mode="mode">
+  <transition
+    :name="`slide-in-${direction}`"
+    :mode="mode"
+  >
     <slot />
   </transition>
 </template>

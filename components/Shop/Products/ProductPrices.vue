@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { IProductListItem } from '~/types/Content'
-
 defineProps<{
   price: number
   regularPrice?: number
@@ -9,7 +7,10 @@ defineProps<{
 
 <template>
   <div class="price">
-    <span v-if="regularPrice" class="price-old">
+    <span
+      v-if="regularPrice"
+      class="price-old"
+    >
       {{ $n(regularPrice, 'currency') }}
     </span>
     {{ $n(price, 'currency') }}

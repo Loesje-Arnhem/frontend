@@ -32,9 +32,11 @@ const submit = async () => {
       body: formData,
     })
     cartState.value = response
-  } catch (error: any) {
+  }
+  catch (error: any) {
     errorMessage.value = error.data.data.message
-  } finally {
+  }
+  finally {
     pending.value = false
   }
 }

@@ -15,7 +15,7 @@ const bodySchema = z.object({
 export default defineEventHandler(async (event) => {
   const { woocommerceApiUrl } = useAppConfig()
 
-  const formData = await readValidatedBody(event, (body) =>
+  const formData = await readValidatedBody(event, body =>
     bodySchema.safeParse(body),
   )
 
@@ -79,7 +79,7 @@ export default defineEventHandler(async (event) => {
       method: 'POST',
 
       headers: {
-        nonce: cookies.nonce,
+        'nonce': cookies.nonce,
         'cart-token': cookies.token,
       },
     })
@@ -96,7 +96,8 @@ export default defineEventHandler(async (event) => {
     }
 
     return parsed.data
-  } catch (error) {
+  }
+  catch (error) {
     throw createError({
       statusCode: 400,
       statusMessage: error.data.message,

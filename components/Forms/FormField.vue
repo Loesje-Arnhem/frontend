@@ -18,16 +18,22 @@ const errorMessage = computed(() => {
   if (!props.errors.length) {
     return ''
   }
-  return props.errors.map((error) => error.$message).join(', ')
+  return props.errors.map(error => error.$message).join(', ')
 })
 </script>
 
 <template>
   <div class="field">
-    <label :for="id" class="label">{{ title }}</label>
+    <label
+      :for="id"
+      class="label"
+    >{{ title }}</label>
     <slot />
     <form-error-message :error="errorMessage" />
-    <div v-if="description" class="description">
+    <div
+      v-if="description"
+      class="description"
+    >
       {{ description }}
     </div>
   </div>

@@ -1,5 +1,5 @@
 import type { ResponseProductCategories } from '~/server/types/ResponseProductCategories'
-import { IProductCategoryList } from '~/types/Content'
+import type { MenuItemWithChildren } from '~/types/MenuItem'
 
 const sortByOrder = (items: ResponseProductCategories) => {
   return items.sort((a, b) => a.menu_order - b.menu_order)
@@ -25,19 +25,19 @@ export default defineEventHandler(async () => {
 
   const sortedItems = sortByOrder(response)
 
-  const parents = sortedItems.filter((item) => item.parent === 0)
+  const parents = sortedItems.filter(item => item.parent === 0)
 
-  const parentsWithChildren: IProductCategoryList = parents.map((item) => {
-    const children = response.filter((child) => child.parent === item.id)
+  const parentsWithChildren: MenuItemWithChildren[] = parents.map((item) => {
+    const children = response.filter(child => child.parent === item.id)
     return {
       id: item.id,
       title: item.name,
-      slug: item.slug,
+      url: item.slug,
       children: children.map((child) => {
         return {
           id: child.id,
           title: child.name,
-          slug: child.slug,
+          url: child.slug,
         }
       }),
     }

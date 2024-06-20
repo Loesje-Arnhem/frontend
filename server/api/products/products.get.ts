@@ -1,6 +1,6 @@
+import { z } from 'zod'
 import type { FeaturedImage, IProductListItem } from '~~/types/Content'
 import type { ResponseProducts } from '~/server/types/ResponseProducts'
-import { z } from 'zod'
 
 const querySchema = z.object({
   featured: z.string().optional(),
@@ -9,7 +9,7 @@ const querySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  const query = await getValidatedQuery(event, (body) =>
+  const query = await getValidatedQuery(event, body =>
     querySchema.safeParse(body),
   )
 

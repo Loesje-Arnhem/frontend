@@ -1,6 +1,6 @@
 import { CountriesSchema, ShippingZonesSchema } from '~/types/Countries'
 
-const sortByOrder = (items: { name: string; order: number }[]) => {
+const sortByOrder = (items: { name: string, order: number }[]) => {
   const list = items.map((item) => {
     return item
   })
@@ -19,7 +19,7 @@ export default defineEventHandler(async () => {
   //   return storedData
   // }
 
-  const getCountries: Promise<{ code: string; name: string }[]> = new Promise(
+  const getCountries: Promise<{ code: string, name: string }[]> = new Promise(
     (resolve, reject) => {
       $fetch(`https://shop.loesje.nl/wp-json/wc/v3/data/countries`, {
         params: {
@@ -42,8 +42,8 @@ export default defineEventHandler(async () => {
     },
   )
 
-  const getShippingZones: Promise<{ name: string; order: number }[]> =
-    new Promise((resolve, reject) => {
+  const getShippingZones: Promise<{ name: string, order: number }[]>
+    = new Promise((resolve, reject) => {
       $fetch(`https://shop.loesje.nl/wp-json/wc/v3/shipping/zones`, {
         params: {
           consumer_key: config.woocommerce.consumerKey,
@@ -69,7 +69,7 @@ export default defineEventHandler(async () => {
       const sortedShippingZodes = sortByOrder(shippingZones)
       const shippingZonesWithCode = sortedShippingZodes.map((shippingZone) => {
         const code = countries.find(
-          (country) => country.name === shippingZone.name,
+          country => country.name === shippingZone.name,
         )
 
         return {
@@ -78,7 +78,7 @@ export default defineEventHandler(async () => {
         }
       })
       const items = shippingZonesWithCode.filter(
-        (shippingZode) => shippingZode.code,
+        shippingZode => shippingZode.code,
       )
       // storage.setItem(key, items).then(() => {
       //   return items

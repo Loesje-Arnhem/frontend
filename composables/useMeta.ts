@@ -9,12 +9,8 @@ export const useMeta = ({
   description?: string
   image?: FeaturedImage
 }) => {
-  const { baseUrl } = useAppConfig()
-  const { fullPath } = useRoute()
-
   useSeoMeta({
     title: () => title,
-    ogUrl: () => `${baseUrl}${fullPath}`,
     ogTitle: () => title,
     description: () => description,
     ogDescription: () => description,

@@ -46,7 +46,8 @@ export default ({
   let baseUrl = `${apiUrl}${type}/`
   if (id) {
     baseUrl = `${baseUrl}${id}`
-  } else if (isCommerce) {
+  }
+  else if (isCommerce) {
     baseUrl = `${woocommerceApiUrl}${type}/`
   }
 

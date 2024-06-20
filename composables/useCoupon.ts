@@ -18,7 +18,7 @@ export const useAddCoupon = () => {
     },
   }))
   onError(({ graphQLErrors }) => {
-    errors.value = graphQLErrors.map((err) => err.message)
+    errors.value = graphQLErrors.map(err => err.message)
   })
 
   const submit = async () => {
@@ -50,7 +50,7 @@ export const useRemoveCoupon = () => {
     }),
   )
   onError(({ graphQLErrors }) => {
-    errors.value = graphQLErrors.map((err) => err.message)
+    errors.value = graphQLErrors.map(err => err.message)
   })
   return {
     errors,

@@ -10,8 +10,14 @@ withDefaults(
 </script>
 
 <template>
-  <span aria-live="assertive" class="error">
-    <span v-if="error" v-html="error" />
+  <span
+    aria-live="assertive"
+    class="error"
+  >
+    <span
+      v-if="error"
+      v-html="error"
+    />
   </span>
 </template>
 

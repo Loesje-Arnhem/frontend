@@ -45,22 +45,22 @@ class RoughDrawable {
       y1 + this.getOffset(-offset, offset),
     )
     ctx.bezierCurveTo(
-      midDispX +
-        x1 +
-        (x2 - x1) * divergePoint +
-        this.getOffset(-offset, offset),
-      midDispY +
-        y1 +
-        (y2 - y1) * divergePoint +
-        this.getOffset(-offset, offset),
-      midDispX +
-        x1 +
-        2 * (x2 - x1) * divergePoint +
-        this.getOffset(-offset, offset),
-      midDispY +
-        y1 +
-        2 * (y2 - y1) * divergePoint +
-        this.getOffset(-offset, offset),
+      midDispX
+      + x1
+      + (x2 - x1) * divergePoint
+      + this.getOffset(-offset, offset),
+      midDispY
+      + y1
+      + (y2 - y1) * divergePoint
+      + this.getOffset(-offset, offset),
+      midDispX
+      + x1
+      + 2 * (x2 - x1) * divergePoint
+      + this.getOffset(-offset, offset),
+      midDispY
+      + y1
+      + 2 * (y2 - y1) * divergePoint
+      + this.getOffset(-offset, offset),
       x2 + this.getOffset(-offset, offset),
       y2 + this.getOffset(-offset, offset),
     )
@@ -75,22 +75,22 @@ class RoughDrawable {
       y1 + this.getOffset(-halfOffset, halfOffset),
     )
     ctx.bezierCurveTo(
-      midDispX +
-        x1 +
-        (x2 - x1) * divergePoint +
-        this.getOffset(-halfOffset, halfOffset),
-      midDispY +
-        y1 +
-        (y2 - y1) * divergePoint +
-        this.getOffset(-halfOffset, halfOffset),
-      midDispX +
-        x1 +
-        2 * (x2 - x1) * divergePoint +
-        this.getOffset(-halfOffset, halfOffset),
-      midDispY +
-        y1 +
-        2 * (y2 - y1) * divergePoint +
-        this.getOffset(-halfOffset, halfOffset),
+      midDispX
+      + x1
+      + (x2 - x1) * divergePoint
+      + this.getOffset(-halfOffset, halfOffset),
+      midDispY
+      + y1
+      + (y2 - y1) * divergePoint
+      + this.getOffset(-halfOffset, halfOffset),
+      midDispX
+      + x1
+      + 2 * (x2 - x1) * divergePoint
+      + this.getOffset(-halfOffset, halfOffset),
+      midDispY
+      + y1
+      + 2 * (y2 - y1) * divergePoint
+      + this.getOffset(-halfOffset, halfOffset),
       x2 + this.getOffset(-halfOffset, halfOffset),
       y2 + this.getOffset(-halfOffset, halfOffset),
     )

@@ -1,13 +1,13 @@
 import { z } from 'zod'
 import type { ResponseProductCategory } from '~/server/types/ResponseProductCategory'
-import { IProductCategory } from '~/types/Content'
+import type { IProductCategory } from '~/types/Content'
 
 const querySchema = z.object({
   slug: z.string(),
 })
 
 export default defineEventHandler(async (event) => {
-  const query = await getValidatedQuery(event, (body) =>
+  const query = await getValidatedQuery(event, body =>
     querySchema.safeParse(body),
   )
 
@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
   if (!response.length) {
     return null
   }
-  const category = response.find((item) => item.slug === query.data.slug)
+  const category = response.find(item => item.slug === query.data.slug)
   if (!category) {
     return null
   }

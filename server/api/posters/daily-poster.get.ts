@@ -1,6 +1,6 @@
-import { ResponsePoster } from '~/server/types/ResponsePoster'
+import type { ResponsePoster } from '~/server/types/ResponsePoster'
 import { getDate } from '~/server/utils/getDate'
-import { FeaturedImage } from '~/types/Content'
+import type { FeaturedImage } from '~/types/Content'
 
 export default defineEventHandler(async () => {
   const storage = useStorage('redis')
@@ -41,7 +41,8 @@ export default defineEventHandler(async () => {
         message: 'No Poster found',
       },
     })
-  } else {
+  }
+  else {
     await storage.setItem(key, featuredImage)
     return featuredImage
   }

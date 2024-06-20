@@ -19,7 +19,8 @@ const lockBodyScoll = (isOpen: boolean) => {
   }
   if (isOpen) {
     disableBodyScroll(content.value)
-  } else {
+  }
+  else {
     enableBodyScroll(content.value)
   }
 }
@@ -36,9 +37,16 @@ const lockBodyScoll = (isOpen: boolean) => {
         @after-enter="afterEnter"
         @after-leave="afterLeave"
       >
-        <div v-show="menuIsOpen" class="background">
+        <div
+          v-show="menuIsOpen"
+          class="background"
+        >
           <transition name="fade">
-            <div v-show="menuIsOpen" ref="content" class="content">
+            <div
+              v-show="menuIsOpen"
+              ref="content"
+              class="content"
+            >
               <main-navigation-toggle
                 :close="true"
                 class="toggle"

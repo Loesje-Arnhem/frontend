@@ -1,4 +1,3 @@
-import { CartSchema } from '~/server/types/CartSchema'
 import { createCart } from '~/server/utils/createCart'
 
 export default defineEventHandler(async (event) => {
@@ -14,12 +13,13 @@ export default defineEventHandler(async (event) => {
       },
       method: 'POST',
       headers: {
-        nonce: cookies.nonce,
+        'nonce': cookies.nonce,
         'cart-token': cookies.token,
       },
     })
     return createCart(response)
-  } catch (error) {
+  }
+  catch (error) {
     throw createError({
       statusCode: 400,
       data: {

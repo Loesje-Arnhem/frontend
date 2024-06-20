@@ -1,7 +1,7 @@
-import { type SEO } from '~~/types/SEO'
 import { type ResponseImageType } from './FeaturedImageResponseType'
 import { type ResponseRelatedPoster } from './ResponseRelatedPoster'
 import { type ResponseRelatedProduct } from './ResponseRelatedProduct'
+import { type SEO } from '~~/types/SEO'
 
 export type ResponsePage = {
   id: number

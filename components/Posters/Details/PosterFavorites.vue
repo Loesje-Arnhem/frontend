@@ -15,7 +15,8 @@ const isInFavorites = computed(() => {
 const toggleFavorite = () => {
   if (isInFavorites.value) {
     remove(props.poster.id)
-  } else {
+  }
+  else {
     add(props.poster.id)
   }
 }

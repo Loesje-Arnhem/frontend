@@ -34,7 +34,9 @@ useMeta({
 
 <template>
   <center-wrapper>
-    <h1 v-if="data">{{ data.title }}</h1>
+    <h1 v-if="data">
+      {{ data.title }}
+    </h1>
     <div class="checkout">
       <form-checkout />
       <mini-cart />

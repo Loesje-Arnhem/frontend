@@ -18,14 +18,34 @@ const url = computed(() => {
 </script>
 
 <template>
-  <clickable-list-item :to="url" class="list-item">
+  <clickable-list-item
+    :to="url"
+    class="list-item"
+  >
     <h2 class="title">
-      <nuxt-link :to="url" class="link"><span v-html="post.title" /></nuxt-link>
+      <nuxt-link
+        :to="url"
+        class="link"
+      >
+        <span v-html="post.title" />
+      </nuxt-link>
     </h2>
-    <post-date :date="post.date" class="date" />
-    <div class="text" v-html="post.excerpt" />
-    <div class="link-wrapper" aria-hidden="true">
-      <read-more-link class="read-more" :to="url" />
+    <post-date
+      :date="post.date"
+      class="date"
+    />
+    <div
+      class="text"
+      v-html="post.excerpt"
+    />
+    <div
+      class="link-wrapper"
+      aria-hidden="true"
+    >
+      <read-more-link
+        class="read-more"
+        :to="url"
+      />
     </div>
   </clickable-list-item>
 </template>

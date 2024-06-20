@@ -3,7 +3,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps<{
+defineProps<{
   title: string
   id: string
 }>()
@@ -21,7 +21,7 @@ const model = defineModel({ required: true })
       class="input"
       :true-value="true"
       :false-value="false"
-    />
+    >
     <label :for="id">{{ title }}</label>
   </div>
 </template>

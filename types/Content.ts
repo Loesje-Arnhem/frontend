@@ -1,5 +1,5 @@
-import { Taxonomy } from '~~/enums/taxonomy'
 import { type ISEO } from './ISEO'
+import type { Taxonomy } from '~~/enums/taxonomy'
 
 export type FeaturedImage = {
   srcSet: string
@@ -75,7 +75,7 @@ export type IPostListItem = IBase & {
 }
 
 export type IProductListItem = IBase & {
-  url: string,
+  url: string
   slug: string
   price?: number
   regularPrice?: number
@@ -123,16 +123,9 @@ type IPostNode = {
 }
 
 export type IPosts = {
-  pageInfo: { hasNextPage: boolean; endCursor: string }
+  pageInfo: { hasNextPage: boolean, endCursor: string }
   edges: IPostNode[]
 }
-
-export type IProductCategoryList = Array<
-  IBase & {
-    slug: string
-    children: Array<IBase & { slug: string }>
-  }
->
 
 export type IProductCategory = IBase & {
   content: string

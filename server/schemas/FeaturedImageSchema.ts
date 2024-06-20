@@ -29,16 +29,16 @@ export const FeaturedImageSchema = z.object({
       filesize: z.number().optional(),
       sizes: z
         .object({
-          thumbnail: FeaturedImageSizeSchema,
-          medium: FeaturedImageSizeSchema.optional(),
-          full: FeaturedImageSizeSchema.optional(),
-          large: FeaturedImageSizeSchema.optional(),
-          medium_large: FeaturedImageSizeSchema.optional(),
+          'thumbnail': FeaturedImageSizeSchema,
+          'medium': FeaturedImageSizeSchema.optional(),
+          'full': FeaturedImageSizeSchema.optional(),
+          'large': FeaturedImageSizeSchema.optional(),
+          'medium_large': FeaturedImageSizeSchema.optional(),
           '1536x1536': FeaturedImageSizeSchema.optional(),
           '2048x2048': FeaturedImageSizeSchema.optional(),
-          woocommerce_thumbnail: FeaturedImageSizeSchema.optional(),
-          woocommerce_single: FeaturedImageSizeSchema.optional(),
-          woocommerce_gallery_thumbnail: FeaturedImageSizeSchema.optional(),
+          'woocommerce_thumbnail': FeaturedImageSizeSchema.optional(),
+          'woocommerce_single': FeaturedImageSizeSchema.optional(),
+          'woocommerce_gallery_thumbnail': FeaturedImageSizeSchema.optional(),
         })
         .optional(),
 

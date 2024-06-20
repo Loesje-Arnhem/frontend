@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { socialMedia } = useAppConfig()
-const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
-  socialMedia
+const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl }
+  = socialMedia
 </script>
 
 <template>

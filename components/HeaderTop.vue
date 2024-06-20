@@ -8,25 +8,17 @@ const localePath = useLocalePath()
       <div class="text">
         <h1>Steun Loesje!</h1>
         <p>
-          Loesje wil met haar positieve, kritische posters de wereld een zetje
-          in de goede richting geven. Wil jij haar daarbij helpen? Een donatie
-          als steun in de rug is altijd welkom!
+          Loesje wil met haar positieve, kritische posters de wereld een zetje in de goede richting geven.
+          Wil jij haar daarbij helpen? Word vrienden met Loesje en steun haar!
         </p>
         <app-button
-          href="https://whydonate.com/nl/fundraising/het-lijkt-simpel"
+          href="https://app.clubbase.io/signup/f73cc96d-dbbd-44b7-866d-ff565dd6e864?id=8e12b804-83e1-46a7-84a3-f38018a8dd42"
           rel="noopener"
           target="_blank"
           class="btn"
         >
-          Ga naar Why Donate
+          Word vrienden met Loesje
         </app-button>
-        <!-- <h1>Wie zegt wat hoort</h1>
-        <p>
-          Loesje's posters vind je overal. Met haar positief-kritische teksten
-          wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan
-          bazen, politici of ouders. Door haar posters op straat en online te
-          verspreiden, geeft Loesje de wereld een zetje in de goede richting.
-        </p> -->
       </div>
       <div class="poster-daily">
         <div class="image-wrapper">

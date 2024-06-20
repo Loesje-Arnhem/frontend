@@ -1,8 +1,8 @@
-import RSS, { EnclosureObject } from 'rss'
+import type { EnclosureObject } from 'rss'
+import RSS from 'rss'
 import type { ResponsePosts } from '@/server/types/ResponsePosts'
-import { FeaturedImageResponseType } from '~/server/types/FeaturedImageResponseType'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async () => {
   const { rssHead } = useAppConfig()
 
   const feed = new RSS({

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { mainNavigation as items } from '~/data/menu'
+const { data } = await useAsyncData('menu', () => $fetch('/api/menu'))
 
 const menu: Ref<HTMLAnchorElement | null> = ref(null)
 const arrowPosition: Ref<string | undefined> = ref(undefined)
@@ -65,14 +65,24 @@ const setArrowPosition = () => {
 </script>
 
 <template>
-  <nav aria-labelledby="menu" class="nav">
-    <h2 id="menu" class="sr-only" tabindex="-1">
+  <nav
+    aria-labelledby="menu"
+    class="nav"
+  >
+    <h2
+      id="menu"
+      class="sr-only"
+      tabindex="-1"
+    >
       {{ $t('mainMenu') }}
     </h2>
     <div ref="menu">
-      <ul v-if="items.length" class="menu">
+      <ul
+        v-if="data?.length"
+        class="menu"
+      >
         <main-navigation-item
-          v-for="item in items"
+          v-for="item in data"
           :key="item.id"
           class="menu-item-page"
           :item="item"

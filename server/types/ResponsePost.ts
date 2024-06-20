@@ -1,7 +1,7 @@
-import { type ISEO } from '~~/types/ISEO'
 import { type ResponseImageType } from './FeaturedImageResponseType'
 import { type ResponseRelatedPoster } from './ResponseRelatedPoster'
 import { type ResponseRelatedProduct } from './ResponseRelatedProduct'
+import { type ISEO } from '~~/types/ISEO'
 
 export type ResponsePost = {
   id: number

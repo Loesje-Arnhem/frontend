@@ -27,7 +27,8 @@ export default <RouterConfig>{
       if (elementHeight) {
         if (scrollPosition >= elementHeight) {
           top = element.offsetHeight
-        } else {
+        }
+        else {
           resolve(false)
         }
       }

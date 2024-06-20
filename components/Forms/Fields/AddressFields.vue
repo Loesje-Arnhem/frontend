@@ -53,9 +53,11 @@ const fetchAdress = async () => {
 
     emits('update:city', response.city)
     emits('update:street', response.street)
-  } catch (error: any) {
+  }
+  catch (error: any) {
     errorMessage.value = t(error.data.data.message)
-  } finally {
+  }
+  finally {
     pending.value = false
   }
 }
@@ -90,7 +92,10 @@ const streetFieldsAreReadonly = computed(() => {
 </script>
 
 <template>
-  <form-fieldset title="Adresgegevens" class="fields">
+  <form-fieldset
+    title="Adresgegevens"
+    class="fields"
+  >
     <div class="country">
       <select-field
         v-if="data"
@@ -203,7 +208,10 @@ const streetFieldsAreReadonly = computed(() => {
       />
     </div>
 
-    <form-error-message class="error-message" :error="errorMessage" />
+    <form-error-message
+      class="error-message"
+      :error="errorMessage"
+    />
   </form-fieldset>
 </template>
 

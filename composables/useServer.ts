@@ -48,7 +48,7 @@ export const useServer = () => {
     id?: number
     slug?: string
     page?: number
-    image?: Boolean
+    image?: boolean
     exclude?: number
     pageSize?: number
   }) => {
@@ -110,7 +110,7 @@ export const useServer = () => {
       exclude,
     })
 
-    const response = await $fetch.raw(url).catch((error) => error.data)
+    const response = await $fetch.raw(url).catch(error => error.data)
     if (response.status !== 200) {
       return {
         total: 0,
@@ -135,7 +135,7 @@ export const useServer = () => {
     }
   }
 
-  const getPage = async ({ id, slug }: { id?: number; slug?: string }) => {
+  const getPage = async ({ id, slug }: { id?: number, slug?: string }) => {
     const url = getUrl({
       slug,
       id,
@@ -149,14 +149,15 @@ export const useServer = () => {
       if (items.length) {
         response = items[0]
       }
-    } else {
+    }
+    else {
       response = await $fetch<ResponsePage>(url)
     }
     if (response) {
       let relatedProducts: number[] = []
       if (response.acf.related_products_products) {
         relatedProducts = response.acf.related_products_products.map(
-          (p) => p.product,
+          p => p.product,
         )
       }
       let youtubeId: string | null = null

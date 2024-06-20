@@ -19,7 +19,8 @@ self.addEventListener('fetch', function (event) {
         })
       })
       return new Response('{}')
-    } else {
+    }
+    else {
       event.respondWith(
         caches.open(SHARED_DATA_ENDPOINT).then(function (cache) {
           return (
@@ -30,7 +31,8 @@ self.addEventListener('fetch', function (event) {
         }),
       )
     }
-  } else {
+  }
+  else {
     return event
   }
 })

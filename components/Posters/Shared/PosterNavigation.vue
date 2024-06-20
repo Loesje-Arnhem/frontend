@@ -6,7 +6,7 @@ const localePath = useLocalePath()
 const localeRoute = useLocaleRoute()
 
 const showFavorites = computed(() => {
-  if (!process.client) {
+  if (!import.meta.client) {
     return false
   }
 
@@ -21,7 +21,7 @@ const showOverview = computed(() => {
 </script>
 
 <template>
-  <center-wrapper>
+  <center-wrapper v-if="showFavorites || showOverview">
     <nav>
       <transition name="slide">
         <nuxt-link
@@ -29,7 +29,11 @@ const showOverview = computed(() => {
           :to="localePath({ name: 'posters' })"
           class="btn-search"
         >
-          <app-icon icon="chevron-left" :width="12" :height="12" />
+          <app-icon
+            icon="chevron-left"
+            :width="12"
+            :height="12"
+          />
           Overzicht
         </nuxt-link>
       </transition>
@@ -40,7 +44,11 @@ const showOverview = computed(() => {
           class="btn-favorites"
         >
           Jouw favorieten
-          <app-icon icon="chevron-right" :width="12" :height="12" />
+          <app-icon
+            icon="chevron-right"
+            :width="12"
+            :height="12"
+          />
         </nuxt-link>
       </transition>
     </nav>
@@ -55,8 +63,7 @@ nav {
     padding-top: env(safe-area-inset-top);
   }
   display: flex;
-  margin: 1em 0;
-  height: 1em;
+  margin-bottom: 1em;
 }
 
 a {

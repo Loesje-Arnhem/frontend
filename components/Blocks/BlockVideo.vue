@@ -1,7 +1,14 @@
 <template>
   <div>
-    <button @click="openVideo">Open video</button>
-    <video ref="video" :width="640" :height="480" autoplay />
+    <button @click="openVideo">
+      Open video
+    </button>
+    <video
+      ref="video"
+      :width="640"
+      :height="480"
+      autoplay
+    />
   </div>
 </template>
 
@@ -19,7 +26,8 @@ export default defineComponent({
         })
         video.value.srcObject = stream
         video.value.play()
-      } catch (error) {
+      }
+      catch (error) {
         //
       }
     }

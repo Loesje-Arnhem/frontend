@@ -30,11 +30,12 @@ useMeta({
 
 <template>
   <div>
-    <h1 v-if="data" class="sr-only">
+    <h1
+      v-if="data"
+      class="sr-only"
+    >
       {{ data.title }}
     </h1>
-
-    <!-- <block-donate /> -->
 
     <latest-posts-section />
     <related-posters-section

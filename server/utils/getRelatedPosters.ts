@@ -1,6 +1,6 @@
+import { type ResponsePost } from '../types/ResponsePost'
 import { type ResponsePage } from '~/server/types/ResponsePage'
 import { type IRelatedPosters } from '~~/types/Content'
-import { type ResponsePost } from '../types/ResponsePost'
 
 export default (page: ResponsePage | ResponsePost) => {
   const {
@@ -11,7 +11,7 @@ export default (page: ResponsePage | ResponsePost) => {
   } = page.acf
   let posterIds: number[] = []
   if (related_posters_posters) {
-    posterIds = related_posters_posters.map((poster) => poster.poster.ID)
+    posterIds = related_posters_posters.map(poster => poster.poster.ID)
   }
 
   const relatedPosters: IRelatedPosters = {

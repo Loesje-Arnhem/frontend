@@ -93,7 +93,10 @@ const loadMore = async () => {
     aria-labelledby="posters-overview-title"
   >
     <center-wrapper>
-      <h1 id="posters-overview-title" class="sa-hidden">
+      <h1
+        id="posters-overview-title"
+        class="sa-hidden"
+      >
         <template v-if="title">
           {{ title }}
         </template>
@@ -104,7 +107,10 @@ const loadMore = async () => {
     </center-wrapper>
     <poster-list :posters="data.items" />
     <center-wrapper v-if="data.hasNextPage">
-      <load-more-by-scroll :loading="pending" @load-more="loadMore" />
+      <load-more-by-scroll
+        :loading="pending"
+        @load-more="loadMore"
+      />
     </center-wrapper>
   </section>
 

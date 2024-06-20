@@ -12,7 +12,7 @@ const threshold = 1
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
-  if (!process.client) {
+  if (!import.meta.client) {
     return
   }
   if (!item.value) {
@@ -39,7 +39,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <li ref="item" class="list-item">
+  <li
+    ref="item"
+    class="list-item"
+  >
     <featured-image
       :image="image"
       class="image"

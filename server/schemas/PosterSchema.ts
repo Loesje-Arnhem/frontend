@@ -14,9 +14,9 @@ export const PosterSchema = z.array(
       date: z.string(),
     }),
     _links: z.object({
-      self: z.array(z.object({ href: z.string() })),
-      collection: z.array(z.object({ href: z.string() })),
-      about: z.array(z.object({ href: z.string() })),
+      'self': z.array(z.object({ href: z.string() })),
+      'collection': z.array(z.object({ href: z.string() })),
+      'about': z.array(z.object({ href: z.string() })),
       'wp:featuredmedia': z.array(
         z.object({ embeddable: z.boolean(), href: z.string() }),
       ),
@@ -28,7 +28,7 @@ export const PosterSchema = z.array(
           href: z.string(),
         }),
       ),
-      curies: z.array(
+      'curies': z.array(
         z.object({
           name: z.string(),
           href: z.string(),

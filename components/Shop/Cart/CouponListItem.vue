@@ -21,9 +21,11 @@ const removeCoupon = async () => {
       },
     })
     cartState.value = response
-  } catch (error: any) {
+  }
+  catch (error: any) {
     errorMessage.value = error.data.data.message
-  } finally {
+  }
+  finally {
     pending.value = false
   }
 }
@@ -33,6 +35,8 @@ const removeCoupon = async () => {
   <li>
     {{ coupon.code }}
     -{{ $n(coupon.price, 'currency') }}
-    <button @click="removeCoupon">remove</button>
+    <button @click="removeCoupon">
+      remove
+    </button>
   </li>
 </template>

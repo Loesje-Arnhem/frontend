@@ -32,7 +32,11 @@ const model = defineModel({ required: true })
     :description="description"
   >
     <div class="form-select">
-      <select :id v-bind="$attrs" v-model="model">
+      <select
+        :id
+        v-bind="$attrs"
+        v-model="model"
+      >
         <slot />
         <option
           v-for="option in options"
@@ -43,7 +47,12 @@ const model = defineModel({ required: true })
           {{ option.title }}
         </option>
       </select>
-      <app-icon icon="chevron-down" class="icon" :width="24" :height="24" />
+      <app-icon
+        icon="chevron-down"
+        class="icon"
+        :width="24"
+        :height="24"
+      />
     </div>
   </form-field>
 </template>
