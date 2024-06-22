@@ -254,14 +254,14 @@ export default defineNuxtConfig({
 
   postcss: {
     plugins: {
-      'postcss-import': {},
-      'postcss-url': {},
-      'cssnano': true,
       'postcss-mixins': {
         mixinsDir: './assets/css/mixins/',
       },
 
       'postcss-preset-env': {
+        browsers: 'last 2 versions',
+        stage: 4,
+
         features: {
           'nesting-rules': true,
           'custom-media-queries': true,
