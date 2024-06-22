@@ -41,9 +41,6 @@ export default defineNuxtConfig({
       apiUrl: '',
       includeShop: false,
     },
-    i18n: {
-      baseUrl: '',
-    }
   },
 
   sitemap: {
@@ -234,6 +231,7 @@ export default defineNuxtConfig({
     defaultLocale: 'nl',
     lazy: true,
     langDir: 'locales',
+    baseUrl: 'https://www.loesje.nl/',
     locales: [
       {
         iso: 'nl-NL',

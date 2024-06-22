@@ -12,7 +12,7 @@ const props = withDefaults(
 
 const page = ref(1)
 
-const { pending, data } = useFetch('/api/posts/posts', {
+const { status, data } = useFetch('/api/posts/posts', {
   query: {
     exclude: props.exclude.toString(),
     page,
@@ -39,11 +39,7 @@ const loadMore = () => {
 </script>
 
 <template>
-  <section
-    v-if="data?.items.length"
-    class="posts-overview"
-    aria-labelledby="posts-overview-title"
-  >
+  <section v-if="data?.items.length" class="posts-overview" aria-labelledby="posts-overview-title">
     <center-wrapper size="md">
       <h1 id="posts-overview-title">
         <template v-if="exclude">
@@ -55,10 +51,7 @@ const loadMore = () => {
       </h1>
       <posts-overview-list :posts="data.items" />
       <center-wrapper v-if="data.hasNextPage">
-        <load-more-by-click
-          :loading="pending"
-          @load-more="loadMore"
-        />
+        <load-more-by-click :loading="status === 'pending'" @load-more="loadMore" />
       </center-wrapper>
     </center-wrapper>
   </section>

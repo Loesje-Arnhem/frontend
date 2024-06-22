@@ -33,7 +33,7 @@ const sourceIdsProp = computed(() => props.sourceIds.join(','))
 
 const page = ref(1)
 
-const { pending, data, refresh, clear } = useFetch('/api/posters/posters', {
+const { status, data, refresh, clear } = useFetch('/api/posters/posters', {
   query: {
     subjectIds: subjectIdsProp,
     sourceIds: sourceIdsProp,
@@ -87,16 +87,10 @@ const loadMore = async () => {
 </script>
 
 <template>
-  <app-loader v-if="pending && !data" />
-  <section
-    v-else-if="data?.items.length"
-    aria-labelledby="posters-overview-title"
-  >
+  <app-loader v-if="status === 'pending' && !data" />
+  <section v-else-if="data?.items.length" aria-labelledby="posters-overview-title">
     <center-wrapper>
-      <h1
-        id="posters-overview-title"
-        class="sa-hidden"
-      >
+      <h1 id="posters-overview-title" class="sa-hidden">
         <template v-if="title">
           {{ title }}
         </template>
@@ -107,14 +101,11 @@ const loadMore = async () => {
     </center-wrapper>
     <poster-list :posters="data.items" />
     <center-wrapper v-if="data.hasNextPage">
-      <load-more-by-scroll
-        :loading="pending"
-        @load-more="loadMore"
-      />
+      <load-more-by-scroll :loading="status === 'pending'" @load-more="loadMore" />
     </center-wrapper>
   </section>
 
-  <center-wrapper v-if="!data?.items.length && !pending">
+  <center-wrapper v-if="!data?.items.length && !status === 'pending'">
     <p>Geen posters gevonden</p>
   </center-wrapper>
 </template>
