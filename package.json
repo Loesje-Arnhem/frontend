@@ -11,7 +11,7 @@
     "lint": "eslint . --fix && stylelint . --fix"
   },
   "devDependencies": {
-    "@netlify/blobs": "^7.3.0",
+    "@netlify/blobs": "^7.4.0",
     "@nuxt/eslint": "^0.3.13",
     "@nuxtjs/i18n": "^8.3.1",
     "@nuxtjs/sitemap": "^5.2.0",
