@@ -234,7 +234,7 @@ export default defineNuxtConfig({
     baseUrl: 'https://www.loesje.nl/',
     locales: [
       {
-        iso: 'nl-NL',
+        language: 'nl-NL',
         code: 'nl',
         file: 'nl.json',
       },
@@ -270,6 +270,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   eslint: {
     config: {
       stylistic: true, // <---
@@ -390,4 +391,5 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  compatibilityDate: '2024-08-20',
 })
