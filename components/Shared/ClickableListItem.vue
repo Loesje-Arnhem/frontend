@@ -49,10 +49,8 @@ const mouseUp = () => {
 
   &:hover,
   &:focus-within {
-    & :global(.read-more) {
-      & :global(.icon) {
+    & :deep(.read-more .icon) {
         margin-left: 0.25em;
-      }
     }
   }
 }

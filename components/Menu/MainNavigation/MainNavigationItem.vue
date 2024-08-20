@@ -179,7 +179,7 @@ const isSmallScreen = () => {
     border-bottom-width: 0;
   }
 
-  &:global(.nuxt-link-exact-active) :global(.title) {
+  &.router-link-exact-active :deep(.title)  {
     box-shadow: 0 2px 0 0 currentColor;
   }
 }
