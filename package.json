@@ -11,18 +11,18 @@
     "lint": "eslint . --fix && stylelint . --fix"
   },
   "devDependencies": {
-    "@netlify/blobs": "^8.0.0",
-    "@nuxt/eslint": "^0.5.1",
-    "@nuxtjs/i18n": "^8.5.0",
+    "@netlify/blobs": "^8.0.1",
+    "@nuxt/eslint": "^0.5.3",
+    "@nuxtjs/i18n": "^8.5.1",
     "@nuxtjs/sitemap": "^5.3.5",
     "@nuxtjs/stylelint-module": "^5.2.0",
     "@types/body-scroll-lock": "^3.1.2",
     "@types/rss": "^0.0.32",
     "@types/workbox-window": "^4.3.4",
-    "@vite-pwa/nuxt": "^0.10.0",
-    "nuxt": "^3.12.4",
+    "@vite-pwa/nuxt": "^0.10.1",
+    "nuxt": "^3.13.0",
     "nuxt-schema-org": "^3.3.9",
-    "nuxt-svgo": "^4.0.3",
+    "nuxt-svgo": "^4.0.4",
     "postcss-html": "^1.7.0",
     "postcss-mixins": "^10.0.1",
     "postcss-preset-env": "^10.0.2",
@@ -33,15 +33,13 @@
     "zod": "^3.23.8"
   },
   "dependencies": {
-    "@nuxt/image": "^1.7.0",
+    "@nuxt/image": "^1.7.1",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "body-scroll-lock": "^3.1.5",
     "node-fetch": "^3.3.2",
     "postcss-import": "^16.1.0",
-    "rss": "^1.2.2",
-    "vue": "^3.4.38",
-    "vue-router": "latest"
+    "rss": "^1.2.2"
   },
   "pnpm": {
     "overrides": {
