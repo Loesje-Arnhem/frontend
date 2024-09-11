@@ -5,40 +5,40 @@ import {
   backgroundColor,
   title,
   twitter,
-} from './data/siteDetails'
+} from "./data/siteDetails";
 
 export default defineNuxtConfig({
   vue: {
     compilerOptions: {
-      isCustomElement: (tag: string) => ['search'].includes(tag),
+      isCustomElement: (tag: string) => ["search"].includes(tag),
     },
   },
 
   image: {
     densities: [1, 2],
-    domains: ['shop.loesje.nl', 'i3.ytimg.com'],
+    domains: ["shop.loesje.nl", "i3.ytimg.com"],
   },
 
   runtimeConfig: {
     postcode: {
       api: {
-        secret: '',
-        key: '',
+        secret: "",
+        key: "",
       },
     },
     woocommerce: {
-      consumerKey: '',
-      consumerSecret: '',
+      consumerKey: "",
+      consumerSecret: "",
     },
     newsletter: {
-      api_key: '',
+      api_key: "",
       list: {
-        products: '',
-        website: '',
+        products: "",
+        website: "",
       },
     },
     public: {
-      apiUrl: '',
+      apiUrl: "",
       includeShop: false,
     },
   },
@@ -46,13 +46,13 @@ export default defineNuxtConfig({
   sitemap: {
     sitemaps: {
       posts: {
-        sources: ['/api/sitemap/posts'],
+        sources: ["/api/sitemap/posts"],
       },
       posters: {
-        sources: ['/api/sitemap/posters'],
+        sources: ["/api/sitemap/posters"],
       },
       pages: {
-        sources: ['/api/sitemap/pages'],
+        sources: ["/api/sitemap/pages"],
       },
       // products: {
       //   sources: ['/api/sitemap/product'],
@@ -78,9 +78,9 @@ export default defineNuxtConfig({
         isolatedModules: true,
         esModuleInterop: true,
         types: [
-          '@types/body-scroll-lock',
-          'vite-plugin-pwa/client',
-          '@types/rss',
+          "@types/body-scroll-lock",
+          "vite-plugin-pwa/client",
+          "@types/rss",
         ],
       },
     },
@@ -88,7 +88,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    preset: "netlify",
     prerender: {
       interval: 3000,
       concurrency: 5,
@@ -96,8 +96,8 @@ export default defineNuxtConfig({
 
     storage: {
       redis: {
-        driver: 'netlifyBlobs',
-        name: 'loesje',
+        driver: "netlifyBlobs",
+        name: "loesje",
         siteID: process.env.NETLIFY_SITE_ID,
         token: process.env.NETLIFY_TOKEN,
       },
@@ -105,20 +105,20 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/rss': {
+    "/rss": {
       headers: {
-        'content-type': 'text/xml',
+        "content-type": "text/xml",
       },
       prerender: true,
     },
-    '/rss/posters': {
+    "/rss/posters": {
       headers: {
-        'content-type': 'text/xml',
+        "content-type": "text/xml",
       },
       prerender: true,
     },
-    '/winkeltje/**': {
-      appMiddleware: ['cart'],
+    "/winkeltje/**": {
+      appMiddleware: ["cart"],
     },
   },
 
@@ -128,55 +128,55 @@ export default defineNuxtConfig({
     head: {
       meta: [
         {
-          name: 'og:publisher',
+          name: "og:publisher",
           content: facebook,
         },
         {
-          name: 'viewport',
-          content: 'width=device-width,initial-scale=1,viewport-fit=cover',
+          name: "viewport",
+          content: "width=device-width,initial-scale=1,viewport-fit=cover",
         },
 
-        { name: 'mobile-web-app-capable', content: 'yes' },
-        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: "mobile-web-app-capable", content: "yes" },
+        { name: "apple-mobile-web-app-capable", content: "yes" },
         {
-          name: 'apple-mobile-web-app-status-bar-style',
-          content: 'black',
+          name: "apple-mobile-web-app-status-bar-style",
+          content: "black",
         },
-        { name: 'apple-mobile-web-app-title', content: title },
-        { name: 'theme-color', content: themeColor },
-        { property: 'og:site_name', content: title },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: twitter },
-        { name: 'twitter:creator', content: twitter },
+        { name: "apple-mobile-web-app-title", content: title },
+        { name: "theme-color", content: themeColor },
+        { property: "og:site_name", content: title },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:site", content: twitter },
+        { name: "twitter:creator", content: twitter },
       ],
       link: [
         {
-          rel: 'apple-touch-icon',
-          href: '/icons/manifest-icon-512.maskable.png',
-          sizes: '512x512',
+          rel: "apple-touch-icon",
+          href: "/icons/manifest-icon-512.maskable.png",
+          sizes: "512x512",
         },
         {
-          rel: 'icon',
-          href: '/favicon.svg',
-          type: 'image/svg+xml',
+          rel: "icon",
+          href: "/favicon.svg",
+          type: "image/svg+xml",
         },
         {
-          type: 'application/atom+xml',
-          rel: 'alternate',
+          type: "application/atom+xml",
+          rel: "alternate",
           href: `/rss`,
-          title: 'Loesje - Nieuws',
+          title: "Loesje - Nieuws",
         },
         {
-          type: 'application/atom+xml',
-          rel: 'alternate',
+          type: "application/atom+xml",
+          rel: "alternate",
           href: `/rss/posters`,
-          title: 'Loesje - Posters',
+          title: "Loesje - Posters",
         },
         {
-          type: 'application/opensearchdescription+xml',
-          rel: 'search',
-          href: '/opensearch.xml',
-          title: 'Loesje',
+          type: "application/opensearchdescription+xml",
+          rel: "search",
+          href: "/opensearch.xml",
+          title: "Loesje",
         },
       ],
     },
@@ -184,106 +184,100 @@ export default defineNuxtConfig({
 
   components: {
     dirs: [
-      '~/components/Animations',
-      '~/components/AppStores',
-      '~/components/BecomeMember',
-      '~/components/Blocks',
+      "~/components/Animations",
+      "~/components/AppStores",
+      "~/components/BecomeMember",
+      "~/components/Blocks",
       // '~/components/Carousel',
-      '~/components/Footer',
-      '~/components/Forms/Fields',
-      '~/components/Forms/Forms',
-      '~/components/Forms',
-      '~/components/Layout',
-      '~/components/LoadMore',
-      '~/components/Menu/MainNavigation',
-      '~/components/Menu',
-      '~/components/Pages/RelatedPages',
-      '~/components/Pages',
-      '~/components/Posters/AutoComplete',
-      '~/components/Posters/Details',
-      '~/components/Posters/Filters',
-      '~/components/Posters/PostersOverview',
-      '~/components/Posters/RelatedPosters',
-      '~/components/Posters/Shared',
-      '~/components/Posters/Tags',
-      '~/components/Posters',
-      '~/components/Posts/LatestPosts',
-      '~/components/Posts/Overview',
-      '~/components/Posts/Shared',
-      '~/components/Posts',
-      '~/components/Shared',
-      '~/components/Shop/Cart',
-      '~/components/Shop/Checkout',
-      '~/components/Shop/Layout',
-      '~/components/Shop/Products/ProductDetails',
-      '~/components/Shop/Products/RelatedProducts',
-      '~/components/Shop/Products/Shared',
-      '~/components/Shop/Products',
-      '~/components/Shop',
-      '~/components/Wrappers',
-      '~/components',
+      "~/components/Footer",
+      "~/components/Forms/Fields",
+      "~/components/Forms/Forms",
+      "~/components/Forms",
+      "~/components/Layout",
+      "~/components/LoadMore",
+      "~/components/Menu/MainNavigation",
+      "~/components/Menu",
+      "~/components/Pages/RelatedPages",
+      "~/components/Pages",
+      "~/components/Posters/AutoComplete",
+      "~/components/Posters/Details",
+      "~/components/Posters/Filters",
+      "~/components/Posters/PostersOverview",
+      "~/components/Posters/RelatedPosters",
+      "~/components/Posters/Shared",
+      "~/components/Posters/Tags",
+      "~/components/Posters",
+      "~/components/Posts/LatestPosts",
+      "~/components/Posts/Overview",
+      "~/components/Posts/Shared",
+      "~/components/Posts",
+      "~/components/Shared",
+      "~/components/Shop/Cart",
+      "~/components/Shop/Checkout",
+      "~/components/Shop/Layout",
+      "~/components/Shop/Products/ProductDetails",
+      "~/components/Shop/Products/RelatedProducts",
+      "~/components/Shop/Products/Shared",
+      "~/components/Shop/Products",
+      "~/components/Shop",
+      "~/components/Wrappers",
+      "~/components",
     ],
   },
 
-  css: ['~/assets/css/base.css'],
+  css: ["~/assets/css/base.css"],
 
   i18n: {
-    defaultLocale: 'nl',
+    defaultLocale: "nl",
     lazy: true,
-    langDir: 'locales',
-    baseUrl: 'https://www.loesje.nl/',
+    langDir: "locales",
+    baseUrl: "https://www.loesje.nl/",
     locales: [
       {
-        language: 'nl-NL',
-        code: 'nl',
-        file: 'nl.json',
+        language: "nl-NL",
+        code: "nl",
+        file: "nl.json",
       },
     ],
   },
 
   modules: [
-    '@nuxtjs/i18n',
-    'nuxt-svgo',
-    '@vite-pwa/nuxt',
-    '@nuxt/eslint',
+    "@nuxtjs/i18n",
+    "nuxt-svgo",
+    "@vite-pwa/nuxt",
+    "@nuxt/eslint",
     // '@nuxtjs/stylelint-module',
-    '@nuxt/image',
-    'nuxt-schema-org',
-    '@nuxtjs/sitemap',
+    "@nuxt/image",
+    "nuxt-schema-org",
+    "@nuxtjs/sitemap",
   ],
 
   postcss: {
     plugins: {
-      'postcss-mixins': {
-        mixinsDir: './assets/css/mixins/',
+      "postcss-mixins": {
+        mixinsDir: "./assets/css/mixins/",
       },
 
-      'postcss-preset-env': {
-        browsers: 'last 2 versions',
+      "postcss-preset-env": {
+        browsers: "last 2 versions",
         stage: 4,
 
         features: {
-          'nesting-rules': true,
-          'custom-media-queries': true,
-          'media-query-ranges': true,
+          "nesting-rules": true,
+          "custom-media-queries": true,
+          "media-query-ranges": true,
         },
       },
     },
   },
 
-  eslint: {
-    config: {
-      stylistic: true, // <---
-    },
-  },
-
   pwa: {
-    strategies: 'generateSW',
+    strategies: "generateSW",
     registerWebManifestInRouteRules: true,
-    registerType: 'autoUpdate',
+    registerType: "autoUpdate",
     workbox: {
-      importScripts: ['/badge.js'],
-      globPatterns: ['**/*.{js,css,png,jpg,svg,ico,avif,webp,woff2}'],
+      importScripts: ["/badge.js"],
+      globPatterns: ["**/*.{js,css,png,jpg,svg,ico,avif,webp,woff2}"],
       // Only precache these files - html should be excluded
       // globPatterns: ['**/*.{js,css}'],
 
@@ -296,48 +290,48 @@ export default defineNuxtConfig({
       background_color: backgroundColor,
       theme_color: themeColor,
       categories,
-      lang: 'nl',
+      lang: "nl",
       name: title,
-      orientation: 'portrait-primary',
+      orientation: "portrait-primary",
       description:
-        'Loesje\'s posters vind je overal. Met haar positief-kritische teksten wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan bazen, politici of ouders. Door haar posters op straat en online te verspreiden, geeft Loesje de wereld een zetje in de goede richting.',
+        "Loesje's posters vind je overal. Met haar positief-kritische teksten wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan bazen, politici of ouders. Door haar posters op straat en online te verspreiden, geeft Loesje de wereld een zetje in de goede richting.",
       short_name: title,
       edge_side_panel: {},
-      dir: 'ltr',
+      dir: "ltr",
       icons: [
         {
-          src: '/icons/manifest-icon-192.maskable.png',
-          sizes: '192x192',
-          type: 'image/png',
-          purpose: 'any',
+          src: "/icons/manifest-icon-192.maskable.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any",
         },
         {
-          src: '/icons/manifest-icon-192.maskable.png',
-          sizes: '192x192',
-          type: 'image/png',
-          purpose: 'maskable',
+          src: "/icons/manifest-icon-192.maskable.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "maskable",
         },
         {
-          src: '/icons/manifest-icon-512.maskable.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'any',
+          src: "/icons/manifest-icon-512.maskable.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any",
         },
         {
-          src: '/icons/manifest-icon-512.maskable.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'maskable',
+          src: "/icons/manifest-icon-512.maskable.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable",
         },
       ],
       // display_override: ['window-controls-overlay'],
       // start_url: `/posters?standalone=true`,
       shortcuts: [
         {
-          name: 'Favorieten',
-          short_name: 'Favorieten',
+          name: "Favorieten",
+          short_name: "Favorieten",
           url: `./posters/favorieten?standalone=true`,
-          icons: [{ src: '/icon.png', sizes: '512x512' }],
+          icons: [{ src: "/icon.png", sizes: "512x512" }],
         },
       ],
       // screenshots: [
@@ -381,8 +375,8 @@ export default defineNuxtConfig({
       // ],
       protocol_handlers: [
         {
-          protocol: 'web+loesje',
-          url: '/posters%s',
+          protocol: "web+loesje",
+          url: "/posters%s",
         },
       ],
     },
@@ -391,5 +385,5 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
-  compatibilityDate: '2024-08-20',
-})
+  compatibilityDate: "2024-08-20",
+});
