@@ -8,8 +8,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "generate-images": "node ./images",
-    "lint": "eslint . --fix && stylelint . --fix",
-    "lint2": "eslint ."
+    "lint:js": "eslint . --fix && stylelint . --fix",
+    "lint:css": "stylelint **/*.css --fix"
   },
   "devDependencies": {
     "@netlify/blobs": "^8.0.1",
