@@ -80,10 +80,7 @@ const localePath = useLocalePath()
     display: block;
     content: '';
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
+    inset: 0;
     box-shadow: inset 0 0 0 1px var(--color-white);
     pointer-events: none;
   }

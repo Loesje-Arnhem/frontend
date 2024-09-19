@@ -10,7 +10,7 @@ export const PostersSchema = z.array(
     }),
 
     _embedded: z.object({
-      'wp:featuredmedia': z.array(FeaturedImageSchema),
+      'wp:featuredmedia': z.array(FeaturedImageSchema).optional(),
     }),
   }),
 )

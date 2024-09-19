@@ -9,7 +9,7 @@
     "postinstall": "nuxt prepare",
     "generate-images": "node ./images",
     "lint:js": "eslint . --fix && stylelint . --fix",
-    "lint:css": "stylelint **/*.css --fix"
+    "lint:css": "stylelint **/*.{css,scss,vue} --fix"
   },
   "devDependencies": {
     "@netlify/blobs": "^8.0.1",
@@ -24,17 +24,15 @@
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.28.0",
-    "nuxt": "^3.13.1",
+    "nuxt": "^3.13.2",
     "nuxt-schema-org": "^3.4.0",
-    "nuxt-svgo": "^4.0.5",
+    "nuxt-svgo": "^4.0.6",
     "postcss-html": "^1.7.0",
     "postcss-mixins": "^11.0.1",
     "postcss-preset-env": "^10.0.3",
     "postcss-url": "^10.1.3",
     "prettier": "^3.3.3",
     "stylelint": "^16.9.0",
-    "stylelint-config-recommended-vue": "^1.5.0",
-    "stylelint-config-standard": "^36.0.1",
     "zod": "^3.23.8"
   },
   "dependencies": {
@@ -45,8 +43,9 @@
     "node-fetch": "^3.3.2",
     "postcss-import": "^16.1.0",
     "rss": "^1.2.2",
-    "vue": "^3.5.4",
-    "vue-router": "^4.4.4"
+    "stylelint-config-standard-vue": "^1.0.0",
+    "vue": "^3.5.6",
+    "vue-router": "^4.4.5"
   },
   "packageManager": "pnpm@8.14.0+sha1.bb42032ff80dba5f9245bc1b03470d2fa0b7fb2f"
 }

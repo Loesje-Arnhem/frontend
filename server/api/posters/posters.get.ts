@@ -55,7 +55,9 @@ export default defineEventHandler(async (event) => {
   const parsed = PostersSchema.safeParse(response._data)
 
   if (!parsed.success) {
-    throw parsed.error.issues
+    throw createError({
+       message: parsed.error.issues.map(i => i.path).join(','), 
+    })
   }
 
   const items: IPosterListItem[] = parsed.data.map((item) => {

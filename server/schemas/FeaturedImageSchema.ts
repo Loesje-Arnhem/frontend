@@ -29,7 +29,7 @@ export const FeaturedImageSchema = z.object({
       filesize: z.number().optional(),
       sizes: z
         .object({
-          'thumbnail': FeaturedImageSizeSchema,
+          'thumbnail': FeaturedImageSizeSchema.optional(),
           'medium': FeaturedImageSizeSchema.optional(),
           'full': FeaturedImageSizeSchema.optional(),
           'large': FeaturedImageSizeSchema.optional(),
