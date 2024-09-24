@@ -135,6 +135,7 @@ const options: Option[] = [...Array(10).keys()].map((index) => {
   & :deep(legend) {
     @mixin sr-only;
   }
+
   & :deep(button) {
     width: 100%;
     max-width: none;

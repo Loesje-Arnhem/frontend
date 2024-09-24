@@ -21,6 +21,7 @@ defineProps<{
 <style lang="postcss" scoped>
 .list {
   @mixin list-reset;
+
   font-size: var(--font-size-sm);
 }
 </style>

@@ -22,7 +22,7 @@ defineProps<{
   line-height: 1.2;
   position: fixed;
   inset: auto 0 0;
-  border: 1px solid currentColor;
+  border: 1px solid currentcolor;
   text-align: center;
 }
 

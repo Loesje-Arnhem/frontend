@@ -64,6 +64,7 @@ const hasMedia = computed(() => {
   max-width: 20em;
   width: 100%;
   margin: 1em auto;
+
   @media (--viewport-lg) {
     margin-block: 2em;
   }

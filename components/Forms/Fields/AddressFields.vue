@@ -213,6 +213,7 @@ const streetFieldsAreReadonly = computed(() => {
 .fields {
   & :deep(.fields) {
     grid-template-columns: repeat(2, 1fr);
+
     @media (--viewport-sm) {
       grid-template-columns: repeat(4, 1fr);
     }
@@ -230,6 +231,7 @@ const streetFieldsAreReadonly = computed(() => {
 .country,
 .error-message {
   grid-column: span 2;
+
   @media (--viewport-sm) {
     grid-column: span 4;
   }

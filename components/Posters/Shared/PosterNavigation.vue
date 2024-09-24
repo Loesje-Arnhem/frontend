@@ -54,6 +54,7 @@ nav {
   @media (--stand-alone) {
     padding-top: env(safe-area-inset-top);
   }
+
   display: flex;
   margin-bottom: 1em;
 }

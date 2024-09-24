@@ -9,7 +9,7 @@
     "postinstall": "nuxt prepare",
     "generate-images": "node ./images",
     "lint:js": "eslint . --fix && stylelint . --fix",
-    "lint:css": "stylelint **/*.{css,scss,vue} --fix"
+    "lint:css": "stylelint **/*.{css,vue} --fix"
   },
   "devDependencies": {
     "@netlify/blobs": "^8.0.1",

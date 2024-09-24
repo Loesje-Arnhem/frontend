@@ -219,6 +219,7 @@ const errorMessage = computed(() => {
 .fieldset-address {
   & :deep(.fields) {
     grid-template-columns: repeat(2, 1fr);
+
     @media (--viewport-sm) {
       grid-template-columns: repeat(4, 1fr);
     }
@@ -236,6 +237,7 @@ const errorMessage = computed(() => {
 
 .school-name {
   grid-column: span 2;
+
   @media (--viewport-sm) {
     grid-column: span 4;
   }

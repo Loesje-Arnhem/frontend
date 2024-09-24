@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-standard-vue"],
+  "extends": ["stylelint-config-standard", "stylelint-config-standard-vue"],
   "rules": {
     "import-notation": null,
     "at-rule-no-unknown": [

@@ -64,7 +64,7 @@ const videoUrl = computed(() => {
 }
 
 .video-wrapper {
-  inset: 40% 5% auto 5%;
+  inset: 40% 5% auto;
   position: absolute;
   display: block;
 }

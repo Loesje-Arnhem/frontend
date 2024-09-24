@@ -163,7 +163,7 @@ const today = () => {
     border-image-source: none !important;
     border-image-outset: 0 !important;
     flex: 1 1 auto;
-    border: 0;
+    border-width: 0;
   }
 }
 </style>
