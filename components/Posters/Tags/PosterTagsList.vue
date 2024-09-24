@@ -1,21 +1,14 @@
 <script lang="ts" setup>
-import type { ITag } from '~/types/Content'
+import type { ITag } from "~/types/Content";
 
 defineProps<{
-  list: ITag[]
-}>()
+  list: ITag[];
+}>();
 </script>
 
 <template>
-  <ul
-    v-if="list"
-    :class="$style.list"
-  >
-    <li
-      v-for="item in list"
-      :key="item.id"
-      :class="$style['list-item']"
-    >
+  <ul v-if="list" :class="$style.list">
+    <li v-for="item in list" :key="item.id" :class="$style['list-item']">
       <poster-tag :tag="item" />
     </li>
   </ul>

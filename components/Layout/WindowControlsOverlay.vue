@@ -1,48 +1,43 @@
 <script lang="ts" setup>
-const showWindowControlsOverlay = ref(false)
+const showWindowControlsOverlay = ref(false);
 
 const onGeometryChange = (event: any) => {
-  showWindowControlsOverlay.value = event.visible
-}
+  showWindowControlsOverlay.value = event.visible;
+};
 
 onMounted(() => {
-  if (!('windowControlsOverlay' in navigator)) {
-    return
+  if (!("windowControlsOverlay" in navigator)) {
+    return;
   }
   // Window Controls Overlay is supported.
 
   // @ts-expect-error: windowControlsOverlay
-  showWindowControlsOverlay.value = navigator.windowControlsOverlay.visible
+  showWindowControlsOverlay.value = navigator.windowControlsOverlay.visible;
 
   // @ts-expect-error: windowControlsOverlay
   navigator.windowControlsOverlay.addEventListener(
-    'geometrychange',
+    "geometrychange",
     onGeometryChange,
-  )
-})
+  );
+});
 
 onUnmounted(() => {
-  if (!('windowControlsOverlay' in navigator)) {
-    return
+  if (!("windowControlsOverlay" in navigator)) {
+    return;
   }
 
   // @ts-expect-error: windowControlsOverlay
   navigator.windowControlsOverlay.removeEventListener(
-    'geometrychange',
+    "geometrychange",
     onGeometryChange,
-  )
-})
+  );
+});
 </script>
 
 <template>
   <div v-if="showWindowControlsOverlay">
     <div class="wrapper">
-      <app-icon
-        icon="logo"
-        class="logo"
-        :height="50"
-        :width="87"
-      />
+      <app-icon icon="logo" class="logo" :height="50" :width="87" />
     </div>
     <div class="placeholder" />
   </div>

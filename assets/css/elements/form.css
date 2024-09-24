@@ -13,6 +13,10 @@ fieldset {
   margin-bottom: 1rem;
 }
 
+textarea {
+  resize: vertical;
+}
+
 input[type="text"],
 input[type="search"],
 input[type="number"],
@@ -57,8 +61,4 @@ input {
   &::placeholder {
     color: var(--gray-dark);
   }
-}
-
-textarea {
-  resize: vertical;
 }

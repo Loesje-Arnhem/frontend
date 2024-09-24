@@ -1,31 +1,28 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    categoryId?: number
-    featured?: boolean
-    productIds?: number[]
+    categoryId?: number;
+    featured?: boolean;
+    productIds?: number[];
   }>(),
   {
     featured: undefined,
     categoryId: undefined,
     productIds: () => [],
   },
-)
+);
 
-const { data } = useFetch('/api/products/products', {
+const { data } = useFetch("/api/products/products", {
   query: {
-    productIds: props.productIds.join(','),
+    productIds: props.productIds.join(","),
     featured: props.featured,
     categoryId: props.categoryId,
   },
-})
+});
 </script>
 
 <template>
-  <ul
-    v-if="data?.length"
-    class="list"
-  >
+  <ul v-if="data?.length" class="list">
     <product-tile
       v-for="product in data"
       :key="product.id"
@@ -35,7 +32,7 @@ const { data } = useFetch('/api/products/products', {
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .list {
   @mixin list-reset;

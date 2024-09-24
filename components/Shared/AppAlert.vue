@@ -1,19 +1,13 @@
 <script lang="ts" setup>
 defineProps<{
-  show: boolean
-  text: string
-}>()
+  show: boolean;
+  text: string;
+}>();
 </script>
 
 <template>
-  <div
-    v-if="show"
-    class="alert"
-  >
-    <div
-      class="wrapper"
-      role="alert"
-    >
+  <div v-if="show" class="alert">
+    <div class="wrapper" role="alert">
       {{ text }}
       <slot />
     </div>

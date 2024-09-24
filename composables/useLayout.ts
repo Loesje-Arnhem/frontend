@@ -1,30 +1,30 @@
 export const useLayout = () => {
-  const openMenus = ref([] as string[])
-  const menuIsOpen = useMenu()
+  const openMenus = ref([] as string[]);
+  const menuIsOpen = useMenu();
 
   const add = (menuId: string) => {
     if (openMenus.value.includes(menuId)) {
-      return
+      return;
     }
-    openMenus.value.push(menuId)
-  }
+    openMenus.value.push(menuId);
+  };
 
   const openMobileMenu = () => {
-    menuIsOpen.value = true
-  }
+    menuIsOpen.value = true;
+  };
 
   const closeMobileMenu = () => {
-    menuIsOpen.value = false
-  }
+    menuIsOpen.value = false;
+  };
 
   const remove = (menuId: string) => {
-    openMenus.value = openMenus.value.filter(menu => menu !== menuId)
-  }
+    openMenus.value = openMenus.value.filter((menu) => menu !== menuId);
+  };
 
   const clear = () => {
-    openMenus.value = []
-    closeMobileMenu()
-  }
+    openMenus.value = [];
+    closeMobileMenu();
+  };
   return {
     openMenus,
     add,
@@ -32,5 +32,5 @@ export const useLayout = () => {
     clear,
     openMobileMenu,
     closeMobileMenu,
-  }
-}
+  };
+};

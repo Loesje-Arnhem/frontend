@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 defineOptions({
   inheritAttrs: false,
-})
+});
 
 defineProps<{
-  title: string
-  id: string
-}>()
-const model = defineModel({ required: true })
+  title: string;
+  id: string;
+}>();
+const model = defineModel({ required: true });
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const model = defineModel({ required: true })
       class="input"
       :true-value="true"
       :false-value="false"
-    >
+    />
     <label :for="id">{{ title }}</label>
   </div>
 </template>

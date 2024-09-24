@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    close?: boolean
+    close?: boolean;
   }>(),
   {
     close: false,
   },
-)
+);
 
-const menuIsOpen = useMenu()
+const menuIsOpen = useMenu();
 
-defineEmits(['toggle-menu'])
+defineEmits(["toggle-menu"]);
 </script>
 
 <template>
@@ -27,17 +27,17 @@ defineEmits(['toggle-menu'])
     />
     <span :class="$style.title">
       <template v-if="close">
-        {{ $t('close') }}
+        {{ $t("close") }}
       </template>
       <template v-else>
-        {{ $t('menu') }}
+        {{ $t("menu") }}
       </template>
     </span>
   </button>
 </template>
 
 <style lang="postcss" module>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .title {
   transition: box-shadow 0.2s ease-out;

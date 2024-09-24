@@ -1,22 +1,15 @@
 <script lang="ts" setup>
-import type { IRelatedPage } from '~/types/Content'
+import type { IRelatedPage } from "~/types/Content";
 
 defineProps<{
-  page: IRelatedPage
-}>()
+  page: IRelatedPage;
+}>();
 </script>
 
 <template>
-  <clickable-list-item
-    v-if="page.uri"
-    :to="page.uri"
-    class="related-page box"
-  >
+  <clickable-list-item v-if="page.uri" :to="page.uri" class="related-page box">
     <h2 class="title">
-      <nuxt-link
-        :to="page.uri"
-        class="link"
-      >
+      <nuxt-link :to="page.uri" class="link">
         {{ page.title }}
       </nuxt-link>
     </h2>

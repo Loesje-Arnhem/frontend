@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-const { selectedSourceIds, selectedSubjectIds, selectedTags } = useTags()
-const search = useSearch()
-const dateBefore = useDateBefore()
-const dateAfter = useDateAfter()
+const { selectedSourceIds, selectedSubjectIds, selectedTags } = useTags();
+const search = useSearch();
+const dateBefore = useDateBefore();
+const dateAfter = useDateAfter();
 
 defineI18nRoute({
   paths: {
-    nl: '/posters',
+    nl: "/posters",
   },
-})
+});
 </script>
 
 <template>

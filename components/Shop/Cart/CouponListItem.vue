@@ -1,42 +1,38 @@
 <script lang="ts" setup>
-import type { Coupon } from '~/types/Cart'
+import type { Coupon } from "~/types/Cart";
 
 const props = defineProps<{
-  coupon: Coupon
-}>()
+  coupon: Coupon;
+}>();
 
-const pending = ref(false)
-const errorMessage = ref<string | null>(null)
-const cartState = useCartState()
+const pending = ref(false);
+const errorMessage = ref<string | null>(null);
+const cartState = useCartState();
 
 const removeCoupon = async () => {
-  pending.value = true
-  errorMessage.value = null
+  pending.value = true;
+  errorMessage.value = null;
 
   try {
-    const response = await $fetch('/api/coupons/remove', {
-      method: 'DELETE',
+    const response = await $fetch("/api/coupons/remove", {
+      method: "DELETE",
       body: {
         code: props.coupon.code,
       },
-    })
-    cartState.value = response
+    });
+    cartState.value = response;
+  } catch (error: any) {
+    errorMessage.value = error.data.data.message;
+  } finally {
+    pending.value = false;
   }
-  catch (error: any) {
-    errorMessage.value = error.data.data.message
-  }
-  finally {
-    pending.value = false
-  }
-}
+};
 </script>
 
 <template>
   <li>
     {{ coupon.code }}
-    -{{ $n(coupon.price, 'currency') }}
-    <button @click="removeCoupon">
-      remove
-    </button>
+    -{{ $n(coupon.price, "currency") }}
+    <button @click="removeCoupon">remove</button>
   </li>
 </template>

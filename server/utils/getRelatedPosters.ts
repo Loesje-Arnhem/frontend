@@ -1,6 +1,6 @@
-import { type ResponsePost } from '../types/ResponsePost'
-import { type ResponsePage } from '~/server/types/ResponsePage'
-import { type IRelatedPosters } from '~~/types/Content'
+import type { ResponsePost } from "../types/ResponsePost";
+import type { ResponsePage } from "~/server/types/ResponsePage";
+import type { IRelatedPosters } from "~~/types/Content";
 
 export default (page: ResponsePage | ResponsePost) => {
   const {
@@ -8,10 +8,10 @@ export default (page: ResponsePage | ResponsePost) => {
     related_posters_subjects,
     related_posters_title,
     related_posters_posters,
-  } = page.acf
-  let posterIds: number[] = []
+  } = page.acf;
+  let posterIds: number[] = [];
   if (related_posters_posters) {
-    posterIds = related_posters_posters.map(poster => poster.poster.ID)
+    posterIds = related_posters_posters.map((poster) => poster.poster.ID);
   }
 
   const relatedPosters: IRelatedPosters = {
@@ -19,6 +19,6 @@ export default (page: ResponsePage | ResponsePost) => {
     search: related_posters_title || null,
     subjects: related_posters_subjects || [],
     posterIds,
-  }
-  return relatedPosters
-}
+  };
+  return relatedPosters;
+};

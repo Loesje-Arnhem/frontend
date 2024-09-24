@@ -1,31 +1,31 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: '/over-loesje/nieuws',
+    nl: "/over-loesje/nieuws",
   },
-})
+});
 
-const { pageIds } = useAppConfig()
+const { pageIds } = useAppConfig();
 
 const { data } = await useAsyncData(`posts`, () =>
-  $fetch('/api/pages/page', {
+  $fetch("/api/pages/page", {
     params: {
       id: pageIds.posts,
     },
   }),
-)
+);
 
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Page Not Found',
-  })
+    statusMessage: "Page Not Found",
+  });
 }
 
 useMeta({
   title: data.value.title,
   description: data.value.description,
-})
+});
 </script>
 
 <template>

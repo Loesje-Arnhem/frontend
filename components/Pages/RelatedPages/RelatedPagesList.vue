@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { IRelatedPage } from '~/types/Content'
+import type { IRelatedPage } from "~/types/Content";
 
 defineProps<{
-  pages: IRelatedPage[]
-}>()
+  pages: IRelatedPage[];
+}>();
 </script>
 
 <template>
@@ -20,7 +20,7 @@ defineProps<{
 </template>
 
 <style lang="postcss" module>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .list {
   @mixin block;

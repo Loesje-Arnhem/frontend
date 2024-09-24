@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-const localePath = useLocalePath()
-const { openMobileMenu } = useLayout()
-const { title } = useAppConfig()
+const localePath = useLocalePath();
+const { openMobileMenu } = useLayout();
+const { title } = useAppConfig();
 </script>
 
 <template>
@@ -25,7 +25,7 @@ const { title } = useAppConfig()
 </template>
 
 <style lang="postcss" module>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .wrapper {
   padding: var(--spacing-xs) 0;

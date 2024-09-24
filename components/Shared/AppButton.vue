@@ -1,68 +1,59 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    to?: string | null
-    type?: 'button' | 'submit'
-    isPrimary?: boolean
-    loading?: boolean
-    href?: string | null
-    active?: boolean
+    to?: string | null;
+    type?: "button" | "submit";
+    isPrimary?: boolean;
+    loading?: boolean;
+    href?: string | null;
+    active?: boolean;
   }>(),
   {
-    type: 'button',
+    type: "button",
     isPrimary: true,
     loading: false,
     active: false,
     href: null,
     to: null,
   },
-)
+);
 
 const tag = computed(() => {
   if (props.href) {
-    return 'a'
+    return "a";
   }
-  return 'button'
-})
+  return "button";
+});
 
 const cssClasses = computed(() => {
-  const classes = []
+  const classes = [];
   if (props.isPrimary) {
-    classes.push('btn')
-  }
-  else {
-    classes.push('btn-outline')
+    classes.push("btn");
+  } else {
+    classes.push("btn-outline");
   }
   if (props.loading) {
-    classes.push('is-loading')
+    classes.push("is-loading");
   }
 
   if (props.active) {
-    classes.push('is-active')
+    classes.push("is-active");
   }
 
-  return classes
-})
+  return classes;
+});
 
 const generatedType = computed(() => {
-  if (tag.value === 'button') {
-    return props.type
+  if (tag.value === "button") {
+    return props.type;
   }
-  return null
-})
+  return null;
+});
 </script>
 
 <template>
-  <nuxt-link
-    v-if="to"
-    :to="to"
-    :class="cssClasses"
-    :type="generatedType"
-  >
-    <app-loader
-      v-if="loading"
-      class="loader"
-    />
+  <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
+    <app-loader v-if="loading" class="loader" />
 
     <span class="title"><slot /></span>
   </nuxt-link>
@@ -75,10 +66,7 @@ const generatedType = computed(() => {
     :disabled="loading === true ? 'true' : undefined"
     :href="href"
   >
-    <app-loader
-      v-if="loading"
-      class="loader"
-    />
+    <app-loader v-if="loading" class="loader" />
     <span class="title"><slot /></span>
   </component>
 </template>

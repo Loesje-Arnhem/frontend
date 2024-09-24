@@ -1,17 +1,7 @@
 <template>
   <div class="skip-links">
-    <app-button
-      href="#content"
-      class="btn"
-    >
-      Naar hoofdinhoud
-    </app-button>
-    <app-button
-      href="#menu"
-      class="btn"
-    >
-      Naar hoofdnavigatiemenu
-    </app-button>
+    <app-button href="#content" class="btn"> Naar hoofdinhoud </app-button>
+    <app-button href="#menu" class="btn"> Naar hoofdnavigatiemenu </app-button>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-const { socialMedia } = useAppConfig()
-const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl }
-  = socialMedia
+const { socialMedia } = useAppConfig();
+const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
+  socialMedia;
 </script>
 
 <template>
@@ -37,7 +37,7 @@ const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl }
 </template>
 
 <style lang="postcss" module>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .footer {
   @mixin block;

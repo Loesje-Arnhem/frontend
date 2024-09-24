@@ -1,17 +1,14 @@
 <script setup lang="ts">
 defineI18nRoute({
   paths: {
-    nl: '/dagelijkse-poster',
+    nl: "/dagelijkse-poster",
   },
-})
+});
 </script>
 
 <template>
   <center-wrapper size="sm">
-    <daily-poster
-      class="daily-poster"
-      sizes="90vw sm:540px"
-    />
+    <daily-poster class="daily-poster" sizes="90vw sm:540px" />
   </center-wrapper>
 </template>
 

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { IPosterListItem } from '~/types/Content'
+import type { IPosterListItem } from "~/types/Content";
 
 defineProps<{
-  posters: IPosterListItem[]
-}>()
+  posters: IPosterListItem[];
+}>();
 </script>
 
 <template>

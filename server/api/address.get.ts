@@ -1,22 +1,22 @@
 const geti18nErrorKey = (key: string) => {
   switch (key) {
-    case 'PostcodeNl_Service_PostcodeAddress_AddressNotFoundException':
-      return 'addressNotFound'
+    case "PostcodeNl_Service_PostcodeAddress_AddressNotFoundException":
+      return "addressNotFound";
     default:
-      return 'formError'
+      return "formError";
   }
-}
+};
 
 export default defineEventHandler(async (event) => {
-  const { postcode, houseNumber, houseNumberSuffix } = getQuery(event)
-  const config = useRuntimeConfig()
+  const { postcode, houseNumber, houseNumberSuffix } = getQuery(event);
+  const config = useRuntimeConfig();
 
-  const { key, secret } = config.postcode.api
-  const credentials = btoa(`${key}:${secret}`)
+  const { key, secret } = config.postcode.api;
+  const credentials = btoa(`${key}:${secret}`);
 
   const response = await $fetch<{
-    street: string
-    city: string
+    street: string;
+    city: string;
   }>(
     `https://api.postcode.eu/nl/v1/addresses/postcode/${postcode}/${houseNumber}/${houseNumberSuffix}`,
     {
@@ -30,17 +30,17 @@ export default defineEventHandler(async (event) => {
       data: {
         message: geti18nErrorKey(err.data.exceptionId),
       },
-    })
-  })
+    });
+  });
 
-  if (typeof response === 'number') {
+  if (typeof response === "number") {
     throw createError({
       statusCode: 400,
       data: {
-        message: 'errorCode',
+        message: "errorCode",
       },
-    })
+    });
   }
 
-  return response
-})
+  return response;
+});

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 defineI18nRoute({
   paths: {
-    nl: '/posters/favorieten',
+    nl: "/posters/favorieten",
   },
-})
+});
 
-const favorites = useFavoriteIds()
+const favorites = useFavoriteIds();
 </script>
 
 <template>

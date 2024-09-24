@@ -1,25 +1,20 @@
 <script lang="ts" setup>
 const props = defineProps<{
-  video: string
-}>()
+  video: string;
+}>();
 
 const videoThumb = computed(() => {
-  return `https://i3.ytimg.com/vi/${props.video}/maxresdefault.jpg`
-})
+  return `https://i3.ytimg.com/vi/${props.video}/maxresdefault.jpg`;
+});
 
 const videoUrl = computed(() => {
-  return `https://www.youtube.com/watch?v=${props.video}`
-})
+  return `https://www.youtube.com/watch?v=${props.video}`;
+});
 </script>
 
 <template>
   <div class="wrapper">
-    <a
-      :href="videoUrl"
-      class="video-wrapper"
-      rel="noopener"
-      target="_blank"
-    >
+    <a :href="videoUrl" class="video-wrapper" rel="noopener" target="_blank">
       <app-image
         :src="videoThumb"
         alt=""
@@ -29,12 +24,7 @@ const videoUrl = computed(() => {
         sizes="xs:350px"
       />
     </a>
-    <a
-      :href="videoUrl"
-      class="btn-video"
-      rel="noopener"
-      target="_blank"
-    >
+    <a :href="videoUrl" class="btn-video" rel="noopener" target="_blank">
       <app-image
         src="/images/btn-video.png"
         alt="Video afspelen"

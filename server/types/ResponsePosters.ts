@@ -1,12 +1,12 @@
-import { type ResponseImage } from './FeaturedImageResponseType'
+import type { ResponseImage } from "./FeaturedImageResponseType";
 
 export type ResponsePosters = {
-  id: number
+  id: number;
   title: {
-    rendered: string
-  }
-  slug: string
+    rendered: string;
+  };
+  slug: string;
   _embedded: {
-    'wp:featuredmedia'?: ResponseImage[]
-  }
-}
+    "wp:featuredmedia"?: ResponseImage[];
+  };
+};

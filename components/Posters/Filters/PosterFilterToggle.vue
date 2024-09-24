@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    isActive: boolean
+    isActive: boolean;
   }>(),
   {
     isActive: false,
   },
-)
-defineEmits(['toggle'])
+);
+defineEmits(["toggle"]);
 </script>
 
 <template>
@@ -17,14 +17,9 @@ defineEmits(['toggle'])
     :aria-expanded="isActive ? 'true' : 'false'"
     @click="$emit('toggle')"
   >
-    <span class="sr-only">{{ $t('viewAll') }}</span>
+    <span class="sr-only">{{ $t("viewAll") }}</span>
     <span class="title"><slot /></span>
-    <app-icon
-      icon="chevron-down"
-      class="icon"
-      :width="12"
-      :height="12"
-    />
+    <app-icon icon="chevron-down" class="icon" :width="12" :height="12" />
   </button>
 </template>
 
@@ -53,12 +48,12 @@ defineEmits(['toggle'])
   padding-bottom: 0.5em;
 
   &:hover,
-  &[aria-expanded='true'] {
+  &[aria-expanded="true"] {
     background-color: var(--color-black);
     color: var(--color-white);
   }
 
-  &[aria-expanded='true'] {
+  &[aria-expanded="true"] {
     & .icon {
       rotate: -180deg;
     }

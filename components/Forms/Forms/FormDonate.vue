@@ -8,7 +8,7 @@ const {
   // addToNewsletter,
   loading,
   errors,
-} = useCheckout()
+} = useCheckout();
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const {
   >
     <personal-info-fields
       id="billing"
-      v-model:firstName="billing.firstName"
+      v-model:first-name="billing.firstName"
       v-model:last-name="billing.lastName"
       v-model:company="billing.company"
       v-model:email="billing.email"

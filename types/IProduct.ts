@@ -1,38 +1,38 @@
-import { type IFeaturedImage } from './IMedia'
-import { type IBaseContent, type INodeBase } from './INode'
+import type { IFeaturedImage } from "./IMedia";
+import type { IBaseContent, INodeBase } from "./INode";
 
 export type IProductTile = INodeBase & {
-  slug: string
-  name: string
-  featuredImage: IFeaturedImage | null
-  regularPrice: string
-  price: string
-  salePrice: string
-}
+  slug: string;
+  name: string;
+  featuredImage: IFeaturedImage | null;
+  regularPrice: string;
+  price: string;
+  salePrice: string;
+};
 
 export type IRelatedProductProduct = {
-  product: IProductTile
-}
+  product: IProductTile;
+};
 
 export type IProductNode = {
-  node: IProductTile
-}
+  node: IProductTile;
+};
 
 export type IProducts = {
-  edges: IProductNode[]
-}
+  edges: IProductNode[];
+};
 
 export type IRelatedProducts = {
-  title: string | null
-  products: IRelatedProductProduct[] | null
-}
+  title: string | null;
+  products: IRelatedProductProduct[] | null;
+};
 
 export type IProduct = IBaseContent & {
-  shortDescription: string | null
-  description: string | null
-  stockStatus: string
-  featuredImage: IFeaturedImage | null
+  shortDescription: string | null;
+  description: string | null;
+  stockStatus: string;
+  featuredImage: IFeaturedImage | null;
   galleryImages: {
-    edges: IFeaturedImage[]
-  }
-}
+    edges: IFeaturedImage[];
+  };
+};

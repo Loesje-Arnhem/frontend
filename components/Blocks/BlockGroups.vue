@@ -20,9 +20,7 @@
               regelmatig bijeen komen om te schrijven of te plakken. Ook jij kan
               je aanmelden voor zo’n groep.
             </p>
-            <app-button to="/doe-mee/lokale-groepen">
-              Schrijf mee
-            </app-button>
+            <app-button to="/doe-mee/lokale-groepen"> Schrijf mee </app-button>
           </div>
         </div>
       </div>
@@ -31,7 +29,7 @@
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .groups {
   @mixin block;
@@ -51,7 +49,7 @@
   margin-bottom: 2em;
 
   @media (--viewport-lg) {
-    shape-outside: url('/images/nederland.png');
+    shape-outside: url("/images/nederland.png");
     shape-image-threshold: 10%;
     shape-margin: 2em;
     float: right;

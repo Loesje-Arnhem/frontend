@@ -1,6 +1,6 @@
 export type ResponseProductCategory = {
-  id: number
-  slug: string
-  name: string
-  description: string
-}[]
+  id: number;
+  slug: string;
+  name: string;
+  description: string;
+}[];

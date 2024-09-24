@@ -1,38 +1,29 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    buttonTitle?: string | null
-    loading: boolean
-    error?: string | null
+    buttonTitle?: string | null;
+    loading: boolean;
+    error?: string | null;
   }>(),
   {
     error: null,
     buttonTitle: null,
     loading: false,
   },
-)
+);
 
-defineEmits(['submit'])
+defineEmits(["submit"]);
 </script>
 
 <template>
-  <form
-    action=""
-    method="post"
-    novalidate
-    @submit.prevent="$emit('submit')"
-  >
+  <form action="" method="post" novalidate @submit.prevent="$emit('submit')">
     <slot />
-    <app-button
-      type="submit"
-      :loading="loading"
-      class="btn"
-    >
+    <app-button type="submit" :loading="loading" class="btn">
       <template v-if="buttonTitle">
         {{ buttonTitle }}
       </template>
       <template v-else>
-        {{ $t('send') }}
+        {{ $t("send") }}
       </template>
     </app-button>
 

@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import type { FeaturedImage } from '~/types/Content'
+import type { FeaturedImage } from "~/types/Content";
 
 withDefaults(
   defineProps<{
-    image: FeaturedImage
-    sizes: string
-    lazy?: boolean
+    image: FeaturedImage;
+    sizes: string;
+    lazy?: boolean;
   }>(),
   {
     lazy: true,
   },
-)
+);
 </script>
 
 <template>

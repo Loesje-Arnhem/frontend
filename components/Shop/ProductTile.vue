@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { IProductListItem } from '~/types/Content'
+import type { IProductListItem } from "~/types/Content";
 
 const props = defineProps<{
-  product: IProductListItem
-}>()
+  product: IProductListItem;
+}>();
 
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 
 // const url = localePath({
 //   name: 'shop-product',
@@ -13,15 +13,11 @@ const localePath = useLocalePath()
 //     slug: props.product.slug,
 //   },
 // })
-const url = props.product.url
+const url = props.product.url;
 </script>
 
 <template>
-  <clickable-list-item
-    :to="url"
-    :external="true"
-    class="product-tile tile"
-  >
+  <clickable-list-item :to="url" :external="true" class="product-tile tile">
     <div class="image-wrapper">
       <featured-image
         v-if="product.image"
@@ -31,10 +27,7 @@ const url = props.product.url
       />
     </div>
     <div class="title">
-      <router-link
-        class="link"
-        :to="url"
-      >
+      <router-link class="link" :to="url">
         <span v-html="product.title" />
       </router-link>
     </div>
@@ -49,7 +42,7 @@ const url = props.product.url
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .product-tile {
   padding: 0 0 0.5em;

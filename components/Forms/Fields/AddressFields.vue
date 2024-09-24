@@ -1,101 +1,96 @@
 <script lang="ts" setup>
-import { useVuelidate } from '@vuelidate/core'
-import type { Option } from '~/types/Option'
+import { useVuelidate } from "@vuelidate/core";
+import type { Option } from "~/types/Option";
 
 const emits = defineEmits([
-  'update:country',
-  'update:postcode',
-  'update:street',
-  'update:house-number',
-  'update:city',
-  'update:house-number-suffix',
-  'update:address1',
-  'update:address2',
-])
+  "update:country",
+  "update:postcode",
+  "update:street",
+  "update:house-number",
+  "update:city",
+  "update:house-number-suffix",
+  "update:address1",
+  "update:address2",
+]);
 
 const props = defineProps<{
-  id: string
-  city: string
-  postcode: string
-  street: string
-  houseNumber: string
-  country: string
-  houseNumberSuffix: string
-  address1: string
-  address2: string
-}>()
+  id: string;
+  city: string;
+  postcode: string;
+  street: string;
+  houseNumber: string;
+  country: string;
+  houseNumberSuffix: string;
+  address1: string;
+  address2: string;
+}>();
 
-const formData = toRefs(props)
+const formData = toRefs(props);
 
-const pending = ref(false)
-const errorMessage = ref<string | null>(null)
-const { t } = useI18n()
+const pending = ref(false);
+const errorMessage = ref<string | null>(null);
+const { t } = useI18n();
 
 const fetchAdress = async () => {
-  emits('update:city', '')
-  emits('update:street', '')
+  emits("update:city", "");
+  emits("update:street", "");
 
   if (v$.value.postcode.$invalid || v$.value.houseNumber.$invalid) {
-    return
+    return;
   }
 
-  pending.value = true
-  errorMessage.value = null
+  pending.value = true;
+  errorMessage.value = null;
 
   try {
-    const response = await $fetch('/api/address', {
+    const response = await $fetch("/api/address", {
       params: {
         postcode: formData.postcode.value,
         houseNumber: formData.houseNumber.value,
         houseNumberSuffix: formData.houseNumberSuffix.value,
       },
-    })
+    });
 
-    emits('update:city', response.city)
-    emits('update:street', response.street)
+    emits("update:city", response.city);
+    emits("update:street", response.street);
+  } catch (error: any) {
+    errorMessage.value = t(error.data.data.message);
+  } finally {
+    pending.value = false;
   }
-  catch (error: any) {
-    errorMessage.value = t(error.data.data.message)
-  }
-  finally {
-    pending.value = false
-  }
-}
+};
 
-const { required, numeric } = useValidators()
+const { required, numeric } = useValidators();
 
 const rules = {
   houseNumber: { required, numeric },
   postcode: { required },
   city: { required },
   street: { required },
-}
-const v$ = useVuelidate(rules, props)
+};
+const v$ = useVuelidate(rules, props);
 
-const { data } = await useAsyncData('countries', async () => {
-  const response = await $fetch('/api/store/countries')
+const { data } = await useAsyncData("countries", async () => {
+  const response = await $fetch("/api/store/countries");
   const options: Option[] = response.map((item) => {
     return {
       value: item.code,
       title: item.name,
-    }
-  })
-  return options
-})
+    };
+  });
+  return options;
+});
 
 const streetFieldsAreReadonly = computed(() => {
-  if (props.country === 'NL' && !errorMessage.value) {
-    return 'readonly'
+  if (props.country === "NL" && !errorMessage.value) {
+    return "readonly";
   }
-  return undefined
-})
+  return undefined;
+});
 </script>
 
 <template>
-  <form-fieldset
-    title="Adresgegevens"
-    class="fields"
-  >
+  <form-fieldset title="Adresgegevens" class="fields">
     <div class="country">
       <select-field
         v-if="data"
@@ -208,15 +203,12 @@ const streetFieldsAreReadonly = computed(() => {
       />
     </div>
 
-    <form-error-message
-      class="error-message"
-      :error="errorMessage"
-    />
+    <form-error-message class="error-message" :error="errorMessage" />
   </form-fieldset>
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .fields {
   & :deep(.fields) {

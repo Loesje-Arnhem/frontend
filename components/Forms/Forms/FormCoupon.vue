@@ -1,45 +1,43 @@
 <script lang="ts" setup>
-import { useVuelidate } from '@vuelidate/core'
+import { useVuelidate } from "@vuelidate/core";
 
 const formData = reactive({
-  code: '',
-})
+  code: "",
+});
 
-const pending = ref(false)
-const errorMessage = ref<string | null>(null)
-const cartState = useCartState()
+const pending = ref(false);
+const errorMessage = ref<string | null>(null);
+const cartState = useCartState();
 
-const { required } = useValidators()
+const { required } = useValidators();
 
 const rules = {
   code: { required },
-}
+};
 
-const v$ = useVuelidate(rules, formData)
+const v$ = useVuelidate(rules, formData);
 
 const submit = async () => {
-  const isFormCorrect = await v$.value.$validate()
+  const isFormCorrect = await v$.value.$validate();
   if (!isFormCorrect) {
-    return
+    return;
   }
 
-  pending.value = true
-  errorMessage.value = null
+  pending.value = true;
+  errorMessage.value = null;
 
   try {
-    const response = await $fetch('/api/coupons/add', {
-      method: 'POST',
+    const response = await $fetch("/api/coupons/add", {
+      method: "POST",
       body: formData,
-    })
-    cartState.value = response
+    });
+    cartState.value = response;
+  } catch (error: any) {
+    errorMessage.value = error.data.data.message;
+  } finally {
+    pending.value = false;
   }
-  catch (error: any) {
-    errorMessage.value = error.data.data.message
-  }
-  finally {
-    pending.value = false
-  }
-}
+};
 </script>
 
 <template>

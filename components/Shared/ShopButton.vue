@@ -1,12 +1,9 @@
 <script lang="ts" setup>
-const appConfig = useAppConfig()
+const appConfig = useAppConfig();
 </script>
 
 <template>
-  <a
-    :href="appConfig.shopUrl"
-    class="btn"
-  >
+  <a :href="appConfig.shopUrl" class="btn">
     <span class="title"><slot /></span>
   </a>
 </template>

@@ -1,23 +1,16 @@
 <script lang="ts" setup>
-const { t } = useI18n()
+const { t } = useI18n();
 const usps = [
-  t('participateToActivities'),
-  t('joinWriting'),
-  t('receiveDiscountInTheShop'),
-]
+  t("participateToActivities"),
+  t("joinWriting"),
+  t("receiveDiscountInTheShop"),
+];
 </script>
 
 <template>
-  <box-wrapper
-    id="become-member"
-    :title="$t('becomeMember')"
-  >
+  <box-wrapper id="become-member" :title="$t('becomeMember')">
     <ul class="list">
-      <li
-        v-for="usp in usps"
-        :key="usp"
-        class="list-item"
-      >
+      <li v-for="usp in usps" :key="usp" class="list-item">
         <app-image
           class="check"
           :width="27"
@@ -29,7 +22,7 @@ const usps = [
       </li>
     </ul>
     <app-button to="/doe-mee/word-lid/">
-      {{ $t('iWillJoin') }}
+      {{ $t("iWillJoin") }}
     </app-button>
     <!-- <app-image
       class="image"

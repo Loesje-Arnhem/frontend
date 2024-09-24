@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: '/posters',
+    nl: "/posters",
   },
-})
+});
 definePageMeta({
-  key: route => route.fullPath,
-})
+  key: (route) => route.fullPath,
+});
 
 useMeta({
-  title: 'Posters',
-})
+  title: "Posters",
+});
 </script>
 
 <template>

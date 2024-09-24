@@ -2,10 +2,7 @@
   <center-wrapper>
     <div :class="$style.wrapper">
       <aside :class="$style.sidebar">
-        <div
-          :class="$style['sidebar-item']"
-          class="tile"
-        >
+        <div :class="$style['sidebar-item']" class="tile">
           <slot name="sidebar" />
         </div>
       </aside>
@@ -17,7 +14,7 @@
 </template>
 
 <style lang="postcss" module>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .wrapper {
   display: grid;

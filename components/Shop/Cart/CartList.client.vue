@@ -1,17 +1,14 @@
 <script lang="ts" setup>
-const cart = useCartState()
-const localePath = useLocalePath()
+const cart = useCartState();
+const localePath = useLocalePath();
 
-const loading = ref(false)
+const loading = ref(false);
 </script>
 
 <template>
   <div v-if="cart">
     <div class="cart">
-      <table
-        v-if="cart.items.length"
-        class="list table-large"
-      >
+      <table v-if="cart.items.length" class="list table-large">
         <thead>
           <tr>
             <th />
@@ -31,34 +28,26 @@ const loading = ref(false)
           />
         </tbody>
       </table>
-      <p v-else>
-        Je winkelmand is momenteel leeg.
-      </p>
+      <p v-else>Je winkelmand is momenteel leeg.</p>
     </div>
 
     <div class="cart-footer">
       <h2>Totalen winkelwagen</h2>
       <div class="prices">
-        <div class="label">
-          Subtotaal
-        </div>
+        <div class="label">Subtotaal</div>
 
         <div class="value">
-          {{ $n(cart.prices.totalItems, 'currency') }}
+          {{ $n(cart.prices.totalItems, "currency") }}
         </div>
 
-        <div class="label">
-          Verzenden
-        </div>
+        <div class="label">Verzenden</div>
         <div class="value">
-          {{ $n(cart.prices.totalShipping, 'currency') }}
+          {{ $n(cart.prices.totalShipping, "currency") }}
         </div>
-        <div class="label">
-          Totaal
-        </div>
+        <div class="label">Totaal</div>
         <div class="value">
-          {{ $n(cart.prices.totalPrice, 'currency') }} (inclusief
-          {{ $n(cart.prices.totalTax, 'currency') }} BTW)
+          {{ $n(cart.prices.totalPrice, "currency") }} (inclusief
+          {{ $n(cart.prices.totalTax, "currency") }} BTW)
         </div>
       </div>
 
@@ -85,7 +74,7 @@ const loading = ref(false)
 </template>
 
 <style scoped lang="postcss">
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .cart {
   margin-bottom: var(--spacing-l);

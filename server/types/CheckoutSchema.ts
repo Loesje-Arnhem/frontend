@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from "zod";
 
 export const schema = z.object({
   order_id: z.number(),
@@ -37,4 +37,4 @@ export const schema = z.object({
     payment_details: z.array(z.unknown()),
     redirect_url: z.string(),
   }),
-})
+});

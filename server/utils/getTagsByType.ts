@@ -1,11 +1,11 @@
-import type { ResponseTerm } from '../types/ResponseTerm'
-import type { Taxonomy } from '~/enums/taxonomy'
+import type { ResponseTerm } from "../types/ResponseTerm";
+import type { Taxonomy } from "~/enums/taxonomy";
 
 export const getTagsByType = (
   terms: ResponseTerm[],
   type: Taxonomy.Source | Taxonomy.Subject,
 ) => {
-  const tags = terms.filter(tag => tag.taxonomy === type)
+  const tags = terms.filter((tag) => tag.taxonomy === type);
 
   return tags.map((tag) => {
     return {
@@ -13,6 +13,6 @@ export const getTagsByType = (
       slug: tag.slug,
       title: tag.name,
       type: tag.taxonomy,
-    }
-  })
-}
+    };
+  });
+};

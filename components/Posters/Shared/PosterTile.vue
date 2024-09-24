@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import type { IPosterListItem } from '~/types/Content'
+import type { IPosterListItem } from "~/types/Content";
 
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 
 withDefaults(
   defineProps<{
-    poster: IPosterListItem
-    sizes?: string
+    poster: IPosterListItem;
+    sizes?: string;
   }>(),
   {
     sizes:
-      '(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 250px',
+      "(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 250px",
   },
-)
+);
 </script>
 
 <template>

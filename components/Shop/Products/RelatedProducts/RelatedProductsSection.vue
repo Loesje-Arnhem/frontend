@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 defineProps<{
-  title?: string
-  productIds: number[]
-}>()
+  title?: string;
+  productIds: number[];
+}>();
 </script>
 
 <template>
@@ -17,13 +17,13 @@ defineProps<{
           {{ title }}
         </template>
         <template v-else>
-          {{ $t('theShop') }}
+          {{ $t("theShop") }}
         </template>
       </h1>
       <product-list :product-ids="productIds" />
       <!-- <app-button :to="localePath({ name: 'shop' })"> -->
       <app-button href="https://shop.loesje.nl/winkeltje/">
-        {{ $t('visitOurShop') }}
+        {{ $t("visitOurShop") }}
       </app-button>
     </center-wrapper>
   </section>

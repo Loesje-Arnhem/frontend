@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from "zod";
 
 const FeaturedImageSizeSchema = z.object({
   width: z.number(),
@@ -6,7 +6,7 @@ const FeaturedImageSizeSchema = z.object({
   filesize: z.number().optional(),
   mime_type: z.string(),
   source_url: z.string(),
-})
+});
 
 export const FeaturedImageSchema = z.object({
   id: z.number().optional(),
@@ -29,16 +29,16 @@ export const FeaturedImageSchema = z.object({
       filesize: z.number().optional(),
       sizes: z
         .object({
-          'thumbnail': FeaturedImageSizeSchema.optional(),
-          'medium': FeaturedImageSizeSchema.optional(),
-          'full': FeaturedImageSizeSchema.optional(),
-          'large': FeaturedImageSizeSchema.optional(),
-          'medium_large': FeaturedImageSizeSchema.optional(),
-          '1536x1536': FeaturedImageSizeSchema.optional(),
-          '2048x2048': FeaturedImageSizeSchema.optional(),
-          'woocommerce_thumbnail': FeaturedImageSizeSchema.optional(),
-          'woocommerce_single': FeaturedImageSizeSchema.optional(),
-          'woocommerce_gallery_thumbnail': FeaturedImageSizeSchema.optional(),
+          thumbnail: FeaturedImageSizeSchema.optional(),
+          medium: FeaturedImageSizeSchema.optional(),
+          full: FeaturedImageSizeSchema.optional(),
+          large: FeaturedImageSizeSchema.optional(),
+          medium_large: FeaturedImageSizeSchema.optional(),
+          "1536x1536": FeaturedImageSizeSchema.optional(),
+          "2048x2048": FeaturedImageSizeSchema.optional(),
+          woocommerce_thumbnail: FeaturedImageSizeSchema.optional(),
+          woocommerce_single: FeaturedImageSizeSchema.optional(),
+          woocommerce_gallery_thumbnail: FeaturedImageSizeSchema.optional(),
         })
         .optional(),
 
@@ -55,4 +55,4 @@ export const FeaturedImageSchema = z.object({
       replies: z.array(z.object({ embeddable: z.boolean(), href: z.string() })),
     })
     .optional(),
-})
+});

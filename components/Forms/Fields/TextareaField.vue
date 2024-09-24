@@ -1,27 +1,27 @@
 <script lang="ts" setup>
-import { type ErrorObject } from '@vuelidate/core'
+import type { ErrorObject } from "@vuelidate/core";
 
 defineOptions({
   inheritAttrs: false,
-})
+});
 
 withDefaults(
   defineProps<{
-    title: string
-    description?: string | null
-    name: string
-    id: string
-    errors?: ErrorObject[]
+    title: string;
+    description?: string | null;
+    name: string;
+    id: string;
+    errors?: ErrorObject[];
   }>(),
   {
     description: null,
     errors: () => [],
   },
-)
+);
 
-defineEmits(['keyup-down', 'keyup-up', 'change', 'blur'])
+defineEmits(["keyup-down", "keyup-up", "change", "blur"]);
 
-const model = defineModel({ required: true })
+const model = defineModel({ required: true });
 </script>
 
 <template>

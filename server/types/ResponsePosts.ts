@@ -1,10 +1,10 @@
 export type ResponsePosts = {
   title: {
-    rendered: string
-  }
+    rendered: string;
+  };
   excerpt: {
-    rendered: string
-  }
-  slug: string
-  date: string
-}
+    rendered: string;
+  };
+  slug: string;
+  date: string;
+};

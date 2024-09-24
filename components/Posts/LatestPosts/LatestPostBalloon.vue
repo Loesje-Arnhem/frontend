@@ -5,51 +5,43 @@ export default {
       animate: false,
       imageObserver: null,
       balloon: null,
-    }
+    };
   },
   mounted() {
-    this.balloon = this.$refs.balloon
+    this.balloon = this.$refs.balloon;
     if (
-      'IntersectionObserver' in window
-      && 'IntersectionObserverEntry' in window
+      "IntersectionObserver" in window &&
+      "IntersectionObserverEntry" in window
     ) {
       this.imageObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            this.toggleAnimation(entry.isIntersecting)
-          })
+            this.toggleAnimation(entry.isIntersecting);
+          });
         },
         {
-          rootMargin: '200px 0px',
+          rootMargin: "200px 0px",
         },
-      )
-      this.imageObserver.observe(this.balloon)
-    }
-    else {
-      this.toggleAnimation(true)
+      );
+      this.imageObserver.observe(this.balloon);
+    } else {
+      this.toggleAnimation(true);
     }
   },
   unmounted() {
-    this.imageObserver.unobserve(this.balloon)
+    this.imageObserver.unobserve(this.balloon);
   },
   methods: {
     toggleAnimation(animate) {
-      this.animate = animate
+      this.animate = animate;
     },
   },
-}
+};
 </script>
 
 <template>
-  <div
-    ref="balloon"
-    class="balloon-x"
-    :class="{ animate }"
-  >
-    <div
-      class="balloon-y"
-      :class="{ animate }"
-    >
+  <div ref="balloon" class="balloon-x" :class="{ animate }">
+    <div class="balloon-y" :class="{ animate }">
       <app-image
         :width="159"
         :height="243"
@@ -61,7 +53,7 @@ export default {
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .animate {
   animation: 20s infinite cubic-bezier(0.02, 0.01, 0.21, 1);

@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import type { FeaturedImage } from '~/types/Content'
+import type { FeaturedImage } from "~/types/Content";
 
 const props = defineProps<{
-  title: string
-  image?: FeaturedImage
-  video?: string
-  content?: string
-  date?: string
-}>()
+  title: string;
+  image?: FeaturedImage;
+  video?: string;
+  content?: string;
+  date?: string;
+}>();
 
 const hasMedia = computed(() => {
-  return props.video || props.image
-})
+  return props.video || props.image;
+});
 </script>
 
 <template>
@@ -20,25 +20,12 @@ const hasMedia = computed(() => {
       <article :class="{ 'has-media': hasMedia }">
         <div class="content">
           <h1 v-html="title" />
-          <post-date
-            v-if="date"
-            :date="date"
-            class="date"
-          />
-          <div
-            class="text"
-            v-html="content"
-          />
+          <post-date v-if="date" :date="date" class="date" />
+          <div class="text" v-html="content" />
         </div>
         <div class="media">
-          <app-video
-            v-if="video"
-            :video="video"
-          />
-          <photo-frame
-            v-else-if="image"
-            :image="image"
-          />
+          <app-video v-if="video" :video="video" />
+          <photo-frame v-else-if="image" :image="image" />
         </div>
       </article>
     </div>
@@ -46,7 +33,7 @@ const hasMedia = computed(() => {
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .content-wrapper {
   @media print {

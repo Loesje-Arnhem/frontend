@@ -1,36 +1,33 @@
 <script lang="ts" setup>
-import { useVuelidate } from '@vuelidate/core'
+import { useVuelidate } from "@vuelidate/core";
 
 defineEmits([
-  'update:firstName',
-  'update:lastName',
-  'update:email',
-  'update:company',
-])
+  "update:firstName",
+  "update:lastName",
+  "update:email",
+  "update:company",
+]);
 
 const props = defineProps<{
-  firstName: string
-  lastName: string
-  company: string
-  email: string
-  id: string
-}>()
+  firstName: string;
+  lastName: string;
+  company: string;
+  email: string;
+  id: string;
+}>();
 
-const { required, email } = useValidators()
+const { required, email } = useValidators();
 
 const rules = {
   firstName: { required },
   lastName: { required },
   email: { required, email },
-}
-const v$ = useVuelidate(rules, props)
+};
+const v$ = useVuelidate(rules, props);
 </script>
 
 <template>
-  <form-fieldset
-    title="Factuurgegevens"
-    class="fields"
-  >
+  <form-fieldset title="Factuurgegevens" class="fields">
     <input-text-field
       :id="`${id}-firstName`"
       :model-value="firstName"
@@ -76,7 +73,7 @@ const v$ = useVuelidate(rules, props)
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .fields {
   & :deep(.fields) {

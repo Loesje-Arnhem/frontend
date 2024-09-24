@@ -1,48 +1,47 @@
 <script lang="ts" setup>
-import type { ITag } from '~/types/Content'
+import type { ITag } from "~/types/Content";
 
 const props = defineProps<{
-  tag: ITag
-}>()
+  tag: ITag;
+}>();
 
-const selectedTags = useSelectedTags()
-const route = useRoute()
-const localePath = useLocalePath()
+const selectedTags = useSelectedTags();
+const route = useRoute();
+const localePath = useLocalePath();
 
 const isSelected = computed(() => {
   return selectedTags.value.some((selectedTag) => {
-    return selectedTag.id === props.tag.id
-  })
-})
+    return selectedTag.id === props.tag.id;
+  });
+});
 
 const add = () => {
-  selectedTags.value.push(props.tag)
-}
+  selectedTags.value.push(props.tag);
+};
 const remove = () => {
-  const tags = [...selectedTags.value]
+  const tags = [...selectedTags.value];
 
   selectedTags.value = tags.filter(
-    selectedTag => selectedTag.id !== props.tag.id,
-  )
-}
+    (selectedTag) => selectedTag.id !== props.tag.id,
+  );
+};
 
 const goToPostersOverview = () => {
-  const postersUrl = localePath({ name: 'posters' })
+  const postersUrl = localePath({ name: "posters" });
   if (route.path === postersUrl) {
-    return
+    return;
   }
-  navigateTo(postersUrl)
-}
+  navigateTo(postersUrl);
+};
 
 const toggleTag = () => {
   if (isSelected.value) {
-    remove()
+    remove();
+  } else {
+    add();
   }
-  else {
-    add()
-  }
-  goToPostersOverview()
-}
+  goToPostersOverview();
+};
 </script>
 
 <template>

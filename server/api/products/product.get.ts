@@ -1,41 +1,41 @@
-import { z } from 'zod'
-import type { FeaturedImage, IProduct } from '~~/types/Content'
-import type { ResponseProduct } from '~/server/types/ResponseProduct'
+import { z } from "zod";
+import type { FeaturedImage, IProduct } from "~~/types/Content";
+import type { ResponseProduct } from "~/server/types/ResponseProduct";
 
 const querySchema = z.object({
   slug: z.string(),
-})
+});
 
 export default defineEventHandler(async (event) => {
-  const query = await getValidatedQuery(event, body =>
+  const query = await getValidatedQuery(event, (body) =>
     querySchema.safeParse(body),
-  )
+  );
 
   if (!query.success) {
-    throw query.error.issues
+    throw query.error.issues;
   }
 
   const url = getUrl({
-    type: 'products',
+    type: "products",
     fields: [
-      'name',
-      'id',
-      'prices',
-      'images',
-      'description',
-      'short_description',
-      'related_ids',
-      'attributes',
+      "name",
+      "id",
+      "prices",
+      "images",
+      "description",
+      "short_description",
+      "related_ids",
+      "attributes",
     ],
     image: true,
     slug: query.data.slug,
     isCommerce: true,
-  })
+  });
 
-  const response = await $fetch<ResponseProduct[]>(url)
+  const response = await $fetch<ResponseProduct[]>(url);
 
   if (!response.length) {
-    return null
+    return null;
   }
 
   const images: FeaturedImage[] = response[0].images.map((image) => {
@@ -43,8 +43,8 @@ export default defineEventHandler(async (event) => {
       alt: image.alt,
       src: image.src,
       srcSet: image.srcset,
-    }
-  })
+    };
+  });
 
   const {
     id,
@@ -54,12 +54,12 @@ export default defineEventHandler(async (event) => {
     short_description,
     related_ids,
     attributes,
-  } = response[0]
-  let regularPrice = undefined
+  } = response[0];
+  let regularPrice = undefined;
 
-  const { regular_price, price } = prices
+  const { regular_price, price } = prices;
   if (regular_price && price !== regular_price) {
-    regularPrice = Number(regular_price) / 100
+    regularPrice = Number(regular_price) / 100;
   }
 
   const item: IProduct = {
@@ -72,7 +72,7 @@ export default defineEventHandler(async (event) => {
     excerpt: short_description,
     images,
     attributes,
-  }
+  };
 
-  return item
-})
+  return item;
+});

@@ -17,15 +17,10 @@
       class="btn-show-submenu"
       @click="toggleMenu"
     >
-      <app-icon
-        icon="chevron-down"
-        :width="16"
-        :height="16"
-        class="icon"
-      />
+      <app-icon icon="chevron-down" :width="16" :height="16" class="icon" />
       <span class="sr-only">
         {{
-          $t('showSubmenuFor', {
+          $t("showSubmenuFor", {
             title: item.title,
           })
         }}
@@ -33,19 +28,13 @@
     </button>
 
     <slide-in-animation>
-      <ul
-        v-if="isOpen"
-        class="submenu tile"
-      >
+      <ul v-if="isOpen" class="submenu tile">
         <li
           v-for="subItem in item.children"
           :key="subItem.url"
           class="submenu-item"
         >
-          <main-navigation-link
-            :item="subItem"
-            class="submenu-link"
-          />
+          <main-navigation-link :item="subItem" class="submenu-link" />
         </li>
       </ul>
     </slide-in-animation>
@@ -53,68 +42,67 @@
 </template>
 
 <script lang="ts" setup>
-import type { MenuItemWithChildren } from '~/types/MenuItem'
+import type { MenuItemWithChildren } from "~/types/MenuItem";
 
 const props = defineProps<{
-  item: MenuItemWithChildren
-}>()
+  item: MenuItemWithChildren;
+}>();
 
-const { openMenus, add, remove } = useLayout()
-const menuIsOpen = useMenu()
-let timer = null as number | null
-const link = ref<ComponentPublicInstance<HTMLAnchorElement> | null>(null)
+const { openMenus, add, remove } = useLayout();
+const menuIsOpen = useMenu();
+let timer = null as number | null;
+const link = ref<ComponentPublicInstance<HTMLAnchorElement> | null>(null);
 
-const isOpen = computed(() => openMenus.value.includes(props.item.title))
+const isOpen = computed(() => openMenus.value.includes(props.item.title));
 
 const toggleMenu = () => {
   if (isOpen.value) {
-    remove(props.item.title)
+    remove(props.item.title);
+  } else {
+    add(props.item.title);
   }
-  else {
-    add(props.item.title)
-  }
-}
+};
 
 const setActiveSubmenu = () => {
-  if (!isSmallScreen()) return
-  if (!link.value) return
-  if (!link.value.$el.classList.contains('nuxt-link-active')) {
-    return
+  if (!isSmallScreen()) return;
+  if (!link.value) return;
+  if (!link.value.$el.classList.contains("nuxt-link-active")) {
+    return;
   }
-  add(props.item.title)
-}
+  add(props.item.title);
+};
 
 watch(menuIsOpen, () => {
   if (menuIsOpen.value) {
-    setActiveSubmenu()
+    setActiveSubmenu();
   }
-})
+});
 
 const hasChildren = computed(() => {
-  return props.item.children?.length ? true : false
-})
+  return props.item.children?.length ? true : false;
+});
 
 const mouseover = () => {
-  if (isSmallScreen()) return
-  if (!hasChildren.value) return
-  if (!timer) return
-  add(props.item.title)
-  clearTimeout(timer)
-}
+  if (isSmallScreen()) return;
+  if (!hasChildren.value) return;
+  if (!timer) return;
+  add(props.item.title);
+  clearTimeout(timer);
+};
 
 const mouseout = () => {
-  if (isSmallScreen()) return
+  if (isSmallScreen()) return;
   timer = window.setTimeout(() => {
-    remove(props.item.title)
-  }, 150)
-}
+    remove(props.item.title);
+  }, 150);
+};
 const isSmallScreen = () => {
-  return window.innerWidth < 768
-}
+  return window.innerWidth < 768;
+};
 </script>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .menu-item {
   position: relative;
@@ -179,7 +167,7 @@ const isSmallScreen = () => {
     border-bottom-width: 0;
   }
 
-  &.router-link-exact-active :deep(.title)  {
+  &.router-link-exact-active :deep(.title) {
     box-shadow: 0 2px 0 0 currentColor;
   }
 }
@@ -200,7 +188,7 @@ const isSmallScreen = () => {
 
 .icon {
   transition: transform var(--animation);
-  [aria-expanded='true'] & {
+  [aria-expanded="true"] & {
     transform: rotate(-180deg);
 
     @media (--show-full-navigation) {
@@ -231,7 +219,7 @@ const isSmallScreen = () => {
 
     &::before {
       position: absolute;
-      content: '';
+      content: "";
       height: 0;
       width: 0;
       left: var(--spacing-m);

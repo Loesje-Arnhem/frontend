@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 </script>
 
 <template>
@@ -8,8 +8,9 @@ const localePath = useLocalePath()
       <div class="text">
         <h1>Steun Loesje!</h1>
         <p>
-          Loesje wil met haar positieve, kritische posters de wereld een zetje in de goede richting geven.
-          Wil jij haar daarbij helpen? Word vrienden met Loesje en steun haar!
+          Loesje wil met haar positieve, kritische posters de wereld een zetje
+          in de goede richting geven. Wil jij haar daarbij helpen? Word vrienden
+          met Loesje en steun haar!
         </p>
         <app-button
           href="https://app.clubbase.io/signup/f73cc96d-dbbd-44b7-866d-ff565dd6e864?id=8e12b804-83e1-46a7-84a3-f38018a8dd42"
@@ -40,7 +41,7 @@ const localePath = useLocalePath()
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .wrapper {
   padding-top: var(--spacing-s);
@@ -78,7 +79,7 @@ const localePath = useLocalePath()
 
   &::after {
     display: block;
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     box-shadow: inset 0 0 0 1px var(--color-white);

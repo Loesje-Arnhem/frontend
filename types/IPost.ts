@@ -1,26 +1,26 @@
-import {
-  type IRelatedContent,
-  type IDetailsContent,
-  type IPageInfo,
-} from '~/types/INode'
+import type {
+  IRelatedContent,
+  IDetailsContent,
+  IPageInfo,
+} from "~/types/INode";
 
 export type IRelatedPost = IRelatedContent & {
-  date: string
-}
+  date: string;
+};
 
 export type IRelatedPostNode = {
-  node: IRelatedPost
-}
+  node: IRelatedPost;
+};
 
 export type IPostsBase = {
-  edges: IRelatedPostNode[]
-}
+  edges: IRelatedPostNode[];
+};
 
 export type IPosts = IPostsBase & {
-  pageInfo: IPageInfo
-}
+  pageInfo: IPageInfo;
+};
 
 export type IPost = IDetailsContent & {
-  date: string
-  relatedPosts: IPosts
-}
+  date: string;
+  relatedPosts: IPosts;
+};

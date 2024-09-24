@@ -1,21 +1,21 @@
-import type { ITag } from '~~/interfaces/IContent'
-import type { IResponseTerm } from '~~/server/types/IResponseTerm'
+import type { ITag } from "~~/interfaces/IContent";
+import type { IResponseTerm } from "~~/server/types/IResponseTerm";
 
 export default defineEventHandler(async (event) => {
-  const type = event.context.params?.type
+  const type = event.context.params?.type;
   if (!type) {
-    return []
+    return [];
   }
 
   const url = getUrl({
     type,
-    fields: ['name', 'slug', 'id', 'taxonomy'],
+    fields: ["name", "slug", "id", "taxonomy"],
     pageSize: 99,
-  })
+  });
 
-  const response = await $fetch<IResponseTerm[]>(url, {})
+  const response = await $fetch<IResponseTerm[]>(url, {});
   if (!response) {
-    return []
+    return [];
   }
   const items: ITag[] = response.map((item) => {
     return {
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
       slug: item.slug,
       title: item.name,
       type: item.taxonomy,
-    }
-  })
-  return items
-})
+    };
+  });
+  return items;
+});

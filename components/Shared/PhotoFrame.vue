@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { FeaturedImage } from '~/types/Content'
+import type { FeaturedImage } from "~/types/Content";
 
 defineProps<{
-  image: FeaturedImage
-}>()
+  image: FeaturedImage;
+}>();
 </script>
 
 <template>

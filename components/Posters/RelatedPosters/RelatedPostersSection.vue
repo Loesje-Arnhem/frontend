@@ -1,32 +1,32 @@
 <script lang="ts" setup>
-const localePath = useLocalePath()
-const { t } = useI18n()
+const localePath = useLocalePath();
+const { t } = useI18n();
 
 const props = defineProps<{
-  title: string | null
-  search: string | null
-  subjects: number[]
-  posterIds: number[]
-}>()
+  title: string | null;
+  search: string | null;
+  subjects: number[];
+  posterIds: number[];
+}>();
 
-const { data } = useFetch('/api/posters/posters', {
+const { data } = useFetch("/api/posters/posters", {
   query: {
-    include: props.posterIds.join(','),
+    include: props.posterIds.join(","),
     search: props.search,
     subjects: props.subjects,
     pageSize: 7,
   },
-})
+});
 
-const img = useImage()
+const img = useImage();
 
 const backgroundImage = computed(() =>
-  img('/images/wall.png', {
-    format: 'webp',
+  img("/images/wall.png", {
+    format: "webp",
   }),
-)
+);
 
-const title = props.title || t('posters')
+const title = props.title || t("posters");
 </script>
 
 <template>
@@ -37,10 +37,7 @@ const title = props.title || t('posters')
     :style="{ backgroundImage: `url(${backgroundImage})` }"
   >
     <center-wrapper>
-      <h1
-        id="related-posters-title"
-        class="title"
-      >
+      <h1 id="related-posters-title" class="title">
         {{ title }}
       </h1>
     </center-wrapper>
@@ -50,7 +47,7 @@ const title = props.title || t('posters')
     </center-wrapper>
     <center-wrapper class="btn-wrapper">
       <app-button :to="localePath({ name: 'posters' })">
-        {{ $t('viewAllPosters') }}
+        {{ $t("viewAllPosters") }}
       </app-button>
     </center-wrapper>
   </section>

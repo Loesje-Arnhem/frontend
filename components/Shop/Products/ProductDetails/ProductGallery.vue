@@ -1,16 +1,13 @@
 <script lang="ts" setup>
-import type { FeaturedImage } from '~/types/Content'
+import type { FeaturedImage } from "~/types/Content";
 
 defineProps<{
-  images: FeaturedImage[]
-}>()
+  images: FeaturedImage[];
+}>();
 </script>
 
 <template>
-  <div
-    v-if="images.length"
-    class="gallery"
-  >
+  <div v-if="images.length" class="gallery">
     <image-carousel :images="images" />
   </div>
 </template>

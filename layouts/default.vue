@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { title, socialMedia } = useAppConfig()
+const { title, socialMedia } = useAppConfig();
 const {
   twitterUrl,
   facebookUrl,
@@ -7,35 +7,35 @@ const {
   pinterestUrl,
   linkedinUrl,
   youtubeUrl,
-} = socialMedia
+} = socialMedia;
 
 const head = useLocaleHead({
   addDirAttribute: true,
-  identifierAttribute: 'id',
+  identifierAttribute: "id",
   addSeoAttributes: true,
-})
+});
 
-const { getFromStorage } = useFavorites()
+const { getFromStorage } = useFavorites();
 
 onMounted(() => {
-  getFromStorage()
-})
+  getFromStorage();
+});
 
 useSchemaOrg([
   defineOrganization({
     name: title,
     logo: {
-      '@type': 'ImageObject',
-      'inLanguage': 'nl-NL',
-      '@id': 'https://www.loesje.nl/#/schema/logo/image/',
-      'url': 'https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png',
-      'contentUrl': 'https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png',
-      'width': 260,
-      'height': 150,
-      'caption': title,
+      "@type": "ImageObject",
+      inLanguage: "nl-NL",
+      "@id": "https://www.loesje.nl/#/schema/logo/image/",
+      url: "https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png",
+      contentUrl: "https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png",
+      width: 260,
+      height: 150,
+      caption: title,
     },
     image: {
-      '@id': 'https://www.loesje.nl/#/schema/logo/image/',
+      "@id": "https://www.loesje.nl/#/schema/logo/image/",
     },
     sameAs: [
       twitterUrl,
@@ -49,30 +49,23 @@ useSchemaOrg([
   defineWebSite({
     name: title,
   }),
-])
+]);
 
-const config = useRuntimeConfig()
-
+const config = useRuntimeConfig();
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | Loesje` : 'Loesje'
+    return titleChunk ? `${titleChunk} | Loesje` : "Loesje";
   },
-})
+});
 </script>
 
 <template>
   <div>
-    <Html
-      :lang="head.htmlAttrs?.lang"
-      :dir="head.htmlAttrs?.dir"
-    >
-      <Head>
-        <template
-          v-for="link in head.link"
-          :key="link.id"
-        >
-          <Link
+    <html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir">
+      <head>
+        <template v-for="link in head.link" :key="link.id">
+          <link
             :id="link.id"
             :rel="link.rel"
             :href="link.href"
@@ -80,44 +73,39 @@ useHead({
           />
         </template>
 
-        <template
-          v-for="meta in head.meta"
-          :key="meta.id"
-        >
-          <Meta
+        <template v-for="meta in head.meta" :key="meta.id">
+          <meta
             :id="meta.id"
             :property="meta.property"
             :content="meta.content"
           />
         </template>
-      </Head>
-      <Body>
+      </head>
+      <body>
         <vite-pwa-manifest />
         <nuxt-route-announcer />
         <div class="page">
           <header-top class="page-header-top sa-hidden" />
           <the-header class="page-header sa-hidden" />
-          <main
-            id="content"
-            class="main"
-            tabindex="-1"
-          >
+          <main id="content" class="main" tabindex="-1">
             <slot />
           </main>
           <the-footer class="page-footer sa-hidden" />
         </div>
-      </Body>
-    </Html>
+      </body>
+    </html>
   </div>
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
+
 .page {
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
   @supports (min-height: 100dvh) {
     min-height: 100dvh;
   }

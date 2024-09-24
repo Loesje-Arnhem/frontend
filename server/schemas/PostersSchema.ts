@@ -1,5 +1,5 @@
-import { z } from 'zod'
-import { FeaturedImageSchema } from './FeaturedImageSchema'
+import { z } from "zod";
+import { FeaturedImageSchema } from "./FeaturedImageSchema";
 
 export const PostersSchema = z.array(
   z.object({
@@ -10,14 +10,14 @@ export const PostersSchema = z.array(
     }),
 
     _embedded: z.object({
-      'wp:featuredmedia': z.array(FeaturedImageSchema).optional(),
+      "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
     }),
   }),
-)
+);
 
 export const PostersQuerySchema = z.object({
-  pageSize: z.string().default('20'),
-  page: z.string().default('1'),
+  pageSize: z.string().default("20"),
+  page: z.string().default("1"),
   include: z.string().optional(),
   exclude: z.string().optional(),
   search: z.string().optional(),
@@ -25,4 +25,4 @@ export const PostersQuerySchema = z.object({
   sourceIds: z.string().optional(),
   dateBefore: z.string().optional(),
   dateAfter: z.string().optional(),
-})
+});

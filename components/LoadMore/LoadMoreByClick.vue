@@ -1,29 +1,26 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    title?: string | null
-    loading?: boolean
+    title?: string | null;
+    loading?: boolean;
   }>(),
   {
     title: null,
     loading: false,
   },
-)
-defineEmits(['load-more'])
+);
+defineEmits(["load-more"]);
 </script>
 
 <template>
   <app-loader v-if="loading" />
-  <div
-    v-else
-    :class="$style.wrapper"
-  >
+  <div v-else :class="$style.wrapper">
     <app-button @click="$emit('load-more')">
       <template v-if="title">
         {{ title }}
       </template>
       <template v-else>
-        {{ $t('showMore') }}
+        {{ $t("showMore") }}
       </template>
     </app-button>
   </div>

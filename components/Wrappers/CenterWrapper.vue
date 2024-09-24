@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    size?: 'xlg' | 'full' | 'md' | 'lg' | 'sm'
-    top?: boolean
+    size?: "xlg" | "full" | "md" | "lg" | "sm";
+    top?: boolean;
   }>(),
   {
     top: false,
-    size: 'xlg',
+    size: "xlg",
   },
-)
+);
 </script>
 
 <template>

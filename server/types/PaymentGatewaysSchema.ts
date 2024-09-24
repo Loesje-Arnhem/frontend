@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from "zod";
 
 export const PaymentGatewaysSchema = z.array(
   z.object({
@@ -8,4 +8,4 @@ export const PaymentGatewaysSchema = z.array(
     order: z.union([z.string(), z.number()]),
     enabled: z.boolean(),
   }),
-)
+);

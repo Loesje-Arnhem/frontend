@@ -1,39 +1,39 @@
-import { useVuelidate } from '@vuelidate/core'
+import { useVuelidate } from "@vuelidate/core";
 
 export const useCheckout = () => {
-  const errors = ref<string[]>([])
-  const paymentMethod = ref('cod')
-  const shipToDifferentAddress = ref(false)
-  const addToNewsletter = ref(false)
+  const errors = ref<string[]>([]);
+  const paymentMethod = ref("cod");
+  const shipToDifferentAddress = ref(false);
+  const addToNewsletter = ref(false);
   const billing = reactive({
-    street: '',
-    houseNumber: '',
-    houseNumberSuffix: '',
-    city: '',
-    company: '',
-    country: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    postcode: '',
-    address1: '',
-    address2: '',
-  })
+    street: "",
+    houseNumber: "",
+    houseNumberSuffix: "",
+    city: "",
+    company: "",
+    country: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    postcode: "",
+    address1: "",
+    address2: "",
+  });
 
   const shipping = reactive({
-    street: '',
-    houseNumber: '',
-    houseNumberSuffix: '',
-    city: '',
-    company: '',
+    street: "",
+    houseNumber: "",
+    houseNumberSuffix: "",
+    city: "",
+    company: "",
     country: CountriesEnum.Nl,
-    email: '',
-    firstName: '',
-    lastName: '',
-    postcode: '',
-    address1: '',
-    address2: '',
-  })
+    email: "",
+    firstName: "",
+    lastName: "",
+    postcode: "",
+    address1: "",
+    address2: "",
+  });
   const { mutate, loading, onError, onDone } = useMutation(
     submitCheckoutMutation,
     () => ({
@@ -45,15 +45,15 @@ export const useCheckout = () => {
       },
       refetchQueries: [{ query: getCartQuery }],
     }),
-  )
+  );
   onError(({ graphQLErrors }) => {
-    errors.value = graphQLErrors.map(err => err.message)
-  })
+    errors.value = graphQLErrors.map((err) => err.message);
+  });
 
   // submits to the newsletter when checkout succeeds
   onDone(() => {
     if (!addToNewsletter.value) {
-      return
+      return;
     }
     // newsletterForm.email = billing.email
     // newsletterForm.firstName = billing.firstName
@@ -61,17 +61,17 @@ export const useCheckout = () => {
     // newsletterForm.list = NewsletterList.Products
 
     // submitToNewsletter()
-  })
-  const v$ = useVuelidate()
+  });
+  const v$ = useVuelidate();
 
   const submit = async () => {
-    const isFormCorrect = await v$.value.$validate()
+    const isFormCorrect = await v$.value.$validate();
     if (!isFormCorrect) {
-      return
+      return;
     }
 
-    await mutate({ billing })
-  }
+    await mutate({ billing });
+  };
   return {
     shipping,
     billing,
@@ -81,5 +81,5 @@ export const useCheckout = () => {
     loading,
     submit,
     addToNewsletter,
-  }
-}
+  };
+};

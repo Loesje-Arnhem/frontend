@@ -1,11 +1,11 @@
-export const getStorageKey = (query: Object, storageKey: string) => {
+export const getStorageKey = (query: object, storageKey: string) => {
   const filledKeys = Object.entries(query).filter(([_, value]) => {
-    return value !== ''
-  })
+    return value !== "";
+  });
 
   const keys = filledKeys.map(([key, value]) => {
-    return `${key}:${value}`
-  })
+    return `${key}:${value}`;
+  });
 
-  return `${storageKey}-${keys.join(',')}`
-}
+  return `${storageKey}-${keys.join(",")}`;
+};

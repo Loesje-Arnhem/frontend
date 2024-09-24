@@ -1,48 +1,45 @@
 <script lang="ts" setup>
-import type { FeaturedImage } from '~/types/Content'
+import type { FeaturedImage } from "~/types/Content";
 
 defineProps<{
-  image: FeaturedImage
-}>()
+  image: FeaturedImage;
+}>();
 
-const $emits = defineEmits(['is-active'])
+const $emits = defineEmits(["is-active"]);
 
-const item: Ref<HTMLLIElement | null> = ref(null)
-const threshold = 1
-let observer: IntersectionObserver | null = null
+const item: Ref<HTMLLIElement | null> = ref(null);
+const threshold = 1;
+let observer: IntersectionObserver | null = null;
 
 onMounted(() => {
   if (!import.meta.client) {
-    return
+    return;
   }
   if (!item.value) {
-    return
+    return;
   }
   observer = new IntersectionObserver(
     (entry) => {
-      const isActive = entry[0].intersectionRatio > threshold
+      const isActive = entry[0].intersectionRatio > threshold;
       if (isActive) {
-        $emits('is-active')
+        $emits("is-active");
       }
     },
     {
       threshold,
     },
-  )
-  observer.observe(item.value)
-})
+  );
+  observer.observe(item.value);
+});
 onUnmounted(() => {
   if (observer && item.value) {
-    observer.unobserve(item.value)
+    observer.unobserve(item.value);
   }
-})
+});
 </script>
 
 <template>
-  <li
-    ref="item"
-    class="list-item"
-  >
+  <li ref="item" class="list-item">
     <featured-image
       :image="image"
       class="image"

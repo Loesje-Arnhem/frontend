@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-const { data } = useFetch('/api/posts/posts', {
+const { data } = useFetch("/api/posts/posts", {
   query: {
     pageSize: 3,
   },
-})
+});
 
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 </script>
 
 <template>
@@ -18,11 +18,11 @@ const localePath = useLocalePath()
       <div class="wrapper">
         <div class="list">
           <h1 id="latest-posts-title">
-            {{ $t('posts') }}
+            {{ $t("posts") }}
           </h1>
           <latest-posts-list :posts="data.items" />
           <app-button :to="localePath({ name: 'posts' })">
-            {{ $t('morePosts') }}
+            {{ $t("morePosts") }}
           </app-button>
         </div>
         <become-member class="become-member" />
@@ -33,7 +33,7 @@ const localePath = useLocalePath()
 </template>
 
 <style lang="postcss" scoped>
-@import '~/assets/css/media-queries/media-queries.css';
+@import "~/assets/css/media-queries/media-queries.css";
 
 .latest-posts {
   padding-bottom: 2em;
@@ -45,20 +45,20 @@ const localePath = useLocalePath()
   grid-gap: 2em;
   position: relative;
   grid-template-areas:
-    'list'
-    'become-member'
-    'balloon';
+    "list"
+    "become-member"
+    "balloon";
 
   @media (--viewport-md) {
     grid-template-areas:
-      'list list'
-      'become-member balloon';
+      "list list"
+      "become-member balloon";
   }
 
   @media (--viewport-lg) {
     grid-template-areas:
-      'list become-member'
-      'list balloon';
+      "list become-member"
+      "list balloon";
   }
 }
 

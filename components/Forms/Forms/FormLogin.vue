@@ -1,35 +1,34 @@
 <script lang="ts" setup>
-import { useVuelidate } from '@vuelidate/core'
+import { useVuelidate } from "@vuelidate/core";
 
-const { required } = useValidators()
-const loading = ref(false)
-const apiError = ref(null as string | null)
+const { required } = useValidators();
+const loading = ref(false);
+const apiError = ref(null as string | null);
 const formData = reactive({
-  username: '',
-  password: '',
-})
+  username: "",
+  password: "",
+});
 
 const rules = {
   username: { required },
   password: { required },
-}
+};
 
-const v$ = useVuelidate(rules, formData)
+const v$ = useVuelidate(rules, formData);
 
 const error = computed(() => {
   if (apiError.value) {
-    return apiError.value
+    return apiError.value;
+  } else if (v$.value.$dirty && v$.value.$invalid) {
+    return "validations.form";
   }
-  else if (v$.value.$dirty && v$.value.$invalid) {
-    return 'validations.form'
-  }
-  return null
-})
+  return null;
+});
 
 const submit = async () => {
-  const isFormCorrect = await v$.value.$validate()
-  apiError.value = null
-  if (!isFormCorrect) return
+  const isFormCorrect = await v$.value.$validate();
+  apiError.value = null;
+  if (!isFormCorrect) return;
 
   // loading.value = true
   // try {
@@ -41,7 +40,7 @@ const submit = async () => {
   // } finally {
   //   loading.value = false
   // }
-}
+};
 </script>
 
 <template>

@@ -1,16 +1,16 @@
-import { Taxonomy } from '~~/enums/taxonomy'
-import type { IPoster, ITag } from '~~/types/Content'
-import { PosterQuerySchema, PosterSchema } from '~/server/schemas/PosterSchema'
+import { Taxonomy } from "~~/enums/taxonomy";
+import type { IPoster, ITag } from "~~/types/Content";
+import { PosterQuerySchema, PosterSchema } from "~/server/schemas/PosterSchema";
 
 export default defineEventHandler(async (event) => {
   // const storage = useStorage('redis')
 
-  const query = await getValidatedQuery(event, body =>
+  const query = await getValidatedQuery(event, (body) =>
     PosterQuerySchema.safeParse(body),
-  )
+  );
 
   if (!query.success) {
-    throw query.error.issues
+    throw query.error.issues;
   }
 
   // const key = getStorageKey(query.data, 'poster')
@@ -22,42 +22,42 @@ export default defineEventHandler(async (event) => {
   const url = getUrl({
     slug: query.data.slug,
     image: true,
-    type: 'posters',
-    fields: ['title', 'yoast_head_json', 'slug', 'acf'],
-  })
+    type: "posters",
+    fields: ["title", "yoast_head_json", "slug", "acf"],
+  });
 
-  const response = await $fetch(url)
+  const response = await $fetch(url);
 
-  const parsed = PosterSchema.safeParse(response)
+  const parsed = PosterSchema.safeParse(response);
 
   if (!parsed.success) {
     throw createError({
       statusCode: 400,
       data: {
-        message: 'Something went wrong',
+        message: "Something went wrong",
       },
-    })
+    });
   }
 
   if (parsed.data.length) {
-    const item = parsed.data[0]
+    const item = parsed.data[0];
     const featuredImage = getFeaturedImage(
-      item._embedded['wp:featuredmedia'],
+      item._embedded["wp:featuredmedia"],
       item.title.rendered,
-    )
+    );
 
-    let subjects: ITag[] = []
-    let sources: ITag[] = []
-    if (item._embedded['wp:term']) {
-      const tags = item._embedded['wp:term'].flat()
-      subjects = getTagsByType(tags, Taxonomy.Subject)
-      sources = getTagsByType(tags, Taxonomy.Source)
+    let subjects: ITag[] = [];
+    let sources: ITag[] = [];
+    if (item._embedded["wp:term"]) {
+      const tags = item._embedded["wp:term"].flat();
+      subjects = getTagsByType(tags, Taxonomy.Subject);
+      sources = getTagsByType(tags, Taxonomy.Source);
     }
 
-    const pattern = /(\d{4})(\d{2})(\d{2})/
-    let date = undefined
+    const pattern = /(\d{4})(\d{2})(\d{2})/;
+    let date = undefined;
     if (item.acf.date) {
-      date = new Date(item.acf.date?.replace(pattern, '$1-$2-$3')).toString()
+      date = new Date(item.acf.date?.replace(pattern, "$1-$2-$3")).toString();
     }
 
     const poster: IPoster = {
@@ -70,9 +70,9 @@ export default defineEventHandler(async (event) => {
       slug: item.slug,
       sources,
       // relatedProducts: getRelatedProducts(item),
-    }
+    };
     // await storage.setItem(key, poster)
-    return poster
+    return poster;
   }
-  return null
-})
+  return null;
+});

@@ -1,26 +1,26 @@
-import { type IOption } from '~/types/IOption'
+import type { IOption } from "~/types/IOption";
 
 const countries: IOption[] = [
   {
-    value: 'BE',
-    title: 'België',
+    value: "BE",
+    title: "België",
   },
   {
-    value: 'DE',
-    title: 'Duitsland',
+    value: "DE",
+    title: "Duitsland",
   },
   {
-    value: 'FR',
-    title: 'Frankrijk',
+    value: "FR",
+    title: "Frankrijk",
   },
   {
-    value: 'NL',
-    title: 'Nederland',
+    value: "NL",
+    title: "Nederland",
   },
   {
-    value: 'AT',
-    title: 'Oostenrijk',
+    value: "AT",
+    title: "Oostenrijk",
   },
-]
+];
 
-export default countries
+export default countries;

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 defineProps<{
-  previousSlideEnabled: boolean
-  nextSlideEnabled: boolean
-}>()
+  previousSlideEnabled: boolean;
+  nextSlideEnabled: boolean;
+}>();
 
-defineEmits(['next', 'previous'])
+defineEmits(["next", "previous"]);
 </script>
 
 <template>
@@ -14,20 +14,14 @@ defineEmits(['next', 'previous'])
       :disabled="!previousSlideEnabled"
       @click="$emit('previous')"
     >
-      <app-icon
-        icon="chevron-left"
-        title="Vorige slide"
-      />
+      <app-icon icon="chevron-left" title="Vorige slide" />
     </button>
     <button
       class="btn-next"
       :disabled="!nextSlideEnabled"
       @click="$emit('next')"
     >
-      <app-icon
-        icon="chevron-right"
-        title="Volgende slide"
-      />
+      <app-icon icon="chevron-right" title="Volgende slide" />
     </button>
   </div>
 </template>

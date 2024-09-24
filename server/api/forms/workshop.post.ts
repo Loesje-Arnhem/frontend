@@ -1,22 +1,22 @@
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event)
-  const times = body.time.split(':')
-  let startTime = ''
-  let endTime = ''
+  const body = await readBody(event);
+  const times = body.time.split(":");
+  let startTime = "";
+  let endTime = "";
   if (times.length === 2) {
-    startTime = times[0]
-    endTime = times[1]
+    startTime = times[0];
+    endTime = times[1];
   }
-  let formattedDate = ''
-  const date = new Date(body.date)
+  let formattedDate = "";
+  const date = new Date(body.date);
   if (date instanceof Date && !isNaN(date.valueOf())) {
-    console.log('----')
-    formattedDate = new Intl.DateTimeFormat('nl-NL', {
-      dateStyle: 'full',
-    }).format(date)
+    console.log("----");
+    formattedDate = new Intl.DateTimeFormat("nl-NL", {
+      dateStyle: "full",
+    }).format(date);
   }
-  await $fetch('https://derobotvan.loesje.nl/workshopaanvragen.php', {
-    method: 'POST',
+  await $fetch("https://derobotvan.loesje.nl/workshopaanvragen.php", {
+    method: "POST",
     body: {
       naam: body.name,
       org: body.companyName,
@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
       wslocation: body.location,
       countworkshops: body.totalWorkshops,
       schrijfthema: body.theme,
-      akkoord: 'jsononly',
+      akkoord: "jsononly",
     },
   }).catch((err) => {
     throw createError({
@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
       data: {
         message: err.data,
       },
-    })
-  })
-  return 1
-})
+    });
+  });
+  return 1;
+});
