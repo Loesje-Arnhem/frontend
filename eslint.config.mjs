@@ -25,5 +25,12 @@ export default withNuxt([
       ],
     },
   },
+  {
+    files: ["layouts/default.vue"],
+    rules: {
+      "vue/component-name-in-template-casing": "off",
+    },
+  },
+
   eslintPluginPrettierRecommended,
 ]);

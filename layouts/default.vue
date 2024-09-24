@@ -62,26 +62,27 @@ useHead({
 
 <template>
   <div>
-    <html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir">
-      <head>
-        <template v-for="link in head.link" :key="link.id">
-          <link
-            :id="link.id"
-            :rel="link.rel"
-            :href="link.href"
-            :hreflang="link.hreflang"
-          />
-        </template>
+    <Html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir">
+      <Head>
+        <Title>{{ title }}</Title>
+        <Link
+          v-for="link in head.link"
+          :id="link.id"
+          :key="link.id"
+          :rel="link.rel"
+          :href="link.href"
+          :hreflang="link.hreflang"
+        />
 
-        <template v-for="meta in head.meta" :key="meta.id">
-          <meta
-            :id="meta.id"
-            :property="meta.property"
-            :content="meta.content"
-          />
-        </template>
-      </head>
-      <body>
+        <Meta
+          v-for="meta in head.meta"
+          :id="meta.id"
+          :key="meta.id"
+          :property="meta.property"
+          :content="meta.content"
+        />
+      </Head>
+      <Body>
         <vite-pwa-manifest />
         <nuxt-route-announcer />
         <div class="page">
@@ -92,8 +93,8 @@ useHead({
           </main>
           <the-footer class="page-footer sa-hidden" />
         </div>
-      </body>
-    </html>
+      </Body>
+    </Html>
   </div>
 </template>
 
