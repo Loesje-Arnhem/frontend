@@ -1,46 +1,3 @@
-<template>
-  <li
-    :class="{ 'has-popup': hasChildren }"
-    class="menu-item"
-    @mouseover="mouseover"
-    @mouseout="mouseout"
-  >
-    <main-navigation-link
-      ref="link"
-      :item="item"
-      :aria-haspopup="hasChildren"
-      class="menu-link"
-    />
-    <button
-      v-if="hasChildren"
-      :aria-expanded="isOpen ? 'true' : 'false'"
-      class="btn-show-submenu"
-      @click="toggleMenu"
-    >
-      <app-icon icon="chevron-down" :width="16" :height="16" class="icon" />
-      <span class="sr-only">
-        {{
-          $t("showSubmenuFor", {
-            title: item.title,
-          })
-        }}
-      </span>
-    </button>
-
-    <slide-in-animation>
-      <ul v-if="isOpen" class="submenu tile">
-        <li
-          v-for="subItem in item.children"
-          :key="subItem.url"
-          class="submenu-item"
-        >
-          <main-navigation-link :item="subItem" class="submenu-link" />
-        </li>
-      </ul>
-    </slide-in-animation>
-  </li>
-</template>
-
 <script lang="ts" setup>
 import type { MenuItemWithChildren } from "~/types/MenuItem";
 
@@ -99,7 +56,53 @@ const mouseout = () => {
 const isSmallScreen = () => {
   return window.innerWidth < 768;
 };
+
+const id = useId();
 </script>
+
+<template>
+  <li
+    :class="{ 'has-popup': hasChildren }"
+    class="menu-item"
+    @mouseover="mouseover"
+    @mouseout="mouseout"
+  >
+    <main-navigation-link
+      ref="link"
+      :item="item"
+      :aria-haspopup="hasChildren"
+      class="menu-link"
+    />
+    <button
+      v-if="hasChildren"
+      :aria-controls="id"
+      :aria-expanded="isOpen"
+      class="btn-show-submenu"
+      @click="toggleMenu"
+    >
+      <app-icon icon="chevron-down" :width="16" :height="16" class="icon" />
+      <span class="sr-only">
+        {{
+          $t("showSubmenuFor", {
+            title: item.title,
+          })
+        }}
+      </span>
+    </button>
+
+    <slide-in-animation>
+      <ul v-if="isOpen" :id="id" class="submenu tile">
+        <li
+          v-for="subItem in item.children"
+          :key="subItem.url"
+          class="submenu-item"
+        >
+          <main-navigation-link :item="subItem" class="submenu-link" />
+        </li>
+      </ul>
+    </slide-in-animation>
+  </li>
+</template>
 
 <style lang="postcss" scoped>
 @import "~/assets/css/media-queries/media-queries.css";

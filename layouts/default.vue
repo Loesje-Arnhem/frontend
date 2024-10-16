@@ -51,8 +51,6 @@ useSchemaOrg([
   }),
 ]);
 
-const config = useRuntimeConfig();
-
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} | Loesje` : "Loesje";

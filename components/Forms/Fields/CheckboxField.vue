@@ -7,7 +7,7 @@ defineProps<{
   title: string;
   id: string;
 }>();
-const model = defineModel({ required: true });
+const model = defineModel<boolean>({ required: true });
 </script>
 
 <template>

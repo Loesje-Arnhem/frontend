@@ -1,5 +1,6 @@
 import eslintPluginVue from "eslint-plugin-vue";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import eslintConfigPrettier from "eslint-config-prettier";
 import withNuxt from "./.nuxt/eslint.config.mjs";
 
 export default withNuxt([
@@ -31,6 +32,6 @@ export default withNuxt([
       "vue/component-name-in-template-casing": "off",
     },
   },
-
+  eslintConfigPrettier,
   eslintPluginPrettierRecommended,
 ]);

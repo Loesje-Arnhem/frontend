@@ -12,7 +12,6 @@ withDefaults(
     name: string;
     id: string;
     type?: "text" | "date" | "email" | "time" | "password" | "tel";
-    modelValue: string | number;
     errors?: ErrorObject[];
   }>(),
   {
@@ -23,7 +22,7 @@ withDefaults(
 );
 defineEmits(["keyup-down", "keyup-up", "change", "blur"]);
 
-const model = defineModel({ required: true });
+const model = defineModel<string | number>({ required: true });
 </script>
 
 <template>

@@ -20,7 +20,7 @@ withDefaults(
   },
 );
 
-const model = defineModel({ required: true });
+const model = defineModel<string>({ required: true });
 </script>
 
 <template>
