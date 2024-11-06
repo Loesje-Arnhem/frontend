@@ -86,7 +86,7 @@ useHead({
         <div class="page">
           <header-top class="page-header-top sa-hidden" />
           <the-header class="page-header sa-hidden" />
-          <main id="content" class="main" tabindex="-1">
+          <main id="content" class="main">
             <slot />
           </main>
           <the-footer class="page-footer sa-hidden" />

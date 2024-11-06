@@ -53,8 +53,8 @@ defineProps<{
         <app-button
           v-if="poster.pdf"
           :is-primary="false"
-          :href="poster.pdf"
-          target="_blank"
+          :to="poster.pdf"
+          external
           download
         >
           <app-icon icon="pdf" :width="32" :height="32" class="icon" />

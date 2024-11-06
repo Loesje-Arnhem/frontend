@@ -1,31 +1,25 @@
-<script lang="ts" setup>
-const localePath = useLocalePath();
-</script>
-
 <template>
   <center-wrapper :top="true">
     <div class="wrapper">
       <div class="text">
         <h1>Steun Loesje!</h1>
         <p>
-          Loesje wil met haar positieve, kritische posters de wereld een zetje
-          in de goede richting geven. Wil jij haar daarbij helpen? Word vrienden
-          met Loesje en steun haar!
+          Loesje heeft jouw hulp nodig! Wil je samen met haar de wereld mooier
+          maken? Doneer nu en draag bij aan haar voortbestaan.
         </p>
         <app-button
-          href="https://app.clubbase.io/signup/f73cc96d-dbbd-44b7-866d-ff565dd6e864?id=8e12b804-83e1-46a7-84a3-f38018a8dd42"
-          rel="noopener"
-          target="_blank"
+          to="https://app.clubcollect.com/forms/nl/loesje/donatiecampagne-2024"
           class="btn"
+          :external="true"
         >
           Word vrienden met Loesje
         </app-button>
       </div>
       <div class="poster-daily">
         <div class="image-wrapper">
-          <nuxt-link :to="localePath({ name: 'daily-poster' })">
+          <nuxt-link-locale :to="{ name: 'daily-poster' }">
             <daily-poster class="image" />
-          </nuxt-link>
+          </nuxt-link-locale>
         </div>
         <app-image
           src="/images/electriciteitskastje.png"

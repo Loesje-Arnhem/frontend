@@ -22,7 +22,7 @@ defineProps<{
       </h1>
       <product-list :product-ids="productIds" />
       <!-- <app-button :to="localePath({ name: 'shop' })"> -->
-      <app-button href="https://shop.loesje.nl/winkeltje/">
+      <app-button to="https://shop.loesje.nl/winkeltje/">
         {{ $t("visitOurShop") }}
       </app-button>
     </center-wrapper>

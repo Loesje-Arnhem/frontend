@@ -1,12 +1,15 @@
 <script lang="ts" setup>
+import type { RouteLocationRaw } from "vue-router";
+
 const props = withDefaults(
   defineProps<{
-    to?: string | null;
+    to?: RouteLocationRaw;
     type?: "button" | "submit";
     isPrimary?: boolean;
     loading?: boolean;
     href?: string | null;
     active?: boolean;
+    external?: boolean;
   }>(),
   {
     type: "button",
@@ -14,16 +17,10 @@ const props = withDefaults(
     loading: false,
     active: false,
     href: null,
-    to: null,
+    to: undefined,
+    external: false,
   },
 );
-
-const tag = computed(() => {
-  if (props.href) {
-    return "a";
-  }
-  return "button";
-});
 
 const cssClasses = computed(() => {
   const classes = [];
@@ -42,33 +39,30 @@ const cssClasses = computed(() => {
 
   return classes;
 });
-
-const generatedType = computed(() => {
-  if (tag.value === "button") {
-    return props.type;
-  }
-  return null;
-});
 </script>
 
 <template>
-  <nuxt-link v-if="to" :to="to" :class="cssClasses" :type="generatedType">
+  <nuxt-link
+    v-if="to"
+    :to="to"
+    :class="cssClasses"
+    :external="external"
+    :target="external ? '_blank' : undefined"
+  >
     <app-loader v-if="loading" class="loader" />
-
     <span class="title"><slot /></span>
   </nuxt-link>
 
-  <component
-    :is="tag"
+  <button
     v-else
-    :type="generatedType"
+    :type="type"
     :class="cssClasses"
     :disabled="loading === true ? 'true' : undefined"
     :href="href"
   >
     <app-loader v-if="loading" class="loader" />
     <span class="title"><slot /></span>
-  </component>
+  </button>
 </template>
 
 <style lang="postcss" scoped>

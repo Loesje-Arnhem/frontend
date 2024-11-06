@@ -65,8 +65,8 @@ const setArrowPosition = () => {
 </script>
 
 <template>
-  <nav aria-labelledby="menu" class="nav">
-    <h2 id="menu" class="sr-only" tabindex="-1">
+  <nav id="menu" aria-labelledby="menu" class="nav">
+    <h2 class="sr-only">
       {{ $t("mainMenu") }}
     </h2>
     <div ref="menu">

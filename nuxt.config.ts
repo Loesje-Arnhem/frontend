@@ -230,7 +230,6 @@ export default defineNuxtConfig({
   i18n: {
     defaultLocale: "nl",
     lazy: true,
-    langDir: "locales",
     baseUrl: "https://www.loesje.nl/",
     locales: [
       {

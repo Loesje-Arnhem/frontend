@@ -43,9 +43,8 @@ const updateTheme = () => {
           </p>
           <div class="buttons">
             <app-button
-              href="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
-              target="_blank"
-              rel="noopener noreferrer"
+              to="https://itunes.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1&amp;mt=8"
+              :external="true"
             >
               Bekijk de app in de Appstore
             </app-button>
