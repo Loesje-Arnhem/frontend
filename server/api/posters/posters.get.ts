@@ -56,9 +56,7 @@ export default defineEventHandler(async (event) => {
 
   if (!parsed.success) {
     throw createError({
-      data: {
-        data: parsed.error.format(),
-      },
+      data: parsed.error.format(),
     });
   }
 
