@@ -21,10 +21,7 @@ export default defineEventHandler(async (event) => {
 
   if (!formData.success) {
     throw createError({
-      statusCode: 400,
-      data: {
-        data: formData.error.format(),
-      },
+      data: formData.error.format(),
     });
   }
 
@@ -88,10 +85,7 @@ export default defineEventHandler(async (event) => {
 
     if (!parsed.success) {
       throw createError({
-        statusCode: 400,
-        data: {
-          data: parsed.error.format(),
-        },
+        data: parsed.error.format(),
       });
     }
 
