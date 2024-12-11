@@ -2,10 +2,10 @@ import type { FeaturedImageResponseType } from "../types/FeaturedImageResponseTy
 import type { FeaturedImage } from "~/types/Content";
 
 export default (
-  featuredImage: FeaturedImageResponseType[] | undefined,
+  featuredImage: FeaturedImageResponseType[],
   title?: string,
-) => {
-  if (!featuredImage) {
+): FeaturedImage | undefined => {
+  if (!featuredImage.length) {
     return undefined;
   }
   const image = featuredImage[0];
@@ -33,12 +33,11 @@ export default (
     alt = image.alt_text;
   }
 
-  const result: FeaturedImage = {
+  return {
     alt,
     width: image.media_details.width,
     height: image.media_details.height,
     src: image.source_url,
     srcSet: srcSet.join(","),
   };
-  return result;
 };

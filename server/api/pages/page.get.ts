@@ -8,13 +8,16 @@ const querySchema = z.object({
   id: z.string().optional(),
 });
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<IPage> => {
   const query = await getValidatedQuery(event, (body) =>
     querySchema.safeParse(body),
   );
 
   if (!query.success) {
-    throw query.error.issues;
+    throw createError({
+      statusMessage: "Invalid arguments",
+      data: query.error.format(),
+    });
   }
 
   const url = getUrl({
@@ -42,7 +45,8 @@ export default defineEventHandler(async (event) => {
     const featuredImage = getFeaturedImage(
       response._embedded["wp:featuredmedia"],
     );
-    const page: IPage = {
+
+    return {
       id: response.id,
       parentId: response.parent || response.id,
       title: response.title.rendered,
@@ -54,7 +58,5 @@ export default defineEventHandler(async (event) => {
       featuredImage,
       relatedPosters: getRelatedPosters(response),
     };
-    return page;
   }
-  return null;
 });

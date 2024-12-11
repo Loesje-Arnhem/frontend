@@ -20,6 +20,7 @@ defineProps<{
               :key="poster.id"
               :lazy="false"
               :image="poster.featuredImage"
+              class="image"
               sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
             />
           </fade-animation>
@@ -143,5 +144,10 @@ defineProps<{
 
 .tile {
   padding: 3px;
+}
+
+.image:deep(img) {
+  display: block;
+  width: 100%;
 }
 </style>

@@ -56,3 +56,5 @@ export const FeaturedImageSchema = z.object({
     })
     .optional(),
 });
+
+export const FeaturedImageListSchema = z.array(FeaturedImageSchema).default([]);

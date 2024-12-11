@@ -9,11 +9,7 @@ const {
   youtubeUrl,
 } = socialMedia;
 
-const head = useLocaleHead({
-  addDirAttribute: true,
-  identifierAttribute: "id",
-  addSeoAttributes: true,
-});
+const head = useLocaleHead();
 
 const { getFromStorage } = useFavorites();
 

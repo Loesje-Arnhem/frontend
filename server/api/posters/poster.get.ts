@@ -2,7 +2,7 @@ import { Taxonomy } from "~~/enums/taxonomy";
 import type { IPoster, ITag } from "~~/types/Content";
 import { PosterQuerySchema, PosterSchema } from "~/server/schemas/PosterSchema";
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<IPoster> => {
   // const storage = useStorage('redis')
 
   const query = await getValidatedQuery(event, (body) =>
@@ -10,7 +10,10 @@ export default defineEventHandler(async (event) => {
   );
 
   if (!query.success) {
-    throw query.error.issues;
+    throw createError({
+      statusMessage: "Invalid arguments",
+      data: query.error.format(),
+    });
   }
 
   // const key = getStorageKey(query.data, 'poster')
@@ -32,47 +35,50 @@ export default defineEventHandler(async (event) => {
 
   if (!parsed.success) {
     throw createError({
-      statusCode: 400,
-      data: {
-        message: "Something went wrong",
-      },
+      statusMessage: "Invalid schema",
+      data: parsed.error.format(),
     });
   }
 
-  if (parsed.data.length) {
-    const item = parsed.data[0];
-    const featuredImage = getFeaturedImage(
-      item._embedded["wp:featuredmedia"],
-      item.title.rendered,
-    );
-
-    let subjects: ITag[] = [];
-    let sources: ITag[] = [];
-    if (item._embedded["wp:term"]) {
-      const tags = item._embedded["wp:term"].flat();
-      subjects = getTagsByType(tags, Taxonomy.Subject);
-      sources = getTagsByType(tags, Taxonomy.Source);
-    }
-
-    const pattern = /(\d{4})(\d{2})(\d{2})/;
-    let date = undefined;
-    if (item.acf.date) {
-      date = new Date(item.acf.date?.replace(pattern, "$1-$2-$3")).toString();
-    }
-
-    const poster: IPoster = {
-      id: item.id,
-      title: item.title.rendered,
-      date: date,
-      pdf: item.acf.pdf,
-      featuredImage,
-      subjects,
-      slug: item.slug,
-      sources,
-      // relatedProducts: getRelatedProducts(item),
-    };
-    // await storage.setItem(key, poster)
-    return poster;
+  if (parsed.data.length === 0) {
+    throw createError({
+      statusCode: 404,
+    });
   }
-  return null;
+
+  const item = parsed.data[0];
+
+  const featuredImage = getFeaturedImage(
+    item._embedded["wp:featuredmedia"],
+    item.title.rendered,
+  );
+
+  let subjects: ITag[] = [];
+  let sources: ITag[] = [];
+  if (item._embedded["wp:term"]) {
+    const tags = item._embedded["wp:term"].flat();
+    subjects = getTagsByType(tags, Taxonomy.Subject);
+    sources = getTagsByType(tags, Taxonomy.Source);
+  }
+
+  const pattern = /(\d{4})(\d{2})(\d{2})/;
+  let date = undefined;
+  if (item.acf.date) {
+    date = new Date(item.acf.date?.replace(pattern, "$1-$2-$3")).toString();
+  }
+
+  return {
+    id: item.id,
+    title: item.title.rendered,
+    date: date,
+    pdf: item.acf.pdf,
+    featuredImage,
+    subjects,
+    slug: item.slug,
+    sources,
+    relatedProducts: getRelatedProducts({
+      related_products_title: item.acf.related_products_title,
+      related_products_products: item.acf.related_products_products,
+    }),
+  };
 });

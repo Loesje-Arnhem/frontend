@@ -16,9 +16,9 @@ export type IBase = {
 
 export type IRelatedPosters = {
   subjects: number[];
-  search: string | null;
+  search?: string;
   posterIds: number[];
-  title: string | null;
+  title?: string;
 };
 
 export type IRelatedProducts = {
@@ -32,7 +32,7 @@ export type IRelatedPage = IBase & {
 };
 
 export type IPage = IBase & {
-  parentId: number;
+  parentId?: number;
   content: string;
   seo: ISEO;
   description: string;
@@ -62,7 +62,7 @@ export type IPoster = IBase & {
   slug: string;
   date?: string;
   featuredImage?: FeaturedImage;
-  pdf: string;
+  pdf?: string;
   sources: ITag[];
   subjects: ITag[];
   relatedProducts?: IRelatedProducts;

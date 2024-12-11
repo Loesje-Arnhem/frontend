@@ -1,22 +1,20 @@
 import { z } from "zod";
 import { FeaturedImageSchema } from "./FeaturedImageSchema";
 import { TermsSchema } from "./TermsSchema";
+import { RelatedProductsSectionSchema } from "./RelatedProductsSchema";
 
 export const PosterSchema = z.array(
   z.object({
     id: z.number(),
     slug: z.string(),
     title: z.object({ rendered: z.string() }),
-    acf: z.object({
-      related_products_title: z.string(),
-      // related_products_products: z.boolean().or(
-      //   z.array(
-      //     z.object({
-      //       product: z.boolean(),
-      //     }),
-      //   ),
-      // ),
-      pdf: z.union([z.boolean(), z.string()]),
+    acf: RelatedProductsSectionSchema.extend({
+      pdf: z.union([z.literal(false), z.string()]).transform((val) => {
+        if (!val) {
+          return undefined;
+        }
+        return val;
+      }),
       date: z.string(),
     }),
     _links: z.object({
