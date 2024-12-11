@@ -35,7 +35,6 @@ export default defineEventHandler(async (event): Promise<IPoster> => {
 
   if (!parsed.success) {
     throw createError({
-      statusMessage: "Invalid schema",
       data: parsed.error.format(),
     });
   }
