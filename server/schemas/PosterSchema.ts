@@ -23,9 +23,6 @@ export const PosterSchema = z.array(
       self: z.array(z.object({ href: z.string() })),
       collection: z.array(z.object({ href: z.string() })),
       about: z.array(z.object({ href: z.string() })),
-      "wp:featuredmedia": z.array(
-        z.object({ embeddable: z.boolean(), href: z.string() }),
-      ),
       "wp:attachment": z.array(z.object({ href: z.string() })),
       "wp:term": z.array(
         z.object({
@@ -43,7 +40,7 @@ export const PosterSchema = z.array(
       ),
     }),
     _embedded: z.object({
-      "wp:featuredmedia": z.array(FeaturedImageSchema),
+      "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
       "wp:term": TermsSchema,
     }),
   }),

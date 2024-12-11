@@ -32,9 +32,8 @@ export default defineEventHandler(async (event) => {
 
   if (!parsed.success) {
     throw createError({
-      statusCode: 400,
       data: {
-        message: "Something went wrong",
+        data: parsed.error.format(),
       },
     });
   }
