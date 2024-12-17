@@ -27,6 +27,10 @@ const pinterest = computed(() => {
   return `https://pinterest.com/pin/create/button/?url=${link.value}&media=${props.image}&description=${props.title}`;
 });
 
+const bluesky = computed(() => {
+  return `https://bsky.app/intent/compose?text=${link.value}`;
+});
+
 const share = () => {
   window.navigator.share({
     title: props.title || "",
@@ -46,5 +50,6 @@ const share = () => {
     :twitter="twitter"
     :facebook="facebook"
     :pinterest="pinterest"
+    :bluesky="bluesky"
   />
 </template>
