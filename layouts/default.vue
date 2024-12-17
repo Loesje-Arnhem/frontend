@@ -7,6 +7,7 @@ const {
   pinterestUrl,
   linkedinUrl,
   youtubeUrl,
+  blueskyUrl,
 } = socialMedia;
 
 const head = useLocaleHead({
@@ -44,6 +45,7 @@ useSchemaOrg([
       pinterestUrl,
       linkedinUrl,
       youtubeUrl,
+      blueskyUrl,
     ],
   }),
   defineWebSite({

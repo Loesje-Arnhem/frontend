@@ -6,6 +6,7 @@ defineProps<{
   pinterest?: string;
   instagram?: string;
   linkedin?: string;
+  bluesky?: string;
 }>();
 </script>
 
@@ -14,49 +15,58 @@ defineProps<{
     <h2>{{ title }}</h2>
     <ul class="list">
       <li v-if="facebook">
-        <a :href="facebook" class="link" rel="noopener" target="_blank">
+        <nuxt-link :to="facebook" class="link" external target="_blank">
           <app-icon icon="facebook" :width="32" :height="32" />
           <span class="sr-only">
             {{ title }}
             <span lang="en">Facebook</span>
           </span>
-        </a>
+        </nuxt-link>
+      </li>
+      <li v-if="bluesky">
+        <nuxt-link :to="bluesky" class="link" external target="_blank">
+          <app-icon icon="bluesky" :width="32" :height="32" />
+          <span class="sr-only">
+            {{ title }}
+            <span lang="en">BlueSky</span>
+          </span>
+        </nuxt-link>
       </li>
       <li v-if="twitter">
-        <a :href="twitter" class="link" rel="noopener" target="_blank">
+        <nuxt-link :to="twitter" class="link" external target="_blank">
           <app-icon icon="twitter" :width="32" :height="32" />
           <span class="sr-only">
             {{ title }}
             <span lang="en">Twitter</span>
           </span>
-        </a>
+        </nuxt-link>
       </li>
       <li v-if="linkedin">
-        <a :href="linkedin" class="link" rel="noopener" target="_blank">
+        <nuxt-link :to="linkedin" class="link" external target="_blank">
           <app-icon icon="linkedin" :width="32" :height="32" />
           <span class="sr-only">
             {{ title }}
             <span lang="en">LinkedIn</span>
           </span>
-        </a>
+        </nuxt-link>
       </li>
       <li v-if="instagram">
-        <a :href="instagram" class="link" rel="noopener" target="_blank">
+        <nuxt-link :to="instagram" class="link" external target="_blank">
           <app-icon icon="instagram" :width="32" :height="32" />
           <span class="sr-only">
             {{ title }}
             <span lang="en">Instagram</span>
           </span>
-        </a>
+        </nuxt-link>
       </li>
       <li v-if="pinterest">
-        <a :href="pinterest" class="link" rel="noopener" target="_blank">
+        <nuxt-link :to="pinterest" class="link" external target="_blank">
           <app-icon icon="pinterest" :width="32" :height="32" />
           <span class="sr-only">
             {{ title }}
             <span lang="en">Pinterest</span>
           </span>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
   </div>

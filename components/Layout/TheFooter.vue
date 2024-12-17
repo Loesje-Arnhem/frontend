@@ -1,7 +1,13 @@
 <script lang="ts" setup>
 const { socialMedia } = useAppConfig();
-const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
-  socialMedia;
+const {
+  facebookUrl,
+  twitterUrl,
+  pinterestUrl,
+  instagramUrl,
+  linkedinUrl,
+  blueskyUrl,
+} = socialMedia;
 </script>
 
 <template>
@@ -20,12 +26,13 @@ const { facebookUrl, twitterUrl, pinterestUrl, instagramUrl, linkedinUrl } =
             :pinterest="pinterestUrl"
             :instagram="instagramUrl"
             :linkedin="linkedinUrl"
+            :bluesky="blueskyUrl"
           />
         </div>
         <div :class="$style['mood-wrapper']">
           <app-image
-            :width="210"
-            :height="240"
+            :width="200"
+            :height="230"
             :class="$style.mood"
             src="/images/casette-player.png"
             sizes="sm:50vw md:33vw lg:25vw xl:300"
