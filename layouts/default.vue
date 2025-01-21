@@ -35,9 +35,6 @@ useSchemaOrg([
       height: 150,
       caption: title,
     },
-    image: {
-      "@id": "https://www.loesje.nl/#/schema/logo/image/",
-    },
     sameAs: [
       twitterUrl,
       facebookUrl,

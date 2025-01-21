@@ -7,7 +7,7 @@ defineI18nRoute({
 
 const route = useRoute();
 
-const { data } = await useAsyncData(
+const { data, error } = await useAsyncData(
   `poster-${route.params.slug.toString()}`,
   () =>
     $fetch("/api/posters/poster", {
@@ -17,11 +17,8 @@ const { data } = await useAsyncData(
     }),
 );
 
-if (!data.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Page Not Found",
-  });
+if (error.value) {
+  throw createError(error.value);
 }
 
 useMeta({

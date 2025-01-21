@@ -245,7 +245,7 @@ export default defineNuxtConfig({
     "nuxt-svgo",
     "@vite-pwa/nuxt",
     "@nuxt/eslint",
-    "@nuxtjs/stylelint-module",
+    // "@nuxtjs/stylelint-module",
     "@nuxt/image",
     "nuxt-schema-org",
     "@nuxtjs/sitemap",

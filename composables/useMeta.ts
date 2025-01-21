@@ -26,6 +26,7 @@ export const useMeta = ({
 
   useSchemaOrg([
     defineWebPage({
+      name: title,
       description,
     }),
   ]);

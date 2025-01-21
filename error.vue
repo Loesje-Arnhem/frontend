@@ -27,10 +27,13 @@ const content = `
 <template>
   <nuxt-layout>
     <app-content title="Huh? Pagina? Welke pagina?" :content="content" />
+    <!-- <dev-only> -->
     <center-wrapper>
       <pre>
-        {{ error }}
-      </pre>
+          {{ error }}
+        </pre
+      >
     </center-wrapper>
+    <!-- </dev-only> -->
   </nuxt-layout>
 </template>
