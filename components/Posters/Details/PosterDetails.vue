@@ -19,6 +19,7 @@ defineProps<{
               v-if="poster.featuredImage"
               :key="poster.id"
               :lazy="false"
+              class="image"
               :image="poster.featuredImage"
               sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
             />
@@ -143,5 +144,9 @@ defineProps<{
 
 .tile {
   padding: 3px;
+}
+
+.image:deep(img) {
+  width: 100%;
 }
 </style>
