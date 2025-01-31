@@ -57,4 +57,7 @@ export default defineAppConfig({
     website: "website",
     products: "products",
   },
+  clubCollect: {
+    widgets: 'https://app.clubcollect.com/widgets.js'
+  }
 });

@@ -1,17 +1,27 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-standard-vue"],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-vue"
+  ],
   "rules": {
     "import-notation": null,
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": ["mixin", "define-mixin"]
+        "ignoreAtRules": [
+          "mixin",
+          "define-mixin"
+        ]
       }
     ],
     "selector-pseudo-class-no-unknown": [
       true,
       {
-        "ignorePseudoClasses": ["global", "readonly", "deep"]
+        "ignorePseudoClasses": [
+          "global",
+          "readonly",
+          "deep"
+        ]
       }
     ]
   }
