@@ -16,7 +16,7 @@ const close = () => {
       <app-button @click="open">Meld je aan!</app-button>
 
       <app-modal title="Meld je aan voor de workshop" @close="close" v-if="showModal">
-        <club-collect-widget />
+        <form-club-collect />
       </app-modal>
     </div>
   </center-wrapper>
