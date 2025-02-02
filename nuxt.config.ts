@@ -190,6 +190,7 @@ export default defineNuxtConfig({
       "~/components/Blocks",
       // '~/components/Carousel',
       "~/components/Footer",
+      "~/components/ClubCollect",
       "~/components/Forms/Fields",
       "~/components/Forms/Forms",
       "~/components/Forms",

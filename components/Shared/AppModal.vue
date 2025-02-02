@@ -54,6 +54,7 @@ onUnmounted(() => {
   width: calc(100% - var(--gutter) * 2);
   max-width: var(--container-width-md);
   padding: 0 var(--gutter) 5em;
+  border: 4px solid var(--color-black);
 
   &::backdrop {
     background: var(--color-black);

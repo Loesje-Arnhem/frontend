@@ -30,11 +30,11 @@ useMeta({
 
 <template>
   <div v-if="data">
-    <!-- <app-content
+    <app-content
       :title="data.title"
       :content="data.content"
       :video="data.youtubeId"
-    /> -->
+    />
 
     <form-club-collect />
 
