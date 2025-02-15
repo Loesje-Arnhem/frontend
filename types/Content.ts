@@ -1,3 +1,4 @@
+import type { ClubCollect } from "./ClubCollect";
 import type { ISEO } from "./ISEO";
 import type { Taxonomy } from "~~/enums/taxonomy";
 
@@ -40,6 +41,7 @@ export type IPage = IBase & {
   featuredImage?: FeaturedImage;
   relatedPosters: IRelatedPosters;
   relatedProducts?: IRelatedProducts;
+  clubCollect?: ClubCollect;
 };
 
 export type IPost = IBase & {

@@ -17,6 +17,9 @@ export type ResponsePage = {
   parent: number;
   yoast_head_json: SEO;
   acf: {
+    clubcollect_path: string;
+    clubcollect_btn: string;
+    clubcollect_title: string;
     youtube_id: string;
     related_posters_title: string;
     related_posters_search: string;

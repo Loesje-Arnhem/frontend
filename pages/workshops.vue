@@ -36,7 +36,7 @@ useMeta({
       :video="data.youtubeId"
     />
 
-    <btn-club-collect />
+    <form-workshop />
 
     <related-products-section
       v-if="data.relatedProducts"

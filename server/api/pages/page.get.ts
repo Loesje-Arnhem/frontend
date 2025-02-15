@@ -2,6 +2,7 @@ import { z } from "zod";
 import type { IPage } from "~~/types/Content";
 import type { ResponsePage } from "~/server/types/ResponsePage";
 import { stripHtmlTags } from "~/server/utils/stripHtmlTags";
+import { ClubCollect } from "~/types/ClubCollect";
 
 const querySchema = z.object({
   slug: z.string().optional(),
@@ -42,6 +43,18 @@ export default defineEventHandler(async (event) => {
     const featuredImage = getFeaturedImage(
       response._embedded["wp:featuredmedia"],
     );
+
+    const getClubCollect = (): ClubCollect | undefined => {
+      if (!response.acf.clubcollect_path) {
+        return undefined;
+      }
+      return {
+        title: response.acf.clubcollect_title,
+        path: response.acf.clubcollect_path,
+        btn: response.acf.clubcollect_btn,
+      };
+    };
+
     const page: IPage = {
       id: response.id,
       parentId: response.parent || response.id,
@@ -53,6 +66,7 @@ export default defineEventHandler(async (event) => {
       youtubeId,
       featuredImage,
       relatedPosters: getRelatedPosters(response),
+      clubCollect: getClubCollect(),
     };
     return page;
   }

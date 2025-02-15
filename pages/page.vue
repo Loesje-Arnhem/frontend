@@ -55,6 +55,8 @@ const relatedPagesParentId = computed(() => {
       :content="data.content"
       :video="data.youtubeId"
     />
+    <btn-club-collect v-if="data.clubCollect" v-bind="data.clubCollect" />
+
     <related-posters-section
       :poster-ids="data.relatedPosters.posterIds"
       :search="data.relatedPosters.search"

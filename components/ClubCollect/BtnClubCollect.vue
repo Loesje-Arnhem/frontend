@@ -1,22 +1,26 @@
 <script lang="ts" setup>
-const showModal = ref(false)
+import type { ClubCollect } from "~/types/ClubCollect";
+
+defineProps<ClubCollect>();
+
+const showModal = ref(false);
 
 const open = () => {
-  showModal.value = true
-}
+  showModal.value = true;
+};
 
 const close = () => {
-  showModal.value = false
-}
+  showModal.value = false;
+};
 </script>
 
 <template>
-  <center-wrapper size="lg">
+  <center-wrapper size="md">
     <div class="wrapper">
-      <app-button @click="open">Meld je aan!</app-button>
+      <app-button @click="open">{{ btn }}</app-button>
 
-      <app-modal title="Meld je aan voor de workshop" @close="close" v-if="showModal">
-        <form-club-collect />
+      <app-modal v-if="showModal" :title="title" @close="close">
+        <form-club-collect :path="path" />
       </app-modal>
     </div>
   </center-wrapper>
