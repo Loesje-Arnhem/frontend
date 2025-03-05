@@ -41,4 +41,4 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "no-referrer"
     X-Content-Type-Options = "nosniff"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' app.clubcollect.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' shop.loesje.nl; font-src 'self';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' app.clubcollect.com cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' app.clubcollect.com; img-src 'self' shop.loesje.nl assets.clubcollect.com; font-src 'self'; frame-src 'self' app.clubcollect.com;"

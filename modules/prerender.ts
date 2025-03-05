@@ -20,6 +20,8 @@ export default defineNuxtModule({
         return;
       }
 
+      return;
+
       addPrerenderRoutes(defaultRoutes);
 
       if (process.env.NUXT_SSR === "false") {
