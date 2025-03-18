@@ -10,7 +10,8 @@ import {
 export default defineNuxtConfig({
   vue: {
     compilerOptions: {
-      isCustomElement: (tag: string) => ["search", "clubcollect-widget"].includes(tag),
+      isCustomElement: (tag: string) =>
+        ["search", "clubcollect-widget"].includes(tag),
     },
   },
 
@@ -95,7 +96,7 @@ export default defineNuxtConfig({
     },
 
     storage: {
-      redis: {
+      cache: {
         driver: "netlifyBlobs",
         name: "loesje",
         siteID: process.env.NETLIFY_SITE_ID,
@@ -241,8 +242,16 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ["@nuxtjs/i18n", "nuxt-svgo", "@vite-pwa/nuxt", "@nuxt/eslint", // "@nuxtjs/stylelint-module",
-  "@nuxt/image", "nuxt-schema-org", "@nuxtjs/sitemap", "@nuxt/scripts"],
+  modules: [
+    "@nuxtjs/i18n",
+    "nuxt-svgo",
+    "@vite-pwa/nuxt",
+    "@nuxt/eslint", // "@nuxtjs/stylelint-module",
+    "@nuxt/image",
+    "nuxt-schema-org",
+    "@nuxtjs/sitemap",
+    "@nuxt/scripts",
+  ],
   stylelint: {
     lintOnStart: false,
   },
