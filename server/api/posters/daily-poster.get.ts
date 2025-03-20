@@ -36,5 +36,5 @@ export default defineCachedEventHandler(
       });
     }
     return featuredImage;
-  },
+  }
 );
