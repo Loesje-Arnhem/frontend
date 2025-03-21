@@ -16,13 +16,11 @@ const uri = computed(() => {
   }
 });
 
-const { data } = await useAsyncData(`page-${uri.value}`, () =>
-  $fetch("/api/pages/page", {
-    params: {
-      slug: uri.value,
-    },
-  }),
-);
+const { data } = await useFetch("/api/pages/page", {
+  params: {
+    slug: uri.value,
+  },
+});
 
 if (!data.value) {
   throw createError({
@@ -56,7 +54,6 @@ const relatedPagesParentId = computed(() => {
       :video="data.youtubeId"
     />
     <btn-club-collect v-if="data.clubCollect" v-bind="data.clubCollect" />
-
     <related-posters-section
       :poster-ids="data.relatedPosters.posterIds"
       :search="data.relatedPosters.search"
