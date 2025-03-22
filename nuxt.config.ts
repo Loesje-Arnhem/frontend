@@ -98,6 +98,7 @@ export default defineNuxtConfig({
     storage: {
       cache: {
         driver: "netlifyBlobs",
+        deployScoped: true,
         name: "loesje",
         siteID: process.env.NETLIFY_SITE_ID,
         token: process.env.NETLIFY_TOKEN,
@@ -252,9 +253,6 @@ export default defineNuxtConfig({
     "@nuxtjs/sitemap",
     "@nuxt/scripts",
   ],
-  stylelint: {
-    lintOnStart: false,
-  },
 
   postcss: {
     plugins: {

@@ -1,8 +1,7 @@
-import type { ResponsePoster } from "~/server/types/ResponsePoster";
-import { getDate } from "~/server/utils/getDate";
+import { DailyPostersSchema } from "~/server/schemas/PostersSchema";
 import type { FeaturedImage } from "~/types/Content";
 
-export default defineEventHandler(async (): Promise<FeaturedImage> => {
+export default defineCachedEventHandler(async (): Promise<FeaturedImage> => {
   const url = getUrl({
     type: "daily-posters",
     fields: ["title"],
@@ -10,29 +9,26 @@ export default defineEventHandler(async (): Promise<FeaturedImage> => {
     date: getDate(),
   });
 
-  const response = await $fetch<ResponsePoster[]>(url);
+  const response = await $fetch(url);
 
-  if (response.length < 1) {
+  const data = parseData(response, DailyPostersSchema);
+
+  if (!data.length) {
     throw createError({
-      statusCode: 400,
-      data: {
-        message: "No Poster found",
-      },
+      statusCode: 204,
     });
   }
 
-  const featuredImage: FeaturedImage | undefined = getFeaturedImage(
-    response[0]._embedded["wp:featuredmedia"],
-    response[0].title.rendered,
+  const featuredImage = getFeaturedImage(
+    data[0]._embedded["wp:featuredmedia"],
+    data[0].title.rendered,
   );
 
   if (!featuredImage) {
     throw createError({
-      statusCode: 400,
-      data: {
-        message: "No Poster found",
-      },
+      statusCode: 204,
     });
   }
+
   return featuredImage;
 });

@@ -1,5 +1,4 @@
 import type { IPosterListItem } from "~~/types/Content";
-import { getDate } from "~/server/utils/getDate";
 import {
   PostersSchema,
   PostersQuerySchema,
@@ -40,18 +39,13 @@ export default defineEventHandler(async (event) => {
     dateAfter,
   });
 
-  const response = await $fetch.raw(url).catch((error) => error.data);
+  const response = await $fetch.raw(url);
+
   const totalPages = Number(response.headers.get("X-WP-TotalPages"));
 
-  const parsed = PostersSchema.safeParse(response._data);
+  const data = parseData(response._data, PostersSchema);
 
-  if (!parsed.success) {
-    throw createError({
-      data: parsed.error.format(),
-    });
-  }
-
-  const items: IPosterListItem[] = parsed.data.map((item) => {
+  const items: IPosterListItem[] = data.map((item) => {
     const featuredImage = getFeaturedImage(
       item._embedded["wp:featuredmedia"],
       item.title.rendered,
@@ -65,10 +59,8 @@ export default defineEventHandler(async (event) => {
     };
   });
 
-  const data = {
+  return {
     hasNextPage: page < totalPages,
     items,
   };
-
-  return data;
 });

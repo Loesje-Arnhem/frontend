@@ -1,6 +1,29 @@
 import { z } from "zod";
 import { FeaturedImageSchema } from "./FeaturedImageSchema";
 
+export const DailyPostersSchema = z.array(
+  z.object({
+    id: z.number(),
+    title: z.object({
+      rendered: z.string(),
+    }),
+
+    _embedded: z.object({
+      "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
+    }),
+  }),
+);
+
+export const PosterSearchSchema = z.array(
+  z.object({
+    id: z.number(),
+    slug: z.string(),
+    title: z.object({
+      rendered: z.string(),
+    }),
+  }),
+);
+
 export const PostersSchema = z.array(
   z.object({
     id: z.number(),
