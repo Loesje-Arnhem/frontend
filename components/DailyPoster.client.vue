@@ -46,7 +46,6 @@ onMounted(async () => {
   if (posterFromStorage) {
     const parsedData = JSON.parse(posterFromStorage);
     if (parsedData.date === getDate()) {
-      console.log(parsedData);
       poster.value = parsedData;
     } else {
       await execute();
