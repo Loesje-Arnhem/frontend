@@ -94,16 +94,6 @@ export default defineNuxtConfig({
       interval: 3000,
       concurrency: 5,
     },
-
-    storage: {
-      cache: {
-        driver: "netlifyBlobs",
-        deployScoped: true,
-        name: "loesje",
-        siteID: process.env.NETLIFY_SITE_ID,
-        token: process.env.NETLIFY_TOKEN,
-      },
-    },
   },
 
   routeRules: {
