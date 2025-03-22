@@ -34,4 +34,7 @@ export default defineCachedEventHandler(
       };
     });
   },
+  {
+    maxAge: 60 * 60 * 24,
+  },
 );
