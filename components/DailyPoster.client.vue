@@ -27,29 +27,32 @@ const getDate = () => {
 
 const poster = ref<FeaturedImage | null>(null);
 
-const fetchDailyPoster = async () => {
-  const response = await $fetch("/api/posters/daily-poster");
-  poster.value = response;
-  await localStorage.setItem(
-    "daily-poster",
-    JSON.stringify({
-      ...response,
-      date: getDate(),
-    }),
-  );
-};
+const { execute } = useFetch("/api/posters/daily-poster", {
+  onResponse({ response }) {
+    localStorage.setItem(
+      "daily-poster",
+      JSON.stringify({
+        ...response._data,
+        date: getDate(),
+      }),
+    );
+    poster.value = response._data;
+  },
+  immediate: false,
+});
 
 onMounted(async () => {
   const posterFromStorage = await localStorage.getItem("daily-poster");
   if (posterFromStorage) {
     const parsedData = JSON.parse(posterFromStorage);
     if (parsedData.date === getDate()) {
+      console.log(parsedData);
       poster.value = parsedData;
     } else {
-      await fetchDailyPoster();
+      await execute();
     }
   } else {
-    await fetchDailyPoster();
+    await execute();
   }
 });
 </script>

@@ -6,13 +6,11 @@ defineI18nRoute({
 });
 const { pageIds } = useAppConfig();
 
-const { data } = await useAsyncData(`page-workshop`, () =>
-  $fetch("/api/pages/page", {
-    params: {
-      id: pageIds.workshops,
-    },
-  }),
-);
+const { data } = await useFetch("/api/pages/page", {
+  params: {
+    id: pageIds.workshops,
+  },
+});
 
 if (!data.value) {
   throw createError({

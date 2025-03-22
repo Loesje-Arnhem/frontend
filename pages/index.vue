@@ -7,13 +7,11 @@ defineI18nRoute({
 
 const { pageIds } = useAppConfig();
 
-const { data } = await useAsyncData(`page-home`, () =>
-  $fetch("/api/pages/page", {
-    params: {
-      id: pageIds.home,
-    },
-  }),
-);
+const { data } = await useFetch("/api/pages/page", {
+  params: {
+    id: pageIds.home,
+  },
+});
 
 if (!data.value) {
   throw createError({

@@ -45,6 +45,7 @@ const { v$, loading, error, submit, submitted } = useForm(
       <input-text-field
         id="email"
         v-model="formData.email"
+        name="email"
         :errors="v$.email.$errors"
         title="E-mailadres"
         type="email"
