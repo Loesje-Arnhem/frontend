@@ -3,14 +3,26 @@ import {
   PostersSchema,
   PostersQuerySchema,
 } from "~/server/schemas/PostersSchema";
+import { getStorageKey } from "~/server/utils/getStorageKey";
 
 export default defineEventHandler(async (event) => {
+  const { storageKey } = useAppConfig();
+  const storage = useStorage(storageKey);
+
+  const { base } = storage.getMount(storageKey);
+
   const query = await getValidatedQuery(event, (body) =>
     PostersQuerySchema.safeParse(body),
   );
 
   if (!query.success) {
     throw query.error.issues;
+  }
+
+  const key = getStorageKey(query.data, "posters");
+
+  if ((await storage.hasItem(key)) && base) {
+    return await storage.getItem(key);
   }
 
   const pageSize = Number(query.data.pageSize);
@@ -43,9 +55,9 @@ export default defineEventHandler(async (event) => {
 
   const totalPages = Number(response.headers.get("X-WP-TotalPages"));
 
-  const data = parseData(response._data, PostersSchema);
+  const parsed = parseData(response._data, PostersSchema);
 
-  const items: IPosterListItem[] = data.map((item) => {
+  const items: IPosterListItem[] = parsed.map((item) => {
     const featuredImage = getFeaturedImage(
       item._embedded["wp:featuredmedia"],
       item.title.rendered,
@@ -59,8 +71,12 @@ export default defineEventHandler(async (event) => {
     };
   });
 
-  return {
+  const data = {
     hasNextPage: page < totalPages,
     items,
   };
+
+  await storage.setItem(key, data);
+
+  return data;
 });

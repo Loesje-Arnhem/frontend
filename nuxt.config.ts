@@ -38,6 +38,10 @@ export default defineNuxtConfig({
         website: "",
       },
     },
+    netlify: {
+      siteId: "",
+      token: "",
+    },
     public: {
       apiUrl: "",
       includeShop: false,
@@ -89,29 +93,42 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: "netlify",
+    // preset: "netlify",
     prerender: {
       interval: 3000,
       concurrency: 5,
+      // routes: ["/posters", "/doe-mee", "/"],
     },
+    // storage: {
+    //   blob: {
+    //     driver: "fs",
+    //     base: "blob",
+    //   },
+    // },
+    // devStorage: {
+    //   blob: {
+    //     driver: "fs",
+    //     base: "blob",
+    //   },
+    // },
   },
 
   routeRules: {
-    "/rss": {
-      headers: {
-        "content-type": "text/xml",
-      },
-      prerender: true,
-    },
-    "/rss/posters": {
-      headers: {
-        "content-type": "text/xml",
-      },
-      prerender: true,
-    },
-    "/winkeltje/**": {
-      appMiddleware: ["cart"],
-    },
+    // "/rss": {
+    //   headers: {
+    //     "content-type": "text/xml",
+    //   },
+    //   prerender: true,
+    // },
+    // "/rss/posters": {
+    //   headers: {
+    //     "content-type": "text/xml",
+    //   },
+    //   prerender: true,
+    // },
+    // "/winkeltje/**": {
+    //   appMiddleware: ["cart"],
+    // },
   },
 
   telemetry: false,

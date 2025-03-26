@@ -20,11 +20,10 @@ export default defineNuxtModule({
         return;
       }
 
-      addPrerenderRoutes(defaultRoutes);
-
       if (process.env.NUXT_SSR === "false") {
         return;
       }
+      addPrerenderRoutes(defaultRoutes);
 
       const fetchPagesByType = async (type: string) => {
         let hasNextPage = true;
