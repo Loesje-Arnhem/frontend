@@ -2,7 +2,7 @@
 withDefaults(
   defineProps<{
     buttonTitle?: string | null;
-    loading: boolean;
+    loading?: boolean;
     error?: string | null;
   }>(),
   {

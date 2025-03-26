@@ -6,7 +6,7 @@ import withNuxt from "./.nuxt/eslint.config.mjs";
 export default withNuxt([
   ...eslintPluginVue.configs["flat/recommended"],
   {
-    files: ["layouts/*.vue", "pages/**/*.vue"],
+    files: ["layouts/*.vue", "pages/**/*.vue, error.vue"],
     rules: {
       "vue/multi-word-component-names": "off",
     },
