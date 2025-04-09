@@ -67,7 +67,7 @@ export default defineNuxtConfig({
   experimental: {
     headNext: true,
     componentIslands: true,
-    // payloadExtraction: true,
+    payloadExtraction: true,
     typedPages: true,
     sharedPrerenderData: true,
     appManifest: true,
@@ -93,6 +93,7 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
+      routes: ["/", "/posters"],
     },
   },
 
@@ -277,9 +278,6 @@ export default defineNuxtConfig({
     workbox: {
       globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
     },
-    injectManifest: {
-      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
-    },
     // workbox: {
     //   importScripts: ["/badge.js"],
     //   globPatterns: ["**/*.{js,css,png,jpg,svg,ico,avif,webp,woff2}"],
@@ -297,6 +295,7 @@ export default defineNuxtConfig({
       categories,
       lang: "nl",
       name: title,
+      scope: "/",
       orientation: "portrait-primary",
       description:
         "Loesje's posters vind je overal. Met haar positief-kritische teksten wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan bazen, politici of ouders. Door haar posters op straat en online te verspreiden, geeft Loesje de wereld een zetje in de goede richting.",
