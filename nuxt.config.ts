@@ -267,9 +267,19 @@ export default defineNuxtConfig({
   },
 
   pwa: {
+    // devOptions: {
+    //   enabled: true,
+    // },
+    client: {},
     strategies: "generateSW",
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
+    workbox: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
+    injectManifest: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
     // workbox: {
     //   importScripts: ["/badge.js"],
     //   globPatterns: ["**/*.{js,css,png,jpg,svg,ico,avif,webp,woff2}"],
