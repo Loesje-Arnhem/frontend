@@ -67,7 +67,7 @@ export default defineNuxtConfig({
   experimental: {
     headNext: true,
     componentIslands: true,
-    payloadExtraction: true,
+    // payloadExtraction: true,
     typedPages: true,
     sharedPrerenderData: true,
     appManifest: true,
