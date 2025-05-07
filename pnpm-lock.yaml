@@ -80,7 +80,7 @@ devDependencies:
     specifier: ^10.1.0
     version: 10.1.0(eslint@9.26.0)(vue-eslint-parser@10.1.1)
   nuxt:
-    specifier: 3.16.2
+    specifier: ^3.16.2
     version: 3.16.2(@netlify/blobs@9.0.1)(eslint@9.26.0)(rollup@4.40.2)(stylelint@16.19.1)(typescript@5.8.2)(vite@6.3.5)
   nuxt-schema-org:
     specifier: ^5.0.5
