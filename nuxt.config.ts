@@ -271,6 +271,7 @@ export default defineNuxtConfig({
     // devOptions: {
     //   enabled: true,
     // },
+    selfDestroying: true,
     client: {},
     strategies: "generateSW",
     registerWebManifestInRouteRules: true,
