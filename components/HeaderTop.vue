@@ -7,10 +7,7 @@
           Loesje heeft jouw hulp nodig! Wil je samen met haar de wereld mooier
           maken? Doneer nu en draag bij aan haar voortbestaan.
         </p>
-        <app-button
-          to="https://www.loesje.nl/doe-mee/vrienden-van-loesje/"
-          class="btn"
-        >
+        <app-button to="/doe-mee/vrienden-van-loesje/" class="btn">
           Word vrienden met Loesje
         </app-button>
       </div>
