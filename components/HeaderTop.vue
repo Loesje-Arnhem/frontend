@@ -8,9 +8,8 @@
           maken? Doneer nu en draag bij aan haar voortbestaan.
         </p>
         <app-button
-          to="https://app.clubcollect.com/forms/nl/loesje/donatiecampagne-2024"
+          to="https://www.loesje.nl/doe-mee/vrienden-van-loesje/"
           class="btn"
-          :external="true"
         >
           Word vrienden met Loesje
         </app-button>
