@@ -1,6 +1,6 @@
 import type { ResponsePost } from "../types/ResponsePost";
-import type { ResponsePage } from "~/server/types/ResponsePage";
-import type { IRelatedPosters } from "~~/types/Content";
+import type { ResponsePage } from "~~/server/types/ResponsePage";
+import type { IRelatedPosters } from "~/types/Content";
 
 export default (page: ResponsePage | ResponsePost) => {
   const {

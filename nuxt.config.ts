@@ -232,8 +232,10 @@ export default defineNuxtConfig({
         file: "nl.json",
       },
     ],
+    experimental: {
+      strictSeo: true,
+    },
   },
-
   modules: [
     "@nuxtjs/i18n",
     "nuxt-svgo",
@@ -247,11 +249,10 @@ export default defineNuxtConfig({
   stylelint: {
     lintOnStart: false,
   },
-
   postcss: {
     plugins: {
       "postcss-mixins": {
-        mixinsDir: "./assets/css/mixins/",
+        mixinsDir: "./app/assets/css/mixins/",
       },
 
       "postcss-preset-env": {
@@ -264,9 +265,10 @@ export default defineNuxtConfig({
           "media-query-ranges": true,
         },
       },
+      autoprefixer: {},
+      cssnano: {},
     },
   },
-
   pwa: {
     // devOptions: {
     //   enabled: true,

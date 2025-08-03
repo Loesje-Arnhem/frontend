@@ -1,5 +1,5 @@
-import type { IRelatedPage } from "~~/types/Content";
-import type { ResponseRelatedPage } from "~/server/types/ResponseRelatedPage";
+import type { IRelatedPage } from "~/types/Content";
+import type { ResponseRelatedPage } from "~~/server/types/ResponseRelatedPage";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { ResponseProductCategory } from "~/server/types/ResponseProductCategory";
+import type { ResponseProductCategory } from "~~/server/types/ResponseProductCategory";
 import type { IProductCategory } from "~/types/Content";
 
 const querySchema = z.object({

@@ -1,6 +1,6 @@
 import { z } from "zod";
-import type { FeaturedImage, IProductListItem } from "~~/types/Content";
-import type { ResponseProducts } from "~/server/types/ResponseProducts";
+import type { FeaturedImage, IProductListItem } from "~/types/Content";
+import type { ResponseProducts } from "~~/server/types/ResponseProducts";
 
 const querySchema = z.object({
   featured: z.string().optional(),

@@ -1,4 +1,4 @@
-import { DailyPostersSchema } from "~/server/schemas/PostersSchema";
+import { DailyPostersSchema } from "~~/server/schemas/PostersSchema";
 import type { FeaturedImage } from "~/types/Content";
 
 export default defineCachedEventHandler(async (): Promise<FeaturedImage> => {

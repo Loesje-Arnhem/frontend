@@ -1,7 +1,7 @@
 import {
   AppPostersQuerySchema,
   AppPostersSchema,
-} from "~/server/schemas/AppSchema";
+} from "~~/server/schemas/AppSchema";
 import { Taxonomy } from "~/enums/taxonomy";
 
 export default defineEventHandler(async (event) => {

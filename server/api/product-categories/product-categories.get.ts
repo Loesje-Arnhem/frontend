@@ -1,4 +1,4 @@
-import type { ResponseProductCategories } from "~/server/types/ResponseProductCategories";
+import type { ResponseProductCategories } from "~~/server/types/ResponseProductCategories";
 import type { MenuItemWithChildren } from "~/types/MenuItem";
 
 const sortByOrder = (items: ResponseProductCategories) => {

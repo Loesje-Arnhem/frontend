@@ -1,6 +1,6 @@
 import type { asSitemapUrl } from "#imports";
-import { postersSitemap } from "~/server/data/postersSitemap";
-import { SitemapSchema } from "~/server/schemas/SitemapSchema";
+import { postersSitemap } from "~~/server/data/postersSitemap";
+import { SitemapSchema } from "~~/server/schemas/SitemapSchema";
 
 export default defineSitemapEventHandler(async () => {
   let hasNextPage = true;

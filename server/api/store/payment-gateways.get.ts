@@ -1,4 +1,4 @@
-import { PaymentGatewaysSchema } from "~/server/types/PaymentGatewaysSchema";
+import { PaymentGatewaysSchema } from "~~/server/types/PaymentGatewaysSchema";
 import type { PaymentGatewaysType } from "~/types/PaymentGateways";
 
 const sortByOrder = (items: PaymentGatewaysType) => {

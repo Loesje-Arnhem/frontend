@@ -1,6 +1,6 @@
 import { z } from "zod";
-import type { FeaturedImage, IProduct } from "~~/types/Content";
-import type { ResponseProduct } from "~/server/types/ResponseProduct";
+import type { FeaturedImage, IProduct } from "~/types/Content";
+import type { ResponseProduct } from "~~/server/types/ResponseProduct";
 
 const querySchema = z.object({
   slug: z.string(),

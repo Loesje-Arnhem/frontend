@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { PosterSearchSchema } from "~/server/schemas/PostersSchema";
-import type { IPostersSearchResult } from "~~/types/Content";
+import { PosterSearchSchema } from "~~/server/schemas/PostersSchema";
+import type { IPostersSearchResult } from "~/types/Content";
 
 const querySchema = z.object({
   search: z.string(),

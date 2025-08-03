@@ -1,5 +1,5 @@
 import type { asSitemapUrl } from "#imports";
-import { SitemapSchema } from "~/server/schemas/SitemapSchema";
+import { SitemapSchema } from "~~/server/schemas/SitemapSchema";
 
 export const createSitemap = async (
   type: "posts" | "pages" | "product" | "product_cat",

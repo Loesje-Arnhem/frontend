@@ -1,4 +1,4 @@
-import { MenuSchema } from "~/server/schemas/MenuSchema";
+import { MenuSchema } from "~~/server/schemas/MenuSchema";
 import type { MenuItemWithChildren, MenuItem } from "~/types/MenuItem";
 
 export default defineEventHandler(async () => {

@@ -1,6 +1,6 @@
-import { Taxonomy } from "~~/enums/taxonomy";
-import type { IPoster, ITag } from "~~/types/Content";
-import { PosterQuerySchema, PosterSchema } from "~/server/schemas/PosterSchema";
+import { Taxonomy } from "~/enums/taxonomy";
+import type { IPoster, ITag } from "~/types/Content";
+import { PosterQuerySchema, PosterSchema } from "~~/server/schemas/PosterSchema";
 
 export default defineEventHandler(async (event) => {
   const query = await getValidatedQuery(event, (body) =>

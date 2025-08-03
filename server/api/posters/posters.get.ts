@@ -1,8 +1,8 @@
-import type { IPosterListItem } from "~~/types/Content";
+import type { IPosterListItem } from "~/types/Content";
 import {
   PostersSchema,
   PostersQuerySchema,
-} from "~/server/schemas/PostersSchema";
+} from "~~/server/schemas/PostersSchema";
 
 export default defineEventHandler(async (event) => {
   const query = await getValidatedQuery(event, (body) =>

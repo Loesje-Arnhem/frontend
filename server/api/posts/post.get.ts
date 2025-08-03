@@ -1,4 +1,4 @@
-import type { ResponsePost } from "~/server/types/ResponsePost";
+import type { ResponsePost } from "~~/server/types/ResponsePost";
 import type { IPost } from "~/types/Content";
 
 export default defineEventHandler(async (event) => {

@@ -1,5 +1,5 @@
-import type { IPostListItem } from "~~/types/Content";
-import type { ResponsePosts } from "~/server/types/ResponsePosts";
+import type { IPostListItem } from "~/types/Content";
+import type { ResponsePosts } from "~~/server/types/ResponsePosts";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);

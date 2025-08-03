@@ -1,6 +1,6 @@
 import { defineSitemapEventHandler } from "#imports";
-import { SitemapQuerySchema } from "~/server/schemas/SitemapSchema";
-import { createSitemap } from "~/server/utils/createSitemap";
+import { SitemapQuerySchema } from "~~/server/schemas/SitemapSchema";
+import { createSitemap } from "~~/server/utils/createSitemap";
 
 export default defineSitemapEventHandler(async (event) => {
   const query = await getValidatedRouterParams(event, (body) => {

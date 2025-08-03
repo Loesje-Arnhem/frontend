@@ -1,7 +1,7 @@
 import { z } from "zod";
-import type { IPage } from "~~/types/Content";
-import type { ResponsePage } from "~/server/types/ResponsePage";
-import { stripHtmlTags } from "~/server/utils/stripHtmlTags";
+import type { IPage } from "~/types/Content";
+import type { ResponsePage } from "~~/server/types/ResponsePage";
+import { stripHtmlTags } from "~~/server/utils/stripHtmlTags";
 import type { ClubCollect } from "~/types/ClubCollect";
 
 const querySchema = z.object({

@@ -1,5 +1,5 @@
-import type { ITag } from "~~/types/Content";
-import type { ResponseTag } from "~/server/types/ResponseTags";
+import type { ITag } from "~/types/Content";
+import type { ResponseTag } from "~~/server/types/ResponseTags";
 import { Taxonomy } from "~/enums/taxonomy";
 
 export default defineEventHandler(() => {
