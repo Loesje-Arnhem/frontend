@@ -5,7 +5,7 @@ import {
   backgroundColor,
   title,
   twitter,
-} from "./data/siteDetails";
+} from "./app/data/siteDetails";
 
 export default defineNuxtConfig({
   vue: {

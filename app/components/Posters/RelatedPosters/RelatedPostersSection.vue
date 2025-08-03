@@ -66,4 +66,3 @@ const title = props.title || t("posters");
   text-align: right;
 }
 </style>
-import type { backgroundColor } from '~/data/siteDetails';
