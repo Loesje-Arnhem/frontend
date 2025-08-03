@@ -6,7 +6,7 @@ const querySchema = z.object({
   search: z.string(),
 });
 
-export default defineCachedEventHandler(
+export default defineEventHandler(
   async (event): Promise<IPostersSearchResult[]> => {
     const query = await getValidatedQuery(event, (body) =>
       querySchema.safeParse(body),
@@ -14,6 +14,10 @@ export default defineCachedEventHandler(
 
     if (!query.success) {
       throw query.error.issues;
+    }
+
+    if (query.data.search.length < 3) {
+      return [];
     }
 
     const url = getUrl({
@@ -33,8 +37,5 @@ export default defineCachedEventHandler(
         title: item.title.rendered,
       };
     });
-  },
-  {
-    maxAge: 60 * 60 * 24,
   },
 );
