@@ -93,7 +93,6 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
-      routes: ["/", "/posters"],
     },
   },
 
@@ -102,13 +101,11 @@ export default defineNuxtConfig({
       headers: {
         "content-type": "text/xml",
       },
-      prerender: true,
     },
     "/rss/posters": {
       headers: {
         "content-type": "text/xml",
       },
-      prerender: true,
     },
     "/winkeltje/**": {
       appMiddleware: ["cart"],
