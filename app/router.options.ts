@@ -4,12 +4,11 @@ import type { RouterConfig } from "@nuxt/schema";
 export default <RouterConfig>{
   scrollBehavior: (to, from, savedPosition) => {
     const scrollPosition = document.documentElement.scrollTop;
-    const element: HTMLDivElement | null = document.querySelector(
-      ".page-header-top",
-    );
+    const element: HTMLDivElement | null =
+      document.querySelector(".page-header-top");
 
     if (!element) {
-      return
+      return;
     }
 
     let elementHeight = 0;
