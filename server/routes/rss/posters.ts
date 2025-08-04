@@ -53,7 +53,7 @@ export default defineEventHandler(async (event) => {
 
   data.forEach((item) => {
     const link = `https://www.loesje.nl/posters/${item.slug}`;
-    const images = item._embedded["wp:featuredmedia"];
+    const images = item["wp:featuredmedia"];
 
     let subjects: ITag[] = [];
     if (item._embedded["wp:term"]) {
@@ -62,7 +62,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const featuredImage = getFeaturedImage(
-      item._embedded["wp:featuredmedia"],
+      item["wp:featuredmedia"],
       item.title.rendered,
     );
 

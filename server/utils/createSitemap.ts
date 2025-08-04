@@ -40,7 +40,7 @@ export const createSitemap = async (
           | undefined = undefined;
 
         if (item._embedded) {
-          const featuredImages = item._embedded["wp:featuredmedia"];
+          const featuredImages = item["wp:featuredmedia"];
 
           const featuredImage = getFeaturedImage(featuredImages);
 

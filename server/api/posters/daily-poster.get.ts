@@ -20,7 +20,7 @@ export default defineCachedEventHandler(async (): Promise<FeaturedImage> => {
   }
 
   const featuredImage = getFeaturedImage(
-    data[0]._embedded["wp:featuredmedia"],
+    data[0]["wp:featuredmedia"],
     data[0].title.rendered,
   );
 

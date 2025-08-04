@@ -26,10 +26,10 @@ export default defineEventHandler(async () => {
   const data = await $fetch<ResponsePosts[]>(url);
 
   data.forEach((item) => {
-    const images = item._embedded["wp:featuredmedia"];
+    const images = item["wp:featuredmedia"];
 
     const featuredImage = getFeaturedImage(
-      item._embedded["wp:featuredmedia"],
+      item["wp:featuredmedia"],
       item.title.rendered,
     );
 

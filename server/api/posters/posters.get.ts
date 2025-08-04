@@ -47,7 +47,7 @@ export default defineEventHandler(async (event) => {
 
   const items: IPosterListItem[] = data.map((item) => {
     const featuredImage = getFeaturedImage(
-      item._embedded["wp:featuredmedia"],
+      item["wp:featuredmedia"],
       item.title.rendered,
     );
 
@@ -55,7 +55,6 @@ export default defineEventHandler(async (event) => {
       id: item.id,
       slug: item.slug,
       featuredImage,
-      title: item.title.rendered,
     };
   });
 

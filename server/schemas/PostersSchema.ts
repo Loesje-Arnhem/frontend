@@ -8,9 +8,7 @@ export const DailyPostersSchema = z.array(
       rendered: z.string(),
     }),
 
-    _embedded: z.object({
-      "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
-    }),
+    "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
   }),
 );
 
@@ -31,10 +29,7 @@ export const PostersSchema = z.array(
     title: z.object({
       rendered: z.string(),
     }),
-
-    _embedded: z.object({
-      "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
-    }),
+    "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
   }),
 );
 

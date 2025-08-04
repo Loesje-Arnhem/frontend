@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
   if (response.length) {
     const item = response[0];
 
-    const featuredImage = getFeaturedImage(item._embedded["wp:featuredmedia"]);
+    const featuredImage = getFeaturedImage(item["wp:featuredmedia"]);
 
     let youtubeId: string | undefined = undefined;
     if (item.acf.youtube_id) {

@@ -55,6 +55,7 @@ export default ({
     url.searchParams.set("_embed", "true");
     fields.push("_links");
     fields.push("_embedded");
+    fields.push("wp:featuredmedia");
   }
   const allFields = ["id", ...fields];
   url.searchParams.set("status", "publish");

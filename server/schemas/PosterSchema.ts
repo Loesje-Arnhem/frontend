@@ -39,8 +39,8 @@ export const PosterSchema = z.array(
         }),
       ),
     }),
+    "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
     _embedded: z.object({
-      "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
       "wp:term": TermsSchema,
     }),
   }),

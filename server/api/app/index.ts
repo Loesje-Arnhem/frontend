@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
 
   const items = parsed.data.map((item) => {
     const featuredImage = getFeaturedImage(
-      item._embedded["wp:featuredmedia"],
+      item["wp:featuredmedia"],
       item.title.rendered,
     );
 

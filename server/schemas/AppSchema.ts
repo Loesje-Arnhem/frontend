@@ -10,8 +10,8 @@ export const AppPostersSchema = z.array(
       rendered: z.string(),
     }),
 
+    "wp:featuredmedia": z.array(FeaturedImageSchema),
     _embedded: z.object({
-      "wp:featuredmedia": z.array(FeaturedImageSchema),
       "wp:term": TermsSchema,
     }),
   }),

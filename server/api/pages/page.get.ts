@@ -49,7 +49,7 @@ export default defineEventHandler(async (event): Promise<IPage> => {
     youtubeId = response.acf.youtube_id;
   }
   const featuredImage = getFeaturedImage(
-    response._embedded["wp:featuredmedia"],
+    response["wp:featuredmedia"],
   );
 
   const getClubCollect = (): ClubCollect | undefined => {

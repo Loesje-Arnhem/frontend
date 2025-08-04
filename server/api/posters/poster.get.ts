@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
   if (parsed.data.length) {
     const item = parsed.data[0];
     const featuredImage = getFeaturedImage(
-      item._embedded["wp:featuredmedia"],
+      item["wp:featuredmedia"],
       item.title.rendered,
     );
 

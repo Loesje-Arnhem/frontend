@@ -4,7 +4,6 @@ const FeaturedImageSizeSchema = z.object({
   width: z.number(),
   height: z.number(),
   filesize: z.number().optional(),
-  mime_type: z.string(),
   source_url: z.string(),
 });
 
@@ -16,11 +15,9 @@ export const FeaturedImageSchema = z.object({
   type: z.string().optional(),
   link: z.string().optional(),
   title: z.object({ rendered: z.string() }).optional(),
-  author: z.number().optional(),
   caption: z.object({ rendered: z.string() }).optional(),
   alt_text: z.string().optional(),
   media_type: z.string().optional(),
-  mime_type: z.string().optional(),
   media_details: z
     .object({
       width: z.number().optional(),
