@@ -9,8 +9,7 @@ withDefaults(
     sizes?: string;
   }>(),
   {
-    sizes:
-      "(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 250px",
+    sizes: "50vw md:33vw lg:1024px xl:250px",
   },
 );
 </script>
@@ -31,11 +30,7 @@ withDefaults(
         "
         class="link"
       >
-        <featured-image
-          :lazy="true"
-          :image="poster.featuredImage"
-          :sizes="sizes"
-        />
+        <app-image :lazy="true" v-bind="poster.featuredImage" :sizes="sizes" />
       </nuxt-link>
     </div>
   </div>

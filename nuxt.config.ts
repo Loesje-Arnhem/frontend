@@ -16,7 +16,6 @@ export default defineNuxtConfig({
   },
 
   image: {
-    densities: [1, 2],
     domains: ["shop.loesje.nl", "i3.ytimg.com"],
   },
 

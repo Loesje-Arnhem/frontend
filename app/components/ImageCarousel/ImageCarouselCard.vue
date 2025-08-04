@@ -40,10 +40,10 @@ onUnmounted(() => {
 
 <template>
   <li ref="item" class="list-item">
-    <featured-image
-      :image="image"
+    <app-image
+      v-bind="image"
       class="image"
-      sizes="(max-width: 560px) 100vw, (max-width: 560px) 50vw, (max-width: 1024px) 33vw, 460px"
+      sizes="100vw sm:50vw, lg:33vw, xl:460px"
     />
   </li>
 </template>

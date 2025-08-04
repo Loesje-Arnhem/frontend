@@ -42,7 +42,7 @@ useSchemaOrg(
 <template>
   <div v-if="data">
     <app-content
-      :image="data.featuredImage"
+      v-bind="data.featuredImage"
       :title="data.title"
       :content="data.content"
       :date="data.date"

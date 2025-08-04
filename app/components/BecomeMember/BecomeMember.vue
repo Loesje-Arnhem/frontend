@@ -16,7 +16,7 @@ const usps = [
           :width="27"
           :height="27"
           src="/images/check.png"
-          sizes="xs:27px"
+          sizes="27px"
         />
         {{ usp }}
       </li>

@@ -15,14 +15,24 @@ defineProps<{
       <div class="tile-wrapper">
         <div class="tile image-wrapper-details" :data-slug="poster.slug">
           <fade-animation>
-            <featured-image
-              v-if="poster.featuredImage"
-              :key="poster.id"
-              :lazy="false"
-              class="image"
-              :image="poster.featuredImage"
-              sizes="(max-width: 640px) 100vw, (max-width: 1240px) 50vw, 620px"
-            />
+            <div :key="poster.id" class="image-wrapper">
+              <app-image
+                v-if="poster.featuredImage"
+                :lazy="true"
+                class="placeholder"
+                v-bind="poster.featuredImage"
+                alt=""
+                sizes="xs:50vw md:33vw lg:25vw xl:250px"
+              />
+              <app-image
+                v-if="poster.featuredImage"
+                :key="poster.id"
+                :lazy="false"
+                class="image"
+                v-bind="poster.featuredImage"
+                sizes="100vw md:50vw xl:620px"
+              />
+            </div>
           </fade-animation>
         </div>
       </div>
@@ -148,5 +158,15 @@ defineProps<{
 
 .image:deep(img) {
   width: 100%;
+}
+
+.image,
+.image-wrapper {
+  position: relative;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
 }
 </style>

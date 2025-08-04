@@ -8,11 +8,11 @@ defineProps<{
 
 <template>
   <div class="photo-wrapper">
-    <featured-image
+    <app-image
       :lazy="false"
-      :image="image"
+      v-bind="image"
       class="featured-image"
-      sizes="(max-width: 320px) 80vw, 280px"
+      sizes="80vw ms:280px"
     />
 
     <app-image
@@ -21,7 +21,7 @@ defineProps<{
       class="frame"
       :width="355"
       :height="456"
-      sizes="xs:100vw md:355px"
+      sizes="100vw md:355px"
     />
   </div>
 </template>

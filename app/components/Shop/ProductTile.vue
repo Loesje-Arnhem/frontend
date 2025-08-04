@@ -19,10 +19,10 @@ const url = props.product.url;
 <template>
   <clickable-list-item :to="url" :external="true" class="product-tile tile">
     <div class="image-wrapper">
-      <featured-image
+      <app-image
         v-if="product.image"
         sizes="50vw xs:33vw md:25vw lg:300px"
-        :image="product.image"
+        v-bind="product.image"
         class="image"
       />
     </div>

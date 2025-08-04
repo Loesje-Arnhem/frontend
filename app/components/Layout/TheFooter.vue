@@ -35,7 +35,7 @@ const {
             :height="230"
             :class="$style.mood"
             src="/images/casette-player.png"
-            sizes="sm:50vw md:33vw lg:25vw xl:300"
+            sizes="50vw md:33vw lg:25vw xl:300"
           />
         </div>
       </div>

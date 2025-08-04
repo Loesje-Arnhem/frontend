@@ -27,7 +27,7 @@ const loading = computed(() => {
 <template>
   <nuxt-picture
     :sizes="sizes"
-    :alt="alt ? alt : ''"
+    :alt="alt"
     :loading="loading"
     :src="src"
     :preload="loading === 'eager'"

@@ -17,10 +17,10 @@ defineProps<{
       class="tile list-item"
       @click="$emit('update-active-card-index', index)"
     >
-      <featured-image
-        :image="image"
+      <app-image
+        v-bind="image"
         :class="{ active: activeItemIndex === index }"
-        sizes="(max-width: 375px) 25vw, 200px"
+        sizes="25vw xs:200px"
         class="image"
       />
     </li>

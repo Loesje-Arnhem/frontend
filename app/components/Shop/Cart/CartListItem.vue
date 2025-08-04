@@ -76,7 +76,7 @@ const removeItemFromCard = async () => {
     </td>
     <td class="image-wrapper">
       <div v-if="item.image" class="tile">
-        <featured-image sizes="200px" :image="item.image" />
+        <app-image sizes="200px" v-bind="item.image" />
       </div>
     </td>
     <td class="title">

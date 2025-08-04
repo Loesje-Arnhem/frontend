@@ -57,5 +57,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <featured-image v-if="poster" :image="poster" :sizes="sizes" />
+  <app-image v-if="poster" v-bind="poster" :sizes="sizes" />
 </template>
