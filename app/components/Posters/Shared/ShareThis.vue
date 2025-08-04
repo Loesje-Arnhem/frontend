@@ -31,11 +31,28 @@ const bluesky = computed(() => {
   return `https://bsky.app/intent/compose?text=${link.value}`;
 });
 
-const share = () => {
+const getFile = async (): Promise<File[]> => {
+  if (!props.image) {
+    return [];
+  }
+
+  const image = await $fetch<Blob>(props.image);
+
+  if (!image) {
+    return [];
+  }
+
+  const file = new File([image], "poster.jpg", {
+    type: image.type,
+  });
+  return [file];
+};
+
+const share = async () => {
   window.navigator.share({
     title: props.title || "",
     url: link.value,
-    text: props.title || "",
+    files: await getFile(),
   });
 };
 </script>
