@@ -24,12 +24,6 @@ const usps = [
     <app-button to="/doe-mee/word-lid/">
       {{ $t("iWillJoin") }}
     </app-button>
-    <!-- <app-image
-      class="image"
-      :width="167"
-      :height="144"
-      src="/images/megaphone.png"
-    /> -->
   </box-wrapper>
 </template>
 

@@ -12,7 +12,7 @@ defineProps<{
       :lazy="false"
       v-bind="image"
       class="featured-image"
-      sizes="80vw ms:280px"
+      sizes="80vw sm:280px"
     />
 
     <app-image
@@ -36,7 +36,7 @@ defineProps<{
   position: relative;
 }
 
-.featured-image {
+.featured-image:deep(img) {
   position: absolute;
   top: 11%;
   left: 17%;

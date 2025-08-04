@@ -16,7 +16,7 @@ const updateTheme = () => {
             src="/images/arcarde.png"
             :width="500"
             :height="560"
-            sizes="100vw lg:75vw xl:33v xl:500px"
+            sizes="100vw sm:75vw md:33vw lg:500px"
           />
 
           <button class="btn-theme" @click="updateTheme">

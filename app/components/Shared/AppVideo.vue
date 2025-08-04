@@ -14,44 +14,41 @@ const videoUrl = computed(() => {
 
 <template>
   <div class="wrapper">
-    <a :href="videoUrl" class="video-wrapper" rel="noopener" target="_blank">
+    <nuxt-link :to="videoUrl" class="video-wrapper" target="_blank">
       <app-image
         :src="videoThumb"
         alt=""
         class="image"
         :width="480"
         :height="360"
-        sizes="350px"
+        sizes="360px"
       />
-    </a>
-    <a :href="videoUrl" class="btn-video" rel="noopener" target="_blank">
+    </nuxt-link>
+    <nuxt-link :to="videoUrl" class="btn-video" target="_blank">
       <app-image
         src="/images/btn-video.png"
         alt="Video afspelen"
         class="icon-play"
         :width="53"
         :height="55"
-        sizes="35px"
+        sizes="53px"
       />
-    </a>
+    </nuxt-link>
     <app-image
       src="/images/television.png"
       class="frame"
       :width="300"
       :height="292"
-      sizes="350px"
+      sizes="300px"
     />
   </div>
 </template>
 
 <style scoped>
-.image {
-  display: block;
-  width: 100%;
+.image:deep(img) {
   height: 100%;
   object-fit: cover;
   filter: sepia(0.75) contrast(0.75) brightness(1.25) saturate(1.4);
-  cursor: pointer;
 
   & :deep(img) {
     width: 100%;
@@ -64,7 +61,7 @@ const videoUrl = computed(() => {
 }
 
 .video-wrapper {
-  inset: 40% 5% auto;
+  inset: 40% 5% 6%;
   position: absolute;
   display: block;
 }

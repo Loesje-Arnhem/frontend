@@ -4,14 +4,13 @@ const props = withDefaults(
     src: string;
     width?: number;
     height?: number;
-    sizes?: string;
+    sizes: string;
     lazy?: boolean;
     alt?: string;
   }>(),
   {
     width: undefined,
     height: undefined,
-    sizes: undefined,
     alt: "",
     lazy: true,
   },

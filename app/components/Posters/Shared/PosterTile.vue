@@ -3,15 +3,9 @@ import type { IPosterListItem } from "~/types/Content";
 
 const localePath = useLocalePath();
 
-withDefaults(
-  defineProps<{
-    poster: IPosterListItem;
-    sizes?: string;
-  }>(),
-  {
-    sizes: "50vw md:33vw lg:1024px xl:250px",
-  },
-);
+defineProps<{
+  poster: IPosterListItem;
+}>();
 </script>
 
 <template>
@@ -30,7 +24,11 @@ withDefaults(
         "
         class="link"
       >
-        <app-image :lazy="true" v-bind="poster.featuredImage" :sizes="sizes" />
+        <app-image
+          :lazy="true"
+          v-bind="poster.featuredImage"
+          sizes="50vw md:33vw lg:250px"
+        />
       </nuxt-link>
     </div>
   </div>

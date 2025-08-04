@@ -3,16 +3,16 @@
     <h2>Rss feeds</h2>
     <ul class="list">
       <li>
-        <a class="link" href="/rss">
+        <nuxt-link class="link" to="/rss" :external="true">
           <app-icon icon="rss" :width="16" :height="16" class="icon" />
           Nieuws
-        </a>
+        </nuxt-link>
       </li>
       <li>
-        <a class="link" href="/rss/posters">
+        <nuxt-link class="link" to="/rss/posters" :external="true">
           <app-icon icon="rss" :width="16" :height="16" class="icon" />
           Posters
-        </a>
+        </nuxt-link>
       </li>
     </ul>
   </div>

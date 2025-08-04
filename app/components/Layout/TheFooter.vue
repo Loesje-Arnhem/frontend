@@ -35,7 +35,7 @@ const {
             :height="230"
             :class="$style.mood"
             src="/images/casette-player.png"
-            sizes="50vw md:33vw lg:25vw xl:300"
+            sizes="200px"
           />
         </div>
       </div>
@@ -63,11 +63,15 @@ const {
 
   @media (--viewport-sm) {
     grid-template-columns: repeat(2, 1fr);
-    padding-bottom: 8em;
+    padding-bottom: 12em;
   }
 
   @media (--viewport-md) {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1520px) {
+    padding-bottom: 8em;
   }
 }
 

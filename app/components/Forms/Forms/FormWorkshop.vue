@@ -261,6 +261,7 @@ const errorMessage = computed(() => {
           src="/images/workshops.png"
           :width="495"
           :height="280"
+          sizes="495px"
         />
       </app-form>
     </section>

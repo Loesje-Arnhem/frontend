@@ -21,7 +21,7 @@ const url = props.product.url;
     <div class="image-wrapper">
       <app-image
         v-if="product.image"
-        sizes="50vw xs:33vw md:25vw lg:300px"
+        sizes="50vw md:33vw lg:25vw xl:300px"
         v-bind="product.image"
         class="image"
       />

@@ -9,16 +9,26 @@ const { email, emailShop } = appConfig.address;
 
     <ul class="list">
       <li>
-        <a :href="`mailto:${email}`" itemprop="email" class="link">
+        <nuxt-link
+          :to="`mailto:${email}`"
+          itemprop="email"
+          class="link"
+          :external="true"
+        >
           <app-icon icon="envelope" :width="20" :height="20" class="icon" />
           <span class="title">{{ email }}</span>
-        </a>
+        </nuxt-link>
       </li>
       <li>
-        <a :href="`mailto:${emailShop}`" itemprop="email" class="link">
+        <nuxt-link
+          :to="`mailto:${emailShop}`"
+          itemprop="email"
+          class="link"
+          :external="true"
+        >
           <app-icon icon="envelope" :width="20" :height="20" class="icon" />
           <span class="title">{{ emailShop }}</span>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
   </address>

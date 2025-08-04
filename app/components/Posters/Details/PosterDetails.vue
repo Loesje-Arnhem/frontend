@@ -22,7 +22,7 @@ defineProps<{
                 class="placeholder"
                 v-bind="poster.featuredImage"
                 alt=""
-                sizes="xs:50vw md:33vw lg:25vw xl:250px"
+                sizes="50vw md:33vw lg:250px"
               />
               <app-image
                 v-if="poster.featuredImage"
