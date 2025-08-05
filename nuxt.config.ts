@@ -92,6 +92,7 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
+      routes: ["/", "/over-loesje", "/posters"],
     },
   },
 
@@ -262,22 +263,11 @@ export default defineNuxtConfig({
     strategies: "generateSW",
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
-    // workbox: {
-    //   globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
-    // },
-    // workbox: {
-    //   importScripts: ["/badge.js"],
-    //   globPatterns: ["**/*.{js,css,png,jpg,svg,ico,avif,webp,woff2}"],
-    //   // Only precache these files - html should be excluded
-    //   // globPatterns: ['**/*.{js,css}'],
-
-    //   // Don't fallback on document based (e.g. `/some-page`) requests
-    //   // Even though this says `null` by default, I had to set this specifically to `null` to make it work
-    //   // navigateFallback: '/',
-    //   // globPatterns: ['**/*.{js,css,html,json,svg,webp,avif,png}'],
-    // },
-    pwaAssets: {
-      injectThemeColor: true,
+    workbox: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico,webp,avif}"],
+    },
+    injectManifest: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico,webp,avif}"],
     },
     manifest: {
       background_color: backgroundColor,
