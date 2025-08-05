@@ -266,9 +266,6 @@ export default defineNuxtConfig({
     workbox: {
       globPatterns: ["**/*.{js,css,html,png,svg,ico,webp,avif}"],
     },
-    injectManifest: {
-      globPatterns: ["**/*.{js,css,html,png,svg,ico,webp,avif}"],
-    },
     manifest: {
       background_color: backgroundColor,
       theme_color: themeColor,
