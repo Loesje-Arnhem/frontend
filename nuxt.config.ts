@@ -266,10 +266,6 @@ export default defineNuxtConfig({
     },
   },
   pwa: {
-    // devOptions: {
-    //   enabled: true,
-    // },
-    client: {},
     strategies: "generateSW",
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
