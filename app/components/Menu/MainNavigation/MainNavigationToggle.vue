@@ -17,6 +17,7 @@ defineEmits(["toggle-menu"]);
   <button
     :aria-expanded="menuIsOpen ? 'true' : 'false'"
     :class="$style.btn"
+    type="button"
     @click="$emit('toggle-menu')"
   >
     <app-icon
