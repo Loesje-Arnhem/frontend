@@ -11,13 +11,8 @@ const { title } = useAppConfig();
         :class="$style['logo-wrapper']"
         :to="localePath({ name: 'index' })"
       >
-        <app-icon
-          icon="logo"
-          class="logo"
-          :height="50"
-          :width="87"
-          :title="`${title} home`"
-        />
+        <span class="sr-only">{{ title }}</span>
+        <app-icon icon="logo" class="logo" :height="50" :width="87" />
       </nuxt-link>
       <main-navigation-toggle @toggle-menu="openMobileMenu" />
     </div>
