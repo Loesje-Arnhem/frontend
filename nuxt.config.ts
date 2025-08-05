@@ -125,8 +125,8 @@ export default defineNuxtConfig({
           name: "viewport",
           content: "width=device-width,initial-scale=1,viewport-fit=cover",
         },
-
         { name: "mobile-web-app-capable", content: "yes" },
+        { name: "apple-mobile-web-app-title", content: title },
         { name: "apple-mobile-web-app-capable", content: "yes" },
         {
           name: "apple-mobile-web-app-status-bar-style",
@@ -139,6 +139,11 @@ export default defineNuxtConfig({
         { name: "twitter:creator", content: twitter },
       ],
       link: [
+        {
+          rel: "apple-touch-icon",
+          href: "/icons/manifest-icon-512.maskable.png",
+          sizes: "512x512",
+        },
         {
           rel: "icon",
           href: "/favicon.svg",
