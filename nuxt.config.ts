@@ -132,18 +132,12 @@ export default defineNuxtConfig({
           content: "black",
         },
         { name: "apple-mobile-web-app-title", content: title },
-        { name: "theme-color", content: themeColor },
         { property: "og:site_name", content: title },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:site", content: twitter },
         { name: "twitter:creator", content: twitter },
       ],
       link: [
-        {
-          rel: "apple-touch-icon",
-          href: "/icons/manifest-icon-512.maskable.png",
-          sizes: "512x512",
-        },
         {
           rel: "icon",
           href: "/favicon.svg",
