@@ -213,7 +213,6 @@ export default defineNuxtConfig({
 
   i18n: {
     defaultLocale: "nl",
-    lazy: true,
     baseUrl: "https://www.loesje.nl/",
     locales: [
       {
@@ -277,6 +276,9 @@ export default defineNuxtConfig({
     //   // navigateFallback: '/',
     //   // globPatterns: ['**/*.{js,css,html,json,svg,webp,avif,png}'],
     // },
+    pwaAssets: {
+      injectThemeColor: true,
+    },
     manifest: {
       background_color: backgroundColor,
       theme_color: themeColor,
