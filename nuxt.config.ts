@@ -92,7 +92,6 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
-      routes: ["/", "/over-loesje", "/posters"],
     },
   },
 
