@@ -268,7 +268,8 @@ export default defineNuxtConfig({
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
     workbox: {
-      globPatterns: ["**/*.{js,css,html,png,svg,ico,webp,avif}"],
+      navigateFallback: "/",
+      // globPatterns: ["**/*.{js,css,html,png,svg,ico,webp,avif}"],
     },
     manifest: {
       background_color: backgroundColor,
