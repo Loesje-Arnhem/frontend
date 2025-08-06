@@ -9,8 +9,6 @@ const { data } = useFetch("/api/posters/search", {
   query: {
     search: searchField,
   },
-  watch: [searchField],
-  immediate: false,
 });
 
 const posters = computed(() => {
