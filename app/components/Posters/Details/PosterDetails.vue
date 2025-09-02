@@ -71,7 +71,16 @@ defineProps<{
           <app-icon icon="pdf" :width="32" :height="32" class="icon" />
           Download
         </app-button>
+        <app-button
+          :is-primary="false"
+          to="https://payment-links.mollie.com/nl/payment/LrLv6omN5ibAzKxBDNaue/details"
+          external
+        >
+          <app-icon icon="gift" :width="32" :height="32" class="icon" />
+          Doneer nu
+        </app-button>
       </div>
+      <p></p>
       <div class="social-media">
         <share-this
           v-if="poster.featuredImage"
