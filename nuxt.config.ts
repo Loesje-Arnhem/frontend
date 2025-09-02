@@ -219,7 +219,6 @@ export default defineNuxtConfig({
 
   i18n: {
     defaultLocale: "nl",
-    lazy: true,
     baseUrl: "https://www.loesje.nl/",
     locales: [
       {
@@ -232,6 +231,7 @@ export default defineNuxtConfig({
       strictSeo: true,
     },
   },
+
   modules: [
     "@nuxtjs/i18n",
     "nuxt-svgo",
