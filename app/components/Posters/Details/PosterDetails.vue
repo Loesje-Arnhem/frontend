@@ -73,7 +73,7 @@ defineProps<{
         </app-button>
         <app-button
           :is-primary="false"
-          to="https://payment-links.mollie.com/nl/payment/LrLv6omN5ibAzKxBDNaue/details"
+          to="https://payment-links.mollie.com/nl/payment/odjSsKYZaKW9FcxkgciUR/details"
           external
         >
           <app-icon icon="gift" :width="32" :height="32" class="icon" />
