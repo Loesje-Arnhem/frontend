@@ -93,6 +93,11 @@ export default defineNuxtConfig({
       interval: 3000,
       concurrency: 5,
     },
+    storage: {
+      cache: {
+        driver: "netlify-blobs",
+      },
+    },
   },
 
   routeRules: {
