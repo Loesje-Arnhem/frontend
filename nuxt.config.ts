@@ -96,7 +96,7 @@ export default defineNuxtConfig({
     storage: {
       cache: {
         driver: "netlify-blobs",
-        name: "loesje",
+        name: "cache",
         deployScoped: false,
       },
     },

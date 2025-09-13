@@ -25,8 +25,6 @@ export default defineEventHandler(async (event): Promise<IPage> => {
     type: "pages",
     fields: ["title", "content", "yoast_head_json", "parent", "acf", "excerpt"],
   });
-  const storage = useStorage("loesje");
-  await storage.clear();
 
   let response: ResponsePage | null = null;
 
