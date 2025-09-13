@@ -25,12 +25,8 @@ export default defineEventHandler(async (event): Promise<IPage> => {
     type: "pages",
     fields: ["title", "content", "yoast_head_json", "parent", "acf", "excerpt"],
   });
-  const storage = useStorage("cache");
-  try {
-    await storage.setItem("foo", { hello: "world" });
-  } catch (error) {
-    return error;
-  }
+  const storage = useStorage("loesje");
+  await storage.clear();
 
   let response: ResponsePage | null = null;
 
