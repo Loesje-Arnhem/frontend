@@ -25,6 +25,8 @@ export default defineEventHandler(async (event): Promise<IPage> => {
     type: "pages",
     fields: ["title", "content", "yoast_head_json", "parent", "acf", "excerpt"],
   });
+  const storage = useStorage("cache");
+  await storage.setItem("test", "michiel");
 
   let response: ResponsePage | null = null;
 
@@ -48,9 +50,7 @@ export default defineEventHandler(async (event): Promise<IPage> => {
   if (response.acf.youtube_id) {
     youtubeId = response.acf.youtube_id;
   }
-  const featuredImage = getFeaturedImage(
-    response["wp:featuredmedia"],
-  );
+  const featuredImage = getFeaturedImage(response["wp:featuredmedia"]);
 
   const getClubCollect = (): ClubCollect | undefined => {
     if (!response.acf.clubcollect_path) {
