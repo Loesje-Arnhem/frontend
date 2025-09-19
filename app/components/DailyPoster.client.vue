@@ -28,6 +28,9 @@ const getDate = () => {
 const poster = ref<FeaturedImage | null>(null);
 
 const { execute } = useFetch("/api/posters/daily-poster", {
+  params: {
+    date: getDate(),
+  },
   onResponse({ response }) {
     localStorage.setItem(
       "daily-poster",

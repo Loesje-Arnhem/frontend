@@ -1,34 +1,48 @@
 import { DailyPostersSchema } from "~~/server/schemas/PostersSchema";
 import type { FeaturedImage } from "~/types/Content";
+import z from "zod";
 
-export default defineCachedEventHandler(async (): Promise<FeaturedImage> => {
-  const url = getUrl({
-    type: "daily-posters",
-    fields: ["title"],
-    image: true,
-    date: getDate(),
-  });
-
-  const response = await $fetch(url);
-
-  const data = parseData(response, DailyPostersSchema);
-
-  if (!data.length) {
-    throw createError({
-      statusCode: 204,
+export default defineCachedEventHandler(
+  async (event): Promise<FeaturedImage> => {
+    const query = await getValidatedQuery(event, (body) => {
+      const DailyPostersQuerySchema = z.object({
+        date: z.string().length(8),
+      });
+      return DailyPostersQuerySchema.safeParse(body);
     });
-  }
 
-  const featuredImage = getFeaturedImage(
-    data[0]["wp:featuredmedia"],
-    data[0].title.rendered,
-  );
+    if (!query.success) {
+      throw query.error.issues;
+    }
 
-  if (!featuredImage) {
-    throw createError({
-      statusCode: 204,
+    const url = getUrl({
+      type: "daily-posters",
+      fields: ["title"],
+      image: true,
+      date: query.data.date,
     });
-  }
 
-  return featuredImage;
-});
+    const response = await $fetch(url);
+
+    const data = parseData(response, DailyPostersSchema);
+
+    if (!data.length) {
+      throw createError({
+        statusCode: 204,
+      });
+    }
+
+    const featuredImage = getFeaturedImage(
+      data[0]["wp:featuredmedia"],
+      data[0].title.rendered,
+    );
+
+    if (!featuredImage) {
+      throw createError({
+        statusCode: 204,
+      });
+    }
+
+    return featuredImage;
+  },
+);
