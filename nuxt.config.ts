@@ -275,6 +275,7 @@ export default defineNuxtConfig({
     // devOptions: {
     //   enabled: true,
     // },
+    base: "/",
     client: {},
     strategies: "generateSW",
     registerWebManifestInRouteRules: true,
@@ -300,7 +301,6 @@ export default defineNuxtConfig({
       categories,
       lang: "nl",
       name: title,
-      scope: "/",
       orientation: "portrait-primary",
       description:
         "Loesje's posters vind je overal. Met haar positief-kritische teksten wil ze de wereld beter en mooier maken. Dat moet je niet overlaten aan bazen, politici of ouders. Door haar posters op straat en online te verspreiden, geeft Loesje de wereld een zetje in de goede richting.",
