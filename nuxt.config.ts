@@ -294,6 +294,7 @@ export default defineNuxtConfig({
     //   // globPatterns: ['**/*.{js,css,html,json,svg,webp,avif,png}'],
     // },
     manifest: {
+      id: "loesje",
       background_color: backgroundColor,
       theme_color: themeColor,
       categories,
@@ -333,13 +334,21 @@ export default defineNuxtConfig({
         },
       ],
       // display_override: ['window-controls-overlay'],
-      // start_url: `/posters?standalone=true`,
+      start_url: "/",
       shortcuts: [
         {
           name: "Favorieten",
           short_name: "Favorieten",
           url: `./posters/favorieten?standalone=true`,
           icons: [{ src: "/icon.png", sizes: "512x512" }],
+        },
+      ],
+      prefer_related_applications: false,
+      related_applications: [
+        {
+          platform: "itunes",
+          url: "https://apps.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1",
+          id: "loesje-posters",
         },
       ],
       // screenshots: [
@@ -374,13 +383,7 @@ export default defineNuxtConfig({
       //     label: 'Alle uitspraken van Loesje zijn hier te vinden.',
       //   },
       // ],
-      // android only
-      // related_applications: [
-      //   {
-      //     platform: 'webapp',
-      //     url: baseUrl,
-      //   },
-      // ],
+
       protocol_handlers: [
         {
           protocol: "web+loesje",

@@ -25,7 +25,7 @@ const getDate = () => {
   return `${date.getFullYear()}${month}${day}`;
 };
 
-const poster = ref<FeaturedImage | null>(null);
+const poster = ref<FeaturedImage | undefined>(undefined);
 
 const { execute } = useFetch("/api/posters/daily-poster", {
   params: {
@@ -60,5 +60,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <app-image v-if="poster" v-bind="poster" :sizes="sizes" />
+  <app-image v-if="poster" v-bind="poster" :sizes="sizes" :lazy="false" />
 </template>

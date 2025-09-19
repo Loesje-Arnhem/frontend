@@ -5,10 +5,10 @@ import z from "zod";
 export default defineCachedEventHandler(
   async (event): Promise<FeaturedImage> => {
     const query = await getValidatedQuery(event, (body) => {
-      const DailyPostersQuerySchema = z.object({
+      const querySchema = z.object({
         date: z.string().length(8),
       });
-      return DailyPostersQuerySchema.safeParse(body);
+      return querySchema.safeParse(body);
     });
 
     if (!query.success) {
