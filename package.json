@@ -24,7 +24,7 @@
     "@types/rss": "^0.0.32",
     "@types/workbox-window": "^5.0.0",
     "@vite-pwa/nuxt": "^1.0.4",
-    "eslint": "^9.35.0",
+    "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-vue": "^10.4.0",
@@ -40,7 +40,7 @@
     "stylelint-config-standard": "^39.0.0",
     "typescript": "^5.9.2",
     "vue-tsc": "^3.0.7",
-    "zod": "^4.1.9"
+    "zod": "^4.1.11"
   },
   "dependencies": {
     "@nuxt/image": "^1.11.0",
