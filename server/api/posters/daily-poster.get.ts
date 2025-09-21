@@ -45,4 +45,7 @@ export default defineCachedEventHandler(
 
     return featuredImage;
   },
+  {
+    maxAge: 60 * 60 * 24,
+  },
 );
