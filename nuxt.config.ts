@@ -1,3 +1,4 @@
+import { routes } from "vue-router/auto-routes";
 import {
   categories,
   themeColor,
@@ -92,6 +93,7 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
+      routes: ["/"],
     },
     storage: {
       cache: {
