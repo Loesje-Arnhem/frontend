@@ -94,7 +94,7 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
-      routes: ["/rss", "/rss/posters", "/posters"],
+      routes: ["/rss", "/rss/posters", "/posters", "/"],
     },
     storage: {
       cache: {
@@ -335,8 +335,8 @@ export default defineNuxtConfig({
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
     workbox: {
-      navigateFallback: undefined,
-      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+      navigateFallback: null,
+      globPatterns: ["**/*.{js,css,html,json,svg,webp,avif,png}"],
     },
     // workbox: {
     // },
