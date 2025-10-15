@@ -94,6 +94,7 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
+      routes: ["/rss", "/rss/posters", "/posters"],
     },
     storage: {
       cache: {
@@ -223,9 +224,9 @@ export default defineNuxtConfig({
           pauseFetching();
         }
       };
-      await fetchPagesByType("posts");
+      // await fetchPagesByType("posts");
       await fetchPagesByType("pages");
-      await fetchPagesByType("posters");
+      // await fetchPagesByType("posters");
     },
   },
 
@@ -327,13 +328,17 @@ export default defineNuxtConfig({
     // devOptions: {
     //   enabled: true,
     // },
+
     base: "/",
     client: {},
     strategies: "generateSW",
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
+    workbox: {
+      navigateFallback: undefined,
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
     // workbox: {
-    //   globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
     // },
     // workbox: {
     //   importScripts: ["/badge.js"],
