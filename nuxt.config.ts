@@ -7,6 +7,7 @@ import {
   title,
   twitter,
 } from "./app/data/siteDetails";
+import { ofetch } from "ofetch";
 
 export default defineNuxtConfig({
   vue: {
@@ -93,7 +94,6 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
-      routes: ["/"],
     },
     storage: {
       cache: {
@@ -176,6 +176,56 @@ export default defineNuxtConfig({
           title: "Loesje",
         },
       ],
+    },
+  },
+  hooks: {
+    async "prerender:routes"(ctx: { routes: Set<string> }) {
+      const PAGESIZE = 20;
+      // const PAGESIZE = 99
+      const FETCH_TIMEOUT = 0;
+
+      const pauseFetching = () => {
+        return new Promise((resolve) => {
+          setTimeout(resolve, FETCH_TIMEOUT);
+        });
+      };
+      const fetchPagesByType = async (type: string) => {
+        let hasNextPage = true;
+        let page = 1;
+        const baseUrl = process.env.NUXT_PUBLIC_API_URL as string;
+
+        while (hasNextPage) {
+          const apiUrl = `${baseUrl}wp-json/wp/v2/${type}/?_fields[]=link&per_page=${PAGESIZE}&page=${[
+            page,
+          ]}&status=publish`;
+          const response = await ofetch
+            .raw(apiUrl)
+            .catch((error) => error.data);
+          const totalPages = Number(response.headers.get("X-WP-TotalPages"));
+
+          let suffix = "/";
+          if (type === "posts") {
+            suffix = `/over-loesje/nieuws/`;
+          }
+
+          response._data.forEach((r: { link: string }) => {
+            const url = r.link.replace(baseUrl, suffix);
+            ctx.routes.add(url);
+          });
+
+          if (page >= totalPages) {
+            hasNextPage = false;
+          } else if (page > 5 && type === "posters") {
+            hasNextPage = false;
+          }
+
+          page = page + 1;
+          pauseFetching();
+        }
+      };
+      // await fetchPagesByType("posts");
+      await fetchPagesByType("pages");
+      // await fetchPagesByType("posters");
     },
   },
 
