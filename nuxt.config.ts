@@ -211,7 +211,7 @@ export default defineNuxtConfig({
 
           response._data.forEach((r: { link: string }) => {
             const url = r.link.replace(baseUrl, suffix);
-            ctx.routes.add(`${url}/`);
+            ctx.routes.add(`${url}`);
           });
 
           if (page >= totalPages) {
