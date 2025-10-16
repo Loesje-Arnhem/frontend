@@ -344,7 +344,9 @@ export default defineNuxtConfig({
           options: {
             cacheName: "images",
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24 * 7,
+              maxEntries: 50,
+              purgeOnQuotaError: true,
+              // maxAgeSeconds: 60 * 60 * 24 * 7,
             },
           },
         },
@@ -354,7 +356,9 @@ export default defineNuxtConfig({
           options: {
             cacheName: "document",
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24 * 7,
+              maxEntries: 50,
+              purgeOnQuotaError: true,
+              // maxAgeSeconds: 60 * 60 * 24 * 7,
             },
           },
         },
@@ -364,7 +368,9 @@ export default defineNuxtConfig({
           options: {
             cacheName: "json",
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24 * 7,
+              maxEntries: 50,
+              purgeOnQuotaError: true,
+              // maxAgeSeconds: 60 * 60 * 24 * 7,
             },
           },
         },
@@ -374,7 +380,10 @@ export default defineNuxtConfig({
           options: {
             cacheName: "i18n",
             expiration: {
-              maxAgeSeconds: 60 * 60 * 24 * 7,
+              maxEntries: 50,
+              purgeOnQuotaError: true,
+
+              // maxAgeSeconds: 60 * 60 * 24 * 7,
             },
           },
         },
