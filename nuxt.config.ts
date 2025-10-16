@@ -335,7 +335,7 @@ export default defineNuxtConfig({
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
     workbox: {
-      navigateFallback: null,
+      navigateFallback: "/",
       globPatterns: ["**/*.{js,css,svg,jpg,webp,avif,png,woff2}"],
       runtimeCaching: [
         {
@@ -343,6 +343,16 @@ export default defineNuxtConfig({
           handler: "CacheFirst",
           options: {
             cacheName: "images",
+          },
+        },
+        {
+          urlPattern: ({ request }) => request.destination === "image",
+          handler: "CacheFirst",
+          options: {
+            cacheName: "images",
+            expiration: {
+              maxAgeSeconds: 60,
+            },
           },
         },
         {
