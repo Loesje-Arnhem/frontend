@@ -337,7 +337,22 @@ export default defineNuxtConfig({
     workbox: {
       navigateFallback: null,
       globPatterns: ["**/*.{js,css,svg,jpg,webp,avif,png,woff2}"],
-      globIgnores: ["**/_payload.json"],
+      runtimeCaching: [
+        {
+          urlPattern: ({ request }) => request.destination === "image",
+          handler: "CacheFirst",
+          options: {
+            cacheName: "images",
+          },
+        },
+        {
+        //   urlPattern: ({ request }) => request.destination === "document",
+        //   handler: "NetworkFirst",
+        //   options: {
+        //     cacheName: "document",
+        //   },
+        // },
+      ],
     },
     // workbox: {
     // },
