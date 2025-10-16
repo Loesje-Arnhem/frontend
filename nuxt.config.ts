@@ -340,18 +340,25 @@ export default defineNuxtConfig({
       runtimeCaching: [
         {
           urlPattern: ({ request }) => request.destination === "image",
-          handler: "CacheFirst",
+          handler: "NetworkFirst",
           options: {
             cacheName: "images",
           },
         },
-        // {
-        //   urlPattern: ({ request }) => request.destination === "document",
-        //   handler: "NetworkFirst",
-        //   options: {
-        //     cacheName: "document",
-        //   },
-        // },
+        {
+          urlPattern: ({ request }) => request.destination === "document",
+          handler: "NetworkFirst",
+          options: {
+            cacheName: "document",
+          },
+        },
+        {
+          urlPattern: ({ request }) => request.destination === "json",
+          handler: "NetworkFirst",
+          options: {
+            cacheName: "json",
+          },
+        },
       ],
     },
     // workbox: {
