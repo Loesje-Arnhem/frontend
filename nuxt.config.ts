@@ -345,7 +345,7 @@ export default defineNuxtConfig({
             cacheName: "images",
           },
         },
-        {
+        // {
         //   urlPattern: ({ request }) => request.destination === "document",
         //   handler: "NetworkFirst",
         //   options: {
