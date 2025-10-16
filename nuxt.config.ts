@@ -211,7 +211,7 @@ export default defineNuxtConfig({
 
           response._data.forEach((r: { link: string }) => {
             const url = r.link.replace(baseUrl, suffix);
-            ctx.routes.add(url);
+            ctx.routes.add(`${url}/`);
           });
 
           if (page >= totalPages) {
@@ -336,7 +336,7 @@ export default defineNuxtConfig({
     registerType: "autoUpdate",
     workbox: {
       navigateFallback: null,
-      globPatterns: ["**/*.{js,css,svg,webp,avif,png,woff2}", "/index.html"],
+      globPatterns: ["**/*.{js,css,svg,webp,avif,png,woff2}", "/  "],
       globIgnores: ["**/_payload.json"],
     },
     // workbox: {
