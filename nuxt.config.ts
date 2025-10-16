@@ -380,12 +380,11 @@ export default defineNuxtConfig({
           handler: "CacheFirst",
           options: {
             cacheName: "i18n",
-            expiration: {
-              maxEntries: 50,
-              purgeOnQuotaError: true,
-
-              // maxAgeSeconds: 60 * 60 * 24 * 7,
-            },
+            // expiration: {
+            //   maxEntries: 50,
+            //   purgeOnQuotaError: true,
+            //   // maxAgeSeconds: 60 * 60 * 24 * 7,
+            // },
           },
         },
       ],
