@@ -335,7 +335,7 @@ export default defineNuxtConfig({
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
     workbox: {
-      // navigateFallback: "/",
+      navigateFallback: null,
       globPatterns: ["**/*.{js,css,woff2}"],
       globIgnores: ["**/_payload.json"],
       runtimeCaching: [
