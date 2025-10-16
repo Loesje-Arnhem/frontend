@@ -224,9 +224,9 @@ export default defineNuxtConfig({
           pauseFetching();
         }
       };
-      await fetchPagesByType("posts");
-      await fetchPagesByType("pages");
-      await fetchPagesByType("posters");
+      // await fetchPagesByType("posts");
+      // await fetchPagesByType("pages");
+      // await fetchPagesByType("posters");
     },
   },
 
@@ -335,8 +335,8 @@ export default defineNuxtConfig({
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
     workbox: {
-      navigateFallback: null,
-      globPatterns: ["**/*.{js,css,woff2}"],
+      navigateFallback: "index.html",
+      globPatterns: ["**/*.{js,css,woff2}", "index.html"],
       globIgnores: ["**/_payload.json"],
       runtimeCaching: [
         {
