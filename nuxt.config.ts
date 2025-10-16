@@ -336,22 +336,15 @@ export default defineNuxtConfig({
     registerType: "autoUpdate",
     workbox: {
       navigateFallback: "/",
-      globPatterns: ["**/*.{js,css,svg,jpg,webp,avif,png,woff2}"],
+      globPatterns: ["**/*.{js,css,woff2}", "/"],
       runtimeCaching: [
         {
           urlPattern: ({ request }) => request.destination === "image",
           handler: "CacheFirst",
           options: {
             cacheName: "images",
-          },
-        },
-        {
-          urlPattern: ({ request }) => request.destination === "image",
-          handler: "CacheFirst",
-          options: {
-            cacheName: "images",
             expiration: {
-              maxAgeSeconds: 60,
+              maxAgeSeconds: 60 * 60 * 24 * 7,
             },
           },
         },
@@ -360,6 +353,9 @@ export default defineNuxtConfig({
           handler: "StaleWhileRevalidate",
           options: {
             cacheName: "document",
+            expiration: {
+              maxAgeSeconds: 60 * 60 * 24 * 7,
+            },
           },
         },
         {
@@ -367,6 +363,9 @@ export default defineNuxtConfig({
           handler: "CacheFirst",
           options: {
             cacheName: "json",
+            expiration: {
+              maxAgeSeconds: 60 * 60 * 24 * 7,
+            },
           },
         },
         {
@@ -374,6 +373,9 @@ export default defineNuxtConfig({
           handler: "CacheFirst",
           options: {
             cacheName: "i18n",
+            expiration: {
+              maxAgeSeconds: 60 * 60 * 24 * 7,
+            },
           },
         },
       ],
