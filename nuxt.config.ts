@@ -335,8 +335,8 @@ export default defineNuxtConfig({
     registerWebManifestInRouteRules: true,
     registerType: "autoUpdate",
     workbox: {
-      navigateFallback: "/",
-      globPatterns: ["**/*.{js,css,woff2}", "/"],
+      // navigateFallback: "/",
+      globPatterns: ["**/*.{js,css,woff2}"],
       runtimeCaching: [
         {
           urlPattern: ({ request }) => request.destination === "image",
