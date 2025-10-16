@@ -353,10 +353,17 @@ export default defineNuxtConfig({
           },
         },
         {
-          urlPattern: ({ url }) => url.href.endsWith("_payload.json"),
+          urlPattern: ({ url }) => url.href.includes("_payload.json"),
           handler: "NetworkFirst",
           options: {
             cacheName: "json",
+          },
+        },
+        {
+          urlPattern: ({ url }) => url.href.endsWith("messages.json"),
+          handler: "NetworkFirst",
+          options: {
+            cacheName: "i18n",
           },
         },
       ],
