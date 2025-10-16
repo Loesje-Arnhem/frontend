@@ -325,6 +325,10 @@ export default defineNuxtConfig({
     },
   },
   pwa: {
+    // devOptions: {
+    //   enabled: true,
+    // },
+
     base: "/",
     client: {},
     strategies: "generateSW",
@@ -341,6 +345,8 @@ export default defineNuxtConfig({
           options: {
             cacheName: "images",
             expiration: {
+              maxEntries: 50,
+              purgeOnQuotaError: true,
               maxAgeSeconds: 60 * 60 * 24 * 7,
             },
           },
@@ -351,6 +357,8 @@ export default defineNuxtConfig({
           options: {
             cacheName: "document",
             expiration: {
+              maxEntries: 50,
+              purgeOnQuotaError: true,
               maxAgeSeconds: 60 * 60 * 24 * 7,
             },
           },
@@ -361,6 +369,8 @@ export default defineNuxtConfig({
           options: {
             cacheName: "json",
             expiration: {
+              maxEntries: 50,
+              purgeOnQuotaError: true,
               maxAgeSeconds: 60 * 60 * 24 * 7,
             },
           },
@@ -371,6 +381,8 @@ export default defineNuxtConfig({
           options: {
             cacheName: "i18n",
             expiration: {
+              maxEntries: 50,
+              purgeOnQuotaError: true,
               maxAgeSeconds: 60 * 60 * 24 * 7,
             },
           },
