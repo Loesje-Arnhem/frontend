@@ -340,28 +340,28 @@ export default defineNuxtConfig({
       runtimeCaching: [
         {
           urlPattern: ({ request }) => request.destination === "image",
-          handler: "NetworkFirst",
+          handler: "CacheFirst",
           options: {
             cacheName: "images",
           },
         },
         {
           urlPattern: ({ request }) => request.destination === "document",
-          handler: "NetworkFirst",
+          handler: "StaleWhileRevalidate",
           options: {
             cacheName: "document",
           },
         },
         {
           urlPattern: ({ url }) => url.href.includes("_payload.json"),
-          handler: "NetworkFirst",
+          handler: "CacheFirst",
           options: {
             cacheName: "json",
           },
         },
         {
           urlPattern: ({ url }) => url.href.endsWith("messages.json"),
-          handler: "NetworkFirst",
+          handler: "CacheFirst",
           options: {
             cacheName: "i18n",
           },
