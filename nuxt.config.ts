@@ -337,6 +337,7 @@ export default defineNuxtConfig({
     workbox: {
       // navigateFallback: "/",
       globPatterns: ["**/*.{js,css,woff2}"],
+      globIgnores: ["**/_payload.json"],
       runtimeCaching: [
         {
           urlPattern: ({ request }) => request.destination === "image",
