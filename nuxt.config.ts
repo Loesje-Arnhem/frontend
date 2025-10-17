@@ -94,7 +94,7 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
-      routes: ["/rss", "/rss/posters", "/posters", ""],
+      routes: ["/rss", "/rss/posters", "/posters", "/"],
     },
     storage: {
       cache: {
