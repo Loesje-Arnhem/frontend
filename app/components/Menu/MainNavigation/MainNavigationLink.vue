@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { MenuItem } from "~/types/MenuItem";
+import type { MenuItem } from '~/types/MenuItem'
 
 defineProps<{
-  item: MenuItem;
-}>();
+  item: MenuItem
+}>()
 
-const { clear } = useLayout();
+const { clear } = useLayout()
 </script>
 
 <template>
@@ -15,7 +15,10 @@ const { clear } = useLayout();
     :external="item.external"
     @click="clear"
   >
-    <span class="title" v-html="item.title" />
+    <span
+      class="title"
+      v-html="item.title"
+    />
   </nuxt-link>
 </template>
 

@@ -1,24 +1,24 @@
 import {
   AppPostersQuerySchema,
   AppPostersSchema,
-} from "~~/server/schemas/AppSchema";
-import { Taxonomy } from "~/enums/taxonomy";
+} from '~~/server/schemas/AppSchema'
+import { Taxonomy } from '~/enums/taxonomy'
 
 export default defineEventHandler(async (event) => {
-  const query = await getValidatedQuery(event, (body) =>
+  const query = await getValidatedQuery(event, body =>
     AppPostersQuerySchema.safeParse(body),
-  );
+  )
 
   if (!query.success) {
-    throw query.error.issues;
+    throw query.error.issues
   }
 
-  const pageSize = Number(query.data.pageSize);
-  const page = Number(query.data.page);
+  const pageSize = Number(query.data.pageSize)
+  const page = Number(query.data.page)
 
   const url = getUrl({
-    type: "posters",
-    fields: ["title", "slug", "id"],
+    type: 'posters',
+    fields: ['title', 'slug', 'id'],
     image: true,
     pageSize,
     include: query.data.include,
@@ -26,28 +26,28 @@ export default defineEventHandler(async (event) => {
     subjectIds: query.data.subjectIds,
     search: query.data.search,
     page,
-  });
+  })
 
-  const response = await $fetch.raw(url).catch((error) => error.data);
-  const totalPages = Number(response.headers.get("X-WP-TotalPages"));
+  const response = await $fetch.raw(url).catch(error => error.data)
+  const totalPages = Number(response.headers.get('X-WP-TotalPages'))
 
-  const parsed = AppPostersSchema.safeParse(response._data);
+  const parsed = AppPostersSchema.safeParse(response._data)
 
   if (!parsed.success) {
-    throw parsed.error.issues;
+    throw parsed.error.issues
   }
 
   const items = parsed.data.map((item) => {
     const featuredImage = getFeaturedImage(
-      item["wp:featuredmedia"],
+      item['wp:featuredmedia'],
       item.title.rendered,
-    );
+    )
 
-    let subjectIds: number[] = [];
-    if (item._embedded["wp:term"]) {
-      const tags = item._embedded["wp:term"].flat();
-      const subjects = getTagsByType(tags, Taxonomy.Subject);
-      subjectIds = subjects.map((subject) => subject.id);
+    let subjectIds: number[] = []
+    if (item._embedded['wp:term']) {
+      const tags = item._embedded['wp:term'].flat()
+      const subjects = getTagsByType(tags, Taxonomy.Subject)
+      subjectIds = subjects.map(subject => subject.id)
     }
 
     return {
@@ -56,13 +56,13 @@ export default defineEventHandler(async (event) => {
       featuredImage,
       title: item.title.rendered,
       subjectIds,
-    };
-  });
+    }
+  })
 
   const data = {
     hasNextPage: page < totalPages,
     items,
-  };
+  }
 
-  return data;
-});
+  return data
+})

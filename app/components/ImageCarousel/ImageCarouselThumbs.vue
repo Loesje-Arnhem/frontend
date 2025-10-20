@@ -1,16 +1,19 @@
 <script lang="ts" setup>
-import type { FeaturedImage } from "~/types/Content";
+import type { FeaturedImage } from '~/types/Content'
 
-defineEmits(["update-active-card-index"]);
+defineEmits(['update-active-card-index'])
 
 defineProps<{
-  images: FeaturedImage[];
-  activeItemIndex: number;
-}>();
+  images: FeaturedImage[]
+  activeItemIndex: number
+}>()
 </script>
 
 <template>
-  <ul v-if="images.length > 1" class="thumbs">
+  <ul
+    v-if="images.length > 1"
+    class="thumbs"
+  >
     <li
       v-for="(image, index) in images"
       :key="`thumb-${image.src}`"

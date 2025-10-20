@@ -1,35 +1,35 @@
 <script setup lang="ts">
 defineI18nRoute({
   paths: {
-    nl: "/winkeltje/afrekenen",
+    nl: '/winkeltje/afrekenen',
   },
-});
+})
 
 definePageMeta({
-  middleware: ["cart"],
-});
+  middleware: ['cart'],
+})
 
-const { pageIds } = useAppConfig();
+const { pageIds } = useAppConfig()
 
 const { data } = await useAsyncData(`page-home`, () =>
-  $fetch("/api/pages/page", {
+  $fetch('/api/pages/page', {
     params: {
       id: pageIds.checkout,
     },
   }),
-);
+)
 
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Page Not Found",
-  });
+    statusMessage: 'Page Not Found',
+  })
 }
 
 useMeta({
   title: data.value.title,
   description: data.value.description,
-});
+})
 </script>
 
 <template>

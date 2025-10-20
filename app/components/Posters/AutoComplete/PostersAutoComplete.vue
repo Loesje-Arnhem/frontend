@@ -1,45 +1,45 @@
 <script lang="ts" setup>
-const search = useSearch();
-const searchField = ref(search.value);
+const search = useSearch()
+const searchField = ref(search.value)
 
-const route = useRoute();
-const localePath = useLocalePath();
+const route = useRoute()
+const localePath = useLocalePath()
 
-const { data } = useFetch("/api/posters/search", {
+const { data } = useFetch('/api/posters/search', {
   query: {
     search: searchField,
   },
-});
+})
 
 const posters = computed(() => {
   if (searchField.value.length < 2) {
-    return [];
+    return []
   }
   if (!data.value) {
-    return [];
+    return []
   }
   return data.value.map((poster) => {
     const uri = localePath({
-      name: "posters-details",
+      name: 'posters-details',
       params: {
         slug: poster.slug,
       },
-    });
+    })
     return {
       id: poster.id,
       title: poster.title,
       uri,
-    };
-  });
-});
+    }
+  })
+})
 
 onMounted(() => {
-  const { q } = route.query;
+  const { q } = route.query
   if (q) {
-    searchField.value = q.toString();
-    search.value = q.toString();
+    searchField.value = q.toString()
+    search.value = q.toString()
   }
-});
+})
 
 const submit = () => {
   navigateTo(
@@ -53,9 +53,9 @@ const submit = () => {
     {
       replace: true,
     },
-  );
-  search.value = searchField.value;
-};
+  )
+  search.value = searchField.value
+}
 </script>
 
 <template>

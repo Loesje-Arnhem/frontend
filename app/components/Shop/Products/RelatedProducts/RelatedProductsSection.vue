@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 defineProps<{
-  title?: string;
-  productIds: number[];
-}>();
+  title?: string
+  productIds: number[]
+}>()
 </script>
 
 <template>

@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { IPosterListItem } from "~/types/Content";
+import type { IPosterListItem } from '~/types/Content'
 
-const localePath = useLocalePath();
+const localePath = useLocalePath()
 
 defineProps<{
-  poster: IPosterListItem;
-}>();
+  poster: IPosterListItem
+}>()
 </script>
 
 <template>

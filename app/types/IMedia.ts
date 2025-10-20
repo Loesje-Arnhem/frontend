@@ -1,19 +1,19 @@
 type IMediaDetails = {
-  width: number;
-  height: number;
-};
+  width: number
+  height: number
+}
 
 export type IImage = {
-  id: string;
-  srcSet: string;
-  src: string;
-  mediaDetails: IMediaDetails;
-};
+  id: string
+  srcSet: string
+  src: string
+  mediaDetails: IMediaDetails
+}
 
 export type IFeaturedImage = {
-  node: IImage;
-};
+  node: IImage
+}
 
 export type IVideo = {
-  youtubeId: string | null;
-};
+  youtubeId: string | null
+}

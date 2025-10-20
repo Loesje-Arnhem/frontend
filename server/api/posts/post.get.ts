@@ -1,24 +1,24 @@
-import type { ResponsePost } from "~~/server/types/ResponsePost";
-import type { IPost } from "~/types/Content";
+import type { ResponsePost } from '~~/server/types/ResponsePost'
+import type { IPost } from '~/types/Content'
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event);
+  const query = getQuery(event)
   const url = getUrl({
     slug: query.slug?.toString(),
     image: true,
-    type: "posts",
-    fields: ["title", "content", "yoast_head_json", "date", "acf", "excerpt"],
-  });
-  const response = await $fetch<ResponsePost[]>(url);
+    type: 'posts',
+    fields: ['title', 'content', 'yoast_head_json', 'date', 'acf', 'excerpt'],
+  })
+  const response = await $fetch<ResponsePost[]>(url)
 
   if (response.length) {
-    const item = response[0];
+    const item = response[0]
 
-    const featuredImage = getFeaturedImage(item["wp:featuredmedia"]);
+    const featuredImage = getFeaturedImage(item['wp:featuredmedia'])
 
-    let youtubeId: string | undefined = undefined;
+    let youtubeId: string | undefined = undefined
     if (item.acf.youtube_id) {
-      youtubeId = item.acf.youtube_id;
+      youtubeId = item.acf.youtube_id
     }
 
     const post: IPost = {
@@ -32,8 +32,8 @@ export default defineEventHandler(async (event) => {
       youtubeId,
       relatedPosters: getRelatedPosters(item),
       relatedProducts: getRelatedProducts(item),
-    };
-    return post;
+    }
+    return post
   }
-  return null;
-});
+  return null
+})

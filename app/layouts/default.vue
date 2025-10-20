@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { title, socialMedia } = useAppConfig();
+const { title, socialMedia } = useAppConfig()
 const {
   twitterUrl,
   facebookUrl,
@@ -8,26 +8,26 @@ const {
   linkedinUrl,
   youtubeUrl,
   blueskyUrl,
-} = socialMedia;
+} = socialMedia
 
-const { getFromStorage } = useFavorites();
+const { getFromStorage } = useFavorites()
 
 onMounted(() => {
-  getFromStorage();
-});
+  getFromStorage()
+})
 
 useSchemaOrg([
   defineOrganization({
     name: title,
     logo: {
-      "@type": "ImageObject",
-      inLanguage: "nl-NL",
-      "@id": "https://www.loesje.nl/#/schema/logo/image/",
-      url: "https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png",
-      contentUrl: "https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png",
-      width: 260,
-      height: 150,
-      caption: title,
+      '@type': 'ImageObject',
+      'inLanguage': 'nl-NL',
+      '@id': 'https://www.loesje.nl/#/schema/logo/image/',
+      'url': 'https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png',
+      'contentUrl': 'https://shop.loesje.nl/wp-content/uploads/2016/10/logo.png',
+      'width': 260,
+      'height': 150,
+      'caption': title,
     },
     sameAs: [
       twitterUrl,
@@ -42,13 +42,13 @@ useSchemaOrg([
   defineWebSite({
     name: title,
   }),
-]);
+])
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | Loesje` : "Loesje";
+    return titleChunk ? `${titleChunk} | Loesje` : 'Loesje'
   },
-});
+})
 </script>
 
 <template>
@@ -58,7 +58,10 @@ useHead({
     <div class="page">
       <header-top class="page-header-top sa-hidden" />
       <the-header class="page-header sa-hidden" />
-      <main id="content" class="main">
+      <main
+        id="content"
+        class="main"
+      >
         <slot />
       </main>
       <the-footer class="page-footer sa-hidden" />

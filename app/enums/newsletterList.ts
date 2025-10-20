@@ -1,4 +1,4 @@
 export enum NewsletterList {
-  Website = "website",
-  Products = "products",
+  Website = 'website',
+  Products = 'products',
 }

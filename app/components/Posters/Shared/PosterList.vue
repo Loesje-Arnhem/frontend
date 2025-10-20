@@ -1,24 +1,31 @@
 <script lang="ts" setup>
-import type { IPosterListItem } from "~/types/Content";
+import type { IPosterListItem } from '~/types/Content'
 
 defineProps<{
-  posters: IPosterListItem[];
-}>();
+  posters: IPosterListItem[]
+}>()
 
-const img = useImage();
+const img = useImage()
 
 const backgroundImage = computed(() =>
-  img("/images/wall.png", {
-    format: "webp",
+  img('/images/wall.png', {
+    format: 'webp',
   }),
-);
+)
 </script>
 
 <template>
-  <div class="wrapper" :style="{ backgroundImage: `url(${backgroundImage})` }">
+  <div
+    class="wrapper"
+    :style="{ backgroundImage: `url(${backgroundImage})` }"
+  >
     <center-wrapper>
       <list-animation class="list">
-        <li v-for="poster in posters" :key="poster.id" class="list-item">
+        <li
+          v-for="poster in posters"
+          :key="poster.id"
+          class="list-item"
+        >
           <poster-tile :poster="poster" />
         </li>
       </list-animation>

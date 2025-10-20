@@ -1,28 +1,28 @@
 <script lang="ts" setup>
-import useVuelidate from "@vuelidate/core";
+import useVuelidate from '@vuelidate/core'
 
-const { required, email, numeric } = useValidators();
+const { required, email, numeric } = useValidators()
 
-const pending = ref(false);
-const error = ref<string | null>(null);
-const submitted = ref(false);
-const { t } = useI18n();
-const route = useRoute();
+const pending = ref(false)
+const error = ref<string | null>(null)
+const submitted = ref(false)
+const { t } = useI18n()
+const route = useRoute()
 
 const formData = reactive({
-  name: "",
-  course: "",
-  email: "",
-  phoneNumber: "",
-  schoolName: "",
-  city: "",
-  postcode: "",
-  street: "",
-  houseNumber: "",
-  houseNumberSuffix: "",
-  year: "",
-  level: "",
-});
+  name: '',
+  course: '',
+  email: '',
+  phoneNumber: '',
+  schoolName: '',
+  city: '',
+  postcode: '',
+  street: '',
+  houseNumber: '',
+  houseNumberSuffix: '',
+  year: '',
+  level: '',
+})
 
 const rules = {
   name: { required },
@@ -36,50 +36,58 @@ const rules = {
   houseNumber: { required, numeric },
   year: { required },
   level: { required },
-};
+}
 
-const v$ = useVuelidate(rules, formData);
+const v$ = useVuelidate(rules, formData)
 
 const submit = async () => {
-  const isFormCorrect = await v$.value.$validate();
+  const isFormCorrect = await v$.value.$validate()
   if (!isFormCorrect) {
-    return;
+    return
   }
 
-  pending.value = true;
+  pending.value = true
 
   try {
     await $fetch(route.path, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
         ...formData,
-        "form-name": "Onderwijs",
+        'form-name': 'Onderwijs',
       }).toString(),
-    });
-    submitted.value = true;
-  } catch (err) {
-    error.value = t("formError");
-  } finally {
-    pending.value = false;
+    })
+    submitted.value = true
   }
-};
+  catch (err) {
+    error.value = t('formError')
+  }
+  finally {
+    pending.value = false
+  }
+}
 
 const errorMessage = computed(() => {
   if (v$.value.$error) {
-    return t("invalidForm");
-  } else if (error.value) {
-    return error.value;
+    return t('invalidForm')
   }
-  return null;
-});
+  else if (error.value) {
+    return error.value
+  }
+  return null
+})
 </script>
 
 <template>
   <center-wrapper size="md">
     <section aria-label-by="form-title">
-      <h1 id="form-title">Vraag de onderwijsmodule aan</h1>
-      <div v-if="submitted" class="success">
+      <h1 id="form-title">
+        Vraag de onderwijsmodule aan
+      </h1>
+      <div
+        v-if="submitted"
+        class="success"
+      >
         <p>Hoi {{ formData.name }}</p>
         <p>
           Wat tof dat je interesse hebt in mijn onderwijsmodule. Ik heb je
@@ -98,9 +106,15 @@ const errorMessage = computed(() => {
         button-title="Aanmelden"
         @submit="submit"
       >
-        <input name="bot-field" type="hidden" />
+        <input
+          name="bot-field"
+          type="hidden"
+        >
 
-        <form-fieldset title="Aanvrager" class="fieldset-user">
+        <form-fieldset
+          title="Aanvrager"
+          class="fieldset-user"
+        >
           <input-text-field
             id="name"
             v-model="formData.name"
@@ -135,7 +149,10 @@ const errorMessage = computed(() => {
           />
         </form-fieldset>
 
-        <form-fieldset title="School" class="fieldset-address">
+        <form-fieldset
+          title="School"
+          class="fieldset-address"
+        >
           <div class="school-name">
             <input-text-field
               id="schoolName"
@@ -192,7 +209,10 @@ const errorMessage = computed(() => {
           />
         </form-fieldset>
 
-        <form-fieldset title="Klas" class="fieldset-class">
+        <form-fieldset
+          title="Klas"
+          class="fieldset-class"
+        >
           <input-text-field
             id="year"
             v-model="formData.year"

@@ -1,7 +1,7 @@
 export type ResponsePostersSearchResult = {
-  id: number;
+  id: number
   title: {
-    rendered: string;
-  };
-  slug: string;
-};
+    rendered: string
+  }
+  slug: string
+}

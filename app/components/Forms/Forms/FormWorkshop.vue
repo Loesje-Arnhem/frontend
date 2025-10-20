@@ -1,31 +1,31 @@
 <script lang="ts" setup>
-import useVuelidate from "@vuelidate/core";
+import useVuelidate from '@vuelidate/core'
 
-const { required, numeric, email, minValue, maxValue } = useValidators();
-const minDate: Ref<string | null> = ref(null);
+const { required, numeric, email, minValue, maxValue } = useValidators()
+const minDate: Ref<string | null> = ref(null)
 
-const pending = ref(false);
-const error = ref<string | null>(null);
-const submitted = ref(false);
-const { t } = useI18n();
-const route = useRoute();
+const pending = ref(false)
+const error = ref<string | null>(null)
+const submitted = ref(false)
+const { t } = useI18n()
+const route = useRoute()
 
 const formData = reactive({
-  name: "",
-  companyName: "",
-  address: "",
-  zipcode: "",
-  city: "",
-  phoneNumber: "",
-  email: "",
-  motivation: "",
-  date: "",
-  time: "",
+  name: '',
+  companyName: '',
+  address: '',
+  zipcode: '',
+  city: '',
+  phoneNumber: '',
+  email: '',
+  motivation: '',
+  date: '',
+  time: '',
   totalAttendees: 4,
-  location: "",
+  location: '',
   totalWorkshops: 1,
-  theme: "",
-});
+  theme: '',
+})
 
 const rules = {
   name: { required },
@@ -47,63 +47,69 @@ const rules = {
   location: { required },
   totalWorkshops: { required, numeric },
   theme: {},
-};
+}
 
-const v$ = useVuelidate(rules, formData);
+const v$ = useVuelidate(rules, formData)
 
 const submit = async () => {
-  const isFormCorrect = await v$.value.$validate();
+  const isFormCorrect = await v$.value.$validate()
   if (!isFormCorrect) {
-    return;
+    return
   }
 
-  pending.value = true;
+  pending.value = true
 
   try {
     await $fetch(route.path, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
         ...formData,
-        totalWorkshops: formData.totalWorkshops.toString(),
-        totalAttendees: formData.totalAttendees.toString(),
-        "form-name": "Workshop",
+        'totalWorkshops': formData.totalWorkshops.toString(),
+        'totalAttendees': formData.totalAttendees.toString(),
+        'form-name': 'Workshop',
       }).toString(),
-    });
-    submitted.value = true;
-  } catch (err) {
-    error.value = t("formError");
-  } finally {
-    pending.value = false;
+    })
+    submitted.value = true
   }
-};
+  catch (err) {
+    error.value = t('formError')
+  }
+  finally {
+    pending.value = false
+  }
+}
 
 onMounted(() => {
   if (!import.meta.client) {
-    return;
+    return
   }
-  const date = new Date();
-  const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;
-  const month =
-    date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
-  minDate.value = `${date.getFullYear()}-${month}-${day}`;
-});
+  const date = new Date()
+  const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
+  const month
+    = date.getMonth() > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
+  minDate.value = `${date.getFullYear()}-${month}-${day}`
+})
 
 const errorMessage = computed(() => {
   if (v$.value.$error) {
-    return t("invalidForm");
-  } else if (error.value) {
-    return error.value;
+    return t('invalidForm')
   }
-  return null;
-});
+  else if (error.value) {
+    return error.value
+  }
+  return null
+})
 </script>
 
 <template>
   <center-wrapper size="lg">
     <section aria-label="Meld je aan voor de workshop">
       <h1>Meld je aan voor de workshop</h1>
-      <div v-if="submitted" class="success">
+      <div
+        v-if="submitted"
+        class="success"
+      >
         <p>Hoi {{ formData.name }}</p>
         <p>
           Wat tof dat je mijn teksten zo mooi vindt, dat je graag wilt leren hoe
@@ -125,9 +131,15 @@ const errorMessage = computed(() => {
         class="form"
         @submit="submit"
       >
-        <input name="bot-field" type="hidden" />
+        <input
+          name="bot-field"
+          type="hidden"
+        >
 
-        <form-fieldset title="Bedrijfsgegevens" class="fields">
+        <form-fieldset
+          title="Bedrijfsgegevens"
+          class="fields"
+        >
           <input-text-field
             id="name"
             v-model="formData.name"
@@ -185,7 +197,10 @@ const errorMessage = computed(() => {
             title="Woonplaats"
           />
         </form-fieldset>
-        <form-fieldset title="De workshop" class="fields">
+        <form-fieldset
+          title="De workshop"
+          class="fields"
+        >
           <div class="intro">
             Let op: wil je meerdere workshops op een dag, dan kun je ze allemaal
             in een keer aanvragen. Wil je meerdere workshops op meerdere dagen,

@@ -1,36 +1,37 @@
-import type { FeaturedImageResponseType } from "../types/FeaturedImageResponseType";
-import type { FeaturedImage } from "~/types/Content";
+import type { FeaturedImageResponseType } from '../types/FeaturedImageResponseType'
+import type { FeaturedImage } from '~/types/Content'
 
 export default (
   featuredImage: FeaturedImageResponseType[] | undefined,
   title?: string,
 ) => {
   if (!featuredImage) {
-    return undefined;
+    return undefined
   }
-  const image = featuredImage[0];
+  const image = featuredImage[0]
 
   if (image.code) {
-    return undefined;
+    return undefined
   }
 
   if (!image?.media_details?.sizes) {
-    return undefined;
+    return undefined
   }
 
   if (!image.source_url) {
-    return undefined;
+    return undefined
   }
 
   const srcSet = Object.values(image.media_details.sizes).map((size) => {
-    return `${size.source_url} ${size.width}w`;
-  });
+    return `${size.source_url} ${size.width}w`
+  })
 
-  let alt = "";
+  let alt = ''
   if (title) {
-    alt = title;
-  } else if (image.alt_text) {
-    alt = image.alt_text;
+    alt = title
+  }
+  else if (image.alt_text) {
+    alt = image.alt_text
   }
 
   const result: FeaturedImage = {
@@ -38,7 +39,7 @@ export default (
     width: image.media_details.width,
     height: image.media_details.height,
     src: image.source_url,
-    srcSet: srcSet.join(","),
-  };
-  return result;
-};
+    srcSet: srcSet.join(','),
+  }
+  return result
+}

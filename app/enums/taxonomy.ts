@@ -1,4 +1,4 @@
 export enum Taxonomy {
-  Source = "source",
-  Subject = "subject",
+  Source = 'source',
+  Subject = 'subject',
 }

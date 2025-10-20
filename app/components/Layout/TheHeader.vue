@@ -1,28 +1,29 @@
 <script lang="ts" setup>
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
-const { closeMobileMenu } = useLayout();
+const { closeMobileMenu } = useLayout()
 
-const menuIsOpen = useMenu();
+const menuIsOpen = useMenu()
 
-const content: Ref<HTMLDivElement | null> = ref(null);
+const content: Ref<HTMLDivElement | null> = ref(null)
 
 const afterEnter = () => {
-  lockBodyScoll(true);
-};
+  lockBodyScoll(true)
+}
 const afterLeave = () => {
-  lockBodyScoll(false);
-};
+  lockBodyScoll(false)
+}
 const lockBodyScoll = (isOpen: boolean) => {
   if (!content.value) {
-    return;
+    return
   }
   if (isOpen) {
-    disableBodyScroll(content.value);
-  } else {
-    enableBodyScroll(content.value);
+    disableBodyScroll(content.value)
   }
-};
+  else {
+    enableBodyScroll(content.value)
+  }
+}
 </script>
 
 <template>
@@ -36,9 +37,16 @@ const lockBodyScoll = (isOpen: boolean) => {
         @after-enter="afterEnter"
         @after-leave="afterLeave"
       >
-        <div v-show="menuIsOpen" class="background">
+        <div
+          v-show="menuIsOpen"
+          class="background"
+        >
           <transition name="fade">
-            <div v-show="menuIsOpen" ref="content" class="content">
+            <div
+              v-show="menuIsOpen"
+              ref="content"
+              class="content"
+            >
               <main-navigation-toggle
                 :close="true"
                 class="toggle"

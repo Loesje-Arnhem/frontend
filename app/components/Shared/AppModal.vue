@@ -1,40 +1,40 @@
 <script lang="ts" setup>
 defineProps<{
-  title: string;
-}>();
+  title: string
+}>()
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close'])
 
-const isHidden = ref(false);
-const dialog = useTemplateRef("dialog");
+const isHidden = ref(false)
+const dialog = useTemplateRef('dialog')
 
 const startClosingAnimation = () => {
-  isHidden.value = true;
-};
+  isHidden.value = true
+}
 
 const close = () => {
   if (isHidden.value && dialog.value) {
-    isHidden.value = false;
-    dialog.value.close();
+    isHidden.value = false
+    dialog.value.close()
   }
-};
+}
 
 const afterClosing = () => {
-  emit("close");
-};
+  emit('close')
+}
 
 onMounted(() => {
   if (dialog.value) {
-    dialog.value.showModal();
-    dialog.value.addEventListener("close", afterClosing);
+    dialog.value.showModal()
+    dialog.value.addEventListener('close', afterClosing)
   }
-});
+})
 
 onUnmounted(() => {
   if (dialog.value) {
-    dialog.value.removeEventListener("close", afterClosing);
+    dialog.value.removeEventListener('close', afterClosing)
   }
-});
+})
 </script>
 
 <template>
@@ -45,9 +45,18 @@ onUnmounted(() => {
     @animationend="close"
   >
     <div class="header">
-      <h1 class="title">{{ title }}</h1>
-      <button class="btn-close" autofocus @click="startClosingAnimation">
-        <app-icon icon="close" class="icon" />
+      <h1 class="title">
+        {{ title }}
+      </h1>
+      <button
+        class="btn-close"
+        autofocus
+        @click="startClosingAnimation"
+      >
+        <app-icon
+          icon="close"
+          class="icon"
+        />
       </button>
     </div>
     <slot />

@@ -1,44 +1,44 @@
-import type { IRelatedProducts } from "./IProduct";
-import type { ITaxanomies } from "./ITaxonomy";
-import type { IFeaturedImage } from "./IMedia";
-import type { IBaseContent, INodeWithUri, IPageInfo } from "~/types/INode";
+import type { IRelatedProducts } from './IProduct'
+import type { ITaxanomies } from './ITaxonomy'
+import type { IFeaturedImage } from './IMedia'
+import type { IBaseContent, INodeWithUri, IPageInfo } from '~/types/INode'
 
 export type IRelatedPoster = INodeWithUri & {
-  featuredImage: IFeaturedImage | null;
-  slug: string;
-};
+  featuredImage: IFeaturedImage | null
+  slug: string
+}
 
 export type IPosterAutocomplete = {
-  node: INodeWithUri;
-};
+  node: INodeWithUri
+}
 
 export type IRelatedPosterNode = {
-  node: IRelatedPoster;
-};
+  node: IRelatedPoster
+}
 
 export type IRelatedPostersBase = {
-  edges: IRelatedPosterNode[];
-};
+  edges: IRelatedPosterNode[]
+}
 
 export type IRelatedPosters = IRelatedPostersBase & {
-  pageInfo: IPageInfo;
-};
+  pageInfo: IPageInfo
+}
 
 type IPosterMetaGroup = {
-  date: string;
+  date: string
   pdf: {
-    mediaItemUrl: string;
-  };
-};
+    mediaItemUrl: string
+  }
+}
 
 export type IPoster = IBaseContent & {
-  slug: string;
-  uri: string;
-  date: string;
-  link: string;
-  relatedProducts: IRelatedProducts;
-  sources: ITaxanomies;
-  subjects: ITaxanomies;
-  PosterMetaGroup: IPosterMetaGroup;
-  featuredImage: IFeaturedImage;
-};
+  slug: string
+  uri: string
+  date: string
+  link: string
+  relatedProducts: IRelatedProducts
+  sources: ITaxanomies
+  subjects: ITaxanomies
+  PosterMetaGroup: IPosterMetaGroup
+  featuredImage: IFeaturedImage
+}

@@ -1,13 +1,19 @@
 <script lang="ts" setup>
 defineProps<{
-  title: string;
-  id: string;
-}>();
+  title: string
+  id: string
+}>()
 </script>
 
 <template>
-  <aside class="box" :aria-labelledby="id">
-    <h2 :id class="title">
+  <aside
+    class="box"
+    :aria-labelledby="id"
+  >
+    <h2
+      :id
+      class="title"
+    >
       {{ title }}
     </h2>
     <div class="content">

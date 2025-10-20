@@ -1,10 +1,10 @@
 export type ResponseRelatedPage = {
-  id: number;
+  id: number
   title: {
-    rendered: string;
-  };
+    rendered: string
+  }
   excerpt: {
-    rendered: string;
-  };
-  link: string;
-};
+    rendered: string
+  }
+  link: string
+}

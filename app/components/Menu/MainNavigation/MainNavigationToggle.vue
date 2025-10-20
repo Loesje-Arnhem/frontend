@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    close?: boolean;
+    close?: boolean
   }>(),
   {
     close: false,
   },
-);
+)
 
-const menuIsOpen = useMenu();
+const menuIsOpen = useMenu()
 
-defineEmits(["toggle-menu"]);
+defineEmits(['toggle-menu'])
 </script>
 
 <template>

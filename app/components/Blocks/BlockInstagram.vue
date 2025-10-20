@@ -2,7 +2,12 @@
   <div class="instagram">
     <center-wrapper class="wrapper">
       <ul class="list">
-        <li v-for="n in 3" :key="n" :class="`list-item-${n}`" class="list-item">
+        <li
+          v-for="n in 3"
+          :key="n"
+          :class="`list-item-${n}`"
+          class="list-item"
+        >
           <a
             :class="`link link-${n}`"
             rel="noopener"
@@ -13,11 +18,14 @@
               :src="`/images/instagram/${n}.jpg`"
               :class="`image image-${n}`"
               class="mood"
-            />
+            >
           </a>
         </li>
       </ul>
-      <img src="/images/backgrounds/instagram.png" class="background" />
+      <img
+        src="/images/backgrounds/instagram.png"
+        class="background"
+      >
       <div class="button-wrapper">
         <app-button
           button-tag="a"

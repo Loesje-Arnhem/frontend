@@ -1,25 +1,23 @@
-import eslintPluginVue from "eslint-plugin-vue";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
-import eslintConfigPrettier from "eslint-config-prettier";
-import withNuxt from "./.nuxt/eslint.config.mjs";
+import eslintPluginVue from 'eslint-plugin-vue'
+import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt([
-  ...eslintPluginVue.configs["flat/recommended"],
+  ...eslintPluginVue.configs['flat/recommended'],
   {
-    files: ["app/layouts/*.vue", "app/pages/**/*.vue", "app/error.vue"],
+    files: ['app/layouts/*.vue', 'app/pages/**/*.vue', 'app/error.vue'],
     rules: {
-      "vue/multi-word-component-names": "off",
+      'vue/multi-word-component-names': 'off',
     },
   },
   {
-    files: ["app/**/*.vue"],
+    files: ['app/**/*.vue'],
     rules: {
-      "vue/no-multiple-template-root": 0,
-      "vue/no-v-html": 0,
-      "vue/no-v-text-v-html-on-component": 0,
-      "vue/component-name-in-template-casing": [
-        "error",
-        "kebab-case",
+      'vue/no-multiple-template-root': 0,
+      'vue/no-v-html': 0,
+      'vue/no-v-text-v-html-on-component': 0,
+      'vue/component-name-in-template-casing': [
+        'error',
+        'kebab-case',
         {
           registeredComponentsOnly: false,
         },
@@ -27,11 +25,9 @@ export default withNuxt([
     },
   },
   {
-    files: ["app/layouts/default.vue"],
+    files: ['app/layouts/default.vue'],
     rules: {
-      "vue/component-name-in-template-casing": "off",
+      'vue/component-name-in-template-casing': 'off',
     },
   },
-  eslintConfigPrettier,
-  eslintPluginPrettierRecommended,
-]);
+])

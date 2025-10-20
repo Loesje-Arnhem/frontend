@@ -1,34 +1,37 @@
 <script setup lang="ts">
 defineI18nRoute({
   paths: {
-    nl: "/",
+    nl: '/',
   },
-});
+})
 
-const { pageIds } = useAppConfig();
+const { pageIds } = useAppConfig()
 
-const { data } = await useFetch("/api/pages/page", {
+const { data } = await useFetch('/api/pages/page', {
   params: {
     id: pageIds.home,
   },
-});
+})
 
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Page Not Found",
-  });
+    statusMessage: 'Page Not Found',
+  })
 }
 
 useMeta({
-  title: "Blijf plakken",
+  title: 'Blijf plakken',
   description: data.value.description,
-});
+})
 </script>
 
 <template>
   <div>
-    <h1 v-if="data" class="sr-only">
+    <h1
+      v-if="data"
+      class="sr-only"
+    >
       {{ data.title }}
     </h1>
 

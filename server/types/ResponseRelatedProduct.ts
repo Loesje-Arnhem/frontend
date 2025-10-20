@@ -1,5 +1,5 @@
 export type ResponseRelatedProduct = {
   product: {
-    ID: number;
-  };
-};
+    ID: number
+  }
+}

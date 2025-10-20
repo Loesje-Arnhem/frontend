@@ -1,49 +1,50 @@
 <script setup lang="ts">
 defineI18nRoute({
   paths: {
-    nl: "/[...slug]",
+    nl: '/[...slug]',
   },
-});
+})
 
-const route = useRoute();
+const route = useRoute()
 
 const uri = computed(() => {
   if (Array.isArray(route.params.slug)) {
-    const slugs = route.params.slug.filter((slug) => slug !== "");
-    return slugs.at(-1) ?? "";
-  } else {
-    return route.params.slug;
+    const slugs = route.params.slug.filter(slug => slug !== '')
+    return slugs.at(-1) ?? ''
   }
-});
+  else {
+    return route.params.slug
+  }
+})
 
-const { data } = await useFetch("/api/pages/page", {
+const { data } = await useFetch('/api/pages/page', {
   params: {
     slug: uri.value,
   },
-});
+})
 
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Page Not Found",
-  });
+    statusMessage: 'Page Not Found',
+  })
 }
 
 useMeta({
   title: data.value.title,
   description: data.value.description,
   image: data.value.featuredImage,
-});
+})
 
 const relatedPagesParentId = computed(() => {
   if (!data.value) {
-    return 0;
+    return 0
   }
   if (data.value.parentId) {
-    return data.value?.parentId;
+    return data.value?.parentId
   }
-  return data.value.id;
-});
+  return data.value.id
+})
 </script>
 
 <template>
@@ -53,7 +54,10 @@ const relatedPagesParentId = computed(() => {
       :content="data.content"
       :video="data.youtubeId"
     />
-    <btn-club-collect v-if="data.clubCollect" v-bind="data.clubCollect" />
+    <btn-club-collect
+      v-if="data.clubCollect"
+      v-bind="data.clubCollect"
+    />
     <related-posters-section
       :poster-ids="data.relatedPosters.posterIds"
       :search="data.relatedPosters.search"

@@ -1,13 +1,16 @@
 <script lang="ts" setup>
-import type { IPostListItem } from "~/types/Content";
+import type { IPostListItem } from '~/types/Content'
 
 defineProps<{
-  posts: IPostListItem[];
-}>();
+  posts: IPostListItem[]
+}>()
 </script>
 
 <template>
-  <list-animation v-if="posts.length" class="list">
+  <list-animation
+    v-if="posts.length"
+    class="list"
+  >
     <post-list-item
       v-for="post in posts"
       :key="post.id"

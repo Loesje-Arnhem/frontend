@@ -1,39 +1,44 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    to: string;
-    external?: boolean;
+    to: string
+    external?: boolean
   }>(),
   {
     external: false,
   },
-);
+)
 
-const down: Ref<number | null> = ref(null);
+const down: Ref<number | null> = ref(null)
 
 const mouseDown = (event: MouseEvent) => {
-  const target = event.target as Element;
-  if (target.nodeName === "A" || target.parentNode?.nodeName === "a") {
-    down.value = null;
-  } else {
-    down.value = +new Date();
+  const target = event.target as Element
+  if (target.nodeName === 'A' || target.parentNode?.nodeName === 'a') {
+    down.value = null
   }
-};
+  else {
+    down.value = +new Date()
+  }
+}
 const mouseUp = () => {
   if (!down.value) {
-    return;
+    return
   }
-  const up = +new Date();
+  const up = +new Date()
   if (up - down.value < 200) {
     navigateTo(props.to, {
       external: props.external,
-    });
+    })
   }
-};
+}
 </script>
 
 <template>
-  <li class="list-item" @mousedown.left="mouseDown" @mouseup.left="mouseUp">
+  <li
+    class="list-item"
+    @mousedown.left="mouseDown"
+    @mouseup.left="mouseUp"
+  >
     <slot />
   </li>
 </template>

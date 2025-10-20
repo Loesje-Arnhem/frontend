@@ -1,36 +1,36 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    loading: boolean;
+    loading?: boolean
   }>(),
   {
     loading: false,
   },
-);
+)
 
-const emit = defineEmits(["load-more"]);
+const emit = defineEmits(['load-more'])
 
-const wrapper: Ref<HTMLDivElement | null> = ref(null);
-let observer: IntersectionObserver | null;
+const wrapper: Ref<HTMLDivElement | null> = ref(null)
+let observer: IntersectionObserver | null
 
 onMounted(() => {
-  if (!import.meta.client) return;
-  if (!wrapper.value) return;
+  if (!import.meta.client) return
+  if (!wrapper.value) return
 
   observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting && !props.loading) {
-        emit("load-more");
+        emit('load-more')
       }
     },
-    { rootMargin: "0px 0px 100px" },
-  );
-  observer.observe(wrapper.value);
-});
+    { rootMargin: '0px 0px 100px' },
+  )
+  observer.observe(wrapper.value)
+})
 onUnmounted(() => {
-  if (!wrapper.value || !observer) return;
-  observer.unobserve(wrapper.value);
-});
+  if (!wrapper.value || !observer) return
+  observer.unobserve(wrapper.value)
+})
 </script>
 
 <template>

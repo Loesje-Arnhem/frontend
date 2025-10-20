@@ -1,34 +1,34 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: "/over-loesje/nieuws/[slug]",
+    nl: '/over-loesje/nieuws/[slug]',
   },
-});
+})
 
-const route = useRoute();
+const route = useRoute()
 
 const { data } = await useAsyncData(
   `post-${route.params.slug.toString()}`,
   () =>
-    $fetch("/api/posts/post", {
+    $fetch('/api/posts/post', {
       params: {
         slug: route.params.slug.toString(),
       },
     }),
-);
+)
 
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Page Not Found",
-  });
+    statusMessage: 'Page Not Found',
+  })
 }
 
 useMeta({
   title: data.value.title,
   description: data.value.description,
   image: data.value.featuredImage,
-});
+})
 
 useSchemaOrg(
   defineArticle({
@@ -36,7 +36,7 @@ useSchemaOrg(
     headline: data.value.title,
     description: data.value.seo?.metaDesc,
   }),
-);
+)
 </script>
 
 <template>

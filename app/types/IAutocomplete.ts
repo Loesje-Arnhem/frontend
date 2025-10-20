@@ -1,5 +1,5 @@
 export type IAutocomplete = {
-  id: number;
-  title: string;
-  uri: string;
-};
+  id: number
+  title: string
+  uri: string
+}

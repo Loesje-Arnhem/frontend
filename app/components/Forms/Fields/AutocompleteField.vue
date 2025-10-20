@@ -9,19 +9,19 @@ export default defineComponent({
     },
     modelValue: {
       type: String,
-      default: "",
+      default: '',
     },
     title: {
       type: String,
-      default: "",
+      default: '',
     },
   },
-  emits: ["update:modelValue", "submit", "update:modelValue", "submit"],
+  emits: ['update:modelValue', 'submit', 'update:modelValue', 'submit'],
   data() {
     return {
       arrowCounter: -1,
       showList: false,
-    };
+    }
   },
 
   computed: {
@@ -31,67 +31,73 @@ export default defineComponent({
           ...item,
           // make current searchterm bold with a regex
           title: item.title.replace(
-            new RegExp(`(^|)(${this.modelValue})(|$)`, "ig"),
-            "$1<strong>$2</strong>$3",
+            new RegExp(`(^|)(${this.modelValue})(|$)`, 'ig'),
+            '$1<strong>$2</strong>$3',
           ),
-        };
-      });
+        }
+      })
     },
   },
 
   mounted() {
-    document.addEventListener("click", this.handleClickOutside);
+    document.addEventListener('click', this.handleClickOutside)
   },
   unmounted() {
-    document.removeEventListener("click", this.handleClickOutside);
+    document.removeEventListener('click', this.handleClickOutside)
   },
   methods: {
     input() {
-      this.showList = true;
-      this.$emit("update:modelValue", event.target.value);
+      this.showList = true
+      this.$emit('update:modelValue', event.target.value)
     },
     selectItem(result) {
-      this.$router.push(result.uri);
+      this.$router.push(result.uri)
     },
     onArrowDown() {
       if (this.arrowCounter < this.resultsWithHighlightText.length - 1) {
-        this.arrowCounter = this.arrowCounter + 1;
+        this.arrowCounter = this.arrowCounter + 1
       }
     },
     onArrowUp() {
       if (this.arrowCounter > 0) {
-        this.arrowCounter = this.arrowCounter - 1;
+        this.arrowCounter = this.arrowCounter - 1
       }
     },
     submit() {
       if (this.arrowCounter > -1) {
-        this.selectItem(this.resultsWithHighlightText[this.arrowCounter]);
-      } else {
-        this.close();
-        this.$emit("submit", this.modelValue);
+        this.selectItem(this.resultsWithHighlightText[this.arrowCounter])
+      }
+      else {
+        this.close()
+        this.$emit('submit', this.modelValue)
       }
     },
     handleClickOutside(event) {
       if (!this.$el.contains(event.target)) {
-        this.close();
+        this.close()
       }
     },
     reset() {
-      this.$emit("update:modelValue", "");
-      this.$emit("submit", "");
-      this.close();
+      this.$emit('update:modelValue', '')
+      this.$emit('submit', '')
+      this.close()
     },
     close() {
-      this.arrowCounter = -1;
-      this.showList = false;
+      this.arrowCounter = -1
+      this.showList = false
     },
   },
-});
+})
 </script>
 
 <template>
   <search role="search">
-    <form method="get" class="form" @keyup.esc="reset" @submit.prevent="submit">
+    <form
+      method="get"
+      class="form"
+      @keyup.esc="reset"
+      @submit.prevent="submit"
+    >
       <legend class="sr-only">
         {{ $t("search") }}
       </legend>
@@ -119,10 +125,23 @@ export default defineComponent({
             class="btn-reset"
             @click="reset"
           >
-            <app-icon icon="close" :width="24" :height="24" title="Sluiten" />
+            <app-icon
+              icon="close"
+              :width="24"
+              :height="24"
+              title="Sluiten"
+            />
           </button>
-          <button type="submit" class="btn-submit">
-            <app-icon icon="search" :width="24" :height="24" title="Zoeken" />
+          <button
+            type="submit"
+            class="btn-submit"
+          >
+            <app-icon
+              icon="search"
+              :width="24"
+              :height="24"
+              title="Zoeken"
+            />
           </button>
         </div>
         <div

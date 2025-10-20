@@ -1,11 +1,15 @@
 <script lang="ts" setup>
 defineProps<{
-  date?: string | null;
-}>();
+  date?: string | null
+}>()
 </script>
 
 <template>
-  <app-date v-if="date" :date="date" :class="$style.date" />
+  <app-date
+    v-if="date"
+    :date="date"
+    :class="$style.date"
+  />
 </template>
 
 <style module>

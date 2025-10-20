@@ -1,31 +1,31 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: "/posters/[slug]",
+    nl: '/posters/[slug]',
   },
-});
+})
 
-const route = useRoute();
+const route = useRoute()
 
 const { data, error } = await useAsyncData(
   `poster-${route.params.slug.toString()}`,
   () =>
-    $fetch("/api/posters/poster", {
+    $fetch('/api/posters/poster', {
       params: {
         slug: route.params.slug.toString(),
       },
     }),
-);
+)
 
 if (error.value) {
-  throw createError(error.value);
+  throw createError(error.value)
 }
 
 useMeta({
   title: data.value.title,
   description: data.value.title,
   image: data.value.featuredImage,
-});
+})
 
 useSchemaOrg(
   defineArticle({
@@ -33,7 +33,7 @@ useSchemaOrg(
     headline: data.value.title,
     // description: data.value.seo?.metaDesc,
   }),
-);
+)
 </script>
 
 <template>

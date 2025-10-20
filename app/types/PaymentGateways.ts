@@ -1,4 +1,4 @@
-import type { z } from "zod";
-import type { PaymentGatewaysSchema } from "~~/server/types/PaymentGatewaysSchema";
+import type { z } from 'zod'
+import type { PaymentGatewaysSchema } from '~~/server/types/PaymentGatewaysSchema'
 
-export type PaymentGatewaysType = z.infer<typeof PaymentGatewaysSchema>;
+export type PaymentGatewaysType = z.infer<typeof PaymentGatewaysSchema>

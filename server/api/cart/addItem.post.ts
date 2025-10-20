@@ -1,10 +1,10 @@
-import { createCart } from "~~/server/utils/createCart";
+import { createCart } from '~~/server/utils/createCart'
 
 export default defineEventHandler(async (event) => {
-  const { woocommerceApiUrl } = useAppConfig();
+  const { woocommerceApiUrl } = useAppConfig()
 
-  const body = await readBody(event);
-  const cookies = parseCookies(event);
+  const body = await readBody(event)
+  const cookies = parseCookies(event)
 
   try {
     const response = await $fetch(`${woocommerceApiUrl}cart/add-item`, {
@@ -13,19 +13,20 @@ export default defineEventHandler(async (event) => {
         quantity: body.quantity,
         variation: body.variation,
       },
-      method: "POST",
+      method: 'POST',
       headers: {
-        nonce: cookies.nonce,
-        "cart-token": cookies.token,
+        'nonce': cookies.nonce,
+        'cart-token': cookies.token,
       },
-    });
-    return createCart(response);
-  } catch (error) {
+    })
+    return createCart(response)
+  }
+  catch (error) {
     throw createError({
       statusCode: 400,
       data: {
         message: error.data.message,
       },
-    });
+    })
   }
-});
+})

@@ -1,4 +1,4 @@
-import type { z } from "zod";
-import type { FeaturedImageSchema } from "../schemas/FeaturedImageSchema";
+import type { z } from 'zod'
+import type { FeaturedImageSchema } from '../schemas/FeaturedImageSchema'
 
-export type FeaturedImageResponseType = z.infer<typeof FeaturedImageSchema>;
+export type FeaturedImageResponseType = z.infer<typeof FeaturedImageSchema>

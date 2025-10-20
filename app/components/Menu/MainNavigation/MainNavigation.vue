@@ -1,76 +1,83 @@
 <script lang="ts" setup>
-const { data } = await useAsyncData("menu", () => $fetch("/api/menu"));
+const { data } = await useAsyncData('menu', () => $fetch('/api/menu'))
 
-const menu: Ref<HTMLAnchorElement | null> = ref(null);
-const arrowPosition: Ref<string | undefined> = ref(undefined);
-const arrowWidth = ref(`0`);
+const menu: Ref<HTMLAnchorElement | null> = ref(null)
+const arrowPosition: Ref<string | undefined> = ref(undefined)
+const arrowWidth = ref(`0`)
 
-const route = useRoute();
-const fullPath = toRef(route, "fullPath");
+const route = useRoute()
+const fullPath = toRef(route, 'fullPath')
 watch(fullPath, () => {
   nextTick(() => {
-    setArrowPosition();
-  });
-});
+    setArrowPosition()
+  })
+})
 
 const updateArrowAfterResize = () => {
-  setArrowPosition();
-};
+  setArrowPosition()
+}
 
 const getMainLink = () => {
   if (!menu.value) {
-    return null;
+    return null
   }
 
   const activeLink = menu.value.querySelector(
-    ".router-link-active",
-  ) as HTMLAnchorElement | null;
+    '.router-link-active',
+  ) as HTMLAnchorElement | null
   if (!activeLink) {
-    return null;
+    return null
   }
 
-  const parent = activeLink.closest(".menu-item-page") as HTMLLIElement | null;
+  const parent = activeLink.closest('.menu-item-page') as HTMLLIElement | null
   if (!parent) {
-    return null;
+    return null
   }
-  return parent;
-};
+  return parent
+}
 
 onMounted(() => {
-  setArrowPosition();
-  window.addEventListener("resize", updateArrowAfterResize);
-});
+  setArrowPosition()
+  window.addEventListener('resize', updateArrowAfterResize)
+})
 
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", updateArrowAfterResize);
-});
+  window.removeEventListener('resize', updateArrowAfterResize)
+})
 
 const setArrowPosition = () => {
   if (!menu.value) {
-    return;
+    return
   }
-  const activeLink = getMainLink();
+  const activeLink = getMainLink()
   if (!activeLink) {
-    arrowWidth.value = "0";
-    return;
+    arrowWidth.value = '0'
+    return
   }
-  const title = activeLink.querySelector(".title") as HTMLSpanElement | null;
+  const title = activeLink.querySelector('.title') as HTMLSpanElement | null
   if (!title) {
-    arrowWidth.value = "0";
-    return;
+    arrowWidth.value = '0'
+    return
   }
-  arrowPosition.value = `translateX(${activeLink.offsetLeft}px)`;
-  arrowWidth.value = `${title.offsetWidth}px`;
-};
+  arrowPosition.value = `translateX(${activeLink.offsetLeft}px)`
+  arrowWidth.value = `${title.offsetWidth}px`
+}
 </script>
 
 <template>
-  <nav id="menu" aria-labelledby="menu" class="nav">
+  <nav
+    id="menu"
+    aria-labelledby="menu"
+    class="nav"
+  >
     <h2 class="sr-only">
       {{ $t("mainMenu") }}
     </h2>
     <div ref="menu">
-      <ul v-if="data?.length" class="menu">
+      <ul
+        v-if="data?.length"
+        class="menu"
+      >
         <main-navigation-item
           v-for="item in data"
           :key="item.id"

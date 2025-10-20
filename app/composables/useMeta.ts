@@ -1,20 +1,20 @@
-import type { FeaturedImage } from "~/types/Content";
+import type { FeaturedImage } from '~/types/Content'
 
 export const useMeta = ({
   title,
   description,
   image,
 }: {
-  title: string;
-  description?: string;
-  image?: FeaturedImage;
+  title: string
+  description?: string
+  image?: FeaturedImage
 }) => {
   useSeoMeta({
     title: () => title,
     ogTitle: () => title,
     description: () => description,
     ogDescription: () => description,
-    ogType: () => "article",
+    ogType: () => 'article',
     ogImage: () => image?.src,
     ogImageHeight: () => image?.height,
     ogImageWidth: () => image?.width,
@@ -22,12 +22,12 @@ export const useMeta = ({
     twitterTitle: () => title,
     twitterDescription: () => description,
     twitterImage: () => image?.src,
-  });
+  })
 
   useSchemaOrg([
     defineWebPage({
       name: title,
       description,
     }),
-  ]);
-};
+  ])
+}

@@ -1,70 +1,72 @@
 <script lang="ts" setup>
-import type { IProduct } from "~/types/Content";
-import type { Option } from "~/types/Option";
+import type { IProduct } from '~/types/Content'
+import type { Option } from '~/types/Option'
 
 const props = defineProps<{
-  product: IProduct;
-}>();
+  product: IProduct
+}>()
 
 type Attribute = {
-  attribute: string;
-  value: string;
-};
+  attribute: string
+  value: string
+}
 
-const cartState = useCartState();
-const localPath = useLocalePath();
+const cartState = useCartState()
+const localPath = useLocalePath()
 
-const quantity = ref(1);
-const selectedAttributes = ref<Attribute[]>([]);
-const pending = ref(false);
-const errorMessage = ref<string | null>(null);
+const quantity = ref(1)
+const selectedAttributes = ref<Attribute[]>([])
+const pending = ref(false)
+const errorMessage = ref<string | null>(null)
 
 const addToCart = async () => {
-  pending.value = true;
-  errorMessage.value = null;
+  pending.value = true
+  errorMessage.value = null
 
   try {
-    const response = await $fetch("/api/cart/addItem", {
-      method: "POST",
+    const response = await $fetch('/api/cart/addItem', {
+      method: 'POST',
       body: {
         id: props.product.id,
         quantity: quantity.value,
         variation: selectedAttributes.value,
       },
-    });
-    cartState.value = response;
+    })
+    cartState.value = response
     await navigateTo(
       localPath({
-        name: "shop-cart",
+        name: 'shop-cart',
       }),
-    );
-  } catch (error: any) {
-    errorMessage.value = error.data.data.message;
-  } finally {
-    pending.value = false;
+    )
   }
-};
+  catch (error: any) {
+    errorMessage.value = error.data.data.message
+  }
+  finally {
+    pending.value = false
+  }
+}
 
 const updateSelectedAttribute = (index: number, value: string) => {
-  selectedAttributes.value[index].value = value;
-};
+  selectedAttributes.value[index].value = value
+}
 
 onMounted(() => {
   selectedAttributes.value = props.product.attributes.map((a) => {
     return {
       attribute: a.taxonomy,
       value: a.terms[0].slug,
-    };
-  });
-});
+    }
+  })
+})
 
 const options: Option[] = [...Array(10).keys()].map((index) => {
-  const amount = index + 1;
+  const amount = index + 1
   return {
     value: amount,
     title: amount.toString(),
-  };
-});
+  }
+})
 </script>
 
 <template>
@@ -93,8 +95,8 @@ const options: Option[] = [...Array(10).keys()].map((index) => {
         />
         <div
           v-if="
-            product.attributes.length &&
-            selectedAttributes.length === product.attributes.length
+            product.attributes.length
+              && selectedAttributes.length === product.attributes.length
           "
         >
           <div

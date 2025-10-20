@@ -1,98 +1,102 @@
 <script lang="ts" setup>
-import type { FeaturedImage } from "~/types/Content";
+import type { FeaturedImage } from '~/types/Content'
 
 const props = defineProps<{
-  images: FeaturedImage[];
-}>();
+  images: FeaturedImage[]
+}>()
 
-const activeItemIndex = ref(0);
-const list = ref<HTMLUListElement | null>(null);
-const shouldAnimate = ref(true);
+const activeItemIndex = ref(0)
+const list = ref<HTMLUListElement | null>(null)
+const shouldAnimate = ref(true)
 
 const previousSlideEnabled = computed(() => {
-  return activeItemIndex.value > 0;
-});
+  return activeItemIndex.value > 0
+})
 
 const nextSlideEnabled = computed(() => {
-  return activeItemIndex.value < props.images.length - 1;
-});
+  return activeItemIndex.value < props.images.length - 1
+})
 
 const goToPreviousSlide = () => {
-  if (!previousSlideEnabled.value) return;
-  activeItemIndex.value = activeItemIndex.value - 1;
-};
+  if (!previousSlideEnabled.value) return
+  activeItemIndex.value = activeItemIndex.value - 1
+}
 const goToNextSlide = () => {
-  if (!nextSlideEnabled.value) return;
-  activeItemIndex.value = activeItemIndex.value + 1;
-};
+  if (!nextSlideEnabled.value) return
+  activeItemIndex.value = activeItemIndex.value + 1
+}
 
 const goToSlide = (index: number) => {
-  activeItemIndex.value = index;
-};
+  activeItemIndex.value = index
+}
 
 const navigateByKeyboard = (event: KeyboardEvent) => {
-  if (event.key === "ArrowLeft") {
-    goToPreviousSlide();
+  if (event.key === 'ArrowLeft') {
+    goToPreviousSlide()
   }
-  if (event.key === "ArrowRight") {
-    goToNextSlide();
+  if (event.key === 'ArrowRight') {
+    goToNextSlide()
   }
-};
+}
 
 const getActiveSlidePosition = () => {
   if (!list.value) {
-    return 0;
+    return 0
   }
 
   const listItem = list.value.querySelector(
     `li:nth-child(${activeItemIndex.value + 1})`,
-  ) as HTMLLIElement | null;
+  ) as HTMLLIElement | null
 
   if (!listItem) {
-    return 0;
+    return 0
   }
 
-  return listItem.offsetLeft;
-};
+  return listItem.offsetLeft
+}
 
 watch(activeItemIndex, () => {
   if (!shouldAnimate.value) {
-    return;
+    return
   }
-  scrollToSelectedSlide();
-  shouldAnimate.value = false;
+  scrollToSelectedSlide()
+  shouldAnimate.value = false
 
   setTimeout(() => {
-    shouldAnimate.value = true;
-  }, 500);
-});
+    shouldAnimate.value = true
+  }, 500)
+})
 
 const scrollToSelectedSlide = () => {
   if (!list.value) {
-    return;
+    return
   }
 
   list.value.scrollTo({
     top: 0,
     left: getActiveSlidePosition(),
-    behavior: "smooth",
-  });
-};
+    behavior: 'smooth',
+  })
+}
 
 onMounted(() => {
-  document.addEventListener("keydown", navigateByKeyboard);
-});
+  document.addEventListener('keydown', navigateByKeyboard)
+})
 
 onUnmounted(() => {
-  document.removeEventListener("keydown", navigateByKeyboard);
-});
+  document.removeEventListener('keydown', navigateByKeyboard)
+})
 </script>
 
 <template>
   <div>
     <div class="wrapper">
       <div class="tile">
-        <ul ref="list" class="list" @scrollend="shouldAnimate = true">
+        <ul
+          ref="list"
+          class="list"
+          @scrollend="shouldAnimate = true"
+        >
           <image-carousel-card
             v-for="(image, index) in images"
             :key="image.src"

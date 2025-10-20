@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 export const CouponScheme = z.object({
   code: z.string(),
@@ -14,9 +14,9 @@ export const CouponScheme = z.object({
     currency_prefix: z.string(),
     currency_suffix: z.string(),
   }),
-});
+})
 
-export const CouponsScheme = z.array(CouponScheme);
+export const CouponsScheme = z.array(CouponScheme)
 
 export const ShippingAdressSchema = z.object({
   first_name: z.string(),
@@ -29,7 +29,7 @@ export const ShippingAdressSchema = z.object({
   postcode: z.string(),
   country: z.string(),
   phone: z.string(),
-});
+})
 
 export const BillingAdressSchema = z.object({
   first_name: z.string(),
@@ -43,7 +43,7 @@ export const BillingAdressSchema = z.object({
   country: z.string(),
   email: z.string(),
   phone: z.string(),
-});
+})
 
 export const CartItemScheme = z.object({
   key: z.string(),
@@ -111,7 +111,7 @@ export const CartItemScheme = z.object({
     currency_suffix: z.string(),
   }),
   catalog_visibility: z.string(),
-});
+})
 
 export const CartSchema = z.object({
   items: z.array(CartItemScheme),
@@ -196,7 +196,7 @@ export const CartSchema = z.object({
   //     shipping_house_number_addition: z.string(),
   //   }),
   // }),
-});
+})
 
 export const CheckoutSchema = z.object({
   order_id: z.number(),
@@ -212,4 +212,4 @@ export const CheckoutSchema = z.object({
     payment_details: z.array(z.unknown()),
     redirect_url: z.string(),
   }),
-});
+})

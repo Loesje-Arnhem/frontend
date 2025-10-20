@@ -1,11 +1,16 @@
 <script lang="ts" setup>
-const appConfig = useAppConfig();
-const { email, emailShop } = appConfig.address;
+const appConfig = useAppConfig()
+const { email, emailShop } = appConfig.address
 </script>
 
 <template>
-  <address itemscope itemtype="http://schema.org/Organization">
-    <h2 itemprop="name">Contact</h2>
+  <address
+    itemscope
+    itemtype="http://schema.org/Organization"
+  >
+    <h2 itemprop="name">
+      Contact
+    </h2>
 
     <ul class="list">
       <li>
@@ -15,7 +20,12 @@ const { email, emailShop } = appConfig.address;
           class="link"
           :external="true"
         >
-          <app-icon icon="envelope" :width="20" :height="20" class="icon" />
+          <app-icon
+            icon="envelope"
+            :width="20"
+            :height="20"
+            class="icon"
+          />
           <span class="title">{{ email }}</span>
         </nuxt-link>
       </li>
@@ -26,7 +36,12 @@ const { email, emailShop } = appConfig.address;
           class="link"
           :external="true"
         >
-          <app-icon icon="envelope" :width="20" :height="20" class="icon" />
+          <app-icon
+            icon="envelope"
+            :width="20"
+            :height="20"
+            class="icon"
+          />
           <span class="title">{{ emailShop }}</span>
         </nuxt-link>
       </li>

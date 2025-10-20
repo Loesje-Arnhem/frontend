@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-const localePath = useLocalePath();
-const { openMobileMenu } = useLayout();
-const { title } = useAppConfig();
+const localePath = useLocalePath()
+const { openMobileMenu } = useLayout()
+const { title } = useAppConfig()
 </script>
 
 <template>
@@ -12,7 +12,12 @@ const { title } = useAppConfig();
         :to="localePath({ name: 'index' })"
       >
         <span class="sr-only">{{ title }}</span>
-        <app-icon icon="logo" class="logo" :height="50" :width="87" />
+        <app-icon
+          icon="logo"
+          class="logo"
+          :height="50"
+          :width="87"
+        />
       </nuxt-link>
       <main-navigation-toggle @toggle-menu="openMobileMenu" />
     </div>

@@ -1,18 +1,21 @@
 <script lang="ts" setup>
 withDefaults(
   defineProps<{
-    mode?: "in-out" | "out-in" | "default";
-    direction?: "up" | "down";
+    mode?: 'in-out' | 'out-in' | 'default'
+    direction?: 'up' | 'down'
   }>(),
   {
-    mode: "default",
-    direction: "up",
+    mode: 'default',
+    direction: 'up',
   },
-);
+)
 </script>
 
 <template>
-  <transition :name="`slide-in-${direction}`" :mode="mode">
+  <transition
+    :name="`slide-in-${direction}`"
+    :mode="mode"
+  >
     <slot />
   </transition>
 </template>

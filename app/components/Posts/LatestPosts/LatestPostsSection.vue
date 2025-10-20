@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-const { data } = useFetch("/api/posts/posts", {
+const { data } = useFetch('/api/posts/posts', {
   query: {
     pageSize: 3,
   },
-});
+})
 
-const localePath = useLocalePath();
+const localePath = useLocalePath()
 </script>
 
 <template>

@@ -1,11 +1,11 @@
-import type { INodeBase } from "./INode";
+import type { INodeBase } from './INode'
 
-export type ITaxonomy = INodeBase;
+export type ITaxonomy = INodeBase
 
 export type ITaxonomyNode = {
-  node: ITaxonomy;
-};
+  node: ITaxonomy
+}
 
 export type ITaxanomies = {
-  edges: ITaxonomyNode[];
-};
+  edges: ITaxonomyNode[]
+}

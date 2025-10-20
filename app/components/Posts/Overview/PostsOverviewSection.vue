@@ -1,41 +1,41 @@
 <script lang="ts" setup>
-import type { IPostListItem } from "~/types/Content";
+import type { IPostListItem } from '~/types/Content'
 
 const props = withDefaults(
   defineProps<{
-    exclude?: number;
+    exclude?: number
   }>(),
   {
     exclude: 0,
   },
-);
+)
 
-const page = ref(1);
+const page = ref(1)
 
-const { status, data } = useFetch("/api/posts/posts", {
+const { status, data } = useFetch('/api/posts/posts', {
   query: {
     exclude: props.exclude.toString(),
     page,
   },
   transform(response) {
     if (!data.value) {
-      return response;
+      return response
     }
 
     const items: {
-      items: IPostListItem[];
-      hasNextPage: boolean;
+      items: IPostListItem[]
+      hasNextPage: boolean
     } = {
       items: [...data.value.items, ...response.items],
       hasNextPage: response.hasNextPage,
-    };
-    return items;
+    }
+    return items
   },
-});
+})
 
 const loadMore = () => {
-  page.value = page.value + 1;
-};
+  page.value = page.value + 1
+}
 </script>
 
 <template>

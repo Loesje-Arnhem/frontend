@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { FeaturedImageSchema } from "./FeaturedImageSchema";
+import { z } from 'zod'
+import { FeaturedImageSchema } from './FeaturedImageSchema'
 
 export const SitemapSchema = z.array(
   z.object({
@@ -7,12 +7,12 @@ export const SitemapSchema = z.array(
     modified: z.string(),
     _embedded: z
       .object({
-        "wp:featuredmedia": z.array(FeaturedImageSchema).optional(),
+        'wp:featuredmedia': z.array(FeaturedImageSchema).optional(),
       })
       .optional(),
   }),
-);
+)
 
 export const SitemapQuerySchema = z.object({
-  type: z.enum(["pages", "posts", "product", "product_cat"]),
-});
+  type: z.enum(['pages', 'posts', 'product', 'product_cat']),
+})

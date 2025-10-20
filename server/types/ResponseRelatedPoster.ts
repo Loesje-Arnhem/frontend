@@ -1,5 +1,5 @@
 export type ResponseRelatedPoster = {
   poster: {
-    ID: number;
-  };
-};
+    ID: number
+  }
+}

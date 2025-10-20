@@ -1,28 +1,28 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: "/burgerschapsonderwijs",
+    nl: '/burgerschapsonderwijs',
   },
-});
-const { pageIds } = useAppConfig();
+})
+const { pageIds } = useAppConfig()
 
-const { data } = await useFetch("/api/pages/page", {
+const { data } = await useFetch('/api/pages/page', {
   params: {
     id: pageIds.school,
   },
-});
+})
 
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Page Not Found",
-  });
+    statusMessage: 'Page Not Found',
+  })
 }
 
 useMeta({
   title: data.value.title,
   description: data.value.description,
-});
+})
 </script>
 
 <template>

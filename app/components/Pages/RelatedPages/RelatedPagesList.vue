@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { IRelatedPage } from "~/types/Content";
+import type { IRelatedPage } from '~/types/Content'
 
 defineProps<{
-  pages: IRelatedPage[];
-}>();
+  pages: IRelatedPage[]
+}>()
 </script>
 
 <template>

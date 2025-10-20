@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { IPostListItem } from "~/types/Content";
+import type { IPostListItem } from '~/types/Content'
 
 defineProps<{
-  posts: IPostListItem[];
-}>();
+  posts: IPostListItem[]
+}>()
 </script>
 
 <template>

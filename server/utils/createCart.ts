@@ -1,37 +1,37 @@
-import { CartSchema } from "../types/CartSchema";
-import type { Cart } from "~/types/Cart";
-import type { FeaturedImage } from "~/types/Content";
+import { CartSchema } from '../types/CartSchema'
+import type { Cart } from '~/types/Cart'
+import type { FeaturedImage } from '~/types/Content'
 
 export const createCart = (response: unknown) => {
-  const parsed = CartSchema.safeParse(response);
+  const parsed = CartSchema.safeParse(response)
 
   if (!parsed.success) {
     throw createError({
       statusCode: 400,
       data: {
-        message: "Something went wrong",
+        message: 'Something went wrong',
       },
-    });
+    })
   }
 
-  const { data } = parsed;
+  const { data } = parsed
 
   const cart: Cart = {
     items: data.items.map((item) => {
-      let image: FeaturedImage | undefined = undefined;
+      let image: FeaturedImage | undefined = undefined
 
       if (item.images.length) {
         image = {
           alt: item.images[0].alt,
           src: item.images[0].src,
           srcSet: item.images[0].srcset,
-        };
+        }
       }
-      const { regular_price, price } = item.prices;
-      let regularPrice = undefined;
+      const { regular_price, price } = item.prices
+      let regularPrice = undefined
 
       if (regular_price && price !== regular_price) {
-        regularPrice = Number(regular_price) / 100;
+        regularPrice = Number(regular_price) / 100
       }
       return {
         variation: item.variation,
@@ -44,7 +44,7 @@ export const createCart = (response: unknown) => {
         price: Number(item.prices.regular_price) / 100,
         regularPrice,
         priceTotal: Number(item.totals.line_total) / 100,
-      };
+      }
     }),
     prices: {
       totalItems: Number(data.totals.total_items) / 100,
@@ -57,11 +57,11 @@ export const createCart = (response: unknown) => {
       return {
         code: coupon.code,
         price: Number(coupon.totals.total_discount) / 100,
-      };
+      }
     }),
     itemsCount: data.items_count,
     shipping_address: data.shipping_address,
     billing_address: data.billing_address,
-  };
-  return cart;
-};
+  }
+  return cart
+}

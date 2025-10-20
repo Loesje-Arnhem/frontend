@@ -1,67 +1,68 @@
-import { z } from "zod";
-import type { IPage } from "~/types/Content";
-import type { ResponsePage } from "~~/server/types/ResponsePage";
-import { stripHtmlTags } from "~~/server/utils/stripHtmlTags";
-import type { ClubCollect } from "~/types/ClubCollect";
+import { z } from 'zod'
+import type { IPage } from '~/types/Content'
+import type { ResponsePage } from '~~/server/types/ResponsePage'
+import { stripHtmlTags } from '~~/server/utils/stripHtmlTags'
+import type { ClubCollect } from '~/types/ClubCollect'
 
 const querySchema = z.object({
   slug: z.string().optional(),
   id: z.string().optional(),
-});
+})
 
 export default defineEventHandler(async (event): Promise<IPage> => {
-  const query = await getValidatedQuery(event, (body) =>
+  const query = await getValidatedQuery(event, body =>
     querySchema.safeParse(body),
-  );
+  )
 
   if (!query.success) {
-    throw query.error.issues;
+    throw query.error.issues
   }
 
   const url = getUrl({
     slug: query.data.slug,
     id: query.data.id,
     image: true,
-    type: "pages",
-    fields: ["title", "content", "yoast_head_json", "parent", "acf", "excerpt"],
-  });
+    type: 'pages',
+    fields: ['title', 'content', 'yoast_head_json', 'parent', 'acf', 'excerpt'],
+  })
 
-  let response: ResponsePage | null = null;
+  let response: ResponsePage | null = null
 
   if (query.data.slug) {
-    const items = await $fetch<ResponsePage[]>(url);
+    const items = await $fetch<ResponsePage[]>(url)
     if (items.length) {
-      response = items[0];
+      response = items[0]
     }
-  } else {
-    response = await $fetch<ResponsePage>(url);
+  }
+  else {
+    response = await $fetch<ResponsePage>(url)
   }
 
   if (!response) {
     throw createError({
       statusCode: 404,
-      statusMessage: "Page Not Found",
-    });
+      statusMessage: 'Page Not Found',
+    })
   }
 
-  let youtubeId: string | undefined = undefined;
+  let youtubeId: string | undefined = undefined
   if (response.acf.youtube_id) {
-    youtubeId = response.acf.youtube_id;
+    youtubeId = response.acf.youtube_id
   }
   const featuredImage = getFeaturedImage(
-    response["wp:featuredmedia"],
-  );
+    response['wp:featuredmedia'],
+  )
 
   const getClubCollect = (): ClubCollect | undefined => {
     if (!response.acf.clubcollect_path) {
-      return undefined;
+      return undefined
     }
     return {
       title: response.acf.clubcollect_title,
       path: response.acf.clubcollect_path,
       btn: response.acf.clubcollect_btn,
-    };
-  };
+    }
+  }
 
   return {
     id: response.id,
@@ -75,5 +76,5 @@ export default defineEventHandler(async (event): Promise<IPage> => {
     featuredImage,
     relatedPosters: getRelatedPosters(response),
     clubCollect: getClubCollect(),
-  };
-});
+  }
+})

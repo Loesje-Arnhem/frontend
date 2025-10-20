@@ -1,13 +1,16 @@
 <script lang="ts" setup>
 defineProps<{
-  price: number;
-  regularPrice?: number;
-}>();
+  price: number
+  regularPrice?: number
+}>()
 </script>
 
 <template>
   <div class="price">
-    <span v-if="regularPrice" class="price-old">
+    <span
+      v-if="regularPrice"
+      class="price-old"
+    >
       {{ $n(regularPrice, "currency") }}
     </span>
     {{ $n(price, "currency") }}

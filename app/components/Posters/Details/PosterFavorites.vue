@@ -1,24 +1,25 @@
 <script lang="ts" setup>
-import type { IPoster } from "~/types/Content";
+import type { IPoster } from '~/types/Content'
 
 const props = defineProps<{
-  poster: IPoster;
-}>();
-const favorites = useFavoriteIds();
+  poster: IPoster
+}>()
+const favorites = useFavoriteIds()
 
-const { add, remove } = useFavorites();
+const { add, remove } = useFavorites()
 
 const isInFavorites = computed(() => {
-  return favorites.value.includes(props.poster.id);
-});
+  return favorites.value.includes(props.poster.id)
+})
 
 const toggleFavorite = () => {
   if (isInFavorites.value) {
-    remove(props.poster.id);
-  } else {
-    add(props.poster.id);
+    remove(props.poster.id)
   }
-};
+  else {
+    add(props.poster.id)
+  }
+}
 </script>
 
 <template>

@@ -1,20 +1,24 @@
 <script lang="ts" setup>
 const props = defineProps<{
-  video: string;
-}>();
+  video: string
+}>()
 
 const videoThumb = computed(() => {
-  return `https://i3.ytimg.com/vi/${props.video}/maxresdefault.jpg`;
-});
+  return `https://i3.ytimg.com/vi/${props.video}/maxresdefault.jpg`
+})
 
 const videoUrl = computed(() => {
-  return `https://www.youtube.com/watch?v=${props.video}`;
-});
+  return `https://www.youtube.com/watch?v=${props.video}`
+})
 </script>
 
 <template>
   <div class="wrapper">
-    <nuxt-link :to="videoUrl" class="video-wrapper" target="_blank">
+    <nuxt-link
+      :to="videoUrl"
+      class="video-wrapper"
+      target="_blank"
+    >
       <app-image
         :src="videoThumb"
         alt=""
@@ -24,7 +28,11 @@ const videoUrl = computed(() => {
         sizes="360px"
       />
     </nuxt-link>
-    <nuxt-link :to="videoUrl" class="btn-video" target="_blank">
+    <nuxt-link
+      :to="videoUrl"
+      class="btn-video"
+      target="_blank"
+    >
       <app-image
         src="/images/btn-video.png"
         alt="Video afspelen"

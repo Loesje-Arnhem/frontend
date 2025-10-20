@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import type { IPosterListItem } from "~/types/Content";
+import type { IPosterListItem } from '~/types/Content'
 
 const props = withDefaults(
   defineProps<{
-    title?: string;
-    search?: string;
-    dateBefore?: string;
-    dateAfter?: string;
-    subjectIds?: number[];
-    sourceIds?: number[];
-    include?: number[];
-    exclude?: number;
+    title?: string
+    search?: string
+    dateBefore?: string
+    dateAfter?: string
+    subjectIds?: number[]
+    sourceIds?: number[]
+    include?: number[]
+    exclude?: number
   }>(),
   {
     title: undefined,
@@ -23,21 +23,21 @@ const props = withDefaults(
     include: () => [],
     exclude: undefined,
   },
-);
+)
 
-const posterDateAfterProp = toRef(props, "dateAfter");
-const posterDateBeforeProp = toRef(props, "dateBefore");
-const searchProp = toRef(props, "search");
-const subjectIdsProp = computed(() => props.subjectIds.join(","));
-const sourceIdsProp = computed(() => props.sourceIds.join(","));
+const posterDateAfterProp = toRef(props, 'dateAfter')
+const posterDateBeforeProp = toRef(props, 'dateBefore')
+const searchProp = toRef(props, 'search')
+const subjectIdsProp = computed(() => props.subjectIds.join(','))
+const sourceIdsProp = computed(() => props.sourceIds.join(','))
 
-const page = ref(1);
+const page = ref(1)
 
-const { status, data, refresh, clear } = useFetch("/api/posters/posters", {
+const { status, data, refresh, clear } = useFetch('/api/posters/posters', {
   query: {
     subjectIds: subjectIdsProp,
     sourceIds: sourceIdsProp,
-    include: props.include.join(","),
+    include: props.include.join(','),
     dateAfter: posterDateAfterProp,
     dateBefore: posterDateBeforeProp,
     exclude: props.exclude,
@@ -47,23 +47,23 @@ const { status, data, refresh, clear } = useFetch("/api/posters/posters", {
   watch: false,
   transform(response) {
     if (!data.value) {
-      return response;
+      return response
     }
 
     if (page.value === 1) {
-      return response;
+      return response
     }
 
     const items: {
-      items: IPosterListItem[];
-      hasNextPage: boolean;
+      items: IPosterListItem[]
+      hasNextPage: boolean
     } = {
       items: [...data.value.items, ...response.items],
       hasNextPage: response.hasNextPage,
-    };
-    return items;
+    }
+    return items
   },
-});
+})
 
 watch(
   [
@@ -74,16 +74,16 @@ watch(
     searchProp,
   ],
   async () => {
-    clear();
-    page.value = 1;
-    refresh();
+    clear()
+    page.value = 1
+    refresh()
   },
-);
+)
 
 const loadMore = async () => {
-  page.value = page.value + 1;
-  refresh();
-};
+  page.value = page.value + 1
+  refresh()
+}
 </script>
 
 <template>
@@ -93,7 +93,10 @@ const loadMore = async () => {
     aria-labelledby="posters-overview-title"
   >
     <center-wrapper>
-      <h1 id="posters-overview-title" class="sa-hidden">
+      <h1
+        id="posters-overview-title"
+        class="sa-hidden"
+      >
         <template v-if="title">
           {{ title }}
         </template>

@@ -1,29 +1,29 @@
 <script lang="ts" setup>
 defineI18nRoute({
   paths: {
-    nl: "/workshop-creatief-schrijven",
+    nl: '/workshop-creatief-schrijven',
   },
-});
-const { pageIds } = useAppConfig();
+})
+const { pageIds } = useAppConfig()
 
-const { data } = await useFetch("/api/pages/page", {
+const { data } = await useFetch('/api/pages/page', {
   params: {
     id: pageIds.workshops,
   },
-});
+})
 
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Page Not Found",
-  });
+    statusMessage: 'Page Not Found',
+  })
 }
 
 useMeta({
   title: data.value.title,
   description: data.value.description,
   image: data.value.featuredImage,
-});
+})
 </script>
 
 <template>

@@ -1,19 +1,19 @@
-import type { RouterConfig } from "@nuxt/schema";
+import type { RouterConfig } from '@nuxt/schema'
 
 // https://router.vuejs.org/api/interfaces/routeroptions.html
 export default <RouterConfig>{
   scrollBehavior: (to, from, savedPosition) => {
-    const scrollPosition = document.documentElement.scrollTop;
-    const element: HTMLDivElement | null =
-      document.querySelector(".page-header-top");
+    const scrollPosition = document.documentElement.scrollTop
+    const element: HTMLDivElement | null
+      = document.querySelector('.page-header-top')
 
     if (!element) {
-      return;
+      return
     }
 
-    let elementHeight = 0;
+    let elementHeight = 0
     if (element) {
-      elementHeight = element.offsetHeight;
+      elementHeight = element.offsetHeight
     }
 
     // // triggerScroll is only fired when a new component is loaded
@@ -24,24 +24,25 @@ export default <RouterConfig>{
     return new Promise((resolve) => {
       //   nuxt.$once('triggerScroll', () => {
       if (savedPosition) {
-        resolve(savedPosition);
+        resolve(savedPosition)
       }
 
-      let top = 0;
+      let top = 0
 
       //   const element = document.querySelector('.page-header-top')
       if (elementHeight) {
         if (scrollPosition >= elementHeight) {
-          top = element.offsetHeight;
-        } else {
-          resolve(false);
+          top = element.offsetHeight
+        }
+        else {
+          resolve(false)
         }
       }
       resolve({
         left: 0,
         top,
-      });
-    });
+      })
+    })
     // })
   },
-};
+}

@@ -1,18 +1,18 @@
-import { PaymentGatewaysSchema } from "~~/server/types/PaymentGatewaysSchema";
-import type { PaymentGatewaysType } from "~/types/PaymentGateways";
+import { PaymentGatewaysSchema } from '~~/server/types/PaymentGatewaysSchema'
+import type { PaymentGatewaysType } from '~/types/PaymentGateways'
 
 const sortByOrder = (items: PaymentGatewaysType) => {
   const list = items.map((item) => {
     return {
       ...item,
       order: Number(item.order) === 0 ? 99 : item.order,
-    };
-  });
-  return list.sort((a, b) => Number(a.order) - Number(b.order));
-};
+    }
+  })
+  return list.sort((a, b) => Number(a.order) - Number(b.order))
+}
 
 export default defineEventHandler(async () => {
-  const config = useRuntimeConfig();
+  const config = useRuntimeConfig()
   try {
     const response = await $fetch(
       `https://shop.loesje.nl/wp-json/wc/v3/payment_gateways`,
@@ -23,28 +23,29 @@ export default defineEventHandler(async () => {
           consumer_secret: config.woocommerce.consumerSecret,
         },
       },
-    );
+    )
 
-    const parsed = PaymentGatewaysSchema.safeParse(response);
+    const parsed = PaymentGatewaysSchema.safeParse(response)
 
     if (!parsed.success) {
       throw createError({
         statusCode: 400,
         data: {
-          message: "Something went wrong",
+          message: 'Something went wrong',
         },
-      });
+      })
     }
 
-    const orderedItems = sortByOrder(parsed.data);
-    const enabledItems = orderedItems.filter((item) => item.enabled);
-    return enabledItems;
-  } catch (error) {
+    const orderedItems = sortByOrder(parsed.data)
+    const enabledItems = orderedItems.filter(item => item.enabled)
+    return enabledItems
+  }
+  catch (error) {
     throw createError({
       statusCode: 400,
       data: {
         message: error.data.message,
       },
-    });
+    })
   }
-});
+})

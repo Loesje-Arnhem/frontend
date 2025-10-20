@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 export const MenuSchema = z.array(
   z.object({
@@ -40,4 +40,4 @@ export const MenuSchema = z.array(
     classes: z.array(z.string()),
     xfn: z.string(),
   }),
-);
+)

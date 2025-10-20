@@ -8,7 +8,7 @@ const {
   // addToNewsletter,
   loading,
   errors,
-} = useCheckout();
+} = useCheckout()
 </script>
 
 <template>

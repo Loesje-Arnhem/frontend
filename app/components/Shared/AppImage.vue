@@ -1,26 +1,26 @@
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{
-    src: string;
-    width?: number;
-    height?: number;
-    sizes: string;
-    lazy?: boolean;
-    alt?: string;
+    src: string
+    width?: number
+    height?: number
+    sizes: string
+    lazy?: boolean
+    alt?: string
   }>(),
   {
     width: undefined,
     height: undefined,
-    alt: "",
+    alt: '',
     lazy: true,
   },
-);
+)
 const loading = computed(() => {
   if (props.lazy) {
-    return "lazy";
+    return 'lazy'
   }
-  return "eager";
-});
+  return 'eager'
+})
 </script>
 
 <template>

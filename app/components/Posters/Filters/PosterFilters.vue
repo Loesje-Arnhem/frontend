@@ -1,43 +1,47 @@
 <script lang="ts" setup>
-const { selectedSourceIds, selectedSubjectIds } = useTags();
+const { selectedSourceIds, selectedSubjectIds } = useTags()
 const activeOverlays = reactive({
   sources: false,
   subjects: false,
-});
+})
 
-const { data } = useFetch("/api/posters/taxonomies");
+const { data } = useFetch('/api/posters/taxonomies')
 
-const dateBefore = useDateBefore();
-const dateAfter = useDateAfter();
+const dateBefore = useDateBefore()
+const dateAfter = useDateAfter()
 
 const toggleOverlay = (type: string) => {
-  if (type === "subjects") {
-    activeOverlays.subjects = !activeOverlays.subjects;
-    activeOverlays.sources = false;
-  } else {
-    activeOverlays.sources = !activeOverlays.sources;
-    activeOverlays.subjects = false;
+  if (type === 'subjects') {
+    activeOverlays.subjects = !activeOverlays.subjects
+    activeOverlays.sources = false
   }
-};
+  else {
+    activeOverlays.sources = !activeOverlays.sources
+    activeOverlays.subjects = false
+  }
+}
 
 const today = () => {
-  const now = new Date();
-  const currentMonth = now.getMonth() + 1;
-  const currentDay = now.getDate();
-  let month = `${currentMonth}`;
+  const now = new Date()
+  const currentMonth = now.getMonth() + 1
+  const currentDay = now.getDate()
+  let month = `${currentMonth}`
   if (currentMonth < 10) {
-    month = `0${currentMonth}`;
+    month = `0${currentMonth}`
   }
-  let day = `${currentDay}`;
+  let day = `${currentDay}`
   if (currentDay < 10) {
-    day = `0${currentDay}`;
+    day = `0${currentDay}`
   }
-  return `${now.getFullYear()}-${month}-${day}`;
-};
+  return `${now.getFullYear()}-${month}-${day}`
+}
 </script>
 
 <template>
-  <div v-if="data" class="filter">
+  <div
+    v-if="data"
+    class="filter"
+  >
     <div class="buttons">
       <poster-filter-toggle
         v-if="data.sources.length"

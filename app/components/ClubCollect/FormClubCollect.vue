@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 defineProps<{
-  path: string;
-}>();
+  path: string
+}>()
 
-const { clubCollect } = useAppConfig();
+const { clubCollect } = useAppConfig()
 
 const { onLoaded } = useScript<{
-  setupWidgets: () => void;
+  setupWidgets: () => void
 }>(
   {
     src: clubCollect.widgets,
@@ -16,23 +16,27 @@ const { onLoaded } = useScript<{
   },
   {
     use() {
-      return window.ClubCollect;
+      return window.ClubCollect
     },
     stub() {
       return {
         setupWidgets: () => {},
-      };
+      }
     },
   },
-);
+)
 
 onMounted(() => {
   onLoaded(({ setupWidgets }) => {
-    setupWidgets();
-  });
-});
+    setupWidgets()
+  })
+})
 </script>
 
 <template>
-  <clubcollect-widget force-display="true" type="form-page" :path="path" />
+  <clubcollect-widget
+    force-display="true"
+    type="form-page"
+    :path="path"
+  />
 </template>

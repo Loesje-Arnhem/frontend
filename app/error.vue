@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import type { NuxtError } from "nuxt/app";
+import type { NuxtError } from 'nuxt/app'
 
 defineProps<{
-  error: NuxtError;
-}>();
+  error: NuxtError
+}>()
 
-const { t } = useI18n();
+const { t } = useI18n()
 
 useHead({
-  title: t("errors.error404"),
-});
+  title: t('errors.error404'),
+})
 
 const content = `
 <p>
@@ -21,12 +21,15 @@ const content = `
   gebeuren.
 </p>
 <p>In elk geval, die pagina krijg je niet te zien. Sorry.</p>
-`;
+`
 </script>
 
 <template>
   <nuxt-layout>
-    <app-content title="Huh? Pagina? Welke pagina?" :content="content" />
+    <app-content
+      title="Huh? Pagina? Welke pagina?"
+      :content="content"
+    />
     <dev-only>
       <center-wrapper>
         <pre>

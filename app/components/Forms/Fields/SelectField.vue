@@ -1,26 +1,26 @@
 <script lang="ts" setup>
-import type { ErrorObject } from "@vuelidate/core";
-import type { Option } from "~/types/Option";
+import type { ErrorObject } from '@vuelidate/core'
+import type { Option } from '~/types/Option'
 
 defineOptions({
   inheritAttrs: false,
-});
+})
 
 withDefaults(
   defineProps<{
-    title: string;
-    description?: string | null;
-    id: string;
-    errors?: ErrorObject[];
-    options: Option[];
+    title: string
+    description?: string | null
+    id: string
+    errors?: ErrorObject[]
+    options: Option[]
   }>(),
   {
     description: null,
     errors: () => [],
   },
-);
+)
 
-const model = defineModel<string>({ required: true });
+const model = defineModel<string>({ required: true })
 </script>
 
 <template>
@@ -32,7 +32,11 @@ const model = defineModel<string>({ required: true });
     :description="description"
   >
     <div class="form-select">
-      <select :id v-bind="$attrs" v-model="model">
+      <select
+        :id
+        v-bind="$attrs"
+        v-model="model"
+      >
         <slot />
         <option
           v-for="option in options"
@@ -43,7 +47,12 @@ const model = defineModel<string>({ required: true });
           {{ option.title }}
         </option>
       </select>
-      <app-icon icon="chevron-down" class="icon" :width="24" :height="24" />
+      <app-icon
+        icon="chevron-down"
+        class="icon"
+        :width="24"
+        :height="24"
+      />
     </div>
   </form-field>
 </template>

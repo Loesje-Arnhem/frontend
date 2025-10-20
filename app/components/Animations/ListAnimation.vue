@@ -1,5 +1,8 @@
 <template>
-  <transition-group name="list" tag="ul">
+  <transition-group
+    name="list"
+    tag="ul"
+  >
     <slot />
   </transition-group>
 </template>
