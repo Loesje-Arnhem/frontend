@@ -283,9 +283,9 @@ export default defineNuxtConfig({
           pauseFetching()
         }
       }
-      await fetchPagesByType('posts')
-      await fetchPagesByType('pages')
-      await fetchPagesByType('posters')
+      // await fetchPagesByType('posts')
+      // await fetchPagesByType('pages')
+      // await fetchPagesByType('posters')
     },
   },
   eslint: {
@@ -345,6 +345,18 @@ export default defineNuxtConfig({
           handler: 'StaleWhileRevalidate',
           options: {
             cacheName: 'document',
+            expiration: {
+              maxEntries: 50,
+              purgeOnQuotaError: true,
+              maxAgeSeconds: 60 * 60 * 24 * 7,
+            },
+          },
+        },
+        {
+          urlPattern: ({ url }) => url.href.includes('loesje.nl/api/'),
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api',
             expiration: {
               maxEntries: 50,
               purgeOnQuotaError: true,
