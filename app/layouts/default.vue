@@ -65,6 +65,12 @@ useHead({
         <slot />
       </main>
       <the-footer class="page-footer sa-hidden" />
+      <div
+        v-if="$pwa?.offlineReady"
+        class="offline"
+      >
+        Je bent offline
+      </div>
     </div>
   </div>
 </template>
@@ -122,5 +128,14 @@ useHead({
     /* stylelint-disable-next-line */
     view-transition-name: header;
   }
+}
+
+.offline {
+  text-align: center;
+  padding: var(--spacing-xs) var(--gutter);
+  background-color: var(--color-white);
+  position: fixed;
+  inset: auto 0 0;
+  border-top: 2px solid var(--color-black);
 }
 </style>
