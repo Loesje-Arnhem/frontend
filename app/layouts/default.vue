@@ -65,12 +65,6 @@ useHead({
         <slot />
       </main>
       <the-footer class="page-footer sa-hidden" />
-      <div
-        v-if="$pwa?.offlineReady"
-        class="offline"
-      >
-        Je bent offline
-      </div>
     </div>
   </div>
 </template>

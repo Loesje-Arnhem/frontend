@@ -284,7 +284,7 @@ export default defineNuxtConfig({
         }
       }
       // await fetchPagesByType('posts')
-      // await fetchPagesByType('pages')
+      await fetchPagesByType('pages')
       // await fetchPagesByType('posters')
     },
   },
@@ -324,8 +324,8 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       cleanupOutdatedCaches: true,
-      navigateFallback: null,
-      globPatterns: ['**/*.{js,css,woff2}', 'index.html'],
+      navigateFallback: '/offline',
+      globPatterns: ['**/*.{js,css,woff2}', 'index.html', 'offline.html'],
       globIgnores: ['**/_payload.json'],
       runtimeCaching: [
         {
