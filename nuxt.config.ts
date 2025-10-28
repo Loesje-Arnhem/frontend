@@ -324,7 +324,7 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       cleanupOutdatedCaches: true,
-      navigateFallback: '/offline.html',
+      navigateFallback: '/offline',
       globPatterns: ['**/*.{js,css,woff2}', 'index.html', 'offline/index.html'],
       globIgnores: ['**/_payload.json'],
       runtimeCaching: [
