@@ -191,7 +191,7 @@ export default defineNuxtConfig({
     prerender: {
       interval: 3000,
       concurrency: 5,
-      routes: ['/rss', '/rss/posters', '/posters', '/'],
+      routes: ['/rss', '/rss/posters', '/posters', '/', '/offline'],
     },
     storage: {
       cache: {
@@ -284,7 +284,7 @@ export default defineNuxtConfig({
         }
       }
       // await fetchPagesByType('posts')
-      await fetchPagesByType('pages')
+      // await fetchPagesByType('pages')
       // await fetchPagesByType('posters')
     },
   },
@@ -325,7 +325,7 @@ export default defineNuxtConfig({
     workbox: {
       cleanupOutdatedCaches: true,
       navigateFallback: '/offline.html',
-      globPatterns: ['**/*.{js,css,woff2}', '/index.html', '/offline.html'],
+      globPatterns: ['**/*.{js,css,woff2}', 'index.html', 'offline/index.html'],
       globIgnores: ['**/_payload.json'],
       runtimeCaching: [
         {
