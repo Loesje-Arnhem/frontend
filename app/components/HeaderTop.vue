@@ -2,16 +2,17 @@
   <center-wrapper :top="true">
     <div class="wrapper">
       <div class="text">
-        <h1>Steun Loesje!</h1>
+        <h1>Loesjes donatieactie</h1>
         <p>
-          Loesje heeft jouw hulp nodig! Wil je samen met haar de wereld mooier
-          maken? Doneer nu en draag bij aan haar voortbestaan.
+          In aanloop naar mijn verjaardag hou ik van 1 tot en met 24 november mijn jaarlijkse donatieactie. Wil
+          je mij steunen zodat ik kan blijven doen wat ik doe?
         </p>
         <app-button
-          to="/doe-mee/vrienden-van-loesje/"
+          :external="true"
+          to="https://app.clubcollect.com/forms/nl/loesje/loesje-donatiecampagne-2025"
           class="btn"
         >
-          Word vrienden met Loesje
+          Doneer aan Loesje
         </app-button>
       </div>
       <div class="poster-daily">
