@@ -19,9 +19,11 @@ export default defineConfig({
   // ),
   preset: combinePresetAndAppleSplashScreens({
     ...minimal2023Preset,
-    linkMediaOptions: {
-      basePath: '/icons/',
+    transparent: {
+      ...minimal2023Preset.transparent,
+      favicons: [],
     },
+
   }, {
     linkMediaOptions: {
       basePath: '/icons/',
