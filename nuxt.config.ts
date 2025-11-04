@@ -89,18 +89,12 @@ export default defineNuxtConfig({
           content: 'black',
         },
         { name: 'apple-mobile-web-app-title', content: title },
-        { name: 'theme-color', content: themeColor },
         { property: 'og:site_name', content: title },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:site', content: twitter },
         { name: 'twitter:creator', content: twitter },
       ],
       link: [
-        {
-          rel: 'apple-touch-icon',
-          href: '/icons/manifest-icon-512.maskable.png',
-          sizes: '512x512',
-        },
         {
           rel: 'icon',
           href: '/favicon.svg',
@@ -283,9 +277,9 @@ export default defineNuxtConfig({
           pauseFetching()
         }
       }
-      await fetchPagesByType('posts')
-      await fetchPagesByType('pages')
-      await fetchPagesByType('posters')
+      // await fetchPagesByType('posts')
+      // await fetchPagesByType('pages')
+      // await fetchPagesByType('posters')
     },
   },
   eslint: {
@@ -403,6 +397,11 @@ export default defineNuxtConfig({
     //   // navigateFallback: '/',
     //   // globPatterns: ['**/*.{js,css,html,json,svg,webp,avif,png}'],
     // },
+    pwaAssets: {
+      config: './pwa-assets.config.ts',
+      overrideManifestIcons: true,
+      injectThemeColor: true
+    },
     manifest: {
       id: 'loesje',
       background_color: backgroundColor,
@@ -416,32 +415,6 @@ export default defineNuxtConfig({
       short_name: title,
       edge_side_panel: {},
       dir: 'ltr',
-      icons: [
-        {
-          src: '/icons/manifest-icon-192.maskable.png',
-          sizes: '192x192',
-          type: 'image/png',
-          purpose: 'any',
-        },
-        {
-          src: '/icons/manifest-icon-192.maskable.png',
-          sizes: '192x192',
-          type: 'image/png',
-          purpose: 'maskable',
-        },
-        {
-          src: '/icons/manifest-icon-512.maskable.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'any',
-        },
-        {
-          src: '/icons/manifest-icon-512.maskable.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'maskable',
-        },
-      ],
       // display_override: ['window-controls-overlay'],
       start_url: '/',
       shortcuts: [
