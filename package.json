@@ -11,7 +11,8 @@
     "lint": "eslint . --fix && stylelint . --fix",
     "lint:js": "eslint . --fix",
     "lint:css": "stylelint **/*.{css,vue} --fix",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "generate-pwa-assets": "pwa-assets-generator"
   },
   "devDependencies": {
     "@netlify/blobs": "^10.3.1",
@@ -22,6 +23,7 @@
     "@nuxtjs/stylelint-module": "^5.2.1",
     "@types/body-scroll-lock": "^3.1.2",
     "@types/rss": "^0.0.32",
+    "@vite-pwa/assets-generator": "^1.0.2",
     "@vite-pwa/nuxt": "^1.0.7",
     "eslint": "^9.39.0",
     "eslint-plugin-vue": "^10.5.1",
