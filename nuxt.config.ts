@@ -348,7 +348,7 @@ export default defineNuxtConfig({
             expiration: {
               maxEntries: 50,
               purgeOnQuotaError: true,
-              maxAgeSeconds: 60 * 60 * 24 * 7,
+              maxAgeSeconds: 60 * 60 * 24,
             },
           },
         },
