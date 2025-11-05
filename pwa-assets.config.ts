@@ -23,11 +23,11 @@ export default defineConfig({
       ...minimal2023Preset.transparent,
       favicons: [],
     },
-
   }, {
     linkMediaOptions: {
       basePath: '/icons/',
     },
+    darkResizeOptions: undefined,
   }),
-  images: ['public/icons/logo.svg'],
+  images: 'public/icons/logo.svg',
 })
