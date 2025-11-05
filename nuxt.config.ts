@@ -456,7 +456,7 @@ export default defineNuxtConfig({
       prefer_related_applications: false,
       related_applications: [
         {
-          form_factor: 'itunes',
+          platform: 'itunes',
           url: 'https://apps.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1',
           id: 'loesje-posters',
         },
@@ -464,7 +464,7 @@ export default defineNuxtConfig({
       screenshots: [
         {
           src: '/screenshots/screenshot-1-wide.png',
-          sizes: '1080×810',
+          sizes: '1080x810',
           type: 'image/png',
           form_factor: 'wide',
           label:
@@ -472,14 +472,14 @@ export default defineNuxtConfig({
         },
         {
           src: '/screenshots/screenshot-2-wide.png',
-          sizes: '1080×810',
+          sizes: '1080x810',
           type: 'image/png',
           form_factor: 'wide',
           label: 'Alle uitspraken van Loesje zijn hier te vinden.',
         },
         {
           src: '/screenshots/screenshot-1-narrow.png',
-          sizes: '860×1864',
+          sizes: '860x1864',
           type: 'image/png',
           form_factor: 'narrow',
           label:
@@ -487,7 +487,7 @@ export default defineNuxtConfig({
         },
         {
           src: '/screenshots/screenshot-1-narrow.png',
-          sizes: '860×1864',
+          sizes: '860x1864',
           type: 'image/png',
           form_factor: 'narrow',
           label: 'Alle uitspraken van Loesje zijn hier te vinden.',
