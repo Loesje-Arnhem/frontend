@@ -282,9 +282,9 @@ export default defineNuxtConfig({
           pauseFetching()
         }
       }
-      // await fetchPagesByType('posts')
-      // await fetchPagesByType('pages')
-      // await fetchPagesByType('posters')
+      await fetchPagesByType('posts')
+      await fetchPagesByType('pages')
+      await fetchPagesByType('posters')
     },
   },
   eslint: {
