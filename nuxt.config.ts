@@ -316,6 +316,7 @@ export default defineNuxtConfig({
     //   enabled: true,
     // },
 
+
     base: '/',
     client: {},
     strategies: 'generateSW',
@@ -404,6 +405,7 @@ export default defineNuxtConfig({
     // },
     pwaAssets: {
       config: './pwa-assets.config.ts',
+      includeHtmlHeadLinks: false,
     },
     manifest: {
       id: 'loesje',
