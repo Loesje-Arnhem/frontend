@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import type { AppleSplashScreen } from '@vite-pwa/assets-generator/config'
+import { object } from 'zod'
+
 const { title, socialMedia } = useAppConfig()
 const {
   twitterUrl,
@@ -14,6 +17,25 @@ const { getFromStorage } = useFavorites()
 
 onMounted(() => {
   getFromStorage()
+})
+
+const { $pwaIcons } = useNuxtApp()
+
+const splashIcons = computed(() => {
+  if (!$pwaIcons) {
+    return []
+  }
+  const images = Object.values($pwaIcons.appleSplashScreen)
+    .filter((item) => {
+      return item !== undefined
+    })
+    .map((item) => {
+      return {
+        ...item.linkObject,
+        href: `/icons${item.linkObject?.href.replace('-light', '')}`,
+      }
+    })
+  return images
 })
 
 useSchemaOrg([
@@ -48,15 +70,17 @@ useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} | Loesje` : 'Loesje'
   },
+  link: splashIcons.value,
 })
 </script>
 
 <template>
+  <nuxt-pwa-manifest />
+  <pwa-apple-splash-screen-image image="apple-touch-icon-180x180.png" />
   <div>
-    <nuxt-pwa-assets />
     <nuxt-route-announcer />
     <div class="page">
-      <header-top class="page-header-top sa-hidden" />
+      <header-top class="page-header-top zsa-hidden" />
       <the-header class="page-header sa-hidden" />
       <main
         id="content"

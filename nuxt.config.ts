@@ -89,12 +89,17 @@ export default defineNuxtConfig({
           content: 'black',
         },
         { name: 'apple-mobile-web-app-title', content: title },
+        { name: 'theme-color', content: themeColor },
         { property: 'og:site_name', content: title },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:site', content: twitter },
         { name: 'twitter:creator', content: twitter },
       ],
       link: [
+        {
+          rel: 'apple-touch-icon',
+          href: '/icons/apple-touch-icon-180x180.png',
+        },
         {
           rel: 'icon',
           href: '/favicon.svg',
@@ -399,8 +404,6 @@ export default defineNuxtConfig({
     // },
     pwaAssets: {
       config: './pwa-assets.config.ts',
-      overrideManifestIcons: false,
-      injectThemeColor: true
     },
     manifest: {
       id: 'loesje',

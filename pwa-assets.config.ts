@@ -9,25 +9,6 @@ export default defineConfig({
     preset: '2023',
     basePath: '/icons/',
   },
-  // preset: combinePresetAndAppleSplashScreens(
-  //   minimal2023Preset, {
-  //     assetName: (type: AssetType, size: ResolvedAssetSize) => {
-  //       return `icons/favicons/${defaultAssetName(type, size)}`
-  //     },
-
-  //   },
-  // ),
-  preset: combinePresetAndAppleSplashScreens({
-    ...minimal2023Preset,
-    transparent: {
-      ...minimal2023Preset.transparent,
-      favicons: [],
-    },
-  }, {
-    linkMediaOptions: {
-      basePath: '/icons/',
-    },
-    darkResizeOptions: undefined,
-  }),
+  preset: combinePresetAndAppleSplashScreens(minimal2023Preset),
   images: 'public/icons/logo.svg',
 })
