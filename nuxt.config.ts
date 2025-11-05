@@ -456,43 +456,43 @@ export default defineNuxtConfig({
       prefer_related_applications: false,
       related_applications: [
         {
-          platform: 'itunes',
+          form_factor: 'itunes',
           url: 'https://apps.apple.com/nl/app/loesje-posters/id910472463?l=nl&amp;ls=1',
           id: 'loesje-posters',
         },
       ],
-      // screenshots: [
-      //   {
-      //     src: '/screenshots/screenshot-1-wide.png',
-      //     sizes: '1280x800',
-      //     type: 'image/png',
-      //     platform: 'wide',
-      //     label:
-      //       'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
-      //   },
-      //   {
-      //     src: '/screenshots/screenshot-2-wide.png',
-      //     sizes: '1280x800',
-      //     type: 'image/png',
-      //     platform: 'wide',
-      //     label: 'Alle uitspraken van Loesje zijn hier te vinden.',
-      //   },
-      //   {
-      //     src: '/screenshots/screenshot-1-narrow.png',
-      //     sizes: '750x1334',
-      //     type: 'image/png',
-      //     platform: 'narrow',
-      //     label:
-      //       'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
-      //   },
-      //   {
-      //     src: '/screenshots/screenshot-1-narrow.png',
-      //     sizes: '750x1334',
-      //     type: 'image/png',
-      //     platform: 'narrow',
-      //     label: 'Alle uitspraken van Loesje zijn hier te vinden.',
-      //   },
-      // ],
+      screenshots: [
+        {
+          src: '/screenshots/screenshot-1-wide.png',
+          sizes: '1080×810',
+          type: 'image/png',
+          form_factor: 'wide',
+          label:
+            'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
+        },
+        {
+          src: '/screenshots/screenshot-2-wide.png',
+          sizes: '1080×810',
+          type: 'image/png',
+          form_factor: 'wide',
+          label: 'Alle uitspraken van Loesje zijn hier te vinden.',
+        },
+        {
+          src: '/screenshots/screenshot-1-narrow.png',
+          sizes: '860×1864',
+          type: 'image/png',
+          form_factor: 'narrow',
+          label:
+            'Met deze app kan je lekker door al haar posters heen kuieren. Gewoon doelloos rondneuzen of heel gericht zoeken.',
+        },
+        {
+          src: '/screenshots/screenshot-1-narrow.png',
+          sizes: '860×1864',
+          type: 'image/png',
+          form_factor: 'narrow',
+          label: 'Alle uitspraken van Loesje zijn hier te vinden.',
+        },
+      ],
 
       protocol_handlers: [
         {
