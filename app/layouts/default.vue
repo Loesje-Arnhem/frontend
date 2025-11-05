@@ -75,12 +75,11 @@ useHead({
 </script>
 
 <template>
-  <nuxt-pwa-manifest />
-  <pwa-apple-splash-screen-image image="apple-touch-icon-180x180.png" />
   <div>
+    <nuxt-pwa-manifest />
     <nuxt-route-announcer />
     <div class="page">
-      <header-top class="page-header-top zsa-hidden" />
+      <header-top class="page-header-top sa-hidden" />
       <the-header class="page-header sa-hidden" />
       <main
         id="content"
