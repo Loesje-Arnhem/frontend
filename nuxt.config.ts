@@ -497,7 +497,7 @@ export default defineNuxtConfig({
       protocol_handlers: [
         {
           protocol: 'web+loesje',
-          url: '/posters%s',
+          url: '/posters/%s',
         },
       ],
     },
