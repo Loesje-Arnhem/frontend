@@ -23,7 +23,7 @@ defineProps<{
       <app-image
         v-bind="image"
         :class="{ active: activeItemIndex === index }"
-        sizes="25vw xs:200px"
+        sizes="25vw sm:200px"
         class="image"
       />
     </li>
