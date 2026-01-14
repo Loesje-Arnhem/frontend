@@ -122,10 +122,10 @@ const options: Option[] = [...Array(10).keys()].map((index) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .form {
   & :deep(.fields) {
-    grid-gap: 0.5em;
+    gap: 0.5em;
   }
 
   & :deep(.field) {

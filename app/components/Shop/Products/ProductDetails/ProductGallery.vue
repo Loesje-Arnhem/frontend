@@ -15,7 +15,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .main-image {
   margin-bottom: 0.5em;
 }

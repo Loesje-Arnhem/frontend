@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .instagram {
   @mixin clearfix;
 

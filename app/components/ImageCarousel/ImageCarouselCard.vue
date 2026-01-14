@@ -51,7 +51,7 @@ onUnmounted(() => {
   </li>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list-item {
   scroll-snap-align: center;
   display: flex;

@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .loader {
   margin: 2em auto;
   position: relative;

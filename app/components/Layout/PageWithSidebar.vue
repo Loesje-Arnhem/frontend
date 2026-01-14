@@ -21,7 +21,7 @@
 
 .wrapper {
   display: grid;
-  grid-gap: 1rem;
+  gap: 1rem;
 
   @media (--viewport-lg) {
     grid-template-columns: 1fr 3fr;

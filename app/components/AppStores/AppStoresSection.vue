@@ -63,7 +63,7 @@ const updateTheme = () => {
   </section>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 @import "~/assets/css/media-queries/media-queries.css";
 
 .app-stores {

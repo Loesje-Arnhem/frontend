@@ -24,7 +24,7 @@ withDefaults(
   />
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .icon {
   width: auto;
   height: auto;

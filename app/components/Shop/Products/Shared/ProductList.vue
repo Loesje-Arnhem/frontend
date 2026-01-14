@@ -34,7 +34,7 @@ const { data } = useFetch('/api/products/products', {
   </ul>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 @import "~/assets/css/media-queries/media-queries.css";
 
 .list {
@@ -42,11 +42,11 @@ const { data } = useFetch('/api/products/products', {
 
   margin: 0 0 1em;
   display: grid;
-  grid-gap: 0.5rem;
+  gap: 0.5rem;
   grid-template-columns: repeat(2, 1fr);
 
   @media (--viewport-sm) {
-    grid-gap: 1rem;
+    gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   }
 }

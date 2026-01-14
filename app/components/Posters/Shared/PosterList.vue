@@ -33,14 +33,14 @@ const backgroundImage = computed(() =>
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 @import "~/assets/css/media-queries/media-queries.css";
 
 .list {
   @mixin list-reset;
 
   display: grid;
-  grid-gap: 1rem;
+  gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
   padding: 1em 0 3em;
   margin-bottom: 1em;

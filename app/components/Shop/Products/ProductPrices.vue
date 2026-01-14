@@ -17,7 +17,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .price-old {
   font-size: 1rem;
   font-weight: var(--font-weight-normal);

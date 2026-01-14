@@ -167,7 +167,7 @@ export default defineComponent({
   </search>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .form {
   margin-bottom: 1em;
 }

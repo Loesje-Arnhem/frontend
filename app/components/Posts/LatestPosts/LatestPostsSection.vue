@@ -32,7 +32,7 @@ const localePath = useLocalePath()
   </section>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 @import "~/assets/css/media-queries/media-queries.css";
 
 .latest-posts {
@@ -42,7 +42,7 @@ const localePath = useLocalePath()
 .wrapper {
   display: grid;
   align-items: start;
-  grid-gap: 2em;
+  gap: 2em;
   position: relative;
   grid-template-areas:
     "list"

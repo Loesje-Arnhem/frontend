@@ -27,7 +27,7 @@ defineProps<{
   @mixin list-reset;
 
   display: grid;
-  grid-gap: 1rem;
+  gap: 1rem;
 
   @media (--viewport-sm) {
     grid-template-columns: repeat(6, 1fr);

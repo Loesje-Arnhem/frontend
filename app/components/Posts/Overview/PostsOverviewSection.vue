@@ -64,7 +64,7 @@ const loadMore = () => {
   </section>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .posts-overview {
   padding-bottom: 2em;
 }

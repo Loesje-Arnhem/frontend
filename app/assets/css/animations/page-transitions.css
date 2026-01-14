@@ -1,11 +1,11 @@
 ::view-transition-old(root),
 ::view-transition-new(root) {
   /* Prevent the default animation */
-  animation-duration: 0;
+  animation-duration: 0s;
 }
 
 ::view-transition-old(poster-details),
-::view-transition-new(poster-details){
+::view-transition-new(poster-details) {
   animation-duration: 0.4s;
   animation-timing-function: var(--transition-timing-function);
 }

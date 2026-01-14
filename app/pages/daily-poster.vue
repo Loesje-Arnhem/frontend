@@ -15,7 +15,7 @@ defineI18nRoute({
   </center-wrapper>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .daily-poster {
   margin-block: 4em;
 }

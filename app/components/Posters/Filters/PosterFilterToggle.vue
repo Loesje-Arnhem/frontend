@@ -28,7 +28,7 @@ defineEmits(['toggle'])
   </button>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .title {
   flex: 1 0 auto;
   text-align: left;

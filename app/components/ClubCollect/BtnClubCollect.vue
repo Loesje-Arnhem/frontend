@@ -32,7 +32,7 @@ const close = () => {
   </center-wrapper>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .wrapper {
   margin-bottom: 4em;
 }

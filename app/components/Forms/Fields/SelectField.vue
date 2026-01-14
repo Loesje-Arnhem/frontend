@@ -57,7 +57,7 @@ const model = defineModel<string>({ required: true })
   </form-field>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .form-select {
   position: relative;
 }

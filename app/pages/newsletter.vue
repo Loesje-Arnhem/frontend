@@ -49,7 +49,7 @@ useMeta({
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .newsletter {
   max-width: var(--container-width-sm);
   margin-bottom: 4em;

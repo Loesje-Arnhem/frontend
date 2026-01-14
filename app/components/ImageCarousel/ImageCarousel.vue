@@ -120,7 +120,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .wrapper {
   position: relative;
   margin-bottom: 0.5em;

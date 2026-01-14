@@ -59,7 +59,7 @@ const {
 
 .wrapper {
   display: grid;
-  grid-gap: 2em var(--gutter);
+  gap: 2em var(--gutter);
 
   @media (--viewport-sm) {
     grid-template-columns: repeat(2, 1fr);
@@ -70,7 +70,7 @@ const {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  @media (min-width: 1520px) {
+  @media (width >= 1520px) {
     padding-bottom: 8em;
   }
 }

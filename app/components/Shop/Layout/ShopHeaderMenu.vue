@@ -18,7 +18,7 @@ const { totalProducts } = useCart()
   </nav>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list {
   @mixin list-reset;
 

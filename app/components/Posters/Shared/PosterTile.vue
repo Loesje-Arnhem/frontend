@@ -34,7 +34,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .link {
   width: 100%;
   display: block;

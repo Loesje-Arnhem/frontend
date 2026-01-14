@@ -24,7 +24,7 @@ defineProps<{
   </span>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list {
   @mixin list-reset;
 

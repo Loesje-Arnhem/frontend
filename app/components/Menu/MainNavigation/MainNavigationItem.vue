@@ -117,7 +117,7 @@ const id = useId()
   </li>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 @import "~/assets/css/media-queries/media-queries.css";
 
 .menu-item {
@@ -126,7 +126,7 @@ const id = useId()
 
   @media (--show-full-navigation) {
     align-items: center;
-    flex-wrap:;
+    flex-wrap: wrap;
     display: flex;
   }
 }

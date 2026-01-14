@@ -21,7 +21,7 @@ defineProps<{
   </nuxt-link>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .icon {
   transition: margin 0.2s ease-out;
   transform: translate3d(2px, 2px, 0);

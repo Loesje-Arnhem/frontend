@@ -29,7 +29,7 @@ defineProps<{
   </section>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .featured-products {
   padding: 3em 0;
 }

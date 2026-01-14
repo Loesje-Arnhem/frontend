@@ -43,7 +43,7 @@ const mouseUp = () => {
   </li>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list-item {
   cursor: pointer;
 

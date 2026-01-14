@@ -84,7 +84,7 @@ const loading = ref(false)
   <app-loader v-else />
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 @import "~/assets/css/media-queries/media-queries.css";
 
 .cart {

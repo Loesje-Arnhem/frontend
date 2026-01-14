@@ -20,13 +20,13 @@ defineProps<{
   </list-animation>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list {
   @mixin list-reset;
 
   margin-bottom: 2em;
   display: grid;
-  grid-gap: 2em;
+  gap: 2em;
   grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
   align-items: stretch;
 }

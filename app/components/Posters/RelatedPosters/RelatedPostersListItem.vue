@@ -44,7 +44,7 @@ onMounted(() => {
   </li>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list-item {
   padding: 0.5em;
   flex: 0 0 10em;

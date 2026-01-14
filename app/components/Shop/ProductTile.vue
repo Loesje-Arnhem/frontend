@@ -48,14 +48,14 @@ const url = props.product.url
   </clickable-list-item>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 @import "~/assets/css/media-queries/media-queries.css";
 
 .product-tile {
   padding: 0 0 0.5em;
   display: grid;
   grid-row: span 3;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   grid-template-rows: 16em auto 1.5em;
   font-size: var(--font-size-xs);
 

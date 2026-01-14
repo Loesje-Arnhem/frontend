@@ -55,7 +55,7 @@ const showOverview = computed(() => {
   </center-wrapper>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 nav {
   @mixin hide-for-print;
 

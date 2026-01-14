@@ -52,7 +52,7 @@ const videoUrl = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .image:deep(img) {
   height: 100%;
   object-fit: cover;

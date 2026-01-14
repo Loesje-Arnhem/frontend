@@ -22,7 +22,7 @@ defineProps<{
   </aside>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .box {
   position: relative;
 }

@@ -120,12 +120,12 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 @import "~/assets/css/media-queries/media-queries.css";
 
 .poster-details {
   display: grid;
-  grid-gap: 1em;
+  gap: 1em;
   margin-bottom: 2em;
 
   @media (--viewport-sm) {
@@ -193,13 +193,13 @@ defineProps<{
   padding: 3px;
 }
 
-.image:deep(img) {
-  width: 100%;
-}
-
 .image,
 .image-wrapper {
   position: relative;
+}
+
+.image:deep(img) {
+  width: 100%;
 }
 
 .placeholder {

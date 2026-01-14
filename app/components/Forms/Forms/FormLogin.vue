@@ -74,7 +74,7 @@ const submit = async () => {
   </app-form>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .form {
   @mixin block;
 }

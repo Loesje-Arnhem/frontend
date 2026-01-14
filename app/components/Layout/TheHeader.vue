@@ -61,7 +61,7 @@ const lockBodyScoll = (isOpen: boolean) => {
   </header>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 @import "~/assets/css/media-queries/media-queries.css";
 
 .fade-enter-active,
@@ -99,7 +99,8 @@ const lockBodyScoll = (isOpen: boolean) => {
   height: 100vh;
   overflow: hidden;
   z-index: var(--z-main-navigation);
-  padding: env(safe-area-inset-top) env(safe-area-inset-left) 0
+  padding:
+    env(safe-area-inset-top) env(safe-area-inset-left) 0
     env(safe-area-inset-right);
 
   @media (--show-full-navigation) {

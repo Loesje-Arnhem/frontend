@@ -20,7 +20,7 @@ withDefaults(
   </transition>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .slide-in-up-enter-active,
 .slide-in-up-leave-active,
 .slide-in-down-enter-active,

@@ -34,7 +34,7 @@ const usps = [
   </box-wrapper>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list {
   @mixin list-reset;
 

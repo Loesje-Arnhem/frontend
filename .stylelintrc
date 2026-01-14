@@ -1,7 +1,8 @@
 {
   "extends": [
     "stylelint-config-standard",
-    "stylelint-config-standard-vue"
+    "stylelint-config-standard-vue",
+		"@stylistic/stylelint-config"
   ],
   "rules": {
     "import-notation": null,
@@ -14,6 +15,10 @@
         ]
       }
     ],
+
+    "property-no-deprecated": [true, { "ignoreProperties": ["clip"] }],
+    "no-invalid-position-declaration": null,
+    "nesting-selector-no-missing-scoping-root": null,
     "selector-pseudo-class-no-unknown": [
       true,
       {

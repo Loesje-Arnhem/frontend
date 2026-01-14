@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const appConfig = useAppConfig()
-const { email, emailShop } = appConfig.address
+const { email, emailShop, kvk, vat, iban } = appConfig.address
 </script>
 
 <template>
@@ -46,12 +46,19 @@ const { email, emailShop } = appConfig.address
         </nuxt-link>
       </li>
     </ul>
+    <div class="company-details">
+      IBAN-nummer: {{ iban }}<br>
+      KvK: {{ kvk }}<br>
+      BTW-nummer: {{ vat }}<br>
+    </div>
   </address>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list {
   @mixin list-reset;
+
+  margin-bottom: var(--spacing-m);
 }
 
 .link {
@@ -62,5 +69,9 @@ const { email, emailShop } = appConfig.address
 
 .icon {
   transform: translateY(0.2em);
+}
+
+.company-details {
+  font-size: var(--font-size-sm);
 }
 </style>

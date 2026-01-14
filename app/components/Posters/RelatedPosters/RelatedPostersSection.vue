@@ -56,7 +56,7 @@ const title = props.title || t('posters')
   </section>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .related-posters {
   padding: 3em 0;
 }

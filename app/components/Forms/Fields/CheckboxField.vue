@@ -26,7 +26,7 @@ const model = defineModel<boolean>({ required: true })
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .field {
   display: flex;
   gap: 0.25em;

@@ -1,23 +1,23 @@
 .sa-only {
-    display: none;
+  display: none;
 }
 
 @media (--stand-alone) {
-    .sa-hidden {
-        display: none;
-    }
-  
-    .sa-only {
-        display: block;
-    }
+  .sa-hidden {
+    display: none;
+  }
+
+  .sa-only {
+    display: block;
+  }
 }
 
 .standalone {
-    & .sa-hidden {
-        display: none;
-    }
-  
-    & .sa-only {
-        display: block;
-    }
+  & .sa-hidden {
+    display: none;
+  }
+
+  & .sa-only {
+    display: block;
+  }
 }

@@ -21,7 +21,7 @@ withDefaults(
   </span>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .error {
   display: block;
 }

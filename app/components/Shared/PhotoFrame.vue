@@ -26,7 +26,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .photo-wrapper {
   position: relative;
   transform: rotate(2deg);

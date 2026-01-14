@@ -37,7 +37,7 @@ const loading = computed(() => {
   />
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .image :deep(img) {
   display: block;
   max-width: 100%;

@@ -32,7 +32,7 @@ defineEmits(['next', 'previous'])
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .btn-next,
 .btn-previous {
   position: absolute;

@@ -22,7 +22,9 @@ export default defineAppConfig({
     zipcode: '6812 AR',
     email: 'loesje@loesje.nl',
     emailShop: 'winkeltje@loesje.nl',
-    kvk: 'KVKnummer: 40122845',
+    iban: 'NL36INGB0001024080',
+    kvk: '41048886',
+    vat: 'NL007986257B02',
   },
   socialMedia: {
     twitterUrl: 'https://twitter.com/LoesjeNL',

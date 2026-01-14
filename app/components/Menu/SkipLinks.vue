@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .btn {
   &:not(:focus) {
     @mixin sr-only;

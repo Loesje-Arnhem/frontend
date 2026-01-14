@@ -44,7 +44,7 @@ const toggleFavorite = () => {
   </app-button>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .icon {
   margin-right: 0.25em;
   height: 1em;

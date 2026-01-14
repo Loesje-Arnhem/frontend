@@ -27,7 +27,7 @@ defineProps<{
   </clickable-list-item>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .title {
   @mixin color-negative;
 

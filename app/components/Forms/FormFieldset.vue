@@ -13,10 +13,10 @@ defineProps<{
   </fieldset>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .fields {
   display: grid;
-  grid-gap: var(--gutter);
+  gap: var(--gutter);
 }
 
 .fieldset {

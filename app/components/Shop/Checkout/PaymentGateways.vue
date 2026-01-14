@@ -59,7 +59,7 @@ onMounted(() => {
   </form-fieldset>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list {
   @mixin list-reset;
 }

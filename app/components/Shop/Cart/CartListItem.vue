@@ -122,7 +122,7 @@ const removeItemFromCard = async () => {
   </tr>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .remove-wrapper {
   width: 1.5em;
 }

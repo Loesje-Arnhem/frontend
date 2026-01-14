@@ -39,7 +39,7 @@ const errorMessage = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .label {
   display: block;
   margin-bottom: 0.25em;

@@ -45,7 +45,7 @@ const hasMedia = computed(() => {
   </center-wrapper>
 </template>
 
-<style scoped>
+<style scoped lang="css">
 @import "~/assets/css/media-queries/media-queries.css";
 
 .content-wrapper {
@@ -62,7 +62,7 @@ const hasMedia = computed(() => {
 .has-media {
   align-items: start;
   display: grid;
-  grid-gap: calc(var(--gutter) * 2);
+  gap: calc(var(--gutter) * 2);
 
   @media (--viewport-lg) {
     grid-template-columns: auto 22em;

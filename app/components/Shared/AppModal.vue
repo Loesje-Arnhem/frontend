@@ -63,7 +63,7 @@ onUnmounted(() => {
   </dialog>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .dialog {
   width: calc(100% - var(--gutter) * 2);
   max-width: var(--container-width-md);

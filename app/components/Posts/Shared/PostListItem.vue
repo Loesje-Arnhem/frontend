@@ -50,7 +50,7 @@ const url = computed(() => {
   </clickable-list-item>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .list-item {
   display: flex;
   flex-direction: column;

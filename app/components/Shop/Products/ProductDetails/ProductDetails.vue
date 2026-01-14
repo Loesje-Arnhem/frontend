@@ -26,7 +26,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .product-wrapper {
   margin-bottom: 3em;
 }
@@ -34,7 +34,7 @@ defineProps<{
 .product-details {
   margin: 0 0 1em;
   display: grid;
-  grid-gap: 1rem;
+  gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
   align-items: start;
 }

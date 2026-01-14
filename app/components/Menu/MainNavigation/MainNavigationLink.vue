@@ -22,7 +22,7 @@ const { clear } = useLayout()
   </nuxt-link>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .link {
   @mixin hover-with-title;
 }
