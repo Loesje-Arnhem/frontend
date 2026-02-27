@@ -193,6 +193,13 @@ export default defineNuxtConfig({
       concurrency: 5,
       routes: ['/rss', '/rss/posters', '/posters', '/'],
     },
+    devStorage: {
+      cache: {
+        driver: 'fs',
+        base: './.nuxt/cache',
+      },
+    },
+
     storage: {
       cache: {
         driver: 'netlify-blobs',
