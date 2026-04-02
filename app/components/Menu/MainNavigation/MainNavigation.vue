@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { data } = await useAsyncData('menu', () => $fetch('/api/menu'))
 
-const menu: Ref<HTMLAnchorElement | null> = ref(null)
+const menu = useTemplateRef('menu')
 const arrowPosition: Ref<string | undefined> = ref(undefined)
 const arrowWidth = ref(`0`)
 

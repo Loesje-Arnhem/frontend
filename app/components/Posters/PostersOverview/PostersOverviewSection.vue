@@ -114,7 +114,7 @@ const loadMore = async () => {
     </center-wrapper>
   </section>
 
-  <center-wrapper v-if="!data?.items.length && !status === 'pending'">
+  <center-wrapper v-if="!data?.items.length && status === 'success'">
     <p>Geen posters gevonden</p>
   </center-wrapper>
 </template>

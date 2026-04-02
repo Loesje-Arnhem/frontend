@@ -22,7 +22,6 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxt/scripts',
   ],
-
   components: {
     dirs: [
       '~/components/Animations',
@@ -183,6 +182,8 @@ export default defineNuxtConfig({
     typedPages: true,
     sharedPrerenderData: true,
     appManifest: true,
+    viewTransition: true,
+
   },
   compatibilityDate: '2025-08-03',
 
@@ -195,7 +196,7 @@ export default defineNuxtConfig({
     },
     devStorage: {
       cache: {
-        driver: 'fs',
+        driver: 'null',
         base: './.nuxt/cache',
       },
     },
@@ -205,6 +206,18 @@ export default defineNuxtConfig({
         driver: 'netlify-blobs',
         name: 'cache',
       },
+    },
+  },
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vuelidate/core',
+        '@vuelidate/validators',
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        '@unhead/schema-org/vue',
+        'body-scroll-lock',
+      ],
     },
   },
 

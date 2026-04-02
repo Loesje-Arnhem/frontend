@@ -5,7 +5,7 @@ const { closeMobileMenu } = useLayout()
 
 const menuIsOpen = useMenu()
 
-const content: Ref<HTMLDivElement | null> = ref(null)
+const content = useTemplateRef('content')
 
 const afterEnter = () => {
   lockBodyScoll(true)

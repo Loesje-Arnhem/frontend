@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import type { IPoster } from '~/types/Content'
 
-defineProps<{
+const props = defineProps<{
   poster: IPoster
 }>()
+
+const transitionName = computed(() => `image-${props.poster.id}`)
 </script>
 
 <template>
@@ -187,6 +189,7 @@ defineProps<{
 
 .tile-wrapper {
   background: var(--color-white);
+  view-transition-name: v-bind(transitionName);
 }
 
 .tile {

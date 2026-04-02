@@ -10,7 +10,7 @@ const props = withDefaults(
 
 const emit = defineEmits(['load-more'])
 
-const wrapper: Ref<HTMLDivElement | null> = ref(null)
+const wrapper = useTemplateRef('wrapper')
 let observer: IntersectionObserver | null
 
 onMounted(() => {
@@ -19,7 +19,7 @@ onMounted(() => {
 
   observer = new IntersectionObserver(
     ([entry]) => {
-      if (entry.isIntersecting && !props.loading) {
+      if (entry?.isIntersecting && !props.loading) {
         emit('load-more')
       }
     },

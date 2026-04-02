@@ -3,9 +3,11 @@ import type { IPosterListItem } from '~/types/Content'
 
 const localePath = useLocalePath()
 
-defineProps<{
+const props = defineProps<{
   poster: IPosterListItem
 }>()
+
+const transitionName = computed(() => `image-${props.poster.id}`)
 </script>
 
 <template>
@@ -47,6 +49,7 @@ defineProps<{
 }
 
 .tile-wrapper {
+  view-transition-name: v-bind(transitionName);
   background: var(--color-white);
 }
 </style>
