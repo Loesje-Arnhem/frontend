@@ -1,4 +1,3 @@
-import { routes } from 'vue-router/auto-routes'
 import {
   categories,
   themeColor,
