@@ -2,15 +2,16 @@
   <center-wrapper :top="true">
     <div class="wrapper">
       <div class="text">
-        <h1>Steun Loesje</h1>
+        <h1>Loesje breidt haar vriendenclub uit!</h1>
         <p>
-          Loesje is een stichting zonder winstoogmerk en heeft jouw steun nodig om te blijven bestaan. Help jij me mee, zodat ik kan blijven schrijven?
+          Als vriend help je Loesje om onafhankelijk te blijven schrijven, posters te verspreiden en mensen samen te brengen. Kom je ook bij Loesjes vriendenclub?
         </p>
         <app-button
-          to="/doe-mee/vrienden-van-loesje/"
+          to="https://shop.loesje.nl/word-vrienden-met-loesje/"
           class="btn"
+          external
         >
-          Loesje steunen
+          Word vriend van Loesje
         </app-button>
       </div>
       <div class="poster-daily">
