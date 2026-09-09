@@ -27,7 +27,7 @@
     "@vite-pwa/nuxt": "^1.1.1",
     "eslint": "^10.3.0",
     "eslint-plugin-vue": "^10.9.1",
-    "nuxt": "^4.4.4",
+    "nuxt": "^4.5.2",
     "nuxt-schema-org": "^6.0.4",
     "nuxt-svgo": "^5.3.0",
     "postcss-html": "^1.8.1",

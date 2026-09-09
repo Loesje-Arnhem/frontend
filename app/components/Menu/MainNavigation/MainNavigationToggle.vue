@@ -8,7 +8,7 @@ withDefaults(
   },
 )
 
-const menuIsOpen = useMenu()
+const menuIsOpen = useMenuState()
 
 defineEmits(['toggle-menu'])
 </script>

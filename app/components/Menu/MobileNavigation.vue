@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const localePath = useLocalePath()
-const { openMobileMenu } = useLayout()
+const { openMobileMenu } = useMenu()
 const { title } = useAppConfig()
 </script>
 

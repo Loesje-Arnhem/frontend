@@ -1,7 +1,7 @@
 import type { Cart } from '~/types/Cart'
 import type { ITag } from '~/types/Content'
 
-export const useMenu = () => useState<boolean>('menuIsOpen', () => false)
+export const useMenuState = () => useState<boolean>('menuIsOpen', () => false)
 export const useFavoriteIds = () => useState<number[]>('favorites', () => [])
 export const useSelectedTags = () => useState<ITag[]>('selectedTags', () => [])
 export const useDateBefore = () => useState<string>('dateBefore', () => '')

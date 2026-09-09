@@ -5,7 +5,7 @@ defineProps<{
   item: MenuItem
 }>()
 
-const { clear } = useLayout()
+const { clear } = useMenu()
 </script>
 
 <template>

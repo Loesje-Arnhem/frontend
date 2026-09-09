@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
-const { closeMobileMenu } = useLayout()
+const { closeMobileMenu } = useMenu()
 
-const menuIsOpen = useMenu()
+const menuIsOpen = useMenuState()
 
 const content = useTemplateRef('content')
 

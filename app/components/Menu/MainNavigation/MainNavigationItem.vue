@@ -5,8 +5,8 @@ const props = defineProps<{
   item: MenuItemWithChildren
 }>()
 
-const { openMenus, add, remove } = useLayout()
-const menuIsOpen = useMenu()
+const { openMenus, add, remove } = useMenu()
+const menuIsOpen = useMenuState()
 let timer = null as number | null
 const link = ref<ComponentPublicInstance<HTMLAnchorElement> | null>(null)
 

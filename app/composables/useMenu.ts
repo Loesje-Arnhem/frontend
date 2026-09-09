@@ -1,6 +1,6 @@
-export const useLayout = () => {
+export const useMenu = () => {
   const openMenus = ref([] as string[])
-  const menuIsOpen = useMenu()
+  const menuIsOpen = useMenuState()
 
   const add = (menuId: string) => {
     if (openMenus.value.includes(menuId)) {
