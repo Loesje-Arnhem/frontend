@@ -14,6 +14,7 @@ const { resolve } = createResolver(import.meta.url)
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
+    '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/scripts',
@@ -313,6 +314,25 @@ export default defineNuxtConfig({
     config: {
       stylistic: true,
     },
+  },
+  fonts: {
+    families: [
+      {
+        name: 'franklin-gothic',
+        provider: 'local',
+        global: true,
+      },
+      {
+        name: 'Ubuntu',
+        provider: 'google',
+        global: true,
+        weights: [400],
+        subsets: [
+          'latin-ext',
+          'latin',
+        ],
+      },
+    ],
   },
 
   i18n: {
