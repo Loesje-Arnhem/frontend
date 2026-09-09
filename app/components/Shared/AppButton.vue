@@ -126,6 +126,9 @@ a {
 
 .title {
   transition: box-shadow 0.2s ease-out;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 
   .btn:hover & {
     box-shadow: 0 3px 0 0 currentcolor;

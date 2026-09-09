@@ -43,12 +43,3 @@ const toggleFavorite = () => {
     <span class="sr-only">: {{ poster.title }}</span>
   </app-button>
 </template>
-
-<style lang="css" scoped>
-.icon {
-  margin-right: 0.25em;
-  height: 1em;
-  width: auto;
-  color: currentcolor;
-}
-</style>
