@@ -19,6 +19,7 @@
     "property-no-deprecated": [true, { "ignoreProperties": ["clip"] }],
     "no-invalid-position-declaration": null,
     "nesting-selector-no-missing-scoping-root": null,
+    "at-rule-prelude-no-invalid": null,
     "selector-pseudo-class-no-unknown": [
       true,
       {

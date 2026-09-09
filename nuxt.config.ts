@@ -1,3 +1,4 @@
+import { createResolver } from 'nuxt/kit'
 import {
   categories,
   themeColor,
@@ -8,18 +9,19 @@ import {
 } from './app/data/siteDetails'
 import { ofetch } from 'ofetch'
 
-export default defineNuxtConfig({
+const { resolve } = createResolver(import.meta.url)
 
+export default defineNuxtConfig({
   modules: [
-    '@nuxtjs/i18n',
-    'nuxt-svgo',
-    '@vite-pwa/nuxt',
     '@nuxt/eslint',
-    '@nuxtjs/stylelint-module',
+    '@nuxt/icon',
     '@nuxt/image',
-    'nuxt-schema-org',
-    '@nuxtjs/sitemap',
     '@nuxt/scripts',
+    '@nuxtjs/i18n',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/stylelint-module',
+    '@vite-pwa/nuxt',
+    'nuxt-schema-org',
   ],
   components: {
     dirs: [
@@ -326,6 +328,16 @@ export default defineNuxtConfig({
     experimental: {
       strictSeo: true,
     },
+  },
+  icon: {
+    componentName: 'NuxtIcon',
+    mode: 'svg',
+    customCollections: [
+      {
+        prefix: 'loesje',
+        dir: resolve('./app/assets/icons'),
+      },
+    ],
   },
 
   image: {

@@ -4,29 +4,20 @@ withDefaults(
     icon: string
     width?: number
     height?: number
-    title?: string | null
   }>(),
   {
     width: 24,
     height: 24,
-    title: null,
+
   },
 )
 </script>
 
 <template>
-  <component
-    :is="`svgo-${icon}`"
+  <nuxt-icon
     class="icon"
-    :width="width"
-    :height="height"
-    v-bind="$attrs"
+    :name="`loesje:${icon}`"
+    :width
+    :height
   />
 </template>
-
-<style lang="css" scoped>
-.icon {
-  width: auto;
-  height: auto;
-}
-</style>
