@@ -7,9 +7,8 @@
           Als vriend help je Loesje om onafhankelijk te blijven schrijven, posters te verspreiden en mensen samen te brengen. Kom je ook bij Loesjes vriendenclub?
         </p>
         <app-button
-          to="https://shop.loesje.nl/word-vrienden-met-loesje/"
+          to="/word-vrienden-met-loesje/"
           class="btn"
-          external
         >
           Word vriend van Loesje
         </app-button>
