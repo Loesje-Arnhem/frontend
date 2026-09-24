@@ -16,7 +16,12 @@ export const PosterSchema = z.array(
       //     }),
       //   ),
       // ),
-      pdf: z.union([z.boolean(), z.string()]),
+      pdf: z.union([z.boolean(), z.string(), z.number()]).transform((val) => {
+        if (typeof val === 'string') {
+          return val
+        }
+        return undefined
+      }),
       date: z.string(),
     }),
     '_links': z.object({
