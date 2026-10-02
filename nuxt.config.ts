@@ -297,7 +297,7 @@ export default defineNuxtConfig({
           if (page >= totalPages) {
             hasNextPage = false
           }
-          else if (page > 3 && type === 'posters') {
+          else if (page > 2 && type === 'posters') {
             hasNextPage = false
           }
 
