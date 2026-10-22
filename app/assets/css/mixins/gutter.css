@@ -1,4 +1,3 @@
 @define-mixin gutter {
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
+  padding-inline: var(--gutter);
 }

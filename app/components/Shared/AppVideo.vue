@@ -54,12 +54,12 @@ const videoUrl = computed(() => {
 
 <style lang="css" scoped>
 .image:deep(img) {
-  height: 100%;
+  block-size: 100%;
   object-fit: cover;
   filter: sepia(0.75) contrast(0.75) brightness(1.25) saturate(1.4);
 
   & :deep(img) {
-    width: 100%;
+    inline-size: 100%;
   }
 }
 
@@ -69,34 +69,34 @@ const videoUrl = computed(() => {
 }
 
 .video-wrapper {
-  inset: 40% 5% 6%;
   position: absolute;
+  inset: 40% 5% 6%;
   display: block;
 }
 
 .frame {
   position: relative;
-  pointer-events: none;
   display: block;
-  width: 100%;
-  height: auto;
+  inline-size: 100%;
+  block-size: auto;
+  pointer-events: none;
 
   & :deep(img) {
-    width: 100%;
+    inline-size: 100%;
   }
 }
 
 .btn-video {
   position: absolute;
-  top: 49%;
-  width: 10%;
-  left: 82%;
+  inset-block-start: 49%;
+  inset-inline-start: 82%;
   z-index: 9;
+  inline-size: 10%;
 }
 
 .icon-play {
   display: block;
-  width: 100%;
-  height: 100%;
+  inline-size: 100%;
+  block-size: 100%;
 }
 </style>

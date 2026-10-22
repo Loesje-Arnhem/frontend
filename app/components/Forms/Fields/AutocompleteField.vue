@@ -169,7 +169,7 @@ export default defineComponent({
 
 <style lang="css" scoped>
 .form {
-  margin-bottom: 1em;
+  margin-block-end: 1em;
 }
 
 .wrapper {
@@ -178,23 +178,22 @@ export default defineComponent({
 
 .buttons {
   position: absolute;
-  top: 0.5em;
-  right: 0.25em;
-  padding: 0.25em;
+  inset-block-start: 0.5em;
+  inset-inline-end: 0.25em;
   display: flex;
+  padding: 0.25em;
 }
 
 .btn-reset {
-  margin-right: 0.5em;
+  margin-inline-end: 0.5em;
 }
 
 .autocomplete {
   position: absolute;
-  background: rgb(255 255 255 / 90%);
+  inset-block-start: 100%;
+  inset-inline: 0;
   z-index: var(--z-autocomplete);
-  left: 0;
-  right: 0;
-  top: 100%;
+  background: rgb(255 255 255 / 90%);
   border-color: var(--color-black);
   border-style: solid;
   border-width: 0 2px 2px;
@@ -225,17 +224,17 @@ export default defineComponent({
 .btn-result {
   @mixin link-reset;
 
-  width: 100%;
-  text-align: left;
   display: block;
-  font-size: 1em;
+  inline-size: 100%;
   padding: 0.5em 0.75em;
+  font-size: 1em;
+  text-align: start;
 
   &.active,
   &:focus,
   &:hover {
-    background: var(--color-black);
     color: var(--color-white);
+    background: var(--color-black);
   }
 }
 </style>

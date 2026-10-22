@@ -31,12 +31,12 @@ const model = defineModel<boolean>({ required: true })
   display: flex;
   gap: 0.25em;
   align-items: flex-start;
-  margin-bottom: 0.5em;
+  margin-block-end: 0.5em;
 }
 
 .input {
   flex: 0 0 auto;
-  width: 1.25em;
+  inline-size: 1.25em;
   aspect-ratio: 1 / 1;
   translate: 0 0.25em;
 }

@@ -52,11 +52,11 @@ const url = props.product.url
 @import "~/assets/css/media-queries/media-queries.css";
 
 .product-tile {
-  padding: 0 0 0.5em;
   display: grid;
+  grid-template-rows: 16em auto 1.5em;
   grid-row: span 3;
   gap: 0.25em;
-  grid-template-rows: 16em auto 1.5em;
+  padding: 0 0 0.5em;
   font-size: var(--font-size-xs);
 
   @media (--viewport-xxs) {
@@ -72,7 +72,7 @@ const url = props.product.url
   }
 
   :deep(img) {
-    width: 100%;
+    inline-size: 100%;
   }
 }
 
@@ -86,8 +86,8 @@ const url = props.product.url
 }
 
 .image {
-  width: 100%;
-  height: 100%;
+  inline-size: 100%;
+  block-size: 100%;
   object-fit: cover;
 }
 

@@ -77,14 +77,14 @@ const localePath = useLocalePath()
   }
 
   & .category-list {
-    margin-left: 1em;
+    margin-block-start: 0.25em;
+    margin-inline-start: 1em;
     font-size: 0.9em;
-    margin-top: 0.25em;
   }
 }
 
 .list-item:not(:last-child) {
-  margin-bottom: 0.25em;
+  margin-block-end: 0.25em;
 }
 
 .link {

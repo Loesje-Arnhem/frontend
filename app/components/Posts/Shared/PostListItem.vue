@@ -57,7 +57,7 @@ const url = computed(() => {
 }
 
 .title {
-  margin-bottom: 0;
+  margin-block-end: 0;
 }
 
 .link {
@@ -65,7 +65,7 @@ const url = computed(() => {
 }
 
 .link-wrapper {
-  margin-top: auto;
+  margin-block-start: auto;
 }
 
 .date {

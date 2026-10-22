@@ -35,8 +35,8 @@ defineProps<{
   @mixin list-reset;
 
   display: grid;
-  gap: 0.5em;
   grid-template-columns: repeat(auto-fill, minmax(6em, 1fr));
+  gap: 0.5em;
 }
 
 .list-item {

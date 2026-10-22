@@ -16,40 +16,40 @@
 
 <style lang="css" scoped>
 .loader {
-  margin: 2em auto;
   position: relative;
-  width: 64px;
-  height: 11px;
   display: flex;
   align-items: center;
+  inline-size: 64px;
+  block-size: 11px;
+  margin: 2em auto;
 }
 
 .dot {
   position: absolute;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
+  inline-size: 11px;
+  block-size: 11px;
   background: currentcolor;
+  border-radius: 50%;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
 .dot-1 {
-  left: 6px;
+  inset-inline-start: 6px;
   animation: loader1 0.6s infinite;
 }
 
 .dot-2 {
-  left: 6px;
+  inset-inline-start: 6px;
   animation: loader2 0.6s infinite;
 }
 
 .dot-3 {
-  left: 26px;
+  inset-inline-start: 26px;
   animation: loader2 0.6s infinite;
 }
 
 .dot-4 {
-  left: 45px;
+  inset-inline-start: 45px;
   animation: loader3 0.6s infinite;
 }
 

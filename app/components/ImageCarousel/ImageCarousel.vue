@@ -123,7 +123,7 @@ onUnmounted(() => {
 <style lang="css" scoped>
 .wrapper {
   position: relative;
-  margin-bottom: 0.5em;
+  margin-block-end: 0.5em;
 }
 
 .list {
@@ -131,11 +131,11 @@ onUnmounted(() => {
 
   display: flex;
   overflow: hidden;
+  overflow-x: scroll;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: scroll;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
 
   &::-webkit-scrollbar {

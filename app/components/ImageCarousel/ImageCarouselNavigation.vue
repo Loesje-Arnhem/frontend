@@ -36,10 +36,10 @@ defineEmits(['next', 'previous'])
 .btn-next,
 .btn-previous {
   position: absolute;
-  top: 50%;
-  margin-top: -0.75em;
-  touch-action: manipulation;
+  inset-block-start: 50%;
   z-index: 9;
+  margin-block-start: -0.75em;
+  touch-action: manipulation;
 
   &[disabled] {
     opacity: 0.5;
@@ -47,15 +47,15 @@ defineEmits(['next', 'previous'])
 }
 
 .btn-next {
-  right: 0;
+  inset-inline-end: 0;
 }
 
 .btn-previous {
-  left: 0;
+  inset-inline-start: 0;
 }
 
 .icon {
-  width: 1.5em;
-  height: 1.5em;
+  inline-size: 1.5em;
+  block-size: 1.5em;
 }
 </style>

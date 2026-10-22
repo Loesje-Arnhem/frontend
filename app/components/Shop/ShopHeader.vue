@@ -16,12 +16,12 @@
 .header {
   display: flex;
   padding: 0.5em 0;
-  border-bottom: 2px solid var(--color-black);
-  margin-bottom: 1em;
+  margin-block-end: 1em;
+  border-block-end: 2px solid var(--color-black);
 
   @media (--viewport-md) {
-    justify-content: space-between;
     display: flex;
+    justify-content: space-between;
   }
 }
 

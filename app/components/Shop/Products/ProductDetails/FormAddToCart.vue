@@ -139,17 +139,17 @@ const options: Option[] = [...Array(10).keys()].map((index) => {
   }
 
   & :deep(button) {
-    width: 100%;
-    max-width: none;
+    inline-size: 100%;
+    max-inline-size: none;
   }
 }
 
 .price {
-  font-weight: var(--font-weight-bold);
+  padding-block-end: 0.5em;
+  margin-block-end: 0.5em;
   font-size: 1.1em;
-  margin-bottom: 0.5em;
-  padding-bottom: 0.5em;
-  border-bottom: 2px solid var(--color-black);
+  font-weight: var(--font-weight-bold);
+  border-block-end: 2px solid var(--color-black);
 }
 
 .wrapper {

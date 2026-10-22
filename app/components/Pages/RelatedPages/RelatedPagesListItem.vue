@@ -32,7 +32,7 @@ defineProps<{
   @mixin color-negative;
 
   padding: 0.5rem 1rem;
-  margin-bottom: 0;
+  margin-block-end: 0;
 }
 
 .text {

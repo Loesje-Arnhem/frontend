@@ -31,7 +31,7 @@ defineEmits(['toggle'])
 <style lang="css" scoped>
 .title {
   flex: 1 0 auto;
-  text-align: left;
+  text-align: start;
 }
 
 .sr-only {
@@ -46,16 +46,15 @@ defineEmits(['toggle'])
 }
 
 .btn {
-  gap: 0.5em;
   display: flex;
+  gap: 0.5em;
   align-items: center;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-block: 0.5em;
 
   &:hover,
   &[aria-expanded="true"] {
-    background-color: var(--color-black);
     color: var(--color-white);
+    background-color: var(--color-black);
   }
 
   &[aria-expanded="true"] {

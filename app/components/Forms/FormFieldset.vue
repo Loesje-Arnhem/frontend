@@ -20,6 +20,6 @@ defineProps<{
 }
 
 .fieldset {
-  margin-bottom: 1.5em;
+  margin-block-end: 1.5em;
 }
 </style>

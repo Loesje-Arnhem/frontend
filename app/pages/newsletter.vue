@@ -51,7 +51,7 @@ useMeta({
 
 <style lang="css" scoped>
 .newsletter {
-  max-width: var(--container-width-sm);
-  margin-bottom: 4em;
+  max-inline-size: var(--container-width-sm);
+  margin-block-end: 4em;
 }
 </style>

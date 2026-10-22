@@ -14,7 +14,7 @@ defineProps<{
 
 <style module>
 .date {
-  font-size: 0.9em;
   display: block;
+  font-size: 0.9em;
 }
 </style>

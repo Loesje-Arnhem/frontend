@@ -1,6 +1,6 @@
 @define-mixin heading {
   font-family: var(--font-family-headings);
-  text-transform: uppercase;
   line-height: var(--line-height-headings);
+  text-transform: uppercase;
   letter-spacing: 1px;
 }

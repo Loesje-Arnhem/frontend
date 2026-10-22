@@ -74,7 +74,7 @@ const cart = useCartState()
 <style lang="css" scoped>
 .price {
   font-variant-numeric: tabular-nums;
-  text-align: right;
+  text-align: end;
 }
 
 td {
@@ -87,7 +87,7 @@ td {
 
 .quantity {
   flex: 0 0 auto;
-  width: 2em;
+  inline-size: 2em;
 }
 
 .total,

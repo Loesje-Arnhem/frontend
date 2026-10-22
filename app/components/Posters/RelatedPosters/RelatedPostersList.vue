@@ -20,9 +20,9 @@ defineProps<{
 .list {
   @mixin list-reset;
 
-  margin-bottom: 3em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-block-end: 3em;
 }
 </style>

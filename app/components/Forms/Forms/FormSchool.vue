@@ -270,7 +270,7 @@ const errorMessage = computed(() => {
 }
 
 .success {
-  margin-bottom: 3em;
-  max-width: 80ch;
+  max-inline-size: 80ch;
+  margin-block-end: 3em;
 }
 </style>

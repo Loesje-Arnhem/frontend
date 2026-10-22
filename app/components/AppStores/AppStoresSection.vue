@@ -88,15 +88,15 @@ const updateTheme = () => {
 }
 
 .image-wrapper {
-  margin: 0 auto;
   position: relative;
+  margin: 0 auto;
 
   @media (--viewport-lg) {
+    float: inline-end;
+    margin-block-end: 2em;
     shape-outside: polygon(85% 0%, 0% 100%, 85% 100%);
     shape-image-threshold: 10%;
     shape-margin: 8em;
-    margin-bottom: 2em;
-    float: right;
   }
 }
 
@@ -107,10 +107,10 @@ const updateTheme = () => {
 
 .btn-theme {
   position: absolute;
-  height: 2em;
-  width: 2em;
-  right: 50%;
-  margin-right: 3em;
-  bottom: 30%;
+  inset-block-end: 30%;
+  inset-inline-end: 50%;
+  inline-size: 2em;
+  block-size: 2em;
+  margin-inline-end: 3em;
 }
 </style>

@@ -3,13 +3,13 @@ html {
 }
 
 body {
-  text-size-adjust: 100%;
-  line-height: var(--line-height-base);
+  font-family: var(--font-family-base);
   font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
   color: var(--color-black);
+  text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: var(--font-family-base);
 }
 
 p {
@@ -31,8 +31,8 @@ h3,
 legend {
   @mixin heading;
 
-  hyphens: auto;
   font-weight: var(--font-weight-bold);
+  hyphens: auto;
   text-wrap: balance;
 }
 
@@ -53,13 +53,13 @@ h3 {
 }
 
 h4 {
+  margin-block-end: 0;
   font-size: var(--font-size-m);
-  margin-bottom: 0;
 }
 
 h5 {
-  font-size: var(--font-size-m);
   margin: 0;
+  font-size: var(--font-size-m);
 }
 
 address {

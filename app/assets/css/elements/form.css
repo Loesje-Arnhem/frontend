@@ -3,14 +3,14 @@ legend {
 }
 
 fieldset {
-  border: 0;
+  min-inline-size: 0;
   padding: 0;
   margin: 0;
-  min-width: 0;
+  border: 0;
 }
 
 .form-item {
-  margin-bottom: 1rem;
+  margin-block-end: 1rem;
 }
 
 textarea {
@@ -30,26 +30,26 @@ textarea,
 select {
   @mixin tile-border;
 
-  height: auto;
-  min-height: 2.25em;
+  inline-size: 100%;
+  block-size: auto;
+  min-block-size: 2.25em;
+  padding: 0.5em 0.25em;
+  font-family: inherit;
+  font-size: 1rem;
   appearance: none;
   background: var(--color-white);
   border-radius: 0;
-  width: 100%;
-  padding: 0.5em 0.25em;
-  font-size: 1rem;
-  font-family: inherit;
   transition: border-color 0.15s ease-out;
 
   &:disabled {
-    background-color: var(--color-gray-light);
     color: var(--gray-light);
+    background-color: var(--color-gray-light);
   }
 
   &[readonly] {
-    background-color: var(--color-gray-lighter);
-    cursor: default;
     pointer-events: none;
+    cursor: default;
+    background-color: var(--color-gray-lighter);
   }
 
   &.has-error {

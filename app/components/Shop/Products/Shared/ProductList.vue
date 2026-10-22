@@ -40,14 +40,14 @@ const { data } = useFetch('/api/products/products', {
 .list {
   @mixin list-reset;
 
-  margin: 0 0 1em;
   display: grid;
-  gap: 0.5rem;
   grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin: 0 0 1em;
 
   @media (--viewport-sm) {
-    gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    gap: 1rem;
   }
 }
 </style>

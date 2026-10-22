@@ -58,13 +58,13 @@ const { email, emailShop, kvk, vat, iban } = appConfig.address
 .list {
   @mixin list-reset;
 
-  margin-bottom: var(--spacing-m);
+  margin-block-end: var(--spacing-m);
 }
 
 .link {
   display: flex;
-  margin-bottom: 0.5em;
   gap: 0.5em;
+  margin-block-end: 0.5em;
 }
 
 .icon {

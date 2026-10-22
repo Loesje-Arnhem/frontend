@@ -28,14 +28,14 @@ defineProps<{
 
 <style lang="css" scoped>
 .product-wrapper {
-  margin-bottom: 3em;
+  margin-block-end: 3em;
 }
 
 .product-details {
-  margin: 0 0 1em;
   display: grid;
-  gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+  gap: 1rem;
   align-items: start;
+  margin: 0 0 1em;
 }
 </style>

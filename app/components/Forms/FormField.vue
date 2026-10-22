@@ -42,11 +42,11 @@ const errorMessage = computed(() => {
 <style lang="css" scoped>
 .label {
   display: block;
-  margin-bottom: 0.25em;
+  margin-block-end: 0.25em;
   font-weight: var(--font-weight-bold);
 }
 
 .description {
-  margin-bottom: 0.5em;
+  margin-block-end: 0.5em;
 }
 </style>

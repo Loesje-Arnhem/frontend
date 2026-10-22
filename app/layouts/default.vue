@@ -99,17 +99,17 @@ useHead({
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-block-size: 100vh;
 
   @supports (min-height: 100dvh) {
-    min-height: 100dvh;
+    min-block-size: 100dvh;
   }
 }
 
 .page-header {
-  z-index: var(--z-main-navigation);
-  top: 0;
   position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-main-navigation);
 }
 
 .page-header-top {

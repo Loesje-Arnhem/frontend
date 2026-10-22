@@ -40,11 +40,10 @@ const backgroundImage = computed(() =>
   @mixin list-reset;
 
   display: grid;
-  gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   padding: 1em 0 3em;
-  margin-bottom: 1em;
-  margin-top: -0.5em;
+  margin-block: -0.5em 1em;
 
   @media (--viewport-sm) {
     grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));

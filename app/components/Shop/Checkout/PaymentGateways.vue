@@ -68,10 +68,10 @@ onMounted(() => {
   display: flex;
   gap: 0.5em;
   align-items: center;
-  border-bottom: 1px solid #000;
+  border-block-end: 1px solid #000;
 
   &:last-child {
-    border-bottom-width: 0;
+    border-block-end-width: 0;
   }
 }
 
@@ -83,15 +83,15 @@ onMounted(() => {
 
 .input {
   flex: 0 0 auto;
-  transform: translateY(-0.25em);
-  width: 1.25em;
+  inline-size: 1.25em;
   aspect-ratio: 1 / 1;
+  transform: translateY(-0.25em);
 }
 
 .label {
-  padding: 0.5em 0;
-  margin: 0;
   display: block;
   flex: 1 1 auto;
+  padding: 0.5em 0;
+  margin: 0;
 }
 </style>

@@ -64,8 +64,8 @@ const model = defineModel<string>({ required: true })
 
 .icon {
   position: absolute;
-  top: 0.5em;
-  right: 0.5em;
+  inset-block-start: 0.5em;
+  inset-inline-end: 0.5em;
   pointer-events: none;
 }
 </style>

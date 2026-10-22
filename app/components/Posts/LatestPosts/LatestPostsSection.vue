@@ -36,18 +36,18 @@ const localePath = useLocalePath()
 @import "~/assets/css/media-queries/media-queries.css";
 
 .latest-posts {
-  padding-bottom: 2em;
+  padding-block-end: 2em;
 }
 
 .wrapper {
-  display: grid;
-  align-items: start;
-  gap: 2em;
   position: relative;
+  display: grid;
   grid-template-areas:
     "list"
     "become-member"
     "balloon";
+  gap: 2em;
+  align-items: start;
 
   @media (--viewport-md) {
     grid-template-areas:
@@ -68,11 +68,11 @@ const localePath = useLocalePath()
 
 .balloon {
   grid-area: balloon;
-  padding-left: 3em;
+  padding-inline-start: 3em;
 
   @media (--viewport-md) {
     justify-self: center;
-    padding-left: 0;
+    padding-inline-start: 0;
   }
 }
 

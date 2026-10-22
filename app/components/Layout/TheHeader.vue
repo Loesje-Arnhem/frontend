@@ -71,8 +71,8 @@ const lockBodyScoll = (isOpen: boolean) => {
 
 .fade-enter-from,
 .fade-leave-to {
-  transform: translateX(-5em);
   opacity: 0;
+  transform: translateX(-5em);
 }
 
 .slide-enter-active,
@@ -89,52 +89,52 @@ const lockBodyScoll = (isOpen: boolean) => {
 .header {
   @mixin color-negative;
 
-  border-bottom: 1px solid var(--color-white);
+  border-block-end: 1px solid var(--color-white);
 }
 
 .background {
   position: fixed;
-  background: var(--color-black);
   inset: 0;
-  height: 100vh;
-  overflow: hidden;
   z-index: var(--z-main-navigation);
+  block-size: 100vh;
   padding:
     env(safe-area-inset-top) env(safe-area-inset-left) 0
     env(safe-area-inset-right);
+  overflow: hidden;
+  background: var(--color-black);
 
   @media (--show-full-navigation) {
-    background: transparent;
-    height: auto;
     position: static;
+    display: block !important;
+    block-size: auto;
     padding: 0;
     overflow: visible;
-    display: block !important;
+    background: transparent;
   }
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
+  max-block-size: 100vh;
   padding: var(--gutter) var(--gutter) 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  max-height: 100vh;
-  display: flex;
-  flex-direction: column;
 
   @media (--show-full-navigation) {
+    display: block !important;
+    inline-size: 100%;
+    max-block-size: none;
     padding: 0;
     overflow: visible;
     transform: none;
-    display: block !important;
-    max-height: none;
-    width: 100%;
   }
 }
 
 .toggle {
   flex: 0 0 auto;
-  margin-bottom: 1em;
   align-self: flex-end;
+  margin-block-end: 1em;
 
   @media (--show-full-navigation) {
     display: none;

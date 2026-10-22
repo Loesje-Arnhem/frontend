@@ -43,8 +43,8 @@
 
 .link {
   display: flex;
-  margin-bottom: 0.5em;
   gap: 0.5em;
+  margin-block-end: 0.5em;
 }
 
 .icon {

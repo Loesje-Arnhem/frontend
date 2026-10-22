@@ -53,7 +53,7 @@ const {
   position: relative;
 
   h2 {
-    margin-bottom: var(--spacing-xs);
+    margin-block-end: var(--spacing-xs);
   }
 }
 
@@ -63,7 +63,7 @@ const {
 
   @media (--viewport-sm) {
     grid-template-columns: repeat(2, 1fr);
-    padding-bottom: 12em;
+    padding-block-end: 12em;
   }
 
   @media (--viewport-md) {
@@ -71,7 +71,7 @@ const {
   }
 
   @media (width >= 1520px) {
-    padding-bottom: 8em;
+    padding-block-end: 8em;
   }
 }
 
@@ -80,8 +80,8 @@ const {
 
   @media (--viewport-sm) {
     position: absolute;
-    bottom: var(--gutter);
-    right: var(--gutter);
+    inset-block-end: var(--gutter);
+    inset-inline-end: var(--gutter);
   }
 }
 
@@ -90,9 +90,9 @@ const {
 }
 
 .icon-store {
+  inline-size: 100%;
+  block-size: auto;
+  margin-block-end: 0.5em;
   fill: inherit;
-  width: 100%;
-  height: auto;
-  margin-bottom: 0.5em;
 }
 </style>

@@ -60,11 +60,11 @@ nav {
   @mixin hide-for-print;
 
   @media (--stand-alone) {
-    padding-top: env(safe-area-inset-top);
+    padding-block-start: env(safe-area-inset-top);
   }
 
   display: flex;
-  margin-bottom: 1em;
+  margin-block-end: 1em;
 }
 
 a {
@@ -75,14 +75,14 @@ a {
 .icon {
   @mixin icon 0.8em;
 
-  transition: transform ease-out 0.2s;
   transform: translate(0, 0.1em);
+  transition: transform ease-out 0.2s;
 }
 
 /* stylelint-disable no-descending-specificity */
 .btn-search {
   & .icon {
-    margin-right: 0.25em;
+    margin-inline-end: 0.25em;
   }
 
   &:hover .icon {
@@ -91,10 +91,10 @@ a {
 }
 
 .btn-favorites {
-  margin-left: auto;
+  margin-inline-start: auto;
 
   & .icon {
-    margin-left: 0.25em;
+    margin-inline-start: 0.25em;
   }
 
   &:hover .icon {
@@ -110,7 +110,7 @@ a {
 
 .slide-enter,
 .slide-leave-to {
-  transform: translateY(-0.5em);
   opacity: 0;
+  transform: translateY(-0.5em);
 }
 </style>

@@ -46,10 +46,10 @@
 }
 
 .icon-store {
+  inline-size: 100%;
+  max-inline-size: 10em;
+  block-size: auto;
+  margin-block-end: 0.25em;
   fill: inherit;
-  width: 100%;
-  height: auto;
-  max-width: 10em;
-  margin-bottom: 0.25em;
 }
 </style>

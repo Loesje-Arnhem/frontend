@@ -24,17 +24,17 @@ defineProps<{
 .list {
   @mixin list-reset;
 
-  margin-bottom: 2em;
   display: grid;
-  gap: 2em;
   grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+  gap: 2em;
   align-items: stretch;
+  margin-block-end: 2em;
 }
 
 .list-item {
-  padding-bottom: 2em;
-  border-bottom: 2px solid var(--color-black);
   display: flex;
   flex-direction: column;
+  padding-block-end: 2em;
+  border-block-end: 2px solid var(--color-black);
 }
 </style>

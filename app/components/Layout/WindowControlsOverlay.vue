@@ -51,7 +51,7 @@ onUnmounted(() => {
 <style lang="css" scoped>
 .wrapper,
 .placeholder {
-  height: 3em;
+  block-size: 3em;
 }
 
 .wrapper {
@@ -59,17 +59,17 @@ onUnmounted(() => {
   @mixin color-negative;
 
   position: fixed;
-  app-region: drag;
   inset: env(titlebar-area-y, 0) 0 auto;
-  padding: 0.5em env(titlebar-area-x, 0);
   z-index: 9;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0.5em env(titlebar-area-x, 0);
+  app-region: drag;
 }
 
 .logo {
   display: block;
-  height: 100%;
+  block-size: 100%;
 }
 </style>

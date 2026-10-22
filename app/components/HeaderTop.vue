@@ -36,8 +36,8 @@
 @import "~/assets/css/media-queries/media-queries.css";
 
 .wrapper {
-  padding-top: var(--spacing-s);
-  max-width: var(--container-width-md);
+  max-inline-size: var(--container-width-md);
+  padding-block-start: var(--spacing-s);
 
   @media (--viewport-sm) {
     display: flex;
@@ -45,7 +45,7 @@
   }
 
   @media (--show-full-navigation) {
-    padding-top: 2em;
+    padding-block-start: 2em;
   }
 }
 
@@ -56,11 +56,11 @@
 }
 
 .poster-daily {
+  position: relative;
   flex: 0 0 15em;
   order: -1;
-  position: relative;
-  max-width: 18em;
-  width: 100%;
+  inline-size: 100%;
+  max-inline-size: 18em;
   margin: 0 auto -1em;
 }
 
@@ -70,12 +70,12 @@
   transform: rotate(-2deg);
 
   &::after {
-    display: block;
-    content: "";
     position: absolute;
     inset: 0;
-    box-shadow: inset 0 0 0 1px var(--color-white);
+    display: block;
     pointer-events: none;
+    content: "";
+    box-shadow: inset 0 0 0 1px var(--color-white);
   }
 }
 
@@ -84,7 +84,7 @@
 }
 
 .background {
-  width: 100%;
   display: block;
+  inline-size: 100%;
 }
 </style>

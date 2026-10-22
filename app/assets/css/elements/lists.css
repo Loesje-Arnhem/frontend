@@ -1,5 +1,5 @@
 ol,
 ul {
+  padding-inline-start: 1em;
   margin: 0 0 1em;
-  padding-left: 1em;
 }

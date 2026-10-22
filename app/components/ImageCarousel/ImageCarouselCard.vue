@@ -53,10 +53,10 @@ onUnmounted(() => {
 
 <style lang="css" scoped>
 .list-item {
-  scroll-snap-align: center;
   display: flex;
-  align-items: center;
   flex: 0 0 auto;
-  width: 100%;
+  align-items: center;
+  inline-size: 100%;
+  scroll-snap-align: center;
 }
 </style>

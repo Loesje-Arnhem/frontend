@@ -99,31 +99,31 @@ const setArrowPosition = () => {
 
 .nav {
   position: relative;
-  margin-bottom: var(--spacing-m);
+  margin-block-end: var(--spacing-m);
 
   @media (--show-full-navigation) {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 
 .menu {
   @mixin list-reset;
 
-  padding-bottom: 5em;
+  padding-block-end: 5em;
 
   @media (--show-full-navigation) {
     display: flex;
-    padding-bottom: 0;
     justify-content: space-between;
+    padding-block-end: 0;
   }
 }
 
 .arrow {
-  height: 3px;
-  background: var(--color-white);
-  display: none;
   position: absolute;
-  bottom: 8px;
+  inset-block-end: 8px;
+  display: none;
+  block-size: 3px;
+  background: var(--color-white);
   transition: all var(--animation);
 
   @media (--show-full-navigation) {
@@ -131,7 +131,7 @@ const setArrowPosition = () => {
   }
 
   @media (--viewport-lg) {
-    bottom: 13px;
+    inset-block-end: 13px;
   }
 }
 </style>

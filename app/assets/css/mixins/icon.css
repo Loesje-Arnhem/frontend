@@ -1,6 +1,6 @@
 @define-mixin icon $width: 1em, $height: $width {
-  width: $width;
-  height: $height;
-  fill: currentcolor;
   display: inline-block;
+  inline-size: $width;
+  block-size: $height;
+  fill: currentcolor;
 }

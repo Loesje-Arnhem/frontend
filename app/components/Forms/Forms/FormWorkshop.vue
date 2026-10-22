@@ -288,7 +288,7 @@ const errorMessage = computed(() => {
 
 .form {
   position: relative;
-  padding-bottom: 2em;
+  padding-block-end: 2em;
 
   @media (--viewport-lg) {
     padding: 0 15em 2em 0;
@@ -314,17 +314,17 @@ const errorMessage = computed(() => {
   display: none;
 
   @media (--viewport-lg) {
-    pointer-events: none;
-    display: block;
-    bottom: 3em;
-    right: 3em;
-    transform: scaleX(-1);
     position: absolute;
+    inset-block-end: 3em;
+    inset-inline-end: 3em;
+    display: block;
+    pointer-events: none;
+    transform: scaleX(-1);
   }
 }
 
 .success {
-  margin-bottom: 3em;
-  max-width: 80ch;
+  max-inline-size: 80ch;
+  margin-block-end: 3em;
 }
 </style>

@@ -125,9 +125,9 @@ const id = useId()
   flex: 0 0 auto;
 
   @media (--show-full-navigation) {
-    align-items: center;
-    flex-wrap: wrap;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
   }
 }
 

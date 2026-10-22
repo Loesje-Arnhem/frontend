@@ -34,6 +34,6 @@ const close = () => {
 
 <style lang="css" scoped>
 .wrapper {
-  margin-bottom: 4em;
+  margin-block-end: 4em;
 }
 </style>

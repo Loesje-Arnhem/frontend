@@ -44,7 +44,7 @@
 .instagram {
   @mixin clearfix;
 
-  min-height: 80vw;
+  min-block-size: 80vw;
 }
 
 .wrapper {
@@ -53,26 +53,24 @@
 
 .background {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
+  inset-block-start: 0;
+  inset-inline: 0;
   pointer-events: none;
 }
 
 .list {
   @mixin list-reset;
 
-  padding: 7em 0 0 2em;
   display: flex;
   flex-wrap: wrap;
+  padding: 7em 0 0 2em;
 }
 
 .button-wrapper {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: right;
+  inset-block-end: 0;
+  inset-inline: 0;
+  text-align: end;
 }
 
 .list-item {
@@ -86,8 +84,8 @@
 }
 
 .link {
-  width: 50%;
   display: block;
+  inline-size: 50%;
 }
 
 .link-1 {

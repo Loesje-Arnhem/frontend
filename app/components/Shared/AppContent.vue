@@ -60,9 +60,9 @@ const hasMedia = computed(() => {
 }
 
 .has-media {
-  align-items: start;
   display: grid;
   gap: calc(var(--gutter) * 2);
+  align-items: start;
 
   @media (--viewport-lg) {
     grid-template-columns: auto 22em;
@@ -74,8 +74,8 @@ const hasMedia = computed(() => {
 }
 
 .media {
-  max-width: 20em;
-  width: 100%;
+  inline-size: 100%;
+  max-inline-size: 20em;
   margin: 1em auto;
 
   @media (--viewport-lg) {

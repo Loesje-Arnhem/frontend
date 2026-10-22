@@ -44,8 +44,8 @@ defineProps<{
   }
 
   @media (--viewport-lg) {
-    margin-bottom: 2em;
     grid-column: span 4;
+    margin-block-end: 2em;
 
     &:nth-child(2n) {
       grid-column: 3 / span 4;

@@ -23,14 +23,14 @@ defineProps<{
 
 <style lang="css" scoped>
 .icon {
-  transition: margin 0.2s ease-out;
   transform: translate3d(2px, 2px, 0);
+  transition: margin 0.2s ease-out;
 }
 
 .read-more {
   &:hover {
     & .icon {
-      margin-left: 0.25em;
+      margin-inline-start: 0.25em;
     }
   }
 }

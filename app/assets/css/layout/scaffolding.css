@@ -7,8 +7,8 @@
 }
 
 ::selection {
-  background: var(--color-black);
   color: var(--color-white);
+  background: var(--color-black);
 }
 
 html {
@@ -16,8 +16,8 @@ html {
 }
 
 body {
-  background: var(--color-white);
   margin: 0;
+  background: var(--color-white);
 }
 
 p:empty {

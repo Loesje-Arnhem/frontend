@@ -37,8 +37,8 @@ const { title } = useAppConfig()
 
 .buttons {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .logo-wrapper {

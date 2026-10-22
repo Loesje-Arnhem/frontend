@@ -65,8 +65,8 @@ onUnmounted(() => {
 
 <style lang="css" scoped>
 .dialog {
-  width: calc(100% - var(--gutter) * 2);
-  max-width: var(--container-width-md);
+  inline-size: calc(100% - var(--gutter) * 2);
+  max-inline-size: var(--container-width-md);
   padding: 0 var(--gutter) 5em;
   border: 4px solid var(--color-black);
 
@@ -94,20 +94,20 @@ onUnmounted(() => {
 
 .header {
   position: sticky;
-  top: 0;
-  background-color: var(--color-white);
+  inset-block-start: 0;
+  z-index: 9;
   display: flex;
+  gap: 0.5em;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 0.5em;
-  border-bottom: 1px solid var(--color-black);
-  z-index: 9;
-  margin-bottom: 0.5em;
   padding-block: var(--gutter);
+  margin-block-end: 0.5em;
+  background-color: var(--color-white);
+  border-block-end: 1px solid var(--color-black);
 }
 
 .title {
-  margin-bottom: 0;
+  margin-block-end: 0;
 }
 
 .btn-close {
@@ -115,25 +115,25 @@ onUnmounted(() => {
 }
 
 .icon {
-  width: 2em;
+  inline-size: 2em;
 }
 
 @keyframes show-dialog {
   from {
-    translate: 0 -0.5em;
     opacity: 0;
+    translate: 0 -0.5em;
   }
 
   to {
-    translate: 0 0;
     opacity: 1;
+    translate: 0 0;
   }
 }
 
 @keyframes hide-dialog {
   to {
-    translate: 0 -0.5em;
     opacity: 0;
+    translate: 0 -0.5em;
   }
 }
 

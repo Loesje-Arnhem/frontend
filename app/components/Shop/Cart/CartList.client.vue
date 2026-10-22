@@ -88,7 +88,7 @@ const loading = ref(false)
 @import "~/assets/css/media-queries/media-queries.css";
 
 .cart {
-  margin-bottom: var(--spacing-l);
+  margin-block-end: var(--spacing-l);
 }
 
 .list {
@@ -97,7 +97,7 @@ const loading = ref(false)
 
 .cart-footer {
   @media (--viewport-sm) {
-    padding-left: 50%;
+    padding-inline-start: 50%;
   }
 }
 
@@ -105,6 +105,6 @@ const loading = ref(false)
   display: grid;
   grid-template-columns: 5em auto;
   column-gap: var(--spacing-s);
-  margin-bottom: var(--spacing-m);
+  margin-block-end: var(--spacing-m);
 }
 </style>

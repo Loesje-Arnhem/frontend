@@ -1,5 +1,5 @@
 @define-mixin list-reset {
+  padding-inline-start: 0;
+  margin-block-end: 0;
   list-style: none;
-  padding-left: 0;
-  margin-bottom: 0;
 }

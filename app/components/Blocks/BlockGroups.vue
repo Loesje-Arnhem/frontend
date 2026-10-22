@@ -48,13 +48,13 @@
 }
 
 .image-wrapper {
-  margin-bottom: 2em;
+  margin-block-end: 2em;
 
   @media (--viewport-lg) {
+    float: inline-end;
     shape-outside: url("/images/nederland.png");
     shape-image-threshold: 10%;
     shape-margin: 2em;
-    float: right;
   }
 }
 
@@ -62,7 +62,7 @@
   order: -1;
 
   @media (--viewport-lg) {
-    padding-top: 6em;
+    padding-block-start: 6em;
   }
 }
 </style>

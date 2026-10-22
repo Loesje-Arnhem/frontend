@@ -48,10 +48,10 @@ defineEmits(['toggle-menu'])
   @mixin btn;
   @mixin hover-with-title;
 
-  font-size: var(--font-size-xs);
-  border-color: var(--color-white);
   display: flex;
   align-items: center;
+  font-size: var(--font-size-xs);
+  border-color: var(--color-white);
 
   @media (--show-full-navigation) {
     display: none;
@@ -59,7 +59,7 @@ defineEmits(['toggle-menu'])
 }
 
 .icon {
-  margin-right: var(--spacing-xxs);
+  margin-inline-end: var(--spacing-xxs);
   fill: currentcolor;
 }
 </style>

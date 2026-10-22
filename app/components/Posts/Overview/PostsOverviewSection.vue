@@ -66,7 +66,7 @@ const loadMore = () => {
 
 <style lang="css" scoped>
 .posts-overview {
-  padding-bottom: 2em;
+  padding-block-end: 2em;
 }
 
 .button-wrapper {

@@ -124,11 +124,11 @@ const removeItemFromCard = async () => {
 
 <style lang="css" scoped>
 .remove-wrapper {
-  width: 1.5em;
+  inline-size: 1.5em;
 }
 
 .image-wrapper {
-  width: 8em;
+  inline-size: 8em;
 }
 
 .image {
@@ -136,11 +136,11 @@ const removeItemFromCard = async () => {
 }
 
 .quantity {
-  width: 5em;
+  inline-size: 5em;
 }
 
 .price {
-  width: 8em;
+  inline-size: 8em;
 }
 
 .select {

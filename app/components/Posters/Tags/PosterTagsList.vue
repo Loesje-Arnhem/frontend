@@ -25,9 +25,9 @@ defineProps<{
 .list {
   @mixin list-reset;
 
-  margin: 0 0 1em;
-  gap: 0.5em;
   display: flex;
   flex-wrap: wrap;
+  gap: 0.5em;
+  margin: 0 0 1em;
 }
 </style>

@@ -24,7 +24,7 @@ withDefaults(
   padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
 
   &.top {
-    padding-top: env(safe-area-inset-top);
+    padding-block-start: env(safe-area-inset-top);
   }
 }
 

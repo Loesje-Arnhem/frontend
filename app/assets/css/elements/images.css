@@ -1,7 +1,7 @@
 img {
+  max-inline-size: 100%;
+  block-size: auto;
   border: 0;
-  height: auto;
-  max-width: 100%;
 }
 
 figure {

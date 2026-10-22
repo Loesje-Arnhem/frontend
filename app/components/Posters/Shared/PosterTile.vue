@@ -38,18 +38,18 @@ const transitionName = computed(() => `image-${props.poster.id}`)
 
 <style lang="css" scoped>
 .link {
-  width: 100%;
   display: block;
+  inline-size: 100%;
   padding: 2px;
 
   &:focus {
-    outline-offset: 3px;
     outline-width: 1px;
+    outline-offset: 3px;
   }
 }
 
 .tile-wrapper {
-  view-transition-name: v-bind(transitionName);
   background: var(--color-white);
+  view-transition-name: v-bind(transitionName);
 }
 </style>

@@ -123,12 +123,12 @@ const today = () => {
 }
 
 .buttons {
-  border: 2px solid var(--color-black);
-  background-color: var(--color-black);
   display: grid;
-  margin-bottom: 1em;
-  gap: 1px;
   grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin-block-end: 1em;
+  background-color: var(--color-black);
+  border: 2px solid var(--color-black);
 
   @media (--viewport-lg) {
     grid-template-columns: repeat(4, 1fr);
@@ -136,27 +136,25 @@ const today = () => {
 }
 
 .filter-item {
-  padding-left: 1em;
-  padding-right: 1em;
-  background-color: var(--color-white);
+  padding-inline: 1em;
   overflow: hidden;
+  background-color: var(--color-white);
 }
 
 .tags {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
+  inset-block-start: 100%;
+  inset-inline: 0;
+  z-index: 1;
   padding: 1em 0 0;
   background: rgb(255 255 255 / 80%);
-  z-index: 1;
 }
 
 .date {
   & :deep(.field) {
     display: flex;
-    align-items: center;
     gap: 0.25em;
+    align-items: center;
   }
 
   & :deep(.label) {
@@ -164,10 +162,10 @@ const today = () => {
   }
 
   & :deep(.input) {
-    border-image-source: none !important;
-    border-image-outset: 0 !important;
     flex: 1 1 auto;
     border-width: 0;
+    border-image-source: none !important;
+    border-image-outset: 0 !important;
   }
 }
 </style>

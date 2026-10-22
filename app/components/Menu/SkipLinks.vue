@@ -28,9 +28,9 @@
   &:focus,
   &:active {
     position: fixed;
+    inset-block-start: 1rem;
+    inset-inline-start: 1rem;
     z-index: var(--z-skip-links);
-    top: 1rem;
-    left: 1rem;
   }
 }
 </style>

@@ -40,6 +40,6 @@ const loading = computed(() => {
 <style lang="css" scoped>
 .image :deep(img) {
   display: block;
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 </style>

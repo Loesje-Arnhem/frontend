@@ -22,17 +22,17 @@ defineProps<{
 
 <style lang="css" scoped>
 .alert {
-  z-index: var(--z-index-alert);
-  background-color: var(--color-white);
-  padding-block: 0.75em;
-  line-height: 1.2;
   position: fixed;
   inset: auto 0 0;
-  border: 1px solid currentcolor;
+  z-index: var(--z-index-alert);
+  padding-block: 0.75em;
+  line-height: 1.2;
   text-align: center;
+  background-color: var(--color-white);
+  border: 1px solid currentcolor;
 }
 
 .wrapper {
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-block-end: env(safe-area-inset-bottom);
 }
 </style>

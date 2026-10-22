@@ -21,7 +21,7 @@ defineProps<{
 .list {
   @mixin list-reset;
 
-  margin-bottom: 2em;
+  margin-block-end: 2em;
 }
 
 .list-item {

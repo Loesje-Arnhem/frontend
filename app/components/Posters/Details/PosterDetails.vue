@@ -128,7 +128,7 @@ const transitionName = computed(() => `image-${props.poster.id}`)
 .poster-details {
   display: grid;
   gap: 1em;
-  margin-bottom: 2em;
+  margin-block-end: 2em;
 
   @media (--viewport-sm) {
     grid-template-columns: 1fr 1fr;
@@ -141,7 +141,7 @@ const transitionName = computed(() => `image-${props.poster.id}`)
 
 .content {
   @media print {
-    width: 95%;
+    inline-size: 95%;
     margin: 0 auto;
   }
 }
@@ -154,8 +154,8 @@ const transitionName = computed(() => `image-${props.poster.id}`)
 }
 
 .definition-title {
+  padding-block-start: 0;
   font-weight: var(--font-weight-bold);
-  padding-top: 0;
 }
 
 .definition-list {
@@ -163,28 +163,28 @@ const transitionName = computed(() => `image-${props.poster.id}`)
 }
 
 .definition-item {
-  margin-left: 0;
-  margin-bottom: 0.5em;
+  margin-block-end: 0.5em;
+  margin-inline-start: 0;
 }
 
 .tags-list {
-  margin-bottom: 0;
+  margin-block-end: 0;
 }
 
 .social-media {
-  margin-top: auto;
+  margin-block-start: auto;
 }
 
 .buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
-  margin-bottom: 1.5em;
+  margin-block-end: 1.5em;
 }
 
 .icon {
-  width: 1em;
-  height: 1em;
+  inline-size: 1em;
+  block-size: 1em;
 }
 
 .tile-wrapper {
@@ -202,7 +202,7 @@ const transitionName = computed(() => `image-${props.poster.id}`)
 }
 
 .image:deep(img) {
-  width: 100%;
+  inline-size: 100%;
 }
 
 .placeholder {

@@ -38,17 +38,17 @@ const usps = [
 .list {
   @mixin list-reset;
 
-  margin-bottom: 1em;
+  margin-block-end: 1em;
 }
 
 .check {
   flex: 0 1 auto;
-  width: auto;
+  inline-size: auto;
 }
 
 .list-item {
+  display: flex;
   gap: 0.25em;
   padding: 0 0 0.5rem;
-  display: flex;
 }
 </style>

@@ -33,9 +33,9 @@
 }
 
 .sidebar-item {
-  padding: var(--spacing-s);
   position: sticky;
-  top: 4.5em;
-  margin-bottom: 1em;
+  inset-block-start: 4.5em;
+  padding: var(--spacing-s);
+  margin-block-end: 1em;
 }
 </style>

@@ -1,34 +1,33 @@
 table {
-  width: 100%;
+  inline-size: 100%;
   padding: 0;
   margin: 0;
-  border: 0;
   border-collapse: collapse;
+  border: 0;
 }
 
 th {
-  text-align: left;
   font-weight: var(--font-weight-bold);
+  text-align: start;
 }
 
 th,
 td {
-  vertical-align: top;
   padding: 0.1em 0 0.1em 1em;
+  vertical-align: top;
 
   &:first-child {
-    padding-left: 0;
+    padding-inline-start: 0;
   }
 }
 
 .table-large {
   & td {
-    padding-top: 0.75em;
-    padding-bottom: 0.75em;
-    border-top: 2px solid #000;
+    padding-block: 0.75em;
+    border-block-start: 2px solid #000;
   }
 
   & tr:last-child td {
-    border-bottom: 2px solid #000;
+    border-block-end: 2px solid #000;
   }
 }

@@ -17,11 +17,11 @@ defineProps<{
 
 <style lang="css" scoped>
 .main-image {
-  margin-bottom: 0.5em;
+  margin-block-end: 0.5em;
 }
 
 .image {
-  height: 100%;
+  block-size: 100%;
   object-fit: cover;
 }
 </style>

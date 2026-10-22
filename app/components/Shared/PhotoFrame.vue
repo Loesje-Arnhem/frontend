@@ -38,9 +38,9 @@ defineProps<{
 
 .featured-image:deep(img) {
   position: absolute;
-  top: 11%;
-  left: 17%;
-  width: 68%;
+  inset-block-start: 11%;
+  inset-inline-start: 17%;
+  inline-size: 68%;
   aspect-ratio: 24 / 36;
   object-fit: cover;
 }

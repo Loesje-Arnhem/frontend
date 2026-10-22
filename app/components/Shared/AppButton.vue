@@ -76,17 +76,17 @@ const cssClasses = computed(() => {
 .btn {
   @mixin heading;
 
-  background: var(--color-black);
+  position: relative;
+  display: inline-flex;
+  gap: 0.25em;
+  align-items: center;
+  justify-content: center;
+  max-inline-size: 20em;
+  padding: 0.75em 2em;
   color: var(--color-white);
   text-align: center;
-  justify-content: center;
-  display: inline-flex;
-  align-items: center;
   text-decoration: none;
-  padding: 0.75em 2em;
-  max-width: 20em;
-  gap: 0.25em;
-  position: relative;
+  background: var(--color-black);
 
   .is-loaded & {
     @supports (border-image-source: paint(rough-boxes)) {
@@ -111,24 +111,24 @@ a {
 }
 
 .btn-outline {
-  line-height: 1.1;
   padding: 0.25em 0.75em;
+  line-height: 1.1;
+  background: var(--color-white);
   border: 2px solid var(--color-black);
   border-radius: 1em;
-  background: var(--color-white);
   transition: box-shadow 0.1s ease-out;
 
   &.is-active {
-    background: var(--color-black);
     color: var(--color-white);
+    background: var(--color-black);
   }
 }
 
 .title {
-  transition: box-shadow 0.2s ease-out;
   display: flex;
-  align-items: center;
   gap: var(--spacing-xs);
+  align-items: center;
+  transition: box-shadow 0.2s ease-out;
 
   .btn:hover & {
     box-shadow: 0 3px 0 0 currentcolor;
