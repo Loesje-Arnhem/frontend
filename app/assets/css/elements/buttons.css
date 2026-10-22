@@ -1,18 +1,18 @@
 button {
-  border: none;
-  margin: 0;
+  inline-size: auto;
   padding: 0;
-  width: auto;
+  margin: 0;
   overflow: visible;
-  background: transparent;
-  color: inherit;
   font: inherit;
   line-height: normal;
+  color: inherit;
+  text-decoration: none;
+  appearance: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
-  appearance: none;
-  text-decoration: none;
-  cursor: pointer;
 
   &[disabled] {
     cursor: not-allowed;
