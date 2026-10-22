@@ -67,7 +67,7 @@
 .image-wrapper {
   position: absolute;
   inset: 9% 13% auto 17%;
-  transform: rotate(-2deg);
+  rotate: -2deg;
 
   &::after {
     position: absolute;
