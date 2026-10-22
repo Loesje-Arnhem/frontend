@@ -55,31 +55,31 @@
 
 @keyframes loader1 {
   0% {
-    transform: scale(0);
+    scale: 0;
   }
 
   100% {
-    transform: scale(1);
+    scale: 1;
   }
 }
 
 @keyframes loader3 {
   0% {
-    transform: scale(1);
+    scale: 1;
   }
 
   100% {
-    transform: scale(0);
+    scale: 0;
   }
 }
 
 @keyframes loader2 {
   0% {
-    transform: translate(0, 0);
+    translate: 0, 0;
   }
 
   100% {
-    transform: translate(19px, 0);
+    translate: 19px, 0;
   }
 }
 </style>

@@ -205,10 +205,10 @@ const id = useId()
 .icon {
   transition: transform var(--animation);
   [aria-expanded="true"] & {
-    transform: rotate(-180deg);
+    rotate: -180deg;
 
     @media (--show-full-navigation) {
-      transform: rotate(0deg);
+      rotate: 0deg;
     }
   }
 }
