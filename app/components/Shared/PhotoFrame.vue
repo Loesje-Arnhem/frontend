@@ -29,7 +29,7 @@ defineProps<{
 <style lang="css" scoped>
 .photo-wrapper {
   position: relative;
-  transform: rotate(2deg);
+  rotate: 2deg;
 }
 
 .frame {

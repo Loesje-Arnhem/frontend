@@ -96,28 +96,28 @@ export default {
 
 @keyframes balloon-y {
   50% {
-    transform: translateX(8rem);
+    translate: 8rem 0;
     animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
   }
 }
 
 @keyframes balloon-x {
   50% {
-    transform: translateY(2rem);
+    translate: 0 2rem;
     animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
   }
 }
 
 @keyframes balloon-y-large {
   50% {
-    transform: translateY(-8rem);
+    translate: 0 -8rem;
     animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
   }
 }
 
 @keyframes balloon-x-large {
   50% {
-    transform: translateX(-2rem);
+    translate: -2rem 0;
     animation-timing-function: cubic-bezier(0.02, 0.01, 0.21, 1);
   }
 }

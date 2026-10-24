@@ -68,7 +68,7 @@ const { email, emailShop, kvk, vat, iban } = appConfig.address
 }
 
 .icon {
-  transform: translateY(0.2em);
+  translate: 0 0.2em;
 }
 
 .company-details {

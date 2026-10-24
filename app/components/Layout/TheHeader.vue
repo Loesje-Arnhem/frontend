@@ -72,7 +72,7 @@ const lockBodyScoll = (isOpen: boolean) => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: translateX(-5em);
+  translate: -5em 0;
 }
 
 .slide-enter-active,
@@ -83,7 +83,7 @@ const lockBodyScoll = (isOpen: boolean) => {
 .slide-enter-from,
 .slide-leave-to {
   opacity: 0.8;
-  transform: translateX(-100vw);
+  translate: -100vw 0;
 }
 
 .header {
@@ -127,7 +127,7 @@ const lockBodyScoll = (isOpen: boolean) => {
     max-block-size: none;
     padding: 0;
     overflow: visible;
-    transform: none;
+    translate: 0 0;
   }
 }
 

@@ -85,7 +85,7 @@ onMounted(() => {
   flex: 0 0 auto;
   inline-size: 1.25em;
   aspect-ratio: 1 / 1;
-  transform: translateY(-0.25em);
+  translate: 0 -0.25em;
 }
 
 .label {

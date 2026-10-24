@@ -319,7 +319,7 @@ const errorMessage = computed(() => {
     inset-inline-end: 3em;
     display: block;
     pointer-events: none;
-    transform: scaleX(-1);
+    scale: -1 1;
   }
 }
 

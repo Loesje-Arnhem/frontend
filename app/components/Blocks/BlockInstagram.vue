@@ -89,14 +89,17 @@
 }
 
 .link-1 {
-  transform: rotate(12.5deg) translate(0, 0);
+  rotate: 12.5de;
+  translate: 0 0;
 }
 
 .link-2 {
-  transform: rotate(7deg) translate(-1em, 3em);
+  rotate: 7deg;
+  translate: -1em 3em;
 }
 
 .link-3 {
-  transform: rotate(-7deg) translate(-2em, 4em);
+  rotate: -7deg;
+  translate: -2em 4em;
 }
 </style>

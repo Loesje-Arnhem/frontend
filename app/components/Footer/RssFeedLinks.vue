@@ -48,6 +48,6 @@
 }
 
 .icon {
-  transform: translateY(0.15em);
+  translate: 0 0.25em;
 }
 </style>

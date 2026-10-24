@@ -98,7 +98,7 @@ const id = useId()
 
     <slide-in-animation>
       <ul
-        v-if="isOpen"
+        v-show="isOpen"
         :id="id"
         class="submenu tile"
       >
@@ -203,7 +203,7 @@ const id = useId()
 }
 
 .icon {
-  transition: transform var(--animation);
+  transition: rotate var(--animation);
   [aria-expanded="true"] & {
     rotate: -180deg;
 

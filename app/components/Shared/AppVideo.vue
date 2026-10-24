@@ -65,7 +65,7 @@ const videoUrl = computed(() => {
 
 .wrapper {
   position: relative;
-  transform: rotate(2deg);
+  rotate: 2deg;
 }
 
 .video-wrapper {

@@ -76,7 +76,7 @@ const {
 }
 
 .mood-wrapper {
-  transform: rotate(3deg);
+  rotate: 3deg;
 
   @media (--viewport-sm) {
     position: absolute;

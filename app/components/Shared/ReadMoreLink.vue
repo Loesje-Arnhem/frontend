@@ -23,7 +23,7 @@ defineProps<{
 
 <style lang="css" scoped>
 .icon {
-  transform: translate3d(2px, 2px, 0);
+  translate: 2px 2px;
   transition: margin 0.2s ease-out;
 }
 

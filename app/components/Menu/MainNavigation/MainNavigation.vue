@@ -1,67 +1,5 @@
 <script lang="ts" setup>
-const { data } = await useAsyncData('menu', () => $fetch('/api/menu'))
-
-const menu = useTemplateRef('menu')
-const arrowPosition: Ref<string | undefined> = ref(undefined)
-const arrowWidth = ref(`0`)
-
-const route = useRoute()
-const fullPath = toRef(route, 'fullPath')
-watch(fullPath, () => {
-  nextTick(() => {
-    setArrowPosition()
-  })
-})
-
-const updateArrowAfterResize = () => {
-  setArrowPosition()
-}
-
-const getMainLink = () => {
-  if (!menu.value) {
-    return null
-  }
-
-  const activeLink = menu.value.querySelector(
-    '.router-link-active',
-  ) as HTMLAnchorElement | null
-  if (!activeLink) {
-    return null
-  }
-
-  const parent = activeLink.closest('.menu-item-page') as HTMLLIElement | null
-  if (!parent) {
-    return null
-  }
-  return parent
-}
-
-onMounted(() => {
-  setArrowPosition()
-  window.addEventListener('resize', updateArrowAfterResize)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateArrowAfterResize)
-})
-
-const setArrowPosition = () => {
-  if (!menu.value) {
-    return
-  }
-  const activeLink = getMainLink()
-  if (!activeLink) {
-    arrowWidth.value = '0'
-    return
-  }
-  const title = activeLink.querySelector('.title') as HTMLSpanElement | null
-  if (!title) {
-    arrowWidth.value = '0'
-    return
-  }
-  arrowPosition.value = `translateX(${activeLink.offsetLeft}px)`
-  arrowWidth.value = `${title.offsetWidth}px`
-}
+const { data } = await useFetch('/api/menu')
 </script>
 
 <template>
@@ -73,24 +11,17 @@ const setArrowPosition = () => {
     <h2 class="sr-only">
       {{ $t("mainMenu") }}
     </h2>
-    <div ref="menu">
-      <ul
-        v-if="data?.length"
-        class="menu"
-      >
-        <main-navigation-item
-          v-for="item in data"
-          :key="item.id"
-          class="menu-item-page"
-          :item="item"
-        />
-      </ul>
-      <div
-        v-if="arrowPosition"
-        :style="{ transform: arrowPosition, width: arrowWidth }"
-        class="arrow"
+    <ul
+      v-if="data?.length"
+      class="menu"
+    >
+      <main-navigation-item
+        v-for="item in data"
+        :key="item.id"
+        class="menu-item-page"
+        :item="item"
       />
-    </div>
+    </ul>
   </nav>
 </template>
 
@@ -106,7 +37,7 @@ const setArrowPosition = () => {
   }
 }
 
-.menu {
+ul {
   @mixin list-reset;
 
   padding-block-end: 5em;
@@ -115,6 +46,31 @@ const setArrowPosition = () => {
     display: flex;
     justify-content: space-between;
     padding-block-end: 0;
+
+    &::after {
+      position: absolute;
+      inset-block-end: 8px;
+      inset-inline-start: anchor(left);
+      display: block;
+      /* stylelint-disable-next-line declaration-property-value-no-unknown */
+      inline-size: anchor-size(inline);
+      block-size: 3px;
+      position-anchor: --active-menu;
+      pointer-events: none;
+      content: "";
+      background: var(--color-white);
+      transition:
+        left var(--animation),
+        width var(--animation);
+    }
+  }
+}
+
+.menu-item-page {
+  &:has(.router-link-active) {
+    &:deep(> a) {
+      anchor-name: --active-menu;
+    }
   }
 }
 

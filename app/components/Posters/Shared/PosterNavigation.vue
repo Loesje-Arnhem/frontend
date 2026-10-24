@@ -75,8 +75,8 @@ a {
 .icon {
   @mixin icon 0.8em;
 
-  transform: translate(0, 0.1em);
-  transition: transform ease-out 0.2s;
+  translate: 0 0.1em;
+  transition: translate ease-out 0.2s;
 }
 
 /* stylelint-disable no-descending-specificity */
@@ -86,7 +86,7 @@ a {
   }
 
   &:hover .icon {
-    transform: translate(-0.2em, 0.1em);
+    translate: -0.2em 0.1em;
   }
 }
 
@@ -98,19 +98,19 @@ a {
   }
 
   &:hover .icon {
-    transform: translate(0.2em, 0.1em);
+    translate: 0.2em 0.1em;
   }
 }
 /* stylelint-enable no-descending-specificity */
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.2s;
+  transition: opacity var(--animation), translate var(--animation);
 }
 
 .slide-enter,
 .slide-leave-to {
   opacity: 0;
-  transform: translateY(-0.5em);
+  translate: 0 -0.5em;
 }
 </style>

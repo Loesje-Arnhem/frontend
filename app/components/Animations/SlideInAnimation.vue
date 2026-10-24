@@ -27,7 +27,7 @@ withDefaults(
 .slide-in-down-leave-active {
   transition:
     opacity var(--animation),
-    transform var(--animation);
+    translate var(--animation);
 }
 
 .slide-in-up-enter-from,
@@ -39,11 +39,11 @@ withDefaults(
 
 .slide-in-up-enter-from,
 .slide-in-up-leave-to {
-  transform: translateY(-0.5em);
+  translate: 0 -0.5em;
 }
 
 .slide-in-down-enter-from,
 .slide-in-down-leave-to {
-  transform: translateY(0.5em);
+  translate: 0 0.5em;
 }
 </style>

@@ -96,7 +96,7 @@ const cssClasses = computed(() => {
 
   & .loader {
     margin: 0;
-    transform: scale(0.75);
+    scale: 0.75;
   }
 }
 

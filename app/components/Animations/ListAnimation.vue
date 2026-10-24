@@ -10,12 +10,12 @@
 <style>
 .list-enter-active,
 .list-leave-active {
-  transition: all 0.2s;
+  transition: opacity var(--animation), translate var(--animation);
 }
 
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateY(1em);
+  translate: 0 1em;
 }
 </style>

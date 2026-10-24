@@ -144,6 +144,6 @@ const removeItemFromCard = async () => {
 }
 
 .select {
-  transform: translateY(-0.4em);
+  translate: 0 -0.4em;
 }
 </style>
