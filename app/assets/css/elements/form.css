@@ -39,7 +39,7 @@ select {
   appearance: none;
   background: var(--color-white);
   border-radius: 0;
-  transition: border-color 0.15s ease-out;
+  transition: border-color var(--animation);
 
   &:disabled {
     color: var(--gray-light);

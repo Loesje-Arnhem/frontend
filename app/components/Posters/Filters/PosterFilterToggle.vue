@@ -42,7 +42,7 @@ defineEmits(['toggle'])
   @mixin icon 1em;
 
   flex: 0 0 auto;
-  transition: rotate 0.2s ease-out;
+  transition: rotate var(--animation);
 }
 
 .btn {

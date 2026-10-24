@@ -76,7 +76,7 @@ a {
   @mixin icon 0.8em;
 
   translate: 0 0.1em;
-  transition: translate ease-out 0.2s;
+  transition: translate var(--animation);
 }
 
 /* stylelint-disable no-descending-specificity */

@@ -50,7 +50,7 @@ const mouseUp = () => {
   &:hover,
   &:focus-within {
     & :deep(.read-more .icon) {
-      margin-inline-start: 0.25em;
+      translate: 0.25em 2px;
     }
   }
 }

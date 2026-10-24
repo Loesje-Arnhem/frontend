@@ -6,13 +6,6 @@
   display: none;
 }
 
-@media screen and (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    animation: none !important;
-  }
-}
-
 @media screen and (inverted-colors: inverted) {
   img {
     filter: invert(100%);

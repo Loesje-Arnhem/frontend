@@ -41,7 +41,7 @@ defineEmits(['toggle-menu'])
 @import "~/assets/css/media-queries/media-queries.css";
 
 .title {
-  transition: box-shadow 0.2s ease-out;
+  transition: box-shadow var(--animation);
 }
 
 .btn {

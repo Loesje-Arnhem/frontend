@@ -1,6 +1,6 @@
 @define-mixin hover-with-title {
   & .title {
-    transition: box-shadow 0.2s ease-out;
+    transition: box-shadow var(--animation);
   }
 
   @mixin hover {

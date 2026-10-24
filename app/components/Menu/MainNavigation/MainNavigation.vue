@@ -73,21 +73,4 @@ ul {
     }
   }
 }
-
-.arrow {
-  position: absolute;
-  inset-block-end: 8px;
-  display: none;
-  block-size: 3px;
-  background: var(--color-white);
-  transition: all var(--animation);
-
-  @media (--show-full-navigation) {
-    display: block;
-  }
-
-  @media (--viewport-lg) {
-    inset-block-end: 13px;
-  }
-}
 </style>
