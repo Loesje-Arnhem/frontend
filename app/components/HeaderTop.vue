@@ -2,15 +2,16 @@
   <center-wrapper :top="true">
     <div class="wrapper">
       <div class="text">
-        <h1>Loesje breidt haar vriendenclub uit!</h1>
+        <h1>Loesje laat Nederland weer dromen!</h1>
         <p>
-          Als vriend help je Loesje om onafhankelijk te blijven schrijven, posters te verspreiden en mensen samen te brengen. Kom je ook bij Loesjes vriendenclub?
+          In 2027 wil Loesje dromen wakker maken en omzetten in ideeën, woorden en
+          actie. Doneer nu en maak dromen mogelijk.
         </p>
         <app-button
-          to="/word-vrienden-met-loesje/"
+          to="https://shop.loesje.nl/loesje-maakt-dromen-mogelijk/"
           class="btn"
         >
-          Word vriend van Loesje
+          Steun de dromenactie
         </app-button>
       </div>
       <div class="poster-daily">
@@ -53,6 +54,10 @@
   @media (--viewport-sm) {
     padding: 0 0 3em var(--gutter);
   }
+}
+
+h1 {
+  hyphens: none;
 }
 
 .poster-daily {

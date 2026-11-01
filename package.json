@@ -28,8 +28,8 @@
     "@vite-pwa/assets-generator": "^2.0.0",
     "@vite-pwa/nuxt": "^1.1.1",
     "eslint": "^10.13.0",
-    "eslint-plugin-vue": "^10.11.1",
-    "nuxt": "^4.6.2",
+    "eslint-plugin-vue": "^10.12.0",
+    "nuxt": "^4.6.3",
     "nuxt-schema-org": "^6.4.3",
     "postcss-html": "^2.0.0",
     "postcss-mixins": "^12.1.2",
@@ -46,7 +46,7 @@
     "zod": "^4.6.7"
   },
   "dependencies": {
-    "@netlify/blobs": "^11.1.6",
+    "@netlify/blobs": "^11.1.7",
     "@nuxt/image": "^2.2.0",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
